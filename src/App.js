@@ -1,7 +1,8 @@
+import Layout from "./component/Layout";
+import Router from "./shared/Router";
+
 function App() {
-  return (
-    <div>HI</div>
-  );
+  return <Router />;
 }
 
 export default App;

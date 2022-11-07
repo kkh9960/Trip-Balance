@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import { Modal } from "bootstrap";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../redux/modules/Signup";
-import "./login.css";
-import Layout from "../component/Layout";
+
 function RegisterPage() {
   const {
     register,
@@ -18,24 +17,29 @@ function RegisterPage() {
   const dispatch = useDispatch();
   const password = useRef();
   password.current = watch("password");
-  console.log(watch());
+
   const onSubmit = (data) => {
-    dispatch(
-      addMemberThunk({
-        email: data.email,
-        name: data.name,
-        password: data.password,
-        password_confirm: data.password_confirm,
-      })
-    );
+    try {
+      setLoading(true);
+
+      dispatch(addMemberThunk(data));
+
+      setLoading(false);
+    } catch (error) {
+      setErrorFromSubmit(error.message);
+      setLoading(false);
+      setTimeout(() => {
+        setErrorFromSubmit("");
+      }, 5000);
+    }
   };
 
   return (
     <div className="auth-wrapper">
+      <div style={{ textAlign: "center" }}>
+        <h3>회원가입 해주세요~</h3>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ textAlign: "center" }}>
-          <h3>회원가입 해주세요~</h3>
-        </div>
         <label>이메일</label>
         <input
           name="email"
@@ -47,7 +51,6 @@ function RegisterPage() {
         <label>이름</label>
         <input
           name="name"
-          type="text"
           {...register("name", { required: true, maxLength: 10 })}
         />
         {errors.name && errors.name.type === "required" && (
@@ -63,14 +66,14 @@ function RegisterPage() {
           type="password"
           {...register("password", {
             required: true,
-            minLength: 6,
+            minLength: 8,
             pattern: /[~!@#$%^&*()_+|<>?:{}]/,
           })}
         />
         {errors.password && <p>특수문자를포함해주세요</p>}
 
         {errors.password && errors.password.type === "minLength" && (
-          <p>비밀번호는 6자 이상이어야 합니다</p>
+          <p>비밀번호는 8자 이상이어야 합니다</p>
         )}
 
         <label>비밀번호확인</label>
