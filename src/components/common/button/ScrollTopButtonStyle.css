@@ -1,0 +1,8 @@
+.nonedisplay{
+  display: none;
+  background-color: green;
+}
+.showdisplay {
+  display: show;
+  background-color: green;
+}
