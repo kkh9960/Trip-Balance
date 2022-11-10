@@ -16,9 +16,9 @@ export default function ImageSlide() {
 
   return (
       <SimpleImageSlider
-        style={{objectFit:'cover'}}
+        style={{objectFit:'cover', position:'relative'}}
         width='100%'
-        height='700px'
+        height='880px'
         images={images}
         navMargin={10}
         navSize={70}
