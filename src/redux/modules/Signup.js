@@ -6,7 +6,7 @@ export const addMemberThunk = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log("페이로드는어딧는가?", payload);
     try {
-      const { data } = await axios.post("/tb/join", payload);
+      const { data } = await axios.post("/tb/signup", payload);
 
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
