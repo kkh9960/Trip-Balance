@@ -1,0 +1,10 @@
+.nonedisplay {
+  display: none;
+  background-color: green;
+  transition-duration: 0.5s;
+}
+.showdisplay {
+  display: show;
+  background-color: green;
+  transition-duration: 0.5s;
+}
