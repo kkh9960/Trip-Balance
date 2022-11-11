@@ -1,16 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
-import BestSlice from "../modules/BsetFiveSlice";
-import MapSlice from "../modules/MapSlice";
-import WeatherSlice from "../modules/WeatherSlice";
-import BoardSlice from "../modules/BoardSlice";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import authSlice from "../modules/Signup";
 
 const store = configureStore({
-  reducer: {
-    BestSlice,
-    MapSlice,
-    WeatherSlice,
-    BoardSlice,
-  },
+  reducer: { authSlice },
+  //   middleware: getDefaultMiddleware({
+  //     serializableCheck: false,
+  //   }),
 });
 
 export default store;
