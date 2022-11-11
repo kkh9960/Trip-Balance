@@ -2,10 +2,18 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import AWS from "aws-sdk";
+import { __postBoard } from "../redux/modules/BoardSlice";
 
 const BoardWrite = () => {
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
+  const DefaultImega = "img/default1.jpg";
+  const [ImgPreview, setImgPreview] = useState([]);
+  const [Pet, setPet] = useState(0);
+  const [contents, setcontents] = useState();
+  const [Cate, setCate] = useState("0");
+
+  console.log(ImgPreview.length);
 
   // 이미지
 
@@ -44,80 +52,140 @@ const BoardWrite = () => {
       Key: fileName,
     };
 
-    await myBucket
-      .putObject(params)
-      .on("httpUploadProgress", (Progress, Response) => {
-        alert("SUCCESS");
-        console.log(Response.request.httpRequest.path);
-        setFileLink(S3URL + Response.request.httpRequest.path);
-      })
-      .send((err) => {
-        if (err) console.log(err);
-      });
+    if (ImgPreview.length < 10) {
+      await myBucket
+        .putObject(params)
+        .on("httpUploadProgress", (Progress, Response) => {
+          alert("SUCCESS");
+          console.log(Response.request.httpRequest.path);
+          const ImgURL = S3URL + Response.request.httpRequest.path;
+          setFileLink(ImgURL);
+          setImgPreview([...ImgPreview, ImgURL]);
+        })
+        .send((err) => {
+          if (err) console.log(err);
+        });
+    } else {
+      alert("이미지는 10개까지만 업로드할수있습니다.");
+    }
   };
-
-  console.log(FileLink);
 
   // 카테고리 선택박스 //
-  let cate_parent = [
-    { v: "0", t: "카테고리를 선택해주세요." },
-    { v: "1", t: "카테고리1" },
-    { v: "2", t: "카테고리2" },
-  ];
+  // let cate_parent = [
+  //   { c: "category1", v: "0", t: "카테고리를 선택해주세요." },
+  //   { c: "category1", v: "1", t: "카테고리1" },
+  //   { c: "category1", v: "2", t: "카테고리2" },
+  // ];
 
-  let cate_child_1 = [
-    { v: "1", t: "카테고리1번의 항목1" },
-    { v: "2", t: "카테고리1번의 항목2" },
-    { v: "3", t: "카테고리1번의 항목3" },
-  ];
+  // let cate_child_1 = [
+  //   { c: "category2", v: "1", t: "카테고리1번의 항목1" },
+  //   { c: "category2", v: "2", t: "카테고리1번의 항목2" },
+  //   { c: "category2", v: "3", t: "카테고리1번의 항목3" },
+  // ];
 
-  let cate_child_2 = [
-    { v: "1", t: "카테고리2번의 항목1" },
-    { v: "2", t: "카테고리2번의 항목2" },
-    { v: "3", t: "카테고리2번의 항목3" },
-  ];
-  const loadCateParent = () => {
-    let h = [];
-    cate_parent.forEach((item) => {
-      h.push('<option value="' + item.v + '">' + item.t + "</option>");
-    });
-    document.getElementById("cate_parent").innerHTML = h.join("");
-  };
-  useEffect(() => {
-    loadCateParent();
-  }, []);
-  const loadCateChild = () => {
-    let parent_cate = document.getElementById("cate_parent").value;
-    let h = [];
-    if (parent_cate === "") {
-    } else {
-      if (parent_cate === "1") {
-        cate_child_1.forEach((item) => {
-          h.push('<option value="' + item.v + '">' + item.t + "</option>");
-        });
-      } else if (parent_cate === "2") {
-        cate_child_2.forEach((item) => {
-          h.push('<option value="' + item.v + '">' + item.t + "</option>");
-        });
-      }
-    }
-    document.getElementById("cate_child").innerHTML = h.join("");
-  };
+  // let cate_child_2 = [
+  //   { c: "category2", v: "1", t: "카테고리2번의 항목1" },
+  //   { c: "category2", v: "2", t: "카테고리2번의 항목2" },
+  //   { c: "category2", v: "3", t: "카테고리2번의 항목3" },
+  // ];
+  // const loadCateParent = () => {
+  //   let h = [];
+  //   cate_parent.forEach((item) => {
+  //     h.push(
+  //       '<option name="' +
+  //         item.c +
+  //         '" value="' +
+  //         item.v +
+  //         '">' +
+  //         item.t +
+  //         "</option>"
+  //     );
+  //   });
+  //   document.getElementById("cate_parent").innerHTML = h.join("");
+  // };
+  // useEffect(() => {
+  //   loadCateParent();
+  // }, []);
+  // const loadCateChild = () => {
+  //   let test = "onChange={onCategoryHandler}";
+  //   let parent_cate = document.getElementById("cate_parent").value;
+  //   let h = [];
+  //   if (parent_cate === "") {
+  //   } else {
+  //     if (parent_cate === "1") {
+  //       cate_child_1.forEach((item) => {
+  //         h.push(
+  //           '<option name="' +
+  //             item.c +
+  //             '" value="' +
+  //             item.v +
+  //             '"' +
+  //             test +
+  //             ">" +
+  //             item.t +
+  //             "</option>"
+  //         );
+  //       });
+  //     } else if (parent_cate === "2") {
+  //       cate_child_2.forEach((item) => {
+  //         h.push(
+  //           '<option onChange={onCategoryHandler} name="' +
+  //             item.c +
+  //             '" value="' +
+  //             item.v +
+  //             '">' +
+  //             item.t +
+  //             "</option>"
+  //         );
+  //       });
+  //     }
+  //   }
+  //   document.getElementById("cate_child").innerHTML = h.join("");
+  // };
   // 여기까지 카테고리 선택박스 //
 
-  const onChangeDataHandler = (event) => {
-    const { name, value } = event.target;
-    // setPost({
-    //   ...post,
-    //   data: {
-    //     ...post.data,
-    //     [name]: value,
-    //   },
-    // });
+  const PetHandler = () => {
+    Pet == 1 ? setPet(0) : setPet(1);
+  };
+  const onChangeDataHandler = (e) => {
+    const { name, value } = e.target;
+    setcontents({
+      ...contents,
+      [name]: value,
+    });
+  };
+  const onCategoryHandler = (e) => {
+    const { name, value } = e.target;
+    setcontents({
+      ...contents,
+      [name]: value,
+    });
+  };
+  const Categoryopen = (e) => {
+    console.log(e);
+    const { name, value } = e.target;
+    setCate(value);
+    setcontents({
+      ...contents,
+      [name]: value,
+    });
   };
 
+  console.log(contents);
+  const onSubmitHandler = () => {
+    dispatch(__postBoard({}));
+  };
+
+  console.log(
+    contents.title,
+    contents.content,
+    contents.category1,
+    contents.category2,
+    ImgPreview
+  );
+
   return (
-    <BoardWriteContainer>
+    <BoardWriteContainer onSubmit={onSubmitHandler}>
       <BoardWriteWrap>
         <WriteTitle>
           <TitleInput
@@ -147,23 +215,100 @@ const BoardWrite = () => {
               <CategorySelect
                 name="category1"
                 id="cate_parent"
-                onChange={() => {
-                  loadCateChild();
-                  onChangeDataHandler(event);
-                }}
-              ></CategorySelect>
+                onChange={Categoryopen}
+              >
+                <option name="category1" value="0">
+                  카테고리를 선택해주세요.
+                </option>
+                <option name="category1" value="1">
+                  카테고리1
+                </option>
+                <option name="category1" value="2">
+                  카테고리2
+                </option>
+              </CategorySelect>
               <CategorySelect
                 name="category2"
                 id="cate_child"
+                onChange={onCategoryHandler}
                 required
-              ></CategorySelect>
+              >
+                {Cate == 1 && (
+                  <>
+                    <option name="category2" value="1">
+                      카테고리1번의 항목1
+                    </option>
+                    <option name="category2" value="2">
+                      카테고리1번의 항목2
+                    </option>
+                    <option name="category2" value="3">
+                      카테고리1번의 항목3
+                    </option>
+                  </>
+                )}
+                {Cate == 2 && (
+                  <>
+                    <option name="category2" value="1">
+                      카테고리2번의 항목1
+                    </option>
+                    <option name="category2" value="2">
+                      카테고리2번의 항목2
+                    </option>
+                    <option name="category2" value="3">
+                      카테고리2번의 항목3
+                    </option>
+                  </>
+                )}
+              </CategorySelect>
               <PetCheckBox>
-                <PetCheck type="checkbox" name="" id="pet" />
+                <PetCheck type="checkbox" id="pet" onChange={PetHandler} />
                 <PetLabel htmlFor="pet">반려동물</PetLabel>
               </PetCheckBox>
             </CategoryBox>
           </CategoryWrap>
         </ImegeCategoryBox>
+        <ImegePreviewBox>
+          <UploadImegePreview
+            src={ImgPreview[0] ? ImgPreview[0] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[1] ? ImgPreview[1] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[2] ? ImgPreview[2] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[3] ? ImgPreview[3] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[4] ? ImgPreview[4] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[5] ? ImgPreview[5] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[6] ? ImgPreview[6] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[7] ? ImgPreview[7] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[8] ? ImgPreview[8] : DefaultImega}
+            alt=""
+          />
+          <UploadImegePreview
+            src={ImgPreview[9] ? ImgPreview[9] : DefaultImega}
+            alt=""
+          />
+        </ImegePreviewBox>
         <WriteContentBox>
           <WriteContent
             name="content"
@@ -185,6 +330,21 @@ const BoardWrite = () => {
 };
 
 export default BoardWrite;
+
+const ImegePreviewBox = styled.div`
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+`;
+
+const UploadImegePreview = styled.img`
+  flex: 1;
+  width: 91px;
+  height: 100px;
+  object-fit: cover;
+`;
 
 const PetLabel = styled.label`
   font-size: 22px;
