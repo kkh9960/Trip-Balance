@@ -14,7 +14,7 @@ ChartJS.register(ArcElement, Tooltip);
 export default function DoughnutChart() {
   const mapdata = useSelector((state) => state.MapSlice);
 
-
+  
 
   return (
     <div>

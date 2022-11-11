@@ -47,10 +47,9 @@ export default function MapBar() {
         makeOutListener(infowindow)
       );
       kakao.maps.event.addListener(marker, 'click', function () {
-        let lat = el.lat
-        let lng = el.lng
+        let lat = `${el.lat}`
+        let lng = `${el.lng}`
         dispatch(__postMapData({ lat, lng }))
-        dispatch(__getMapData())
       }
       );
     });

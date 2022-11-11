@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const initialState = {
-  Apidata: {
+  peopleCnt: {
     CompData: [
       {
         "Type": {
@@ -23,6 +23,10 @@ const initialState = {
       },
     ],
   },
+  Apidata: {
+    lat: '',
+    lng:'',
+  },
   isLoading: false,
   error: null,
 };
@@ -31,10 +35,8 @@ const initialState = {
 export const __getMapData = createAsyncThunk(
   "GET_MAPDATA",
   async (payload, thunkAPI) => {
-    console.log('payload',payload)
     try {
-      const { data } = await axios.get("http://52.78.174.102:8080/tb/apitest", payload); //http://52.78.174.102:8080/tb/apitest
-      console.log('payload',payload)
+      const { data } = await axios.get("/tb/apitest", payload); //http://52.78.174.102:8080/tb/apitest
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       
@@ -47,13 +49,13 @@ export const __postMapData = createAsyncThunk(
   async (payload, thunkAPI) => {
     console.log(payload)
     try {
-      await axios.post("http://52.78.174.102:8080/tb/apitest", payload)
-      return thunkAPI.fulfillWithValue(payload)
+      const { data } = await axios.post('http://52.78.174.102:8080/tb/apitest', payload);
+      console.log('data', data)
+      return thunkAPI.fulfillWithValue(data)
     } catch (error) {
     }
   }
 );
-
 
 export const mapSlice = createSlice({
   name: "map",
@@ -65,7 +67,7 @@ export const mapSlice = createSlice({
     },
     [__getMapData.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.CompData = action.payload;
+      state.peopleCnt = action.payload;
     },
     [__getMapData.rejected]: (state, action) => {
       state.isLoading = false;
@@ -76,6 +78,7 @@ export const mapSlice = createSlice({
     },
     [__postMapData.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.Apidata = console.log(action.payload)
     },
     [__postMapData.rejected]: (state, action) => {
       state.isLoading = false;
