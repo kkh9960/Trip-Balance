@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import { Modal } from "bootstrap";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../redux/modules/Signup";
-import Footer from "../component/Footer";
+
 import Header from "../component/Header";
 import LoginPage from "./LoginPage";
-import styled from "styled-components";
 
 function RegisterPage() {
   const {
@@ -27,40 +26,17 @@ function RegisterPage() {
     try {
       setLoading(true);
 
-      dispatch(
-        addMemberThunk({
-          email: data.email,
-          nickName: data.nickName,
-          pw: data.password,
-          pwConfirm: data.password_confirm,
-        })
-      );
+      dispatch(addMemberThunk(data));
 
       setLoading(false);
     } catch (error) {
       setErrorFromSubmit(error.message);
       setLoading(false);
       alert("회원가입완료!");
-      // window.location.replace("/login");
       setTimeout(() => {
         setErrorFromSubmit("");
       }, 5000);
     }
-
-    //경우의수 2 트라이캐치 없에고
-    //   dispatch(addMemberThunk(data)).then((res)=>{
-    //   console.log("데이터오나?",res.data)
-    //   if(res.data.code === 0){
-    //     alert("회원가입완료")
-    //   }else if(res.data.code === 117){
-    //     alert("중복된email이있습니다")
-    //   }else if(res.data.code === 118){
-    //     alert("패스워드가틀립니다")
-    //   }
-
-    //  })
-
-    //경우의수 3   dispatch(addMemberThunk(data));
   };
 
   return (
@@ -88,8 +64,8 @@ function RegisterPage() {
 
               <label>이름</label>
               <input
-                name="nickName"
-                {...register("nickName", { required: true, maxLength: 10 })}
+                name="name"
+                {...register("name", { required: true, maxLength: 10 })}
               />
               {errors.name && errors.name.type === "required" && (
                 <p>이름 필드는 필수 항목입니다.</p>
@@ -105,10 +81,10 @@ function RegisterPage() {
                 {...register("password", {
                   required: true,
                   minLength: 8,
-                  // pattern: /[~!@#$%^&*()_+|<>?:{}]/,
+                  pattern: /[~!@#$%^&*()_+|<>?:{}]/,
                 })}
               />
-              {/* {errors.password && <p>특수문자를포함해주세요</p>} */}
+              {errors.password && <p>특수문자를포함해주세요</p>}
 
               {errors.password && errors.password.type === "minLength" && (
                 <p>비밀번호는 8자 이상이어야 합니다</p>
@@ -145,7 +121,6 @@ function RegisterPage() {
               </Link>
             </form>
           </div>
-          <Footer />
         </div>
       )}
     </div>
@@ -153,21 +128,3 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
-
-const Logowrap = styled.div`
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  display: flex;
-  top: 290px;
-  position: relative;
-`;
-
-const Logo = styled.div`
-  border: 1px solid red;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  width: 351px;
-  height: 81px;
-`;

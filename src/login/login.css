@@ -36,8 +36,6 @@
 .auth-wrapper p::before {
   display: inline;
   content: "⚠ ";
-  color: #bf1650;
-  transition: 1.5s;
 }
 
 .auth-wrapper input {
