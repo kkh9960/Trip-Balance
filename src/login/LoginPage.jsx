@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import "./login.css";
 import Header from "../component/Header";
+import Footer from "../component/Footer";
 function LoginPage() {
   const {
     register,
@@ -29,13 +30,31 @@ function LoginPage() {
     }
   };
 
+  //  axios
+  //    .post("https://bkyungkeem.shop/api/member/login", loginInfo)
+  //    .then((res) => {
+  //      if (res.data.success) {
+  //        console.log(res.data.data.emailId);
+  //        setCookie("Access", res.request.getResponseHeader("authorization"), {
+  //          path: "/",
+  //        });
+  //        setCookie("Refresh", res.request.getResponseHeader("refresh-token"), {
+  //          path: "/",
+  //        });
+  //        localStorage.setItem("emailId", res.data.data.emailId);
+  //        navigate("/");
+  //      } else {
+  //        setErrorMsg(res.data.error.message);
+  //      }
+  //    });
+
   return (
     <div>
       {modal ? (
         <Signup />
       ) : (
         <div>
-          <Header />
+          {/* <Header /> */}
           <div className="auth-wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div style={{ textAlign: "center" }}>
@@ -78,6 +97,7 @@ function LoginPage() {
               </Link>
             </form>
           </div>
+          {/* <Footer /> */}
         </div>
       )}
     </div>

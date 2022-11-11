@@ -45,7 +45,7 @@ function RegisterPage() {
         <LoginPage />
       ) : (
         <div>
-          <Header />
+          {/* <Header /> */}
           <div className="auth-wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div style={{ textAlign: "center" }}>
