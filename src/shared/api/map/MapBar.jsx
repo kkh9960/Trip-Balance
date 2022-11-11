@@ -67,8 +67,8 @@ export default function MapBar() {
   };
 
   return (
-    <>
+    <div>
       <div id="map" className='map'/>
-    </>
+    </div>
   )
 }

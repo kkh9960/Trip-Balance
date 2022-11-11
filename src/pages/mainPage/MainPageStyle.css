@@ -9,10 +9,11 @@
   margin: 0 auto;
 }
 .mapGroup {
-  background-color: whitesmoke;
-  margin: 30px auto 30px;
+  background-color: black;
+  margin: 30px 0 30px;
+  margin-left: -63px;
   padding: 30px 0px;
-  display: flex;
+  display: absolute;
 
 }
 .sideButtonGroup {

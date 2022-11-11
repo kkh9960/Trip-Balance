@@ -45,6 +45,7 @@ export const __getMapData = createAsyncThunk(
 export const __postMapData = createAsyncThunk(
   "POST_MAPDATA",
   async (payload, thunkAPI) => {
+    console.log(payload)
     try {
       await axios.post("http://52.78.174.102:8080/tb/apitest", payload)
       return thunkAPI.fulfillWithValue(payload)
