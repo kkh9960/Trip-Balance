@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { Modal } from "bootstrap";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../redux/modules/Signup";
-
+import TripImage from "../image/trip.jpg";
 import Header from "../component/Header";
 import LoginPage from "./LoginPage";
+import styled from "styled-components";
 
 function RegisterPage() {
   const {
@@ -46,6 +47,9 @@ function RegisterPage() {
       ) : (
         <div>
           {/* <Header /> */}
+          <LogoWrap>
+            <Logo src={TripImage} />
+          </LogoWrap>
           <div className="auth-wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div style={{ textAlign: "center" }}>
@@ -128,3 +132,13 @@ function RegisterPage() {
 }
 
 export default RegisterPage;
+
+const LogoWrap = styled.div`
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 180px;
+`;
+
+const Logo = styled.img``;

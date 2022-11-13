@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import "./login.css";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import TripImage from "../image/trip.jpg";
+
+import styled from "styled-components";
 function LoginPage() {
   const {
     register,
@@ -55,6 +56,9 @@ function LoginPage() {
       ) : (
         <div>
           {/* <Header /> */}
+          <LogoWrap>
+            <Logo src={TripImage} />
+          </LogoWrap>
           <div className="auth-wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div style={{ textAlign: "center" }}>
@@ -105,6 +109,15 @@ function LoginPage() {
 }
 
 export default LoginPage;
+const LogoWrap = styled.div`
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 260px;
+`;
+
+const Logo = styled.img``;
 // 필요할때 모달창쓰기
 // import React, { useState } from "react";
 // import LoginPage from "./Login";
