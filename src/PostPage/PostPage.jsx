@@ -7,6 +7,7 @@ import Banner from "./Banner";
 import Cards from "./Cards";
 import BalanceButton from "./BalanceButton";
 import styled from "styled-components";
+import TopButton from "./TopButton";
 const PostPage = () => {
   return (
     <div>
@@ -16,6 +17,7 @@ const PostPage = () => {
         <Cards />
       </Layout>
       <BalanceButton />
+      <TopButton />
       <Footer />
     </div>
   );

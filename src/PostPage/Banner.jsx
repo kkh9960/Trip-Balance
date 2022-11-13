@@ -20,9 +20,21 @@ const Banner = () => {
     console.log("key press");
   };
 
+  // const getProducts = () => {
+  //   //q=서치퀄리 넣어줌 알아서 찾아준다
+  //   let searchQuery = query.get("q") || "";
+  //   dispatch(productAction.getProducts(searchQuery));        ///검색햇을경우 미리세팅 test해봐야됨
+
+  // };
+
+  // useEffect(() => {
+  //   getProducts();
+  // }, [query]);
+  // 검색햇을경우 랜더링 미리세팅
+
   return (
     <Container>
-      <Title>오늘의 추천여행지는?</Title>
+      <Title>오늘의 여행지는?</Title>
       <Layout>
         <SearchWrap>
           <SearchTitle>
@@ -42,8 +54,8 @@ const Banner = () => {
             <AiFillEdit />
           </Write>
         </SearchWrap>
-        <Card />
-        {/* <CardSlide /> */}
+        {/* <Card /> */}
+        <CardSlide />
       </Layout>
     </Container>
   );
@@ -117,6 +129,6 @@ const Write = styled.div`
   margin-left: auto;
   position: relative;
   margin-top: -80px;
-  margin-right: -25px;
+  margin-right: 18px;
   cursor: pointer;
 `;

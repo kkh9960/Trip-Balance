@@ -26,16 +26,42 @@ const responsive = {
 const CardSlide = () => {
   return (
     <Carousel responsive={responsive}>
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-      <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
-      <ImgBox src="https://cdn.pixabay.com/photo/2016/08/01/20/15/girl-1562025__340.jpg" />
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2020/10/09/19/39/utah-5641320__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2017/01/20/00/30/maldives-1993704__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2018/01/09/12/20/hamburg-3071437__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2018/10/01/11/45/landscape-3715977__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2021/02/13/01/29/woman-6010056__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2022/01/12/18/45/hungarian-parliament-building-6933621__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2018/04/05/13/08/water-3292794__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2022/05/16/19/14/road-7201023__340.jpg" />
+        <div>좋아요</div>
+      </div>
+      <div>
+        <ImgBox src="https://cdn.pixabay.com/photo/2016/08/01/20/15/girl-1562025__340.jpg" />
+        <div>좋아요</div>
+      </div>
     </Carousel>
   );
 };
@@ -54,4 +80,8 @@ const ImgBox = styled.img`
   width: 344px;
   height: 274px;
   border-radius: 10%;
+  transition: 1.1s;
+  :hover {
+    transform: scale(1.1);
+  }
 `;

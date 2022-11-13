@@ -157,6 +157,17 @@ export const Cards = () => {
 
 export default Cards;
 
+{
+  /* <InfiniteScroll
+    pageStart={0}
+    loadMore={loadFunc}
+    hasMore={true || false}
+    loader={<div className="loader" key={0}>Loading ...</div>}
+>
+    {items} // <-- This is the content you want to load
+</InfiniteScroll> */
+}
+
 const Layout = styled.div`
   justify-content: center;
 
