@@ -176,13 +176,13 @@ const BoardWrite = () => {
     dispatch(__postBoard({}));
   };
 
-  console.log(
-    contents.title,
-    contents.content,
-    contents.category1,
-    contents.category2,
-    ImgPreview
-  );
+  // console.log(
+  //   contents.title,
+  //   contents.content,
+  //   contents.category1,
+  //   contents.category2,
+  //   ImgPreview
+  // );
 
   return (
     <BoardWriteContainer onSubmit={onSubmitHandler}>
