@@ -45,7 +45,7 @@ export default TopButton;
 
 const ScrollContainer = styled.div`
   position: fixed;
-  right: 5%;
+  right: 3%;
   bottom: 10%;
   z-index: 1;
 

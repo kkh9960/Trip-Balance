@@ -180,7 +180,7 @@ const Layout = styled.div`
 `;
 
 const Line = styled.div`
-  border: 1px solid black;
+  border: 1px solid #9a9797;
   width: 1333.1px;
   margin: 20.9px 110.8px 61.6px 2px;
   margin-bottom: 20px;
