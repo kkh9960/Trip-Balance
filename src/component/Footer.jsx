@@ -25,7 +25,7 @@ const Footer = () => {
               <AiFillGithub />
               곽규현
             </a>
-            <a href="">
+            <a href="https://github.com/jnwnddh">
               <AiFillGithub />
               이중오
             </a>

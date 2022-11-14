@@ -8,6 +8,7 @@ import TripImage from "../image/trip.jpg";
 import Header from "../component/Header";
 import LoginPage from "./LoginPage";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 function RegisterPage() {
   const {
@@ -23,21 +24,19 @@ function RegisterPage() {
   const password = useRef();
   password.current = watch("password");
   console.log(watch());
-  const onSubmit = (data) => {
-    try {
-      setLoading(true);
-
-      dispatch(addMemberThunk(data));
-
-      setLoading(false);
-    } catch (error) {
-      setErrorFromSubmit(error.message);
-      setLoading(false);
+  const onSubmit = async (data) => {
+    await dispatch(
+      addMemberThunk({
+        email: data.email,
+        nickName: data.name,
+        pw: data.password,
+        pwConfirm: data.password_confirm,
+      })
+    ).then((res) => {
+      console.log(res);
       alert("회원가입완료!");
-      setTimeout(() => {
-        setErrorFromSubmit("");
-      }, 5000);
-    }
+      window.location.reload();
+    });
   };
 
   return (
@@ -45,7 +44,12 @@ function RegisterPage() {
       {modal ? (
         <LoginPage />
       ) : (
-        <div>
+        <motion.div
+          className="loginPage"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           {/* <Header /> */}
           <LogoWrap>
             <Logo src={TripImage} />
@@ -125,7 +129,7 @@ function RegisterPage() {
               </Link>
             </form>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

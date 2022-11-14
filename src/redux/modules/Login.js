@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import instance from "../../login/lib/instance";
-export const addMemberThunk = createAsyncThunk(
-  "ADD_MEMBER",
+export const Add_LoginThunk = createAsyncThunk(
+  "ADD_LOGIN",
   async (payload, thunkAPI) => {
-    console.log("페이로드는어딧는가?", payload);
+    console.log("로그인할라고??", payload);
     try {
-      const { data } = await instance.post("/tb/signup", payload);
+      const { data } = await instance.post("/tb/login", payload);
 
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -20,23 +20,23 @@ const initialState = {
   error: null,
 };
 
-const authSlice = createSlice({
+const LoginSlice = createSlice({
   name: "member",
   initialState,
   reducers: {},
   extraReducers: {
-    [addMemberThunk.fulfilled]: (state, action) => {
+    [Add_LoginThunk.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.member.push(action.payload);
     },
-    [addMemberThunk.pending]: (state) => {
+    [Add_LoginThunk.pending]: (state) => {
       state.isLoading = true;
     },
-    [addMemberThunk.rejected]: (state, action) => {
+    [Add_LoginThunk.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
   },
 });
 
-export default authSlice.reducer;
+export default LoginSlice.reducer;
