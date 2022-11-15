@@ -6,6 +6,7 @@ import MyPage from "../../pages/mypage/MyPage";
 import PostPage from "../../PostPage/PostPage";
 import BoardWrite from "../../pages/BoardWrite";
 // import MainPage from "../../pages/mainPage/MainPage"
+import Home from "../../Home";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/board" element={<BoardWrite />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

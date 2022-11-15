@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Modal } from "bootstrap";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../redux/modules/Signup";
 
@@ -14,7 +13,7 @@ function RegisterPage() {
     watch,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm({ mode: "onBlur" });
 
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [modal, setModal] = useState(false);
@@ -56,7 +55,7 @@ function RegisterPage() {
                 name="email"
                 type="email"
                 {...register("email", {
-                  required: "이메일을 입력해주세요",
+                  required: true,
                   pattern: /^\S+@\S+$/i,
                 })}
               />
