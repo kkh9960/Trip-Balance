@@ -66,7 +66,12 @@ const Header = () => {
           </Mypage>
           <Wrap>
             {nickname ? (
-              <Logout onClick={logout}>로그아웃</Logout>
+              <div>
+                <Logout onClick={logout}>
+                  로그아웃
+                  <Nickname>{nickname}</Nickname>
+                </Logout>
+              </div>
             ) : (
               <Login
                 onClick={() => {
@@ -84,6 +89,12 @@ const Header = () => {
 };
 
 export default Header;
+
+const Nickname = styled.div`
+  display: flex;
+  position: relative;
+  left: 60px;
+`;
 
 const Container = styled.div`
   text-decoration: underline;
@@ -140,6 +151,7 @@ const Logout = styled.button`
   margin-top: 20px;
   font-size: 24px;
   text-decoration: underline;
+  display: flex;
 `;
 
 const Wrap = styled.div`
