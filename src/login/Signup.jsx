@@ -1,10 +1,8 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Modal } from "bootstrap";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../redux/modules/Signup";
-
 import Header from "../component/Header";
 import LoginPage from "./LoginPage";
 
@@ -15,6 +13,7 @@ function RegisterPage() {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,21 +21,20 @@ function RegisterPage() {
   const password = useRef();
   password.current = watch("password");
   console.log(watch());
-  const onSubmit = (data) => {
-    try {
-      setLoading(true);
 
-      dispatch(addMemberThunk(data));
-
-      setLoading(false);
-    } catch (error) {
-      setErrorFromSubmit(error.message);
-      setLoading(false);
+  const onSubmit = async (data) => {
+    await dispatch(
+      addMemberThunk({
+        email: data.email,
+        nickName: data.name,
+        pw: data.password,
+        pwConfirm: data.password_confirm,
+      })
+    ).then((res) => {
+      console.log(res);
       alert("회원가입완료!");
-      setTimeout(() => {
-        setErrorFromSubmit("");
-      }, 5000);
-    }
+      window.location.reload();
+    });
   };
 
   return (
@@ -45,7 +43,7 @@ function RegisterPage() {
         <LoginPage />
       ) : (
         <div>
-          <Header />
+          {/* <Header /> */}
           <div className="auth-wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div style={{ textAlign: "center" }}>
@@ -56,7 +54,7 @@ function RegisterPage() {
                 name="email"
                 type="email"
                 {...register("email", {
-                  required: true,
+                  required: "이메일을 입력해주세요",
                   pattern: /^\S+@\S+$/i,
                 })}
               />

@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import "./login.css";
-import Header from "../component/Header";
+import TripImage from "../img/trip.jpg";
+import { motion } from "framer-motion";
+import styled from "styled-components";
+import { useCookies } from "react-cookie";
+import instance from "../lib/instance";
+import useInput from "../hooks/useInput";
 function LoginPage() {
   const {
+    setValue,
+    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -14,19 +21,47 @@ function LoginPage() {
   const [modal, setModal] = useState(false);
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail, emailchange] = useInput("");
+  const [password, setPassword, pwchange] = useInput("");
+  const [cookie, setCookie, removeCookie] = useCookies();
+  console.log(watch());
 
-  const onSubmit = (data) => {
-    try {
-      setLoading(true);
-
-      setLoading(false);
-    } catch (error) {
-      setErrorFromSubmit(error.message);
-      setLoading(false);
-      setTimeout(() => {
-        setErrorFromSubmit("");
-      }, 5000);
+  const onvaled = (event) => {
+    event.preventDefault();
+    if (email.trim() === "") {
+      alert("이메일을 입력해 주세요!");
+      return;
     }
+    if (password.trim() === "") {
+      alert("비밀번호를 입력해 주세요!");
+      return;
+    }
+    // 이메일 비번입력안하면 알럿창
+    const LoginValue = {
+      email: email,
+      pw: password,
+    };
+    // 서버로 보내줄 로그인값
+    const data = instance.post("tb/login", LoginValue).then((res) => {
+      // console.log(res)
+      // console.log(res.data.data)
+      // console.log(res.data.data.email)
+      // console.log(res.data.statusMsg)
+      // console.log(res.data.statusCode)
+      localStorage.setItem("nickName", res.data.data.nickName);
+      setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
+      setCookie("token", res.request.getResponseHeader("authorization"));
+      if (res.data.statusCode == 0) {
+        localStorage.setItem("email", res.data.data.email);
+        navigate("/");
+        alert("로그인완료!");
+        window.location.reload();
+      } else {
+        alert(res.data.statusMsg);
+      }
+    });
   };
 
   return (
@@ -34,29 +69,38 @@ function LoginPage() {
       {modal ? (
         <Signup />
       ) : (
-        <div>
-          <Header />
+        <motion.div
+          className="loginPage"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {/* <Header /> */}
+          <Link to="/">
+            <LogoWrap>
+              <Logo src={TripImage} />
+            </LogoWrap>
+          </Link>
           <div className="auth-wrapper">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onvaled}>
               <div style={{ textAlign: "center" }}>
                 <h3>로그인</h3>
               </div>
               <label>Email</label>
               <input
+                value={email}
                 name="email"
                 type="email"
-                {...register("email", {
-                  required: true,
-                  pattern: /^\S+@\S+$/i,
-                })}
+                onChange={emailchange}
               />
               {errors.email && <p>이메일은 필수 항목입니다.</p>}
 
               <label>Password</label>
               <input
+                value={password}
                 name="password"
                 type="password"
-                {...register("password", { required: true, minLength: 6 })}
+                onChange={pwchange}
               />
               {errors.password && errors.password.type === "required" && (
                 <p> 비밀번호는 필수 항목입니다.</p>
@@ -78,13 +122,23 @@ function LoginPage() {
               </Link>
             </form>
           </div>
-        </div>
+          {/* <Footer /> */}
+        </motion.div>
       )}
     </div>
   );
 }
 
 export default LoginPage;
+const LogoWrap = styled.div`
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 260px;
+`;
+
+const Logo = styled.img``;
 // 필요할때 모달창쓰기
 // import React, { useState } from "react";
 // import LoginPage from "./Login";
