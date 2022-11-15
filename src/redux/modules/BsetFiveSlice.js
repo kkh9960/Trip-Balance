@@ -5,8 +5,8 @@ export const __bestFive = createAsyncThunk(
   "GET_BESTFIVE",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get("/tb/bestfive", payload); //http://52.78.174.102:8080/tb/bestfive
-      console.log('gg',data)
+      const { data } = await axios.get("http://3.38.150.15:8080/tb/bestfive", payload); //http://52.78.174.102:8080/tb/bestfive
+      
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -15,14 +15,10 @@ export const __bestFive = createAsyncThunk(
 const initialState = {
   data: [
     {
-      tite: "",
-      nickName: "",
-      local: "",
-      pet: "",
-      content: "",
-      img: "",
-      heartnum: "",
-      hear: "",
+      tite: "제목",
+      img: "이미지",
+      heartnum: 4,
+      hear: true,
     },
   ],
   isLoading: false,
@@ -39,7 +35,8 @@ export const bestSlice = createSlice({
     },
     [__bestFive.fulfilled]: (state, action) => {
       state.isLoading = false;
-      
+      state.data = action.payload
+      console.log('fivepayload', action.payload)
     },
     [__bestFive.rejected]: (state, action) => {
       state.user.isLoading = false;

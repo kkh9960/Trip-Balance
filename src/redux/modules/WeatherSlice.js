@@ -6,7 +6,7 @@ export const __getWeatherData = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get("localhost:3000", payload);
-      return thunkAPI.fulfillWithValue(data.data);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       
     }
@@ -30,7 +30,7 @@ const initialState = {
     "다른 코드": "TMP: 현재 기온, PTY: 강수확률, REH: 습도",
     "PCP": "강수없음"
   },
-  isLoding: false,
+  isLoading: false,
   error: null,
 }
 

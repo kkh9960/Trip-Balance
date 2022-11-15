@@ -1,22 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ReactModal from "react-modal";
 import { __bestFive } from "../../../../redux/modules/BsetFiveSlice";
 
-export default function BestFive({ isOpen, onCancel }) {
+export default function BestFive() {
   const dispatch = useDispatch();
-  const bestList = useSelector((state) => state);
-
-  const handleClickCancel = () => {
-    onCancel();
-  };
-  
-  // useEffect(() => {
-  //   dispatch(__bestFive());
-  // }, []);
+  const bestList = useSelector((state) => state.BestSlice.data);
+  console.log(bestList)
+  useEffect(() => {
+    dispatch(__bestFive());
+  }, []);
 
   return (
-    <ReactModal isOpen={isOpen}>
+    
       <div className="container">
         {/* 맵돌려서 순서대로 나열 */}
         {/* {bestList &&
@@ -32,22 +27,7 @@ export default function BestFive({ isOpen, onCancel }) {
               </div>
             </div>;
           })} */}
-        <div className="topList">
-          {/* 리스트 키값을 하트로 받고 하트값이 높은 순서대로 나열 */}
-          <div className="List">
-            <div className="img">이미지</div>
-            <div className="nickName">아이디</div>
-            <div className="title">제목</div>
-            <div className="local">지역</div>
-            <div className="comment">내용</div>
-            <div className="heart">하트</div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <button onClick={handleClickCancel}>취소</button>
-      </div>
-    </ReactModal>
+    </div>
+    
   );
 }
