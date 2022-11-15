@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { Modal } from "bootstrap";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../redux/modules/Signup";
-
+import TripImage from "../image/trip.jpg";
 import Header from "../component/Header";
 import LoginPage from "./LoginPage";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
 function RegisterPage() {
   const {
@@ -22,21 +24,19 @@ function RegisterPage() {
   const password = useRef();
   password.current = watch("password");
   console.log(watch());
-  const onSubmit = (data) => {
-    try {
-      setLoading(true);
-
-      dispatch(addMemberThunk(data));
-
-      setLoading(false);
-    } catch (error) {
-      setErrorFromSubmit(error.message);
-      setLoading(false);
+  const onSubmit = async (data) => {
+    await dispatch(
+      addMemberThunk({
+        email: data.email,
+        nickName: data.name,
+        pw: data.password,
+        pwConfirm: data.password_confirm,
+      })
+    ).then((res) => {
+      console.log(res);
       alert("회원가입완료!");
-      setTimeout(() => {
-        setErrorFromSubmit("");
-      }, 5000);
-    }
+      // window.location.reload();
+    });
   };
 
   return (
@@ -44,8 +44,16 @@ function RegisterPage() {
       {modal ? (
         <LoginPage />
       ) : (
-        <div>
+        <motion.div
+          className="loginPage"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
           {/* <Header /> */}
+          <LogoWrap>
+            <Logo src={TripImage} />
+          </LogoWrap>
           <div className="auth-wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div style={{ textAlign: "center" }}>
@@ -81,10 +89,10 @@ function RegisterPage() {
                 {...register("password", {
                   required: true,
                   minLength: 8,
-                  pattern: /[~!@#$%^&*()_+|<>?:{}]/,
+                  // pattern: /[~!@#$%^&*()_+|<>?:{}]/,
                 })}
               />
-              {errors.password && <p>특수문자를포함해주세요</p>}
+              {/* {errors.password && <p>특수문자를포함해주세요</p>} */}
 
               {errors.password && errors.password.type === "minLength" && (
                 <p>비밀번호는 8자 이상이어야 합니다</p>
@@ -121,10 +129,20 @@ function RegisterPage() {
               </Link>
             </form>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );
 }
 
 export default RegisterPage;
+
+const LogoWrap = styled.div`
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 180px;
+`;
+
+const Logo = styled.img``;

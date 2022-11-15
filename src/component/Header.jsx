@@ -1,17 +1,66 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Layout from "./Layout";
+import TripImage from "../image/trip.jpg";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCookieToken, removeCookieToken } from "../storage/Cookie";
+import { logoutUser } from "../login/api/Users";
+import { DELETE_TOKEN } from "../redux/modules/Auth";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 const Header = () => {
+  const navigate = useNavigate();
+
+  const [cookie, setCookie, removeCookie] = useCookies();
+
+  // console.log(`지금 accessToken: ${accessToken}`);
+  // console.log(`지금 refreshToken: ${refreshToken}`);
+  async function logout() {
+    // 백으로부터 받은 응답
+
+    axios.defaults.headers.post["authorization"] = cookie.Access;
+    axios.defaults.headers.post["refresh-token"] = cookie.Refresh;
+    localStorage.removeItem("emailId");
+    removeCookie("Access", { path: "/" });
+    removeCookie("Refresh", { path: "/" });
+
+    axios
+      .post("https://coding-kym.shop/tb/logout")
+      .then((res) => {
+        if (res.data.success) alert("로그아웃에 성공했습니다.");
+        else alert(res.data.error.message);
+        // window.location.reload();
+      })
+      .catch((err) => {
+        alert("logout failed");
+        // window.location.reload();
+      });
+  }
+
   return (
     <Container>
       <Layout>
         <WriteWrap>
-          <Logo>logo</Logo>
+          <Logo src={TripImage} />
 
-          <Posting>게시판</Posting>
-          <Trip>여행추천</Trip>
+          <Posting
+            onClick={() => {
+              navigate("/post");
+            }}
+          >
+            게시판
+          </Posting>
+          <Trip>추천여행지</Trip>
           <Mypage>마이페이지</Mypage>
-          <Logeout>로그아웃</Logeout>
+          <Login
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </Login>
+          <Logout onClick={logout}>로그아웃</Logout>
         </WriteWrap>
       </Layout>
     </Container>
@@ -21,12 +70,11 @@ const Header = () => {
 export default Header;
 
 const Container = styled.div`
-  width: 1920px;
   height: 120px;
-  background-color: #d9d9d9;
+  background-color: #fff;
   margin: 0 auto;
 `;
-const Logo = styled.div`
+const Logo = styled.img`
   width: 321.06px;
   height: 105.3px;
   display: flex;
@@ -41,18 +89,28 @@ const WriteWrap = styled.div`
 const Posting = styled.button`
   margin-top: 56px;
   margin-top: 10px;
+  font-size: 24px;
 `;
 const Trip = styled.button`
   margin-top: 56px;
   margin-top: 10px;
+  font-size: 24px;
 `;
 
 const Mypage = styled.button`
   margin-top: 56px;
   margin-top: 10px;
+  font-size: 24px;
 `;
 
-const Logeout = styled.button`
+const Login = styled.button`
   margin-top: 56px;
   margin-top: 10px;
+  font-size: 24px;
+`;
+
+const Logout = styled.button`
+  margin-top: 56px;
+  margin-top: 10px;
+  font-size: 24px;
 `;

@@ -29,4 +29,7 @@ a {
   text-decoration: none;
   border: none;
   outline: none;
+  text-decoration-line: none;
+  color: white;
+  margin: 10px;
 }
