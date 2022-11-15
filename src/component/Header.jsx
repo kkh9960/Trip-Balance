@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Layout from "./Layout";
 import TripImage from "../image/trip.jpg";
@@ -88,11 +88,11 @@ export default Header;
 const Container = styled.div`
   text-decoration: underline;
   height: 120px;
-  background-color: #fff;
+  background-color: #d9d9d9;
   margin: 0 auto;
   text-underline-position: under;
 `;
-const Logo = styled.img`
+const Logo = styled.div`
   width: 321.06px;
   height: 105.3px;
   display: flex;
@@ -110,14 +110,12 @@ const Posting = styled.button`
   width: 200px;
   margin-top: 56px;
   margin-top: 10px;
-  font-size: 24px;
 `;
 const Trip = styled.button`
   border-radius: 10px;
   width: 200px;
   margin-top: 56px;
   margin-top: 10px;
-  font-size: 24px;
 `;
 
 const Mypage = styled.button`
@@ -125,7 +123,6 @@ const Mypage = styled.button`
   width: 200px;
   margin-top: 56px;
   margin-top: 10px;
-  font-size: 24px;
 `;
 
 const Login = styled.button`
