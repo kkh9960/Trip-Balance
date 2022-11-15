@@ -20,18 +20,6 @@ const Banner = () => {
     console.log("key press");
   };
 
-  // const getProducts = () => {
-  //   //q=서치퀄리 넣어줌 알아서 찾아준다
-  //   let searchQuery = query.get("q") || "";
-  //   dispatch(productAction.getProducts(searchQuery));        ///검색햇을경우 미리세팅 test해봐야됨
-
-  // };
-
-  // useEffect(() => {
-  //   getProducts();
-  // }, [query]);
-  // 검색햇을경우 랜더링 미리세팅
-
   return (
     <Container>
       <Title>오늘의 여행지는?</Title>

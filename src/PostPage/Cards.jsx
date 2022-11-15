@@ -3,6 +3,17 @@ import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
 
 export const Cards = () => {
+  // const getProducts = () => {
+  //   //q=서치퀄리 넣어줌 알아서 찾아준다
+  //   let searchQuery = query.get("q") || "";
+  //   dispatch(productAction.getProducts(searchQuery));        ///검색햇을경우 미리세팅 test해봐야됨
+
+  // };
+
+  // useEffect(() => {
+  //   getProducts();
+  // }, [query]);
+
   return (
     <Layout>
       <CardBox>
@@ -18,138 +29,7 @@ export const Cards = () => {
           </TextBox>
         </div>
       </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2018/10/01/11/45/landscape-3715977__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
 
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2019/07/16/20/21/mountains-4342531__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2020/05/05/07/52/republic-of-korea-5131925__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2018/03/14/03/17/water-3224286__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2017/08/04/20/04/camping-2581242__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2017/05/10/16/34/waterfall-2301249__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2016/08/24/17/25/old-1617518__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2013/08/24/08/33/transalp-175190__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2017/08/07/22/32/bridge-2608627__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2017/03/17/12/35/adventure-2151437__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2013/10/30/08/33/waterfall-202815__340.jpg" />
-          <TextBox>
-            <Title>
-              개수 <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
       <Line></Line>
     </Layout>
   );

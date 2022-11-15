@@ -53,50 +53,19 @@ function LoginPage() {
       // console.log(res.data.data.email)
       // console.log(res.data.statusMsg)
       // console.log(res.data.statusCode)
+      localStorage.setItem("nickName", res.data.data.nickName);
       setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         localStorage.setItem("email", res.data.data.email);
         navigate("/");
-        // window.location.reload();
-        // 리로드 어떻게하는지 모르겠음.
+        alert("로그인완료!");
+        window.location.reload();
       } else {
         alert(res.data.statusMsg);
       }
     });
   };
-
-  ////////////////////////////로그인방법1
-
-  //  await dispatch( 방법 2
-  //     Add_LoginThunk({
-  //       email: data.email,
-  //       pw: data.password,
-  //     }).then((res) => {
-  //       setRefreshToken(res.headers.refresh_token);
-  //       //console.log(response.headers.authorization);
-  //       dispatch(SET_TOKEN(res.headers.authorization));
-  //       //console.log(response.userInfo);
-
-  //       return navigate("/");
-  //     })
-  //   );
-
-  // axios.post("https://coding-kym.shop/tb/login", data).then((res) => {
-  //   if (res.data.success) {
-  //     console.log(res.data.data.email);
-  //     setCookie("Access", res.request.getResponseHeader("authorization"), {
-  //       path: "/",
-  //     });
-  //     setCookie("Refresh", res.request.getResponseHeader("refresh-token"), {
-  //       path: "/",
-  //     });
-  //     localStorage.setItem("emailId", res.data.data.emailId);
-  //     navigate("/");
-  //   } else {
-  //     setErrorMsg(res.data.error.message);
-  //   }
-  // });
 
   return (
     <div>
@@ -110,9 +79,11 @@ function LoginPage() {
           exit={{ opacity: 0 }}
         >
           {/* <Header /> */}
-          <LogoWrap>
-            <Logo src={TripImage} />
-          </LogoWrap>
+          <Link to="/">
+            <LogoWrap>
+              <Logo src={TripImage} />
+            </LogoWrap>
+          </Link>
           <div className="auth-wrapper">
             <form onSubmit={onvaled}>
               <div style={{ textAlign: "center" }}>

@@ -17,6 +17,7 @@ function RegisterPage() {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ function RegisterPage() {
   const password = useRef();
   password.current = watch("password");
   console.log(watch());
+
   const onSubmit = async (data) => {
     await dispatch(
       addMemberThunk({
@@ -51,9 +53,11 @@ function RegisterPage() {
           exit={{ opacity: 0 }}
         >
           {/* <Header /> */}
-          <LogoWrap>
-            <Logo src={TripImage} />
-          </LogoWrap>
+          <Link to="/">
+            <LogoWrap>
+              <Logo src={TripImage} />
+            </LogoWrap>
+          </Link>
           <div className="auth-wrapper">
             <form onSubmit={handleSubmit(onSubmit)}>
               <div style={{ textAlign: "center" }}>
@@ -64,7 +68,7 @@ function RegisterPage() {
                 name="email"
                 type="email"
                 {...register("email", {
-                  required: true,
+                  required: "이메일을 입력해주세요",
                   pattern: /^\S+@\S+$/i,
                 })}
               />
