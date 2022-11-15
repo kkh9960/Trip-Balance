@@ -1,19 +1,15 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "../login/LoginPage";
-import PostPage from "../PostPage/PostPage";
-import { AnimatePresence } from "framer-motion";
-import Home from "../Home";
+
 const Router = () => {
   return (
-    <AnimatePresence>
+    <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/post" element={<PostPage />} />
-        <Route path="/" element={<Home />} />
       </Routes>
-    </AnimatePresence>
+    </BrowserRouter>
   );
 };
 
