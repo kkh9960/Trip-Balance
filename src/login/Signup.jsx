@@ -35,7 +35,7 @@ function RegisterPage() {
     ).then((res) => {
       console.log(res);
       alert("회원가입완료!");
-      window.location.reload();
+      // window.location.reload();
     });
   };
 
@@ -89,10 +89,10 @@ function RegisterPage() {
                 {...register("password", {
                   required: true,
                   minLength: 8,
-                  pattern: /[~!@#$%^&*()_+|<>?:{}]/,
+                  // pattern: /[~!@#$%^&*()_+|<>?:{}]/,
                 })}
               />
-              {errors.password && <p>특수문자를포함해주세요</p>}
+              {/* {errors.password && <p>특수문자를포함해주세요</p>} */}
 
               {errors.password && errors.password.type === "minLength" && (
                 <p>비밀번호는 8자 이상이어야 합니다</p>

@@ -30,11 +30,11 @@ const Header = () => {
       .then((res) => {
         if (res.data.success) alert("로그아웃에 성공했습니다.");
         else alert(res.data.error.message);
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => {
         alert("logout failed");
-        window.location.reload();
+        // window.location.reload();
       });
   }
 
