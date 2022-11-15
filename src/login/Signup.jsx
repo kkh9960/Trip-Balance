@@ -35,7 +35,7 @@ function RegisterPage() {
     ).then((res) => {
       console.log(res);
       alert("회원가입완료!");
-      // window.location.reload();
+      window.location.reload();
     });
   };
 

@@ -3,12 +3,9 @@ import styled from "styled-components";
 import Layout from "./Layout";
 import TripImage from "../image/trip.jpg";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getCookieToken, removeCookieToken } from "../storage/Cookie";
-import { logoutUser } from "../login/api/Users";
-import { DELETE_TOKEN } from "../redux/modules/Auth";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import instance from "../login/lib/instance";
 const Header = () => {
   const navigate = useNavigate();
 
@@ -18,17 +15,17 @@ const Header = () => {
   // console.log(`지금 refreshToken: ${refreshToken}`);
   async function logout() {
     // 백으로부터 받은 응답
-
+    //ss
     axios.defaults.headers.post["authorization"] = cookie.Access;
     axios.defaults.headers.post["refresh-token"] = cookie.Refresh;
     localStorage.removeItem("emailId");
     removeCookie("Access", { path: "/" });
     removeCookie("Refresh", { path: "/" });
 
-    axios
-      .post("https://coding-kym.shop/tb/logout")
+    instance
+      .post("/tb/logout")
       .then((res) => {
-        if (res.data.success) alert("로그아웃에 성공했습니다.");
+        if (res.data.success) alert("로그아웃");
         else alert(res.data.error.message);
         // window.location.reload();
       })
