@@ -4,14 +4,12 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import "./login.css";
-import TripImage from "../image/trip.jpg";
+import TripImage from "../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { loginUser } from "./api/Users";
-import { setRefreshToken } from "../storage/Cookie";
-import { SET_TOKEN } from "../redux/modules/Auth";
+
 import { useCookies } from "react-cookie";
-import instance from "./lib/instance";
+import instance from "../lib/instance";
 import useInput from "../hooks/useInput";
 function LoginPage() {
   const {

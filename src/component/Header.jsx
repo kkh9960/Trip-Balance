@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Layout from "./Layout";
-import TripImage from "../image/trip.jpg";
+import TripImage from "../img/trip.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import instance from "../login/lib/instance";
+import instance from "../lib/instance";
 const Header = () => {
   const navigate = useNavigate();
 
@@ -88,11 +88,11 @@ export default Header;
 const Container = styled.div`
   text-decoration: underline;
   height: 120px;
-  background-color: #d9d9d9;
+  background-color: #fff;
   margin: 0 auto;
   text-underline-position: under;
 `;
-const Logo = styled.div`
+const Logo = styled.img`
   width: 321.06px;
   height: 105.3px;
   display: flex;
@@ -110,12 +110,14 @@ const Posting = styled.button`
   width: 200px;
   margin-top: 56px;
   margin-top: 10px;
+  font-size: 24px;
 `;
 const Trip = styled.button`
   border-radius: 10px;
   width: 200px;
   margin-top: 56px;
   margin-top: 10px;
+  font-size: 24px;
 `;
 
 const Mypage = styled.button`
@@ -123,6 +125,7 @@ const Mypage = styled.button`
   width: 200px;
   margin-top: 56px;
   margin-top: 10px;
+  font-size: 24px;
 `;
 
 const Login = styled.button`
