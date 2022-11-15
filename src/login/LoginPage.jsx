@@ -7,7 +7,6 @@ import "./login.css";
 import TripImage from "../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-
 import { useCookies } from "react-cookie";
 import instance from "../lib/instance";
 import useInput from "../hooks/useInput";
