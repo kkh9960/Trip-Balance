@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "../../login/LoginPage";
-import Home from "../../Home";
+// import MainPage from "../../pages/mainPage/MainPage";
 import MyPage from "../../pages/mypage/MyPage";
 import PostPage from "../../PostPage/PostPage";
 import BoardWrite from "../../pages/BoardWrite";
@@ -11,7 +11,6 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
         {/* <Route path="/" element={<MainPage />} /> */}
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<LoginPage />} />
