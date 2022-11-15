@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ReactModal from "react-modal";
+// import ReactModal from "react-modal";
 import { __bestFive } from "../../../../redux/modules/BsetFiveSlice";
 
 export default function BestFive({ isOpen, onCancel }) {
@@ -10,13 +10,13 @@ export default function BestFive({ isOpen, onCancel }) {
   const handleClickCancel = () => {
     onCancel();
   };
-  
+
   // useEffect(() => {
   //   dispatch(__bestFive());
   // }, []);
 
   return (
-    <ReactModal isOpen={isOpen}>
+    <div isOpen={isOpen}>
       <div className="container">
         {/* 맵돌려서 순서대로 나열 */}
         {/* {bestList &&
@@ -48,6 +48,6 @@ export default function BestFive({ isOpen, onCancel }) {
       <div>
         <button onClick={handleClickCancel}>취소</button>
       </div>
-    </ReactModal>
+    </div>
   );
 }
