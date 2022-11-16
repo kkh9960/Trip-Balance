@@ -1,0 +1,72 @@
+hr {
+  width: 90%;
+  height: 1px;
+  background-color: black;
+  border: 0;
+}
+section {
+  display: block;
+}
+.postCategory {
+  background-color: aqua;
+  display: flex;
+  margin: 0 auto;
+  width: 1000px;
+}
+.postCategory > ul {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.postList {
+  width: 1000px;
+  height: 100%;
+  min-height: 400px;
+  background-color: darkseagreen;
+  margin: 0 auto;
+
+  display: flex;
+}
+.postContainer {
+}
+.postBox {
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  width: 400px;
+  height: 200px;
+  margin: 10px 10px;
+  padding: 0 10px;
+  gap: 10px;
+}
+.postImage {
+  background-color: green;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  cursor: pointer;
+}
+.postBody {
+  background-color: green;
+  width: 300px;
+  height: 150px;
+  cursor: pointer;
+}
+.postTitle {
+  background-color: gray;
+  overflow: hidden;
+}
+.postComment {
+  background-color: gray;
+  overflow: hidden;
+}
+
+.error {
+  background-color: blanchedalmond;
+  width: 300px;
+  margin: 100px auto;
+  display: flex;
+  justify-content: center;
+}
