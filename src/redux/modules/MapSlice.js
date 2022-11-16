@@ -1,85 +1,84 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 const initialState = {
   data: {
-    cnt:[ 
-                {
-            "peopleCnt": 126360,
-            "gender": "male",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 121841,
-            "gender": "female",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 14463,
-            "age": "10",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 49448,
-            "age": "20",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 70475,
-            "age": "30",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 57865,
-            "age": "40",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 29999,
-            "age": "50",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 22643,
-            "age": "60_over",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 45883,
-            "type": "family",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 193623,
-            "type": "not_family",
-            "location": "경기도 가평군"
-        },
-        {
-            "peopleCnt": 8695,
-            "type": "family_w_child",
-            "location": "경기도 가평군"
-        }
+    cnt: [
+      {
+        peopleCnt: 126360,
+        gender: "male",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 121841,
+        gender: "female",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 14463,
+        age: "10",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 49448,
+        age: "20",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 70475,
+        age: "30",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 57865,
+        age: "40",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 29999,
+        age: "50",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 22643,
+        age: "60_over",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 45883,
+        type: "family",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 193623,
+        type: "not_family",
+        location: "경기도 가평군",
+      },
+      {
+        peopleCnt: 8695,
+        type: "family_w_child",
+        location: "경기도 가평군",
+      },
     ],
     weather: {
-      "SKY": "1",
-      "VEC": "124",
-      "PTY": "0",
-      "POP": "20",
-      "WAV": "0",
-      "UUU": "-0.8",
-      "REH": "80",
-      "TMP": "14",
-      "WSD": "0",
-      "SNO": "적설없음",
-      "PCP": "강수없음",
-      "VVV": "0.6",
+      SKY: "1",
+      VEC: "124",
+      PTY: "0",
+      POP: "20",
+      WAV: "0",
+      UUU: "-0.8",
+      REH: "80",
+      TMP: "14",
+      WSD: "0",
+      SNO: "적설없음",
+      PCP: "강수없음",
+      VVV: "0.6",
       "다른 코드": "TMP: 현재 기온, PTY: 강수확률, REH: 습도",
-    }
+    },
   },
   Apidata: {
-    lat: '',
-    lng:'',
+    lat: "",
+    lng: "",
   },
   isLoading: false,
   error: null,
@@ -92,8 +91,7 @@ export const __getMapData = createAsyncThunk(
     try {
       const { data } = await axios.get("/tb/apitest", payload); //http://43.200.139.249:8080/tb/apitest
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 );
 
@@ -101,10 +99,12 @@ export const __postMapData = createAsyncThunk(
   "POST_MAPDATA",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post("http://3.38.150.15:8080/tb/apimap", payload);
-      return thunkAPI.fulfillWithValue(data)
-    } catch (error) {
-    }
+      const { data } = await axios.post(
+        "https://coding-kym.shop/tb/apimap",
+        payload
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
   }
 );
 
@@ -126,14 +126,14 @@ export const mapSlice = createSlice({
     },
     [__postMapData.pending]: (state) => {
       state.isLoading = true;
-      console.log('데이터 불러오는중')
+      console.log("데이터 불러오는중");
     },
     [__postMapData.fulfilled]: (state, action) => {
       state.isLoading = false;
       if (action.payload === undefined) {
-        state.data = state.data
+        state.data = state.data;
       } else {
-        state.data = action.payload
+        state.data = action.payload;
       }
     },
     [__postMapData.rejected]: (state, action) => {
