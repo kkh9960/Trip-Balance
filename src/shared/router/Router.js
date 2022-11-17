@@ -5,9 +5,8 @@ import LoginPage from "../../login/LoginPage";
 import MyPage from "../../pages/mypage/MyPage";
 import PostPage from "../../PostPage/PostPage";
 import BoardWrite from "../../pages/BoardWrite";
-// import MainPage from "../../pages/mainPage/MainPage"
+import Game from "../../pages/game/Game";
 import Home from "../../Home";
-
 const Router = () => {
   return (
     <BrowserRouter>
@@ -17,6 +16,7 @@ const Router = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/board" element={<BoardWrite />} />
+        <Route path="/game" element={<Game />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>

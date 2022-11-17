@@ -64,24 +64,24 @@ const Header = () => {
           >
             마이페이지
           </Mypage>
-          <Wrap>
-            {nickname ? (
+          {nickname ? (
+            <div>
               <div>
-                <Logout onClick={logout}>
-                  로그아웃
-                  <Nickname>{nickname}</Nickname>
-                </Logout>
+                <Logout onClick={logout}>로그아웃</Logout>
               </div>
-            ) : (
-              <Login
-                onClick={() => {
-                  navigate("/login");
-                }}
-              >
-                로그인
-              </Login>
-            )}
-          </Wrap>
+              <div>
+                <Nickname>{nickname}</Nickname>
+              </div>
+            </div>
+          ) : (
+            <Login
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              로그인
+            </Login>
+          )}
         </WriteWrap>
       </Layout>
     </Container>
@@ -111,6 +111,7 @@ const Logo = styled.img`
 const WriteWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
   top: 5px;
 `;
@@ -144,6 +145,7 @@ const Login = styled.button`
   margin-top: 20px;
   font-size: 24px;
   text-decoration: underline;
+  align-items: center;
 `;
 
 const Logout = styled.button`

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import instance from "../../lib/instance";
 
 export const addMemberThunk = createAsyncThunk(
@@ -8,7 +7,6 @@ export const addMemberThunk = createAsyncThunk(
     console.log("페이로드는어딧는가?", payload);
     try {
       const { data } = await instance.post("/tb/signup", payload);
-
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
