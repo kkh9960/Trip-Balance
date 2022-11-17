@@ -17,6 +17,7 @@ const Router = () => {
         <Route path="/post" element={<PostPage />} />
         <Route path="/board" element={<BoardWrite />} />
         <Route path="/game/:id" element={<Game />} />
+        <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
