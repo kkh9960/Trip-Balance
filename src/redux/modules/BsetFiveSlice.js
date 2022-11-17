@@ -6,10 +6,10 @@ export const __getBestFive = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        "https://coding-kym.shop/tb/bestfive",
+        "http://52.78.174.102:8080/tb/bestfive",
         payload
-      );
-      console.log(data);
+      ); //http://52.78.174.102:8080/tb/bestfive
+      console.log("gg", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -38,8 +38,6 @@ export const bestSlice = createSlice({
     },
     [__getBestFive.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
-      console.log("fivepayload", action.payload);
     },
     [__getBestFive.rejected]: (state, action) => {
       state.user.isLoading = false;
