@@ -7,6 +7,8 @@ export const addMemberThunk = createAsyncThunk(
     console.log("페이로드는어딧는가?", payload);
     try {
       const { data } = await instance.post("/tb/signup", payload);
+      console.log(data.data);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

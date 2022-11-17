@@ -9,20 +9,25 @@ export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
   // console.log(posts[0].image[0].imgURL);
 
-  console.log(posts);
 
   const dispatch = useDispatch();
-  const [query, setQuery] = useSearchParams();
-
+  // const [query, setQuery] = useSearchParams();
   // const getProducts = () => {
   //   //q=서치퀄리 넣어줌 알아서 찾아준다
   //   let searchQuery = query.get("q") || "";
   //   dispatch(__SearchBoard(searchQuery)); ///검색햇을경우 미리세팅 test해봐야됨
   // };
 
-  // const filteredProducts = posts?.filter((posts) =>
-  //   posts.title.toLowerCase().includes(query.toLowerCase())
-  // );
+  const [useInput, setUseInput] = useState("");
+  console.log(useInput);
+  const onChange = (e) => {
+    setUseInput(e.target.value);
+  };
+
+  const filteredProducts = posts.filter((posts) => {
+    return posts.title.toLowerCase().includes(useInput.toLowerCase());
+  });
+
 
   useEffect(() => {
     dispatch(__getBoard());
@@ -34,22 +39,42 @@ export const Cards = () => {
 
   return (
     <Layout>
+
       {posts &&
         posts.map((element, index) => (
           <CardWrap key={element.postId} element={element} index={index} />
         ))}
+
+      <SearchBar
+        type="text"
+        onChange={onChange}
+        value={useInput}
+        placeholder=" 검색어를 입력하세요 20글자이내."
+      />
+      {filteredProducts.map((element, index) => (
+        <CardWrap
+          key={element.postId}
+          element={element}
+          index={index}
+          search={filteredProducts}
+        />
+      ))}
+
       <Line></Line>
     </Layout>
   );
 };
 export default Cards;
 
-const CardWrap = ({ element, index }) => {
+const CardWrap = ({ element, index, search }) => {
+
   const navigator = useNavigate();
   const DatailPageMove = () => {
     navigator(`/detail/${element.postId}`);
   };
+  console.log(search);
   return (
+
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
         <ImgBox src={element.image[0]?.imgURL} />
@@ -62,6 +87,21 @@ const CardWrap = ({ element, index }) => {
         </TextBox>
       </div>
     </CardBox>
+
+    <div>
+      <CardBox key={element.postId} onClick={DatailPageMove}>
+        <div>
+          <ImgBox src={element.image[0].imgURL} />
+          <TextBox>
+            <Title>
+              개수
+              <FcLike />
+            </Title>
+            <Name>{element.title}</Name>
+          </TextBox>
+        </div>
+      </CardBox>
+    </div>
   );
 };
 {
@@ -74,6 +114,30 @@ const CardWrap = ({ element, index }) => {
     {items} // <-- This is the content you want to load
 </InfiniteScroll> */
 }
+
+const SearchBar = styled.input`
+  opacity: 0.5;
+  border: 1px solid white;
+  background-color: #744aaa;
+  color: white;
+  width: 710px;
+  height: 60px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 280px;
+  position: absolute;
+  bottom: -15px;
+  font-family: NotoSans;
+  font-size: 16px;
+  top: 330px;
+  left: 350px;
+
+  :hover {
+    opacity: 1;
+  }
+`;
+
 const Layout = styled.div`
   justify-content: center;
   text-align: center;
