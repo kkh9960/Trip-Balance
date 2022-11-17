@@ -313,8 +313,8 @@ const BoardPostModify = () => {
         content: contents?.content,
         pet: Pet,
         mediaList: ImgPreview,
-        category1: Category,
-        category2: Category2,
+        category1: +Category,
+        category2: +Category2,
         id: id.id,
       })
     );
@@ -348,6 +348,8 @@ const BoardPostModify = () => {
     category2: Category2,
     id: id.id,
   };
+
+  console.log(Category2);
 
   console.log(testob);
 

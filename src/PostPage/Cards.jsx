@@ -45,6 +45,7 @@ export const Cards = () => {
 export default Cards;
 
 const CardWrap = ({ element, index }) => {
+  const carddefaultimg = "../../img/default3.jpg";
   const navigator = useNavigate();
   const DatailPageMove = () => {
     navigator(`/detail/${element.postId}`);
@@ -52,7 +53,11 @@ const CardWrap = ({ element, index }) => {
   return (
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
-        <ImgBox src={element.image[0]?.imgURL} />
+        <ImgBox
+          src={
+            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
+          }
+        />
         <TextBox>
           <Title>
             개수

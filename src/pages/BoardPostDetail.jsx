@@ -119,12 +119,16 @@ const BoardPostDetail = () => {
     }
   };
 
+  const goProfile = () => {
+    navigate(``);
+  };
+
   console.log(heart);
 
   return (
     <BoardPostDetailContainer>
       <BoardPostDetailWrap>
-        <Postnickname>{post?.nickName} 님의 여행이야기</Postnickname>
+        <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
         <ImegeWrap>
           <ImegeSlide>
             <Swiper
@@ -140,14 +144,19 @@ const BoardPostDetail = () => {
               className="mySwiper"
               loop={true}
             >
-              {post &&
+              {!post?.mediaList.length === 0 ? (
                 post?.mediaList.map((item, idx) => {
                   return (
                     <SwiperSlide key={idx}>
                       <SliderImage src={item} />
                     </SwiperSlide>
                   );
-                })}
+                })
+              ) : (
+                <SwiperSlide>
+                  <SliderImage src="../img/default2.jpg" />
+                </SwiperSlide>
+              )}
             </Swiper>
           </ImegeSlide>
           <ImegePreview>
@@ -166,12 +175,14 @@ const BoardPostDetail = () => {
         <BoardTitleWrap>
           <BoardTitle>{post?.title}</BoardTitle>
           <TitleButtonWarp>
-            {userNickname == post?.nickName ? (
+            {userNickname == post?.author ? (
               <>
                 <ModifyButton onClick={modifyPost}>수정</ModifyButton>
                 <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
               </>
-            ) : null}
+            ) : (
+              <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+            )}
           </TitleButtonWarp>
         </BoardTitleWrap>
         <UserNameBox>
@@ -187,7 +198,7 @@ const BoardPostDetail = () => {
         </BoardLike>
         <BoardCommentWrap>
           <BoardCommentBox>
-            <CommentWriteUser>{nickname}</CommentWriteUser>
+            <CommentWriteUser>{post?.nickName}</CommentWriteUser>
             <CommentTextarea
               name=""
               maxLength="200"
@@ -242,6 +253,13 @@ const BoardPostDetail = () => {
 };
 
 export default BoardPostDetail;
+
+const UserProfile = styled.div`
+  background-color: #333;
+  color: #fff;
+  padding: 8px 20px;
+  cursor: pointer;
+`;
 
 const CateLocal = styled.div``;
 const CateDetail = styled.div``;
