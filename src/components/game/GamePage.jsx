@@ -35,7 +35,7 @@ export default function GamePage() {
 
   return (
     <div>
-      <p>현제 페이지의 파라미터는 {id} 입니다.</p>
+      <p>현제 페이지의 파라미터는 {id} 입니다!</p>
       <button onClick={leftGo}>{gameData.leftAnswer}</button>
       <button onClick={rightGo}>{gameData.rightAnswer}</button>
       <button onClick={goFirst}>처음으로</button>
