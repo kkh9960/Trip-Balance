@@ -23,6 +23,7 @@ const Router = () => {
         <Route path="/detail/:id" element={<BoardPostDetail />} />
         <Route path="/modify/:id" element={<BoardPostModify />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/game/:id" element={<Game />} />
       </Routes>
     </BrowserRouter>
   );

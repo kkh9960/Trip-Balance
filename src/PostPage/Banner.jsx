@@ -7,7 +7,7 @@ import Card from "./Card";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-const Banner = ({ posts }) => {
+const Banner = () => {
   const navigate = useNavigate();
 
   const search = (event) => {
@@ -36,12 +36,6 @@ const Banner = ({ posts }) => {
         <SearchWrap>
           <SearchTitle>
             오늘의 여행지검색
-            <SearchBar
-              onKeyPress={search}
-              type="text"
-              onChange={onChange}
-              placeholder=" 검색어를 입력하세요 20글자이내."
-            />
             <Wrap>
               <BsSearch />
             </Wrap>
