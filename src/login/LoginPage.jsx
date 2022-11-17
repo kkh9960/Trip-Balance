@@ -51,6 +51,7 @@ function LoginPage() {
       // console.log(res.data.statusMsg)
       // console.log(res.data.statusCode)
       localStorage.setItem("nickName", res.data.data.nickName);
+
       setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {

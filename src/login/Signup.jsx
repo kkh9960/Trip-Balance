@@ -12,7 +12,7 @@ function RegisterPage() {
     watch,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm({ mode: "onBlur" });
 
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [modal, setModal] = useState(false);
@@ -54,7 +54,7 @@ function RegisterPage() {
                 name="email"
                 type="email"
                 {...register("email", {
-                  required: "이메일을 입력해주세요",
+                  required: true,
                   pattern: /^\S+@\S+$/i,
                 })}
               />

@@ -10,16 +10,12 @@ const { kakao } = window;
 export default function MapBar() {
   
   const dispatch = useDispatch();
-  const mapdata = useSelector((state) => state.MapSlice);
-
-  useEffect(() => {
-    dispatch(__getMapData())
-  },[])
-
+  
   useEffect(() => {
     mapscript();
   }, []);
 
+  
   const mapscript = () => {
     let container = document.getElementById("map");
     let options = {
@@ -47,10 +43,9 @@ export default function MapBar() {
         makeOutListener(infowindow)
       );
       kakao.maps.event.addListener(marker, 'click', function () {
-        let lat = el.lat
-        let lng = el.lng
+        let lat = `${el.lat}`
+        let lng = `${el.lng}`
         dispatch(__postMapData({ lat, lng }))
-        dispatch(__getMapData())
       }
       );
     });
@@ -66,6 +61,9 @@ export default function MapBar() {
     }
   };
 
+
+
+  
   return (
     <div>
       <div id="map" className='map'/>

@@ -16,6 +16,18 @@ export const __getBoard = createAsyncThunk(
   }
 );
 
+export const __SearchBoard = createAsyncThunk(
+  "SEARCH_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts?q=${payload}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
 export const __getBoardDetail = createAsyncThunk(
   "GET_BOARDDETAIL",
   async (payload, thunkAPI) => {
@@ -98,6 +110,17 @@ const BoardSlice = createSlice({
       state.isLoading = false;
       console.log("나리젝티드", action);
     },
+
+    [__SearchBoard.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.posts = action.payload.data;
+      console.log("검색", state, action);
+    },
+    [__SearchBoard.rejected]: (state, action) => {
+      state.isLoading = false;
+      console.log("나리젝티드", action);
+    },
+
     [__getBoardDetail.pending]: (state, action) => {
       state.isLoading = true;
     },
