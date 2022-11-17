@@ -71,6 +71,27 @@ export const __deleteBoard = createAsyncThunk(
   }
 );
 
+export const __modifyBoard = createAsyncThunk(
+  "modify_BOARD",
+  async (payload, thunkAPI) => {
+    console.log("나글수정페이로드", payload);
+    try {
+      const { data } = await instance.put(`/tb/posts/${payload.id}`, {
+        title: payload.title,
+        content: payload.content,
+        pet: payload.pet,
+        mediaList: payload.mediaList,
+        local: payload.category1,
+        localdetail: payload.category2,
+      });
+      console.log("나글삭데이터", data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      console.log("글수정에러", error);
+    }
+  }
+);
+
 export const __postComment = createAsyncThunk(
   "POST_COMMENT",
   async (payload, thunkAPI) => {
@@ -78,14 +99,28 @@ export const __postComment = createAsyncThunk(
     console.log(payload.id.id);
     console.log(payload.content);
     try {
-      const { data } = await instance.post(`tb/comments`, {
-        postId: payload.id.id,
+      const { data } = await instance.post(`tb/comments/`, {
+        postId: Number(payload.id.id),
         content: payload.content,
       });
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("댓글에러", error);
+    }
+  }
+);
+
+export const __boardlike = createAsyncThunk(
+  "POST_LIKE",
+  async (payload, thunkAPI) => {
+    console.log("어흥페이로드", payload);
+    try {
+      const { data } = await instance.post(`tb/posts/${payload}/heart`);
+      console.log("어흥나 좋아요", data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      console.log("좋아요 에러", error);
     }
   }
 );
@@ -132,6 +167,8 @@ const BoardSlice = createSlice({
     [__getBoardDetail.rejected]: (state, action) => {
       state.isLoading = false;
     },
+    [__modifyBoard.fulfilled]: (state, action) => {},
+    [__modifyBoard.rejected]: (state, action) => {},
     [__postBoard.fulfilled]: (state, action) => {},
     [__postBoard.rejected]: (state, action) => {},
     [__postComment.fulfilled]: (state, action) => {},

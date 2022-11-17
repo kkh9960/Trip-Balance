@@ -8,36 +8,42 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
   // console.log(posts[0].image[0].imgURL);
+
   console.log(posts);
+
   const dispatch = useDispatch();
   const [query, setQuery] = useSearchParams();
-  const getProducts = () => {
-    //q=서치퀄리 넣어줌 알아서 찾아준다
-    let searchQuery = query.get("q") || "";
-    dispatch(__SearchBoard(searchQuery)); ///검색햇을경우 미리세팅 test해봐야됨
-  };
 
-  const filteredProducts = posts.filter((posts) =>
-    posts.title.toLowerCase().includes(query.toLowerCase())
-  );
+  // const getProducts = () => {
+  //   //q=서치퀄리 넣어줌 알아서 찾아준다
+  //   let searchQuery = query.get("q") || "";
+  //   dispatch(__SearchBoard(searchQuery)); ///검색햇을경우 미리세팅 test해봐야됨
+  // };
+
+  // const filteredProducts = posts?.filter((posts) =>
+  //   posts.title.toLowerCase().includes(query.toLowerCase())
+  // );
 
   useEffect(() => {
     dispatch(__getBoard());
   }, []);
-  useEffect(() => {
-    getProducts();
-  }, [query]);
+
+  // useEffect(() => {
+  //   getProducts();
+  // }, [query]);
 
   return (
     <Layout>
-      {filteredProducts.map((element, index) => (
-        <CardWrap key={element.postId} element={element} index={index} />
-      ))}
+      {posts &&
+        posts.map((element, index) => (
+          <CardWrap key={element.postId} element={element} index={index} />
+        ))}
       <Line></Line>
     </Layout>
   );
 };
 export default Cards;
+
 const CardWrap = ({ element, index }) => {
   const navigator = useNavigate();
   const DatailPageMove = () => {
@@ -46,7 +52,7 @@ const CardWrap = ({ element, index }) => {
   return (
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
-        <ImgBox src={element.image[0].imgURL} />
+        <ImgBox src={element.image[0]?.imgURL} />
         <TextBox>
           <Title>
             개수

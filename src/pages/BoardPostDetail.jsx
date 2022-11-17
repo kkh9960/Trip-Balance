@@ -13,6 +13,8 @@ import { useParams } from "react-router-dom";
 import { __getBoardDetail } from "../redux/modules/BoardSlice";
 import { __deleteBoard } from "../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
+import { __boardlike } from "../redux/modules/BoardSlice";
+import { CloudHSM } from "aws-sdk";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const BoardPostDetail = () => {
   const [imagelength, setimegelength] = useState(imagel);
   const dispatch = useDispatch();
   const userNickname = localStorage.getItem("nickName");
-  console.log(userNickname);
+
   const ImegaURL = [
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EC%BD%9C%EB%A1%9C%EC%84%B8%EC%9B%80.jpg",
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EB%93%80%EC%98%A41.jpg",
@@ -33,19 +35,29 @@ const BoardPostDetail = () => {
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/456123.jpg",
   ];
   const DefaultImega = "../img/default1.jpg";
+  const heartsvg = "../img/heart.svg";
+  const binheartsvg = "../img/binheart.svg";
 
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
   const nickname = localStorage.getItem("nickName");
 
-  console.log(isLoading);
-  console.log(id.id);
+  console.log(post);
+
+  const [heart, setHeart] = useState(false);
+  const [heartnum, setheartnum] = useState();
+
+  console.log(post?.heartNum);
+  console.log(post?.heartYn);
 
   useEffect(() => {
     dispatch(__getBoardDetail(id));
   }, []);
 
-  console.log(post);
+  useEffect(() => {
+    setHeart(post?.heartYn);
+    setheartnum(post?.heartNum);
+  }, [post]);
 
   const CheckLength = (e) => {
     let text = e.target.value;
@@ -93,6 +105,20 @@ const BoardPostDetail = () => {
   const ChangeEdit = (e) => {
     setEditcomment(e.target.value);
   };
+
+  //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다. 어흥
+  const Boardpostlike = () => {
+    setHeart(!heart);
+    dispatch(__boardlike(id.id));
+    console.log(heart);
+    if (heart) {
+      setheartnum((prevstate) => prevstate - 1);
+    } else {
+      setheartnum((prevstate) => prevstate + 1);
+    }
+  };
+
+  console.log(heart);
 
   return (
     <BoardPostDetailContainer>
@@ -153,9 +179,9 @@ const BoardPostDetail = () => {
           </BoardCateGory>
         </UserNameBox>
         <BoardBody>{post?.content}</BoardBody>
-        <BoardLike>
-          <BoardLikeImage src="../img/heart.svg" alt="" />
-          <BoardLikeCount>0</BoardLikeCount>
+        <BoardLike onClick={Boardpostlike}>
+          <BoardLikeImage src={post && heart ? heartsvg : binheartsvg} alt="" />
+          <BoardLikeCount>{heartnum}</BoardLikeCount>
         </BoardLike>
         <BoardCommentWrap>
           <BoardCommentBox>
@@ -311,7 +337,14 @@ const BoardLikeCount = styled.div`
 const BoardLikeImage = styled.img``;
 
 const BoardLike = styled.div`
+  cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 35px;
+  border-radius: 10px;
+  border: 1px solid #cdcdcd;
   align-items: center;
 `;
 

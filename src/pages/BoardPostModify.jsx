@@ -6,6 +6,7 @@ import { __postBoard } from "../redux/modules/BoardSlice";
 import { useParams } from "react-router-dom";
 import { __getBoardDetail } from "../redux/modules/BoardSlice";
 import Loading from "../components/Loading/Loading";
+import { __modifyBoard } from "../redux/modules/BoardSlice";
 
 const BoardPostModify = () => {
   const dispatch = useDispatch();
@@ -15,12 +16,15 @@ const BoardPostModify = () => {
   const [Pet, setPet] = useState(0);
   const [contents, setcontents] = useState();
   const [Cate, setCate] = useState("0");
+  const [Category, setCategory] = useState();
+  const [Category2, setCategory2] = useState();
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const id = useParams();
   const mediaList = useSelector((state) => state.BoardSlice.post?.mediaList);
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
   const [loading, setloading] = useState(true);
+
   let localint = "";
   let localdetailint = "";
   const catetwoRef = useRef();
@@ -151,24 +155,42 @@ const BoardPostModify = () => {
   }
 
   useEffect(() => {
+    setCategory(localint);
+    setCategory2(localdetailint);
+  }, [localint, localdetailint]);
+
+  useEffect(() => {
     if (!isLoading) {
       setloading(false);
     }
   }, [isLoading]);
 
+  let data = [];
+  //setState는 즉각적으로 업데이트하지않고 promise를 통해 비동기적으로 변경시키므로
+  //반복문이 끝나기전까지는 state가 변경되지않는다. 1번부터 4번까지라면, 4번째 데이터만 state에 반영된다.
+  //변수에 담아서 해결! 끼얏호우! >ㅅ<
   useEffect(() => {
     if (mediaList) {
-      setImgPreview([...ImgPreview, { imgURL: mediaList[0] }]);
+      for (let x in mediaList) {
+        const imgURL = mediaList[x];
+        data = [...data, { imgURL }];
+        setImgPreview(data);
+        setFileLink(mediaList[0]);
+        console.log("이미지주소", imgURL);
+        console.log(x);
+        console.log(data);
+      }
     }
-  }, []);
+  }, [mediaList]);
 
-  // console.log(post);
+  console.log(data);
   console.log(mediaList);
   console.log(ImgPreview);
 
   useEffect(() => {
     if (localint) {
       setCate(localint);
+      console.log("test", localdetailint);
     }
   }, [localint]);
 
@@ -186,15 +208,14 @@ const BoardPostModify = () => {
       setcontents({
         title: post?.title,
         content: post?.content,
-        local: post?.local,
-        localdetail: post?.localdetail,
+        local: Category,
+        localdetail: Category2,
         pet: post?.Pet,
       });
     }
+    setPet(post?.pet);
   }, [post]);
-
-  console.log(contents);
-  console.log(post?.mediaList);
+  console.log(Pet);
 
   console.log(FileLink);
 
@@ -266,6 +287,7 @@ const BoardPostModify = () => {
 
   const onCategoryHandler = (e) => {
     const { name, value } = e.target;
+    setCategory2(value);
     setcontents({
       ...contents,
       [name]: value,
@@ -275,6 +297,7 @@ const BoardPostModify = () => {
   const Categoryopen = (e) => {
     const { name, value } = e.target;
     setCate(value);
+    setCategory(value);
     setcontents({
       ...contents,
       [name]: value,
@@ -285,21 +308,48 @@ const BoardPostModify = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      __postBoard({
+      __modifyBoard({
         title: contents?.title,
         content: contents?.content,
-        local: contents?.category1,
-        localdetail: contents?.category2,
-        mediaList: ImgPreview,
         pet: Pet,
+        mediaList: ImgPreview,
+        category1: Category,
+        category2: Category2,
+        id: id.id,
       })
     );
   };
 
+  // 이미지 누르면 지워지기 + 남아있는 이미지 그림 보여주기
+  const [imgremovelength, setimgremovelength] = useState(true);
   const Imageremove = (e) => {
     console.log(e.target.src);
     setImgPreview(ImgPreview.filter((el) => el.imgURL !== e.target.src));
+    setimgremovelength(!imgremovelength);
   };
+  useEffect(() => {
+    for (let x in ImgPreview) {
+      setFileLink(ImgPreview[x].imgURL);
+      console.log("x", x);
+    }
+  }, [imgremovelength]);
+
+  console.log(FileLink);
+
+  console.log(Category);
+  console.log(Category2);
+
+  let testob = {
+    title: contents?.title,
+    content: contents?.content,
+    pet: Pet,
+    mediaList: ImgPreview,
+    category1: Category,
+    category2: Category2,
+    id: id.id,
+  };
+
+  console.log(testob);
 
   return loading ? (
     <Loading />
@@ -335,7 +385,7 @@ const BoardPostModify = () => {
               <CategorySelect
                 name="category1"
                 id="cate_parent"
-                value={localint}
+                value={Category}
                 onChange={Categoryopen}
               >
                 <option name="category1" value="0">
@@ -360,7 +410,7 @@ const BoardPostModify = () => {
               <CategorySelect
                 name="category2"
                 id="cate_child"
-                ref={catetwoRef}
+                value={Category2}
                 onChange={onCategoryHandler}
                 required
               >
@@ -500,7 +550,7 @@ const BoardPostModify = () => {
                 <PetCheck
                   type="checkbox"
                   id="pet"
-                  checked={false}
+                  checked={Pet}
                   onChange={PetHandler}
                 />
                 <PetLabel htmlFor="pet">반려동물</PetLabel>
