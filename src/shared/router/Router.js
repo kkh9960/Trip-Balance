@@ -18,17 +18,12 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/post" element={<PostPage />} />
-
         <Route path="/write" element={<BoardWrite />} />
         <Route path="/game" element={<Game />} />
         <Route path="/detail/:id" element={<BoardPostDetail />} />
         <Route path="/modify/:id" element={<BoardPostModify />} />
         <Route path="/loading" element={<Loading />} />
-
-
         <Route path="/game/:id" element={<Game />} />
-        <Route path="/" element={<Home />} />
-
       </Routes>
     </BrowserRouter>
   );

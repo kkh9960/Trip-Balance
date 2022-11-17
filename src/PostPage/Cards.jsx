@@ -9,7 +9,6 @@ export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
   // console.log(posts[0].image[0].imgURL);
 
-
   const dispatch = useDispatch();
   // const [query, setQuery] = useSearchParams();
   // const getProducts = () => {
@@ -28,7 +27,6 @@ export const Cards = () => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
 
-
   useEffect(() => {
     dispatch(__getBoard());
   }, []);
@@ -39,7 +37,6 @@ export const Cards = () => {
 
   return (
     <Layout>
-
       {posts &&
         posts.map((element, index) => (
           <CardWrap key={element.postId} element={element} index={index} />
@@ -67,17 +64,20 @@ export const Cards = () => {
 export default Cards;
 
 const CardWrap = ({ element, index, search }) => {
-
+  const carddefaultimg = "../../img/default3.jpg";
   const navigator = useNavigate();
   const DatailPageMove = () => {
     navigator(`/detail/${element.postId}`);
   };
   console.log(search);
   return (
-
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
-        <ImgBox src={element.image[0]?.imgURL} />
+        <ImgBox
+          src={
+            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
+          }
+        />
         <TextBox>
           <Title>
             개수
@@ -87,21 +87,6 @@ const CardWrap = ({ element, index, search }) => {
         </TextBox>
       </div>
     </CardBox>
-
-    <div>
-      <CardBox key={element.postId} onClick={DatailPageMove}>
-        <div>
-          <ImgBox src={element.image[0].imgURL} />
-          <TextBox>
-            <Title>
-              개수
-              <FcLike />
-            </Title>
-            <Name>{element.title}</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-    </div>
   );
 };
 {
