@@ -24,6 +24,11 @@ const Banner = ({ posts }) => {
     setUseInput(e.target.value);
   };
   console.log(useInput);
+
+  const goWrite = () => {
+    navigate("/write");
+  };
+
   return (
     <Container>
       <Title>오늘의 여행지는?</Title>
@@ -42,7 +47,7 @@ const Banner = ({ posts }) => {
             </Wrap>
           </SearchTitle>
 
-          <Write>
+          <Write onClick={goWrite}>
             게시글쓰기
             <AiFillEdit />
           </Write>

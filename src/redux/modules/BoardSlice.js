@@ -48,7 +48,7 @@ export const __postBoard = createAsyncThunk(
     console.log("나글쓰기페이로드", payload);
     try {
       const { data } = await instance.post("/tb/posts", payload);
-      console.log("나글쓰기데이터", data);
+      alert("게시글이 등록되었습니다.");
       window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -84,7 +84,8 @@ export const __modifyBoard = createAsyncThunk(
         local: payload.category1,
         localdetail: payload.category2,
       });
-      console.log("나글삭데이터", data);
+      alert("게시글이 수정되었습니다.");
+      window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("글수정에러", error);

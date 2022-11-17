@@ -106,6 +106,7 @@ const BoardPostDetail = () => {
     setEditcomment(e.target.value);
   };
 
+  //트러블슈팅## 좋아요 갯수 실시간 변환
   //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다. 어흥
   const Boardpostlike = () => {
     setHeart(!heart);
@@ -123,6 +124,7 @@ const BoardPostDetail = () => {
   return (
     <BoardPostDetailContainer>
       <BoardPostDetailWrap>
+        <Postnickname>{post?.nickName} 님의 여행이야기</Postnickname>
         <ImegeWrap>
           <ImegeSlide>
             <Swiper
@@ -173,9 +175,9 @@ const BoardPostDetail = () => {
           </TitleButtonWarp>
         </BoardTitleWrap>
         <UserNameBox>
-          <PostUser>{post?.nickName}</PostUser>
           <BoardCateGory>
-            지역명 : {post?.local} {post?.localdetail}
+            <CateLocal>지역 : {post?.local}</CateLocal>
+            <CateDetail>도시 : {post?.localdetail}</CateDetail>
           </BoardCateGory>
         </UserNameBox>
         <BoardBody>{post?.content}</BoardBody>
@@ -203,7 +205,10 @@ const BoardPostDetail = () => {
           </BoardCommentBox>
           <CommentListBox>
             <CommentTitlebox>
-              <Commentuser>작성자 이름</Commentuser>
+              <div>
+                <img src="" />
+                <Commentuser>작성자 이름</Commentuser>
+              </div>
               <CommentBtnWrap>
                 {Editmode ? (
                   <CommentButton onClick={ModifyCancel}>취소</CommentButton>
@@ -238,12 +243,19 @@ const BoardPostDetail = () => {
 
 export default BoardPostDetail;
 
+const CateLocal = styled.div``;
+const CateDetail = styled.div``;
+
+const Postnickname = styled.div`
+  font-size: 36px;
+  margin-bottom: 25px;
+`;
+
 const PostUser = styled.div`
   font-size: 18px;
 `;
 
 const UserNameBox = styled.div`
-  margin-top: 20px;
   display: flex;
   justify-content: space-between;
 `;
@@ -354,7 +366,11 @@ const BoardBody = styled.div`
   min-height: 400px;
 `;
 
-const BoardCateGory = styled.div``;
+const BoardCateGory = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
 
 const DeleteButton = styled.button`
   background-color: #333;
@@ -376,7 +392,7 @@ const BoardTitle = styled.h2`
 
 const BoardTitleWrap = styled.div`
   display: flex;
-  margin-top: 100px;
+  margin-top: 80px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -395,6 +411,7 @@ const BoardPostDetailWrap = styled.div`
 const ImegeWrap = styled.div`
   width: 100%;
   display: flex;
+
   flex-direction: column;
 `;
 
@@ -404,6 +421,7 @@ const ImegeSlide = styled.div`
 `;
 
 const SliderImage = styled.img`
+  border-radius: 50px;
   width: 100%;
   height: 100%;
 `;
@@ -420,6 +438,6 @@ const PreviewItem = styled.img`
   width: 100%;
   flex: 1;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 30px;
   object-fit: cover;
 `;
