@@ -24,6 +24,7 @@ const Router = () => {
         <Route path="/modify/:id" element={<BoardPostModify />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/game/:id" element={<Game />} />
+        <Route path="/game/:aa/:id" element={<Game />} />
       </Routes>
     </BrowserRouter>
   );
