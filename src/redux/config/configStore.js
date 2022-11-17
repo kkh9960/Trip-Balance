@@ -3,7 +3,11 @@ import BestSlice from "../modules/BsetFiveSlice";
 import MapSlice from "../modules/MapSlice";
 import WeatherSlice from "../modules/WeatherSlice";
 import PostSlice from "../modules/PostSlice";
+
+import BoardSlice from "../modules/BoardSlice";
+
 import gameInfo from "../modules/GameSlice";
+
 
 const store = configureStore({
   reducer: {
@@ -11,7 +15,11 @@ const store = configureStore({
     MapSlice,
     WeatherSlice,
     PostSlice,
+
+    BoardSlice,
+
     gameInfo,
+
   },
 });
 

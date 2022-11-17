@@ -13,6 +13,8 @@ import { useParams } from "react-router-dom";
 import { __getBoardDetail } from "../redux/modules/BoardSlice";
 import { __deleteBoard } from "../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
+import { __boardlike } from "../redux/modules/BoardSlice";
+import { CloudHSM } from "aws-sdk";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -25,7 +27,7 @@ const BoardPostDetail = () => {
   const [imagelength, setimegelength] = useState(imagel);
   const dispatch = useDispatch();
   const userNickname = localStorage.getItem("nickName");
-  console.log(userNickname);
+
   const ImegaURL = [
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EC%BD%9C%EB%A1%9C%EC%84%B8%EC%9B%80.jpg",
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EB%93%80%EC%98%A41.jpg",
@@ -33,19 +35,29 @@ const BoardPostDetail = () => {
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/456123.jpg",
   ];
   const DefaultImega = "../img/default1.jpg";
+  const heartsvg = "../img/heart.svg";
+  const binheartsvg = "../img/binheart.svg";
 
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
   const nickname = localStorage.getItem("nickName");
 
-  console.log(isLoading);
-  console.log(id.id);
+  console.log(post);
+
+  const [heart, setHeart] = useState(false);
+  const [heartnum, setheartnum] = useState();
+
+  console.log(post?.heartNum);
+  console.log(post?.heartYn);
 
   useEffect(() => {
     dispatch(__getBoardDetail(id));
   }, []);
 
-  console.log(post);
+  useEffect(() => {
+    setHeart(post?.heartYn);
+    setheartnum(post?.heartNum);
+  }, [post]);
 
   const CheckLength = (e) => {
     let text = e.target.value;
@@ -59,6 +71,7 @@ const BoardPostDetail = () => {
       e.target.focus();
       setcmtcount(text);
     }
+
     setcmtcount(Cmtlength);
   };
 
@@ -93,9 +106,29 @@ const BoardPostDetail = () => {
     setEditcomment(e.target.value);
   };
 
+  //트러블슈팅## 좋아요 갯수 실시간 변환
+  //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다. 어흥
+  const Boardpostlike = () => {
+    setHeart(!heart);
+    dispatch(__boardlike(id.id));
+    console.log(heart);
+    if (heart) {
+      setheartnum((prevstate) => prevstate - 1);
+    } else {
+      setheartnum((prevstate) => prevstate + 1);
+    }
+  };
+
+  const goProfile = () => {
+    navigate(``);
+  };
+
+  console.log(heart);
+
   return (
     <BoardPostDetailContainer>
       <BoardPostDetailWrap>
+        <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
         <ImegeWrap>
           <ImegeSlide>
             <Swiper
@@ -111,14 +144,19 @@ const BoardPostDetail = () => {
               className="mySwiper"
               loop={true}
             >
-              {post &&
+              {!post?.mediaList.length === 0 ? (
                 post?.mediaList.map((item, idx) => {
                   return (
                     <SwiperSlide key={idx}>
                       <SliderImage src={item} />
                     </SwiperSlide>
                   );
-                })}
+                })
+              ) : (
+                <SwiperSlide>
+                  <SliderImage src="../img/default2.jpg" />
+                </SwiperSlide>
+              )}
             </Swiper>
           </ImegeSlide>
           <ImegePreview>
@@ -137,28 +175,30 @@ const BoardPostDetail = () => {
         <BoardTitleWrap>
           <BoardTitle>{post?.title}</BoardTitle>
           <TitleButtonWarp>
-            {userNickname == post?.nickName ? (
+            {userNickname == post?.author ? (
               <>
                 <ModifyButton onClick={modifyPost}>수정</ModifyButton>
                 <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
               </>
-            ) : null}
+            ) : (
+              <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+            )}
           </TitleButtonWarp>
         </BoardTitleWrap>
         <UserNameBox>
-          <PostUser>{post?.nickName}</PostUser>
           <BoardCateGory>
-            지역명 : {post?.local} {post?.localdetail}
+            <CateLocal>지역 : {post?.local}</CateLocal>
+            <CateDetail>도시 : {post?.localdetail}</CateDetail>
           </BoardCateGory>
         </UserNameBox>
         <BoardBody>{post?.content}</BoardBody>
-        <BoardLike>
-          <BoardLikeImage src="../img/heart.svg" alt="" />
-          <BoardLikeCount>0</BoardLikeCount>
+        <BoardLike onClick={Boardpostlike}>
+          <BoardLikeImage src={post && heart ? heartsvg : binheartsvg} alt="" />
+          <BoardLikeCount>{heartnum}</BoardLikeCount>
         </BoardLike>
         <BoardCommentWrap>
           <BoardCommentBox>
-            <CommentWriteUser>{nickname}</CommentWriteUser>
+            <CommentWriteUser>{post?.nickName}</CommentWriteUser>
             <CommentTextarea
               name=""
               maxLength="200"
@@ -176,7 +216,10 @@ const BoardPostDetail = () => {
           </BoardCommentBox>
           <CommentListBox>
             <CommentTitlebox>
-              <Commentuser>작성자 이름</Commentuser>
+              <div>
+                <img src="" />
+                <Commentuser>작성자 이름</Commentuser>
+              </div>
               <CommentBtnWrap>
                 {Editmode ? (
                   <CommentButton onClick={ModifyCancel}>취소</CommentButton>
@@ -211,12 +254,26 @@ const BoardPostDetail = () => {
 
 export default BoardPostDetail;
 
+const UserProfile = styled.div`
+  background-color: #333;
+  color: #fff;
+  padding: 8px 20px;
+  cursor: pointer;
+`;
+
+const CateLocal = styled.div``;
+const CateDetail = styled.div``;
+
+const Postnickname = styled.div`
+  font-size: 36px;
+  margin-bottom: 25px;
+`;
+
 const PostUser = styled.div`
   font-size: 18px;
 `;
 
 const UserNameBox = styled.div`
-  margin-top: 20px;
   display: flex;
   justify-content: space-between;
 `;
@@ -310,7 +367,14 @@ const BoardLikeCount = styled.div`
 const BoardLikeImage = styled.img``;
 
 const BoardLike = styled.div`
+  cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 35px;
+  border-radius: 10px;
+  border: 1px solid #cdcdcd;
   align-items: center;
 `;
 
@@ -320,7 +384,11 @@ const BoardBody = styled.div`
   min-height: 400px;
 `;
 
-const BoardCateGory = styled.div``;
+const BoardCateGory = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
 
 const DeleteButton = styled.button`
   background-color: #333;
@@ -342,7 +410,7 @@ const BoardTitle = styled.h2`
 
 const BoardTitleWrap = styled.div`
   display: flex;
-  margin-top: 100px;
+  margin-top: 80px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
@@ -361,6 +429,7 @@ const BoardPostDetailWrap = styled.div`
 const ImegeWrap = styled.div`
   width: 100%;
   display: flex;
+
   flex-direction: column;
 `;
 
@@ -370,6 +439,7 @@ const ImegeSlide = styled.div`
 `;
 
 const SliderImage = styled.img`
+  border-radius: 50px;
   width: 100%;
   height: 100%;
 `;
@@ -386,6 +456,6 @@ const PreviewItem = styled.img`
   width: 100%;
   flex: 1;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 30px;
   object-fit: cover;
 `;
