@@ -1,41 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
+import { useSelector, useDispatch } from "react-redux";
+import { __getBoard } from "../redux/modules/BoardSlice";
+import { useNavigate } from "react-router-dom";
 
 export const Cards = () => {
-  // const getProducts = () => {
-  //   //q=서치퀄리 넣어줌 알아서 찾아준다
-  //   let searchQuery = query.get("q") || "";
-  //   dispatch(productAction.getProducts(searchQuery));        ///검색햇을경우 미리세팅 test해봐야됨
+  const posts = useSelector((state) => state.BoardSlice.posts);
 
-  // };
+  // console.log(posts[0].image[0].imgURL);
 
-  // useEffect(() => {
-  //   getProducts();
-  // }, [query]);
+  console.log(posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getBoard());
+  }, []);
 
   return (
     <Layout>
-      <CardBox>
-        <div>
-          <ImgBox src="https://cdn.pixabay.com/photo/2016/11/21/17/44/arches-national-park-1846759__340.jpg" />
-          <TextBox>
-            <Title>
-              개수
-              <FcLike />
-            </Title>
-
-            <Name>제목</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-
+      {posts &&
+        posts.map((element, index) => (
+          <CardWrap key={element.postId} element={element} index={index} />
+        ))}
       <Line></Line>
     </Layout>
   );
 };
 
 export default Cards;
+
+const CardWrap = ({ element, index }) => {
+  const navigator = useNavigate();
+  const DatailPageMove = () => {
+    navigator(`/detail/${element.postId}`);
+  };
+
+  return (
+    <CardBox key={element.postId} onClick={DatailPageMove}>
+      <div>
+        <ImgBox src={element.image[0].imgURL} />
+        <TextBox>
+          <Title>
+            개수
+            <FcLike />
+          </Title>
+          <Name>{element.title}</Name>
+        </TextBox>
+      </div>
+    </CardBox>
+  );
+};
 
 {
   /* <InfiniteScroll

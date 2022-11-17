@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import instance from "../../login/lib/instance";
+import instance from "../../lib/instance";
 
 // 서버주소 : https://coding-kym.shop
 
@@ -37,6 +37,7 @@ export const __postBoard = createAsyncThunk(
     try {
       const { data } = await instance.post("/tb/posts", payload);
       console.log("나글쓰기데이터", data);
+      window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("글쓰기에러", error);

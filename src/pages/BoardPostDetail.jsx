@@ -59,6 +59,7 @@ const BoardPostDetail = () => {
       e.target.focus();
       setcmtcount(text);
     }
+
     setcmtcount(Cmtlength);
   };
 
