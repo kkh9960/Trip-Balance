@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Layout from "../component/Layout";
 import { AiFillEdit } from "react-icons/ai";
@@ -7,7 +7,7 @@ import Card from "./Card";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-const Banner = () => {
+const Banner = ({ posts }) => {
   const navigate = useNavigate();
 
   const search = (event) => {
@@ -19,7 +19,11 @@ const Banner = () => {
     }
     console.log("key press");
   };
-
+  const [useInput, setUseInput] = useState("");
+  const onChange = (e) => {
+    setUseInput(e.target.value);
+  };
+  console.log(useInput);
   return (
     <Container>
       <Title>오늘의 여행지는?</Title>
@@ -30,7 +34,8 @@ const Banner = () => {
             <SearchBar
               onKeyPress={search}
               type="text"
-              placeholder=" 제목을 입력하세요 20글자이내."
+              onChange={onChange}
+              placeholder=" 검색어를 입력하세요 20글자이내."
             />
             <Wrap>
               <BsSearch />

@@ -1,12 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const __bestFive = createAsyncThunk(
+export const __getBestFive = createAsyncThunk(
   "GET_BESTFIVE",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get("http://52.78.174.102:8080/tb/bestfive", payload); //http://52.78.174.102:8080/tb/bestfive
-      console.log('gg',data)
+      const { data } = await axios.get(
+        "https://coding-kym.shop/tb/bestfive",
+        payload
+      );
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -15,14 +18,10 @@ export const __bestFive = createAsyncThunk(
 const initialState = {
   data: [
     {
-      tite: "",
-      nickName: "",
-      local: "",
-      pet: "",
-      content: "",
-      img: "",
-      heartnum: "",
-      hear: "",
+      tite: "제목",
+      img: "이미지",
+      heartnum: 4,
+      hear: true,
     },
   ],
   isLoading: false,
@@ -34,14 +33,15 @@ export const bestSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [__bestFive.pending]: (state) => {
+    [__getBestFive.pending]: (state) => {
       state.isLoading = true;
     },
-    [__bestFive.fulfilled]: (state, action) => {
+    [__getBestFive.fulfilled]: (state, action) => {
       state.isLoading = false;
-      
+      state.data = action.payload;
+      console.log("fivepayload", action.payload);
     },
-    [__bestFive.rejected]: (state, action) => {
+    [__getBestFive.rejected]: (state, action) => {
       state.user.isLoading = false;
       state.user.error = action.payload;
     },
