@@ -1,39 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
 import { useSelector, useDispatch } from "react-redux";
 import { __getBoard, __SearchBoard } from "../redux/modules/BoardSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
+import useInfiniteScroll from "react-infinite-scroll-hook";
+import { useInView } from "react-intersection-observer";
+// import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
-  // console.log(posts[0].image[0].imgURL);
 
   const dispatch = useDispatch();
-  // const [query, setQuery] = useSearchParams();
-  // const getProducts = () => {
-  //   //q=서치퀄리 넣어줌 알아서 찾아준다
-  //   let searchQuery = query.get("q") || "";
-  //   dispatch(__SearchBoard(searchQuery)); ///검색햇을경우 미리세팅 test해봐야됨
-  // };
+  const [ref, inView] = useInView();
+  const search = (e) => {
+    if (e.key === "Enter") {
+      setUseInput(e.target.value);
+    }
+    console.log("key press");
+  };
 
   const [useInput, setUseInput] = useState("");
   console.log(useInput);
-  const onChange = (e) => {
-    setUseInput(e.target.value);
-  };
+  // const onChange = (e) => {
+  //   setUseInput(e.target.value);
+  // };
 
+  // const intersectiong = useInfiniteScroll(fetchMoreEl);
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
 
   useEffect(() => {
-    dispatch(__getBoard());
+    if (posts.length === 0) {
+      console.log("첫포스트로딩");
+      dispatch(__getBoard());
+    }
   }, []);
 
-  // useEffect(() => {
-  //   getProducts();
-  // }, [query]);
+  useEffect(() => {
+    if (posts.length !== 0 && inView) {
+      console.log("첫로딩이후 무한 스크롤");
+      dispatch(__getBoard());
+    }
+  }, [inView]);
+
 
   return (
     <Layout>
@@ -44,8 +54,9 @@ export const Cards = () => {
 
       <SearchBar
         type="text"
-        onChange={onChange}
-        value={useInput}
+        onKeyPress={search}
+        // onChange={onChange}
+        // value={useInput}
         placeholder=" 검색어를 입력하세요 20글자이내."
       />
       {filteredProducts.map((element, index) => (
@@ -58,6 +69,7 @@ export const Cards = () => {
       ))}
 
       <Line></Line>
+      <div ref={ref} />
     </Layout>
   );
 };
@@ -65,12 +77,14 @@ export default Cards;
 
 const CardWrap = ({ element, index, search }) => {
   const carddefaultimg = "../../img/default3.jpg";
+
   const navigator = useNavigate();
   const DatailPageMove = () => {
     navigator(`/detail/${element.postId}`);
   };
-  console.log(search);
+
   return (
+
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
         <ImgBox
@@ -87,6 +101,7 @@ const CardWrap = ({ element, index, search }) => {
         </TextBox>
       </div>
     </CardBox>
+
   );
 };
 {
