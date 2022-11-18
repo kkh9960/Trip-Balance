@@ -92,7 +92,7 @@ const CommentSlice = createSlice({
     [__postComment.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.comments.push(action.payload.data);
-      console.log(state);
+      console.log(action);
     },
     [__postComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -116,6 +116,7 @@ const CommentSlice = createSlice({
     [__modifyComment.fulfilled]: (state, action) => {
       state.isLoading = false;
       // state.comments = state.comment.map((el, i))
+      console.log("액숀", action);
     },
     [__modifyComment.rejected]: (state, action) => {
       state.isLoading = false;
