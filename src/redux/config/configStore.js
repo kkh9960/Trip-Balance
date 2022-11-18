@@ -7,7 +7,7 @@ import PostSlice from "../modules/PostSlice";
 import BoardSlice from "../modules/BoardSlice";
 
 import gameInfo from "../modules/GameSlice";
-
+import commentSlice from "../modules/CommentSlice";
 
 const store = configureStore({
   reducer: {
@@ -19,7 +19,7 @@ const store = configureStore({
     BoardSlice,
 
     gameInfo,
-
+    commentSlice,
   },
 });
 

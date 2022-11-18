@@ -8,25 +8,27 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import "./BoardPostDetail.css";
-import { __postComment } from "../redux/modules/BoardSlice";
+import { __getComment, __postComment } from "../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";
 import { __getBoardDetail } from "../redux/modules/BoardSlice";
 import { __deleteBoard } from "../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import { __boardlike } from "../redux/modules/BoardSlice";
-import { CloudHSM } from "aws-sdk";
+import Loading from "../components/Loading/Loading";
+import { __deleteComment } from "../redux/modules/CommentSlice";
+import { __modifyComment } from "../redux/modules/CommentSlice";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
   const id = useParams();
   const [comment, setcomment] = useState("");
   const [cmtcount, setcmtcount] = useState(0);
-  const [Editmode, setEditmode] = useState(false);
-  const [Editcomment, setEditcomment] = useState("");
+
   const imagel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [imagelength, setimegelength] = useState(imagel);
   const dispatch = useDispatch();
   const userNickname = localStorage.getItem("nickName");
+  const [loading, setLoading] = useState(true);
 
   const ImegaURL = [
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EC%BD%9C%EB%A1%9C%EC%84%B8%EC%9B%80.jpg",
@@ -40,7 +42,12 @@ const BoardPostDetail = () => {
 
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
+  const comments = useSelector((state) => state.commentSlice.comments);
   const nickname = localStorage.getItem("nickName");
+
+  console.log("응애 나 애기로딩", isLoading);
+
+  console.log("나 댓글정보", comments);
 
   console.log(post);
 
@@ -53,6 +60,14 @@ const BoardPostDetail = () => {
   useEffect(() => {
     dispatch(__getBoardDetail(id));
   }, []);
+  useEffect(() => {
+    dispatch(__getComment(id));
+  }, []);
+
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
+  console.log(Loading);
 
   useEffect(() => {
     setHeart(post?.heartYn);
@@ -81,29 +96,16 @@ const BoardPostDetail = () => {
 
   console.log(comment);
 
+  //댓글쓰기
   const WriteComment = () => {
     dispatch(__postComment({ id, content: comment }));
+    setcomment("");
   };
   const modifyPost = () => {
     navigate(`/modify/${id.id}`);
   };
   const DeletePost = () => {
     dispatch(__deleteBoard(id));
-  };
-  const DeleteComment = () => {};
-
-  const ModifyCancel = () => {
-    setEditmode(!Editmode);
-    //조회값 다시 적용
-  };
-
-  const ModifyComment = () => {
-    setEditmode(!Editmode);
-    setEditcomment("코멘트내용");
-  };
-
-  const ChangeEdit = (e) => {
-    setEditcomment(e.target.value);
   };
 
   //트러블슈팅## 좋아요 갯수 실시간 변환
@@ -125,7 +127,9 @@ const BoardPostDetail = () => {
 
   console.log(heart);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <BoardPostDetailContainer>
       <BoardPostDetailWrap>
         <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
@@ -198,11 +202,15 @@ const BoardPostDetail = () => {
         </BoardLike>
         <BoardCommentWrap>
           <BoardCommentBox>
-            <CommentWriteUser>{post?.nickName}</CommentWriteUser>
+            <CommentWriteUserBox>
+              <CommentWriteImg src="../img/cmtdefault.svg" />
+              <CommentWriteUser>{post?.nickName}</CommentWriteUser>
+            </CommentWriteUserBox>
             <CommentTextarea
               name=""
               maxLength="200"
               id="comment"
+              value={comment}
               onKeyUp={CheckLength}
               onChange={CommentHandler}
             />
@@ -214,45 +222,107 @@ const BoardPostDetail = () => {
               </CommentWriteButton>
             </CommentButtonBox>
           </BoardCommentBox>
-          <CommentListBox>
-            <CommentTitlebox>
-              <div>
-                <img src="" />
-                <Commentuser>작성자 이름</Commentuser>
-              </div>
-              <CommentBtnWrap>
-                {Editmode ? (
-                  <CommentButton onClick={ModifyCancel}>취소</CommentButton>
-                ) : (
-                  <CommentButton onClick={ModifyComment}>수정</CommentButton>
-                )}
-                {Editmode ? (
-                  <CommentButton onClick={ModifyComment}>완료</CommentButton>
-                ) : (
-                  <CommentButton onClick={DeleteComment}>삭제</CommentButton>
-                )}
-              </CommentBtnWrap>
-            </CommentTitlebox>
-            <Commentbody>
-              {Editmode ? (
-                <CommentModifyinput
-                  type="text"
-                  maxLength="200"
-                  onChange={ChangeEdit}
-                  value={Editcomment}
-                />
-              ) : (
-                "댓글내용 입니다"
-              )}
-            </Commentbody>
-          </CommentListBox>
+          {comments &&
+            comments?.map((item, idx) => (
+              <PostComment key={idx} item={item} idx={idx} id={id} />
+            ))}
         </BoardCommentWrap>
       </BoardPostDetailWrap>
     </BoardPostDetailContainer>
   );
 };
-
 export default BoardPostDetail;
+
+const PostComment = ({ idx, item, id }) => {
+  const [Editcomment, setEditcomment] = useState("");
+  const [Editmode, setEditmode] = useState(false);
+  useEffect(() => {
+    setEditcomment(item.content);
+  }, []);
+
+  const dispatch = useDispatch();
+
+  const ModifyCancel = () => {
+    setEditmode(!Editmode);
+    //조회값 다시 적용
+  };
+  const ModifyComment = () => {
+    setEditmode(!Editmode);
+  };
+  const DeleteComment = () => {
+    console.log("저아이템이요", item.commentId);
+    dispatch(__deleteComment(item.commentId));
+  };
+
+  const ModifyComplete = () => {
+    dispatch(
+      __modifyComment({
+        id: item.commentId,
+        postId: item.commentId,
+        content: Editcomment,
+      })
+    );
+    setEditmode(!Editmode);
+  };
+
+  const ChangeEdit = (e) => {
+    setEditcomment(e.target.value);
+  };
+  console.log(Editcomment);
+  return (
+    <CommentListBox key={idx}>
+      <CommentTitlebox>
+        <CommentUserBox>
+          <CommentImg src="../img/cmtdefault.svg" />
+          <Commentuser>{item?.author}</Commentuser>
+        </CommentUserBox>
+        <CommentBtnWrap>
+          {Editmode ? (
+            <CommentButton onClick={ModifyCancel}>취소</CommentButton>
+          ) : (
+            <CommentButton onClick={ModifyComment}>수정</CommentButton>
+          )}
+          {Editmode ? (
+            <CommentButton onClick={ModifyComplete}>완료</CommentButton>
+          ) : (
+            <CommentButton onClick={DeleteComment}>삭제</CommentButton>
+          )}
+        </CommentBtnWrap>
+      </CommentTitlebox>
+      <Commentbody>
+        {Editmode ? (
+          <CommentModifyinput
+            type="text"
+            maxLength="200"
+            onChange={ChangeEdit}
+            value={Editcomment}
+          />
+        ) : (
+          item?.content
+        )}
+      </Commentbody>
+    </CommentListBox>
+  );
+};
+
+const CommentWriteUserBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const CommentWriteUser = styled.div``;
+
+const CommentWriteImg = styled.img``;
+
+const CommentUserBox = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
+`;
+
+const CommentImg = styled.img``;
 
 const UserProfile = styled.div`
   background-color: #333;
@@ -289,7 +359,10 @@ const CommentModifyinput = styled.input`
 
 const CommentBtnWrap = styled.div``;
 
-const Commentuser = styled.div``;
+const Commentuser = styled.div`
+  width: 100%;
+  max-width: 600px;
+`;
 
 const CommentButton = styled.button`
   background-color: #333;
@@ -301,16 +374,19 @@ const CommentButton = styled.button`
 const CommentTitlebox = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 const Commentbody = styled.div`
-  margin-top: 10px;
+  margin-top: 20px;
+  padding-left: 20px;
 `;
 
 const CommentListBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  border-bottom: 1px dotted #cdcdcd;
 `;
 const CommentCount = styled.span`
   font-size: 18px;
@@ -338,13 +414,7 @@ const CommentTextarea = styled.textarea`
   border-bottom: 1px solid #b0b0b0;
   outline: none;
   font-size: 16px;
-`;
-
-const CommentWriteUser = styled.div`
-  margin-bottom: 10px;
-  height: 50px;
-  font-size: 19px;
-  line-height: 40px;
+  margin-top: 10px;
 `;
 
 const BoardCommentBox = styled.div`
