@@ -32,7 +32,7 @@ export default function GameResultPage() {
 
   return (
     <div>
-      결과
+      결과 주소
       {game.data.data =="" ? ("로딩중입니다") : (game.data.data)}
       <div>추천 블로그</div>
       <div>추천 숙소</div>
