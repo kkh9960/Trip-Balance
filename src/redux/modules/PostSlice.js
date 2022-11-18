@@ -6,9 +6,7 @@ export const __getPostData = createAsyncThunk(
   "GET_POSTDATA",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(
-        `https://coding-kym.shop/tb/localpost/${payload}`
-      );
+      const { data } = await instance.get(`/tb/localpost/${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }

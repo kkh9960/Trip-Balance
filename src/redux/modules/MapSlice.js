@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import instance from "../../lib/instance";
 
 const initialState = {
   data: {
@@ -89,7 +90,7 @@ export const __getMapData = createAsyncThunk(
   "GET_MAPDATA",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get("/tb/apitest", payload); //http://43.200.139.249:8080/tb/apitest
+      const { data } = await instance.get("/tb/apitest", payload); //http://43.200.139.249:8080/tb/apitest
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -99,10 +100,8 @@ export const __postMapData = createAsyncThunk(
   "POST_MAPDATA",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post(
-        "https://coding-kym.shop/tb/apimap",
-        payload
-      );
+      const { data } = await instance.post("/tb/apimap", payload);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
