@@ -7,6 +7,8 @@ import PostPage from "../../PostPage/PostPage";
 import BoardWrite from "../../pages/BoardWrite";
 import Game from "../../pages/game/Game";
 import Home from "../../Home";
+import GameResult from "../../pages/game/GameResult";
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -18,7 +20,7 @@ const Router = () => {
         <Route path="/board" element={<BoardWrite />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/gameResult/:aa/:id" element={<GameResult />} />
       </Routes>
     </BrowserRouter>
   );
