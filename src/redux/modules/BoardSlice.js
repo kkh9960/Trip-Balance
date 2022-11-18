@@ -48,7 +48,8 @@ export const __postBoard = createAsyncThunk(
     console.log("나글쓰기페이로드", payload);
     try {
       const { data } = await instance.post("/tb/posts", payload);
-      console.log("나글쓰기데이터", data);
+      alert("게시글이 등록되었습니다.");
+      // window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("글쓰기에러", error);
@@ -70,21 +71,38 @@ export const __deleteBoard = createAsyncThunk(
   }
 );
 
-export const __postComment = createAsyncThunk(
-  "POST_COMMENT",
+export const __modifyBoard = createAsyncThunk(
+  "modify_BOARD",
   async (payload, thunkAPI) => {
-    console.log(payload);
-    console.log(payload.id.id);
-    console.log(payload.content);
+    console.log("나글수정페이로드", payload);
     try {
-      const { data } = await instance.post(`tb/comments`, {
-        postId: payload.id.id,
+      const { data } = await instance.put(`/tb/posts/${payload.id}`, {
+        title: payload.title,
         content: payload.content,
+        pet: payload.pet,
+        mediaList: payload.mediaList,
+        local: payload.category1,
+        localdetail: payload.category2,
       });
-      console.log(data);
+      alert("게시글이 수정되었습니다.");
+      // window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-      console.log("댓글에러", error);
+      console.log("글수정에러", error);
+    }
+  }
+);
+
+export const __boardlike = createAsyncThunk(
+  "BOARD_LIKE",
+  async (payload, thunkAPI) => {
+    console.log("어흥페이로드", payload);
+    try {
+      const { data } = await instance.post(`tb/posts/${payload}/heart`);
+      console.log("어흥나 좋아요", data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      console.log("좋아요 에러", error);
     }
   }
 );
@@ -96,7 +114,7 @@ const initialState = {
 };
 
 const BoardSlice = createSlice({
-  name: "board,comment",
+  name: "board",
   initialState,
   reducers: {},
   extraReducers: {
@@ -131,10 +149,10 @@ const BoardSlice = createSlice({
     [__getBoardDetail.rejected]: (state, action) => {
       state.isLoading = false;
     },
+    [__modifyBoard.fulfilled]: (state, action) => {},
+    [__modifyBoard.rejected]: (state, action) => {},
     [__postBoard.fulfilled]: (state, action) => {},
     [__postBoard.rejected]: (state, action) => {},
-    [__postComment.fulfilled]: (state, action) => {},
-    [__postComment.rejected]: (state, action) => {},
   },
 });
 
