@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import instance from "../../login/lib/instance";
+import instance from "../../lib/instance";
 
 // 서버주소 : https://coding-kym.shop
 

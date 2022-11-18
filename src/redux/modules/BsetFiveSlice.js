@@ -1,14 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import instance from "../../lib/instance";
 
 export const __getBestFive = createAsyncThunk(
   "GET_BESTFIVE",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        "https://coding-kym.shop/tb/bestfive",
-        payload
-      );
+      const { data } = await instance.get("/tb/bestfive", payload);
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}

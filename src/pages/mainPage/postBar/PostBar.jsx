@@ -10,21 +10,13 @@ export default function Post() {
 
   useEffect(() => {
     dispatch(__getPostData("1"));
-  }, []);
+  }, [dispatch]);
 
-  const postData = useSelector((state) => state.PostSlice.data.data);
-  console.log(postData);
-
-  // const categoryHandler = () => {
-  //   console.log();
-  // };
+  // const postData = useSelector((state) => state.PostSlice.data.data);
 
   return (
     <>
-      <div className="postCategory">
-        {/* <div type="text" onClick={categoryHandler}>
-            수도권
-          </div> */}
+      {/* <div className="postCategory">
         <ul>
           <li onClick={() => dispatch(__getPostData("1"))}>수도권</li>
           <li onClick={() => dispatch(__getPostData("2"))}>강원/경상</li>
@@ -43,6 +35,7 @@ export default function Post() {
                 <div className="post" key={post.id}>
                   <div className="postBox">
                     <img
+                      alt="게시글이미지"
                       className="postImage"
                       src={post.img}
                       onClick={() => {
@@ -66,7 +59,7 @@ export default function Post() {
             ))
           )
         ) : null}
-      </div>
+      </div> */}
     </>
   );
 }

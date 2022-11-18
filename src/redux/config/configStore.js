@@ -6,7 +6,10 @@ import PostSlice from "../modules/PostSlice";
 
 const store = configureStore({
   reducer: {
-    BestSlice, MapSlice, WeatherSlice, PostSlice
+    BestSlice,
+    MapSlice,
+    WeatherSlice,
+    PostSlice,
   },
 });
 

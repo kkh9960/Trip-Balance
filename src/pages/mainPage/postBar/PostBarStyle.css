@@ -27,10 +27,9 @@ section {
   background-color: darkseagreen;
   margin: 0 auto;
 
-  display: flex;
+  display: grid;
 }
-.postContainer {
-}
+
 .postBox {
   background-color: aliceblue;
   display: flex;
