@@ -1,3 +1,4 @@
+
 import React from 'react'
 import * as g from './GamePageStyle'
 import { useParams } from 'react-router-dom'
@@ -6,11 +7,13 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { __GameInfoGet, __GameFirstGet, __GameLastPost } from '../../redux/modules/GameSlice'
 
+
 export default function GamePage() {
   const id = useParams();
-  console.log(id)
+  console.log(id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
 
   const gameData = useSelector((state) => state.gameInfo.data)
   // console.log(gameData)
@@ -20,16 +23,18 @@ export default function GamePage() {
   // console.log(gameData.data[0].leftId)
   // console.log(gameData.data[0].rightId)
   // console.log(gameData.data[1])
+
   const goFirst = (e) => {
     e.preventDefault();
-    navigate('/game/start')
-  }
+    navigate("/game/start");
+  };
   const leftGo = (e) => {
     e.preventDefault();
-    navigate(`/game/${GameID}/${gameData.data[0].leftId}`)
-  }
+    navigate(`/game/${GameID}/${gameData.data[0].leftId}`);
+  };
   const rightGo = (e) => {
     e.preventDefault();
+
     navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
   }
   const resultGo = (e) => {
@@ -39,10 +44,13 @@ export default function GamePage() {
     window.location.reload();
   }
 
+
   useEffect(() => {
-    id.id == "start" ? dispatch(__GameFirstGet()) : dispatch(__GameInfoGet({GameID, QID}));
+    id.id == "start"
+      ? dispatch(__GameFirstGet())
+      : dispatch(__GameInfoGet({ GameID, QID }));
   }, [id]);
-  
+
   const leftimg = `../../img/gameImg/${gameData.data[0].leftId == null ? (2) : (gameData.data[0].leftId)}.jpg`         
   const rightimg = `../../img/gameImg/${gameData.data[0].rightId == null ? (2) : (gameData.data[0].rightId)}.jpg`
   const GameID = (gameData.data[1]?.gameId === null ? ("1") : gameData.data[1]?.gameId)
@@ -54,6 +62,7 @@ export default function GamePage() {
       {leftnum}
       {rightnum} */}
       <div>
+
       {QID >= 32 ? (
         <g.balanceButtonWrapFinal>
           <g.balanceButtonFinal onClick={resultGo}>
@@ -75,7 +84,8 @@ export default function GamePage() {
           </g.firstWrap>
          </div>
       )}
+
       </div>
     </div>
-  )
+  );
 }

@@ -5,8 +5,7 @@ import instance from "../../lib/instance";
 export const __GameInfoGet = createAsyncThunk(
   "Game_Select",
   async (payload, thunkAPI) => {
-    console.log(payload.GameID);
-    console.log(payload.QID);
+    console.log("나 페이로드", payload);
     try {
       const { data } = await instance.get(
         `tb/game/${payload.GameID}/${payload.QID}`
@@ -14,6 +13,7 @@ export const __GameInfoGet = createAsyncThunk(
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
+
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -31,6 +31,7 @@ export const __GameLastPost = createAsyncThunk(
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log(error);
+
     }
   }
 );

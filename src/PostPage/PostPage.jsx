@@ -8,6 +8,8 @@ import Cards from "./Cards";
 import BalanceButton from "./BalanceButton";
 import styled from "styled-components";
 import TopButton from "./TopButton";
+
+
 const PostPage = () => {
   return (
     <motion.div

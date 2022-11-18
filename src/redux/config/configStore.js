@@ -5,7 +5,9 @@ import WeatherSlice from "../modules/WeatherSlice";
 import PostSlice from "../modules/PostSlice";
 import BoardSlice from "../modules/BoardSlice";
 import gameInfo from "../modules/GameSlice";
+import commentSlice from "../modules/CommentSlice";
 import gameResult from "../modules/GameResultSlice";
+
 
 const store = configureStore({
   reducer: {
@@ -15,6 +17,7 @@ const store = configureStore({
     PostSlice,
     BoardSlice,
     gameInfo,
+    commentSlice,
     gameResult,
   },
 });
