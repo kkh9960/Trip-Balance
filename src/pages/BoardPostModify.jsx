@@ -1,34 +1,203 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { __postBoard } from "../redux/modules/BoardSlice";
 import { useParams } from "react-router-dom";
 import { __getBoardDetail } from "../redux/modules/BoardSlice";
+import Loading from "../components/Loading/Loading";
+import { __modifyBoard } from "../redux/modules/BoardSlice";
 
 const BoardPostModify = () => {
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
-  const DefaultImega = "img/default1.jpg";
+  const DefaultImega = "../img/default1.jpg";
   const [ImgPreview, setImgPreview] = useState([]);
   const [Pet, setPet] = useState(0);
   const [contents, setcontents] = useState();
   const [Cate, setCate] = useState("0");
+  const [Category, setCategory] = useState();
+  const [Category2, setCategory2] = useState();
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const id = useParams();
-
+  const mediaList = useSelector((state) => state.BoardSlice.post?.mediaList);
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
+  const [loading, setloading] = useState(true);
 
-  console.log(id);
-  console.log(post);
-  console.log(isLoading);
-  console.log(ImgPreview.length);
-  console.log(post?.local);
+  let localint = "";
+  let localdetailint = "";
+  const catetwoRef = useRef();
 
+  //지역 숫자변환
   switch (post?.local) {
     case "수도권":
+      localint = 1;
+      break;
+    case "경상_강원도":
+      localint = 2;
+      break;
+    case "충청_전라도":
+      localint = 3;
+      break;
+    case "제주도":
+      localint = 4;
+      break;
+    case "기타":
+      localint = 5;
+      break;
+    default:
+      localint = 0;
   }
+  //지역2 숫자변환
+  switch (post?.localdetail) {
+    case "서울":
+      localdetailint = 1;
+      break;
+    case "인천":
+      localdetailint = 2;
+      break;
+    case "가평":
+      localdetailint = 3;
+      break;
+    case "용인":
+      localdetailint = 4;
+      break;
+    case "파주":
+      localdetailint = 5;
+      break;
+    case "속초":
+      localdetailint = 6;
+      break;
+    case "강릉":
+      localdetailint = 7;
+      break;
+    case "춘천":
+      localdetailint = 8;
+      break;
+    case "양양":
+      localdetailint = 9;
+      break;
+    case "평창":
+      localdetailint = 10;
+      break;
+    case "부산":
+      localdetailint = 11;
+      break;
+    case "거제":
+      localdetailint = 12;
+      break;
+    case "통영":
+      localdetailint = 13;
+      break;
+    case "포항":
+      localdetailint = 14;
+      break;
+    case "경주":
+      localdetailint = 15;
+      break;
+    case "안동":
+      localdetailint = 16;
+      break;
+    case "여수":
+      localdetailint = 17;
+      break;
+    case "목포":
+      localdetailint = 18;
+      break;
+    case "담양":
+      localdetailint = 19;
+      break;
+    case "보성":
+      localdetailint = 20;
+      break;
+    case "해남":
+      localdetailint = 21;
+      break;
+    case "전주":
+      localdetailint = 22;
+      break;
+    case "천안":
+      localdetailint = 23;
+      break;
+    case "태안":
+      localdetailint = 24;
+      break;
+    case "보령":
+      localdetailint = 25;
+      break;
+    case "공주":
+      localdetailint = 26;
+      break;
+    case "단양":
+      localdetailint = 27;
+      break;
+    case "대구":
+      localdetailint = 28;
+      break;
+    case "대전":
+      localdetailint = 29;
+      break;
+    case "광주":
+      localdetailint = 30;
+      break;
+    case "울산":
+      localdetailint = 31;
+      break;
+    case "서귀포":
+      localdetailint = 32;
+      break;
+    case "기타":
+      localdetailint = 33;
+      break;
+    default:
+      localint = 0;
+  }
+
+  useEffect(() => {
+    setCategory(localint);
+    setCategory2(localdetailint);
+  }, [localint, localdetailint]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setloading(false);
+    }
+  }, [isLoading]);
+
+  let data = [];
+  //setState는 즉각적으로 업데이트하지않고 promise를 통해 비동기적으로 변경시키므로
+  //반복문이 끝나기전까지는 state가 변경되지않는다. 1번부터 4번까지라면, 4번째 데이터만 state에 반영된다.
+  //변수에 담아서 해결! 끼얏호우! >ㅅ<
+  useEffect(() => {
+    if (mediaList) {
+      for (let x in mediaList) {
+        const imgURL = mediaList[x];
+        data = [...data, { imgURL }];
+        setImgPreview(data);
+        setFileLink(mediaList[0]);
+        console.log("이미지주소", imgURL);
+        console.log(x);
+        console.log(data);
+      }
+    }
+  }, [mediaList]);
+
+  console.log(data);
+  console.log(mediaList);
+  console.log(ImgPreview);
+
+  useEffect(() => {
+    if (localint) {
+      setCate(localint);
+      console.log("test", localdetailint);
+    }
+  }, [localint]);
+
+  console.log(localdetailint);
+
+  console.log("어흥", localint);
+  console.log("어흥2", localdetailint);
 
   useEffect(() => {
     dispatch(__getBoardDetail(id));
@@ -39,12 +208,16 @@ const BoardPostModify = () => {
       setcontents({
         title: post?.title,
         content: post?.content,
-        local: post?.local,
-        localdetail: post?.localdetail,
+        local: Category,
+        localdetail: Category2,
         pet: post?.Pet,
       });
     }
+    setPet(post?.pet);
   }, [post]);
+  console.log(Pet);
+
+  console.log(FileLink);
 
   // 이미지
 
@@ -91,7 +264,6 @@ const BoardPostModify = () => {
           console.log(Response.request.httpRequest.path);
           const imgURL = S3URL + Response.request.httpRequest.path;
           setFileLink(imgURL);
-          console.log("123", imgURL);
           setImgPreview([...ImgPreview, { imgURL }]);
         })
         .send((err) => {
@@ -115,6 +287,7 @@ const BoardPostModify = () => {
 
   const onCategoryHandler = (e) => {
     const { name, value } = e.target;
+    setCategory2(value);
     setcontents({
       ...contents,
       [name]: value,
@@ -124,6 +297,7 @@ const BoardPostModify = () => {
   const Categoryopen = (e) => {
     const { name, value } = e.target;
     setCate(value);
+    setCategory(value);
     setcontents({
       ...contents,
       [name]: value,
@@ -134,23 +308,54 @@ const BoardPostModify = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      __postBoard({
+      __modifyBoard({
         title: contents?.title,
         content: contents?.content,
-        local: contents?.category1,
-        localdetail: contents?.category2,
-        mediaList: ImgPreview,
         pet: Pet,
+        mediaList: ImgPreview,
+        category1: +Category,
+        category2: +Category2,
+        id: id.id,
       })
     );
   };
 
+  // 이미지 누르면 지워지기 + 남아있는 이미지 그림 보여주기
+  const [imgremovelength, setimgremovelength] = useState(true);
   const Imageremove = (e) => {
     console.log(e.target.src);
     setImgPreview(ImgPreview.filter((el) => el.imgURL !== e.target.src));
+    setimgremovelength(!imgremovelength);
+  };
+  useEffect(() => {
+    for (let x in ImgPreview) {
+      setFileLink(ImgPreview[x].imgURL);
+      console.log("x", x);
+    }
+  }, [imgremovelength]);
+
+  console.log(FileLink);
+
+  console.log(Category);
+  console.log(Category2);
+
+  let testob = {
+    title: contents?.title,
+    content: contents?.content,
+    pet: Pet,
+    mediaList: ImgPreview,
+    category1: Category,
+    category2: Category2,
+    id: id.id,
   };
 
-  return (
+  console.log(Category2);
+
+  console.log(testob);
+
+  return loading ? (
+    <Loading />
+  ) : (
     <BoardWriteContainer onSubmit={onSubmitHandler}>
       <BoardWriteWrap>
         <WriteTitle>
@@ -182,7 +387,7 @@ const BoardPostModify = () => {
               <CategorySelect
                 name="category1"
                 id="cate_parent"
-                value={contents?.local}
+                value={Category}
                 onChange={Categoryopen}
               >
                 <option name="category1" value="0">
@@ -207,7 +412,7 @@ const BoardPostModify = () => {
               <CategorySelect
                 name="category2"
                 id="cate_child"
-                value={contents?.localdetail}
+                value={Category2}
                 onChange={onCategoryHandler}
                 required
               >
@@ -347,7 +552,7 @@ const BoardPostModify = () => {
                 <PetCheck
                   type="checkbox"
                   id="pet"
-                  checked={false}
+                  checked={Pet}
                   onChange={PetHandler}
                 />
                 <PetLabel htmlFor="pet">반려동물</PetLabel>

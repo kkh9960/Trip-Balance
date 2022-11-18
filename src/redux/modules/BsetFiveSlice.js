@@ -36,8 +36,6 @@ export const bestSlice = createSlice({
     },
     [__getBestFive.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
-      console.log("fivepayload", action.payload);
     },
     [__getBestFive.rejected]: (state, action) => {
       state.user.isLoading = false;

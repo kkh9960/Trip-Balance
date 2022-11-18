@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Layout from "../component/Layout";
 import { AiFillEdit } from "react-icons/ai";
@@ -19,6 +19,15 @@ const Banner = () => {
     }
     console.log("key press");
   };
+  const [useInput, setUseInput] = useState("");
+  const onChange = (e) => {
+    setUseInput(e.target.value);
+  };
+  console.log(useInput);
+
+  const goWrite = () => {
+    navigate("/write");
+  };
 
   return (
     <Container>
@@ -27,17 +36,12 @@ const Banner = () => {
         <SearchWrap>
           <SearchTitle>
             오늘의 여행지검색
-            <SearchBar
-              onKeyPress={search}
-              type="text"
-              placeholder=" 제목을 입력하세요 20글자이내."
-            />
             <Wrap>
               <BsSearch />
             </Wrap>
           </SearchTitle>
 
-          <Write>
+          <Write onClick={goWrite}>
             게시글쓰기
             <AiFillEdit />
           </Write>

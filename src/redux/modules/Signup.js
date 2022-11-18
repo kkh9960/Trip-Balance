@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import instance from "../../lib/instance";
 
 export const addMemberThunk = createAsyncThunk(
@@ -7,6 +6,8 @@ export const addMemberThunk = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.post("/tb/signup", payload);
+      console.log(data.data);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

@@ -64,17 +64,24 @@ const Header = () => {
           >
             마이페이지
           </Mypage>
-            {nickname ? (
-              <Logout onClick={logout}>로그아웃</Logout>
-            ) : (
-              <Login
-                onClick={() => {
-                  navigate("/login");
-                }}
-              >
-                로그인
-              </Login>
-            )}
+          {nickname ? (
+            <div>
+              <div>
+                <Logout onClick={logout}>로그아웃</Logout>
+              </div>
+              <div>
+                <Nickname>{nickname}</Nickname>
+              </div>
+            </div>
+          ) : (
+            <Login
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              로그인
+            </Login>
+          )}
         </WriteWrap>
       </Layout>
     </Container>
@@ -82,6 +89,12 @@ const Header = () => {
 };
 
 export default Header;
+
+const Nickname = styled.div`
+  display: flex;
+  position: relative;
+  left: 60px;
+`;
 
 const Container = styled.div`
   text-decoration: underline;
@@ -140,6 +153,7 @@ const Logout = styled.button`
   margin-top: 20px;
   font-size: 24px;
   text-decoration: underline;
+  display: flex;
 `;
 
 const Wrap = styled.div`

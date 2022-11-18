@@ -4,12 +4,20 @@ import MapSlice from "../modules/MapSlice";
 import WeatherSlice from "../modules/WeatherSlice";
 import PostSlice from "../modules/PostSlice";
 
+import BoardSlice from "../modules/BoardSlice";
+
+import gameInfo from "../modules/GameSlice";
+
 const store = configureStore({
   reducer: {
     BestSlice,
     MapSlice,
     WeatherSlice,
     PostSlice,
+
+    BoardSlice,
+
+    gameInfo,
   },
 });
 
