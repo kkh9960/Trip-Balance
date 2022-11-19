@@ -9,22 +9,24 @@ export const __getMyInformation = createAsyncThunk(
     console.log(payload);
     try {
       const { data } = await instance.get(
-        `/tb/members/info/${payload}`,
+        `/tb/members/info/${payload.id}`,
         payload
       );
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
-export const __postMyInformation = createAsyncThunk(
-  "POST_MY_INFO",
+export const __putMyInformation = createAsyncThunk(
+  "PUT_MY_INFO",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
-      const { data } = await instance.post(`/tb/members/myself`, payload);
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      const { data } = await instance.put(`/tb/mypage/setinfo`, {
+        nickName: payload.nickName,
+        self: payload.introduce,
+      });
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
@@ -33,10 +35,8 @@ export const __postMyInformation = createAsyncThunk(
 export const __getMyWrite = createAsyncThunk(
   "GET_MY_WRITE",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.get("/tb/mypage/posts", payload);
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
@@ -46,22 +46,22 @@ export const __getMyWrite = createAsyncThunk(
 export const __getMyPick = createAsyncThunk(
   "GET_MY_PICK",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.get("/tb/mypage/hearts/pageNum", payload);
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
   }
 );
 
 const initialState = {
-  data: [],
+  data: {
+    data: {},
+  },
   isLoading: false,
   error: null,
 };
 
-export const myInfoSlice = createSlice({
+export const MyInforSlice = createSlice({
   name: "myInfo",
   initialState,
   reducers: {},
@@ -72,6 +72,7 @@ export const myInfoSlice = createSlice({
     [__getMyInformation.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
+      console.log(action.payload);
     },
     [__getMyInformation.rejected]: (state, action) => {
       state.isLoading = false;
@@ -101,4 +102,4 @@ export const myInfoSlice = createSlice({
     },
   },
 });
-export default myInfoSlice.reducer;
+export default MyInforSlice.reducer;

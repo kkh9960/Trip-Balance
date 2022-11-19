@@ -80,7 +80,10 @@ export default function MyPageView() {
   return (
     <div>
       <t.myInformationWrap>
-        <t.userName>{userNickname}님의 마이페이지</t.userName>
+        <t.userName>
+          {userNickname}
+          <span>님의 마이페이지</span>
+        </t.userName>
         <t.Line />
         <ProfileInformation />
 
@@ -99,18 +102,6 @@ export default function MyPageView() {
           <t.myInformationItem>
             <t.itemHeader>
               <h2>내가 좋아요한 게시물</h2>
-              <select
-                type="number"
-                value={limit}
-                style={{
-                  margin: "auto 10px",
-                }}
-                onChange={({ target: { value } }) => setLimit(Number(value))}
-              >
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-              </select>
               <t.thinLine />
             </t.itemHeader>
             <t.pickPostWrap>

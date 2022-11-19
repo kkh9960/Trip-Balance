@@ -1,8 +1,12 @@
 import styled from "styled-components";
 //common
 export const userName = styled.div`
-  width: 100px;
-  margin: 0 auto;
+  width: 500px;
+  font-size: 28px;
+  margin: 0 0 5px 170px;
+  span {
+    font-size: 22px;
+  }
 `;
 export const Line = styled.div`
   width: 1100px;
@@ -25,18 +29,18 @@ export const textLine = styled.div`
 export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
+  margin-top: 30px;
 `;
 
 export const myInformationItem = styled.div`
   position: relative;
-  width: 80%;
+  width: 77%;
   height: 50%;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  background-color: gray;
   border-radius: 10px;
+  border: 2px solid gray;
   padding: 10px 20px 10px;
 `;
 export const myPickInfo = styled.div`
@@ -63,16 +67,19 @@ export const myPickInfo = styled.div`
 //좋아요한 게시글
 export const itemHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  position: absolute;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   top: 0;
   width: 100%;
   height: 100px;
 `;
 export const pickPostWrap = styled.div`
-  display: flex;
+  background-color: white;
   margin: 0 40px;
   width: 100%;
+  height: 100%;
 `;
 export const pickPostItem = styled.div`
   width: 180px;

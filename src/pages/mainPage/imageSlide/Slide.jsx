@@ -7,6 +7,6 @@ export default function Slide({ img }) {
 
 const IMG = styled.img`
   position: relative;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 `;

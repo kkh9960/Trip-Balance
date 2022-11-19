@@ -71,6 +71,7 @@ const BoardWrite = () => {
       alert("이미지는 10개까지만 업로드할수있습니다.");
     }
   };
+
   const PetHandler = () => {
     Pet == 1 ? setPet(0) : setPet(1);
   };
