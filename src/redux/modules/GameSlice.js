@@ -5,14 +5,34 @@ import instance from "../../lib/instance";
 export const __GameInfoGet = createAsyncThunk(
   "Game_Select",
   async (payload, thunkAPI) => {
+    console.log("나 페이로드", payload);
+    try {
+      const { data } = await instance.get(
+        `tb/game/${payload.GameID}/${payload.QID}`
+      );
+      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __GameLastPost = createAsyncThunk(
+  "Game_Last",
+  async (payload, thunkAPI) => {
     console.log(payload.GameID);
     console.log(payload.QID);
     try {
-      const { data } = await instance.get(
-        `/game/${payload.GameID}/${payload.QID}`
+      const { data } = await instance.post(
+        `tb/game/result/${payload.GameID}/${payload.QID}`
       );
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+
+    }
   }
 );
 
@@ -49,6 +69,28 @@ export const gameSlice = createSlice({
       state.data = action.payload;
     },
     [__GameFirstGet.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__GameInfoGet.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__GameInfoGet.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    },
+    [__GameInfoGet.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__GameLastPost.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__GameLastPost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    },
+    [__GameLastPost.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

@@ -166,6 +166,8 @@ const BoardPostModify = () => {
   }, [isLoading]);
 
   let data = [];
+
+  //트러블슈팅 ##
   //setState는 즉각적으로 업데이트하지않고 promise를 통해 비동기적으로 변경시키므로
   //반복문이 끝나기전까지는 state가 변경되지않는다. 1번부터 4번까지라면, 4번째 데이터만 state에 반영된다.
   //변수에 담아서 해결! 끼얏호우! >ㅅ<

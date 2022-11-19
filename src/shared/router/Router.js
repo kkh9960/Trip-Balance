@@ -6,6 +6,7 @@ import MyPage from "../../pages/mypage/MyPage";
 import PostPage from "../../PostPage/PostPage";
 import BoardWrite from "../../pages/BoardWrite";
 import Game from "../../pages/game/Game";
+import GameResult from "../../pages/game/GameResult";
 import BoardPostDetail from "../../pages/BoardPostDetail";
 import BoardPostModify from "../../pages/BoardPostModify";
 import Loading from "../../components/Loading/Loading";
@@ -25,6 +26,7 @@ const Router = () => {
         <Route path="/loading" element={<Loading />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />
+        <Route path="/gameResult/:aa/:id" element={<GameResult />} />
       </Routes>
     </BrowserRouter>
   );

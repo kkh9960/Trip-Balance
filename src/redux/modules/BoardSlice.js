@@ -49,7 +49,7 @@ export const __postBoard = createAsyncThunk(
     try {
       const { data } = await instance.post("/tb/posts", payload);
       alert("게시글이 등록되었습니다.");
-      window.location.replace("/post");
+      // window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("글쓰기에러", error);
@@ -93,27 +93,8 @@ export const __modifyBoard = createAsyncThunk(
   }
 );
 
-export const __postComment = createAsyncThunk(
-  "POST_COMMENT",
-  async (payload, thunkAPI) => {
-    console.log(payload);
-    console.log(payload.id.id);
-    console.log(payload.content);
-    try {
-      const { data } = await instance.post(`tb/comments/`, {
-        postId: Number(payload.id.id),
-        content: payload.content,
-      });
-      console.log(data);
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      console.log("댓글에러", error);
-    }
-  }
-);
-
 export const __boardlike = createAsyncThunk(
-  "POST_LIKE",
+  "BOARD_LIKE",
   async (payload, thunkAPI) => {
     console.log("어흥페이로드", payload);
     try {
@@ -133,7 +114,7 @@ const initialState = {
 };
 
 const BoardSlice = createSlice({
-  name: "board,comment",
+  name: "board",
   initialState,
   reducers: {},
   extraReducers: {
@@ -172,8 +153,6 @@ const BoardSlice = createSlice({
     [__modifyBoard.rejected]: (state, action) => {},
     [__postBoard.fulfilled]: (state, action) => {},
     [__postBoard.rejected]: (state, action) => {},
-    [__postComment.fulfilled]: (state, action) => {},
-    [__postComment.rejected]: (state, action) => {},
   },
 });
 
