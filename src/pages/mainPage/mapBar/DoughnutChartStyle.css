@@ -1,13 +1,11 @@
-.map {
-  display: flex;
-  z-index: 0;
-  width: 500px;
-  height: 500px;
-
-  margin: 0 auto;
-  border-radius: 10px;
-}
 .chartView {
   width: 200px;
   height: 200px;
+  margin: 0 auto;
+}
+.chartView::after{
+  position: relative;
+  content: "이름";
+  top: -110px;
+  left: 80px;
 }

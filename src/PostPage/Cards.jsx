@@ -67,27 +67,32 @@ export const Cards = () => {
   );
 };
 export default Cards;
-const CardWrap = ({ element, search }) => {
+
+const CardWrap = ({ element, index, search }) => {
+  const carddefaultimg = "../../img/default3.jpg";
+
   const navigator = useNavigate();
   const DatailPageMove = () => {
     navigator(`/detail/${element.postId}`);
   };
 
   return (
-    <div>
-      <CardBox key={element.postId} onClick={DatailPageMove}>
-        <div>
-          <ImgBox src={element.image[0]?.imgURL} />
-          <TextBox>
-            <Title>
-              개수
-              <FcLike />
-            </Title>
-            <Name>{element.title}</Name>
-          </TextBox>
-        </div>
-      </CardBox>
-    </div>
+    <CardBox key={element.postId} onClick={DatailPageMove}>
+      <div>
+        <ImgBox
+          src={
+            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
+          }
+        />
+        <TextBox>
+          <Title>
+            개수
+            <FcLike />
+          </Title>
+          <Name>{element.title}</Name>
+        </TextBox>
+      </div>
+    </CardBox>
   );
 };
 {

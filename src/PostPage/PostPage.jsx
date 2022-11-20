@@ -7,20 +7,8 @@ import Cards from "./Cards";
 import BalanceButton from "./BalanceButton";
 import styled from "styled-components";
 import TopButton from "./TopButton";
-import InpiniteScroll from "./InpiniteScroll";
-import { useSearchParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { __getBoard } from "../redux/modules/BoardSlice";
-import LoginPage from "../login/LoginPage";
 
 const PostPage = () => {
-  const data = useSelector((state) => state.BoardSlice.posts);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(__getBoard());
-  }, []);
-
   return (
     <motion.div
       className="loginPage"

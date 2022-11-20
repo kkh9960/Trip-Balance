@@ -18,7 +18,6 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.1",
     "react-infinite-scroll-hook": "^4.0.4",
-    "react-infinite-scroller": "^1.2.6",
     "react-intersection-observer": "^9.4.1",
     "react-kakao-login": "^2.1.1",
     "react-loading": "^2.0.3",
@@ -29,8 +28,10 @@
     "react-scripts": "5.0.1",
     "react-simple-image-slider": "^2.4.1",
     "react-spinners": "^0.13.6",
+    "react-swiper": "^0.1.5",
     "redux": "^4.2.0",
     "styled-components": "^5.3.6",
+    "swiper": "^8.4.4",
     "util": "^0.12.5",
     "web-vitals": "^2.1.0"
   },
@@ -57,5 +58,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-dev-middleware": "^5.3.3",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-hot-middleware": "^2.25.3"
   }
 }

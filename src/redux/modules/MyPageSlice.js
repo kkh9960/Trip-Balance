@@ -1,13 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import instance from "../../lib/instance";
 
-export const __myPageWriteGet = createAsyncThunk(
+// 회원정보
+export const __getMyInformation = createAsyncThunk(
   "GET_MY_INFO",
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const { data } = await axios.get(
-        "https://coding-kym.shop/tb/mypage/posts",
+      const { data } = await instance.get(
+        `/tb/members/info/${payload}`,
         payload
       );
       console.log(data.data);
@@ -15,16 +17,38 @@ export const __myPageWriteGet = createAsyncThunk(
     } catch (error) {}
   }
 );
-
-export const __myPageLikeGet = createAsyncThunk(
-  "GET_MY_INFO",
+export const __postMyInformation = createAsyncThunk(
+  "POST_MY_INFO",
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const { data } = await axios.get(
-        "https://coding-kym.shop/tb/mypage/hearts",
-        payload
-      );
+      const { data } = await instance.post(`/tb/members/myself`, payload);
+      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {}
+  }
+);
+
+//내가 작성한글
+export const __getMyWrite = createAsyncThunk(
+  "GET_MY_WRITE",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await instance.get("/tb/mypage/posts", payload);
+      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {}
+  }
+);
+
+// 좋아요한 글
+export const __getMyPick = createAsyncThunk(
+  "GET_MY_PICK",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await instance.get("/tb/mypage/hearts/pageNum", payload);
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {}
@@ -42,29 +66,39 @@ export const myInfoSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [__myPageWriteGet.pending]: (state) => {
+    [__getMyInformation.pending]: (state) => {
       state.isLoading = true;
     },
-    [__myPageWriteGet.fulfilled]: (state, action) => {
+    [__getMyInformation.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
     },
-    [__myPageWriteGet.rejected]: (state, action) => {
+    [__getMyInformation.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
-    [__myPageLikeGet.pending]: (state) => {
+    [__getMyWrite.pending]: (state) => {
       state.isLoading = true;
     },
-    [__myPageLikeGet.fulfilled]: (state, action) => {
+    [__getMyWrite.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
     },
-    [__myPageLikeGet.rejected]: (state, action) => {
+    [__getMyWrite.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__getMyPick.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getMyPick.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    },
+    [__getMyPick.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
   },
 });
-
 export default myInfoSlice.reducer;
