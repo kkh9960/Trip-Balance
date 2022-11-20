@@ -10,6 +10,10 @@ import styled from "styled-components";
 import { useCookies } from "react-cookie";
 import instance from "../lib/instance";
 import useInput from "../hooks/useInput";
+import Header from "../component/Header";
+import kakao from "../img/kakaologin.jpg";
+import { ImExit } from "react-icons/im";
+
 function LoginPage() {
   const {
     setValue,
@@ -18,7 +22,7 @@ function LoginPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -26,6 +30,9 @@ function LoginPage() {
   const [email, setEmail, emailchange] = useInput("");
   const [password, setPassword, pwchange] = useInput("");
   const [cookie, setCookie, removeCookie] = useCookies();
+  const modalClose = () => {
+    setModal(!modal);
+  };
   console.log(watch());
 
   const onvaled = (event) => {
@@ -50,12 +57,12 @@ function LoginPage() {
       // console.log(res.data.data.email)
       // console.log(res.data.statusMsg)
       // console.log(res.data.statusCode)
-      localStorage.setItem("nickName", res.data.data.nickName);
+      sessionStorage.setItem("nickName", res.data.data.nickName);
 
       setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
-        localStorage.setItem("email", res.data.data.email);
+        sessionStorage.setItem("email", res.data.data.email);
         navigate("/");
         alert("로그인완료!");
         window.location.reload();
@@ -66,78 +73,69 @@ function LoginPage() {
   };
 
   return (
-    <div>
-      {modal ? (
-        <Signup />
-      ) : (
-        <motion.div
-          className="loginPage"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          {/* <Header /> */}
-          <Link to="/">
-            <LogoWrap>
-              <Logo src={TripImage} />
-            </LogoWrap>
-          </Link>
-          <div className="auth-wrapper">
-            <form onSubmit={onvaled}>
-              <div style={{ textAlign: "center" }}>
-                <h3>로그인</h3>
-              </div>
-              <label>Email</label>
-              <input
-                value={email}
-                name="email"
-                type="email"
-                onChange={emailchange}
-              />
-              {errors.email && <p>이메일은 필수 항목입니다.</p>}
+    <div className="wrap">
+      <Header />
 
-              <label>Password</label>
-              <input
-                value={password}
-                name="password"
-                type="password"
-                onChange={pwchange}
-              />
-              {errors.password && errors.password.type === "required" && (
-                <p> 비밀번호는 필수 항목입니다.</p>
-              )}
-              {errors.password && errors.password.type === "minLength" && (
-                <p>비밀번호는 6자 이상이어야 합니다</p>
-              )}
+      {modal && (
+        <div className="auth-wrapper">
+          <form onSubmit={onvaled}>
+            <div className="cancel" onClick={modalClose}>
+              <ImExit size={30} />
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <h1>로그인</h1>
+            </div>
 
-              {errorFromSubmit && <p>{errorFromSubmit}</p>}
+            <input
+              value={email}
+              name="email"
+              type="email"
+              placeholder=" 이메일을 입력해주세요 ."
+              onChange={emailchange}
+            />
+            {errors.email && <p>이메일은 필수 항목입니다.</p>}
 
-              <input type="submit" disabled={loading} />
-              <Link
-                style={{ color: "gray", textDecoration: "none" }}
-                onClick={() => {
-                  setModal(!modal);
-                }}
-              >
-                아직 아이디가 없다면...
-              </Link>
-            </form>
-          </div>
-          {/* <Footer /> */}
-        </motion.div>
+            <input
+              value={password}
+              name="password"
+              type="password"
+              placeholder=" 비밀번호를 입력해주세요 ."
+              onChange={pwchange}
+            />
+            {errors.password && errors.password.type === "required" && (
+              <p> 비밀번호는 필수 항목입니다.</p>
+            )}
+            {errors.password && errors.password.type === "minLength" && (
+              <p>비밀번호는 6자 이상이어야 합니다</p>
+            )}
+
+            {errorFromSubmit && <p>{errorFromSubmit}</p>}
+
+            <button type="submit" style={{ textDecorationLine: "none" }}>
+              로그인
+            </button>
+            <div className="line"></div>
+            <button className="kaka">
+              <img src={kakao} className="kakaoimg" />
+            </button>
+            <div
+              className="signup"
+              style={{ color: "gray", textDecoration: "none" }}
+              onClick={() => {
+                navigate("/Signup");
+              }}
+            >
+              회원가입
+            </div>
+          </form>
+        </div>
       )}
+      {/* <Footer /> */}
     </div>
   );
 }
 
 export default LoginPage;
-const LogoWrap = styled.div`
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  top: 260px;
-`;
 
 const Logo = styled.img``;
 // 필요할때 모달창쓰기
