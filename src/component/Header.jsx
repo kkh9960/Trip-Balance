@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Layout from "./Layout";
 import TripImage from "../img/trip.jpg";
@@ -6,11 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../lib/instance";
+import LoginPage from "../login/LoginPage";
 const Header = () => {
   const navigate = useNavigate();
-
+  const [modal, setModal] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies();
-  const nickname = localStorage.getItem("nickName");
+  const nickname = sessionStorage.getItem("nickName");
   // console.log(`지금 accessToken: ${accessToken}`);
   // console.log(`지금 refreshToken: ${refreshToken}`);
   async function logout() {
@@ -22,7 +23,8 @@ const Header = () => {
     instance
       .post("/tb/logout")
       .then((res) => {
-        localStorage.removeItem("nickName");
+        sessionStorage.removeItem("nickName");
+        sessionStorage.removeItem("email");
         removeCookie("token");
         removeCookie("refreshToken");
         console.log(res);
@@ -38,52 +40,56 @@ const Header = () => {
 
   return (
     <Container>
-      <Layout>
-        <WriteWrap>
-          <Link to="/">
-            <Logo
-              src={TripImage}
+      {modal ? (
+        <LoginPage />
+      ) : (
+        <Layout>
+          <WriteWrap>
+            <Link to="/">
+              <Logo
+                src={TripImage}
+                onClick={() => {
+                  navigate("/post");
+                }}
+              />
+            </Link>
+
+            <Posting
               onClick={() => {
                 navigate("/post");
               }}
-            />
-          </Link>
-
-          <Posting
-            onClick={() => {
-              navigate("/post");
-            }}
-          >
-            게시판
-          </Posting>
-          <Trip>추천여행지</Trip>
-          <Mypage
-            onClick={() => {
-              navigate("/mypage");
-            }}
-          >
-            마이페이지
-          </Mypage>
-          {nickname ? (
-            <div>
-              <div>
-                <Logout onClick={logout}>로그아웃</Logout>
-              </div>
-              <div>
-                <Nickname>{nickname}</Nickname>
-              </div>
-            </div>
-          ) : (
-            <Login
+            >
+              게시판
+            </Posting>
+            <Trip>추천여행지</Trip>
+            <Mypage
               onClick={() => {
-                navigate("/login");
+                navigate("/mypage");
               }}
             >
-              로그인
-            </Login>
-          )}
-        </WriteWrap>
-      </Layout>
+              마이페이지
+            </Mypage>
+            {nickname ? (
+              <div>
+                <div>
+                  <Logout onClick={logout}>로그아웃</Logout>
+                </div>
+                <div>
+                  <Nickname>{nickname}</Nickname>
+                </div>
+              </div>
+            ) : (
+              <Login
+                onClick={() => {
+                  setModal(!modal);
+                }}
+              >
+                로그인
+              </Login>
+            )}
+          </WriteWrap>
+        </Layout>
+      )}
     </Container>
   );
 };
@@ -97,7 +103,6 @@ const Nickname = styled.div`
 `;
 
 const Container = styled.div`
-  text-decoration: underline;
   height: 120px;
   background-color: #fff;
   margin: 0 auto;
@@ -144,7 +149,7 @@ const Login = styled.button`
   margin-top: 56px;
   margin-top: 20px;
   font-size: 24px;
-  text-decoration: underline;
+
   align-items: center;
 `;
 
@@ -152,7 +157,7 @@ const Logout = styled.button`
   margin-top: 56px;
   margin-top: 20px;
   font-size: 24px;
-  text-decoration: underline;
+
   display: flex;
 `;
 
