@@ -15,7 +15,7 @@ export const Line = styled.div`
   background-color: black;
 `;
 export const thinLine = styled.div`
-  width: 850px;
+  width: 90%;
   height: 1px;
   margin: 0 auto 15px;
   background-color: black;
@@ -76,10 +76,13 @@ export const itemHeader = styled.div`
   height: 100px;
 `;
 export const pickPostWrap = styled.div`
-  background-color: white;
-  margin: 0 40px;
+  margin: 80px 30px;
   width: 100%;
-  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+  grid-template-rows: repeat(2, minmax(100px, 50%));
 `;
 export const pickPostItem = styled.div`
   width: 180px;
@@ -87,7 +90,7 @@ export const pickPostItem = styled.div`
   border: 0 solid black;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 1rem;
+  margin: 10px;
 `;
 export const pickPostImg = styled.img`
   width: 180px;

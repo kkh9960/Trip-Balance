@@ -6,38 +6,48 @@ import instance from "../../lib/instance";
 export const __getMyInformation = createAsyncThunk(
   "GET_MY_INFO",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
-      const { data } = await instance.get(
-        `/tb/members/info/${payload.id}`,
-        payload
-      );
-      console.log(data);
+      const { data } = await instance.get(`/tb/mypage/info/`, payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
+//회원정보 수정
 export const __putMyInformation = createAsyncThunk(
   "PUT_MY_INFO",
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.put(`/tb/mypage/setinfo`, {
         nickName: payload.nickName,
-        self: payload.introduce,
+        self: payload.self,
       });
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
-
-//내가 작성한글
-export const __getMyWrite = createAsyncThunk(
-  "GET_MY_WRITE",
+//회원이 작성한 글목록
+export const __getMyPosts = createAsyncThunk(
+  "GET_MY_POST",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get("/tb/mypage/posts", payload);
-      return thunkAPI.fulfillWithValue(data.data);
+      const { data } = await instance.get(`tb/mypage/posts`, payload);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
+  }
+);
+
+//내가 작성한글 들어가서 보는곳
+export const __getMyWriteIn = createAsyncThunk(
+  "GET_MY_WRITE",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await instance.get(
+        `/tb/mypage/posts/${payload}`,
+        payload
+      );
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
@@ -54,9 +64,9 @@ export const __getMyPick = createAsyncThunk(
 );
 
 const initialState = {
-  data: {
-    data: {},
-  },
+  myinfor: [],
+  mywrite: [],
+  myposts: [],
   isLoading: false,
   error: null,
 };
@@ -71,21 +81,30 @@ export const MyInforSlice = createSlice({
     },
     [__getMyInformation.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
-      console.log(action.payload);
+      state.myinfor = action.payload.data;
     },
     [__getMyInformation.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
-    [__getMyWrite.pending]: (state) => {
+    [__getMyPosts.pending]: (state) => {
       state.isLoading = true;
     },
-    [__getMyWrite.fulfilled]: (state, action) => {
+    [__getMyPosts.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.myposts = action.payload;
     },
-    [__getMyWrite.rejected]: (state, action) => {
+    [__getMyPosts.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [__getMyWriteIn.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getMyWriteIn.fulfilled]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getMyWriteIn.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

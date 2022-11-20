@@ -2,33 +2,32 @@ import React, { useState, useRef } from "react";
 import * as t from "./ProfileinformationStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __getMyInformation,
-  __putMyInformation,
-} from "../../../redux/modules/MyPageSlice";
+import { __putMyInformation } from "../../../redux/modules/MyPageSlice";
 import profile from "../../../img/profile.jpg";
 import AWS from "aws-sdk";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import useInput from "../../../hooks/useInput";
 
-export default function ProfileInformation() {
+export default function ProfileInformation({
+  myInformation,
+  mywrite,
+  introduce,
+  userNickname,
+}) {
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(__getMyInformation());
+  // }, []);
   const id = useParams();
-  const data = useSelector((state) => state);
-  const myInfomation = useSelector((state) => state.MyInforSlice.data);
-  console.log(myInfomation);
-  const userEmail = localStorage.getItem("email");
-  const userNickname = localStorage.getItem("nickName");
+
+  const userEmail = myInformation?.email;
   const [profileMode, setProfileMode] = useState(true);
   const [profileImg, setProfileImg] = useState(profile);
-  const [introduce, setIntroduce] = useState();
-  const [nickname, setNickname] = useState("");
+  const [self, setSelf, introduceonChange] = useInput(introduce);
+  const [nickname, setNickname, nicknameChange] = useInput(userNickname);
   const profileImgInput = useRef(null);
-  console.log(id);
-  useEffect(() => {
-    dispatch(__getMyInformation(id));
-  }, []);
-
+  //풀 보내면 백에서 데이터 다시 보내달라고 수정 요청얘기할것
   // useEffect(() => {
   //   dispatch(__postMyInformation());
   // });
@@ -76,12 +75,12 @@ export default function ProfileInformation() {
     }
   };
 
-  const changenickname = (e) => {
-    setNickname(e.target.value);
-  };
-  const introduceonChange = (e) => {
-    setIntroduce(e.target.value);
-  };
+  // const nicknameChange = (e) => {
+  //   setNickname(e.target.value);
+  // };
+  // const introduceonChange = (e) => {
+  //   setSelf(e.target.value);
+  // };
 
   const changeprofile = () => {
     setProfileMode(false);
@@ -90,29 +89,33 @@ export default function ProfileInformation() {
     dispatch(
       __putMyInformation({
         nickName: nickname,
-        self: introduce,
+        self: self,
       })
     );
     setNickname(nickname);
     setProfileImg(profileImg);
-    setIntroduce(introduce);
+    setSelf(self);
     setProfileMode(true);
-  };
-  const cancelprofile = () => {
-    setProfileMode(true); //취소하면 그전 데이터 가져오기 작업할것
+    window.location.reload();
   };
 
+  const cancelprofile = () => {
+    setProfileImg(profileImg);
+    setNickname(userNickname);
+    setSelf(introduce);
+    setProfileMode(true); //취소하면 그전 데이터 가져오기 작업할것
+  };
   return (
     <t.myInformation>
       {profileMode ? (
         <>
           <t.ProfileImgBox src={profileImg} style={{ margin: "20px" }} />
           <t.profileinfo>
-            <h2>{userNickname}님</h2>
+            <h2>{nickname}님</h2>
             <h3 style={{ color: "#848484" }}>{userEmail}</h3>
             <t.introduce>
               <div>자기소개</div>
-              <div>{introduce}</div>
+              <div>{self}</div>
             </t.introduce>
             <t.buttonGroup>
               <button onClick={changeprofile}>프로필변경</button>
@@ -142,8 +145,8 @@ export default function ProfileInformation() {
           <t.profileinfo>
             <input
               type="text"
-              onChange={changenickname}
-              value={userNickname || ""}
+              onChange={nicknameChange}
+              value={nickname || ""}
             />
             <div>{userEmail}</div>
             <t.introduce>
@@ -151,7 +154,7 @@ export default function ProfileInformation() {
               <input
                 type="text"
                 onChange={introduceonChange}
-                value={introduce || ""}
+                value={self || ""}
               />
             </t.introduce>
             <t.buttonGroup>
@@ -162,7 +165,17 @@ export default function ProfileInformation() {
         </>
       )}
 
-      <t.detailPickInfo>여기 아래랑 너무 겹침</t.detailPickInfo>
+      <t.detailPickInfo>
+        <t.detailPickInfoTotal>
+          <h3>Total</h3>
+          <h1>27</h1>
+        </t.detailPickInfoTotal>
+        <t.detailPickInfoCategory>뭐지</t.detailPickInfoCategory>
+        <t.detailPickInfoCategory>뭐지</t.detailPickInfoCategory>
+        <t.detailPickInfoCategory>뭐지</t.detailPickInfoCategory>
+        <t.detailPickInfoCategory>뭐지</t.detailPickInfoCategory>
+        <t.detailPickInfoCategory>뭐지</t.detailPickInfoCategory>
+      </t.detailPickInfo>
     </t.myInformation>
   );
 }

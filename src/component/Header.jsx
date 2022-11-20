@@ -97,11 +97,9 @@ const Nickname = styled.div`
 `;
 
 const Container = styled.div`
-  text-decoration: underline;
   height: 120px;
   background-color: #fff;
   margin: 0 auto;
-  text-underline-position: under;
 `;
 const Logo = styled.img`
   width: 321.06px;
@@ -144,7 +142,6 @@ const Login = styled.button`
   margin-top: 56px;
   margin-top: 20px;
   font-size: 24px;
-  text-decoration: underline;
   align-items: center;
 `;
 
@@ -152,7 +149,6 @@ const Logout = styled.button`
   margin-top: 56px;
   margin-top: 20px;
   font-size: 24px;
-  text-decoration: underline;
   display: flex;
 `;
 
