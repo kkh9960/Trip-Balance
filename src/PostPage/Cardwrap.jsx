@@ -1,72 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
-import { useSelector, useDispatch } from "react-redux";
-import { __getBoard, __SearchBoard } from "../redux/modules/BoardSlice";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import useInfiniteScroll from "react-infinite-scroll-hook";
-import { useInView } from "react-intersection-observer";
-// import useInfiniteScroll from "../hooks/useInfiniteScroll";
-export const Cards = () => {
-  const posts = useSelector((state) => state.BoardSlice.posts);
-
-  const dispatch = useDispatch();
-  const [ref, inView] = useInView();
-  const search = (e) => {
-    if (e.key === "Enter") {
-      setUseInput(e.target.value);
-    }
-    console.log("key press");
-  };
-
-  const [useInput, setUseInput] = useState("");
-  console.log(useInput);
-  // const onChange = (e) => {
-  //   setUseInput(e.target.value);
-  // };
-
-  // const intersectiong = useInfiniteScroll(fetchMoreEl);
-  const filteredProducts = posts.filter((posts) => {
-    return posts.title.toLowerCase().includes(useInput.toLowerCase());
-  });
-
-  useEffect(() => {
-    if (posts.length === 0) {
-      console.log("첫포스트로딩");
-      dispatch(__getBoard());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (posts.length !== 0 && inView) {
-      console.log("첫로딩이후 무한 스크롤");
-      dispatch(__getBoard());
-    }
-  }, [inView]);
-
-  return (
-    <Layout>
-      <SearchBar
-        type="text"
-        onKeyPress={search}
-        // onChange={onChange}
-        // value={useInput}
-        placeholder=" 검색어를 입력하세요 20글자이내."
-      />
-      {filteredProducts.map((element, index) => (
-        <CardWrap
-          key={element.postId}
-          element={element}
-          index={index}
-          search={filteredProducts}
-        />
-      ))}
-      <div ref={ref}></div>
-      <Line></Line>
-    </Layout>
-  );
-};
-export default Cards;
+import { useNavigate } from "react-router-dom";
 const CardWrap = ({ element, search }) => {
   const navigator = useNavigate();
   const DatailPageMove = () => {
@@ -90,16 +25,8 @@ const CardWrap = ({ element, search }) => {
     </div>
   );
 };
-{
-  /* <InfiniteScroll
-    pageStart={0}
-    loadMore={loadFunc}
-    hasMore={true || false}
-    loader={<div className="loader" key={0}>Loading ...</div>}
->
-    {items} // <-- This is the content you want to load
-</InfiniteScroll> */
-}
+
+export default CardWrap;
 
 const SearchBar = styled.input`
   opacity: 0.5;
