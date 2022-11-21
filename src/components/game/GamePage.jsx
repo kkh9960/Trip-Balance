@@ -1,4 +1,3 @@
-
 import React from 'react'
 import * as g from './GamePageStyle'
 import { useParams } from 'react-router-dom'
@@ -10,19 +9,11 @@ import { __GameInfoGet, __GameFirstGet, __GameLastPost } from '../../redux/modul
 
 export default function GamePage() {
   const id = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
 
   const gameData = useSelector((state) => state.gameInfo.data)
-  // console.log(gameData)
-  // console.log(gameData.data)
-  // console.log(gameData.data[0])
-  // console.log(gameData.data[0].id)
-  // console.log(gameData.data[0].leftId)
-  // console.log(gameData.data[0].rightId)
-  // console.log(gameData.data[1])
 
   const goFirst = (e) => {
     e.preventDefault();
@@ -34,7 +25,6 @@ export default function GamePage() {
   };
   const rightGo = (e) => {
     e.preventDefault();
-
     navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
   }
   const resultGo = (e) => {
@@ -51,18 +41,14 @@ export default function GamePage() {
       : dispatch(__GameInfoGet({ GameID, QID }));
   }, [id]);
 
-  const leftimg = `../../img/gameImg/${gameData.data[0].leftId == null ? (2) : (gameData.data[0].leftId)}.jpg`         
-  const rightimg = `../../img/gameImg/${gameData.data[0].rightId == null ? (2) : (gameData.data[0].rightId)}.jpg`
+  const leftImg = `../../img/gameImg/${gameData.data[0].leftId == null ? (2) : (gameData.data[0].leftId)}.jpg`         
+  const rightImg = `../../img/gameImg/${gameData.data[0].rightId == null ? (2) : (gameData.data[0].rightId)}.jpg`
   const GameID = (gameData.data[1]?.gameId === null ? ("1") : gameData.data[1]?.gameId)
   const QID = parseInt(id.id)
 
   return (
     <div>
-      {/* <p>현제 페이지의 파라미터는 {id} 입니다!</p>
-      {leftnum}
-      {rightnum} */}
       <div>
-
       {QID >= 32 ? (
         <g.balanceButtonWrapFinal>
           <g.balanceButtonFinal onClick={resultGo}>
@@ -72,8 +58,8 @@ export default function GamePage() {
       ) : (
          <div>
           <g.balanceButtonWrap>
-            <g.balanceButton src={leftimg} onClick={leftGo}/>
-            <g.balanceButton src={rightimg} onClick={rightGo}/>
+            <g.balanceButton src={leftImg} onClick={leftGo}/>
+            <g.balanceButton src={rightImg} onClick={rightGo}/>
           </g.balanceButtonWrap>
           <g.balanceTextWrap>
             <g.balanceText onClick={leftGo}>{gameData.data[0].leftAnswer}</g.balanceText>
@@ -84,7 +70,6 @@ export default function GamePage() {
           </g.firstWrap>
          </div>
       )}
-
       </div>
     </div>
   );

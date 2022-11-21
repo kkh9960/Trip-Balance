@@ -1,19 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import Layout from "./Layout";
 import TripImage from "../img/trip.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../lib/instance";
-import * as t from "./HeaderStyle";
-
+import LoginPage from "../login/LoginPage";
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  console.log(location.pathname === "/");
-
+  const [modal, setModal] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies();
-  const nickname = localStorage.getItem("nickName");
+  const nickname = sessionStorage.getItem("nickName");
   // console.log(`지금 accessToken: ${accessToken}`);
   // console.log(`지금 refreshToken: ${refreshToken}`);
   async function logout() {
@@ -25,7 +23,8 @@ const Header = () => {
     instance
       .post("/tb/logout")
       .then((res) => {
-        localStorage.removeItem("nickName");
+        sessionStorage.removeItem("nickName");
+        sessionStorage.removeItem("email");
         removeCookie("token");
         removeCookie("refreshToken");
         console.log(res);
@@ -40,108 +39,129 @@ const Header = () => {
   }
 
   return (
-    <>
-      {location.pathname === "/" ? (
-        <t.Container>
-          <Layout>
-            <t.WriteWrap>
-              <Link to="/">
-                <t.Logo
-                  src={TripImage}
-                  onClick={() => {
-                    navigate("/post");
-                  }}
-                />
-              </Link>
-
-              <t.Posting
-                onClick={() => {
-                  navigate("/post");
-                }}
-              >
-                게시판
-              </t.Posting>
-              <t.Trip>추천여행지</t.Trip>
-              <t.Mypage
-                onClick={() => {
-                  navigate("/mypage");
-                }}
-              >
-                마이페이지
-              </t.Mypage>
-              {nickname ? (
-                <div>
-                  <div>
-                    <t.Logout onClick={logout}>로그아웃</t.Logout>
-                  </div>
-                  <div>
-                    <t.Nickname>{nickname}</t.Nickname>
-                  </div>
-                </div>
-              ) : (
-                <t.Login
-                  onClick={() => {
-                    navigate("/login");
-                  }}
-                >
-                  로그인
-                </t.Login>
-              )}
-            </t.WriteWrap>
-          </Layout>
-        </t.Container>
+    <Container>
+      {modal ? (
+        <LoginPage />
       ) : (
-        <t.ContainerWhite>
-          <Layout>
-            <t.WriteWrap>
-              <Link to="/">
-                <t.Logo
-                  src={TripImage}
-                  onClick={() => {
-                    navigate("/post");
-                  }}
-                />
-              </Link>
-
-              <t.Posting
+        <Layout>
+          <WriteWrap>
+            <Link to="/">
+              <Logo
+                src={TripImage}
                 onClick={() => {
                   navigate("/post");
                 }}
-              >
-                게시판
-              </t.Posting>
-              <t.Trip>추천여행지</t.Trip>
-              <t.Mypage
+              />
+            </Link>
+
+            <Posting
+              onClick={() => {
+                navigate("/post");
+              }}
+            >
+              게시판
+            </Posting>
+            <Trip>추천여행지</Trip>
+            <Mypage
+              onClick={() => {
+                navigate("/mypage");
+              }}
+            >
+              마이페이지
+            </Mypage>
+            {nickname ? (
+              <div>
+                <div>
+                  <Logout onClick={logout}>로그아웃</Logout>
+                </div>
+                <div>
+                  <Nickname>{nickname}</Nickname>
+                </div>
+              </div>
+            ) : (
+              <Login
                 onClick={() => {
-                  navigate("/mypage");
+                  setModal(!modal);
                 }}
               >
-                마이페이지
-              </t.Mypage>
-              {nickname ? (
-                <div>
-                  <div>
-                    <t.Logout onClick={logout}>로그아웃</t.Logout>
-                  </div>
-                  <div>
-                    <t.Nickname>{nickname}</t.Nickname>
-                  </div>
-                </div>
-              ) : (
-                <t.Login
-                  onClick={() => {
-                    navigate("/login");
-                  }}
-                >
-                  로그인
-                </t.Login>
-              )}
-            </t.WriteWrap>
-          </Layout>
-        </t.ContainerWhite>
+                로그인
+              </Login>
+            )}
+          </WriteWrap>
+        </Layout>
       )}
-    </>
+    </Container>
   );
 };
 
 export default Header;
+
+const Nickname = styled.div`
+  display: flex;
+  position: relative;
+  left: 60px;
+`;
+
+const Container = styled.div`
+  height: 120px;
+  background-color: #fff;
+  margin: 0 auto;
+  text-underline-position: under;
+`;
+const Logo = styled.img`
+  width: 321.06px;
+  height: 105.3px;
+  display: flex;
+`;
+const WriteWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  top: 5px;
+`;
+
+const Posting = styled.button`
+  border-radius: 10px;
+  padding: -20px;
+  width: 200px;
+  margin-top: 56px;
+  margin-top: 10px;
+  font-size: 24px;
+`;
+const Trip = styled.button`
+  border-radius: 10px;
+  width: 200px;
+  margin-top: 56px;
+  margin-top: 10px;
+  font-size: 24px;
+`;
+
+const Mypage = styled.button`
+  border-radius: 10px;
+  width: 200px;
+  margin-top: 56px;
+  margin-top: 10px;
+  font-size: 24px;
+`;
+
+const Login = styled.button`
+  margin-top: 56px;
+  margin-top: 20px;
+  font-size: 24px;
+
+  align-items: center;
+`;
+
+const Logout = styled.button`
+  margin-top: 56px;
+  margin-top: 20px;
+  font-size: 24px;
+
+  display: flex;
+`;
+
+const Wrap = styled.div`
+  position: relative;
+  top: 30px;
+`;

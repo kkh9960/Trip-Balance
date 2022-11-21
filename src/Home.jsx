@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./component/Header";
+import LoginPage from "../src/login/LoginPage";
 
-const home = () => {
+const Home = () => {
   return (
     <div>
       <Header />
@@ -9,4 +10,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

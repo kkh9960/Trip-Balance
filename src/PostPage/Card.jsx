@@ -93,12 +93,14 @@ const CardBox = styled.div`
   font-family: "Gowun Dodum", sans-serif;
   display: flex;
   border: none;
+  z-index: 3;
   margin-bottom: 30px;
   margin: 20px;
   width: 344px;
   height: 274px;
   border-radius: 10%;
   transition: 1.1s;
+
   :hover {
     transform: scale(1.1);
   }

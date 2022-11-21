@@ -1,29 +1,15 @@
 /* -------------------------------------------------------------------------- */
-.wrap {
-  background-color: rgba(0, 0, 0, 0.2);
-
-  z-index: 1;
-}
-
-.auth-wrapper {
+.signup-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  height: 1080px;
+  padding: 70.9px 0 100.7px;
+  margin: auto;
   justify-content: center;
-  align-items: center;
   top: 3px;
-
-  z-index: 2;
-}
-.cancel {
   position: relative;
-  left: 500px;
-  cursor: pointer;
-  width: 24px;
-  height: 50px;
+  z-index: 1;
 }
 .line {
   width: 354px;
@@ -32,60 +18,61 @@
   left: 80px;
   top: 17px;
 }
-.signup {
-  position: relative;
-  text-align: center;
-  top: 45px;
-  font-size: 24px;
-  cursor: pointer;
-}
 
-.auth-wrapper form {
+.signup-wrapper form {
   padding: 30px;
   width: 518px;
-  height: 726px;
-  bottom: 70px;
+  margin: auto;
   background-color: white;
-  margin: 0 auto;
+  bottom: 150px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
-  top: 60px;
 }
 
-.auth-wrapper h1 {
-  width: 111px;
-  height: 50px;
-  position: relative;
+.title {
+  width: 200px;
+  height: 60px;
+  margin: 64.7px 127.5px 32px 135.5px;
   font-family: ReemKufi;
-  font-size: 35px;
+  font-size: 40px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  margin: auto;
-  position: relative;
-  margin-top: 55px;
   color: #555;
+  position: relative;
+  left: 20px;
 }
-.auth-wrapper .form {
-  background: #0e101c;
+.line2 {
+  width: 354px;
+  border: 1px solid rgba(170, 170, 170, 0.7);
+  position: relative;
+  margin: auto;
+  top: 70px;
+}
+
+.signup-wrapper .form {
   max-width: 400px;
   margin: 0 auto;
 }
 
-.auth-wrapper .p {
+p {
   color: #bf1650;
+  position: relative;
+  top: 30px;
+  left: 85px;
 }
 
-.auth-wrapper p::before {
+.signup-wrapper p::before {
+  color: red;
   display: inline;
   content: "⚠ ";
 }
 
-.auth-wrapper input {
+.signup-wrapper input {
   display: block;
   box-sizing: border-box;
   width: 360px;
@@ -103,7 +90,7 @@
   top: 37px;
 }
 
-.auth-wrapper label {
+.signup-wrapper label {
   line-height: 2;
   text-align: left;
   display: block;
@@ -113,8 +100,8 @@
   font-weight: 200;
 }
 
-.auth-wrapper button[type="submit"],
-.auth-wrapper input[type="submit"] {
+.signup-wrapper button[type="submit"],
+.signup-wrapper input[type="submit"] {
   background: #00c1ec;
   color: white;
   text-transform: uppercase;
@@ -124,7 +111,7 @@
   line-height: normal;
   letter-spacing: normal;
   border: none;
-  margin-top: 120px;
+  margin-top: 110px;
   padding: 20px;
   font-size: 16px;
   font-weight: 100;
@@ -178,36 +165,36 @@
   background: #636ee6;
 }
 
-.auth-wrapper button[type="submit"]:hover,
-.auth-wrapper input[type="submit"]:hover {
+.signup-wrapper button[type="submit"]:hover,
+.signup-wrapper input[type="submit"]:hover {
   background: orange;
   transition: 1s;
 }
 
-.auth-wrapper button[type="submit"]:active,
-.auth-wrapper input[type="button"]:active,
-.auth-wrapper input[type="submit"]:active {
+.signup-wrapper button[type="submit"]:active,
+.signup-wrapper input[type="button"]:active,
+.signup-wrapper input[type="submit"]:active {
   transition: 0.3s all;
   transform: translateY(3px);
   border: 1px solid transparent;
   opacity: 0.8;
 }
 
-.auth-wrapper input:disabled {
+.signup-wrapper input:disabled {
   opacity: 0.4;
 }
 
-.auth-wrapper input[type="button"]:hover {
+.signup-wrapper input[type="button"]:hover {
   transition: 0.3s all;
 }
 
-.auth-wrapper button[type="submit"],
-.auth-wrapper input[type="button"],
-.auth-wrapper input[type="submit"] {
+.signup-wrapper button[type="submit"],
+.signup-wrapper input[type="button"],
+.signup-wrapper input[type="submit"] {
   -webkit-appearance: none;
 }
 
-.auth-wrapper button[type="button"] {
+.signup-wrapper button[type="button"] {
   display: block;
   appearance: none;
   background: #333;
@@ -222,7 +209,7 @@ hr {
   margin-top: 30px;
 }
 
-.auth-wrapper button {
+.signup-wrapper button {
   display: block;
   appearance: none;
   margin-top: 40px;

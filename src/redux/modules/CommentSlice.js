@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import instance from "../../lib/instance";
+import { current } from "@reduxjs/toolkit";
 
 // 서버주소 : https://coding-kym.shop
 
@@ -57,9 +58,60 @@ export const __modifyComment = createAsyncThunk(
         postId: payload.postId,
         content: payload.content,
       });
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("댓글에러", error);
+    }
+  }
+);
+
+//tb/recomments
+
+export const __postReComment = createAsyncThunk(
+  "POST_RECOMMENT",
+  async (payload, thunkAPI) => {
+    console.log("대댓", payload);
+    try {
+      const { data } = await instance.post(`tb/recomments`, payload);
+      console.log("대댓글조회", data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      console.log("대댓글에러", error);
+    }
+  }
+);
+
+export const __modifyReComment = createAsyncThunk(
+  "MODIFY_RECOMMENT",
+  async (payload, thunkAPI) => {
+    console.log("대댓글데이터", payload);
+    try {
+      const { data } = await instance.put(
+        `tb/recomments/${payload.recommentId}`,
+        {
+          commentId: payload.commentId,
+          content: payload.content,
+        }
+      );
+      console.log("대댓글수정", data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      console.log("대댓글에러", error);
+    }
+  }
+);
+
+export const __deleteReComment = createAsyncThunk(
+  "DELETE_RECOMMENT",
+  async (payload, thunkAPI) => {
+    console.log("삭제페이로드", payload);
+    try {
+      const { data } = await instance.delete(`tb/recomments/${payload}`);
+      console.log("삭제데이터", data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      console.log("삭제에러", error);
     }
   }
 );
@@ -70,7 +122,7 @@ const initialState = {
 };
 
 const CommentSlice = createSlice({
-  name: "comment",
+  name: "comment, recomment",
   initialState,
   reducers: {},
   extraReducers: {
@@ -92,7 +144,7 @@ const CommentSlice = createSlice({
     [__postComment.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.comments.push(action.payload.data);
-      console.log(state);
+      console.log(action);
     },
     [__postComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -115,9 +167,33 @@ const CommentSlice = createSlice({
     },
     [__modifyComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      // state.comments = state.comment.map((el, i))
+      const a = current(state).comments.filter(
+        (a) => a.commentId === parseInt(action.payload.data.commentId)
+      );
+
+      const indexNum = current(state).comments.indexOf(a[0]);
+
+      state.comments = state.comments.map((item, idx) =>
+        idx === indexNum
+          ? { ...item, content: action.payload.data.content }
+          : item
+      );
+
+      console.log("액숀", action.payload.data);
+      console.log("코렝트", current(state));
     },
     [__modifyComment.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__postReComment.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__postReComment.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(state);
+      console.log(action.payload);
+    },
+    [__postReComment.rejected]: (state, action) => {
       state.isLoading = false;
     },
   },
