@@ -38,7 +38,6 @@ export default function GameResultPage() {
     if (resultLocal === null || undefined) {
     console.log("fail")
     } else {
-      console.log(resultLocal)
       dispatch(__GameResultIBlogGet(resultLocal));
     } 
   }, [resultLocal]); 
