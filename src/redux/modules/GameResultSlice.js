@@ -29,10 +29,8 @@ export const __GameResultIHotelGet = createAsyncThunk(
 export const __GameResultIBlogGet = createAsyncThunk(
   "Game_Blog",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.get(`tb/blog?query=${payload}`);
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -67,7 +65,6 @@ export const gameResultSlice = createSlice({
     },
     [__GameResultIHotelGet.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
       state.hotel = action.payload;
     },
     [__GameResultIHotelGet.rejected]: (state, action) => {
@@ -79,7 +76,6 @@ export const gameResultSlice = createSlice({
     },
     [__GameResultIBlogGet.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
       state.blog = action.payload;
     },
     [__GameResultIBlogGet.rejected]: (state, action) => {
