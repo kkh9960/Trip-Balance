@@ -9,7 +9,6 @@ import { __GameInfoGet, __GameFirstGet, __GameLastPost } from '../../redux/modul
 
 export default function GamePage() {
   const id = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -26,7 +25,6 @@ export default function GamePage() {
   };
   const rightGo = (e) => {
     e.preventDefault();
-
     navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
   }
   const resultGo = (e) => {

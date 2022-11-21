@@ -6,7 +6,7 @@ export const localImg = styled.img`
   height: 500px;
   object-fit: cover;
   border-radius: 10px;
-  background-color: green;
+  background-color: gray;
 `;
 
 export const localText = styled.div`

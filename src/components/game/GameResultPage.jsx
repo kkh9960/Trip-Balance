@@ -43,9 +43,7 @@ export default function GameResultPage() {
     } 
   }, [resultLocal]); 
 
-  console.log(localId)
   const resultImg = `../../img/resultImg/${localId === null ? (32) : (localId)}.jpg`
-  const imgFind = `../../img/resultImg/59.jpg`
 
   return (
     <div>
