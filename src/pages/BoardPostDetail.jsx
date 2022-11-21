@@ -16,7 +16,12 @@ import { useNavigate } from "react-router-dom";
 import { __boardlike } from "../redux/modules/BoardSlice";
 import Loading from "../components/Loading/Loading";
 import { __deleteComment } from "../redux/modules/CommentSlice";
-import { __modifyComment } from "../redux/modules/CommentSlice";
+import {
+  __modifyComment,
+  __postReComment,
+  __modifyReComment,
+  __deleteReComment,
+} from "../redux/modules/CommentSlice";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -37,6 +42,7 @@ const BoardPostDetail = () => {
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/456123.jpg",
   ];
   const DefaultImega = "../img/default1.jpg";
+  const DefaultImega2 = "../img/default2.jpg";
   const heartsvg = "../img/heart.svg";
   const binheartsvg = "../img/binheart.svg";
 
@@ -127,6 +133,8 @@ const BoardPostDetail = () => {
 
   console.log(heart);
 
+  const ImgHandlerTest = () => {};
+
   return loading ? (
     <Loading />
   ) : (
@@ -148,7 +156,7 @@ const BoardPostDetail = () => {
               className="mySwiper"
               loop={true}
             >
-              {!post?.mediaList.length === 0 ? (
+              {post?.mediaList[0] ? (
                 post?.mediaList.map((item, idx) => {
                   return (
                     <SwiperSlide key={idx}>
@@ -158,7 +166,7 @@ const BoardPostDetail = () => {
                 })
               ) : (
                 <SwiperSlide>
-                  <SliderImage src="../img/default2.jpg" />
+                  <SliderImage src={DefaultImega2} />
                 </SwiperSlide>
               )}
             </Swiper>
@@ -172,6 +180,7 @@ const BoardPostDetail = () => {
                     post?.mediaList[idx] ? post?.mediaList[idx] : DefaultImega
                   }
                   alt=""
+                  onClick={ImgHandlerTest}
                 />
               ))}
           </ImegePreview>
@@ -224,7 +233,13 @@ const BoardPostDetail = () => {
           </BoardCommentBox>
           {comments &&
             comments?.map((item, idx) => (
-              <PostComment key={idx} item={item} idx={idx} id={id} />
+              <PostComment
+                key={idx}
+                item={item}
+                idx={idx}
+                id={id}
+                post={post}
+              />
             ))}
         </BoardCommentWrap>
       </BoardPostDetailWrap>
@@ -233,9 +248,11 @@ const BoardPostDetail = () => {
 };
 export default BoardPostDetail;
 
-const PostComment = ({ idx, item, id }) => {
+const PostComment = ({ idx, item, id, post }) => {
   const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
+  const [RecommentWrite, setRecommentWrite] = useState(false);
+  const [recomment, setrecomment] = useState("");
   useEffect(() => {
     setEditcomment(item.content);
   }, []);
@@ -244,7 +261,6 @@ const PostComment = ({ idx, item, id }) => {
 
   const ModifyCancel = () => {
     setEditmode(!Editmode);
-    //조회값 다시 적용
   };
   const ModifyComment = () => {
     setEditmode(!Editmode);
@@ -254,23 +270,139 @@ const PostComment = ({ idx, item, id }) => {
     dispatch(__deleteComment(item.commentId));
   };
 
+  const ReCommentHandler = (e) => {
+    setrecomment(e.target.value);
+  };
+
   const ModifyComplete = () => {
     dispatch(
       __modifyComment({
         id: item.commentId,
-        postId: item.commentId,
+        postId: id.id,
         content: Editcomment,
       })
     );
     setEditmode(!Editmode);
   };
 
+  const ReWriteHandler = () => {
+    setRecommentWrite(!RecommentWrite);
+    console.log(RecommentWrite);
+  };
+
   const ChangeEdit = (e) => {
     setEditcomment(e.target.value);
   };
-  console.log(Editcomment);
+
+  const WriteReComment = () => {
+    dispatch(
+      __postReComment({
+        commentId: item.commentId,
+        content: recomment,
+      })
+    );
+    setRecommentWrite(!RecommentWrite);
+  };
+  console.log("확인욤", item);
   return (
-    <CommentListBox key={idx}>
+    <CommentWrap>
+      <CommentListBox key={idx}>
+        <CommentTitlebox>
+          <CommentUserBox>
+            <CommentImg src="../img/cmtdefault.svg" />
+            <Commentuser>{item?.author}</Commentuser>
+          </CommentUserBox>
+          <CommentBtnWrap>
+            {Editmode ? (
+              <CommentButton onClick={ModifyCancel}>취소</CommentButton>
+            ) : (
+              <CommentButton onClick={ModifyComment}>수정</CommentButton>
+            )}
+            {Editmode ? (
+              <CommentButton onClick={ModifyComplete}>완료</CommentButton>
+            ) : (
+              <CommentButton onClick={DeleteComment}>삭제</CommentButton>
+            )}
+          </CommentBtnWrap>
+        </CommentTitlebox>
+        <Commentbody>
+          {Editmode ? (
+            <CommentModifyinput
+              type="text"
+              maxLength="200"
+              onChange={ChangeEdit}
+              value={Editcomment}
+            />
+          ) : (
+            <Commentdesc onClick={ReWriteHandler}>{item?.content}</Commentdesc>
+          )}
+        </Commentbody>
+      </CommentListBox>
+      {RecommentWrite ? (
+        <BoardReCommentBox>
+          <CommentWriteUserBox>
+            <CommentWriteImg src="../img/cmtdefault.svg" />
+            <CommentWriteUser>{post?.nickName}</CommentWriteUser>
+          </CommentWriteUserBox>
+          <ReCommentTextarea
+            name=""
+            maxLength="50"
+            value={recomment}
+            onChange={ReCommentHandler}
+          />
+          <CommentButtonBox>
+            <CommentWriteButton onClick={WriteReComment}>
+              댓글 등록
+            </CommentWriteButton>
+          </CommentButtonBox>
+        </BoardReCommentBox>
+      ) : null}
+      {item.reComments?.map((el, idx) => (
+        <Recomment key={idx} item={el} cmtid={item.commentId} />
+      ))}
+    </CommentWrap>
+  );
+};
+
+const Recomment = ({ item, cmtid }) => {
+  const dispatch = useDispatch();
+
+  const [Editmode, setEditmode] = useState(false);
+  const [EditRecomment, setEditRecomment] = useState("");
+  useEffect(() => {
+    setEditRecomment(item.content);
+  }, []);
+
+  const ModifyCancel = () => {
+    setEditmode(!Editmode);
+  };
+  const ModifyComment = () => {
+    setEditmode(!Editmode);
+  };
+
+  const ModifyComplete = () => {
+    dispatch(
+      __modifyReComment({
+        recommentId: item.recommentId,
+        content: EditRecomment,
+        commentId: cmtid,
+      })
+    );
+    setEditmode(!Editmode);
+  };
+  console.log("너는왜", cmtid);
+
+  const DeleteComment = () => {
+    dispatch(__deleteReComment(item.recommentId));
+  };
+
+  const ChangeEdit = (e) => {
+    setEditRecomment(e.target.value);
+  };
+
+  console.log("나리코아이템", item);
+  return (
+    <RecommentContainer key={item.recommentId}>
       <CommentTitlebox>
         <CommentUserBox>
           <CommentImg src="../img/cmtdefault.svg" />
@@ -295,15 +427,38 @@ const PostComment = ({ idx, item, id }) => {
             type="text"
             maxLength="200"
             onChange={ChangeEdit}
-            value={Editcomment}
+            value={EditRecomment}
           />
         ) : (
-          item?.content
+          <Commentdesc>{item?.content}</Commentdesc>
         )}
       </Commentbody>
-    </CommentListBox>
+    </RecommentContainer>
   );
 };
+
+const ReCommentTextarea = styled.textarea`
+  height: 50px;
+  width: 100%;
+  resize: none;
+  border: none;
+  font-size: 16px;
+  border-bottom: 1px solid #b0b0b0;
+  outline: none;
+  font-size: 16px;
+  margin-top: 10px;
+`;
+
+const BoardReCommentBox = styled.div`
+  width: auto;
+  padding: 1rem 0 0 6rem;
+`;
+
+const RecommentContainer = styled.div`
+  padding: 1rem 0 1rem 6rem;
+`;
+
+const CommentWrap = styled.div``;
 
 const CommentWriteUserBox = styled.div`
   display: flex;
@@ -380,6 +535,11 @@ const CommentTitlebox = styled.div`
 const Commentbody = styled.div`
   margin-top: 20px;
   padding-left: 20px;
+`;
+
+const Commentdesc = styled.div`
+  cursor: pointer;
+  display: inline;
 `;
 
 const CommentListBox = styled.div`
