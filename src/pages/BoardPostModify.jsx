@@ -364,6 +364,7 @@ const BoardPostModify = () => {
           <TitleInput
             name="title"
             type="text"
+            id="text_oi"
             placeholder="제목을 입력해주세요."
             maxLength="30"
             value={contents?.title || ""}
