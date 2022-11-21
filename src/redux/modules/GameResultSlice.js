@@ -5,10 +5,8 @@ import instance from "../../lib/instance";
 export const __GameResultInfoGet = createAsyncThunk(
   "Game_Result",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.get(`tb/game/result/${payload}`);
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -19,10 +17,22 @@ export const __GameResultInfoGet = createAsyncThunk(
 export const __GameResultIHotelGet = createAsyncThunk(
   "Game_Hotel",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.get(`tb/hotel/${payload}`);
-      console.log(data.data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __GameResultIBlogGet = createAsyncThunk(
+  "Game_Blog",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await instance.get(`tb/blog?query=${payload}`);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -63,6 +73,18 @@ export const gameResultSlice = createSlice({
     [__GameResultIHotelGet.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    [__GameResultIBlogGet.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__GameResultIBlogGet.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+      state.blog = action.payload;
+    },
+    [__GameResultIBlogGet.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload.message;
     },
   },
 });

@@ -9,12 +9,15 @@ body {
 }
 
 ul {
+  outline: none;
   list-style: none;
+  text-decoration: none;
   padding-left: 0;
 }
 
 button {
   background-color: transparent;
+  text-decoration: none;
   cursor: pointer;
   border: none;
   outline: none;
