@@ -8,7 +8,6 @@ import gameInfo from "../modules/GameSlice";
 import commentSlice from "../modules/CommentSlice";
 import gameResult from "../modules/GameResultSlice";
 
-
 const store = configureStore({
   reducer: {
     BestSlice,

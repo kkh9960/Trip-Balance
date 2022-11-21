@@ -44,14 +44,8 @@ export const Cards = () => {
     }
   }, [inView]);
 
-
   return (
     <Layout>
-      {posts &&
-        posts.map((element, index) => (
-          <CardWrap key={element.postId} element={element} index={index} />
-        ))}
-
       <SearchBar
         type="text"
         onKeyPress={search}
@@ -67,9 +61,8 @@ export const Cards = () => {
           search={filteredProducts}
         />
       ))}
-
+      <div ref={ref}></div>
       <Line></Line>
-      <div ref={ref} />
     </Layout>
   );
 };
@@ -84,7 +77,6 @@ const CardWrap = ({ element, index, search }) => {
   };
 
   return (
-
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
         <ImgBox
@@ -101,7 +93,6 @@ const CardWrap = ({ element, index, search }) => {
         </TextBox>
       </div>
     </CardBox>
-
   );
 };
 {
