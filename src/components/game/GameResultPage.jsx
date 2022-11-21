@@ -27,6 +27,8 @@ export default function GameResultPage() {
   let blogTitle2 = blog.blog?.[1].title.replace('<b>', '').replace('</b>', '');
   let blogTitle3 = blog.blog?.[2].title.replace('<b>', '').replace('</b>', '');
   let blogTitle4 = blog.blog?.[3].title.replace('<b>', '').replace('</b>', '');
+  console.log(blog)
+  console.log(blogTitle3)
 
   // for (let i = 0; i <= blog?.blog?.length; i++) {
   //   let blogTitle = blog.blog?.[i].title.replace('<b>', '').replace('</b>', '');
@@ -52,49 +54,6 @@ export default function GameResultPage() {
       <g.localText>
         {game.data.data =="" ? ("로딩중입니다") : (game.data.data)}
       </g.localText>
-      <g.bigName>추천 블로그</g.bigName>
-      <g.hotelWrap>
-        <g.hotelInfo>
-          <div>
-            <a href={blog.blog?.[0].url && blog.blog?.[0].url}>
-            <g.hotelImg src={blog.blog?.[0]?.thumbnail && blog.blog?.[0]?.thumbnail}></g.hotelImg>
-            </a>
-          </div>
-          <g.hotelName>
-            {blogTitle1 && blogTitle1}
-          </g.hotelName>
-        </g.hotelInfo>
-        <g.hotelInfo>
-          <div>
-            <a href={blog.blog?.[1].url && blog.blog?.[1].url}>
-            <g.hotelImg src={blog.blog?.[1]?.thumbnail && blog.blog?.[1]?.thumbnail}></g.hotelImg>
-            </a>
-          </div>
-          <g.hotelName>
-            {blogTitle2 && blogTitle2}
-          </g.hotelName>
-        </g.hotelInfo>
-        <g.hotelInfo>
-          <div>
-            <a href={blog.blog?.[2].url && blog.blog?.[2].url}>
-            <g.hotelImg src={blog.blog?.[2]?.thumbnail && blog.blog?.[2]?.thumbnail}></g.hotelImg>
-            </a>
-          </div>
-          <g.hotelName>
-            {blogTitle3 && blogTitle3}
-          </g.hotelName>
-        </g.hotelInfo>
-        <g.hotelInfo>
-          <div>
-            <a href={blog.blog?.[3].url && blog.blog?.[3].url}>
-            <g.hotelImg src={blog.blog?.[3]?.thumbnail && blog.blog?.[3]?.thumbnail}></g.hotelImg>
-            </a>
-          </div>
-          <g.hotelName>
-            {blogTitle4 && blogTitle4}
-          </g.hotelName>
-        </g.hotelInfo>
-      </g.hotelWrap>
       <g.bigName>추천 숙소</g.bigName>
       <g.hotelWrap>
         <g.hotelInfo>
@@ -135,6 +94,49 @@ export default function GameResultPage() {
           </div>
           <g.hotelName>
             {gameHotel.hotel?.data[3]?.title && gameHotel.hotel?.data[3]?.title}
+          </g.hotelName>
+        </g.hotelInfo>
+      </g.hotelWrap>
+      <g.bigName>추천 블로그</g.bigName>
+      <g.hotelWrap>
+        <g.hotelInfo>
+          <div>
+            <a href={blog.blog?.[0].url && blog.blog?.[0].url}>
+            <g.hotelImg src={blog.blog?.[0]?.thumbnail && blog.blog?.[0]?.thumbnail}></g.hotelImg>
+            </a>
+          </div>
+          <g.hotelName>
+            {blogTitle1 && blogTitle1}
+          </g.hotelName>
+        </g.hotelInfo>
+        <g.hotelInfo>
+          <div>
+            <a href={blog.blog?.[1].url && blog.blog?.[1].url}>
+            <g.hotelImg src={blog.blog?.[1]?.thumbnail && blog.blog?.[1]?.thumbnail}></g.hotelImg>
+            </a>
+          </div>
+          <g.hotelName>
+            {blogTitle2 && blogTitle2}
+          </g.hotelName>
+        </g.hotelInfo>
+        <g.hotelInfo>
+          <div>
+            <a href={blog.blog?.[2].url && blog.blog?.[2].url}>
+            <g.hotelImg src={blog.blog?.[2]?.thumbnail && blog.blog?.[2]?.thumbnail}></g.hotelImg>
+            </a>
+          </div>
+          <g.hotelName>
+            {blogTitle3 && blogTitle3}
+          </g.hotelName>
+        </g.hotelInfo>
+        <g.hotelInfo>
+          <div>
+            <a href={blog.blog?.[3].url && blog.blog?.[3].url}>
+            <g.hotelImg src={blog.blog?.[3]?.thumbnail && blog.blog?.[3]?.thumbnail}></g.hotelImg>
+            </a>
+          </div>
+          <g.hotelName>
+            {blogTitle4 && blogTitle4}
           </g.hotelName>
         </g.hotelInfo>
       </g.hotelWrap>
