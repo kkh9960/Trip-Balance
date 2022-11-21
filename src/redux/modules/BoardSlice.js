@@ -94,7 +94,7 @@ export const __modifyBoard = createAsyncThunk(
         localdetail: payload.category2,
       });
       alert("게시글이 수정되었습니다.");
-      // window.location.replace("/post");
+      window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("글수정에러", error);
