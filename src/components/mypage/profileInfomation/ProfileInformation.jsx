@@ -8,31 +8,33 @@ import AWS from "aws-sdk";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
+import instance from "../../../lib/instance";
 
-export default function ProfileInformation({
-  myInformation,
-  mywrite,
-  introduce,
-  userNickname,
-}) {
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(__getMyInformation());
-  // }, []);
+export default function ProfileInformation({}) {
   const id = useParams();
-
-  const userEmail = myInformation?.email;
+  const dispatch = useDispatch();
   const [profileMode, setProfileMode] = useState(true);
-  const [profileImg, setProfileImg] = useState(profile);
-  const [self, setSelf, introduceonChange] = useInput(introduce);
-  const [nickname, setNickname, nicknameChange] = useInput(userNickname);
+  const [profileImg, setProfileImg] = useState();
+  const [userEmail, setUserEmail] = useState(profile);
+  const [userSns, setUserSns] = useState();
+  const [userSelf, setUserSelf, introduceonChange] = useInput();
+  const [nickname, setNickname, nicknameChange] = useInput();
   const profileImgInput = useRef(null);
-  //풀 보내면 백에서 데이터 다시 보내달라고 수정 요청얘기할것
-  // useEffect(() => {
-  //   dispatch(__postMyInformation());
-  // });
+  console.log(profileImg);
+  console.log(nickname);
 
-  //이미지업로드
+  useEffect(() => {
+    async function fetchData() {
+      const result = await instance.get("https://tbtbtb.shop/tb/mypage/info");
+      setProfileImg(result.data.data.profileImg);
+      setNickname(result.data.data.nickName);
+      setUserEmail(result.data.data.email);
+      setUserSelf(result.data.data.self);
+      setUserSns(result.data.data.sns);
+    }
+    fetchData();
+  }, []);
+  //이미지업로드z
   const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
   const onFileUpload = async (e) => {
     const ACCESS_KEY = "AKIAXQKS7DPZ7R5C4WNA";
@@ -52,9 +54,7 @@ export default function ProfileInformation({
       region: REGION,
     });
     const file = e.target.files[0];
-
     const fileName = file.name.replaceAll(" ", "");
-
     // 파일과 파일이름을 넘겨주면 됩니다.
     const params = {
       ACL: "public-read",
@@ -69,19 +69,12 @@ export default function ProfileInformation({
         .on("httpUploadProgress", (Progress, Response) => {
           const imgURL = S3URL + Response.request.httpRequest.path;
           setProfileImg(imgURL);
+          console.log(imgURL);
         })
         .send((err) => {});
     } else {
     }
   };
-
-  // const nicknameChange = (e) => {
-  //   setNickname(e.target.value);
-  // };
-  // const introduceonChange = (e) => {
-  //   setSelf(e.target.value);
-  // };
-
   const changeprofile = () => {
     setProfileMode(false);
   };
@@ -89,33 +82,34 @@ export default function ProfileInformation({
     dispatch(
       __putMyInformation({
         nickName: nickname,
-        self: self,
+        self: userSelf,
+        profileImg: profileImg,
       })
     );
     setNickname(nickname);
     setProfileImg(profileImg);
-    setSelf(self);
+    setUserSelf(userSelf);
     setProfileMode(true);
-    window.location.reload();
   };
 
   const cancelprofile = () => {
     setProfileImg(profileImg);
-    setNickname(userNickname);
-    setSelf(introduce);
+    setNickname(nickname);
+    setUserSelf(userSelf);
     setProfileMode(true); //취소하면 그전 데이터 가져오기 작업할것
   };
+
   return (
     <t.myInformation>
       {profileMode ? (
         <>
-          <t.ProfileImgBox src={profileImg} style={{ margin: "20px" }} />
+          <t.ProfileImgBox src={profileImg} />
           <t.profileinfo>
             <h2>{nickname}님</h2>
             <h3 style={{ color: "#848484" }}>{userEmail}</h3>
             <t.introduce>
               <div>자기소개</div>
-              <div>{self}</div>
+              <div>{userSelf}</div>
             </t.introduce>
             <t.buttonGroup>
               <button onClick={changeprofile}>프로필변경</button>
@@ -154,7 +148,7 @@ export default function ProfileInformation({
               <input
                 type="text"
                 onChange={introduceonChange}
-                value={self || ""}
+                value={userSelf || ""}
               />
             </t.introduce>
             <t.buttonGroup>

@@ -5,53 +5,80 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   __getMyPick,
   __getMyInformation,
-  __getMyWriteIn,
   __getMyPosts,
 } from "../../redux/modules/MyPageSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import Pagination from "./Pagination";
-import img from "../../img/1.jpg";
 import ProfileInformation from "./profileInfomation/ProfileInformation";
+import instance from "../../lib/instance";
 
 export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.MyInforSlice.myinfor.memberId);
-  console.log(userId);
-  const userNickname = useSelector(
-    (state) => state.MyInforSlice.myinfor.nickName
-  );
-  const introduce = useSelector((state) => state.MyInforSlice.myinfor.self);
-  // const id = useParams();
-  // console.log(id);
-  const myInformation = useSelector((state) => state.MyInforSlice.myinfor);
+  // console.log(userId);
+  // 유저 정보
+  // const userNickname = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.nickName
+  // );
+  // const userPostCnt = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.postCnt
+  // );
+  // const userCommentCnt = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.commentCnt
+  // );
+  // const userGameCnt = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.gameCnt
+  // );
+
+  const [userNickname, setUserNickname] = useState([]);
+  const [userSelf, setUserSelf] = useState([]);
+  const [userEmail, setUserEmail] = useState([]);
+  const [userGameCnt, setUserGameCnt] = useState([]);
+  const [userCommentCnt, setUserCommentCnt] = useState([]);
+  const [userPostCnt, setUserPostCnt] = useState([]);
+  const [userSns, setUserSns] = useState([]);
+
   useEffect(() => {
-    dispatch(__getMyInformation());
+    async function fetchData() {
+      const result = await instance.get("https://tbtbtb.shop/tb/mypage/info");
+
+      setUserGameCnt(result.data.data.gameCnt);
+      setUserCommentCnt(result.data.data.commentCnt);
+      setUserPostCnt(result.data.data.postCnt);
+    }
+    fetchData();
   }, []);
 
   // 내가 작성한 글목록
-  const [mywrite, setMyWrite] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [writelimit, setWriteLimit] = useState(10);
   const [writepage, setWritePage] = useState(1);
   const writeoffset = (writepage - 1) * writelimit;
-
   useEffect(() => {
-    dispatch(__getMyPosts());
+    async function fetchData() {
+      const result = await instance.get("https://tbtbtb.shop/tb/mypage/posts");
+      setPosts(result.data.data);
+    }
+    fetchData();
   }, []);
-  const posts = useSelector((state) => state.MyInforSlice.myposts);
-  console.log(posts);
+  // https://dexhome.shop/  https://tbtbtb.shop/
   // const myWriteIn = useSelector((state) => state.MyInforSlice.data?.data);
   // console.log(myWriteIN);
 
-  // useEffect(() => {
-  //   dispatch(__getMyPick({ id }));
-  // }, [dispatch]);
-
+  //
   // 내가 좋아요한 글목록
-  const [mypick, setMyPick] = useState([]);
+  const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
+  useEffect(() => {
+    async function fetchData() {
+      const result = await instance.get("https://tbtbtb.shop/tb/mypage/hearts");
+      setMyPick(result.data.data);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -61,23 +88,18 @@ export default function MyPageView() {
           <span>님의 마이페이지</span>
         </t.userName>
         <t.Line />
-        <ProfileInformation
-          myInformation={myInformation}
-          mywirte={mywrite}
-          introduce={introduce}
-          userNickname={userNickname}
-        />
+        <ProfileInformation />
 
-        <t.myPickInfo>
-          <span>total</span>
-          <span>12회</span>
+        <t.myTotalInfo>
+          <span>BalanceGame</span>
+          <span>{userGameCnt}</span>
           <t.textLine />
-          <span>산</span>
-          <span>5회</span>
+          <span>작성한 게시글</span>
+          <span>{userPostCnt}</span>
           <t.textLine />
-          <span>바다</span>
-          <span>4회</span>
-        </t.myPickInfo>
+          <span>작성한 댓글</span>
+          <span>{userCommentCnt}</span>
+        </t.myTotalInfo>
 
         <t.mySelectInformation>
           <t.myInformationItem>
@@ -86,71 +108,31 @@ export default function MyPageView() {
               <t.thinLine />
             </t.itemHeader>
             <t.pickPostWrap>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-                {/* mypick,mywrite  p,w 대문자로 바꿀것 */}
-              </t.pickPostItem>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-                {/* mypick,mywrite  p,w 대문자로 바꿀것 */}
-              </t.pickPostItem>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-                {/* mypick,mywrite  p,w 대문자로 바꿀것 */}
-              </t.pickPostItem>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-                {/* mypick,mywrite  p,w 대문자로 바꿀것 */}
-              </t.pickPostItem>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-                {/* mypick,mywrite  p,w 대문자로 바꿀것 */}
-              </t.pickPostItem>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-                {/* mypick,mywrite  p,w 대문자로 바꿀것 */}
-              </t.pickPostItem>
-              {mypick.slice(offset, offset + limit).map((idx) => {
-                if (mypick.length === 0) {
-                  <h1>좋아요한 글이 없습니다.</h1>;
-                } else {
-                  <t.pickPostItem key={idx.id}>
-                    <h3>
-                      <t.pickPostProfile src={idx.profileImgimg} alt="프로필" />
-                      <t.pickPostNickname>{idx.nickName}</t.pickPostNickname>
-                    </h3>
-                  </t.pickPostItem>;
-                }
-              })}
+              {typeof myPick === typeof "string" ? (
+                <h1>좋아요한 글이 없습니다.</h1>
+              ) : (
+                myPick.slice(offset, offset + limit).map((idx) => {
+                  if (myPick.length === 0) {
+                    return <h1>좋아요한 글이 없습니다.</h1>;
+                  } else {
+                    return (
+                      <t.pickPostItem
+                        key={idx.postId}
+                        onClick={() => navigate(`/detail/${idx.postId}`)}
+                      >
+                        <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                        <div>{idx.title}</div>
+                        <h5>{idx.nickName}</h5>
+                      </t.pickPostItem>
+                    );
+                  }
+                })
+              )}
             </t.pickPostWrap>
             <t.footer>
               <t.thinLine />
               <Pagination
-                total={mypick.length}
+                total={myPick.length}
                 limit={limit}
                 page={page}
                 setPage={setPage}
@@ -177,32 +159,34 @@ export default function MyPageView() {
               <t.thinLine />
             </t.itemHeader>
             <t.pickPostWrap>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-              </t.pickPostItem>
-              {mywrite
-                .slice(writeoffset, writeoffset + writelimit)
-                .map((idx) => {
-                  if (mywrite.length === 0) {
-                    <h1>작성한 글이 없습니다.</h1>;
-                  } else {
-                    <t.pickPostItem key={idx.id}>
-                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <h3>{idx.createdAt}</h3>
-                    </t.pickPostItem>;
-                  }
-                })}
+              {typeof posts === typeof "string" ? (
+                <h1>작성한 글이 없습니다.</h1>
+              ) : (
+                posts
+                  .slice(writeoffset, writeoffset + writelimit)
+                  .map((idx) => {
+                    if (posts.length === 0) {
+                      return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
+                    } else {
+                      return (
+                        <t.pickPostItem
+                          key={idx.postId}
+                          onClick={() => navigate(`/detail/${idx.postId}`)}
+                        >
+                          <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                          <div>{idx.title}</div>
+                          <h5>{idx.createdAt}</h5>
+                        </t.pickPostItem>
+                      );
+                    }
+                  })
+              )}
             </t.pickPostWrap>
 
             <t.footer>
               <t.thinLine />
               <Pagination
-                total={mywrite.length}
+                total={posts.length}
                 limit={writelimit}
                 page={writepage}
                 setPage={setWritePage}

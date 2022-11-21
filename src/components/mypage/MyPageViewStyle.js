@@ -43,7 +43,7 @@ export const myInformationItem = styled.div`
   border: 2px solid gray;
   padding: 10px 20px 10px;
 `;
-export const myPickInfo = styled.div`
+export const myTotalInfo = styled.div`
   width: 70%;
   height: 150px;
   margin: 10px auto;
@@ -64,6 +64,7 @@ export const myPickInfo = styled.div`
   text-align: center;
   color: #f2f2f2;
 `;
+
 //좋아요한 게시글
 export const itemHeader = styled.div`
   display: flex;
@@ -91,6 +92,7 @@ export const pickPostItem = styled.div`
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 10px;
+  cursor: pointer;
 `;
 export const pickPostImg = styled.img`
   width: 180px;

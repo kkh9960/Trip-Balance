@@ -13,6 +13,7 @@ export const myInformation = styled.div`
 export const ProfileImgBox = styled.img`
   width: 300px;
   height: 300px;
+  margin: 20px;
   object-fit: cover;
   border-radius: 50%;
   border: 5px double gray;
@@ -45,7 +46,7 @@ export const detailPickInfo = styled.div`
 `;
 export const detailPickInfoTotal = styled.div``;
 export const detailPickInfoCategory = styled.div`
-  background-color: darkgray;
+  background-color: #73e4bc;
   width: 135px;
   height: 135px;
   border-radius: 50%;

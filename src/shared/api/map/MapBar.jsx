@@ -1,26 +1,25 @@
 /* global kakao */
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { __getMapData, __postMapData } from '../../../redux/modules/MapSlice'
-import { markerdata } from './MarkerData'
-import './MapBarStyle.css'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { __getMapData, __postMapData } from "../../../redux/modules/MapSlice";
+import { markerdata } from "./MarkerData";
+import "./MapBarStyle.css";
 
 const { kakao } = window;
 
 export default function MapBar() {
-  
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     mapscript();
+    dispatch(__getMapData());
   }, []);
 
-  
   const mapscript = () => {
     let container = document.getElementById("map");
     let options = {
-      center: new kakao.maps.LatLng(37.5642135, 127.0016985),
-      level: 11,
+      center: new kakao.maps.LatLng(36.470412, 127.690716),
+      level: 13,
     };
 
     const map = new kakao.maps.Map(container, options);
@@ -42,12 +41,11 @@ export default function MapBar() {
         "mouseout",
         makeOutListener(infowindow)
       );
-      kakao.maps.event.addListener(marker, 'click', function () {
-        let lat = `${el.lat}`
-        let lng = `${el.lng}`
-        dispatch(__postMapData({ lat, lng }))
-      }
-      );
+      kakao.maps.event.addListener(marker, "click", function () {
+        let lat = `${el.lat}`;
+        let lng = `${el.lng}`;
+        dispatch(__postMapData({ lat, lng }));
+      });
     });
     function makeOverListener(map, marker, infowindow) {
       return function () {
@@ -61,12 +59,9 @@ export default function MapBar() {
     }
   };
 
-
-
-  
   return (
     <div>
-      <div id="map" className='map'/>
+      <div id="map" className="map" />
     </div>
-  )
+  );
 }
