@@ -16,7 +16,12 @@ import { useNavigate } from "react-router-dom";
 import { __boardlike } from "../redux/modules/BoardSlice";
 import Loading from "../components/Loading/Loading";
 import { __deleteComment } from "../redux/modules/CommentSlice";
-import { __modifyComment } from "../redux/modules/CommentSlice";
+import {
+  __modifyComment,
+  __postReComment,
+  __modifyReComment,
+  __deleteReComment,
+} from "../redux/modules/CommentSlice";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -37,6 +42,7 @@ const BoardPostDetail = () => {
     "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/456123.jpg",
   ];
   const DefaultImega = "../img/default1.jpg";
+  const DefaultImega2 = "../img/default2.jpg";
   const heartsvg = "../img/heart.svg";
   const binheartsvg = "../img/binheart.svg";
 
@@ -127,6 +133,8 @@ const BoardPostDetail = () => {
 
   console.log(heart);
 
+  const ImgHandlerTest = () => {};
+
   return loading ? (
     <Loading />
   ) : (
@@ -142,13 +150,21 @@ const BoardPostDetail = () => {
                 disableOnInteraction: false,
               }}
               pagination={{
-                clickable: true,
+                // 페이징 적용, 1 2 3 4 5
+                el: ".pagination", // 페이저 버튼 클래스명
+                clickable: true, // 버튼 클릭 여부
+                type: "bullets", // 버튼 모양 결정, bullets, fraction
+                // 등등 ...
+              }}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
               }}
               modules={[Navigation, EffectFade, Pagination, Autoplay]}
               className="mySwiper"
               loop={true}
             >
-              {!post?.mediaList.length === 0 ? (
+              {post?.mediaList[0] ? (
                 post?.mediaList.map((item, idx) => {
                   return (
                     <SwiperSlide key={idx}>
@@ -158,7 +174,7 @@ const BoardPostDetail = () => {
                 })
               ) : (
                 <SwiperSlide>
-                  <SliderImage src="../img/default2.jpg" />
+                  <SliderImage src={DefaultImega2} />
                 </SwiperSlide>
               )}
             </Swiper>
@@ -172,34 +188,44 @@ const BoardPostDetail = () => {
                     post?.mediaList[idx] ? post?.mediaList[idx] : DefaultImega
                   }
                   alt=""
+                  onClick={ImgHandlerTest}
                 />
               ))}
           </ImegePreview>
         </ImegeWrap>
-        <BoardTitleWrap>
-          <BoardTitle>{post?.title}</BoardTitle>
-          <TitleButtonWarp>
-            {userNickname == post?.author ? (
-              <>
-                <ModifyButton onClick={modifyPost}>수정</ModifyButton>
-                <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
-              </>
-            ) : (
-              <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
-            )}
-          </TitleButtonWarp>
-        </BoardTitleWrap>
-        <UserNameBox>
-          <BoardCateGory>
-            <CateLocal>지역 : {post?.local}</CateLocal>
-            <CateDetail>도시 : {post?.localdetail}</CateDetail>
-          </BoardCateGory>
-        </UserNameBox>
-        <BoardBody>{post?.content}</BoardBody>
-        <BoardLike onClick={Boardpostlike}>
-          <BoardLikeImage src={post && heart ? heartsvg : binheartsvg} alt="" />
-          <BoardLikeCount>{heartnum}</BoardLikeCount>
-        </BoardLike>
+
+        <BoardcontentWrap>
+          <BoardContentsbox>
+            <BoardTitleWrap>
+              <BoardTitle>{post?.title}</BoardTitle>
+              <TitleButtonWarp>
+                {userNickname == post?.author ? (
+                  <>
+                    <ModifyButton onClick={modifyPost}>수정</ModifyButton>
+                    <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
+                  </>
+                ) : (
+                  <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                )}
+              </TitleButtonWarp>
+            </BoardTitleWrap>
+            <UserNameBox>
+              <BoardCateGory>
+                <CateLocal>지역 : {post?.local}</CateLocal>
+                <CateDetail>도시 : {post?.localdetail}</CateDetail>
+              </BoardCateGory>
+            </UserNameBox>
+            <BoardBody>{post?.content}</BoardBody>
+          </BoardContentsbox>
+          <BoardLike onClick={Boardpostlike}>
+            <BoardLikeImage
+              src={post && heart ? heartsvg : binheartsvg}
+              alt=""
+            />
+            <BoardLikeCount>{heartnum}</BoardLikeCount>
+          </BoardLike>
+        </BoardcontentWrap>
+
         <BoardCommentWrap>
           <BoardCommentBox>
             <CommentWriteUserBox>
@@ -224,7 +250,13 @@ const BoardPostDetail = () => {
           </BoardCommentBox>
           {comments &&
             comments?.map((item, idx) => (
-              <PostComment key={idx} item={item} idx={idx} id={id} />
+              <PostComment
+                key={idx}
+                item={item}
+                idx={idx}
+                id={id}
+                post={post}
+              />
             ))}
         </BoardCommentWrap>
       </BoardPostDetailWrap>
@@ -233,9 +265,11 @@ const BoardPostDetail = () => {
 };
 export default BoardPostDetail;
 
-const PostComment = ({ idx, item, id }) => {
+const PostComment = ({ idx, item, id, post }) => {
   const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
+  const [RecommentWrite, setRecommentWrite] = useState(false);
+  const [recomment, setrecomment] = useState("");
   useEffect(() => {
     setEditcomment(item.content);
   }, []);
@@ -244,7 +278,6 @@ const PostComment = ({ idx, item, id }) => {
 
   const ModifyCancel = () => {
     setEditmode(!Editmode);
-    //조회값 다시 적용
   };
   const ModifyComment = () => {
     setEditmode(!Editmode);
@@ -254,23 +287,139 @@ const PostComment = ({ idx, item, id }) => {
     dispatch(__deleteComment(item.commentId));
   };
 
+  const ReCommentHandler = (e) => {
+    setrecomment(e.target.value);
+  };
+
   const ModifyComplete = () => {
     dispatch(
       __modifyComment({
         id: item.commentId,
-        postId: item.commentId,
+        postId: id.id,
         content: Editcomment,
       })
     );
     setEditmode(!Editmode);
   };
 
+  const ReWriteHandler = () => {
+    setRecommentWrite(!RecommentWrite);
+    console.log(RecommentWrite);
+  };
+
   const ChangeEdit = (e) => {
     setEditcomment(e.target.value);
   };
-  console.log(Editcomment);
+
+  const WriteReComment = () => {
+    dispatch(
+      __postReComment({
+        commentId: item.commentId,
+        content: recomment,
+      })
+    );
+    setRecommentWrite(!RecommentWrite);
+  };
+  console.log("확인욤", item);
   return (
-    <CommentListBox key={idx}>
+    <CommentWrap>
+      <CommentListBox key={idx}>
+        <CommentTitlebox>
+          <CommentUserBox>
+            <CommentImg src="../img/cmtdefault.svg" />
+            <Commentuser>{item?.author}</Commentuser>
+          </CommentUserBox>
+          <CommentBtnWrap>
+            {Editmode ? (
+              <CommentButton onClick={ModifyCancel}>취소</CommentButton>
+            ) : (
+              <CommentButton onClick={ModifyComment}>수정</CommentButton>
+            )}
+            {Editmode ? (
+              <CommentButton onClick={ModifyComplete}>완료</CommentButton>
+            ) : (
+              <CommentButton onClick={DeleteComment}>삭제</CommentButton>
+            )}
+          </CommentBtnWrap>
+        </CommentTitlebox>
+        <Commentbody>
+          {Editmode ? (
+            <CommentModifyinput
+              type="text"
+              maxLength="200"
+              onChange={ChangeEdit}
+              value={Editcomment}
+            />
+          ) : (
+            <Commentdesc onClick={ReWriteHandler}>{item?.content}</Commentdesc>
+          )}
+        </Commentbody>
+      </CommentListBox>
+      {RecommentWrite ? (
+        <BoardReCommentBox>
+          <CommentWriteUserBox>
+            <CommentWriteImg src="../img/cmtdefault.svg" />
+            <CommentWriteUser>{post?.nickName}</CommentWriteUser>
+          </CommentWriteUserBox>
+          <ReCommentTextarea
+            name=""
+            maxLength="50"
+            value={recomment}
+            onChange={ReCommentHandler}
+          />
+          <CommentButtonBox>
+            <CommentWriteButton onClick={WriteReComment}>
+              등록
+            </CommentWriteButton>
+          </CommentButtonBox>
+        </BoardReCommentBox>
+      ) : null}
+      {item.reComments?.map((el, idx) => (
+        <Recomment key={idx} item={el} cmtid={item.commentId} />
+      ))}
+    </CommentWrap>
+  );
+};
+
+const Recomment = ({ item, cmtid }) => {
+  const dispatch = useDispatch();
+
+  const [Editmode, setEditmode] = useState(false);
+  const [EditRecomment, setEditRecomment] = useState("");
+  useEffect(() => {
+    setEditRecomment(item.content);
+  }, []);
+
+  const ModifyCancel = () => {
+    setEditmode(!Editmode);
+  };
+  const ModifyComment = () => {
+    setEditmode(!Editmode);
+  };
+
+  const ModifyComplete = () => {
+    dispatch(
+      __modifyReComment({
+        recommentId: item.recommentId,
+        content: EditRecomment,
+        commentId: cmtid,
+      })
+    );
+    setEditmode(!Editmode);
+  };
+  console.log("너는왜", cmtid);
+
+  const DeleteComment = () => {
+    dispatch(__deleteReComment(item.recommentId));
+  };
+
+  const ChangeEdit = (e) => {
+    setEditRecomment(e.target.value);
+  };
+
+  console.log("나리코아이템", item);
+  return (
+    <RecommentContainer key={item.recommentId}>
       <CommentTitlebox>
         <CommentUserBox>
           <CommentImg src="../img/cmtdefault.svg" />
@@ -295,23 +444,63 @@ const PostComment = ({ idx, item, id }) => {
             type="text"
             maxLength="200"
             onChange={ChangeEdit}
-            value={Editcomment}
+            value={EditRecomment}
           />
         ) : (
-          item?.content
+          <Commentdesc>{item?.content}</Commentdesc>
         )}
       </Commentbody>
-    </CommentListBox>
+    </RecommentContainer>
   );
 };
+
+const BoardContentsbox = styled.div`
+  width: 100%;
+  padding: 80px;
+`;
+
+const BoardcontentWrap = styled.div`
+  border: 3px solid #d9d9d9;
+  width: 100%;
+  height: auto;
+  border-radius: 50px;
+  margin-top: 70px;
+`;
+
+const ReCommentTextarea = styled.textarea`
+  height: 50px;
+  width: 100%;
+  resize: none;
+  border: none;
+  font-size: 16px;
+  border-bottom: 1px solid #b0b0b0;
+  outline: none;
+  font-size: 16px;
+  margin-top: 10px;
+`;
+
+const BoardReCommentBox = styled.div`
+  width: auto;
+  padding: 1rem 0 0 6rem;
+`;
+
+const RecommentContainer = styled.div`
+  padding: 1rem 0 1rem 6rem;
+`;
+
+const CommentWrap = styled.div``;
 
 const CommentWriteUserBox = styled.div`
   display: flex;
   align-items: center;
+  margin: 20px 0 0 20px;
   gap: 10px;
 `;
 
-const CommentWriteUser = styled.div``;
+const CommentWriteUser = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+`;
 
 const CommentWriteImg = styled.img``;
 
@@ -331,12 +520,19 @@ const UserProfile = styled.div`
   cursor: pointer;
 `;
 
-const CateLocal = styled.div``;
-const CateDetail = styled.div``;
+const CateLocal = styled.div`
+  font-size: 22px;
+  font-weight: lighter;
+`;
+const CateDetail = styled.div`
+  font-size: 22px;
+  font-weight: lighter;
+`;
 
 const Postnickname = styled.div`
   font-size: 36px;
   margin-bottom: 25px;
+  font-weight: bold;
 `;
 
 const PostUser = styled.div`
@@ -382,6 +578,11 @@ const Commentbody = styled.div`
   padding-left: 20px;
 `;
 
+const Commentdesc = styled.div`
+  cursor: pointer;
+  display: inline;
+`;
+
 const CommentListBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -389,16 +590,20 @@ const CommentListBox = styled.div`
   border-bottom: 1px dotted #cdcdcd;
 `;
 const CommentCount = styled.span`
-  font-size: 18px;
+  font-size: 20px;
+  color: #777777;
 `;
 const CommentWriteButton = styled.button`
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
+  border-left: 1px solid #b0b0b0;
+  padding: 20px 60px;
   margin-left: 20px;
+  color: #777777;
+  font-size: 20px;
 `;
 
 const CommentButtonBox = styled.div`
+  width: 100%;
+  border-top: 1px solid #b0b0b0;
   display: flex;
   justify-content: right;
   margin-top: 10px;
@@ -406,15 +611,15 @@ const CommentButtonBox = styled.div`
 `;
 
 const CommentTextarea = styled.textarea`
-  height: 100px;
-  width: 100%;
+  height: 80px;
+  width: 95%;
   resize: none;
   border: none;
   font-size: 16px;
-  border-bottom: 1px solid #b0b0b0;
   outline: none;
   font-size: 16px;
   margin-top: 10px;
+  margin-left: 20px;
 `;
 
 const BoardCommentBox = styled.div`
@@ -422,12 +627,13 @@ const BoardCommentBox = styled.div`
   height: auto;
   border: 1px solid #b0b0b0;
   border-radius: 5px;
-  padding: 20px;
   margin-bottom: 10px;
 `;
 
 const BoardCommentWrap = styled.div`
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   margin-top: 50px;
 `;
 
@@ -446,12 +652,15 @@ const BoardLike = styled.div`
   border-radius: 10px;
   border: 1px solid #cdcdcd;
   align-items: center;
+  margin: 0 auto 50px;
 `;
 
 const BoardBody = styled.div`
   margin-top: 40px;
   width: 100%;
   min-height: 400px;
+  font-weight: lighter;
+  font-size: 24px;
 `;
 
 const BoardCateGory = styled.div`
@@ -460,27 +669,25 @@ const BoardCateGory = styled.div`
   gap: 5px;
 `;
 
-const DeleteButton = styled.button`
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
+const DeleteButton = styled.div`
+  font-size: 24px;
   margin-left: 20px;
 `;
-const ModifyButton = styled.button`
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
+const ModifyButton = styled.div`
+  font-size: 24px;
 `;
 
-const TitleButtonWarp = styled.div``;
+const TitleButtonWarp = styled.div`
+  display: flex;
+  margin-right: 10rem;
+`;
 
 const BoardTitle = styled.h2`
-  font-size: 30px;
+  font-size: 36px;
 `;
 
 const BoardTitleWrap = styled.div`
   display: flex;
-  margin-top: 80px;
   justify-content: space-between;
   align-items: center;
   width: 100%;

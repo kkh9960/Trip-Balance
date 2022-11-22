@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Footer from "../component/Footer";
-
 import Header from "../component/Header";
 import { motion } from "framer-motion";
 import Banner from "./Banner";
@@ -8,7 +7,6 @@ import Cards from "./Cards";
 import BalanceButton from "./BalanceButton";
 import styled from "styled-components";
 import TopButton from "./TopButton";
-
 
 const PostPage = () => {
   return (
@@ -22,6 +20,8 @@ const PostPage = () => {
       <Banner />
       <Layout>
         <Cards />
+
+        {/* <InpiniteScroll data={data} /> */}
       </Layout>
       <BalanceButton />
       <TopButton />

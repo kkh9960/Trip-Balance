@@ -1,8 +1,12 @@
 import styled from "styled-components";
 //common
 export const userName = styled.div`
-  width: 100px;
-  margin: 0 auto;
+  width: 500px;
+  font-size: 28px;
+  margin: 0 0 5px 170px;
+  span {
+    font-size: 22px;
+  }
 `;
 export const Line = styled.div`
   width: 1100px;
@@ -11,7 +15,7 @@ export const Line = styled.div`
   background-color: black;
 `;
 export const thinLine = styled.div`
-  width: 850px;
+  width: 90%;
   height: 1px;
   margin: 0 auto 15px;
   background-color: black;
@@ -25,21 +29,21 @@ export const textLine = styled.div`
 export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
+  margin-top: 30px;
 `;
 
 export const myInformationItem = styled.div`
   position: relative;
-  width: 80%;
+  width: 77%;
   height: 50%;
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  background-color: gray;
   border-radius: 10px;
+  border: 2px solid gray;
   padding: 10px 20px 10px;
 `;
-export const myPickInfo = styled.div`
+export const myTotalInfo = styled.div`
   width: 70%;
   height: 150px;
   margin: 10px auto;
@@ -60,19 +64,26 @@ export const myPickInfo = styled.div`
   text-align: center;
   color: #f2f2f2;
 `;
+
 //좋아요한 게시글
 export const itemHeader = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  position: absolute;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   top: 0;
   width: 100%;
   height: 100px;
 `;
 export const pickPostWrap = styled.div`
-  display: flex;
-  margin: 0 40px;
+  margin: 80px 30px;
   width: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+  grid-template-rows: repeat(2, minmax(100px, 50%));
 `;
 export const pickPostItem = styled.div`
   width: 180px;
@@ -80,7 +91,8 @@ export const pickPostItem = styled.div`
   border: 0 solid black;
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 1rem;
+  margin: 10px;
+  cursor: pointer;
 `;
 export const pickPostImg = styled.img`
   width: 180px;

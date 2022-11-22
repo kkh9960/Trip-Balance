@@ -69,7 +69,7 @@ const initialState = {
       WAV: "0",
       UUU: "-0.8",
       REH: "80",
-      TMP: "14",
+      TMP: "0",
       WSD: "0",
       SNO: "적설없음",
       PCP: "강수없음",
@@ -81,6 +81,7 @@ const initialState = {
     lat: "",
     lng: "",
   },
+
   isLoading: false,
   error: null,
 };
@@ -90,7 +91,7 @@ export const __getMapData = createAsyncThunk(
   "GET_MAPDATA",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get("/tb/apitest", payload); //http://43.200.139.249:8080/tb/apitest
+      const { data } = await instance.get("/tb/apimap/seoul", payload); //http://43.200.139.249:8080/tb/apitest
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -101,7 +102,6 @@ export const __postMapData = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.post("/tb/apimap", payload);
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -117,7 +117,7 @@ export const mapSlice = createSlice({
     },
     [__getMapData.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.peopleCnt = action.payload;
+      state.data = action.payload;
     },
     [__getMapData.rejected]: (state, action) => {
       state.isLoading = false;

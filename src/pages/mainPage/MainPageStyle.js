@@ -1,30 +1,26 @@
-.main {
+import styled from "styled-components";
+
+export const main = styled.div`
   width: 100%;
   height: 100vh;
-  display: block;
-}
-.mainImageBox {
+`;
+export const mainImageBox = styled.div`
   max-width: 100%;
   height: 100vh;
   margin: 0 auto;
-}
-.center {
-  background-color: skyblue;
-  width: 90%;
-  margin: 0 auto;
-}
-.mapGroup {
+`;
+export const mapGroup = styled.div`
   background-color: navajowhite;
-  width: 90vh;
-  height: 100vh;
+  width: 100%;
+  height: 90vh;
   padding: 30px 30px;
   margin: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-}
+  justify-content: center;
+`;
 
-.sideButtonGroup {
+export const sideButtonGroup = styled.div`
   background-color: aqua;
 
   position: fixed;
@@ -35,4 +31,4 @@
 
   bottom: 10px;
   right: 10px;
-}
+`;

@@ -1,40 +1,36 @@
 import React from "react";
-import "./MainPageStyle.css";
 import AddPostButton from "../../components/common/button/AddPostButton";
 import ScrollTopButton from "../../components/common/button/ScrollTopButton";
 import MiddleBar from "./middleBar/MiddleBar";
-import PostBar from "./postBar/PostBar";
 import MapBar from "../../shared/api/map/MapBar";
 import DoughnutChart from "./mapBar/DoughnutChart";
-import WeatherBar from "./mapBar/weatherBar/WeatherBar";
 import MainSlider from "./imageSlide/MainSlider";
 import Layout from "../../component/Layout";
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
+import * as t from "./MainPageStyle";
 
 export default function MainPage() {
   return (
     <Layout>
       <Header />
-      <div className="main">
-        <div className="mainImageBox">
+      <t.main>
+        <t.mainImageBox>
           <MainSlider />
-        </div>
+        </t.mainImageBox>
 
-        <div className="mapGroup">
+        <t.mapGroup>
           <MapBar />
           <DoughnutChart />
-          <WeatherBar />
-        </div>
-        <PostBar />
+        </t.mapGroup>
 
-        <div className="sideButtonGroup">
+        <t.sideButtonGroup>
           <AddPostButton />
           <ScrollTopButton />
-        </div>
+        </t.sideButtonGroup>
 
         <Footer />
-      </div>
+      </t.main>
     </Layout>
   );
 }

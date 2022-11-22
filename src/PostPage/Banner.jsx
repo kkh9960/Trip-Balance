@@ -10,25 +10,6 @@ import { useNavigate } from "react-router-dom";
 const Banner = () => {
   const navigate = useNavigate();
 
-  const search = (event) => {
-    if (event.key === "Enter") {
-      // 인풋안에있는값을 읽어옴
-      let keyword = event.target.value;
-      navigate(`/post?q=${keyword}`);
-      //url을바꿔줌 navgate활용
-    }
-    console.log("key press");
-  };
-  const [useInput, setUseInput] = useState("");
-  const onChange = (e) => {
-    setUseInput(e.target.value);
-  };
-  console.log(useInput);
-
-  const goWrite = () => {
-    navigate("/write");
-  };
-
   return (
     <Container>
       <Title>오늘의 여행지는?</Title>
@@ -41,7 +22,11 @@ const Banner = () => {
             </Wrap>
           </SearchTitle>
 
-          <Write onClick={goWrite}>
+          <Write
+            onClick={() => {
+              navigate("/write");
+            }}
+          >
             게시글쓰기
             <AiFillEdit />
           </Write>
