@@ -6,6 +6,7 @@ import MyPage from "../../pages/mypage/MyPage";
 import PostPage from "../../PostPage/PostPage";
 import BoardWrite from "../../pages/BoardWrite";
 import Game from "../../pages/game/Game";
+import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
 import BoardPostDetail from "../../pages/BoardPostDetail";
 import BoardPostModify from "../../pages/BoardPostModify";
@@ -20,10 +21,10 @@ const Router = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/write" element={<BoardWrite />} />
-        <Route path="/game" element={<Game />} />
         <Route path="/detail/:id" element={<BoardPostDetail />} />
         <Route path="/modify/:id" element={<BoardPostModify />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="/start" element={<GameStart />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
