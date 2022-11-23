@@ -1,4 +1,3 @@
-
 import React from 'react'
 import * as g from './GamePageStyle'
 import { useParams } from 'react-router-dom'
@@ -10,32 +9,26 @@ import { __GameInfoGet, __GameFirstGet, __GameLastPost } from '../../redux/modul
 
 export default function GamePage() {
   const id = useParams();
-  console.log(id);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
   const gameData = useSelector((state) => state.gameInfo.data)
-  // console.log(gameData)
-  // console.log(gameData.data)
-  // console.log(gameData.data[0])
-  // console.log(gameData.data[0].id)
-  // console.log(gameData.data[0].leftId)
-  // console.log(gameData.data[0].rightId)
-  // console.log(gameData.data[1])
 
   const goFirst = (e) => {
     e.preventDefault();
     navigate("/game/start");
   };
+  const goHome = (e) => {
+    e.preventDefault();
+    navigate("/");
+  };
   const leftGo = (e) => {
     e.preventDefault();
-    navigate(`/game/${GameID}/${gameData.data[0].leftId}`);
+    setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].leftId}`)}, 600);
   };
   const rightGo = (e) => {
     e.preventDefault();
-
-    navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
+    setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].rightId}`)}, 600);
   }
   const resultGo = (e) => {
     e.preventDefault();
@@ -51,18 +44,17 @@ export default function GamePage() {
       : dispatch(__GameInfoGet({ GameID, QID }));
   }, [id]);
 
-  const leftimg = `../../img/gameImg/${gameData.data[0].leftId == null ? (2) : (gameData.data[0].leftId)}.jpg`         
-  const rightimg = `../../img/gameImg/${gameData.data[0].rightId == null ? (2) : (gameData.data[0].rightId)}.jpg`
+  const leftImg = `../../img/gameImg/${gameData.data[0]?.leftId == null ? (2) : (gameData.data[0]?.leftId)}.jpg`         
+  const rightImg = `../../img/gameImg/${gameData.data[0]?.rightId == null ? (2) : (gameData.data[0]?.rightId)}.jpg`
   const GameID = (gameData.data[1]?.gameId === null ? ("1") : gameData.data[1]?.gameId)
   const QID = parseInt(id.id)
+  const VCharacter = '../../img/smile.png'
+  const FCharacter = '../../img/unhappy.png'
+  // 움짤 만들어주시면 넣을 예정
 
   return (
-    <div>
-      {/* <p>현제 페이지의 파라미터는 {id} 입니다!</p>
-      {leftnum}
-      {rightnum} */}
+    <g.totalWrap>
       <div>
-
       {QID >= 32 ? (
         <g.balanceButtonWrapFinal>
           <g.balanceButtonFinal onClick={resultGo}>
@@ -72,20 +64,29 @@ export default function GamePage() {
       ) : (
          <div>
           <g.balanceButtonWrap>
-            <g.balanceButton src={leftimg} onClick={leftGo}/>
-            <g.balanceButton src={rightimg} onClick={rightGo}/>
-          </g.balanceButtonWrap>
-          <g.balanceTextWrap>
+            <g.balanceButtonBH>
+            <g.balanceButton src={leftImg} onClick={leftGo}/>
+            <g.balanceButtonHover src={VCharacter}/>
+            <g.balanceButtonRightHover src={FCharacter}/>
             <g.balanceText onClick={leftGo}>{gameData.data[0].leftAnswer}</g.balanceText>
+            </g.balanceButtonBH>
+            <g.balanceButtonBH>
+            <g.balanceButton src={rightImg} onClick={rightGo}/>
+            <g.balanceButtonHover src={VCharacter}/>
+            <g.balanceButtonLeftHover src={FCharacter}/>
             <g.balanceText onClick={rightGo}>{gameData.data[0].rightAnswer}</g.balanceText>
-          </g.balanceTextWrap>  
+            </g.balanceButtonBH>
+          </g.balanceButtonWrap>
+          <g.vsLogo>v s</g.vsLogo>
           <g.firstWrap>
             <g.balanceFirst onClick={goFirst}>처음으로</g.balanceFirst>
           </g.firstWrap>
+          <g.homeWrap>
+            <g.balanceFirst onClick={goHome}>메인으로</g.balanceFirst>
+          </g.homeWrap>
          </div>
       )}
-
       </div>
-    </div>
+    </g.totalWrap>
   );
 }

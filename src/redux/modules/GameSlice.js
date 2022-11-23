@@ -5,15 +5,12 @@ import instance from "../../lib/instance";
 export const __GameInfoGet = createAsyncThunk(
   "Game_Select",
   async (payload, thunkAPI) => {
-    console.log("나 페이로드", payload);
     try {
       const { data } = await instance.get(
         `tb/game/${payload.GameID}/${payload.QID}`
       );
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
-
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -22,8 +19,6 @@ export const __GameInfoGet = createAsyncThunk(
 export const __GameLastPost = createAsyncThunk(
   "Game_Last",
   async (payload, thunkAPI) => {
-    console.log(payload.GameID);
-    console.log(payload.QID);
     try {
       const { data } = await instance.post(
         `tb/game/result/${payload.GameID}/${payload.QID}`
@@ -31,7 +26,6 @@ export const __GameLastPost = createAsyncThunk(
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log(error);
-
     }
   }
 );
@@ -39,10 +33,8 @@ export const __GameLastPost = createAsyncThunk(
 export const __GameFirstGet = createAsyncThunk(
   "Game_First",
   async (payload, thunkAPI) => {
-    console.log("1번째");
     try {
       const { data } = await instance.get("/tb/game/start");
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log(error);

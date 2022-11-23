@@ -2,143 +2,137 @@ import React, { useState } from "react";
 import * as t from "./MyPageViewStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __getMyWrite, __getMyPick } from "../../redux/modules/MyPageSlice";
-import { useNavigate } from "react-router-dom";
+import {
+  __getMyPick,
+  __getMyInformation,
+  __getMyPosts,
+} from "../../redux/modules/MyPageSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import Pagination from "./Pagination";
-import img from "../../img/1.jpg";
 import ProfileInformation from "./profileInfomation/ProfileInformation";
+import instance from "../../lib/instance";
 
 export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const data = useSelector((state) => state);
-  const myPick = useSelector((state) => state);
-  const myWrite = useSelector((state) => state);
-  const myInfomation = useSelector((state) => state);
-  const userEmail = localStorage.getItem("email");
-  const userNickname = localStorage.getItem("nickName");
+  const userId = useSelector((state) => state.MyInforSlice.myinfor.memberId);
+  // console.log(userId);
+  // 유저 정보
+  // const userNickname = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.nickName
+  // );
+  // const userPostCnt = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.postCnt
+  // );
+  // const userCommentCnt = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.commentCnt
+  // );
+  // const userGameCnt = useSelector(
+  //   (state) => state.MyInforSlice.myinfor.gameCnt
+  // );
 
-  // 프로필
-  // const [profileMode, setProfileMode] = useState(true);
-  // const [profileImg, setProfileImg] = useState(profile);
-  // const profileImgInput = useRef(null);
+  const [userNickname, setUserNickname] = useState([]);
+  const [userSelf, setUserSelf] = useState([]);
+  const [userEmail, setUserEmail] = useState([]);
+  const [userGameCnt, setUserGameCnt] = useState([]);
+  const [userCommentCnt, setUserCommentCnt] = useState([]);
+  const [userPostCnt, setUserPostCnt] = useState([]);
+  const [userSns, setUserSns] = useState([]);
 
-  // useEffect(() => {
-  //   dispatch(__getMyInformation({ memberId: 1 }));
-  // }, []);
+  useEffect(() => {
+    async function fetchData() {
+      const result = await instance.get("https://tbtbtb.shop/tb/mypage/info");
 
-  // // useEffect(() => {
-  // //   dispatch(__postMyInformation());
-  // // });
-
-  // const onChange = (e) => {
-  //   if (e.target.files[0]) {
-  //     setProfileImg(e.target.files[0]);
-  //   } else {
-  //     //업로드 취소할 시
-  //     setProfileImg(profile);
-  //     return;
-  //   }
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       setProfileImg(reader.result);
-  //     }
-  //   };
-  //   reader.readAsDataURL(e.target.files[0]);
-  // };
-
-  // const [introduce, setIntroduce] = useState("");
-  // const introduceonChange = (e) => {
-  //   setIntroduce(e.target.value);
-  // };
-
-  // const changeprofile = () => {
-  //   setProfileMode(false);
-  // };
+      setUserGameCnt(result.data.data.gameCnt);
+      setUserCommentCnt(result.data.data.commentCnt);
+      setUserPostCnt(result.data.data.postCnt);
+    }
+    fetchData();
+  }, []);
 
   // 내가 작성한 글목록
-  const [mywrite, setMyWrite] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [writelimit, setWriteLimit] = useState(10);
   const [writepage, setWritePage] = useState(1);
   const writeoffset = (writepage - 1) * writelimit;
-
   useEffect(() => {
-    dispatch(__getMyPick({ memberId: 1 }));
-  }, [dispatch]);
+    async function fetchData() {
+      const result = await instance.get("https://tbtbtb.shop/tb/mypage/posts");
+      setPosts(result.data.data);
+    }
+    fetchData();
+  }, []);
+  // https://dexhome.shop/  https://tbtbtb.shop/
+  // const myWriteIn = useSelector((state) => state.MyInforSlice.data?.data);
+  // console.log(myWriteIN);
 
-  // 좋아요한 글목록
-  const [mypick, setMyPick] = useState([]);
+  //
+  // 내가 좋아요한 글목록
+  const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
-
   useEffect(() => {
-    dispatch(__getMyPick({ memberId: 1 }));
-  }, [dispatch]);
+    async function fetchData() {
+      const result = await instance.get("https://tbtbtb.shop/tb/mypage/hearts");
+      setMyPick(result.data.data);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div>
       <t.myInformationWrap>
-        <t.userName>{userNickname}님의 마이페이지</t.userName>
+        <t.userName>
+          {userNickname}
+          <span>님의 마이페이지</span>
+        </t.userName>
         <t.Line />
         <ProfileInformation />
 
-        <t.myPickInfo>
-          <span>total</span>
-          <span>12회</span>
+        <t.myTotalInfo>
+          <span>BalanceGame</span>
+          <span>{userGameCnt}</span>
           <t.textLine />
-          <span>산</span>
-          <span>5회</span>
+          <span>작성한 게시글</span>
+          <span>{userPostCnt}</span>
           <t.textLine />
-          <span>바다</span>
-          <span>4회</span>
-        </t.myPickInfo>
+          <span>작성한 댓글</span>
+          <span>{userCommentCnt}</span>
+        </t.myTotalInfo>
 
         <t.mySelectInformation>
           <t.myInformationItem>
             <t.itemHeader>
               <h2>내가 좋아요한 게시물</h2>
-              <select
-                type="number"
-                value={limit}
-                style={{
-                  margin: "auto 10px",
-                }}
-                onChange={({ target: { value } }) => setLimit(Number(value))}
-              >
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-              </select>
               <t.thinLine />
             </t.itemHeader>
             <t.pickPostWrap>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-                {/* mypick,mywrite  p,w 대문자로 바꿀것 */}
-              </t.pickPostItem>
-              {mypick.slice(offset, offset + limit).map((idx) => {
-                if (mypick.length === 0) {
-                  <h1>좋아요한 글이 없습니다.</h1>;
-                } else {
-                  <t.pickPostItem key={idx.id}>
-                    <h3>
-                      <t.pickPostProfile src={idx.profileImgimg} alt="프로필" />
-                      <t.pickPostNickname>{idx.nickName}</t.pickPostNickname>
-                    </h3>
-                  </t.pickPostItem>;
-                }
-              })}
+              {typeof myPick === typeof "string" ? (
+                <h1>좋아요한 글이 없습니다.</h1>
+              ) : (
+                myPick.slice(offset, offset + limit).map((idx) => {
+                  if (myPick.length === 0) {
+                    return <h1>좋아요한 글이 없습니다.</h1>;
+                  } else {
+                    return (
+                      <t.pickPostItem
+                        key={idx.postId}
+                        onClick={() => navigate(`/detail/${idx.postId}`)}
+                      >
+                        <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                        <div>{idx.title}</div>
+                        <h5>{idx.nickName}</h5>
+                      </t.pickPostItem>
+                    );
+                  }
+                })
+              )}
             </t.pickPostWrap>
             <t.footer>
               <t.thinLine />
               <Pagination
-                total={mypick.length}
+                total={myPick.length}
                 limit={limit}
                 page={page}
                 setPage={setPage}
@@ -148,7 +142,7 @@ export default function MyPageView() {
           <t.myInformationItem>
             <t.itemHeader>
               <h2>내가 작성한 글 목록</h2>
-              <select
+              {/* <select
                 type="number"
                 value={limit}
                 style={{
@@ -161,36 +155,38 @@ export default function MyPageView() {
                 <option value="10">10</option>
                 <option value="15">15</option>
                 <option value="20">20</option>
-              </select>
+              </select> */}
               <t.thinLine />
             </t.itemHeader>
             <t.pickPostWrap>
-              <t.pickPostItem>
-                <t.pickPostImg src={img} alt="게시글이미지" />
-                <div>
-                  <t.pickPostProfile src={img} alt="프로필" />
-                  <t.pickPostNickname>이곳은아이디</t.pickPostNickname>
-                </div>
-              </t.pickPostItem>
-              {mywrite
-                .slice(writeoffset, writeoffset + writelimit)
-                .map((idx) => {
-                  if (mywrite.length === 0) {
-                    <h1>작성한 글이 없습니다.</h1>;
-                  } else {
-                    <t.pickPostItem key={idx.id}>
-                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <h3>{idx.createdAt}</h3>
-                    </t.pickPostItem>;
-                  }
-                })}
+              {typeof posts === typeof "string" ? (
+                <h1>작성한 글이 없습니다.</h1>
+              ) : (
+                posts
+                  .slice(writeoffset, writeoffset + writelimit)
+                  .map((idx) => {
+                    if (posts.length === 0) {
+                      return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
+                    } else {
+                      return (
+                        <t.pickPostItem
+                          key={idx.postId}
+                          onClick={() => navigate(`/detail/${idx.postId}`)}
+                        >
+                          <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                          <div>{idx.title}</div>
+                          <h5>{idx.createdAt}</h5>
+                        </t.pickPostItem>
+                      );
+                    }
+                  })
+              )}
             </t.pickPostWrap>
 
             <t.footer>
               <t.thinLine />
               <Pagination
-                total={mywrite.length}
+                total={posts.length}
                 limit={writelimit}
                 page={writepage}
                 setPage={setWritePage}

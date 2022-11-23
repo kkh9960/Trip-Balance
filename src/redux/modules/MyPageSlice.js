@@ -6,62 +6,73 @@ import instance from "../../lib/instance";
 export const __getMyInformation = createAsyncThunk(
   "GET_MY_INFO",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
-      const { data } = await instance.get(
-        `/tb/members/info/${payload}`,
-        payload
-      );
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      const { data } = await instance.get(`tb/mypage/info/`, payload);
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
-export const __postMyInformation = createAsyncThunk(
-  "POST_MY_INFO",
+//회원정보 수정
+export const __putMyInformation = createAsyncThunk(
+  "PUT_MY_INFO",
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
-      const { data } = await instance.post(`/tb/members/myself`, payload);
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      const { data } = await instance.put(`tb/mypage/setinfo`, {
+        nickName: payload.nickName,
+        self: payload.self,
+        profileImg: payload.profileImg,
+      });
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
-
-//내가 작성한글
-export const __getMyWrite = createAsyncThunk(
-  "GET_MY_WRITE",
-  async (payload, thunkAPI) => {
-    console.log(payload);
-    try {
-      const { data } = await instance.get("/tb/mypage/posts", payload);
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
-    } catch (error) {}
-  }
-);
-
-// 좋아요한 글
+//회원이 작성한 글목록
+// export const __getMyPosts = createAsyncThunk(
+//   "GET_MY_POST",
+//   async (payload, thunkAPI) => {
+//     try {
+//       const { data } = await instance.get("tb/mypage/posts", payload);
+//       return thunkAPI.fulfillWithValue(data);
+//     } catch (error) {}
+//   }
+// );
+//좋아요한 글목록
 export const __getMyPick = createAsyncThunk(
   "GET_MY_PICK",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
-      const { data } = await instance.get("/tb/mypage/hearts/pageNum", payload);
-      console.log(data.data);
-      return thunkAPI.fulfillWithValue(data.data);
+      const { data } = await instance.get("tb/mypage/hearts", payload);
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
+  }
+);
+
+//내가 작성한글 들어가서 보는곳
+export const __getMyWriteIn = createAsyncThunk(
+  "GET_MY_WRITE",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(
+        `tb/mypage/posts/${payload}`,
+        payload
+      );
+      return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
 
 const initialState = {
-  data: [],
+  myinfor: [],
+  mywrite: [],
+  myposts: [],
+  mypick: [],
   isLoading: false,
   error: null,
 };
 
-export const myInfoSlice = createSlice({
+export const MyInforSlice = createSlice({
   name: "myInfo",
   initialState,
   reducers: {},
@@ -71,29 +82,40 @@ export const myInfoSlice = createSlice({
     },
     [__getMyInformation.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.myinfor = action.payload.data;
     },
     [__getMyInformation.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
-    [__getMyWrite.pending]: (state) => {
+    // [__getMyPosts.pending]: (state) => {
+    //   state.isLoading = true;
+    // },
+    // [__getMyPosts.fulfilled]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.myposts = action.payload.data;
+    // },
+    // [__getMyPosts.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.payload;
+    // },
+    [__getMyWriteIn.pending]: (state) => {
       state.isLoading = true;
     },
-    [__getMyWrite.fulfilled]: (state, action) => {
+    [__getMyWriteIn.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
     },
-    [__getMyWrite.rejected]: (state, action) => {
+    [__getMyWriteIn.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
+    //좋아요
     [__getMyPick.pending]: (state) => {
       state.isLoading = true;
     },
     [__getMyPick.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.mypick = action.payload.data;
     },
     [__getMyPick.rejected]: (state, action) => {
       state.isLoading = false;
@@ -101,4 +123,4 @@ export const myInfoSlice = createSlice({
     },
   },
 });
-export default myInfoSlice.reducer;
+export default MyInforSlice.reducer;
