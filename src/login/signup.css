@@ -18,6 +18,24 @@
   left: 80px;
   top: 17px;
 }
+.signup-wrapper .emailbutton {
+  width: 100px;
+  position: absolute;
+  left: 1138px;
+  top: 240px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+}
+.signup-wrapper .nicknamebutton {
+  width: 100px;
+  left: 1138px;
+  position: relative;
+  bottom: 730px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: none;
+  border-radius: 10px;
+}
 
 .signup-wrapper form {
   padding: 30px;

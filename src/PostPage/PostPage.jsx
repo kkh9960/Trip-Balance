@@ -7,8 +7,18 @@ import Cards from "./Cards";
 import BalanceButton from "./BalanceButton";
 import styled from "styled-components";
 import TopButton from "./TopButton";
-
+import { useDispatch, useSelector } from "react-redux";
+import { __getBoard } from "../redux/modules/BoardSlice";
+import InfiniteScroll from "./InpiniteScroll";
 const PostPage = () => {
+  // const data = useSelector((state) => state.BoardSlice.posts);
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(__getBoard());
+  // }, []);
+
   return (
     <motion.div
       className="loginPage"
@@ -19,9 +29,9 @@ const PostPage = () => {
       <Header />
       <Banner />
       <Layout>
-        <Cards />
+        {/* <Cards /> */}
 
-        {/* <InpiniteScroll data={data} /> */}
+        {/* <InfiniteScroll data={data} /> */}
       </Layout>
       <BalanceButton />
       <TopButton />
