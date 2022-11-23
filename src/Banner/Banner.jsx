@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Blue = styled.div`
-  width: 1920px;
+  width: 100%;
   height: 1056px;
 `;
 export const Title = styled.h1`
@@ -50,7 +50,7 @@ export const Trip3 = styled.div`
   left: 510px;
 `;
 export const Ameral = styled.div`
-  width: 1920px;
+  width: 100%;
   height: 1056px;
 `;
 export const Title2 = styled.div`
@@ -87,7 +87,7 @@ export const Retro = styled.img`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ;
 `;
 export const Bblue = styled.div`
-  width: 1920px;
+  width: 100%;
   height: 1056px;
 `;
 export const Balance = styled.div`

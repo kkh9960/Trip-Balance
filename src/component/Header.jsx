@@ -99,10 +99,10 @@ export default Header;
 const Nickname = styled.div`
   display: flex;
   position: relative;
-  left: 60px;
 `;
 
 const Container = styled.div`
+  width: 100%;
   height: 120px;
   background-color: #fff;
   margin: 0 auto;
