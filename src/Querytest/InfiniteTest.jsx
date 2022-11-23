@@ -29,8 +29,9 @@ export const InfiniteTest = () => {
 
   const infiscroll = data?.pages[0]?.data;
   console.log(hasNextPage);
-  console.log(infiscroll);
   console.log(data?.pageParams);
+  console.log(infiscroll);
+
   if (isLoading) return <div className="loading">loading</div>;
   if (isError) return <div>Error!{error.toString()}</div>;
   // TODO: get data for InfiniteScroll via React Query
@@ -48,3 +49,53 @@ export const InfiniteTest = () => {
     </>
   );
 };
+
+// import axios from "axios";
+// import { useEffect } from "react";
+
+// import InfiniteScroll from "react-infinite-scroller";
+// import { useInView } from "react-intersection-observer";
+// import { useInfiniteQuery } from "react-query";
+
+// import Card from "./Card";
+
+// const fetchPostList = async (pageParam) => {
+//   const res = await axios.get(
+//     `https://dexhome.shop/tb/posts/list?&page=${pageParam}&limit=6`
+//   );
+//   const { posts, isLast } = res.data;
+//   return { posts, nextPage: pageParam + 1, isLast };
+// };
+
+// function Posts() {
+//   const { ref, inView } = useInView();
+//   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+//     "posts",
+//     ({ pageParam = 1 }) => fetchPostList(pageParam),
+//     {
+//       getNextPageParam: (lastPage) =>
+//         !lastPage.isLast ? lastPage.nextPage : undefined,
+//     }
+//   );
+
+//   useEffect(() => {
+//     if (inView) fetchNextPage();
+//   }, [inView]);
+
+//   if (status === "loading") return <div>로딩...</div>;
+//   if (status === "error") return <div>에러!!</div>;
+
+//   return (
+//     <>
+//       <div>
+//         {data?.pages.map((scroll) => (
+//           <div key={scroll.postId}>
+//             <Card title={scroll.title} postId={scroll.postId} />
+//           </div>
+//         ))}
+//       </div>
+//       {isFetchingNextPage ? <div>로딩...</div> : <div ref={ref}></div>}
+//     </>
+//   );
+// }
+// export default Posts;
