@@ -107,7 +107,7 @@ export default function MyPageView() {
             ) : (
               myPick.slice(offset, offset + limit).map((idx) => {
                 if (myPick.length === 0) {
-                  return <h1>좋아요한 글이 없습니다.</h1>;
+                  return <t.empty>좋아요한 글이 없습니다.</t.empty>;
                 } else {
                   return (
                     <t.pickPostItem
@@ -136,20 +136,7 @@ export default function MyPageView() {
         <t.myPostWrap>
           <t.itemHeader>
             <h2>내가 작성한 글 목록</h2>
-            {/* <select
-                type="number"
-                value={limit}
-                style={{
-                  margin: "auto 10px",
-                }}
-                onChange={({ target: { value } }) =>
-                  setWriteLimit(Number(value))
-                }
-              >
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-              </select> */}
+
             <t.thinLine />
           </t.itemHeader>
           <t.pickPostWrap>

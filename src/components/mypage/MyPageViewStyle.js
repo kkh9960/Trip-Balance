@@ -27,6 +27,7 @@ export const textLine = styled.div`
   transform: (rotate: 90deg);
   background-color: #555;
 `;
+export const empty = styled.div``;
 export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
@@ -95,11 +96,10 @@ export const itemHeader = styled.div`
 export const pickPostWrap = styled.div`
   margin: 80px 30px;
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
-  grid-template-rows: repeat(2, minmax(100px, 50%));
 `;
 export const pickPostItem = styled.div`
   width: 180px;

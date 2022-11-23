@@ -10,6 +10,7 @@ import Header from "../../component/Header";
 import Footer from "../../component/Footer";
 import PostBar from "../../components/mainpage/postBar/PostBar";
 import * as t from "./MainPageStyle";
+import Home from "../../Banner/Home";
 
 export default function MainPage() {
   return (
@@ -19,7 +20,7 @@ export default function MainPage() {
         {/* <t.mainImageBox>
           <MainSlider />
         </t.mainImageBox> */}
-
+        <Home />
         <t.mapGroup>
           <MapBar />
           <DoughnutChart />

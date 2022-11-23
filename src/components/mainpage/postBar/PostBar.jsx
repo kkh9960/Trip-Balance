@@ -40,26 +40,28 @@ export default function Post() {
               }
             })}
         </t.hotelList>
+      </t.hotelContainer>
+      <t.blogContainer>
         <t.blogList>
-          <t.hotelText>{cityName.split(" ")[0]}추천 블로그</t.hotelText>
+          <t.blogText>{cityName.split(" ")[0]}추천 블로그</t.blogText>
           {blogList &&
             blogList[0].map((idx) => {
               if (blogList.length === 0) {
                 return <h1 key={idx.id}>작성한 글이 없습니다.</h1>;
               } else {
                 return (
-                  <t.hotelListBox
+                  <t.blogListBox
                     key={idx.id}
                     onClick={() => navigate(`/detail/${idx.id}`)}
                   >
-                    <t.hotelImgBox src={idx.thumbnail} alt="게시글이미지" />
-                    <t.hotelTitle>{idx.title}</t.hotelTitle>
-                  </t.hotelListBox>
+                    <t.blogImgBox src={idx.thumbnail} alt="게시글이미지" />
+                    <t.blogTitle>{idx.title}</t.blogTitle>
+                  </t.blogListBox>
                 );
               }
             })}
         </t.blogList>
-      </t.hotelContainer>
+      </t.blogContainer>
     </t.postContainer>
   );
 }
