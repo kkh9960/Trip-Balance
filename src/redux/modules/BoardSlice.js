@@ -3,20 +3,12 @@ import axios from "axios";
 import instance from "../../lib/instance";
 
 // 서버주소 : https://coding-kym.shop
-function getRandNumber() {
-  const ranNum = Math.floor(Math.random() * 50 + 1);
-  return ranNum;
-}
 
 export const __getBoard = createAsyncThunk(
   "GET_BOARD",
-  async (payload, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/tb/posts`, {
-        params: {
-          page: getRandNumber(),
-        },
-      });
+      const { data } = await instance.get(`/tb/posts/list/0?size=20`);
 
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
