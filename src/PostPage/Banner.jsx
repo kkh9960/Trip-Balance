@@ -24,7 +24,7 @@ const Banner = () => {
 
           <Write
             onClick={() => {
-              navigate("/board");
+              navigate("/write");
             }}
           >
             게시글쓰기
