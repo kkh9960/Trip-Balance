@@ -11,7 +11,6 @@ export const balanceButton = styled.img`
 export const balanceButtonWrap = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
 `;
 
 export const balanceTextWrap = styled.div`

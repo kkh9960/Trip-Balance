@@ -8,6 +8,7 @@ import MainSlider from "./imageSlide/MainSlider";
 import Layout from "../../component/Layout";
 import Header from "../../component/Header";
 import Footer from "../../component/Footer";
+import PostBar from "../../components/mainpage/postBar/PostBar";
 import * as t from "./MainPageStyle";
 
 export default function MainPage() {
@@ -15,22 +16,21 @@ export default function MainPage() {
     <Layout>
       <Header />
       <t.main>
-        <t.mainImageBox>
+        {/* <t.mainImageBox>
           <MainSlider />
-        </t.mainImageBox>
+        </t.mainImageBox> */}
 
         <t.mapGroup>
           <MapBar />
           <DoughnutChart />
         </t.mapGroup>
-
-        <t.sideButtonGroup>
+        <PostBar />
+        {/* <t.sideButtonGroup>
           <AddPostButton />
           <ScrollTopButton />
-        </t.sideButtonGroup>
-
-        <Footer />
+        </t.sideButtonGroup> */}
       </t.main>
+      <Footer />
     </Layout>
   );
 }

@@ -10,6 +10,7 @@ import GameResult from "../../pages/game/GameResult";
 import BoardPostDetail from "../../pages/BoardPostDetail";
 import BoardPostModify from "../../pages/BoardPostModify";
 import Loading from "../../components/Loading/Loading";
+import Signup from "../../login/Signup";
 
 const Router = () => {
   return (
@@ -18,6 +19,7 @@ const Router = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/post" element={<PostPage />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/write" element={<BoardWrite />} />
         <Route path="/game" element={<Game />} />
         <Route path="/detail/:id" element={<BoardPostDetail />} />
