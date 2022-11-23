@@ -2,11 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import AWS from "aws-sdk";
-import { __postBoard } from "../redux/modules/BoardSlice";
 import { useParams } from "react-router-dom";
-import { __getBoardDetail } from "../redux/modules/BoardSlice";
+import { __getBoardDetail, __modifyBoard } from "../redux/modules/BoardSlice";
 import Loading from "../components/Loading/Loading";
-import { __modifyBoard } from "../redux/modules/BoardSlice";
 
 const BoardPostModify = () => {
   const dispatch = useDispatch();

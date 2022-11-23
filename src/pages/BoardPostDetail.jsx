@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import "swiper/css";
 import "swiper/css/effect-fade";
+import "swiper/css/effect-flip";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,13 +16,11 @@ import { __deleteBoard } from "../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import { __boardlike } from "../redux/modules/BoardSlice";
 import Loading from "../components/Loading/Loading";
-import { __deleteComment } from "../redux/modules/CommentSlice";
 import {
-  __modifyComment,
-  __postReComment,
   __modifyReComment,
   __deleteReComment,
 } from "../redux/modules/CommentSlice";
+import PostComment from "./PostComment";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -144,9 +143,9 @@ const BoardPostDetail = () => {
         <ImegeWrap>
           <ImegeSlide>
             <Swiper
-              effect={"fade"}
+              effect={"flip"}
               autoplay={{
-                delay: 3000,
+                delay: 2000,
                 disableOnInteraction: false,
               }}
               pagination={{
@@ -265,200 +264,10 @@ const BoardPostDetail = () => {
 };
 export default BoardPostDetail;
 
-const PostComment = ({ idx, item, id, post }) => {
-  const [Editcomment, setEditcomment] = useState("");
-  const [Editmode, setEditmode] = useState(false);
-  const [RecommentWrite, setRecommentWrite] = useState(false);
-  const [recomment, setrecomment] = useState("");
-  useEffect(() => {
-    setEditcomment(item.content);
-  }, []);
-
-  const dispatch = useDispatch();
-
-  const ModifyCancel = () => {
-    setEditmode(!Editmode);
-  };
-  const ModifyComment = () => {
-    setEditmode(!Editmode);
-  };
-  const DeleteComment = () => {
-    console.log("저아이템이요", item.commentId);
-    dispatch(__deleteComment(item.commentId));
-  };
-
-  const ReCommentHandler = (e) => {
-    setrecomment(e.target.value);
-  };
-
-  const ModifyComplete = () => {
-    dispatch(
-      __modifyComment({
-        id: item.commentId,
-        postId: id.id,
-        content: Editcomment,
-      })
-    );
-    setEditmode(!Editmode);
-  };
-
-  const ReWriteHandler = () => {
-    setRecommentWrite(!RecommentWrite);
-    console.log(RecommentWrite);
-  };
-
-  const ChangeEdit = (e) => {
-    setEditcomment(e.target.value);
-  };
-
-  const WriteReComment = () => {
-    dispatch(
-      __postReComment({
-        commentId: item.commentId,
-        content: recomment,
-      })
-    );
-    setRecommentWrite(!RecommentWrite);
-  };
-  console.log("확인욤", item);
-  return (
-    <CommentWrap>
-      <CommentListBox key={idx}>
-        <CommentTitlebox>
-          <CommentUserBox>
-            <CommentImg src="../img/cmtdefault.svg" />
-            <Commentuser>{item?.author}</Commentuser>
-          </CommentUserBox>
-          <CommentBtnWrap>
-            {Editmode ? (
-              <CommentButton onClick={ModifyCancel}>취소</CommentButton>
-            ) : (
-              <CommentButton onClick={ModifyComment}>수정</CommentButton>
-            )}
-            {Editmode ? (
-              <CommentButton onClick={ModifyComplete}>완료</CommentButton>
-            ) : (
-              <CommentButton onClick={DeleteComment}>삭제</CommentButton>
-            )}
-          </CommentBtnWrap>
-        </CommentTitlebox>
-        <Commentbody>
-          {Editmode ? (
-            <CommentModifyinput
-              type="text"
-              maxLength="200"
-              onChange={ChangeEdit}
-              value={Editcomment}
-            />
-          ) : (
-            <Commentdesc onClick={ReWriteHandler}>{item?.content}</Commentdesc>
-          )}
-        </Commentbody>
-      </CommentListBox>
-      {RecommentWrite ? (
-        <BoardReCommentBox>
-          <CommentWriteUserBox>
-            <CommentWriteImg src="../img/cmtdefault.svg" />
-            <CommentWriteUser>{post?.nickName}</CommentWriteUser>
-          </CommentWriteUserBox>
-          <ReCommentTextarea
-            name=""
-            maxLength="50"
-            value={recomment}
-            onChange={ReCommentHandler}
-          />
-          <CommentButtonBox>
-            <CommentWriteButton onClick={WriteReComment}>
-              등록
-            </CommentWriteButton>
-          </CommentButtonBox>
-        </BoardReCommentBox>
-      ) : null}
-      {item.reComments?.map((el, idx) => (
-        <Recomment key={idx} item={el} cmtid={item.commentId} />
-      ))}
-    </CommentWrap>
-  );
-};
-
-const Recomment = ({ item, cmtid }) => {
-  const dispatch = useDispatch();
-
-  const [Editmode, setEditmode] = useState(false);
-  const [EditRecomment, setEditRecomment] = useState("");
-  useEffect(() => {
-    setEditRecomment(item.content);
-  }, []);
-
-  const ModifyCancel = () => {
-    setEditmode(!Editmode);
-  };
-  const ModifyComment = () => {
-    setEditmode(!Editmode);
-  };
-
-  const ModifyComplete = () => {
-    dispatch(
-      __modifyReComment({
-        recommentId: item.recommentId,
-        content: EditRecomment,
-        commentId: cmtid,
-      })
-    );
-    setEditmode(!Editmode);
-  };
-  console.log("너는왜", cmtid);
-
-  const DeleteComment = () => {
-    dispatch(__deleteReComment(item.recommentId));
-  };
-
-  const ChangeEdit = (e) => {
-    setEditRecomment(e.target.value);
-  };
-
-  console.log("나리코아이템", item);
-  return (
-    <RecommentContainer key={item.recommentId}>
-      <CommentTitlebox>
-        <CommentUserBox>
-          <CommentImg src="../img/cmtdefault.svg" />
-          <Commentuser>{item?.author}</Commentuser>
-        </CommentUserBox>
-        <CommentBtnWrap>
-          {Editmode ? (
-            <CommentButton onClick={ModifyCancel}>취소</CommentButton>
-          ) : (
-            <CommentButton onClick={ModifyComment}>수정</CommentButton>
-          )}
-          {Editmode ? (
-            <CommentButton onClick={ModifyComplete}>완료</CommentButton>
-          ) : (
-            <CommentButton onClick={DeleteComment}>삭제</CommentButton>
-          )}
-        </CommentBtnWrap>
-      </CommentTitlebox>
-      <Commentbody>
-        {Editmode ? (
-          <CommentModifyinput
-            type="text"
-            maxLength="200"
-            onChange={ChangeEdit}
-            value={EditRecomment}
-          />
-        ) : (
-          <Commentdesc>{item?.content}</Commentdesc>
-        )}
-      </Commentbody>
-    </RecommentContainer>
-  );
-};
-
 const BoardContentsbox = styled.div`
   width: 100%;
   padding: 80px;
 `;
-
 const BoardcontentWrap = styled.div`
   border: 3px solid #d9d9d9;
   width: 100%;
@@ -466,52 +275,17 @@ const BoardcontentWrap = styled.div`
   border-radius: 50px;
   margin-top: 70px;
 `;
-
-const ReCommentTextarea = styled.textarea`
-  height: 50px;
-  width: 100%;
-  resize: none;
-  border: none;
-  font-size: 16px;
-  border-bottom: 1px solid #b0b0b0;
-  outline: none;
-  font-size: 16px;
-  margin-top: 10px;
-`;
-
-const BoardReCommentBox = styled.div`
-  width: auto;
-  padding: 1rem 0 0 6rem;
-`;
-
-const RecommentContainer = styled.div`
-  padding: 1rem 0 1rem 6rem;
-`;
-
-const CommentWrap = styled.div``;
-
 const CommentWriteUserBox = styled.div`
   display: flex;
   align-items: center;
   margin: 20px 0 0 20px;
   gap: 10px;
 `;
-
 const CommentWriteUser = styled.div`
   font-size: 18px;
   font-weight: bold;
 `;
-
 const CommentWriteImg = styled.img``;
-
-const CommentUserBox = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  text-align: center;
-`;
-
-const CommentImg = styled.img``;
 
 const UserProfile = styled.div`
   background-color: #333;
@@ -535,10 +309,6 @@ const Postnickname = styled.div`
   font-weight: bold;
 `;
 
-const PostUser = styled.div`
-  font-size: 18px;
-`;
-
 const UserNameBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -553,42 +323,6 @@ const CommentModifyinput = styled.input`
   overflow: scroll;
 `;
 
-const CommentBtnWrap = styled.div``;
-
-const Commentuser = styled.div`
-  width: 100%;
-  max-width: 600px;
-`;
-
-const CommentButton = styled.button`
-  background-color: #333;
-  color: white;
-  padding: 5px 20px;
-  margin-left: 20px;
-`;
-
-const CommentTitlebox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const Commentbody = styled.div`
-  margin-top: 20px;
-  padding-left: 20px;
-`;
-
-const Commentdesc = styled.div`
-  cursor: pointer;
-  display: inline;
-`;
-
-const CommentListBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  border-bottom: 1px dotted #cdcdcd;
-`;
 const CommentCount = styled.span`
   font-size: 20px;
   color: #777777;
@@ -719,6 +453,7 @@ const SliderImage = styled.img`
   border-radius: 50px;
   width: 100%;
   height: 100%;
+  object-fit: contain;
 `;
 const ImegePreview = styled.div`
   width: 100%;

@@ -523,7 +523,7 @@ const ImagePreview = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 `;
 const ImegeSelectBox = styled.div`
   width: 100%;
@@ -538,6 +538,7 @@ const ImegeInput = styled.input`
   height: 100%;
   cursor: pointer;
   opacity: 0;
+  object-fit: contain;
 `;
 const ImegePreviewBox = styled.div`
   width: 100%;

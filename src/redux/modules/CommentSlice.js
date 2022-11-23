@@ -178,9 +178,6 @@ const CommentSlice = createSlice({
           ? { ...item, content: action.payload.data.content }
           : item
       );
-
-      console.log("액숀", action.payload.data);
-      console.log("코렝트", current(state));
     },
     [__modifyComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -191,9 +188,20 @@ const CommentSlice = createSlice({
     [__postReComment.fulfilled]: (state, action) => {
       state.isLoading = false;
       console.log(state);
-      console.log(action.payload);
+      console.log("대댓글작성데이터", action.payload);
     },
     [__postReComment.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__modifyReComment.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__modifyReComment.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(state);
+      console.log("대댓글수정데이터", action.payload);
+    },
+    [__modifyReComment.rejected]: (state, action) => {
       state.isLoading = false;
     },
   },

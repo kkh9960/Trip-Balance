@@ -12,11 +12,7 @@ export const __getBoard = createAsyncThunk(
   "GET_BOARD",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/tb/posts`, {
-        params: {
-          page: getRandNumber(),
-        },
-      });
+      const { data } = await instance.get(`/tb/posts/list/0`);
 
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
