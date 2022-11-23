@@ -24,6 +24,7 @@ import {
   Logo3,
   Balancce,
 } from "./Banner";
+import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <Carousel
@@ -46,14 +47,18 @@ function Home(props) {
       </Blue>
       <Ameral>
         <Img src={ameral} />
-        <Retro src={retro} />
+        <Link to="/start">
+          <Retro src={retro} />
+        </Link>
         <Title2>밸런스게임</Title2>
         <Comment>당신에게 맞는 여행지는 어디인가요?</Comment>
         <Comment2>밸런스 게임을 통해서 당신의 여행지를 찾아보세요</Comment2>
       </Ameral>
       <Bblue>
         <Img src={bblue} />
-        <Logo3 src={logo3} />
+        <Link to="/post">
+          <Logo3 src={logo3} />
+        </Link>
         <Balance>Best Balance Trip</Balance>
         <Balancce>가장 핫한 우리의 여행 이야기</Balancce>
       </Bblue>
