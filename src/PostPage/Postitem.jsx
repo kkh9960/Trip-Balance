@@ -11,7 +11,24 @@ const Postitem = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
+  const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
+  const filteredProducts = posts.filter((posts) => {
+    return posts.title.toLowerCase().includes(useInput.toLowerCase());
+  });
+  console.log("데이터", posts);
+  // const search = (e) => {
+  //   if (e.key === "Enter") {
+  //     setUseInput(e.target.value);
+  //   }
+  //   console.log("key press");
+  // };
+
+  const onChange = (e) => {
+    setUseInput(e.target.value);
+  };
+
+  console.log(posts);
 
   useEffect(() => {
     if (posts == 0) {
@@ -84,6 +101,8 @@ const Postitem = () => {
           <TitleSearch
             type="text"
             placeholder="오늘의 핫한 여행지 검색하기"
+            value={useInput}
+            onChange={onChange}
           ></TitleSearch>
           <SearchIcon></SearchIcon>
         </TitleSearchbox>
@@ -95,32 +114,28 @@ const Postitem = () => {
       <PostListWrap>
         <PostListTitle>TB 추천여행지</PostListTitle>
         <PostCardList>
-          {posts &&
-            posts.map((item, idx) => (
-              <CardWrap
-                key={idx}
-                onClick={() => {
-                  goDetail(item.postId);
-                }}
-              >
-                <CardImgbox>
-                  <CardImg src={item.image[0].imgURL} />
-                </CardImgbox>
-                <CardTextbox>
-                  <CardTitle>{item.title}</CardTitle>
-                  <Cardbody>
-                    <Userinfo>
-                      <UserImg src="/img/default3.jpg" />
-                      <CardUserName>{item.author}</CardUserName>
-                    </Userinfo>
-                    <Likeinfo>
-                      <LikeCount>{item.heartNum}</LikeCount>
-                      <LikeImg src="img/heart.svg" />
-                    </Likeinfo>
-                  </Cardbody>
-                </CardTextbox>
-              </CardWrap>
-            ))}
+
+          {filteredProducts.map((item, idx) => (
+            <CardWrap search={filteredProducts}>
+              <CardImgbox>
+                <CardImg src={item.image[0].imgURL} />
+              </CardImgbox>
+              <CardTextbox>
+                <CardTitle>{item.title}</CardTitle>
+                <Cardbody>
+                  <Userinfo>
+                    <UserImg src="/img/default3.jpg" />
+                    <CardUserName>작성자</CardUserName>
+                  </Userinfo>
+                  <Likeinfo>
+                    <LikeCount>{item.heartNum}</LikeCount>
+                    <LikeImg src="img/heart.svg" />
+                  </Likeinfo>
+                </Cardbody>
+              </CardTextbox>
+            </CardWrap>
+          ))}
+
         </PostCardList>
       </PostListWrap>
       <Viewbox>
