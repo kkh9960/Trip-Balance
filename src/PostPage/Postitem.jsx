@@ -52,6 +52,10 @@ const Postitem = () => {
     setpage(page + 1);
   };
 
+  const goDetail = (id) => {
+    navigator(`/detail/${id}`);
+  };
+
   console.log(posts);
   console.log(best);
 
@@ -110,6 +114,7 @@ const Postitem = () => {
       <PostListWrap>
         <PostListTitle>TB 추천여행지</PostListTitle>
         <PostCardList>
+
           {filteredProducts.map((item, idx) => (
             <CardWrap search={filteredProducts}>
               <CardImgbox>
@@ -130,6 +135,7 @@ const Postitem = () => {
               </CardTextbox>
             </CardWrap>
           ))}
+
         </PostCardList>
       </PostListWrap>
       <Viewbox>
@@ -219,6 +225,7 @@ const CardWrap = styled.div`
   height: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+  cursor: pointer;
   &:hover {
     transform: translate(0, -5px);
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);

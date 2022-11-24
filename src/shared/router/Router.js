@@ -20,7 +20,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/board" element={<BoardWrite />} />
-        {/* <Route path="/" element={<MainPage />} /> */}
+         <Route path="/" element={<MainPage />} /> 
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/signup" element={<Signup />} />
@@ -33,7 +33,6 @@ const Router = () => {
         <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
 
-        <Route path="/" element={<Postitem />} />
       </Routes>
     </BrowserRouter>
   );

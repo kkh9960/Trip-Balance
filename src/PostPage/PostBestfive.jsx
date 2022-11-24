@@ -49,7 +49,7 @@ const PostBestfive = ({ best }) => {
         <ul className="items">
           {best &&
             best.map((item, idx) => (
-              <li className="item">
+              <li className="item" key={idx}>
                 <div className="itemimgbox">
                   <img className="itemimg" src={item.img} />
                 </div>
