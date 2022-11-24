@@ -128,6 +128,7 @@ const CardWrap = ({ element, index, search }) => {
     navigator(`/detail/${element.postId}`);
   };
 
+  console.log(element);
   return (
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
@@ -138,7 +139,7 @@ const CardWrap = ({ element, index, search }) => {
         />
         <TextBox>
           <Title>
-            개수
+            {element.heartNum}
             <FcLike />
           </Title>
           <Name>{element.title}</Name>

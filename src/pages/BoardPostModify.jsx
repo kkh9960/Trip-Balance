@@ -22,6 +22,9 @@ const BoardPostModify = () => {
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
   const [loading, setloading] = useState(true);
+  const [ModalEdit, setModalEdit] = useState(false);
+  const imagewrite = "../img/imagewrite.jpg";
+  const noimage = "../img/noimage.jpg";
 
   let localint = "";
   let localdetailint = "";
@@ -168,7 +171,7 @@ const BoardPostModify = () => {
   //트러블슈팅 ##
   //setState는 즉각적으로 업데이트하지않고 promise를 통해 비동기적으로 변경시키므로
   //반복문이 끝나기전까지는 state가 변경되지않는다. 1번부터 4번까지라면, 4번째 데이터만 state에 반영된다.
-  //변수에 담아서 해결! 끼얏호우! >ㅅ<
+  //변수에 담아서 해결
   useEffect(() => {
     if (mediaList) {
       for (let x in mediaList) {
@@ -334,6 +337,33 @@ const BoardPostModify = () => {
     }
   }, [imgremovelength]);
 
+  const imageremove = (id, i, i2) => {
+    console.log(id, i);
+    let target = document.getElementById(id);
+    console.log(target);
+    if (target == null) {
+      console.log("123");
+    } else {
+      console.log("456");
+      setImgPreview(ImgPreview.filter((el) => el.imgURL !== target.src));
+      if (i) {
+        setFileLink(i);
+      } else {
+        if (i2) {
+          setFileLink(i2);
+        } else {
+          setFileLink(imagewrite);
+        }
+      }
+    }
+  };
+  const previewchange = (e) => {
+    if (e.target.src.includes("img/noimage.jpg")) {
+    } else {
+      setFileLink(e.target.src);
+    }
+  };
+
   console.log(FileLink);
 
   console.log(Category);
@@ -353,38 +383,42 @@ const BoardPostModify = () => {
 
   console.log(testob);
 
+  const WriteOut = () => {
+    navigator("/post");
+  };
+
+  const ModalHandler = () => {
+    setModalEdit(!ModalEdit);
+  };
+
   return loading ? (
     <Loading />
   ) : (
-    <BoardWriteContainer onSubmit={onSubmitHandler}>
-      <BoardWriteWrap>
-        <WriteTitle>
-          <TitleInput
-            name="title"
-            type="text"
-            id="text_oi"
-            placeholder="제목을 입력해주세요."
-            maxLength="30"
-            value={contents?.title || ""}
-            required
-            onChange={onChangeDataHandler}
-          />
-        </WriteTitle>
-        <ImegeCategoryBox>
-          <ImegeBox>
-            <ImagePreview src={FileLink} />
-            <ImegeTitle>
-              업로드 업로드 & 드래그
+    <>
+      <BoardWriteContainer onSubmit={onSubmitHandler}>
+        <TitleInput
+          name="title"
+          type="text"
+          placeholder="제목을 입력해주세요."
+          maxLength="30"
+          value={contents?.title || ""}
+          required
+          onChange={onChangeDataHandler}
+        />
+        <BoardContentWrap>
+          <BaordWritesection>
+            <ImegeSelectBox>
+              <ImagePreview src={FileLink} />
               <ImegeInput
                 type="file"
-                name="img"
                 accept="image/*"
                 onChange={onFileUpload}
               />
-            </ImegeTitle>
-          </ImegeBox>
-          <CategoryWrap>
-            <CategoryBox>
+            </ImegeSelectBox>
+          </BaordWritesection>
+
+          <BoardButtonsection>
+            <Categorysection>
               <CategorySelect
                 name="category1"
                 id="cate_parent"
@@ -550,85 +584,314 @@ const BoardPostModify = () => {
                 )}
               </CategorySelect>
               <PetCheckBox>
-                <PetCheck
-                  type="checkbox"
-                  id="pet"
-                  checked={Pet}
-                  onChange={PetHandler}
-                />
-                <PetLabel htmlFor="pet">반려동물</PetLabel>
+                <PetLabel htmlFor="pet">반려동물동반여부</PetLabel>
+                <PetCheck type="checkbox" id="pet" onChange={PetHandler} />
               </PetCheckBox>
-            </CategoryBox>
-          </CategoryWrap>
-        </ImegeCategoryBox>
+            </Categorysection>
+          </BoardButtonsection>
+        </BoardContentWrap>
         <ImegePreviewBox>
-          {formoon.map((e, i) => (
-            <UploadImegePreview
-              key={i}
-              src={ImgPreview[i]?.imgURL ? ImgPreview[i]?.imgURL : DefaultImega}
-              alt=""
-              onClick={Imageremove}
-            />
-          ))}
+          <ImegePreviewWrap>
+            {formoon.map((e, i) => (
+              <UploadImageBox key={i}>
+                <UploadImegePreview
+                  key={i}
+                  id={ImgPreview[i]?.imgURL}
+                  src={ImgPreview[i]?.imgURL ? ImgPreview[i]?.imgURL : noimage}
+                  alt=""
+                  onClick={previewchange}
+                />
+                <Imagedelete
+                  onClick={() =>
+                    imageremove(
+                      ImgPreview[i]?.imgURL,
+                      ImgPreview[i - 1]?.imgURL,
+                      ImgPreview[i + 1]?.imgURL
+                    )
+                  }
+                ></Imagedelete>
+              </UploadImageBox>
+            ))}
+          </ImegePreviewWrap>
+          <ImegePreviewtext>
+            이미지는 총 10개까지 첨부 할 수 있으며, 맨 처음 이미지가 대표
+            이미지로 설정됩니다.
+          </ImegePreviewtext>
         </ImegePreviewBox>
-        <WriteContentBox>
-          <WriteContent
-            name="content"
-            id=""
-            value={contents?.content}
-            cols="30"
-            rows="10"
-            placeholder="내용을 입력해 주세요."
-            required
-            onChange={onChangeDataHandler}
-          />
-        </WriteContentBox>
-        <ButtonWrap>
-          <WriteButton>저장</WriteButton>
-          <CancleButton type="button">취소</CancleButton>
-        </ButtonWrap>
-      </BoardWriteWrap>
-    </BoardWriteContainer>
+
+        <BoardWriteTextarea
+          name="content"
+          value={contents?.content}
+          cols="30"
+          rows="10"
+          placeholder="내용을 입력해 주세요."
+          required
+          onChange={onChangeDataHandler}
+        />
+
+        <Buttonsection>
+          <WriteButton>등록</WriteButton>
+          <Cancelbutton type="button" onClick={ModalHandler}>
+            취소
+          </Cancelbutton>
+        </Buttonsection>
+      </BoardWriteContainer>
+
+      {ModalEdit ? (
+        <Modal onClick={ModalHandler}>
+          <ModalWrap>
+            <ModalCont
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
+            >
+              <ModalTextbox>
+                <div>글 수정을 취소하고 나가시겠습니까?</div>
+                <span>작성 내용은 저장되지 않습니다.</span>
+              </ModalTextbox>
+              <ModalBtnbox>
+                <Outbtn onClick={WriteOut}>나가기</Outbtn>
+                <Cancelbtn onClick={ModalHandler}>취소</Cancelbtn>
+              </ModalBtnbox>
+            </ModalCont>
+          </ModalWrap>
+        </Modal>
+      ) : null}
+    </>
   );
 };
 
 export default BoardPostModify;
-const ImegePreviewBox = styled.div`
-  width: 100%;
-  height: 100px;
-  padding: 20px;
+
+const Outbtn = styled.button`
+  font-size: 16px;
+  background-color: #00c1ec;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+`;
+const Cancelbtn = styled.button`
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #777777;
+`;
+
+const ModalBtnbox = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 30px;
 `;
 
-const UploadImegePreview = styled.img`
-  flex: 1;
-  width: 91px;
-  height: 100px;
-  object-fit: cover;
+const ModalTextbox = styled.div`
+  padding: 50px 50px 30px 50px;
+  span {
+    color: red;
+  }
+`;
+
+const ModalCont = styled.div`
+  height: 200px;
+  width: 400px;
+  background-color: #fff;
   border-radius: 10px;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
 `;
 
-const PetLabel = styled.label`
-  font-size: 22px;
-  margin-left: 20px;
-`;
-
-const PetCheckBox = styled.div`
-  width: 100%;
-  height: auto;
+const ModalWrap = styled.div`
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-const PetCheck = styled.input`
-  width: 80px;
+
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+const BoardWriteContainer = styled.form`
+  width: 95%;
+  max-width: 1440px;
+  margin: 100px auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+const BoardContentWrap = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  gap: 20px;
+`;
+
+const TitleInput = styled.input`
+  width: 100%;
   height: 40px;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  outline: none;
+`;
+
+const BaordWritesection = styled.div`
+  width: 100%;
+  max-width: 1074px;
+  height: auto;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+`;
+const ImagePreview = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+const ImegeSelectBox = styled.div`
+  width: 100%;
+  max-width: 1074px;
+  height: 300px;
+  position: relative;
+  border: 4px dashed #cdcdcd;
+`;
+const ImegeInput = styled.input`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  object-fit: contain;
+`;
+const ImegePreviewBox = styled.div`
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+  display: flex;
+  padding: 20px 5px;
+  flex-direction: column;
+`;
+const ImegePreviewWrap = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+  gap: 20px;
+  justify-content: center;
+`;
+const ImegePreviewtext = styled.div`
+  font-size: 16px;
+  color: #b3b3b3;
+  margin: 15px 0 0 5px;
+`;
+const UploadImegePreview = styled.img`
+  width: 110px;
+  height: 133px;
+  object-fit: cover;
+  flex: 1;
+  border: 2px solid #b3b3b3;
+  border-radius: 4px;
+`;
+const UploadImageBox = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+  &:first-child::before {
+    content: "대표";
+    text-align: center;
+    line-height: 2;
+    width: 114px;
+    height: 40px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #00c1ec;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    border-radius: 4px;
+  }
+`;
+const Imagedelete = styled.div`
+  cursor: pointer;
+  position: absolute;
+  top: -15px;
+  right: -3px;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #b3b3b3;
+  border-radius: 50%;
+  background-image: url(img/imageremove.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
+const BoardWriteTextarea = styled.textarea`
+  width: 99%;
+  height: 722px;
+  outline: none;
+  resize: none;
+  border: 2px solid #aaaaaa;
+  border-radius: 10px;
+  font-size: 17px;
+  padding: 10px;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+`;
+
+const BoardButtonsection = styled.div`
+  width: 100%;
+  max-width: 344px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+`;
+const Categorysection = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+const CategorySelect = styled.select`
+  appearance: none;
+  width: 100%;
+  max-width: 344px;
+  height: 60px;
+  text-align: center;
+  font-size: 20px;
+  color: #777777;
+  border-radius: 10px;
+  border: 2px solid #777777;
+  background: url(img/category.jpg) no-repeat right 13px center;
+`;
+const PetCheckBox = styled.div`
+  width: 100%;
+  max-width: 344px;
+  height: 60px;
+  border: 2px solid #777777;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+const PetCheck = styled.input`
+  width: 60px;
+  height: 30px;
   position: relative;
   -webkit-appearance: none;
   background: #c6c6c6;
-  border-radius: 20px;
+  border-radius: 15px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   transition: all 0.5s;
   &:checked {
@@ -637,9 +900,9 @@ const PetCheck = styled.input`
   &::before {
     content: "";
     position: absolute;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
     top: 0;
     left: 0;
     background: #fff;
@@ -648,139 +911,35 @@ const PetCheck = styled.input`
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   }
   &:checked::before {
-    left: 40px;
+    left: 30px;
   }
 `;
+const PetLabel = styled.label`
+  font-size: 20px;
+  color: #777777;
+`;
 
-const ButtonWrap = styled.div`
-  text-align: center;
-  padding: 20px;
-  gap: 20px;
+const Buttonsection = styled.div`
+  width: 100%;
+  height: auto;
+  gap: 50px;
   display: flex;
   justify-content: center;
+  margin-top: 30px;
 `;
 const WriteButton = styled.button`
-  width: 150px;
-  height: 50px;
-  border: none;
-  color: white;
-  background-color: #222;
-  font-size: 16px;
-  cursor: pointer;
-  &:hover {
-    background-color: #000;
-  }
-`;
-const CancleButton = styled.button`
-  width: 150px;
-  height: 50px;
-  border: 1px solid #ddd;
-  color: 222;
-  background-color: white;
-  font-size: 16px;
-  cursor: pointer;
-  &:hover {
-    border: 1px solid #222;
-  }
-`;
-
-const BoardWriteContainer = styled.form`
-  width: 90%;
-  max-width: 1000px;
-  height: auto;
-  min-height: 1000px;
-  margin: 0 auto;
-  margin-top: 100px;
-`;
-const BoardWriteWrap = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-const WriteTitle = styled.div`
-  width: 100%;
-  padding: 0 20px;
-  text-align: center;
-`;
-const TitleInput = styled.input`
-  width: 100%;
-  height: 40px;
   font-size: 20px;
-  font-weight: bold;
-  border-radius: 5px;
-  border: 1px solid #999;
-  padding: 5px;
-  outline: none;
+  color: #fff;
+  background-color: #00c1ec;
+  width: 344px;
+  height: 60px;
+  border-radius: 10px;
 `;
-const ImegeCategoryBox = styled.div`
-  width: 100%;
-  height: 250px;
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-`;
-const ImagePreview = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-`;
-const ImegeBox = styled.div`
-  flex: 2;
-  position: relative;
-  border: 3px dashed #cdcdcd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`;
-const ImegeTitle = styled.div``;
-const ImegeInput = styled.input`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-  opacity: 0;
-`;
-const CategoryWrap = styled.div`
-  flex: 1;
-`;
-const CategoryBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-`;
-const CategorySelect = styled.select`
-  width: 70%;
-  height: 50px;
-  font-size: 15px;
-  color: #999;
-  border: 2px solid #ddd;
-  appearance: none;
-  -webkit-appearance: none;
-`;
-const WriteContentBox = styled.div`
-  width: 100%;
-  padding: 0 20px;
-`;
-const WriteContent = styled.textarea`
-  width: 100%;
-  min-height: 100px;
-  max-height: 500px;
-  font-size: 18px;
-  outline: none;
-  border-radius: 5px;
-  resize: none;
-  border: 1px solid #999;
-  padding: 10px;
-  &::-webkit-scrollbar {
-    width: 0px;
-  }
+const Cancelbutton = styled.button`
+  font-size: 20px;
+  width: 344px;
+  height: 60px;
+  border-radius: 10px;
+  color: #777777;
+  border: 2px solid #777777;
 `;

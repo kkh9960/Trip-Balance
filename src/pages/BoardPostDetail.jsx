@@ -31,7 +31,7 @@ const BoardPostDetail = () => {
   const imagel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [imagelength, setimegelength] = useState(imagel);
   const dispatch = useDispatch();
-  const userNickname = localStorage.getItem("nickName");
+  const userNickname = sessionStorage.getItem("nickName");
   const [loading, setLoading] = useState(true);
 
   const ImegaURL = [
@@ -70,7 +70,7 @@ const BoardPostDetail = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading) dispatch(__getmypost(post.authorId));
+    if (!isLoading) dispatch(__getmypost(post?.authorId));
   }, [isLoading]);
 
   useEffect(() => {
