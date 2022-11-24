@@ -12,8 +12,14 @@ const Header = () => {
   const [modal, setModal] = useState(false);
   const [cookie, setCookie, removeCookie] = useCookies();
   const nickname = sessionStorage.getItem("nickName");
+  const [header, setHeader] = useState("/");
+  const location = useLocation();
   // console.log(`지금 accessToken: ${accessToken}`);
   // console.log(`지금 refreshToken: ${refreshToken}`);
+  useEffect(() => {
+    setHeader(location.pathname);
+  }, [location]);
+  console.log(header);
   async function logout() {
     // 백으로부터 받은 응답
     //ss
@@ -39,58 +45,109 @@ const Header = () => {
   }
 
   return (
-    <Container>
-      {modal ? (
-        <LoginPage />
-      ) : (
-        <Layout>
-          <WriteWrap>
-            <Link to="/">
-              <Logo
-                src={TripImage}
-                onClick={() => {
-                  navigate("/post");
-                }}
-              />
-            </Link>
+    <>
+      {header === "/" ? (
+        <Container1>
+          {modal ? (
+            <LoginPage />
+          ) : (
+            <Layout>
+              <WriteWrap>
+                <Link to="/">
+                  <Logo
+                    src={TripImage}
+                    onClick={() => {
+                      navigate("/post");
+                    }}
+                  />
+                </Link>
 
-            <Posting
-              onClick={() => {
-                navigate("/post");
-              }}
-            >
-              게시판
-            </Posting>
-            <Trip>추천여행지</Trip>
-            <Mypage
-              onClick={() => {
-                navigate("/mypage");
-              }}
-            >
-              마이페이지
-            </Mypage>
-            {nickname ? (
-              <div>
-                <div>
-                  <Logout onClick={logout}>로그아웃</Logout>
-                </div>
-                <div>
-                  <Nickname>{nickname}</Nickname>
-                </div>
-              </div>
-            ) : (
-              <Login
-                onClick={() => {
-                  setModal(!modal);
-                }}
-              >
-                로그인
-              </Login>
-            )}
-          </WriteWrap>
-        </Layout>
+                <Posting
+                  onClick={() => {
+                    navigate("/post");
+                  }}
+                >
+                  게시판
+                </Posting>
+                <Trip>추천여행지</Trip>
+                <Mypage
+                  onClick={() => {
+                    navigate("/mypage");
+                  }}
+                >
+                  마이페이지
+                </Mypage>
+                {nickname ? (
+                  <div>
+                    <div>
+                      <Logout onClick={logout}>로그아웃</Logout>
+                    </div>
+                  </div>
+                ) : (
+                  <Login
+                    onClick={() => {
+                      setModal(!modal);
+                    }}
+                  >
+                    로그인
+                  </Login>
+                )}
+              </WriteWrap>
+            </Layout>
+          )}
+        </Container1>
+      ) : (
+        <Container2>
+          {modal ? (
+            <LoginPage />
+          ) : (
+            <Layout>
+              <WriteWrap>
+                <Link to="/">
+                  <Logo
+                    src={TripImage}
+                    onClick={() => {
+                      navigate("/post");
+                    }}
+                  />
+                </Link>
+
+                <Posting
+                  onClick={() => {
+                    navigate("/post");
+                  }}
+                >
+                  게시판
+                </Posting>
+                <Trip>추천여행지</Trip>
+                <Mypage
+                  onClick={() => {
+                    navigate("/mypage");
+                  }}
+                >
+                  마이페이지
+                </Mypage>
+                {nickname ? (
+                  <div>
+                    <div>
+                      <Logout onClick={logout}>로그아웃</Logout>
+                    </div>
+                  </div>
+                ) : (
+                  <Login
+                    onClick={() => {
+                      setModal(!modal);
+                    }}
+                  >
+                    로그인
+                  </Login>
+                )}
+              </WriteWrap>
+            </Layout>
+          )}
+        </Container2>
       )}
-    </Container>
+    </>
   );
 };
 
@@ -100,8 +157,15 @@ const Nickname = styled.div`
   display: flex;
   position: relative;
 `;
-
-const Container = styled.div`
+const Container1 = styled.div`
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 120px;
+  margin: 0 auto;
+  text-underline-position: under;
+`;
+const Container2 = styled.div`
   width: 100%;
   height: 120px;
   background-color: #fff;

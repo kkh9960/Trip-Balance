@@ -3,15 +3,20 @@ import styled from "styled-components";
 export const userName = styled.div`
   width: 500px;
   font-size: 28px;
-  margin: 0 0 5px 170px;
+  animation: 3s;
+  animation-name: slideLeft;
+  margin: 0 0 5px 300px;
   span {
     font-size: 22px;
   }
 `;
+
 export const UserInfor = styled.div`
   display: flex;
-  width: 1300px;
+  width: 100%;
   margin: 0 auto;
+  align-content: center;
+  justify-content: center;
 `;
 
 export const myInformation = styled.div`
@@ -19,6 +24,17 @@ export const myInformation = styled.div`
   height: 500px;
   display: flex;
   align-items: center;
+
+  animation: 2s;
+  animation-name: slideLeft;
+  @keyframes slideLeft {
+    from {
+      transform: translateX(-1000px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
 `;
 export const ProfileImgBox = styled.img`
   width: 315px;
@@ -27,6 +43,12 @@ export const ProfileImgBox = styled.img`
   object-fit: cover;
   border-radius: 50%;
   border: 5px double gray;
+  box-shadow: 0 0 6px;
+  transition: 0.2s linear;
+  :hover {
+    box-shadow: 0 0 10px;
+    transition: 0.2s linear;
+  }
 `;
 export const profileinfo = styled.div`
   position: relative;
@@ -42,7 +64,7 @@ export const profileinfo = styled.div`
     padding-left: 10px;
     background-color: #d9d9d9;
   }
-  textarea {
+  /* textarea {
     width: 170px;
     height: 80px;
     resize: none;
@@ -53,7 +75,7 @@ export const profileinfo = styled.div`
     outline: none;
     padding-left: 10px;
     background-color: #d9d9d9;
-  }
+  } */
 `;
 export const nickName = styled.div`
   top: 80px;
@@ -92,6 +114,7 @@ export const selfBox = styled.textarea`
   font-size: 15px;
   border: 0;
   border-radius: 5px;
+  height: 60px;
   outline: none;
   padding-left: 10px;
   background-color: #d9d9d9;
@@ -125,6 +148,11 @@ export const buttonGroup = styled.div`
     line-height: 24px;
     text-align: center;
     color: gray;
+    transition: 0.2s linear;
+  }
+  button:hover {
+    color: black;
+    transition: 0.2s linear;
   }
 `;
 
