@@ -76,16 +76,13 @@ export default function ProfileInformation({}) {
       Key: fileName,
     };
 
-    if (profileImg) {
-      await myBucket
-        .putObject(params)
-        .on("httpUploadProgress", (Progress, Response) => {
-          const imgURL = S3URL + Response.request.httpRequest.path;
-          setProfileImg(imgURL);
-        })
-        .send((err) => {});
-    } else {
-    }
+    await myBucket
+      .putObject(params)
+      .on("httpUploadProgress", (Progress, Response) => {
+        const imgURL = S3URL + Response.request.httpRequest.path;
+        setProfileImg(imgURL);
+      })
+      .send((err) => {});
   };
   const changeprofile = () => {
     setProfileMode(false);
