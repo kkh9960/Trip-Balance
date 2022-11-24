@@ -68,8 +68,6 @@ const Header = () => {
                   게시판
                 </Posting>
 
-                <Mypage
-
                 {email == null ? (<Mypage
                   onClick={() => {
                     alert('로그인을 해주세요!')
@@ -126,8 +124,6 @@ const Header = () => {
                 >
                   게시판
                 </Posting>
-
-                <Mypage
 
                 {email == null ? (<Mypage
                   onClick={() => {
