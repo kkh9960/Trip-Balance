@@ -35,6 +35,10 @@ const Postitem = () => {
     setpage(page + 1);
   };
 
+  const goDetail = (id) => {
+    navigator(`/detail/${id}`);
+  };
+
   console.log(posts);
   console.log(best);
 
@@ -93,7 +97,12 @@ const Postitem = () => {
         <PostCardList>
           {posts &&
             posts.map((item, idx) => (
-              <CardWrap>
+              <CardWrap
+                key={idx}
+                onClick={() => {
+                  goDetail(item.postId);
+                }}
+              >
                 <CardImgbox>
                   <CardImg src={item.image[0].imgURL} />
                 </CardImgbox>
@@ -102,7 +111,7 @@ const Postitem = () => {
                   <Cardbody>
                     <Userinfo>
                       <UserImg src="/img/default3.jpg" />
-                      <CardUserName>작성자</CardUserName>
+                      <CardUserName>{item.author}</CardUserName>
                     </Userinfo>
                     <Likeinfo>
                       <LikeCount>{item.heartNum}</LikeCount>
@@ -201,6 +210,7 @@ const CardWrap = styled.div`
   height: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+  cursor: pointer;
   &:hover {
     transform: translate(0, -5px);
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);

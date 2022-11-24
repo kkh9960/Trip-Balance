@@ -43,20 +43,25 @@ const BoardMypost = ({ post, mypost }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
-  console.log(mypost);
-
-  const goPost = () => {
-    navigator("");
+  const goPost = (id) => {
+    window.location.replace(`/detail/${id}`);
+    // navigator(`/detail/${id}`);
   };
 
   return (
-    <main onClick={goPost}>
+    <main>
       <h1>{post.author}님의 다른글</h1>
       <div className="wrapper">
         <ul className="items">
           {mypost &&
             mypost.map((item, idx) => (
-              <li className="item" key={idx}>
+              <li
+                className="item"
+                key={idx}
+                onClick={() => {
+                  goPost(item.postId);
+                }}
+              >
                 <div className="itemimgbox">
                   <img className="itemimg" src={item.img} alt="" />
                 </div>
