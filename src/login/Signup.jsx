@@ -80,7 +80,7 @@ function RegisterPage() {
     await dispatch(
       addMemberThunk({
         email: LoginValue.email,
-        nickName: nick.nickname,
+        nickName: nickname,
         pw: data.password,
         pwConfirm: data.password_confirm,
       })

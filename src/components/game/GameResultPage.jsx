@@ -20,9 +20,11 @@ export default function GameResultPage() {
   }, [id]);
 
   const game = useSelector((state) => state.gameResult)
-  const resultLocal = (game.data.data === null || undefined ? (undefined) : game?.data?.data)
+  const resultLocal = (game.data.data.trip === null || undefined ? (undefined) : game?.data?.data?.trip)
+  console.log(resultLocal)
   const gameHotel = useSelector((state) => state.gameResult?.hotel?.data)
   const blog = useSelector((state) => state.gameResult?.blog?.data)?.slice(5,9); 
+  console.log(blog)
 
   useEffect(() => {
     if (resultLocal === null || undefined) {
