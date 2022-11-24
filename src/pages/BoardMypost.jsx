@@ -50,7 +50,7 @@ const BoardMypost = ({ post, mypost }) => {
             mypost.map((item, idx) => (
               <li className="item" key={idx}>
                 <div className="itemimgbox">
-                  <img className="itemimg" src="../img/default4.jpg" alt="" />
+                  <img className="itemimg" src={item.img} alt="" />
                 </div>
                 <div className="textbox">
                   <h2>{item.title}</h2>

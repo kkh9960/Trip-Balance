@@ -138,7 +138,7 @@ const CardWrap = ({ element, index, search }) => {
         />
         <TextBox>
           <Title>
-            개수
+          {element.heartNum}
             <FcLike />
           </Title>
           <Name>{element.title}</Name>

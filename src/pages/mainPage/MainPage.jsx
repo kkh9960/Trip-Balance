@@ -10,6 +10,7 @@ import Footer from "../../component/Footer";
 import PostBar from "../../components/mainpage/postBar/PostBar";
 import * as t from "./MainPageStyle";
 import Home from "../../Banner/Home";
+import GameBanner from "../../component/GameBanner";
 
 export default function MainPage() {
   return (
@@ -27,6 +28,7 @@ export default function MainPage() {
           <ScrollTopButton />
         </t.sideButtonGroup> */}
       </t.main>
+      <GameBanner/>
       <Footer />
     </Layout>
   );
