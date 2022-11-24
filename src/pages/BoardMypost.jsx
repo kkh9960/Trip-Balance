@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import "./BoardMypost.css";
+import { useNavigate } from "react-router-dom";
 
 const BoardMypost = ({ post, mypost }) => {
+  const navigator = useNavigate();
   useEffect(() => {
     let isDown = false;
     let startX;
@@ -41,8 +43,12 @@ const BoardMypost = ({ post, mypost }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
+  console.log(mypost);
+
+  const goPost = () => {};
+
   return (
-    <main>
+    <main onClick={goPost}>
       <h1>{post.author}님의 다른글</h1>
       <div className="wrapper">
         <ul className="items">
