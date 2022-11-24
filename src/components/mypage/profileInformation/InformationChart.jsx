@@ -21,12 +21,18 @@ export default function InformationChart() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/tripdb");
+
+      console.log(result);
+
       if (result.data.data === undefined) {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setMyPickData(result.data);
       }
+
+
       console.log(result);
+
     }
     fetchData();
   }, []);
@@ -35,31 +41,31 @@ export default function InformationChart() {
     people: {
       option: [],
       labels: [
-        mpData?.data[0].slice(4, 6),
-        mpData?.data[1].slice(4, 6),
-        mpData?.data[2].slice(4, 6),
-        mpData?.data[3].slice(4, 6),
-        mpData?.data[4].slice(4, 6),
-        mpData?.data[5].slice(4, 6),
-        mpData?.data[6].slice(4, 6),
-        mpData?.data[7].slice(4, 6),
-        mpData?.data[8].slice(4, 6),
-        mpData?.data[9].slice(4, 6),
+        mpData?.data[0]?.slice(4, 6),
+        mpData?.data[1]?.slice(4, 6),
+        mpData?.data[2]?.slice(4, 6),
+        mpData?.data[3]?.slice(4, 6),
+        mpData?.data[4]?.slice(4, 6),
+        mpData?.data[5]?.slice(4, 6),
+        mpData?.data[6]?.slice(4, 6),
+        mpData?.data[7]?.slice(4, 6),
+        mpData?.data[8]?.slice(4, 6),
+        mpData?.data[9]?.slice(4, 6),
       ],
       datasets: [
         {
           label: "# of Votes",
           data: [
-            mpData?.data[0].match(/\d+/g)[0],
-            mpData?.data[1].match(/\d+/g)[0],
-            mpData?.data[2].match(/\d+/g)[0],
-            mpData?.data[3].match(/\d+/g)[0],
-            mpData?.data[4].match(/\d+/g)[0],
-            mpData?.data[5].match(/\d+/g)[0],
-            mpData?.data[6].match(/\d+/g)[0],
-            mpData?.data[7].match(/\d+/g)[0],
-            mpData?.data[8].match(/\d+/g)[0],
-            mpData?.data[9].match(/\d+/g)[0],
+            mpData?.data[0]?.match(/\d+/g)[0],
+            mpData?.data[1]?.match(/\d+/g)[0],
+            mpData?.data[2]?.match(/\d+/g)[0],
+            mpData?.data[3]?.match(/\d+/g)[0],
+            mpData?.data[4]?.match(/\d+/g)[0],
+            mpData?.data[5]?.match(/\d+/g)[0],
+            mpData?.data[6]?.match(/\d+/g)[0],
+            mpData?.data[7]?.match(/\d+/g)[0],
+            mpData?.data[8]?.match(/\d+/g)[0],
+            mpData?.data[9]?.match(/\d+/g)[0],
           ],
           backgroundColor: [
             "#C3F7EC",

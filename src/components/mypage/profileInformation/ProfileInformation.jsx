@@ -31,6 +31,7 @@ export default function ProfileInformation({}) {
   const [instaInput, setInstaInput] = useState(true);
   const [faceInput, setFaceInput] = useState(true);
   const [youInput, setYouInput] = useState(true);
+  const [topNickname, setTopNickname] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -46,10 +47,12 @@ export default function ProfileInformation({}) {
       setUserEmail(result.data.data.email);
       setUserSelf(result.data.data.self);
       setUserSns(result.data.data.sns);
-      setTopNickname(result.data.data.nickName);
+
+      setTopNickname(result.data.data.nickname);
     }
     fetchData();
-  }, []);
+  }, [nickname]);
+  //이미지업로드
 
   const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
   const onFileUpload = async (e) => {

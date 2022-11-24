@@ -10,7 +10,11 @@ export const __getBoard = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
 
+      const { data } = await instance.get(`/tb/posts?page=0`);
+
+
       const { data } = await instance.get(`/tb/posts/list/0?size=20`);
+
 
 
       return thunkAPI.fulfillWithValue(data);
