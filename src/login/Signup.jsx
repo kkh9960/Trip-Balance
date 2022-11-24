@@ -76,6 +76,12 @@ function RegisterPage() {
       alert("이메일을입력해주세요!");
       return;
     }
+    console.log({
+      email: LoginValue.email,
+      nickName: nickname,
+      pw: data.password,
+      pwConfirm: data.password_confirm,
+    });
 
     await dispatch(
       addMemberThunk({

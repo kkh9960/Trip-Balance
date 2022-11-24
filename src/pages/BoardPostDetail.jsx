@@ -33,7 +33,7 @@ const BoardPostDetail = () => {
   const imagel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [imagelength, setimegelength] = useState(imagel);
   const dispatch = useDispatch();
-  const userNickname = localStorage.getItem("nickName");
+  const userNickname = sessionStorage.getItem("nickName");
   const [loading, setLoading] = useState(true);
 
   const ImegaURL = [
@@ -411,9 +411,17 @@ const BoardCateGory = styled.div`
 const DeleteButton = styled.div`
   font-size: 24px;
   margin-left: 20px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 const ModifyButton = styled.div`
+  cursor: pointer;
   font-size: 24px;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TitleButtonWarp = styled.div`
