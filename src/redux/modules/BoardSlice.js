@@ -124,10 +124,9 @@ export const __modifyBoard = createAsyncThunk(
 export const __boardlike = createAsyncThunk(
   "BOARD_LIKE",
   async (payload, thunkAPI) => {
-    console.log("어흥페이로드", payload);
     try {
       const { data } = await instance.post(`tb/posts/${payload}/heart`);
-      console.log("어흥나 좋아요", data);
+      console.log("좋아요", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("좋아요 에러", error);
@@ -160,7 +159,8 @@ const BoardSlice = createSlice({
     },
     [__getbestfive.fulfilled]: (state, action) => {
       state.isLoading = false;
-      action.payload.data.map((item, idx) => state.bestpost.push(item));
+
+      state.bestpost = action.payload.data;
     },
     [__getbestfive.rejected]: (state, action) => {
       state.isLoading = false;
