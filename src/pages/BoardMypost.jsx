@@ -45,7 +45,9 @@ const BoardMypost = ({ post, mypost }) => {
 
   console.log(mypost);
 
-  const goPost = () => {};
+  const goPost = () => {
+    navigator("");
+  };
 
   return (
     <main onClick={goPost}>
