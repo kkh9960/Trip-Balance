@@ -28,7 +28,7 @@ export default function MainPage() {
           <ScrollTopButton />
         </t.sideButtonGroup> */}
       </t.main>
-      <GameBanner/>
+      <GameBanner />
       <Footer />
     </Layout>
   );

@@ -14,6 +14,7 @@ import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
 import InformationChart from "./profileInformation/InformationChart";
 import background from "../../img/3.jpg";
+
 export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -62,11 +63,7 @@ export default function MyPageView() {
     }
     fetchData();
   }, []);
-  // https://dexhome.shop/  https://tbtbtb.shop/
-  // const myWriteIn = useSelector((state) => state.MyInforSlice.data?.data);
-  // console.log(myWriteIN);
-
-  //
+  console.log(posts);
   // 내가 좋아요한 글목록
   const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
@@ -80,18 +77,18 @@ export default function MyPageView() {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll); //clean up
-    };
-  }, []);
-  const handleScroll = () => {
-    console.log("scrolled");
-    if (window.scrollY > 80) {
-      console.log("100");
-    }
-  };
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll); //clean up
+  //   };
+  // }, []);
+  // const handleScroll = () => {
+  //   console.log("scrolled");
+  //   if (window.scrollY > 80) {
+  //     console.log("100");
+  //   }
+  // };
 
   return (
     <t.myInformationWrap>
@@ -130,7 +127,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <div>{idx.title}</div>
-                      <h5>{idx.nickName}</h5>
+                      <div>{idx.nickName}</div>
                     </t.pickPostItem>
                   );
                 }
@@ -168,7 +165,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <div>{idx.title}</div>
-                      <h5>{idx.createdAt}</h5>
+                      <div>{idx.createdAt}</div>
                     </t.pickPostItem>
                   );
                 }
