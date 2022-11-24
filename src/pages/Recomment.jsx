@@ -4,15 +4,32 @@ import {
   __deleteReComment,
   __modifyReComment,
 } from "../redux/modules/CommentSlice";
-import "./Recomment.js";
+import * as St from "./RecommentStyle";
+import { useNavigate } from "react-router-dom";
 
 const Recomment = ({ item, cmtid }) => {
-  const dispatch = useDispatch();
+  const navigator = useNavigate();
 
+  const dispatch = useDispatch();
+  const UserDefaultImage = "../img/cmtdefault.svg";
+  const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
   const [EditRecomment, setEditRecomment] = useState("");
+  const [ReUserImage, setReUserImage] = useState("");
+  const [Editprofile, setEditprofile] = useState(false);
+
   useEffect(() => {
-    setEditRecomment(item.content);
+    setEditRecomment(item?.content);
+  }, [item]);
+
+  useEffect(() => {
+    if (item.profileImg == "") {
+      setReUserImage(UserDefaultImage);
+      console.log("나야나");
+    } else {
+      setReUserImage(item.profileImg);
+      console.log("나야나1=22");
+    }
   }, []);
 
   const ModifyCancel = () => {
@@ -40,40 +57,54 @@ const Recomment = ({ item, cmtid }) => {
   const ChangeEdit = (e) => {
     setEditRecomment(e.target.value);
   };
+  const profile = () => {
+    setEditprofile(!Editprofile);
+  };
+
+  console.log("대댓데이타", item);
+
+  const goprofile = () => {
+    navigator(`/tb/memberinfo/${item.authorId}`);
+  };
 
   return (
-    <RecommentContainer key={item.recommentId}>
-      <CommentTitlebox>
-        <CommentUserBox>
-          <CommentImg src="../img/cmtdefault.svg" />
-          <Commentuser>{item?.author}</Commentuser>
-        </CommentUserBox>
-        <CommentBtnWrap>
+    <St.RecommentContainer>
+      <St.CommentBox>
+        <St.CommentUserBox>
+          <div>
+            <St.CommentUserImage src={ReUserImage} />
+          </div>
+          <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
+          {Editprofile ? (
+            <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+          ) : null}
+        </St.CommentUserBox>
+        <St.Commentbody>
           {Editmode ? (
-            <CommentButton onClick={ModifyCancel}>취소</CommentButton>
+            <St.CommentModifyinput
+              type="text"
+              maxLength="200"
+              onChange={ChangeEdit}
+              value={EditRecomment}
+            />
           ) : (
-            <CommentButton onClick={ModifyComment}>수정</CommentButton>
+            <St.Commentdesc>{item?.content}</St.Commentdesc>
+          )}
+        </St.Commentbody>
+        <St.CommentButtonBox>
+          {Editmode ? (
+            <St.CommentButton onClick={ModifyCancel}>취소</St.CommentButton>
+          ) : (
+            <St.CommentButton onClick={ModifyComment}>수정</St.CommentButton>
           )}
           {Editmode ? (
-            <CommentButton onClick={ModifyComplete}>완료</CommentButton>
+            <St.CommentButton onClick={ModifyComplete}>완료</St.CommentButton>
           ) : (
-            <CommentButton onClick={DeleteComment}>삭제</CommentButton>
+            <St.CommentButton onClick={DeleteComment}>삭제</St.CommentButton>
           )}
-        </CommentBtnWrap>
-      </CommentTitlebox>
-      <Commentbody>
-        {Editmode ? (
-          <CommentModifyinput
-            type="text"
-            maxLength="200"
-            onChange={ChangeEdit}
-            value={EditRecomment}
-          />
-        ) : (
-          <Commentdesc>{item?.content}</Commentdesc>
-        )}
-      </Commentbody>
-    </RecommentContainer>
+        </St.CommentButtonBox>
+      </St.CommentBox>
+    </St.RecommentContainer>
   );
 };
 

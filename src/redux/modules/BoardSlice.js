@@ -3,6 +3,7 @@ import axios from "axios";
 import instance from "../../lib/instance";
 
 // 서버주소 : https://coding-kym.shop
+
 function getRandNumber() {
   const ranNum = Math.floor(Math.random() * 50 + 1);
   return ranNum;
@@ -12,8 +13,20 @@ export const __getBoard = createAsyncThunk(
   "GET_BOARD",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/tb/posts/list/0`);
+      const { data } = await instance.get(`/tb/posts?page=0`);
 
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getmypost = createAsyncThunk(
+  "GET_MY_POST_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts/otherpost/${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -116,6 +129,7 @@ const initialState = {
   posts: [],
   isLoading: true,
   post: null,
+  myposts: [],
 };
 
 const BoardSlice = createSlice({
@@ -126,11 +140,17 @@ const BoardSlice = createSlice({
     [__getBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.posts = action.payload.data;
-      console.log("어흥난풀필드", state, action);
     },
     [__getBoard.rejected]: (state, action) => {
       state.isLoading = false;
-      console.log("나리젝티드", action);
+    },
+    [__getmypost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.myposts = action.payload.data;
+      console.log("내가쓴글", action.payload);
+    },
+    [__getmypost.rejected]: (state, action) => {
+      state.isLoading = false;
     },
 
     [__SearchBoard.fulfilled]: (state, action) => {
@@ -140,7 +160,6 @@ const BoardSlice = createSlice({
     },
     [__SearchBoard.rejected]: (state, action) => {
       state.isLoading = false;
-      console.log("나리젝티드", action);
     },
 
     [__getBoardDetail.pending]: (state, action) => {

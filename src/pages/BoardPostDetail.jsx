@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import "swiper/css";
@@ -11,16 +11,16 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import "./BoardPostDetail.css";
 import { __getComment, __postComment } from "../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";
-import { __getBoardDetail } from "../redux/modules/BoardSlice";
-import { __deleteBoard } from "../redux/modules/BoardSlice";
-import { useNavigate } from "react-router-dom";
-import { __boardlike } from "../redux/modules/BoardSlice";
-import Loading from "../components/Loading/Loading";
 import {
-  __modifyReComment,
-  __deleteReComment,
-} from "../redux/modules/CommentSlice";
+  __getBoardDetail,
+  __getmypost,
+  __deleteBoard,
+  __boardlike,
+} from "../redux/modules/BoardSlice";
+import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading/Loading";
 import PostComment from "./PostComment";
+import BoardMypost from "./BoardMypost";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -65,6 +65,11 @@ const BoardPostDetail = () => {
   useEffect(() => {
     dispatch(__getBoardDetail(id));
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) dispatch(__getmypost(post.authorId));
+  }, [isLoading]);
+
   useEffect(() => {
     dispatch(__getComment(id));
   }, []);
@@ -127,7 +132,7 @@ const BoardPostDetail = () => {
   };
 
   const goProfile = () => {
-    navigate(``);
+    navigate(`/tb/memberinfo/${post?.authorId}`);
   };
 
   console.log(heart);
@@ -143,7 +148,7 @@ const BoardPostDetail = () => {
         <ImegeWrap>
           <ImegeSlide>
             <Swiper
-              effect={"flip"}
+              effect={"cards"}
               autoplay={{
                 delay: 2000,
                 disableOnInteraction: false,
@@ -180,7 +185,7 @@ const BoardPostDetail = () => {
           </ImegeSlide>
           <ImegePreview>
             {post &&
-              imagelength.map((el, idx) => (
+              post?.mediaList.map((el, idx) => (
                 <PreviewItem
                   key={idx}
                   src={
@@ -258,6 +263,7 @@ const BoardPostDetail = () => {
               />
             ))}
         </BoardCommentWrap>
+        <BoardMypost post={post} />
       </BoardPostDetailWrap>
     </BoardPostDetailContainer>
   );
@@ -313,16 +319,6 @@ const UserNameBox = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-
-const CommentModifyinput = styled.input`
-  width: 100%;
-  font-size: 16px;
-  padding: 5px;
-  height: 25px;
-  outline: none;
-  overflow: scroll;
-`;
-
 const CommentCount = styled.span`
   font-size: 20px;
   color: #777777;

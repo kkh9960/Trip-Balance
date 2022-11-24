@@ -123,6 +123,7 @@ const BoardWrite = () => {
   };
 
   const imagewrite = "img/imagewrite.jpg";
+  const noimage = "img/noimage.jpg";
 
   // console.log(
   //   contents?.title,
@@ -133,7 +134,7 @@ const BoardWrite = () => {
   //   Pet
   // );
 
-  const imageremove = (id, i) => {
+  const imageremove = (id, i, i2) => {
     console.log(id, i);
     let target = document.getElementById(id);
     console.log(target);
@@ -145,12 +146,16 @@ const BoardWrite = () => {
       if (i) {
         setFileLink(i);
       } else {
-        setFileLink(imagewrite);
+        if (i2) {
+          setFileLink(i2);
+        } else {
+          setFileLink(imagewrite);
+        }
       }
     }
   };
   const previewchange = (e) => {
-    if (e.target.src.includes("img/default1.jpg")) {
+    if (e.target.src.includes("img/noimage.jpg")) {
     } else {
       setFileLink(e.target.src);
     }
@@ -185,47 +190,8 @@ const BoardWrite = () => {
                 onChange={onFileUpload}
               />
             </ImegeSelectBox>
-            <ImegePreviewBox>
-              <ImegePreviewWrap>
-                {formoon.map((e, i) => (
-                  <UploadImageBox key={i}>
-                    <UploadImegePreview
-                      key={i}
-                      id={ImgPreview[i]?.imgURL}
-                      src={
-                        ImgPreview[i]?.imgURL
-                          ? ImgPreview[i]?.imgURL
-                          : DefaultImega
-                      }
-                      alt=""
-                      onClick={previewchange}
-                    />
-                    <Imagedelete
-                      onClick={() =>
-                        imageremove(
-                          ImgPreview[i]?.imgURL,
-                          ImgPreview[i - 1]?.imgURL
-                        )
-                      }
-                    ></Imagedelete>
-                  </UploadImageBox>
-                ))}
-              </ImegePreviewWrap>
-              <ImegePreviewtext>
-                이미지는 총 10개까지 첨부 할 수 있으며, 맨 처음 이미지가 대표
-                이미지로 설정됩니다.
-              </ImegePreviewtext>
-            </ImegePreviewBox>
-            <BoardWriteTextarea
-              name="content"
-              id=""
-              cols="30"
-              rows="10"
-              placeholder="내용을 입력해 주세요."
-              required
-              onChange={onChangeDataHandler}
-            />
           </BaordWritesection>
+
           <BoardButtonsection>
             <Categorysection>
               <CategorySelect
@@ -395,14 +361,53 @@ const BoardWrite = () => {
                 <PetCheck type="checkbox" id="pet" onChange={PetHandler} />
               </PetCheckBox>
             </Categorysection>
-            <Buttonsection>
-              <WriteButton>등록</WriteButton>
-              <Cancelbutton type="button" onClick={ModalHandler}>
-                취소
-              </Cancelbutton>
-            </Buttonsection>
           </BoardButtonsection>
         </BoardContentWrap>
+        <ImegePreviewBox>
+          <ImegePreviewWrap>
+            {formoon.map((e, i) => (
+              <UploadImageBox key={i}>
+                <UploadImegePreview
+                  key={i}
+                  id={ImgPreview[i]?.imgURL}
+                  src={ImgPreview[i]?.imgURL ? ImgPreview[i]?.imgURL : noimage}
+                  alt=""
+                  onClick={previewchange}
+                />
+                <Imagedelete
+                  onClick={() =>
+                    imageremove(
+                      ImgPreview[i]?.imgURL,
+                      ImgPreview[i - 1]?.imgURL,
+                      ImgPreview[i + 1]?.imgURL
+                    )
+                  }
+                ></Imagedelete>
+              </UploadImageBox>
+            ))}
+          </ImegePreviewWrap>
+          <ImegePreviewtext>
+            이미지는 총 10개까지 첨부 할 수 있으며, 맨 처음 이미지가 대표
+            이미지로 설정됩니다.
+          </ImegePreviewtext>
+        </ImegePreviewBox>
+
+        <BoardWriteTextarea
+          name="content"
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="내용을 입력해 주세요."
+          required
+          onChange={onChangeDataHandler}
+        />
+
+        <Buttonsection>
+          <WriteButton>등록</WriteButton>
+          <Cancelbutton type="button" onClick={ModalHandler}>
+            취소
+          </Cancelbutton>
+        </Buttonsection>
       </BoardWriteContainer>
 
       {ModalEdit ? (
@@ -542,7 +547,7 @@ const ImegeInput = styled.input`
 `;
 const ImegePreviewBox = styled.div`
   width: 100%;
-  max-width: 1074px;
+  max-width: 1440px;
   height: auto;
   display: flex;
   padding: 20px 5px;
@@ -561,9 +566,8 @@ const ImegePreviewtext = styled.div`
   margin: 15px 0 0 5px;
 `;
 const UploadImegePreview = styled.img`
-  width: 95%;
-  max-width: 85px;
-  height: 100px;
+  width: 110px;
+  height: 133px;
   object-fit: cover;
   flex: 1;
   border: 2px solid #b3b3b3;
@@ -573,19 +577,36 @@ const UploadImageBox = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  &:first-child::before {
+    content: "대표";
+    text-align: center;
+    line-height: 2;
+    width: 114px;
+    height: 40px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #00c1ec;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    border-radius: 4px;
+  }
 `;
 const Imagedelete = styled.div`
+  cursor: pointer;
   position: absolute;
-  top: -10px;
-  right: -5px;
-  width: 22px;
-  height: 22px;
+  top: -15px;
+  right: -3px;
+  width: 30px;
+  height: 30px;
   border: 1px solid #b3b3b3;
   border-radius: 50%;
   background-image: url(img/imageremove.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 `;
+
 const BoardWriteTextarea = styled.textarea`
   width: 99%;
   height: 722px;
@@ -599,12 +620,12 @@ const BoardWriteTextarea = styled.textarea`
     width: 0px;
   }
 `;
+
 const BoardButtonsection = styled.div`
   width: 100%;
   max-width: 344px;
   height: auto;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 `;
 const Categorysection = styled.div`
@@ -674,9 +695,10 @@ const PetLabel = styled.label`
 const Buttonsection = styled.div`
   width: 100%;
   height: auto;
-  gap: 20px;
+  gap: 50px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
 `;
 const WriteButton = styled.button`
   font-size: 20px;

@@ -13,6 +13,7 @@ import useInput from "../hooks/useInput";
 import Header from "../component/Header";
 import kakao from "../img/kakaologin.jpg";
 import { ImExit } from "react-icons/im";
+import { KAKAO_AUTH_URL } from "./AuthKakao";
 
 function LoginPage() {
   const {
@@ -115,9 +116,9 @@ function LoginPage() {
               로그인
             </button>
             <div className="line"></div>
-            <button className="kaka">
+            <a className="kaka" href={KAKAO_AUTH_URL}>
               <img src={kakao} className="kakaoimg" />
-            </button>
+            </a>
             <div
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
