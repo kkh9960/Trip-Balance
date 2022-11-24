@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { __getbestfive, __getBoard } from "../redux/modules/BoardSlice";
+import {
+  __getbestfive,
+  __getBoard,
+  __getcategory,
+  __getcatenormal,
+} from "../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
 
@@ -13,6 +18,9 @@ const Postitem = () => {
   const [page, setpage] = useState(1);
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
+
+  const [Cate, setCate] = useState("");
+
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
@@ -29,6 +37,7 @@ const Postitem = () => {
   };
 
   console.log(posts);
+
 
   useEffect(() => {
     if (posts == 0) {
@@ -56,6 +65,15 @@ const Postitem = () => {
     navigator(`/detail/${id}`);
   };
 
+  const getCategory = (e) => {
+    // console.log(e.target?.value);
+    // if (e.target?.value == 0) {
+    //   dispatch(__getcatenormal());
+    // } else {
+    //   dispatch(__getcategory(e.target?.value));
+    // }
+  };
+
   console.log(posts);
   console.log(best);
 
@@ -63,39 +81,13 @@ const Postitem = () => {
     <PostPageContainer>
       <TodayTitle>오늘의 여행지 검색</TodayTitle>
       <SearchBox>
-        <CategorySearch>
-          <option value="1">서울</option>
-          <option value="2">인천</option>
-          <option value="3">가평</option>
-          <option value="4">용인</option>
-          <option value="5">파주</option>
-          <option value="6">속초</option>
-          <option value="7">강릉</option>
-          <option value="8">춘천</option>
-          <option value="9">양양</option>
-          <option value="10">평창</option>
-          <option value="11">부산</option>
-          <option value="12">거제</option>
-          <option value="13">통영</option>
-          <option value="14">포항</option>
-          <option value="15">경주</option>
-          <option value="16">안동</option>
-          <option value="17">여수</option>
-          <option value="18">목포</option>
-          <option value="19">담양</option>
-          <option value="20">보성</option>
-          <option value="21">해남</option>
-          <option value="22">전주</option>
-          <option value="23">천안</option>
-          <option value="24">태안</option>
-          <option value="25">보령</option>
-          <option value="26">공주</option>
-          <option value="27">단양</option>
-          <option value="28">대구</option>
-          <option value="29">대전</option>
-          <option value="30">광주</option>
-          <option value="31">울산</option>
-          <option value="32">서귀포</option>
+        <CategorySearch onChange={getCategory}>
+          <option value="0">기본</option>
+          <option value="1">수도권</option>
+          <option value="2">강원도 + 경상도</option>
+          <option value="3">충청도 + 전라도</option>
+          <option value="4">제주도</option>
+          <option value="5">기타</option>
         </CategorySearch>
         <TitleSearchbox>
           <TitleSearch
