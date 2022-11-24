@@ -36,7 +36,7 @@ const Router = () => {
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
 
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/" element={<InfiniteTest />} />
+        {/* <Route path="/" element={<InfiniteTest />} /> */}
 
         <Route path="/signup" element={<Signup />} />
       </Routes>
