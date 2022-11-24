@@ -39,14 +39,18 @@ export const Cards = () => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
 
-  useEffect(() => {
-    if (posts.length === 0) {
-      console.log("첫포스트로딩");
-      dispatch(__getBoard());
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (posts.length === 0) {
+  //     console.log("첫포스트로딩");
+  //     dispatch(__getBoard());
+  //   }
+  // }, []);
 
   const [page, setpage] = useState(1);
+
+  useEffect(() => {
+    dispatch(__getBoard(0));
+  }, []);
 
   const GetPost = () => {
     dispatch(__getBoard(page));
@@ -201,6 +205,7 @@ const Line = styled.div`
   width: 1333.1px;
   margin: 20.9px 110.8px 61.6px 2px;
   margin-bottom: 20px;
+  position: relative;
 `;
 const ImgBox = styled.img`
   background-position: center;
