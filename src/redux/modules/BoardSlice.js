@@ -8,9 +8,11 @@ export const __getBoard = createAsyncThunk(
   "GET_BOARD",
   async (payload, thunkAPI) => {
     try {
+
       console.log(payload);
       const { data } = await instance.get(`/tb/posts?page=${payload}`);
       console.log(data);
+
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);

@@ -13,7 +13,7 @@ import Pagination from "./Pagination";
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
 import InformationChart from "./profileInformation/InformationChart";
-
+import background from "../../img/3.jpg";
 export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -80,6 +80,19 @@ export default function MyPageView() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll); //clean up
+    };
+  }, []);
+  const handleScroll = () => {
+    console.log("scrolled");
+    if (window.scrollY > 80) {
+      console.log("100");
+    }
+  };
+
   return (
     <t.myInformationWrap>
       <ProfileInformation />
@@ -101,6 +114,7 @@ export default function MyPageView() {
             <h2>내가 좋아요한 게시물</h2>
             <t.thinLine />
           </t.itemHeader>
+
           <t.pickPostWrap>
             {typeof myPick === typeof "string" ? (
               <h1>좋아요한 글이 없습니다.</h1>

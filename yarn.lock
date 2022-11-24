@@ -1335,6 +1335,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@faker-js/faker@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-7.6.0.tgz#9ea331766084288634a9247fcd8b84f16ff4ba07"
+  integrity sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==
+
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.7"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.7.tgz#38aec044c6c828f6ed51d5d7ae3d9b9faf6dbb0f"
@@ -8041,10 +8046,12 @@ react-auto-image-slider@^1.0.0:
     typescript "^4.7.4"
     uuid "^8.3.2"
 
-react-chartjs-2@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-4.3.1.tgz#9941e7397fb963f28bb557addb401e9ff96c6681"
-  integrity sha512-5i3mjP6tU7QSn0jvb8I4hudTzHJqS8l00ORJnVwI2sYu0ihpj83Lv2YzfxunfxTZkscKvZu2F2w9LkwNBhj6xA==
+
+react-chartjs-2@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-5.0.1.tgz#7ef7dd57441903e8d34e1d06a1aead1095d0bca8"
+  integrity sha512-u38C9OxynlNCBp+79grgXRs7DSJ9w8FuQ5/HO5FbYBbri8HSZW+9SWgjVshLkbXBfXnMGWakbHEtvN0nL2UG7Q==
+
 
 react-cookie@^4.1.1:
   version "4.1.1"

@@ -12,6 +12,5 @@ export function Card({ title, postId }) {
 export default Card;
 
 const Title = styled.div`
-  margin-top: 10px;
+  margin-top: 100px;
 `;
-const Img = styled.img``;

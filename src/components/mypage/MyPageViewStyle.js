@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import background from "../../img/3.jpg";
 //common
 export const userName = styled.div`
   width: 500px;
@@ -23,15 +24,27 @@ export const thinLine = styled.div`
 export const textLine = styled.div`
   width: 2px;
   height: 54.6px;
-  margin: 10px;
+  margin: 25px;
   transform: (rotate: 90deg);
   background-color: #555;
 `;
 export const empty = styled.div``;
+export const backgroundImg = styled.div`
+  width: 100%;
+  height: 300px;
+  background-image: url(${background});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+`;
+
 export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
   margin-top: 30px;
+  background-color: transparent;
 `;
 
 export const myPickPostWrap = styled.div`
@@ -47,7 +60,16 @@ export const myPickPostWrap = styled.div`
   border: 2px solid gray;
   border-left-style: none;
   padding: 10px 20px 10px 200px;
+  background-color: #fff;
   box-shadow: 5px 5px 10px -5px;
+  /* background: linear-gradient(
+    to right,
+    rgba(20, 20, 20, 0) 10%,
+    rgba(20, 20, 20, 0.25) 25%,
+    rgba(20, 20, 20, 0.5) 50%,
+    rgba(20, 20, 20, 0.75) 75%,
+    rgba(20, 20, 20, 1) 100%
+  ); */
 `;
 export const myPostWrap = styled.div`
   position: relative;
@@ -64,7 +86,7 @@ export const myPostWrap = styled.div`
 `;
 export const myTotalInfo = styled.div`
   height: 150px;
-  margin: 10px auto;
+
   background-color: #4cd8eb;
   display: flex;
   justify-content: center;
@@ -139,7 +161,20 @@ export const footer = styled.div`
 export const mySelectInformation = styled.div`
   flex-direction: column;
   justify-content: space-around;
-  margin: 30px 0 30px 0;
+  padding: 30px 0 30px 0;
   width: 100%;
   height: 1700px;
+  background: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.6) 10%,
+      rgba(255, 255, 255, 0.7) 25%,
+      rgba(255, 255, 255, 0.8) 35%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 255, 255, 1) 100%
+    ),
+    url(${background});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 `;
