@@ -6,6 +6,7 @@ import { __getBoard, __SearchBoard } from "../redux/modules/BoardSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useInView } from "react-intersection-observer";
+import LoginPage from "../login/LoginPage";
 // import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
@@ -123,13 +124,49 @@ export default Cards;
 const CardWrap = ({ element, index, search }) => {
   const carddefaultimg = "../../img/default3.jpg";
 
+  const email = sessionStorage.getItem("email");
   const navigator = useNavigate();
   const DatailPageMove = () => {
     navigator(`/detail/${element.postId}`);
   };
 
+  const goLogin = () => {
+    alert('로그인이 필요합니다!')
+    setModal(!modal);
+  }
+
+  const [modal, setModal] = useState(false);
+  
+
   console.log(element);
   return (
+    <>
+    {modal ? (
+            <LoginPage />
+          ) : (
+            <>
+    {email == null ? (
+      <CardBox key={element.postId} onClick={goLogin}>
+      <div>
+        <ImgBox
+          src={
+            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
+          }
+        />
+        <TextBox>
+          <Title>
+
+            {element.heartNum}
+
+          {element.heartNum}
+
+            <FcLike />
+          </Title>
+          <Name>{element.title}</Name>
+        </TextBox>
+      </div>
+    </CardBox>
+    ) : (
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
         <ImgBox
@@ -150,6 +187,10 @@ const CardWrap = ({ element, index, search }) => {
         </TextBox>
       </div>
     </CardBox>
+    )}
+    </>
+    )}
+    </>
   );
 };
 {
