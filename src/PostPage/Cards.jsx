@@ -9,151 +9,6 @@ import { useInView } from "react-intersection-observer";
 // import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
-
-
-  const dispatch = useDispatch();
-  const [ref, inView] = useInView();
-  const search = (e) => {
-    if (e.key === "Enter") {
-      setUseInput(e.target.value);
-    }
-    console.log("key press");
-  };
-
-  console.log(posts);
-
-  const [useInput, setUseInput] = useState("");
-  console.log(useInput);
-  // const onChange = (e) => {
-  //   setUseInput(e.target.value);
-  // };
-
-  // const intersectiong = useInfiniteScroll(fetchMoreEl);
-
-  const filteredProducts = posts?.filter((posts) => {
-    return posts.title?.toLowerCase().includes(useInput?.toLowerCase());
-  });
-
-  useEffect(() => {
-    dispatch(__getBoard(0));
-  }, []);
-
-  const target = useRef(null);
-
-  const [page, setpage] = useState(1);
-
-  const GetPost = () => {
-    dispatch(__getBoard(page));
-    setpage(page + 1);
-  };
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((e) => {
-  //     GetPost();
-  //   });
-
-  //   observer.observe(target.current);
-  // }, []);
-
-  return (
-    <Layout>
-      <SearchBar
-        type="text"
-        onKeyPress={search}
-        // onChange={onChange}
-        // value={useInput}
-        placeholder=" 검색어를 입력하세요 20글자이내."
-      />
-      {filteredProducts.map((element, index) => (
-        <CardWrap
-          key={element.postId}
-          element={element}
-          index={index}
-          search={filteredProducts}
-        />
-      ))}
-      <div ref={ref}></div>
-      <Line ref={target}>
-        <Temporarybtn onClick={GetPost}>더 보기</Temporarybtn>
-      </Line>
-    </Layout>
-  );
-};
-
-export default Cards;
-
-const CardWrap = ({ element, index, search }) => {
-  const carddefaultimg = "../../img/default3.jpg";
-
-  const navigator = useNavigate();
-  const DatailPageMove = () => {
-    navigator(`/detail/${element.postId}`);
-  };
-
-  return (
-    <CardBox key={element.postId} onClick={DatailPageMove}>
-      <div>
-        <ImgBox
-          src={
-            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
-          }
-        />
-        <TextBox>
-          <Title>
-            개수
-            <FcLike />
-          </Title>
-          <Name>{element.title}</Name>
-        </TextBox>
-      </div>
-    </CardBox>
-  );
-};
-{
-  /* <InfiniteScroll
-    pageStart={0}
-    loadMore={loadFunc}
-    hasMore={true || false}
-    loader={<div className="loader" key={0}>Loading ...</div>}
->
-    {items} // <-- This is the content you want to load
-</InfiniteScroll> */
-}
-
-const Temporarybtn = styled.div`
-  cursor: pointer;
-  position: absolute;
-  font-size: 20px;
-  left: 45%;
-  top: 30px;
-  border: 1px solid #333;
-  color: #333;
-  padding: 10px 50px;
-`;
-
-const SearchBar = styled.input`
-  opacity: 0.5;
-  border: 1px solid white;
-  background-color: #744aaa;
-  color: white;
-  width: 710px;
-  height: 60px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-left: 280px;
-  position: absolute;
-  bottom: -15px;
-  font-family: NotoSans;
-  font-size: 16px;
-  top: 330px;
-  left: 350px;
-`;
-//   :hover {
-//     opacity: 1;
-//   }
-// `;
-
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const [ref, inView] = useInView();
@@ -184,12 +39,23 @@ const SearchBar = styled.input`
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
 
+  // useEffect(() => {
+  //   if (posts.length === 0) {
+  //     console.log("첫포스트로딩");
+  //     dispatch(__getBoard());
+  //   }
+  // }, []);
+
+  const [page, setpage] = useState(1);
+
   useEffect(() => {
-    if (posts.length === 0) {
-      console.log("첫포스트로딩");
-      dispatch(__getBoard());
-    }
+    dispatch(__getBoard(0));
   }, []);
+
+  const GetPost = () => {
+    dispatch(__getBoard(page));
+    setpage(page + 1);
+  };
 
   return (
     <Layout>
@@ -245,7 +111,10 @@ const SearchBar = styled.input`
         />
       ))}
       <div ref={ref}></div>
-      <Line></Line>
+      <Line>
+        {" "}
+        <Temporarybtn onClick={GetPost}>더 보기</Temporarybtn>
+      </Line>
     </Layout>
   );
 };
@@ -269,7 +138,7 @@ const CardWrap = ({ element, index, search }) => {
         />
         <TextBox>
           <Title>
-            개수
+          {element.heartNum}
             <FcLike />
           </Title>
           <Name>{element.title}</Name>
@@ -289,6 +158,17 @@ const CardWrap = ({ element, index, search }) => {
 </InfiniteScroll> */
 }
 
+const Temporarybtn = styled.div`
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  left: 45%;
+  top: 30px;
+  border: 1px solid #333;
+  color: #333;
+  padding: 10px 50px;
+`;
+
 const SearchBar = styled.input`
   opacity: 0.5;
   border: 1px solid white;
@@ -306,12 +186,10 @@ const SearchBar = styled.input`
   font-size: 16px;
   top: 330px;
   left: 350px;
-
   :hover {
     opacity: 1;
   }
 `;
-
 
 const Layout = styled.div`
   justify-content: center;
@@ -324,12 +202,10 @@ const Layout = styled.div`
 `;
 const Line = styled.div`
   border: 1px solid #9a9797;
-
-  width: 100%;
-  margin: 20.9px 0px 61.6px 0px;
+  width: 1333.1px;
+  margin: 20.9px 110.8px 61.6px 2px;
   margin-bottom: 20px;
   position: relative;
-
 `;
 const ImgBox = styled.img`
   background-position: center;
