@@ -20,7 +20,7 @@ const Postitem = () => {
   const NICK = sessionStorage.getItem("nickName");
 
   const [Cate, setCate] = useState("");
-
+  const email = sessionStorage.getItem("email");
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
@@ -61,7 +61,12 @@ const Postitem = () => {
   };
 
   const goDetail = (id) => {
+    console.log(id)
+    if(email) {
     navigator(`/detail/${id}`);
+    } else {
+      alert("로그인을 해주세요!")
+    }
   };
 
   const getCategory = (e) => {
@@ -106,7 +111,9 @@ const Postitem = () => {
         <PostListTitle>TB 추천여행지</PostListTitle>
         <PostCardList>
           {filteredProducts.map((item, idx) => (
-            <CardWrap search={filteredProducts} onClick={goDetail}>
+            <CardWrap search={filteredProducts} onClick={() => {
+              goDetail(item.postId);
+              }}>
               <CardImgbox>
                 <CardImg src={item.image[0].imgURL} />
               </CardImgbox>
