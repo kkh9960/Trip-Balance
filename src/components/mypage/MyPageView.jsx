@@ -63,7 +63,7 @@ export default function MyPageView() {
     }
     fetchData();
   }, []);
-
+  console.log(posts);
   // 내가 좋아요한 글목록
   const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
@@ -127,7 +127,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <div>{idx.title}</div>
-                      <h5>{idx.nickName}</h5>
+                      <div>{idx.nickName}</div>
                     </t.pickPostItem>
                   );
                 }
@@ -165,7 +165,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <div>{idx.title}</div>
-                      <h5>{idx.createdAt}</h5>
+                      <div>{idx.createdAt}</div>
                     </t.pickPostItem>
                   );
                 }

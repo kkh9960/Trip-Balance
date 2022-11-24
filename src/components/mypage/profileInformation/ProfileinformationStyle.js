@@ -109,7 +109,7 @@ export const textName = styled.div`
   line-height: 24px;
   margin-bottom: 5px;
 `;
-export const selfBox = styled.div`
+export const selfBox = styled.input`
   resize: none;
   overflow: hidden;
   font-size: 15px;
