@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./BoardMypost.css";
 
-const BoardMypost = ({ post }) => {
+const BoardMypost = ({ post, mypost }) => {
   useEffect(() => {
     let isDown = false;
     let startX;
@@ -41,58 +41,23 @@ const BoardMypost = ({ post }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
-  console.log(post);
-
   return (
     <main>
       <h1>{post.author}님의 다른글</h1>
       <div className="wrapper">
         <ul className="items">
-          <li className="item">
-            <div className="itemimgbox">
-              <img className="itemimg" src="../img/default4.jpg" alt="" />
-            </div>
-            <div className="textbox">
-              <h2>제목 들어갈 자리</h2>
-              <span>로컬 들어갈 자리.</span>
-            </div>
-          </li>
-          <li className="item">
-            <div className="itemimgbox">
-              <img className="itemimg" src="../img/default4.jpg" alt="" />
-            </div>
-            <div className="textbox">
-              <h2>제목 들어갈 자리</h2>
-              <span>로컬 들어갈 자리.</span>
-            </div>
-          </li>
-          <li className="item">
-            <div className="itemimgbox">
-              <img className="itemimg" src="../img/default4.jpg" alt="" />
-            </div>
-            <div className="textbox">
-              <h2>제목 들어갈 자리</h2>
-              <span>로컬 들어갈 자리.</span>
-            </div>
-          </li>
-          <li className="item">
-            <div className="itemimgbox">
-              <img className="itemimg" src="../img/default4.jpg" alt="" />
-            </div>
-            <div className="textbox">
-              <h2>제목 들어갈 자리</h2>
-              <span>로컬 들어갈 자리.</span>
-            </div>
-          </li>
-          <li className="item">
-            <div className="itemimgbox">
-              <img className="itemimg" src="../img/default4.jpg" alt="" />
-            </div>
-            <div className="textbox">
-              <h2>제목 들어갈 자리</h2>
-              <span>로컬 들어갈 자리.</span>
-            </div>
-          </li>
+          {mypost &&
+            mypost.map((item, idx) => (
+              <li className="item" key={idx}>
+                <div className="itemimgbox">
+                  <img className="itemimg" src="../img/default4.jpg" alt="" />
+                </div>
+                <div className="textbox">
+                  <h2>{item.title}</h2>
+                  <span>{item.local}</span>
+                </div>
+              </li>
+            ))}
         </ul>
       </div>
     </main>
