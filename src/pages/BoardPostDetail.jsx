@@ -22,7 +22,9 @@ import Loading from "../components/Loading/Loading";
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
 import Header from "../component/Header";
-import Footer from "../component/Footer";
+
+import Footer from "../component/Footer"
+
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -149,6 +151,7 @@ const BoardPostDetail = () => {
     <Loading />
   ) : (
     <div>
+
       <Header />
       <BoardPostDetailContainer>
         <BoardPostDetailWrap>
@@ -184,6 +187,7 @@ const BoardPostDetail = () => {
                       </SwiperSlide>
                     );
                   })
+
                 ) : (
                   <SwiperSlide>
                     <SliderImage src={DefaultImega2} />
@@ -234,6 +238,7 @@ const BoardPostDetail = () => {
                 src={post && heart ? heartsvg : binheartsvg}
                 alt=""
               />
+
               <BoardLikeCount>{heartnum}</BoardLikeCount>
             </BoardLike>
           </BoardcontentWrap>
@@ -275,6 +280,7 @@ const BoardPostDetail = () => {
         </BoardPostDetailWrap>
       </BoardPostDetailContainer>
       <Footer />
+
     </div>
   );
 };

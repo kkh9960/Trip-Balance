@@ -67,19 +67,24 @@ const Header = () => {
                 >
                   게시판
                 </Posting>
-                {email == null ? (<Mypage
-                  onClick={() => {
-                    alert('로그인을 해주세요!')
-                  }}
-                >
-                  마이페이지
-                </Mypage>) : (<Mypage
-                  onClick={() => {
-                    navigate("/mypage");
-                  }}
-                >
-                  마이페이지
-                </Mypage>)}
+
+                {email == null ? (
+                  <Mypage
+                    onClick={() => {
+                      alert("로그인을 해주세요!");
+                    }}
+                  >
+                    마이페이지
+                  </Mypage>
+                ) : (
+                  <Mypage
+                    onClick={() => {
+                      navigate("/mypage");
+                    }}
+                  >
+                    마이페이지
+                  </Mypage>
+                )}
                 {nickname ? (
                   <div>
                     <div>
@@ -122,20 +127,25 @@ const Header = () => {
                 >
                   게시판
                 </Posting>
-                {email == null ? (<Mypage
-                  onClick={() => {
-                    alert('로그인을 해주세요!')
-                    setModal(!modal);
-                  }}
-                >
-                  마이페이지
-                </Mypage>) : (<Mypage
-                  onClick={() => {
-                    navigate("/mypage");
-                  }}
-                >
-                  마이페이지
-                </Mypage>)}
+
+                {email == null ? (
+                  <Mypage
+                    onClick={() => {
+                      alert("로그인을 해주세요!");
+                      setModal(!modal);
+                    }}
+                  >
+                    마이페이지
+                  </Mypage>
+                ) : (
+                  <Mypage
+                    onClick={() => {
+                      navigate("/mypage");
+                    }}
+                  >
+                    마이페이지
+                  </Mypage>
+                )}
                 {nickname ? (
                   <div>
                     <div>

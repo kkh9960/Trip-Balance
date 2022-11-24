@@ -36,6 +36,7 @@ export const myInformation = styled.div`
     }
   }
 `;
+
 export const ProfileImgBox = styled.img`
   width: 315px;
   height: 315px;
@@ -108,7 +109,7 @@ export const textName = styled.div`
   line-height: 24px;
   margin-bottom: 5px;
 `;
-export const selfBox = styled.textarea`
+export const selfBox = styled.input`
   resize: none;
   overflow: hidden;
   font-size: 15px;
