@@ -155,15 +155,15 @@ export default function InformationChart() {
   return (
     <t.inforChartViewbox>
       <t.chartNametag>
-        <div>나의 통계</div>
-        <div>전체 통계</div>
       </t.chartNametag>
       <t.inforChartBox>
         <t.inforChartView>
           <Pie data={chartData.people} />
+          <div>나의 통계</div>
         </t.inforChartView>
         <t.inforChartView>
           <Pie data={chartData.age} />
+          <div>전체 통계</div>
         </t.inforChartView>
       </t.inforChartBox>
     </t.inforChartViewbox>
