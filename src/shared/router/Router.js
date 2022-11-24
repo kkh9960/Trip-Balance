@@ -31,7 +31,6 @@ const Router = () => {
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
-        {/* <Route path="/" element={<Test />} /> */}
       </Routes>
     </BrowserRouter>
   );
