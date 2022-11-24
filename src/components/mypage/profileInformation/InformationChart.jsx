@@ -30,9 +30,7 @@ export default function InformationChart() {
         setMyPickData(result.data);
       }
 
-
       console.log(result);
-
     }
     fetchData();
   }, []);
@@ -154,17 +152,16 @@ export default function InformationChart() {
   };
   return (
     <t.inforChartViewbox>
-      <t.chartNametag>
-        <div>나의 통계</div>
-        <div>전체 통계</div>
-      </t.chartNametag>
+      <t.chartNametag></t.chartNametag>
       <t.inforChartBox>
         <t.inforChartView>
           <Pie data={chartData.people} />
         </t.inforChartView>
+        <div>나의 통계</div>
         <t.inforChartView>
           <Pie data={chartData.age} />
         </t.inforChartView>
+        <div>전체 통계</div>
       </t.inforChartBox>
     </t.inforChartViewbox>
   );
