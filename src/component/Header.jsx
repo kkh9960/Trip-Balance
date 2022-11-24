@@ -69,7 +69,6 @@ const Header = () => {
                 >
                   게시판
                 </Posting>
-                <Trip>추천여행지</Trip>
                 <Mypage
                   onClick={() => {
                     navigate("/mypage");

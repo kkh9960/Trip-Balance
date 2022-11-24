@@ -31,7 +31,6 @@ export default function ProfileInformation({}) {
   const [instaInput, setInstaInput] = useState(true);
   const [faceInput, setFaceInput] = useState(true);
   const [youInput, setYouInput] = useState(true);
-  const [topNickname, setTopNickname] = useState();
 
   useEffect(() => {
     async function fetchData() {
