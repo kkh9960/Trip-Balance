@@ -139,7 +139,11 @@ const CardWrap = ({ element, index, search }) => {
         />
         <TextBox>
           <Title>
+
             {element.heartNum}
+
+          {element.heartNum}
+
             <FcLike />
           </Title>
           <Name>{element.title}</Name>

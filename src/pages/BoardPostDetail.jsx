@@ -21,6 +21,8 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
+import Header from "../component/Header";
+import Footer from "../component/Footer"
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -135,7 +137,7 @@ const BoardPostDetail = () => {
   };
 
   const goProfile = () => {
-    navigate(`/tb/memberinfo/${post?.authorId}`);
+    navigate(`/tb/mypage/${post?.authorId}`);
   };
 
   console.log(heart);
@@ -145,6 +147,8 @@ const BoardPostDetail = () => {
   return loading ? (
     <Loading />
   ) : (
+    <div>
+    <Header/>
     <BoardPostDetailContainer>
       <BoardPostDetailWrap>
         <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
@@ -269,6 +273,8 @@ const BoardPostDetail = () => {
         <BoardMypost post={post} mypost={mypost} />
       </BoardPostDetailWrap>
     </BoardPostDetailContainer>
+    <Footer/>
+    </div>
   );
 };
 export default BoardPostDetail;
