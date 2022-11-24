@@ -1,104 +1,63 @@
-// // import React, { useState, useEffect } from "react";
-// // import { useDispatch, useSelector } from "react-redux";
-// // import Cardwrap from "../PostPage/Cardwrap";
-// // import useIntersect from "../hooks/useIntersect";
-// // import instance from "../lib/instance";
-// // import { __getBoard } from "../redux/modules/BoardSlice";
-// // //////////////////////////////////////////바뀔거
-// // const fakeFetch = (delay = 1000) =>
-// //   new Promise((res) => setTimeout(res, delay));
-// // /* 리스트 아이템 */
+// import React, { useState, useEffect, useRef, useCallback } from "react";
+// import CardWrap from "./Cardwrap";
+// // ...
 
-// // function InpiniteScroll() {
-// //   const dispatch = useDispatch();
-// //   /* 아이템 개수와 현재 로딩 상태 */
-// //   const data = useSelector((state) => state.BoardSlice.posts);
-// //   const [list, setList] = useState(data.slice(0, 20));
+// // data 배열을 받아 옵니다.
+// function InpiniteScroll({ data }) {
+//   const [list, setList] = useState(data.slice(0, 20));
+//   const [isScroll, setIsScroll] = useState(false);
+//   const loadRef = useRef(null);
+//   const observerRef = useRef(null);
+//   console.log("받아오나?", data);
+//   const onIntersect = useCallback(
+//     async (entry, observer) => {
+//       if (entry[0].isIntersecting) {
+//         observer.unobserve(entry[0].target);
+//         await new Promise((resolve) => setTimeout(resolve, 1000));
+//         setList((list) =>
+//           list.concat(data.slice(list.length, list.length + 20))
+//         );
+//         observer.observe(entry[0].target);
+//       }
+//     },
+//     [data]
+//   );
 
-// //   ///* fake 비동기 아이템 로드 */
-
-// //   const fetchItems = async () => {
-// //     setState((prev) => ({ ...prev, isLoading: true }));
-// //     await fakeFetch();
-// //     dispatch(__getBoard());
-
-// //     setState((prev) => ({
-// //       data: prev.data + 13,
-// //       isLoading: false,
-// //     }));
-// //   };
-
-// //   /* 초기 아이템 로딩 */
-// //   useEffect(() => {
-// //     fetchItems();
-// //   }, []);
-// //   ///* 옵저버 등록 */
-// //   const [_, setRef] = useIntersect(async (entry, observer) => {
-// //     observer.unobserve(entry.target);
-// //     // await dispatch(__getBoard());
-// //     observer.observe(entry.target);
-// //   }, {});
-
-// //   //
-// //   return <div className="App">asdas</div>;
-// // }
-
-// // export default InpiniteScroll;
-
-// import React, { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
-
-// import useIntersect from "../hooks/useIntersect";
-// import instance from "../lib/instance";
-// /////////////////////////////////////////////////////////////////기존거
-// const fakeFetch = (delay = 1000) =>
-//   new Promise((res) => setTimeout(res, delay));
-// /* 리스트 아이템 */
-// export const ListItem = ({ number }) => (
-//   <div className="ListItem">
-//     <span>{number}</span>
-//   </div>
-// );
-
-// function InpiniteScroll() {
-//   /* 아이템 개수와 현재 로딩 상태 */
-//   const [state, setState] = useState({ itemCount: 0, isLoading: false });
-//   /* fake 비동기 아이템 로드 */
-//   const fetchItems = async () => {
-//     setState((prev) => ({ ...prev, isLoading: true }));
-//     await fakeFetch();
-
-//     setState((prev) => ({
-//       itemCount: prev.itemCount + 13,
-//       isLoading: false,
-//     }));
-//   };
-//   console.log(fetchItems);
-//   //   const posts = useSelector((state) => state.BoardSlice.posts);
-//   //
-//   /* 초기 아이템 로딩 */
 //   useEffect(() => {
-//     fetchItems();
-//   }, []);
-//   ///* 옵저버 등록 */
-//   const [_, setRef] = useIntersect(async (entry, observer) => {
-//     observer.unobserve(entry.target);
-//     await fetchItems();
-//     observer.observe(entry.target);
-//   }, {});
-//   const { itemCount, isLoading } = state;
-//   if (!itemCount) return null;
-//   //
+//     if (loadRef.current && list.length !== data.length) {
+//       setIsScroll(true);
+//       observerRef.current = new IntersectionObserver(onIntersect, {
+//         threshold: 0.5,
+//       });
+//       if (isScroll) {
+//         observerRef.current.observe(loadRef.current);
+//       }
+//     }
+//     return () => {
+//       setIsScroll(false);
+//       observerRef.current && observerRef.current.disconnect();
+//     };
+//   }, [list, data, onIntersect]);
+
 //   return (
-//     <div className="App">
-//       {[...Array(itemCount)].map((_, i) => {
-//         return <ListItem key={i} number={i} />;
+//     <>
+//       {data?.map((element) => {
+//         return <CardWrap key={element.postId} element={element} />;
 //       })}
-//       <div ref={setRef} className="Loading">
-//         {isLoading && "Loading..."}
-//       </div>
-//     </div>
+//       <div ref={loadRef}>{isScroll && <div>로딩..옵저버...</div>}</div>
+//     </>
 //   );
 // }
 
 // export default InpiniteScroll;
+
+// // const Load = styled.div`
+// //   ${({ theme }) => theme.common.flexRow};
+// //   width: 100%;
+// //   background-color: ${({ theme }) => theme.colors.white};
+// // `;
+// // const InfiniteLoading = styled(ReactLoading)`
+// //   width: 3rem;
+// //   height: 3rem;
+// //   z-index: 999;
+// // `;

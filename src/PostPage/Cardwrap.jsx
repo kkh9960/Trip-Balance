@@ -28,44 +28,6 @@ const CardWrap = ({ element, search }) => {
 
 export default CardWrap;
 
-const SearchBar = styled.input`
-  opacity: 0.5;
-  border: 1px solid white;
-  background-color: #744aaa;
-  color: white;
-  width: 710px;
-  height: 60px;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  margin-left: 280px;
-  position: absolute;
-  bottom: -15px;
-  font-family: NotoSans;
-  font-size: 16px;
-  top: 330px;
-  left: 350px;
-
-  :hover {
-    opacity: 1;
-  }
-`;
-
-const Layout = styled.div`
-  justify-content: center;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-const Line = styled.div`
-  border: 1px solid #9a9797;
-  width: 1333.1px;
-  margin: 20.9px 110.8px 61.6px 2px;
-  margin-bottom: 20px;
-`;
 const ImgBox = styled.img`
   background-position: center;
   background-size: cover;

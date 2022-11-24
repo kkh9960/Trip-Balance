@@ -14,9 +14,19 @@ export const localText = styled.div`
   width: 500px;
   text-align: center;
   color: white;
-  font-size: 5.2em;
+  font-size: 4.2em;
   text-shadow: 3px 3px 3px #000;
   bottom: 310px;
+`;
+
+export const localTextContent = styled.div`
+  position: relative;
+  width: 900px;
+  text-align: center;
+  color: white;
+  font-size: x-large;
+  text-shadow: 3px 3px 3px #000;
+  bottom: 250px;
 `;
 
 export const hotelImg = styled.img`

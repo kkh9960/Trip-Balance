@@ -40,14 +40,17 @@ export default function GameResultPage() {
         <g.localImg src={resultImg}/>
       </div>
       <g.localText>
-        {game.data.data =="" ? ("로딩중입니다") : (game.data.data)}
+        {game.data.data.trip =="" ? ("로딩중입니다") : (game.data.data.trip)}
       </g.localText>
+      <g.localTextContent>
+        {game.data.data.tripcontent =="" ? ("로딩중입니다") : (game.data.data.tripcontent)}
+      </g.localTextContent>  
       <g.bigName>추천 숙소</g.bigName>
         <g.hotelWrap>
           {gameHotel && gameHotel.map((hotel) => (
             <g.hotelInfo key={hotel.id}>
             <div>
-              <a href={hotel.url && hotel.url}>
+              <a href={hotel.url && hotel.url} target="_blank">
               <g.hotelImg src={hotel.img && hotel.img}></g.hotelImg>
               </a>
             </div>
@@ -62,7 +65,7 @@ export default function GameResultPage() {
         {blog && blog.map((blog) => (
             <g.hotelInfo key={blog.id}>
             <div>
-              <a href={blog.url && blog.url}>
+              <a href={blog.url && blog.url} target="_blank">
               <g.hotelImg src={blog.thumbnail && blog.thumbnail}></g.hotelImg>
               </a>
             </div>

@@ -6,9 +6,9 @@ const initialState = {
   data: {
     cnt: [
       {
-        peopleCnt: 126360,
+        peopleCnt: 0,
         gender: "male",
-        location: "경기도 가평군",
+        location: "서울",
       },
       {
         peopleCnt: 121841,
@@ -91,7 +91,7 @@ export const __getMapData = createAsyncThunk(
   "GET_MAPDATA",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get("/tb/apimap/seoul", payload); //http://43.200.139.249:8080/tb/apitest
+      const { data } = await instance.get("/tb/apimap/seoul", payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -100,6 +100,7 @@ export const __getMapData = createAsyncThunk(
 export const __postMapData = createAsyncThunk(
   "POST_MAPDATA",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const { data } = await instance.post("/tb/apimap", payload);
       return thunkAPI.fulfillWithValue(data);

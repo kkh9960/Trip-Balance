@@ -15,7 +15,7 @@ export const Line = styled.div`
   background-color: black;
 `;
 export const thinLine = styled.div`
-  width: 90%;
+  width: 70%;
   height: 1px;
   margin: 0 auto 15px;
   background-color: black;
@@ -23,36 +23,51 @@ export const thinLine = styled.div`
 export const textLine = styled.div`
   width: 2px;
   height: 54.6px;
+  margin: 10px;
   transform: (rotate: 90deg);
-  background-color: #f2f2f2;
+  background-color: #555;
 `;
+export const empty = styled.div``;
 export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
   margin-top: 30px;
 `;
 
-export const myInformationItem = styled.div`
+export const myPickPostWrap = styled.div`
   position: relative;
   width: 77%;
-  height: 50%;
-  margin: 0 auto;
+  height: 45%;
+  margin-bottom: 40px;
+  margin-right: auto;
+  display: flex;
+  float: left;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
+  border: 2px solid gray;
+  border-left-style: none;
+  padding: 10px 20px 10px 200px;
+  box-shadow: 5px 5px 10px -5px;
+`;
+export const myPostWrap = styled.div`
+  position: relative;
+  width: 77%;
+  height: 45%;
+  margin-bottom: 40px;
+  float: right;
   display: flex;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   border: 2px solid gray;
-  padding: 10px 20px 10px;
+  border-right-style: none;
+  padding: 10px 200px 10px 20px;
 `;
 export const myTotalInfo = styled.div`
-  width: 70%;
   height: 150px;
   margin: 10px auto;
-  background-color: #00c1ec;
-  border-radius: 10px;
-  padding: 0 71.5px;
-
+  background-color: #4cd8eb;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   font-size: 30px;
@@ -62,7 +77,9 @@ export const myTotalInfo = styled.div`
   line-height: normal;
   letter-spacing: 1px;
   text-align: center;
-  color: #f2f2f2;
+  color: #555;
+  span {
+  }
 `;
 
 //좋아요한 게시글
@@ -79,11 +96,10 @@ export const itemHeader = styled.div`
 export const pickPostWrap = styled.div`
   margin: 80px 30px;
   width: 100%;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(20%, auto));
-  grid-template-rows: repeat(2, minmax(100px, 50%));
 `;
 export const pickPostItem = styled.div`
   width: 180px;
@@ -121,11 +137,9 @@ export const footer = styled.div`
 `;
 
 export const mySelectInformation = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-around;
   margin: 30px 0 30px 0;
   width: 100%;
-  height: 1500px;
+  height: 1700px;
 `;

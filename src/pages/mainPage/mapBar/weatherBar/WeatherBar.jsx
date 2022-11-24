@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getWeatherData } from "../../../../redux/modules/WeatherSlice";
-import "./WeatherBarStyle.css";
+import * as t from "./WeatherBarStyle";
 
 export default function WeatherBar() {
   const weatherdata = useSelector((state) => state.MapSlice.data.weather);
-
+  const city = useSelector((state) => state.MapSlice.data?.cnt);
+  const cityName = city[0].location;
+  console.log(city[0].location);
   const POP = weatherdata[Object.keys(weatherdata)[0]]; // 강수확률
   const PTY = weatherdata[Object.keys(weatherdata)[2]]; // 강수형태
   const REH = weatherdata[Object.keys(weatherdata)[6]]; // 습도
@@ -16,43 +18,42 @@ export default function WeatherBar() {
 
   return (
     <div>
-      <div className="weather">
-        <div className="top">
-          <div className="iconBox">
-            <img
-              alt="weather"
-              className="weather-icon"
+      <t.weather>
+        <h1>{cityName}</h1>
+        <t.top>
+          <t.iconBox>
+            <t.weatherIcon
               src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.gif`} //${weatherdata[Object.keys(weatherdata)[2]]}
             />
+          </t.iconBox>
+          <div className="temper">
+            <t.temperature>{`${TMP}`}°C</t.temperature>
           </div>
-          <div>
-            <p className="temperature">{`${TMP}`}°C</p>
-          </div>
-        </div>
-        <div className="bottom">
-          <div className="details">
-            <div className="parameter-row">
-              <span className="parameter-label">풍속</span>
-              <span className="parameter-value">{WSD}m/s</span>
-            </div>
-            <div className="parameter-row">
-              <span className="parameter-label">습도</span>
-              <span className="parameter-value">{REH}%</span>
-            </div>
-            <div className="parameter-row">
-              <span className="parameter-label">강수확률</span>
-              <span className="parameter-value"> {POP}%</span>
-            </div>
-            <div className="parameter-row">
-              <span className="parameter-label">강수량</span>
-              <span className="parameter-value">
+        </t.top>
+        <t.bottom>
+          <t.details>
+            <t.parameterRow>
+              <t.parameterLabel>풍속</t.parameterLabel>
+              <t.parameterValue>{WSD}m/s</t.parameterValue>
+            </t.parameterRow>
+            <t.parameterRow>
+              <t.parameterLabel>습도</t.parameterLabel>
+              <t.parameterValue>{REH}%</t.parameterValue>
+            </t.parameterRow>
+            <t.parameterRow>
+              <t.parameterLabel>강수확률</t.parameterLabel>
+              <t.parameterValue> {POP}%</t.parameterValue>
+            </t.parameterRow>
+            <t.parameterRow>
+              <t.parameterLabel>강수량</t.parameterLabel>
+              <t.parameterValue>
                 {" "}
                 {PCP === "강수없음" ? PCP : (PCP, "mm")}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+              </t.parameterValue>
+            </t.parameterRow>
+          </t.details>
+        </t.bottom>
+      </t.weather>
     </div>
   );
 }
