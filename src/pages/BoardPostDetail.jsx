@@ -405,9 +405,17 @@ const BoardCateGory = styled.div`
 const DeleteButton = styled.div`
   font-size: 24px;
   margin-left: 20px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 const ModifyButton = styled.div`
+  cursor: pointer;
   font-size: 24px;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TitleButtonWarp = styled.div`
