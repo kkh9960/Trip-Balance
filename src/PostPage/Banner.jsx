@@ -6,9 +6,13 @@ import CardSlide from "./CardSlide";
 import Card from "./Card";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 const Banner = () => {
   const navigate = useNavigate();
+
+  const best = useSelector((state) => state.BoardSlice.bestpost);
+  console.log(best);
 
   return (
     <Container>

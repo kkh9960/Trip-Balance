@@ -19,7 +19,7 @@ const Header = () => {
   useEffect(() => {
     setHeader(location.pathname);
   }, [location]);
-  console.log(header);
+  const email = sessionStorage.getItem("email");
   async function logout() {
     // 백으로부터 받은 응답
     //ss
@@ -33,8 +33,6 @@ const Header = () => {
         sessionStorage.removeItem("email");
         removeCookie("token");
         removeCookie("refreshToken");
-        console.log(res);
-        console.log(cookie);
         alert("로그아웃완료!");
         window.location.reload();
       })
@@ -69,13 +67,23 @@ const Header = () => {
                 >
                   게시판
                 </Posting>
+
                 <Mypage
+
+                {email == null ? (<Mypage
+                  onClick={() => {
+                    alert('로그인을 해주세요!')
+                  }}
+                >
+                  마이페이지
+                </Mypage>) : (<Mypage
+
                   onClick={() => {
                     navigate("/mypage");
                   }}
                 >
                   마이페이지
-                </Mypage>
+                </Mypage>)}
                 {nickname ? (
                   <div>
                     <div>
@@ -118,13 +126,24 @@ const Header = () => {
                 >
                   게시판
                 </Posting>
+
                 <Mypage
+
+                {email == null ? (<Mypage
+                  onClick={() => {
+                    alert('로그인을 해주세요!')
+                    setModal(!modal);
+                  }}
+                >
+                  마이페이지
+                </Mypage>) : (<Mypage
+
                   onClick={() => {
                     navigate("/mypage");
                   }}
                 >
                   마이페이지
-                </Mypage>
+                </Mypage>)}
                 {nickname ? (
                   <div>
                     <div>

@@ -33,6 +33,7 @@ function LoginPage() {
   const [cookie, setCookie, removeCookie] = useCookies();
   const modalClose = () => {
     setModal(!modal);
+    window.location.reload();
   };
   console.log(watch());
 
@@ -75,7 +76,7 @@ function LoginPage() {
 
   return (
     <div className="wrap">
-      <Header />
+      {/* <Header /> */}
 
       {modal && (
         <div className="auth-wrapper">
