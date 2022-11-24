@@ -6,6 +6,7 @@ import { __getBoard, __SearchBoard } from "../redux/modules/BoardSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useInView } from "react-intersection-observer";
+import instance from "../lib/instance";
 // import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
@@ -47,6 +48,14 @@ export const Cards = () => {
   // }, []);
 
   const [page, setpage] = useState(1);
+
+  const Cartegory = (local) => {
+    instance
+      .get(`tb/posts/search/${local}?keyword=keyword&page=1`)
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
   useEffect(() => {
     dispatch(__getBoard(0));
