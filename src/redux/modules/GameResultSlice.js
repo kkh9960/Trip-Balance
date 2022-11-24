@@ -30,7 +30,9 @@ export const __GameResultIBlogGet = createAsyncThunk(
   "Game_Blog",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`tb/blog?query=${payload}`);
+      const { data } = await instance.get(
+        `tb/blog?query=` + encodeURI(`${payload}`)
+      );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

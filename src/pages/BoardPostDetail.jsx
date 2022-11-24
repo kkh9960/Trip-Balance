@@ -21,6 +21,8 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading/Loading";
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
+import Header from "../component/Header";
+import Footer from "../component/Footer"
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const BoardPostDetail = () => {
   const imagel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [imagelength, setimegelength] = useState(imagel);
   const dispatch = useDispatch();
-  const userNickname = localStorage.getItem("nickName");
+  const userNickname = sessionStorage.getItem("nickName");
   const [loading, setLoading] = useState(true);
 
   const ImegaURL = [
@@ -70,7 +72,7 @@ const BoardPostDetail = () => {
   }, []);
 
   useEffect(() => {
-    if (!isLoading) dispatch(__getmypost(post.authorId));
+    if (!isLoading) dispatch(__getmypost(post?.authorId));
   }, [isLoading]);
 
   useEffect(() => {
@@ -135,7 +137,7 @@ const BoardPostDetail = () => {
   };
 
   const goProfile = () => {
-    navigate(`/tb/memberinfo/${post?.authorId}`);
+    navigate(`/tb/mypage/${post?.authorId}`);
   };
 
   console.log(heart);
@@ -145,6 +147,8 @@ const BoardPostDetail = () => {
   return loading ? (
     <Loading />
   ) : (
+    <div>
+    <Header/>
     <BoardPostDetailContainer>
       <BoardPostDetailWrap>
         <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
@@ -269,6 +273,8 @@ const BoardPostDetail = () => {
         <BoardMypost post={post} mypost={mypost} />
       </BoardPostDetailWrap>
     </BoardPostDetailContainer>
+    <Footer/>
+    </div>
   );
 };
 export default BoardPostDetail;
@@ -405,9 +411,17 @@ const BoardCateGory = styled.div`
 const DeleteButton = styled.div`
   font-size: 24px;
   margin-left: 20px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 const ModifyButton = styled.div`
+  cursor: pointer;
   font-size: 24px;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 const TitleButtonWarp = styled.div`

@@ -4,6 +4,7 @@ import instance from "../../lib/instance";
 export const addMemberThunk = createAsyncThunk(
   "ADD_MEMBER",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const { data } = await instance.post("/tb/signup", payload);
       console.log(data.data);
