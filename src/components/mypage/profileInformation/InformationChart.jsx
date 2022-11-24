@@ -13,7 +13,11 @@ export default function InformationChart() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/totaldb");
-      setTotalData(result);
+      if (result.data?.data === "" || undefined) {
+        setTotalData(result.data.data.push(["지역: 빈값, 값: 0"]));
+      } else {
+        setTotalData(result);
+      }
     }
     fetchData();
   }, []);
@@ -21,22 +25,17 @@ export default function InformationChart() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/tripdb");
-
-      console.log(result);
-
-      if (result.data.data === undefined) {
+      if (result.data?.data === "" || undefined) {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setMyPickData(result.data);
       }
-
-      console.log(result);
     }
     fetchData();
   }, []);
-  console.log(mpData?.data[0]);
+
   const chartData = {
-    people: {
+    total: {
       option: [],
       labels: [
         mpData?.data[0]?.slice(4, 6),
@@ -93,7 +92,7 @@ export default function InformationChart() {
         },
       ],
     },
-    age: {
+    pick: {
       labels: [
         totalData?.data.data[0].slice(4, 6),
         totalData?.data.data[1].slice(4, 6),
@@ -155,11 +154,11 @@ export default function InformationChart() {
       <t.chartNametag></t.chartNametag>
       <t.inforChartBox>
         <t.inforChartView>
-          <Pie data={chartData.people} />
+          <Pie data={chartData.total} />
         </t.inforChartView>
         <div>나의 통계</div>
         <t.inforChartView>
-          <Pie data={chartData.age} />
+          <Pie data={chartData.pick} />
         </t.inforChartView>
         <div>전체 통계</div>
       </t.inforChartBox>

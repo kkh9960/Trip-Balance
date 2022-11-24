@@ -12,7 +12,7 @@ export default function Post() {
   return (
     <t.postContainer>
       <t.hotelContainer>
-        <t.hotelText>{cityName.split(" ")[0]}추천숙소</t.hotelText>
+        <t.hotelText>{cityName.split(" ")[1]}추천숙소</t.hotelText>
         <t.hotelList>
           {hotelList &&
             hotelList[0].map((idx) => {
@@ -38,7 +38,7 @@ export default function Post() {
       </t.hotelContainer>
       <t.blogContainer>
         <t.blogList>
-          <t.blogText>{cityName.split(" ")[0]}추천 블로그</t.blogText>
+          <t.blogText>{cityName.split(" ")[1]}추천 블로그</t.blogText>
           {blogList &&
             blogList[0].map((idx) => {
               if (blogList.length === 0) {
