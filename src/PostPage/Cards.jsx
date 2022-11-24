@@ -169,11 +169,7 @@ const CardWrap = ({ element, index, search }) => {
         />
         <TextBox>
           <Title>
-
             {element.heartNum}
-
-          {element.heartNum}
-
             <FcLike />
           </Title>
           <Name>{element.title}</Name>
@@ -311,7 +307,7 @@ const Title = styled.div`
   line-height: 23px;
   word-break: normal;
   margin-left: 30px;
-  z-index: 1;
+  /* z-index: 1; */
 `;
 const Name = styled.div`
   font-family: "KakaoBigRegular";

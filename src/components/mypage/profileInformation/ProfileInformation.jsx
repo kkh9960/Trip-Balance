@@ -139,7 +139,7 @@ export default function ProfileInformation({}) {
         {profileMode ? nickname : topNickname}
         <span>님의 마이페이지</span>
       </t.userName>
-      <t.UserInfor $mode="dark">
+      <t.UserInfor>
         {profileMode ? (
           <t.myInformation>
             <t.ProfileImgBox src={profileImg} />
@@ -176,7 +176,7 @@ export default function ProfileInformation({}) {
             <input
               type="file"
               style={{ display: "none" }}
-              accept="image/jpg,impge/png,image/jpeg"
+              accept="image/jpg,image/png,image/jpeg"
               name="profile_img"
               onChange={onFileUpload}
               ref={profileImgInput}
