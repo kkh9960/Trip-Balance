@@ -13,8 +13,9 @@ export const __getBoard = createAsyncThunk(
   "GET_BOARD",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/tb/posts?page=0`);
-
+      console.log(payload);
+      const { data } = await instance.get(`/tb/posts?page=${payload}`);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -27,6 +28,7 @@ export const __getmypost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts/otherpost/${payload}`);
+      console.log("테스트", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -139,7 +141,10 @@ const BoardSlice = createSlice({
   extraReducers: {
     [__getBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.posts = action.payload.data;
+
+      action.payload.data.map((item, idx) => state.posts.push(item));
+
+      console.log(action.payload.data[0].postResponseDtoList);
     },
     [__getBoard.rejected]: (state, action) => {
       state.isLoading = false;

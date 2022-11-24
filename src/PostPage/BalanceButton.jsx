@@ -16,7 +16,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
-  margin-top: 61.6px;
+  margin-top: 100.6px;
 `;
 const Btn = styled.button`
   margin-bottom: 149.9px;

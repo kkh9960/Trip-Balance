@@ -73,6 +73,7 @@ const BoardWrite = () => {
       alert("이미지는 10개까지만 업로드할수있습니다.");
     }
   };
+  console.log(ImgPreview);
 
   useEffect(() => {
     setFileLink(imagewrite);
@@ -110,16 +111,20 @@ const BoardWrite = () => {
   console.log(contents);
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      __postBoard({
-        title: contents?.title,
-        content: contents?.content,
-        local: contents?.category1,
-        localdetail: contents?.category2,
-        mediaList: ImgPreview,
-        pet: Pet,
-      })
-    );
+    if (ImgPreview == 0) {
+      alert("사진이 없으면 글쓰기가 불가능합니다.");
+    } else {
+      dispatch(
+        __postBoard({
+          title: contents?.title,
+          content: contents?.content,
+          local: contents?.category1,
+          localdetail: contents?.category2,
+          mediaList: ImgPreview,
+          pet: Pet,
+        })
+      );
+    }
   };
 
   const imagewrite = "img/imagewrite.jpg";

@@ -47,7 +47,9 @@ const BoardPostDetail = () => {
 
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
+  const mypost = useSelector((state) => state.BoardSlice.myposts);
   const comments = useSelector((state) => state.commentSlice.comments);
+
   const nickname = localStorage.getItem("nickName");
 
   console.log("응애 나 애기로딩", isLoading);
@@ -55,6 +57,7 @@ const BoardPostDetail = () => {
   console.log("나 댓글정보", comments);
 
   console.log(post);
+  console.log(mypost);
 
   const [heart, setHeart] = useState(false);
   const [heartnum, setheartnum] = useState();
@@ -150,7 +153,7 @@ const BoardPostDetail = () => {
             <Swiper
               effect={"cards"}
               autoplay={{
-                delay: 2000,
+                delay: 3000,
                 disableOnInteraction: false,
               }}
               pagination={{
@@ -263,7 +266,7 @@ const BoardPostDetail = () => {
               />
             ))}
         </BoardCommentWrap>
-        <BoardMypost post={post} />
+        <BoardMypost post={post} mypost={mypost} />
       </BoardPostDetailWrap>
     </BoardPostDetailContainer>
   );

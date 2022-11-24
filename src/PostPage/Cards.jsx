@@ -19,6 +19,8 @@ export const Cards = () => {
     console.log("key press");
   };
 
+  console.log(posts);
+
   const [useInput, setUseInput] = useState("");
   console.log(useInput);
   // const onChange = (e) => {
@@ -26,23 +28,31 @@ export const Cards = () => {
   // };
 
   // const intersectiong = useInfiniteScroll(fetchMoreEl);
-  const filteredProducts = posts.filter((posts) => {
-    return posts.title.toLowerCase().includes(useInput.toLowerCase());
+
+  const filteredProducts = posts?.filter((posts) => {
+    return posts.title?.toLowerCase().includes(useInput?.toLowerCase());
   });
 
   useEffect(() => {
-    if (posts.length === 0) {
-      console.log("첫포스트로딩");
-      dispatch(__getBoard());
-    }
+    dispatch(__getBoard(0));
   }, []);
 
-  useEffect(() => {
-    if (posts.length !== 0 && inView) {
-      console.log("첫로딩이후 무한 스크롤");
-      dispatch(__getBoard());
-    }
-  }, [inView]);
+  const target = useRef(null);
+
+  const [page, setpage] = useState(1);
+
+  const GetPost = () => {
+    dispatch(__getBoard(page));
+    setpage(page + 1);
+  };
+
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver((e) => {
+  //     GetPost();
+  //   });
+
+  //   observer.observe(target.current);
+  // }, []);
 
   return (
     <Layout>
@@ -62,10 +72,13 @@ export const Cards = () => {
         />
       ))}
       <div ref={ref}></div>
-      <Line></Line>
+      <Line ref={target}>
+        <Temporarybtn onClick={GetPost}>더 보기</Temporarybtn>
+      </Line>
     </Layout>
   );
 };
+
 export default Cards;
 
 const CardWrap = ({ element, index, search }) => {
@@ -106,6 +119,17 @@ const CardWrap = ({ element, index, search }) => {
 </InfiniteScroll> */
 }
 
+const Temporarybtn = styled.div`
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  left: 45%;
+  top: 30px;
+  border: 1px solid #333;
+  color: #333;
+  padding: 10px 50px;
+`;
+
 const SearchBar = styled.input`
   opacity: 0.5;
   border: 1px solid white;
@@ -140,9 +164,10 @@ const Layout = styled.div`
 `;
 const Line = styled.div`
   border: 1px solid #9a9797;
-  width: 1333.1px;
-  margin: 20.9px 110.8px 61.6px 2px;
+  width: 100%;
+  margin: 20.9px 0px 61.6px 0px;
   margin-bottom: 20px;
+  position: relative;
 `;
 const ImgBox = styled.img`
   background-position: center;
