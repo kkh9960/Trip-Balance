@@ -43,13 +43,10 @@ const BoardMypost = ({ post, mypost }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
-
   const goPost = (id) => {
     window.location.replace(`/detail/${id}`);
     // navigator(`/detail/${id}`);
-
   };
-
 
   return (
     <main>

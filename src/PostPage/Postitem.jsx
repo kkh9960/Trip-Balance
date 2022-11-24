@@ -38,7 +38,6 @@ const Postitem = () => {
 
   console.log(posts);
 
-
   useEffect(() => {
     if (posts == 0) {
       dispatch(__getBoard(0));
@@ -106,9 +105,8 @@ const Postitem = () => {
       <PostListWrap>
         <PostListTitle>TB 추천여행지</PostListTitle>
         <PostCardList>
-
           {filteredProducts.map((item, idx) => (
-            <CardWrap search={filteredProducts}>
+            <CardWrap search={filteredProducts} onClick={goDetail}>
               <CardImgbox>
                 <CardImg src={item.image[0].imgURL} />
               </CardImgbox>
@@ -117,7 +115,7 @@ const Postitem = () => {
                 <Cardbody>
                   <Userinfo>
                     <UserImg src="/img/default3.jpg" />
-                    <CardUserName>작성자</CardUserName>
+                    <CardUserName>{item.author}</CardUserName>
                   </Userinfo>
                   <Likeinfo>
                     <LikeCount>{item.heartNum}</LikeCount>
@@ -127,7 +125,6 @@ const Postitem = () => {
               </CardTextbox>
             </CardWrap>
           ))}
-
         </PostCardList>
       </PostListWrap>
       <Viewbox>
