@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { __getWeatherData } from "../../../../redux/modules/WeatherSlice";
+import React from "react";
+import { useSelector } from "react-redux";
 import * as t from "./WeatherBarStyle";
 
 export default function WeatherBar() {
   const weatherdata = useSelector((state) => state.MapSlice.data.weather);
   const city = useSelector((state) => state.MapSlice.data?.cnt);
-  const cityName = city[0].location;
-  console.log(city[0].location);
+  const cityName = city[0].location.split(" ")[0];
+  const countyName = city[0].location.split(" ")[1];
+
   const POP = weatherdata[Object.keys(weatherdata)[0]]; // 강수확률
   const PTY = weatherdata[Object.keys(weatherdata)[2]]; // 강수형태
   const REH = weatherdata[Object.keys(weatherdata)[6]]; // 습도
@@ -19,16 +19,17 @@ export default function WeatherBar() {
   return (
     <div>
       <t.weather>
-        <h1>{cityName}</h1>
+        <t.cityName>{cityName}</t.cityName>
+        <t.countyName>{countyName}</t.countyName>
         <t.top>
           <t.iconBox>
             <t.weatherIcon
               src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.gif`} //${weatherdata[Object.keys(weatherdata)[2]]}
             />
           </t.iconBox>
-          <div className="temper">
+          <t.temperatureBox>
             <t.temperature>{`${TMP}`}°C</t.temperature>
-          </div>
+          </t.temperatureBox>
         </t.top>
         <t.bottom>
           <t.details>
