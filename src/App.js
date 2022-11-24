@@ -1,8 +1,6 @@
-import Layout from "./component/Layout";
-import Router from "./shared/Router";
+import React from "react";
+import Router from "./shared/router/Router";
 
-function App() {
+export default function App() {
   return <Router />;
 }
-
-export default App;

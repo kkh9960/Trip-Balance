@@ -1,11 +1,22 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import authSlice from "../modules/Signup";
+import { configureStore } from "@reduxjs/toolkit";
+import MapSlice from "../modules/MapSlice";
+import PostSlice from "../modules/PostSlice";
+import BoardSlice from "../modules/BoardSlice";
+import gameInfo from "../modules/GameSlice";
+import MyInforSlice from "../modules/MyPageSlice";
+import commentSlice from "../modules/CommentSlice";
+import gameResult from "../modules/GameResultSlice";
 
 const store = configureStore({
-  reducer: { authSlice },
-  //   middleware: getDefaultMiddleware({
-  //     serializableCheck: false,
-  //   }),
+  reducer: {
+    MapSlice,
+    PostSlice,
+    BoardSlice,
+    gameInfo,
+    MyInforSlice,
+    commentSlice,
+    gameResult,
+  },
 });
 
 export default store;

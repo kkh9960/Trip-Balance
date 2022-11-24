@@ -9,8 +9,4 @@ export default Layout;
 
 const LayoutBox = styled.div`
   margin: 0 auto;
-  max-width: 1440px;
-  min-width: 800px;
-
-  border: 1px solid red;
 `;

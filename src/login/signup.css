@@ -1,0 +1,240 @@
+/* -------------------------------------------------------------------------- */
+.signup-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 1080px;
+  padding: 70.9px 0 100.7px;
+  margin: auto;
+  justify-content: center;
+  top: 3px;
+  position: relative;
+  z-index: 1;
+}
+.line {
+  width: 354px;
+  border: 1px solid rgba(170, 170, 170, 0.7);
+  position: relative;
+  left: 80px;
+  top: 17px;
+}
+.signup-wrapper .emailbutton {
+  width: 100px;
+  position: absolute;
+  left: 1138px;
+  top: 240px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+}
+.signup-wrapper .nicknamebutton {
+  width: 100px;
+  left: 1138px;
+  position: relative;
+  bottom: 730px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: none;
+  border-radius: 10px;
+}
+
+.signup-wrapper form {
+  padding: 30px;
+  width: 518px;
+  margin: auto;
+  background-color: white;
+  bottom: 150px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: relative;
+}
+
+.title {
+  width: 200px;
+  height: 60px;
+  margin: 64.7px 127.5px 32px 135.5px;
+  font-family: ReemKufi;
+  font-size: 40px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #555;
+  position: relative;
+  left: 20px;
+}
+.line2 {
+  width: 354px;
+  border: 1px solid rgba(170, 170, 170, 0.7);
+  position: relative;
+  margin: auto;
+  top: 70px;
+}
+
+.signup-wrapper .form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+p {
+  color: #bf1650;
+  position: relative;
+  top: 30px;
+  left: 85px;
+}
+
+.signup-wrapper p::before {
+  color: red;
+  display: inline;
+  content: "⚠ ";
+}
+
+.signup-wrapper input {
+  display: block;
+  box-sizing: border-box;
+  width: 360px;
+  height: 61px;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  border-radius: 10px;
+  border: solid 2px rgba(170, 170, 170, 0.8);
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  margin-top: 20px;
+  position: relative;
+  top: 37px;
+}
+
+.signup-wrapper label {
+  line-height: 2;
+  text-align: left;
+  display: block;
+
+  margin: 5px 0;
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.signup-wrapper button[type="submit"],
+.signup-wrapper input[type="submit"] {
+  background: #00c1ec;
+  color: white;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  border: none;
+  margin-top: 110px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+  width: 360px;
+  height: 61px;
+  border-radius: 10px;
+  position: relative;
+  left: 80px;
+  transition: 1.1s;
+}
+.kakaoimg {
+  width: 360px;
+  height: 61px;
+  position: relative;
+  bottom: 11px;
+  right: 21px;
+}
+
+.kaka {
+  border: none;
+  outline: none;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 110px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
+  width: 360px;
+  height: 61px;
+  border-radius: 10px;
+  position: relative;
+  left: 80px;
+}
+
+.message-form-button {
+  background: #7a84eb;
+  color: white;
+
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 20px;
+
+  font-weight: 100;
+  letter-spacing: 10px;
+}
+
+.message-form-button:hover {
+  background: #636ee6;
+}
+
+.signup-wrapper button[type="submit"]:hover,
+.signup-wrapper input[type="submit"]:hover {
+  background: orange;
+  transition: 1s;
+}
+
+.signup-wrapper button[type="submit"]:active,
+.signup-wrapper input[type="button"]:active,
+.signup-wrapper input[type="submit"]:active {
+  transition: 0.3s all;
+  transform: translateY(3px);
+  border: 1px solid transparent;
+  opacity: 0.8;
+}
+
+.signup-wrapper input:disabled {
+  opacity: 0.4;
+}
+
+.signup-wrapper input[type="button"]:hover {
+  transition: 0.3s all;
+}
+
+.signup-wrapper button[type="submit"],
+.signup-wrapper input[type="button"],
+.signup-wrapper input[type="submit"] {
+  -webkit-appearance: none;
+}
+
+.signup-wrapper button[type="button"] {
+  display: block;
+  appearance: none;
+  background: #333;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+hr {
+  margin-top: 30px;
+}
+
+.signup-wrapper button {
+  display: block;
+  appearance: none;
+  margin-top: 40px;
+  border: 1px solid #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+/* -------------------------------------------------- */
