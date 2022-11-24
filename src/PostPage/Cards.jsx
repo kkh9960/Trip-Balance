@@ -187,17 +187,11 @@ const CardWrap = ({ element, index, search }) => {
           }
         />
         <TextBox>
+        <Name>{element.title}</Name>
           <Title>
             {element.heartNum}
-
-
-         
-
-
-
             <FcLike />
           </Title>
-          <Name>{element.title}</Name>
         </TextBox>
       </div>
     </CardBox>
@@ -297,13 +291,14 @@ const TextBox = styled.div`
   overflow: hidden;
   text-align: center;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   display: flex;
   z-index: 2;
 `;
 const Title = styled.div`
   font-size: 20px;
   display: block;
+  float: right;
   text-decoration: none;
   position: relative;
   text-overflow: ellipsis;
@@ -313,12 +308,12 @@ const Title = styled.div`
   cursor: pointer;
   line-height: 23px;
   word-break: normal;
-  margin-left: 30px;
+  //margin-left: 30px;
   /* z-index: 1; */
 `;
 const Name = styled.div`
   font-family: "KakaoBigRegular";
   font-size: 20px;
   line-height: 20px;
-  margin-left: -180px;
+  //margin-left: -180px;
 `;
