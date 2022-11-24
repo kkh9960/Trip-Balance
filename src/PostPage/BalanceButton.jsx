@@ -1,10 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const BalanceButton = () => {
+
+  const navigate = useNavigate()
+
   return (
     <Container>
-      <Btn>밸런스 게임</Btn>
+      <Btn onClick={() => (
+        navigate("/start")
+      )}>밸런스 게임</Btn>
     </Container>
   );
 };

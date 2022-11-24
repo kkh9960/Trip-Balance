@@ -20,9 +20,9 @@
 }
 .signup-wrapper .emailbutton {
   width: 100px;
-  position: absolute;
+  position: relative;
   left: 1138px;
-  top: 240px;
+  bottom: 760px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
@@ -31,7 +31,7 @@
   width: 100px;
   left: 1138px;
   position: relative;
-  bottom: 730px;
+  bottom: 775px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   border-radius: 10px;

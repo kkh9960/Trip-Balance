@@ -10,6 +10,8 @@ import TopButton from "./TopButton";
 import { useDispatch, useSelector } from "react-redux";
 import { __getBoard } from "../redux/modules/BoardSlice";
 import InfiniteScroll from "./InpiniteScroll";
+import Postitem from "./Postitem";
+
 const PostPage = () => {
   // const data = useSelector((state) => state.BoardSlice.posts);
 
@@ -27,9 +29,8 @@ const PostPage = () => {
       exit={{ opacity: 0 }}
     >
       <Header />
-      <Banner />
       <Layout>
-        <Cards />
+        <Postitem />
 
         {/* <InfiniteScroll data={data} /> */}
       </Layout>

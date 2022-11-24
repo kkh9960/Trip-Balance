@@ -9,63 +9,59 @@ ChartJS.register(ArcElement, Tooltip);
 
 export default function InformationChart() {
   const [totalData, setTotalData] = useState();
-  const [mpData, setMyPickData] = useState();
+  const [mypickData, setMyPickData] = useState();
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/totaldb");
-      setTotalData(result);
+      if (result.data?.data === "" || undefined) {
+        setTotalData(result.data.data.push("지역: 빈값, 값: 0"));
+      } else {
+        setTotalData(result);
+      }
     }
     fetchData();
   }, []);
-
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/tripdb");
-
-      console.log(result);
-
-      if (result.data.data === undefined) {
+      if (result.data?.data === "" || undefined) {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
-        setMyPickData(result.data);
+        setMyPickData(result);
       }
-
-
-      console.log(result);
-
     }
     fetchData();
   }, []);
-  console.log(mpData?.data[0]);
+
   const chartData = {
-    people: {
+    total: {
       option: [],
       labels: [
-        mpData?.data[0]?.slice(4, 6),
-        mpData?.data[1]?.slice(4, 6),
-        mpData?.data[2]?.slice(4, 6),
-        mpData?.data[3]?.slice(4, 6),
-        mpData?.data[4]?.slice(4, 6),
-        mpData?.data[5]?.slice(4, 6),
-        mpData?.data[6]?.slice(4, 6),
-        mpData?.data[7]?.slice(4, 6),
-        mpData?.data[8]?.slice(4, 6),
-        mpData?.data[9]?.slice(4, 6),
+        mypickData?.data?.data[0]?.slice(7, 9),
+        mypickData?.data?.data[1]?.slice(7, 9),
+        mypickData?.data?.data[2]?.slice(7, 9),
+        mypickData?.data?.data[3]?.slice(7, 9),
+        mypickData?.data?.data[4]?.slice(7, 9),
+        mypickData?.data?.data[5]?.slice(7, 9),
+        mypickData?.data?.data[6]?.slice(7, 9),
+        mypickData?.data?.data[7]?.slice(7, 9),
+        mypickData?.data?.data[8]?.slice(7, 9),
+        mypickData?.data?.data[9]?.slice(7, 9),
       ],
       datasets: [
         {
           label: "# of Votes",
           data: [
-            mpData?.data[0]?.match(/\d+/g)[0],
-            mpData?.data[1]?.match(/\d+/g)[0],
-            mpData?.data[2]?.match(/\d+/g)[0],
-            mpData?.data[3]?.match(/\d+/g)[0],
-            mpData?.data[4]?.match(/\d+/g)[0],
-            mpData?.data[5]?.match(/\d+/g)[0],
-            mpData?.data[6]?.match(/\d+/g)[0],
-            mpData?.data[7]?.match(/\d+/g)[0],
-            mpData?.data[8]?.match(/\d+/g)[0],
-            mpData?.data[9]?.match(/\d+/g)[0],
+            mypickData?.data?.data[0]?.match(/\d+/g)[0],
+            mypickData?.data?.data[1]?.match(/\d+/g)[0],
+            mypickData?.data?.data[2]?.match(/\d+/g)[0],
+            mypickData?.data?.data[3]?.match(/\d+/g)[0],
+            mypickData?.data?.data[4]?.match(/\d+/g)[0],
+            mypickData?.data?.data[5]?.match(/\d+/g)[0],
+            mypickData?.data?.data[6]?.match(/\d+/g)[0],
+            mypickData?.data?.data[7]?.match(/\d+/g)[0],
+            mypickData?.data?.data[8]?.match(/\d+/g)[0],
+            mypickData?.data?.data[9]?.match(/\d+/g)[0],
           ],
           backgroundColor: [
             "#C3F7EC",
@@ -95,33 +91,33 @@ export default function InformationChart() {
         },
       ],
     },
-    age: {
+    pick: {
       labels: [
-        totalData?.data.data[0].slice(4, 6),
-        totalData?.data.data[1].slice(4, 6),
-        totalData?.data.data[2].slice(4, 6),
-        totalData?.data.data[3].slice(4, 6),
-        totalData?.data.data[4].slice(4, 6),
-        totalData?.data.data[5].slice(4, 6),
-        totalData?.data.data[6].slice(4, 6),
-        totalData?.data.data[7].slice(4, 6),
-        totalData?.data.data[8].slice(4, 6),
-        totalData?.data.data[9].slice(4, 6),
+        totalData?.data?.data[0]?.slice(7, 9),
+        totalData?.data?.data[1]?.slice(7, 9),
+        totalData?.data?.data[2]?.slice(7, 9),
+        totalData?.data?.data[3]?.slice(7, 9),
+        totalData?.data?.data[4]?.slice(7, 9),
+        totalData?.data?.data[5]?.slice(7, 9),
+        totalData?.data?.data[6]?.slice(7, 9),
+        totalData?.data?.data[7]?.slice(7, 9),
+        totalData?.data?.data[8]?.slice(7, 9),
+        totalData?.data?.data[9]?.slice(7, 9),
       ],
       datasets: [
         {
           label: "# of Votes",
           data: [
-            totalData?.data.data[0].match(/\d+/g)[0],
-            totalData?.data.data[1].match(/\d+/g)[0],
-            totalData?.data.data[2].match(/\d+/g)[0],
-            totalData?.data.data[3].match(/\d+/g)[0],
-            totalData?.data.data[4].match(/\d+/g)[0],
-            totalData?.data.data[5].match(/\d+/g)[0],
-            totalData?.data.data[6].match(/\d+/g)[0],
-            totalData?.data.data[7].match(/\d+/g)[0],
-            totalData?.data.data[8].match(/\d+/g)[0],
-            totalData?.data.data[9].match(/\d+/g)[0],
+            totalData?.data?.data[0]?.match(/\d+/g)[0],
+            totalData?.data?.data[1]?.match(/\d+/g)[0],
+            totalData?.data?.data[2]?.match(/\d+/g)[0],
+            totalData?.data?.data[3]?.match(/\d+/g)[0],
+            totalData?.data?.data[4]?.match(/\d+/g)[0],
+            totalData?.data?.data[5]?.match(/\d+/g)[0],
+            totalData?.data?.data[6]?.match(/\d+/g)[0],
+            totalData?.data?.data[7]?.match(/\d+/g)[0],
+            totalData?.data?.data[8]?.match(/\d+/g)[0],
+            totalData?.data?.data[9]?.match(/\d+/g)[0],
           ],
           backgroundColor: [
             "#B9DBFA",
@@ -154,16 +150,15 @@ export default function InformationChart() {
   };
   return (
     <t.inforChartViewbox>
-      <t.chartNametag>
-      </t.chartNametag>
+      <t.chartNametag></t.chartNametag>
       <t.inforChartBox>
+        <div>나의 통계</div>
         <t.inforChartView>
-          <Pie data={chartData.people} />
-          <div>나의 통계</div>
+          <Pie data={chartData.total} />
         </t.inforChartView>
+        <div>전체 통계</div>
         <t.inforChartView>
-          <Pie data={chartData.age} />
-          <div>전체 통계</div>
+          <Pie data={chartData.pick} />
         </t.inforChartView>
       </t.inforChartBox>
     </t.inforChartViewbox>

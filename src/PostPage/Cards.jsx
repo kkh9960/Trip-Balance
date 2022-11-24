@@ -2,13 +2,20 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
 import { useSelector, useDispatch } from "react-redux";
-import { __getBoard, __SearchBoard } from "../redux/modules/BoardSlice";
+import {
+  __getBoard,
+  __SearchBoard,
+  __getbestfive,
+} from "../redux/modules/BoardSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useInView } from "react-intersection-observer";
+import instance from "../lib/instance";
+import LoginPage from "../login/LoginPage";
 // import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
+
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const [ref, inView] = useInView();
@@ -18,6 +25,7 @@ export const Cards = () => {
     }
     console.log("key press");
   };
+  console.log(posts);
 
   const [useInput, setUseInput] = useState("");
 
@@ -48,8 +56,20 @@ export const Cards = () => {
 
   const [page, setpage] = useState(1);
 
+  const Cartegory = (local) => {
+    instance
+      .get(`tb/posts/search/${local}?keyword=keyword&page=1`)
+      .then((res) => {
+        console.log(res);
+      });
+  };
+
   useEffect(() => {
-    dispatch(__getBoard(0));
+    if (posts == 0) {
+      dispatch(__getBoard(0));
+    }
+
+    dispatch(__getbestfive());
   }, []);
 
   const GetPost = () => {
@@ -123,28 +143,69 @@ export default Cards;
 const CardWrap = ({ element, index, search }) => {
   const carddefaultimg = "../../img/default3.jpg";
 
+  const email = sessionStorage.getItem("email");
   const navigator = useNavigate();
   const DatailPageMove = () => {
     navigator(`/detail/${element.postId}`);
   };
 
+  const goLogin = () => {
+    alert("로그인이 필요합니다!");
+    setModal(!modal);
+  };
+
+  const [modal, setModal] = useState(false);
+
+  console.log(element);
+
   return (
-    <CardBox key={element.postId} onClick={DatailPageMove}>
-      <div>
-        <ImgBox
-          src={
-            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
-          }
-        />
-        <TextBox>
-          <Title>
-          {element.heartNum}
-            <FcLike />
-          </Title>
-          <Name>{element.title}</Name>
-        </TextBox>
-      </div>
-    </CardBox>
+    <>
+      {modal ? (
+        <LoginPage />
+      ) : (
+        <>
+          {email == null ? (
+            <CardBox key={element.postId} onClick={goLogin}>
+              <div>
+                <ImgBox
+                  src={
+                    element.image[0]?.imgURL
+                      ? element.image[0]?.imgURL
+                      : carddefaultimg
+                  }
+                />
+                <TextBox>
+                  <Title>
+                    {element.heartNum}
+                    <FcLike />
+                  </Title>
+                  <Name>{element.title}</Name>
+                </TextBox>
+              </div>
+            </CardBox>
+          ) : (
+            <CardBox key={element.postId} onClick={DatailPageMove}>
+              <div>
+                <ImgBox
+                  src={
+                    element.image[0]?.imgURL
+                      ? element.image[0]?.imgURL
+                      : carddefaultimg
+                  }
+                />
+                <TextBox>
+                  <Name>{element.title}</Name>
+                  <Title>
+                    {element.heartNum}
+                    <FcLike />
+                  </Title>
+                </TextBox>
+              </div>
+            </CardBox>
+          )}
+        </>
+      )}
+    </>
   );
 };
 {
@@ -237,13 +298,14 @@ const TextBox = styled.div`
   overflow: hidden;
   text-align: center;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   display: flex;
   z-index: 2;
 `;
 const Title = styled.div`
   font-size: 20px;
   display: block;
+  float: right;
   text-decoration: none;
   position: relative;
   text-overflow: ellipsis;
@@ -253,12 +315,12 @@ const Title = styled.div`
   cursor: pointer;
   line-height: 23px;
   word-break: normal;
-  margin-left: 30px;
-  z-index: 1;
+  //margin-left: 30px;
+  /* z-index: 1; */
 `;
 const Name = styled.div`
   font-family: "KakaoBigRegular";
   font-size: 20px;
   line-height: 20px;
-  margin-left: -180px;
+  //margin-left: -180px;
 `;

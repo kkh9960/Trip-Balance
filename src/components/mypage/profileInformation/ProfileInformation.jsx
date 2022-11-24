@@ -27,7 +27,8 @@ export default function ProfileInformation({}) {
   const [userSelf, setUserSelf, introduceonChange] = useInput();
   const [nickname, setNickname, nicknameChange] = useInput();
   const [topNickname, setTopNickname] = useState();
-  const profileImgInput = useRef(null);
+
+  const profileImgInput = useRef();
   const [instaInput, setInstaInput] = useState(true);
   const [faceInput, setFaceInput] = useState(true);
   const [youInput, setYouInput] = useState(true);
@@ -35,9 +36,7 @@ export default function ProfileInformation({}) {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/info");
-      setProfileImg(result.data.data.profileImg);
-      console.log(result.data.data.profileImg);
-      if (result.data.data.profileImg === "") {
+      if (result.data.data.profileImg === "" || undefined || null) {
         setProfileImg(profile);
       } else {
         setProfileImg(result.data.data.profileImg);
@@ -46,13 +45,12 @@ export default function ProfileInformation({}) {
       setUserEmail(result.data.data.email);
       setUserSelf(result.data.data.self);
       setUserSns(result.data.data.sns);
-
-      setTopNickname(result.data.data.nickname);
+      setTopNickname(result.data.data.nickName);
     }
     fetchData();
-  }, [nickname]);
-  //이미지업로드
+  }, []);
 
+  //이미지업로드
   const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
   const onFileUpload = async (e) => {
     const ACCESS_KEY = "AKIAXQKS7DPZ7R5C4WNA";
@@ -76,17 +74,15 @@ export default function ProfileInformation({}) {
       Key: fileName,
     };
 
-    if (profileImg) {
-      await myBucket
-        .putObject(params)
-        .on("httpUploadProgress", (Progress, Response) => {
-          const imgURL = S3URL + Response.request.httpRequest.path;
-          setProfileImg(imgURL);
-        })
-        .send((err) => {});
-    } else {
-    }
+    await myBucket
+      .putObject(params)
+      .on("httpUploadProgress", (Progress, Response) => {
+        const imgURL = S3URL + Response.request.httpRequest.path;
+        setProfileImg(imgURL);
+      })
+      .send((err) => {});
   };
+
   const changeprofile = () => {
     setProfileMode(false);
   };
@@ -131,7 +127,7 @@ export default function ProfileInformation({}) {
   //   console.log("scrolled");
   //   if (window.scrollY > 80) {
   //   }
-  // };
+  // }
 
   return (
     <>
@@ -139,12 +135,12 @@ export default function ProfileInformation({}) {
         {profileMode ? nickname : topNickname}
         <span>님의 마이페이지</span>
       </t.userName>
-      <t.UserInfor $mode="dark">
+      <t.UserInfor>
         {profileMode ? (
           <t.myInformation>
-            <t.ProfileImgBox src={profileImg} />
+            <t.ProfileImgBox src={profileImg} alt="img" />
             <t.profileinfo>
-              <t.nickName>HI.{nickname}</t.nickName>
+              <t.nickName>HI. {nickname} 님</t.nickName>
               <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
               <t.introduce>
                 <t.textName>자기소개</t.textName>
@@ -169,14 +165,12 @@ export default function ProfileInformation({}) {
                 margin: "20px",
                 cursor: "pointer",
               }}
-              onClick={() => {
-                profileImgInput.current.click();
-              }}
+              onClick={() => profileImgInput.current.click()}
             />
             <input
               type="file"
               style={{ display: "none" }}
-              accept="image/jpg,impge/png,image/jpeg"
+              accept="image/jpg,image/png,image/jpeg"
               name="profile_img"
               onChange={onFileUpload}
               ref={profileImgInput}

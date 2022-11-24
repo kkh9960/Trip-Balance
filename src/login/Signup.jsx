@@ -76,22 +76,34 @@ function RegisterPage() {
       alert("이메일을입력해주세요!");
       return;
     }
+    console.log({
+      email: LoginValue.email,
+      nickName: nickname,
+      pw: data.password,
+      pwConfirm: data.password_confirm,
+    });
 
     await dispatch(
       addMemberThunk({
         email: LoginValue.email,
-        nickName: nick.nickname,
+        nickName: nickname,
         pw: data.password,
         pwConfirm: data.password_confirm,
       })
     ).then((res) => {
       console.log(res);
-      if (res.payload.statusCode === 117) {
-        alert("중복된이메일이있습니다");
+      if (res.payload.statusCode == 117) {
+        console.log(res);
+        alert("중복된이메일이있습니다!");
         return;
       }
-      // alert("회원가입완료!");
-      // navigate("/");
+      if (res.payload.statusCode == 118) {
+        console.log(res);
+        alert("중복된닉네임이있습니다!");
+        return;
+      }
+      alert("회원가입완료!");
+      navigate("/");
     });
   };
 
