@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import LoginPage from "../login/LoginPage";
 
 const TopButton = () => {
   const [showButton, setShowButton] = useState(false);
@@ -27,17 +29,40 @@ const TopButton = () => {
     };
   }, []);
 
+  const nickname = sessionStorage.getItem("nickName");
+  const navigate = useNavigate();
+  const goLogin = () => {
+    alert('로그인이 필요합니다!')
+    setModal(!modal);
+  }
+
+  const [modal, setModal] = useState(false);
+
   return (
+    <>
+    {modal ? (
+            <LoginPage />
+          ) : (
     showButton && (
       <ScrollContainer>
-        <Balance>밸런스게임</Balance>
-        <Write>글쓰기</Write>
+        <Balance onClick={() => (
+          navigate("/start")
+        )}>밸런스게임</Balance>
+        {nickname ? (
+        <Write onClick={() => (
+          navigate("/write")
+        )}>글쓰기</Write>
+        ) : (
+        <Write onClick={goLogin}>글쓰기</Write>
+        )}
+        
 
         <Top id="top" onClick={scrollToTop} type="button">
           Top
         </Top>
-      </ScrollContainer>
-    )
+      </ScrollContainer>)
+    )}
+    </>
   );
 };
 

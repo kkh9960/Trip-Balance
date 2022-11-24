@@ -53,15 +53,15 @@ export const myPickPostWrap = styled.div`
   height: 45%;
   margin-bottom: 40px;
   margin-right: auto;
-  display: flex;
   float: left;
-  justify-content: center;
   border-radius: 0 10px 10px 0;
+  display: flex;
+  justify-content: center;
   border: 2px solid gray;
   border-left-style: none;
   padding: 10px 20px 10px 200px;
   background-color: #fff;
-  box-shadow: 5px 5px 10px -5px;
+  box-shadow: 0 0 6px;
   /* background: linear-gradient(
     to right,
     rgba(20, 20, 20, 0) 10%,
@@ -77,12 +77,14 @@ export const myPostWrap = styled.div`
   height: 45%;
   margin-bottom: 40px;
   float: right;
-  display: flex;
-  justify-content: center;
   border-radius: 10px 0 0 10px;
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
   border: 2px solid gray;
   border-right-style: none;
   padding: 10px 200px 10px 20px;
+  box-shadow: 0 0 6px;
 `;
 export const myTotalInfo = styled.div`
   height: 150px;
