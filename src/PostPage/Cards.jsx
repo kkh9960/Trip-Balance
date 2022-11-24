@@ -10,9 +10,8 @@ import {
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useInView } from "react-intersection-observer";
-
+import instance from "../lib/instance";
 import LoginPage from "../login/LoginPage";
-
 // import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
@@ -57,14 +56,20 @@ export const Cards = () => {
 
   const [page, setpage] = useState(1);
 
-  useEffect(() => {
+  const Cartegory = (local) => {
+    instance
+      .get(`tb/posts/search/${local}?keyword=keyword&page=1`)
+      .then((res) => {
+        console.log(res);
+      });
+  };
 
+  useEffect(() => {
     if (posts == 0) {
       dispatch(__getBoard(0));
     }
 
     dispatch(__getbestfive());
-
   }, []);
 
   const GetPost = () => {
@@ -144,60 +149,62 @@ const CardWrap = ({ element, index, search }) => {
     navigator(`/detail/${element.postId}`);
   };
 
-
   const goLogin = () => {
-    alert('로그인이 필요합니다!')
+    alert("로그인이 필요합니다!");
     setModal(!modal);
-  }
+  };
 
   const [modal, setModal] = useState(false);
-  
 
   console.log(element);
 
   return (
     <>
-    {modal ? (
-            <LoginPage />
+      {modal ? (
+        <LoginPage />
+      ) : (
+        <>
+          {email == null ? (
+            <CardBox key={element.postId} onClick={goLogin}>
+              <div>
+                <ImgBox
+                  src={
+                    element.image[0]?.imgURL
+                      ? element.image[0]?.imgURL
+                      : carddefaultimg
+                  }
+                />
+                <TextBox>
+                  <Title>
+                    {element.heartNum}
+                    <FcLike />
+                  </Title>
+                  <Name>{element.title}</Name>
+                </TextBox>
+              </div>
+            </CardBox>
           ) : (
-            <>
-    {email == null ? (
-      <CardBox key={element.postId} onClick={goLogin}>
-      <div>
-        <ImgBox
-          src={
-            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
-          }
-        />
-        <TextBox>
-          <Title>
-            {element.heartNum}
-            <FcLike />
-          </Title>
-          <Name>{element.title}</Name>
-        </TextBox>
-      </div>
-    </CardBox>
-    ) : (
-    <CardBox key={element.postId} onClick={DatailPageMove}>
-      <div>
-        <ImgBox
-          src={
-            element.image[0]?.imgURL ? element.image[0]?.imgURL : carddefaultimg
-          }
-        />
-        <TextBox>
-        <Name>{element.title}</Name>
-          <Title>
-            {element.heartNum}
-            <FcLike />
-          </Title>
-        </TextBox>
-      </div>
-    </CardBox>
-    )}
-    </>
-    )}
+            <CardBox key={element.postId} onClick={DatailPageMove}>
+              <div>
+                <ImgBox
+                  src={
+                    element.image[0]?.imgURL
+                      ? element.image[0]?.imgURL
+                      : carddefaultimg
+                  }
+                />
+                <TextBox>
+                  <Name>{element.title}</Name>
+                  <Title>
+                    {element.heartNum}
+                    <FcLike />
+                  </Title>
+                </TextBox>
+              </div>
+            </CardBox>
+          )}
+        </>
+      )}
     </>
   );
 };
