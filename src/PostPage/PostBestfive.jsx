@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import "./BoardMypost.css";
-import { useNavigate } from "react-router-dom";
+import "./PostBestfive.css";
 
-const BoardMypost = ({ post, mypost }) => {
-  const navigator = useNavigate();
+const PostBestfive = ({ best }) => {
   useEffect(() => {
     let isDown = false;
     let startX;
@@ -43,28 +41,21 @@ const BoardMypost = ({ post, mypost }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
-  console.log(mypost);
-
-
-  const goPost = () => {
-    navigator("");
-  };
-
+  console.log("베스1트", best);
 
   return (
-    <main onClick={goPost}>
-      <h1>{post.author}님의 다른글</h1>
+    <main>
       <div className="wrapper">
         <ul className="items">
-          {mypost &&
-            mypost.map((item, idx) => (
-              <li className="item" key={idx}>
+          {best &&
+            best.map((item, idx) => (
+              <li className="item">
                 <div className="itemimgbox">
-                  <img className="itemimg" src={item.img} alt="" />
+                  <img className="itemimg" src={item.img} />
                 </div>
                 <div className="textbox">
-                  <h2>{item.title}</h2>
-                  <span>{item.local}</span>
+                  <div className="heartcount">{item.heartNum}</div>
+                  <img className="heart" src="img/heart.svg" />
                 </div>
               </li>
             ))}
@@ -74,4 +65,4 @@ const BoardMypost = ({ post, mypost }) => {
   );
 };
 
-export default BoardMypost;
+export default PostBestfive;

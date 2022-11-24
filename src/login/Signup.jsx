@@ -97,7 +97,11 @@ function RegisterPage() {
         alert("중복된이메일이있습니다!");
         return;
       }
-
+      if (res.payload.statusCode == 118) {
+        console.log(res);
+        alert("중복된닉네임이있습니다!");
+        return;
+      }
       alert("회원가입완료!");
       navigate("/");
     });

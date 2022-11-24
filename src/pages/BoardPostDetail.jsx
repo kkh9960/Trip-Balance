@@ -22,7 +22,9 @@ import Loading from "../components/Loading/Loading";
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
 import Header from "../component/Header";
+
 import Footer from "../component/Footer"
+
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -44,7 +46,7 @@ const BoardPostDetail = () => {
   ];
   const DefaultImega = "../img/default1.jpg";
   const DefaultImega2 = "../img/default2.jpg";
-  const heartsvg = "../img/heart.svg";
+  const heartsvg = "/img/heart.svg";
   const binheartsvg = "../img/binheart.svg";
 
   const post = useSelector((state) => state.BoardSlice.post);
@@ -52,7 +54,7 @@ const BoardPostDetail = () => {
   const mypost = useSelector((state) => state.BoardSlice.myposts);
   const comments = useSelector((state) => state.commentSlice.comments);
 
-  const nickname = localStorage.getItem("nickName");
+  const nickname = sessionStorage.getItem("nickName");
 
   console.log("응애 나 애기로딩", isLoading);
 
@@ -125,10 +127,11 @@ const BoardPostDetail = () => {
 
   //트러블슈팅## 좋아요 갯수 실시간 변환
   //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다. 어흥
+
   const Boardpostlike = () => {
     setHeart(!heart);
     dispatch(__boardlike(id.id));
-    console.log(heart);
+
     if (heart) {
       setheartnum((prevstate) => prevstate - 1);
     } else {
@@ -148,132 +151,136 @@ const BoardPostDetail = () => {
     <Loading />
   ) : (
     <div>
-    <Header/>
-    <BoardPostDetailContainer>
-      <BoardPostDetailWrap>
-        <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
-        <ImegeWrap>
-          <ImegeSlide>
-            <Swiper
-              effect={"cards"}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              pagination={{
-                // 페이징 적용, 1 2 3 4 5
-                el: ".pagination", // 페이저 버튼 클래스명
-                clickable: true, // 버튼 클릭 여부
-                type: "bullets", // 버튼 모양 결정, bullets, fraction
-                // 등등 ...
-              }}
-              navigation={{
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }}
-              modules={[Navigation, EffectFade, Pagination, Autoplay]}
-              className="mySwiper"
-              loop={true}
-            >
-              {post?.mediaList[0] ? (
-                post?.mediaList.map((item, idx) => {
-                  return (
-                    <SwiperSlide key={idx}>
-                      <SliderImage src={item} />
-                    </SwiperSlide>
-                  );
-                })
-              ) : (
-                <SwiperSlide>
-                  <SliderImage src={DefaultImega2} />
-                </SwiperSlide>
-              )}
-            </Swiper>
-          </ImegeSlide>
-          <ImegePreview>
-            {post &&
-              post?.mediaList.map((el, idx) => (
-                <PreviewItem
+
+      <Header />
+      <BoardPostDetailContainer>
+        <BoardPostDetailWrap>
+          <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
+          <ImegeWrap>
+            <ImegeSlide>
+              <Swiper
+                effect={"cards"}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  // 페이징 적용, 1 2 3 4 5
+                  el: ".pagination", // 페이저 버튼 클래스명
+                  clickable: true, // 버튼 클릭 여부
+                  type: "bullets", // 버튼 모양 결정, bullets, fraction
+                  // 등등 ...
+                }}
+                navigation={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                }}
+                modules={[Navigation, EffectFade, Pagination, Autoplay]}
+                className="mySwiper"
+                loop={true}
+              >
+                {post?.mediaList[0] ? (
+                  post?.mediaList.map((item, idx) => {
+                    return (
+                      <SwiperSlide key={idx}>
+                        <SliderImage src={item} />
+                      </SwiperSlide>
+                    );
+                  })
+
+                ) : (
+                  <SwiperSlide>
+                    <SliderImage src={DefaultImega2} />
+                  </SwiperSlide>
+                )}
+              </Swiper>
+            </ImegeSlide>
+            <ImegePreview>
+              {post &&
+                post?.mediaList.map((el, idx) => (
+                  <PreviewItem
+                    key={idx}
+                    src={
+                      post?.mediaList[idx] ? post?.mediaList[idx] : DefaultImega
+                    }
+                    alt=""
+                    onClick={ImgHandlerTest}
+                  />
+                ))}
+            </ImegePreview>
+          </ImegeWrap>
+
+          <BoardcontentWrap>
+            <BoardContentsbox>
+              <BoardTitleWrap>
+                <BoardTitle>{post?.title}</BoardTitle>
+                <TitleButtonWarp>
+                  {userNickname == post?.author ? (
+                    <>
+                      <ModifyButton onClick={modifyPost}>수정</ModifyButton>
+                      <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
+                    </>
+                  ) : (
+                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                  )}
+                </TitleButtonWarp>
+              </BoardTitleWrap>
+              <UserNameBox>
+                <BoardCateGory>
+                  <CateLocal>지역 : {post?.local}</CateLocal>
+                  <CateDetail>도시 : {post?.localdetail}</CateDetail>
+                </BoardCateGory>
+              </UserNameBox>
+              <BoardBody>{post?.content}</BoardBody>
+            </BoardContentsbox>
+            <BoardLike onClick={Boardpostlike}>
+              <BoardLikeImage
+                src={post && heart ? heartsvg : binheartsvg}
+                alt=""
+              />
+
+              <BoardLikeCount>{heartnum}</BoardLikeCount>
+            </BoardLike>
+          </BoardcontentWrap>
+
+          <BoardCommentWrap>
+            <BoardCommentBox>
+              <CommentWriteUserBox>
+                <CommentWriteImg src="../img/cmtdefault.svg" />
+                <CommentWriteUser>{post?.nickName}</CommentWriteUser>
+              </CommentWriteUserBox>
+              <CommentTextarea
+                name=""
+                maxLength="200"
+                id="comment"
+                value={comment}
+                onKeyUp={CheckLength}
+                onChange={CommentHandler}
+              />
+              <CommentButtonBox>
+                <CommentCount>{cmtcount}</CommentCount>
+                <CommentCount>/200</CommentCount>
+                <CommentWriteButton onClick={WriteComment}>
+                  댓글 등록
+                </CommentWriteButton>
+              </CommentButtonBox>
+            </BoardCommentBox>
+            {comments &&
+              comments?.map((item, idx) => (
+                <PostComment
                   key={idx}
-                  src={
-                    post?.mediaList[idx] ? post?.mediaList[idx] : DefaultImega
-                  }
-                  alt=""
-                  onClick={ImgHandlerTest}
+                  item={item}
+                  idx={idx}
+                  id={id}
+                  post={post}
                 />
               ))}
-          </ImegePreview>
-        </ImegeWrap>
+          </BoardCommentWrap>
+          <BoardMypost post={post} mypost={mypost} />
+        </BoardPostDetailWrap>
+      </BoardPostDetailContainer>
+      <Footer />
 
-        <BoardcontentWrap>
-          <BoardContentsbox>
-            <BoardTitleWrap>
-              <BoardTitle>{post?.title}</BoardTitle>
-              <TitleButtonWarp>
-                {userNickname == post?.author ? (
-                  <>
-                    <ModifyButton onClick={modifyPost}>수정</ModifyButton>
-                    <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
-                  </>
-                ) : (
-                  <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
-                )}
-              </TitleButtonWarp>
-            </BoardTitleWrap>
-            <UserNameBox>
-              <BoardCateGory>
-                <CateLocal>지역 : {post?.local}</CateLocal>
-                <CateDetail>도시 : {post?.localdetail}</CateDetail>
-              </BoardCateGory>
-            </UserNameBox>
-            <BoardBody>{post?.content}</BoardBody>
-          </BoardContentsbox>
-          <BoardLike onClick={Boardpostlike}>
-            <BoardLikeImage
-              src={post && heart ? heartsvg : binheartsvg}
-              alt=""
-            />
-            <BoardLikeCount>{heartnum}</BoardLikeCount>
-          </BoardLike>
-        </BoardcontentWrap>
-
-        <BoardCommentWrap>
-          <BoardCommentBox>
-            <CommentWriteUserBox>
-              <CommentWriteImg src="../img/cmtdefault.svg" />
-              <CommentWriteUser>{post?.nickName}</CommentWriteUser>
-            </CommentWriteUserBox>
-            <CommentTextarea
-              name=""
-              maxLength="200"
-              id="comment"
-              value={comment}
-              onKeyUp={CheckLength}
-              onChange={CommentHandler}
-            />
-            <CommentButtonBox>
-              <CommentCount>{cmtcount}</CommentCount>
-              <CommentCount>/200</CommentCount>
-              <CommentWriteButton onClick={WriteComment}>
-                댓글 등록
-              </CommentWriteButton>
-            </CommentButtonBox>
-          </BoardCommentBox>
-          {comments &&
-            comments?.map((item, idx) => (
-              <PostComment
-                key={idx}
-                item={item}
-                idx={idx}
-                id={id}
-                post={post}
-              />
-            ))}
-        </BoardCommentWrap>
-        <BoardMypost post={post} mypost={mypost} />
-      </BoardPostDetailWrap>
-    </BoardPostDetailContainer>
-    <Footer/>
     </div>
   );
 };
@@ -416,6 +423,7 @@ const DeleteButton = styled.div`
     opacity: 0.5;
   }
 `;
+
 const ModifyButton = styled.div`
   cursor: pointer;
   font-size: 24px;
