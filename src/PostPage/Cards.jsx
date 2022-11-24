@@ -2,13 +2,19 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { FcLike } from "react-icons/fc";
 import { useSelector, useDispatch } from "react-redux";
-import { __getBoard, __SearchBoard } from "../redux/modules/BoardSlice";
+import {
+  __getBoard,
+  __SearchBoard,
+  __getbestfive,
+} from "../redux/modules/BoardSlice";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import { useInView } from "react-intersection-observer";
+
 // import useInfiniteScroll from "../hooks/useInfiniteScroll";
 export const Cards = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
+
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const [ref, inView] = useInView();
@@ -18,6 +24,7 @@ export const Cards = () => {
     }
     console.log("key press");
   };
+  console.log(posts);
 
   const [useInput, setUseInput] = useState("");
 
@@ -49,7 +56,11 @@ export const Cards = () => {
   const [page, setpage] = useState(1);
 
   useEffect(() => {
-    dispatch(__getBoard(0));
+    if (posts == 0) {
+      dispatch(__getBoard(0));
+    }
+
+    dispatch(__getbestfive());
   }, []);
 
   const GetPost = () => {
@@ -128,7 +139,6 @@ const CardWrap = ({ element, index, search }) => {
     navigator(`/detail/${element.postId}`);
   };
 
-  console.log(element);
   return (
     <CardBox key={element.postId} onClick={DatailPageMove}>
       <div>
@@ -139,10 +149,7 @@ const CardWrap = ({ element, index, search }) => {
         />
         <TextBox>
           <Title>
-
             {element.heartNum}
-
-          {element.heartNum}
 
             <FcLike />
           </Title>
