@@ -55,7 +55,7 @@ function RegisterPage() {
         alert("이메일을입력해주세요!");
         return;
       }
-      if (res.data.statusCode == 117) {
+      if (res.data.statusCode === 117) {
         alert("중복된이메일이잇습니다");
         return;
       }
@@ -92,12 +92,13 @@ function RegisterPage() {
       })
     ).then((res) => {
       console.log(res);
-      if (res.payload.statusCode === 117) {
-        alert("중복된이메일이있습니다");
+      if (res.payload.statusCode == 117) {
+        console.log(res);
+        alert("중복된이메일이있습니다!");
         return;
       }
-      // alert("회원가입완료!");
-      // navigate("/");
+      alert("회원가입완료!");
+      navigate("/");
     });
   };
 

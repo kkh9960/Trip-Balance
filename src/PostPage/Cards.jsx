@@ -58,11 +58,13 @@ export const Cards = () => {
   const [page, setpage] = useState(1);
 
   useEffect(() => {
+
     if (posts == 0) {
       dispatch(__getBoard(0));
     }
 
     dispatch(__getbestfive());
+
   }, []);
 
   const GetPost = () => {
@@ -191,6 +193,11 @@ const CardWrap = ({ element, index, search }) => {
         <TextBox>
           <Title>
             {element.heartNum}
+
+
+         
+
+
 
             <FcLike />
           </Title>
