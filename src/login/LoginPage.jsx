@@ -64,7 +64,7 @@ function LoginPage() {
       setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
-        navigate("/");
+
         alert("로그인완료!");
         window.location.reload();
       } else {

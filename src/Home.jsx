@@ -4,9 +4,9 @@ import LoginPage from "../src/login/LoginPage";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Header />
-    </div>
+    </>
   );
 };
 

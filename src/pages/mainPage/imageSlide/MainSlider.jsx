@@ -28,20 +28,19 @@ export default function Slider() {
           return setCurrentSlide(0);
         }
       });
-    }, 3111);
+    }, 5000);
     return () => clearTimeout(timeoutId);
     // slideRef.current.style.transition = "all 0.5s ease-in-out";
     // slideRef.current.style.transform = `translateX(-${currentSlide}00%)`; // 백틱을 사용하여 슬라이드로 이동하는 에니메이션을 만듭니다.
   }, [currentSlide]);
 
   return (
-    <>
-      <Container>
-        <SliderContainer ref={slideRef}>
-          <Slide img={img1} />
-          <Slide img={img2} />
-          <Slide img={img3} />
-          {/* <div className="imgBox" id="imgNone">
+    <Container>
+      <SliderContainer ref={slideRef}>
+        <Slide img={img1} />
+        <Slide img={img2} />
+        <Slide img={img3} />
+        {/* <div className="imgBox" id="imgNone">
             <img src={img1} ref={imgRef} />
             <div className="text">181818181818</div>
           </div>
@@ -53,13 +52,11 @@ export default function Slider() {
             <img src={img3} ref={imgRef} />
             <div className="text">진짜 미치겠다</div>
           </div> */}
-          {/* <Img2Content ref={slideRef}>
+        {/* <Img2Content ref={slideRef}>
             <h1>Balance Game</h1>
           </Img2Content> */}
-        </SliderContainer>
-        <Button>z</Button>
-      </Container>
-    </>
+      </SliderContainer>
+    </Container>
   );
 }
 const Container = styled.div`
@@ -68,20 +65,7 @@ const Container = styled.div`
   height: 100vh;
   overflow: hidden;
 `;
-const Button = styled.div`
-  width: 40px;
-  z-index: 1;
-  padding: 10px;
-  margin: 10px;
-  color: burlywood;
-  border-radius: 10px;
-  border: 1px solid burlywood;
-  cursor: pointer;
-  &:hover {
-    background-color: burlywood;
-    color: #fff;
-  }
-`;
+
 const SliderContainer = styled.div`
   display: flex;
 `;

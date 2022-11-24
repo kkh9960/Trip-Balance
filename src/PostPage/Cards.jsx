@@ -147,11 +147,11 @@ const SearchBar = styled.input`
   font-size: 16px;
   top: 330px;
   left: 350px;
-
-  :hover {
-    opacity: 1;
-  }
 `;
+//   :hover {
+//     opacity: 1;
+//   }
+// `;
 
 const Layout = styled.div`
   justify-content: center;

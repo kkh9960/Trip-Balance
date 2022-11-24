@@ -16,6 +16,7 @@
   align-items: center;
   top: 3px;
 
+  left: 0px;
   z-index: 2;
 }
 .cancel {

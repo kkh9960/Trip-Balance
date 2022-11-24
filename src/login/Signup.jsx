@@ -7,7 +7,8 @@ import "./signup.css";
 import { motion } from "framer-motion";
 import Header from "../component/Header";
 import LoginPage from "./LoginPage";
-
+import instance from "../lib/instance";
+import useInput from "../hooks/useInput";
 function RegisterPage() {
   const {
     register,
@@ -24,18 +25,73 @@ function RegisterPage() {
   password.current = watch("password");
   console.log(watch());
   const navigate = useNavigate();
+  const [email, setEmail, emailchange] = useInput("");
+  const [nickname, setnickname, nicknamechange] = useInput("");
+
+  const nicknamecheck = () => {
+    console.log(nick);
+    console.log(typeof nick);
+    instance.post("tb/signup/nicknamecheck", nick).then((res) => {
+      console.log(res);
+      if (nickname.trim() === "") {
+        alert("닉네임을입력해주세요!");
+        return;
+      }
+      if (res.data.statusCode == 0) {
+        alert("가입가능한닉네임입니다");
+      }
+      if (res.data.statusCode == 118) {
+        alert("중복된닉네임이잇습니다");
+        return;
+      }
+    });
+  };
+
+  const idCheck = () => {
+    console.log(typeof LoginValue);
+    instance.post("tb/signup/idcheck", LoginValue).then((res) => {
+      console.log(res);
+      if (email.trim() === "") {
+        alert("이메일을입력해주세요!");
+        return;
+      }
+      if (res.data.statusCode == 117) {
+        alert("중복된이메일이잇습니다");
+        return;
+      }
+      if (res.data.statusCode == 0) {
+        alert("가입가능한이메일입니다");
+      }
+    });
+  };
+  const LoginValue = {
+    email: email,
+  };
+  const nick = {
+    nickName: nickname,
+  };
+
   const onSubmit = async (data) => {
+    if (email.trim() === "") {
+      alert("이메일을입력해주세요!");
+      return;
+    }
+
     await dispatch(
       addMemberThunk({
-        email: data.email,
-        nickName: data.name,
+        email: LoginValue.email,
+        nickName: nick.nickname,
         pw: data.password,
         pwConfirm: data.password_confirm,
       })
     ).then((res) => {
       console.log(res);
-      alert("회원가입완료!");
-      navigate("/");
+      if (res.payload.statusCode === 117) {
+        alert("중복된이메일이있습니다");
+        return;
+      }
+      // alert("회원가입완료!");
+      // navigate("/");
     });
   };
 
@@ -57,19 +113,20 @@ function RegisterPage() {
             <input
               name="email"
               type="email"
+              value={email}
+              onChange={emailchange}
               placeholder=" 이메일을 입력해주세요 ."
-              {...register("email", {
-                required: true,
-                pattern: /^\S+@\S+$/i,
-              })}
             />
+
             {errors.email && <p>이메일형식이아닙니다</p>}
 
             <input
               name="name"
               placeholder=" 닉네임 ."
-              {...register("name", { required: true, maxLength: 10 })}
+              onChange={nicknamechange}
+              value={nickname}
             />
+
             {errors.name && errors.name.type === "required" && (
               <p>이름 필드는 필수 항목입니다.</p>
             )}
@@ -120,6 +177,12 @@ function RegisterPage() {
               이미 아이디가 있다면...{" "}
             </Link> */}
           </form>
+          <button onClick={idCheck} className="emailbutton">
+            중복확인
+          </button>
+          <button onClick={nicknamecheck} className="nicknamebutton">
+            중복확인
+          </button>
         </div>
       </div>
     </motion.div>

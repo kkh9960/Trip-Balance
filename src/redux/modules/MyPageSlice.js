@@ -7,7 +7,7 @@ export const __getMyInformation = createAsyncThunk(
   "GET_MY_INFO",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`tb/mypage/info/`, payload);
+      const { data } = await instance.get(`tb/mypage/info`, payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -27,6 +27,17 @@ export const __putMyInformation = createAsyncThunk(
     } catch (error) {}
   }
 );
+// 밸런스게임데이터
+// export const __getTotalGameData = createAsyncThunk(
+//   "GET_MY_GAMEDATA",
+//   async (payload, thunkAPI) => {
+//     try {
+//       const { data } = await instance.get(`tb/mypage/totaldb`, payload);
+//       console.log(data);
+//       return thunkAPI.fulfillWithValue(data);
+//     } catch (error) {}
+//   }
+// );
 //회원이 작성한 글목록
 // export const __getMyPosts = createAsyncThunk(
 //   "GET_MY_POST",

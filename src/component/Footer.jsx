@@ -64,7 +64,6 @@ export default Footer;
 
 const Container = styled.div`
   background-color: #808080;
-  border: 1px solid white;
   height: 432.91px;
 `;
 const Compeney = styled.div`

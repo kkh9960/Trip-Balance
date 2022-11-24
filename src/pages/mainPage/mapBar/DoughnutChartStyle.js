@@ -1,32 +1,22 @@
 import styled from "styled-components";
 
-export const myInformation = styled.div`
-  position: relative;
-  width: 80%;
-  height: 500px;
-  margin: 0 auto;
-  display: flex;
+export const chartViewbox = styled.div`
+  width: 900px;
+  display: grid;
   align-items: center;
-  border-radius: 10px;
-  border: 2px solid gray;
+  justify-items: center;
+  grid-template-columns: 200px 1fr 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(220px, auto));
+  grid-auto-flow: dense;
 `;
 export const chartView = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 210px;
   margin: 0 auto;
+  text-align: center;
   after {
     position: relative;
     content: "이름";
     top: -110px;
     left: 80px;
   }
-`;
-export const chartViewbox = styled.div`
-  width: 500px;
-  height: 500px;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(50%, auto));
-  grid-template-rows: repeat(2, minmax(100px, 50%));
 `;
