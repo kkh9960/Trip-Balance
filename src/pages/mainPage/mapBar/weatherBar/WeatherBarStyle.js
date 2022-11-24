@@ -2,36 +2,40 @@ import styled from "styled-components";
 
 export const weather = styled.div`
   width: 200px;
-  height: 450px;
-  border-radius: 10px;
-  box-shadow: 10px -2px 20px 2px rgb(0 0 0 / 30%);
-  color: rgb(0, 0, 0);
-  margin: 20px auto 0 auto;
+  height: 550px;
+  margin: 0 auto 0;
   padding: 0 20px 20px 20px;
+  border-radius: 10px;
 `;
+
+export const cityName = styled.div`
+  width: 400px;
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 100px;
+`;
+
+export const countyName = styled.div`
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 24px;
+  text-align: left;
+  margin-bottom: 30px;
+`;
+
 export const iconBox = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
 export const top = styled.div`
   display: flex;
-  justify-content: end;
 `;
 export const bottom = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const city = styled.div`
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1;
-  margin: 0;
-  letter-spacing: 1px;
 `;
 
 export const weatherDescription = styled.div`
@@ -42,16 +46,21 @@ export const weatherDescription = styled.div`
 `;
 export const weatherIcon = styled.img`
   width: 170px;
-  margin-right: -30px;
+  margin-right: -0px;
 `;
 
-export const temperature = styled.p`
+export const temperatureBox = styled.div``;
+
+export const temperature = styled.div`
+  display: flex;
+  align-items: end;
+  width: 100%;
+  height: 100%;
   font-weight: 600;
-  font-size: 70px;
-  width: auto;
+  font-size: 50px;
+  color: #000;
+  margin-left: -20px;
   letter-spacing: -5px;
-  margin: 0;
-  padding-top: 30px;
   text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
 `;
 

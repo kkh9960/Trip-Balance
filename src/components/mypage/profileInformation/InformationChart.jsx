@@ -21,18 +21,25 @@ export default function InformationChart() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/tripdb");
+
       console.log(result);
+
       if (result.data.data === undefined) {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setMyPickData(result.data);
       }
+
+
+      console.log(result);
+
     }
     fetchData();
   }, []);
   console.log(mpData?.data[0]);
   const chartData = {
     people: {
+      option: [],
       labels: [
         mpData?.data[0]?.slice(4, 6),
         mpData?.data[1]?.slice(4, 6),
@@ -147,14 +154,18 @@ export default function InformationChart() {
   };
   return (
     <t.inforChartViewbox>
-      <t.inforChartView>
-        <Pie data={chartData.people} />
-        나의 통계
-      </t.inforChartView>
-      <t.inforChartView>
-        <Pie data={chartData.age} />
-        전체 통계
-      </t.inforChartView>
+      <t.chartNametag>
+        <div>나의 통계</div>
+        <div>전체 통계</div>
+      </t.chartNametag>
+      <t.inforChartBox>
+        <t.inforChartView>
+          <Pie data={chartData.people} />
+        </t.inforChartView>
+        <t.inforChartView>
+          <Pie data={chartData.age} />
+        </t.inforChartView>
+      </t.inforChartBox>
     </t.inforChartViewbox>
   );
 }

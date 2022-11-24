@@ -80,7 +80,7 @@ const Compeney = styled.div`
   text-align: left;
   color: #fff;
   position: relative;
-  margin-top: 41.8px;
+  /* margin-top: 41.8px; */
 `;
 const Information = styled.div`
   width: 1088px;

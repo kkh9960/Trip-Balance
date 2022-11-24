@@ -178,9 +178,6 @@ const CommentSlice = createSlice({
           ? { ...item, content: action.payload.data.content }
           : item
       );
-
-      console.log("액숀", action.payload.data);
-      console.log("코렝트", current(state));
     },
     [__modifyComment.rejected]: (state, action) => {
       state.isLoading = false;
@@ -190,10 +187,75 @@ const CommentSlice = createSlice({
     },
     [__postReComment.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(state);
-      console.log(action.payload);
+      state.comments?.map((a) =>
+        a.commentId === parseInt(action.payload.data.commentId)
+          ? a.reComments?.push(action.payload.data)
+          : a
+      );
     },
     [__postReComment.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__modifyReComment.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__modifyReComment.fulfilled]: (state, action) => {
+      state.isLoading = false;
+
+      const a = current(state).comments.filter(
+        (a) => a.commentId === parseInt(action.payload.data.commentId)
+      );
+
+      const indexNum = current(state).comments.indexOf(a[0]);
+
+      console.log("나수정", a);
+      console.log("나수정", indexNum);
+
+      state.comments = state.comments.map((item, idx) =>
+        idx === indexNum
+          ? {
+              ...a[0],
+              reComments: a[0].reComments.map((item) =>
+                item.recommentId === parseInt(action.payload.data.recommentId)
+                  ? action.payload.data
+                  : item
+              ),
+            }
+          : item
+      );
+
+      console.log(state);
+      console.log("대댓글수정데이터", action.payload.data);
+    },
+    [__modifyReComment.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__deleteReComment.pending]: (state, action) => {
+      state.isLoading = true;
+    },
+    [__deleteReComment.fulfilled]: (state, action) => {
+      state.isLoading = false;
+
+      const a = current(state).comments.filter(
+        (a) => a.commentId === parseInt(action.payload.data.commentId)
+      );
+
+      const indexNum = current(state).comments.indexOf(a[0]);
+
+      state.comments = state.comments.map((item, idx) =>
+        idx === indexNum
+          ? {
+              ...a[0],
+              reComments: [
+                ...a[0].reComments?.filter(
+                  (a) => a.recommentId !== action.payload.data.recommentId
+                ),
+              ],
+            }
+          : item
+      );
+    },
+    [__deleteReComment.rejected]: (state, action) => {
       state.isLoading = false;
     },
   },
