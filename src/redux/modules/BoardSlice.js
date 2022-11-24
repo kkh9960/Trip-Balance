@@ -8,7 +8,7 @@ export const __getBoard = createAsyncThunk(
   "GET_BOARD",
   async (page, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/tb/posts/list/0?size=20`);
+      const { data } = await instance.get(`/tb/posts?page=0`);
 
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {

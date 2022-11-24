@@ -29,7 +29,7 @@ const PostPage = () => {
       <Header />
       <Banner />
       <Layout>
-        {/* <Cards /> */}
+        <Cards />
 
         {/* <InfiniteScroll data={data} /> */}
       </Layout>
