@@ -171,6 +171,7 @@ export default function ProfileInformation({}) {
               type="file"
               style={{ display: "none" }}
               accept="image/jpg,image/png,image/jpeg"
+              name="profile_img"
               onChange={onFileUpload}
               ref={profileImgInput}
             />

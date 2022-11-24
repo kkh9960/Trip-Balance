@@ -6,22 +6,15 @@ export const __getBestFive = createAsyncThunk(
   "GET_BESTFIVE",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get("/tb/bestfive", payload);
-      console.log(data);
+      const { data } = await instance.get("/tb/bestfive");
+      console.log("데이터는?", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
 );
 
 const initialState = {
-  data: [
-    {
-      tite: "제목",
-      img: "이미지",
-      heartnum: 4,
-      hear: true,
-    },
-  ],
+  data: [],
   isLoading: false,
   error: null,
 };

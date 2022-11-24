@@ -33,6 +33,7 @@ function LoginPage() {
   const [cookie, setCookie, removeCookie] = useCookies();
   const modalClose = () => {
     setModal(!modal);
+    window.location.reload();
   };
   console.log(watch());
 
@@ -58,8 +59,8 @@ function LoginPage() {
       // console.log(res.data.data.email)
       // console.log(res.data.statusMsg)
       // console.log(res.data.statusCode)
-      sessionStorage.setItem("nickName", res.data.data.nickName);
 
+      sessionStorage.setItem("nickName", res.data.data.nickName);
       setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
@@ -75,7 +76,7 @@ function LoginPage() {
 
   return (
     <div className="wrap">
-      <Header />
+      {/* <Header /> */}
 
       {modal && (
         <div className="auth-wrapper">

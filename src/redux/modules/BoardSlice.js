@@ -8,11 +8,9 @@ export const __getBoard = createAsyncThunk(
   "GET_BOARD",
   async (payload, thunkAPI) => {
     try {
-
       console.log(payload);
       const { data } = await instance.get(`/tb/posts?page=${payload}`);
       console.log(data);
-
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -25,7 +23,19 @@ export const __getmypost = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts/otherpost/${payload}`);
-      console.log("테스트", data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getbestfive = createAsyncThunk(
+  "GET_BEST_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts/bestfive`);
+      console.log("테스트요", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -80,7 +90,8 @@ export const __deleteBoard = createAsyncThunk(
     console.log("나글삭제페이로드", payload);
     try {
       const { data } = await instance.delete(`/tb/posts/${payload.id}`);
-      console.log("나글삭데이터", data);
+      alert("게시글이 삭제되었습니다");
+      window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("글삭에러", error);
@@ -129,6 +140,7 @@ const initialState = {
   isLoading: true,
   post: null,
   myposts: [],
+  bestpost: [],
 };
 
 const BoardSlice = createSlice({
@@ -144,6 +156,13 @@ const BoardSlice = createSlice({
       console.log(action.payload.data[0].postResponseDtoList);
     },
     [__getBoard.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getbestfive.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      action.payload.data.map((item, idx) => state.bestpost.push(item));
+    },
+    [__getbestfive.rejected]: (state, action) => {
       state.isLoading = false;
     },
     [__getmypost.fulfilled]: (state, action) => {
