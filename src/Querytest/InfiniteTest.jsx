@@ -57,9 +57,9 @@ import { useInfiniteQuery } from "react-query";
 
 import Card from "./Card";
 const fetchPostList = async (pageParam) => {
-  const res = await axios.get(`https://tbtbtb.shop/tb/posts?page=${pageParam}`);
+  const res = await axios.get(`https://dexhome.shop/posts?page=${pageParam}`);
   const data = res.data;
-  console.log(res.data.data);
+  console.log(res);
   return { data, nextPage: pageParam + 1 };
 };
 function Posts() {

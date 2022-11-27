@@ -11,12 +11,13 @@ const Postitem = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
+  const [category, setCategory] = useState("");
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
-  console.log("데이터", posts);
+
   // const search = (e) => {
   //   if (e.key === "Enter") {
   //     setUseInput(e.target.value);
@@ -27,8 +28,13 @@ const Postitem = () => {
   const onChange = (e) => {
     setUseInput(e.target.value);
   };
-
-  console.log(posts);
+  const onCchange = (e) => {
+    const { name, value } = e.target;
+    setCategory({
+      ...category,
+      [name]: value,
+    });
+  };
 
   useEffect(() => {
     if (posts == 0) {
@@ -51,47 +57,18 @@ const Postitem = () => {
     dispatch(__getBoard(page));
     setpage(page + 1);
   };
-
-  console.log(posts);
-  console.log(best);
+  console.log(category);
 
   return (
     <PostPageContainer>
       <TodayTitle>오늘의 여행지 검색</TodayTitle>
       <SearchBox>
-        <CategorySearch>
-          <option value="1">서울</option>
-          <option value="2">인천</option>
-          <option value="3">가평</option>
-          <option value="4">용인</option>
-          <option value="5">파주</option>
-          <option value="6">속초</option>
-          <option value="7">강릉</option>
-          <option value="8">춘천</option>
-          <option value="9">양양</option>
-          <option value="10">평창</option>
-          <option value="11">부산</option>
-          <option value="12">거제</option>
-          <option value="13">통영</option>
-          <option value="14">포항</option>
-          <option value="15">경주</option>
-          <option value="16">안동</option>
-          <option value="17">여수</option>
-          <option value="18">목포</option>
-          <option value="19">담양</option>
-          <option value="20">보성</option>
-          <option value="21">해남</option>
-          <option value="22">전주</option>
-          <option value="23">천안</option>
-          <option value="24">태안</option>
-          <option value="25">보령</option>
-          <option value="26">공주</option>
-          <option value="27">단양</option>
-          <option value="28">대구</option>
-          <option value="29">대전</option>
-          <option value="30">광주</option>
-          <option value="31">울산</option>
-          <option value="32">서귀포</option>
+        <CategorySearch onChange={onCchange} name="category">
+          <option value="1">수도권</option>
+          <option value="2">경상_강원도</option>
+          <option value="3">충청_전라도</option>
+          <option value="4">제주도</option>
+          <option value="5">기타</option>
         </CategorySearch>
         <TitleSearchbox>
           <TitleSearch

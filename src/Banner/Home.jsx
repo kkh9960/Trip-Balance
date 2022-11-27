@@ -23,13 +23,14 @@ import {
   Balance,
   Logo3,
   Balancce,
+  Hide,
 } from "./Banner";
 import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <Carousel
       // autoPlay={false}
-      interval={5000}
+      interval={4000}
       next={() => {
         /* Do stuff */
       }}
