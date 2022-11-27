@@ -10,7 +10,7 @@ export const __getBoard = createAsyncThunk(
     try {
       console.log(payload);
       const { data } = await instance.get(`tb/posts?page=${payload}`);
-      console.log(data);
+
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -35,11 +35,31 @@ export const __getbestfive = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts/bestfive`);
-      console.log("테스트요", data);
+
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
     }
+  }
+);
+
+export const __getcategory = createAsyncThunk(
+  "GET_CATEGORY_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts/search/${payload}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
+  }
+);
+
+export const __getcatenormal = createAsyncThunk(
+  "GET_CATE_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts?page=0`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
   }
 );
 
@@ -163,6 +183,21 @@ const BoardSlice = createSlice({
       state.bestpost = action.payload.data;
     },
     [__getbestfive.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getcategory.fulfilled]: (state, action) => {
+      state.isLoading = false;
+
+      state.posts = action.payload.data;
+    },
+    [__getcategory.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getcatenormal.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.posts = action.payload.data;
+    },
+    [__getcatenormal.rejected]: (state, action) => {
       state.isLoading = false;
     },
     [__getmypost.fulfilled]: (state, action) => {

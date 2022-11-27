@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { __getbestfive, __getBoard } from "../redux/modules/BoardSlice";
+import {
+  __getbestfive,
+  __getBoard,
+  __getcategory,
+  __getcatenormal,
+} from "../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
 
@@ -14,6 +19,9 @@ const Postitem = () => {
   const [category, setCategory] = useState("");
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
+
+  const [Cate, setCate] = useState("");
+  const email = sessionStorage.getItem("email");
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
@@ -57,16 +65,33 @@ const Postitem = () => {
     dispatch(__getBoard(page));
     setpage(page + 1);
   };
-  console.log(category);
+
+  const goDetail = (id) => {
+    if (email) {
+      navigator(`/detail/${id}`);
+    } else {
+      alert("로그인을 해주세요!");
+    }
+  };
+
+  const getCategory = (e) => {
+    // console.log(e.target?.value);
+    // if (e.target?.value == 0) {
+    //   dispatch(__getcatenormal());
+    // } else {
+    //   dispatch(__getcategory(e.target?.value));
+    // }
+  };
 
   return (
     <PostPageContainer>
       <TodayTitle>오늘의 여행지 검색</TodayTitle>
       <SearchBox>
-        <CategorySearch onChange={onCchange} name="category">
+        <CategorySearch onChange={getCategory}>
+          <option value="0">기본</option>
           <option value="1">수도권</option>
-          <option value="2">경상_강원도</option>
-          <option value="3">충청_전라도</option>
+          <option value="2">강원도 + 경상도</option>
+          <option value="3">충청도 + 전라도</option>
           <option value="4">제주도</option>
           <option value="5">기타</option>
         </CategorySearch>
@@ -88,7 +113,12 @@ const Postitem = () => {
         <PostListTitle>TB 추천여행지</PostListTitle>
         <PostCardList>
           {filteredProducts.map((item, idx) => (
-            <CardWrap search={filteredProducts}>
+            <CardWrap
+              search={filteredProducts}
+              onClick={() => {
+                goDetail(item.postId);
+              }}
+            >
               <CardImgbox>
                 <CardImg src={item.image[0].imgURL} />
               </CardImgbox>
@@ -97,7 +127,7 @@ const Postitem = () => {
                 <Cardbody>
                   <Userinfo>
                     <UserImg src="/img/default3.jpg" />
-                    <CardUserName>작성자</CardUserName>
+                    <CardUserName>{item.author}</CardUserName>
                   </Userinfo>
                   <Likeinfo>
                     <LikeCount>{item.heartNum}</LikeCount>
@@ -196,6 +226,7 @@ const CardWrap = styled.div`
   height: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+  cursor: pointer;
   &:hover {
     transform: translate(0, -5px);
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);

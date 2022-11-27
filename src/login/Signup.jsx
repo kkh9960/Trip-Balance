@@ -29,10 +29,7 @@ function RegisterPage() {
   const [nickname, setnickname, nicknamechange] = useInput("");
 
   const nicknamecheck = () => {
-    console.log(nick);
-    console.log(typeof nick);
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
-      console.log(res);
       if (nickname.trim() === "") {
         alert("닉네임을입력해주세요!");
         return;
@@ -48,9 +45,7 @@ function RegisterPage() {
   };
 
   const idCheck = () => {
-    console.log(typeof LoginValue);
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
-      console.log(res);
       if (email.trim() === "") {
         alert("이메일을입력해주세요!");
         return;
@@ -91,14 +86,11 @@ function RegisterPage() {
         pwConfirm: data.password_confirm,
       })
     ).then((res) => {
-      console.log(res);
       if (res.payload.statusCode == 117) {
-        console.log(res);
         alert("중복된이메일이있습니다!");
         return;
       }
       if (res.payload.statusCode == 118) {
-        console.log(res);
         alert("중복된닉네임이있습니다!");
         return;
       }

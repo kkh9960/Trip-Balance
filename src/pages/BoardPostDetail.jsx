@@ -215,7 +215,7 @@ const BoardPostDetail = () => {
               <BoardTitleWrap>
                 <BoardTitle>{post?.title}</BoardTitle>
                 <TitleButtonWarp>
-                  {userNickname == post?.author ? (
+                  {nickname == post?.author ? (
                     <>
                       <ModifyButton onClick={modifyPost}>수정</ModifyButton>
                       <DeleteButton onClick={DeletePost}>삭제</DeleteButton>

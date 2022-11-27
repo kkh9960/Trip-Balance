@@ -35,7 +35,6 @@ function LoginPage() {
     setModal(!modal);
     window.location.reload();
   };
-  console.log(watch());
 
   const onvaled = (event) => {
     event.preventDefault();

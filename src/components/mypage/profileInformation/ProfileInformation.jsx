@@ -27,6 +27,7 @@ export default function ProfileInformation({}) {
   const [userSelf, setUserSelf, introduceonChange] = useInput();
   const [nickname, setNickname, nicknameChange] = useInput();
   const [topNickname, setTopNickname] = useState();
+
   const profileImgInput = useRef();
   const [instaInput, setInstaInput] = useState(true);
   const [faceInput, setFaceInput] = useState(true);
@@ -44,8 +45,7 @@ export default function ProfileInformation({}) {
       setUserEmail(result.data.data.email);
       setUserSelf(result.data.data.self);
       setUserSns(result.data.data.sns);
-
-      setTopNickname(result.data.data.nickname);
+      setTopNickname(result.data.data.nickName);
     }
     fetchData();
   }, []);
@@ -140,7 +140,7 @@ export default function ProfileInformation({}) {
           <t.myInformation>
             <t.ProfileImgBox src={profileImg} alt="img" />
             <t.profileinfo>
-              <t.nickName>HI.{nickname}</t.nickName>
+              <t.nickName>HI. {nickname} 님</t.nickName>
               <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
               <t.introduce>
                 <t.textName>자기소개</t.textName>
