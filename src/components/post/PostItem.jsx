@@ -6,11 +6,11 @@ import {
   __getBoard,
   __getcategory,
   __getcatenormal,
-} from "../redux/modules/BoardSlice";
+} from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
 
-const Postitem = () => {
+const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
@@ -141,7 +141,7 @@ const Postitem = () => {
   );
 };
 
-export default Postitem;
+export default PostItem;
 
 const Viewbox = styled.div`
   width: 100%;

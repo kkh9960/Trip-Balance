@@ -10,7 +10,6 @@ import styled from "styled-components";
 import { useCookies } from "react-cookie";
 import instance from "../lib/instance";
 import useInput from "../hooks/useInput";
-import Header from "../component/Header";
 import kakao from "../img/kakaologin.jpg";
 import { ImExit } from "react-icons/im";
 import { KAKAO_AUTH_URL } from "./AuthKakao";

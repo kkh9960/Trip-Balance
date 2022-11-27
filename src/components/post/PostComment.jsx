@@ -4,7 +4,7 @@ import {
   __deleteComment,
   __modifyComment,
   __postReComment,
-} from "../redux/modules/CommentSlice";
+} from "../../redux/modules/CommentSlice";
 import * as St from "./PostCommentStyle";
 import Recomment from "./Recomment.jsx";
 import { useNavigate } from "react-router-dom";
