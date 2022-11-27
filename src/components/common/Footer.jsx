@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Layout from "./Layout";
-import TripImage from "../img/trip.jpg";
+import TripImage from "../../img/trip.jpg";
 import { AiFillGithub } from "react-icons/ai";
 const Footer = () => {
   return (

@@ -9,21 +9,18 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import "./BoardPostDetail.css";
-import { __getComment, __postComment } from "../redux/modules/CommentSlice";
+import { __getComment, __postComment } from "../../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";
 import {
   __getBoardDetail,
   __getmypost,
   __deleteBoard,
   __boardlike,
-} from "../redux/modules/BoardSlice";
+} from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
-import Loading from "../components/Loading/Loading";
+import Loading from "../Loading/Loading";
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
-import Header from "../component/Header";
-
-import Footer from "../component/Footer"
 
 
 const BoardPostDetail = () => {
@@ -151,8 +148,6 @@ const BoardPostDetail = () => {
     <Loading />
   ) : (
     <div>
-
-      <Header />
       <BoardPostDetailContainer>
         <BoardPostDetailWrap>
           <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
@@ -279,8 +274,6 @@ const BoardPostDetail = () => {
           <BoardMypost post={post} mypost={mypost} />
         </BoardPostDetailWrap>
       </BoardPostDetailContainer>
-      <Footer />
-
     </div>
   );
 };

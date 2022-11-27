@@ -2,13 +2,13 @@ import React from "react";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
-import MyPageView from "../../components/mypage/MyPageView";
+import BoardPostDetail from "../../components/post/BoardPostDetail";
 
 export default function MyPage() {
   return (
     <Layout>
       <Header />
-      <MyPageView />
+        <BoardPostDetail/>
       <Footer />
     </Layout>
   );

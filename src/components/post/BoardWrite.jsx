@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import AWS from "aws-sdk";
-import { __postBoard } from "../redux/modules/BoardSlice";
+import { __postBoard } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 
 const BoardWrite = () => {

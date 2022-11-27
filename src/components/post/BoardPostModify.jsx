@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import AWS from "aws-sdk";
 import { useParams } from "react-router-dom";
-import { __getBoardDetail, __modifyBoard } from "../redux/modules/BoardSlice";
-import Loading from "../components/Loading/Loading";
+import { __getBoardDetail, __modifyBoard } from "../../redux/modules/BoardSlice";
+import Loading from "../Loading/Loading";
 
 const BoardPostModify = () => {
   const dispatch = useDispatch();
