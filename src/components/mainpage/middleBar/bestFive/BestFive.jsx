@@ -5,7 +5,6 @@ import { __getBestFive } from "../../../../redux/modules/BsetFiveSlice";
 export default function BestFive() {
   const dispatch = useDispatch();
   const bestList = useSelector((state) => state.BestSlice.data);
-  console.log(bestList);
   useEffect(() => {
     dispatch(__getBestFive());
   }, []);

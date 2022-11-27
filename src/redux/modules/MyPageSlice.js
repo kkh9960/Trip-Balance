@@ -48,6 +48,7 @@ export const __putMyInformation = createAsyncThunk(
 //     } catch (error) {}
 //   }
 // );
+
 //좋아요한 글목록
 export const __getMyPick = createAsyncThunk(
   "GET_MY_PICK",

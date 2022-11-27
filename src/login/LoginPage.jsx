@@ -35,7 +35,6 @@ function LoginPage() {
     setModal(!modal);
     window.location.reload();
   };
-  console.log(watch());
 
   const onvaled = (event) => {
     event.preventDefault();
@@ -54,12 +53,6 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-      // console.log(res)
-      // console.log(res.data.data)
-      // console.log(res.data.data.email)
-      // console.log(res.data.statusMsg)
-      // console.log(res.data.statusCode)
-
       sessionStorage.setItem("nickName", res.data.data.nickName);
       setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       setCookie("token", res.request.getResponseHeader("authorization"));

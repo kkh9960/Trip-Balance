@@ -23,16 +23,12 @@ function RegisterPage() {
   const dispatch = useDispatch();
   const password = useRef();
   password.current = watch("password");
-  console.log(watch());
   const navigate = useNavigate();
   const [email, setEmail, emailchange] = useInput("");
   const [nickname, setnickname, nicknamechange] = useInput("");
 
   const nicknamecheck = () => {
-    console.log(nick);
-    console.log(typeof nick);
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
-      console.log(res);
       if (nickname.trim() === "") {
         alert("닉네임을입력해주세요!");
         return;

@@ -19,7 +19,6 @@ export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.MyInforSlice.myinfor.memberId);
-  // console.log(userId);
   // 유저 정보
   // const userNickname = useSelector(
   //   (state) => state.MyInforSlice.myinfor.nickName
@@ -63,7 +62,6 @@ export default function MyPageView() {
     }
     fetchData();
   }, []);
-  console.log(posts);
   // 내가 좋아요한 글목록
   const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
@@ -84,9 +82,7 @@ export default function MyPageView() {
   //   };
   // }, []);
   // const handleScroll = () => {
-  //   console.log("scrolled");
   //   if (window.scrollY > 80) {
-  //     console.log("100");
   //   }
   // };
 

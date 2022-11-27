@@ -27,7 +27,6 @@ ChartJS.register(
 
 export default function DoughnutChart() {
   const peopleData = useSelector((state) => state.MapSlice.data?.cnt);
-  console.log(peopleData);
   const women = useState(peopleData[0]?.peopleCnt);
   const men = useState(peopleData[1]?.peopleCnt);
   const old1 = useState(peopleData[2]?.peopleCnt + peopleData[3]?.peopleCnt);

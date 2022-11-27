@@ -124,7 +124,6 @@ export default function ProfileInformation({}) {
   //   };
   // }, []);
   // const handleScroll = () => {
-  //   console.log("scrolled");
   //   if (window.scrollY > 80) {
   //   }
   // }
