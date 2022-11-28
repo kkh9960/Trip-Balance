@@ -17,12 +17,40 @@ export const __getBoard = createAsyncThunk(
   }
 );
 
+export const __getBoardinfi = createAsyncThunk(
+  "GET_BOARD_INFI",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts?page=${payload}`);
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
 export const __getBoardTotal = createAsyncThunk(
   "GET_BOARD_TOTAL",
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(
         `/tb/posts/search?keyword=${payload.useInput}&page=${payload.pageLocal}`
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getBoardTotalinfi = createAsyncThunk(
+  "GET_BOARD_TOTAL_INFI",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await instance.get(
+        `/tb/posts/search?keyword=${payload.useInput}&page=${payload.page}`
       );
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -38,6 +66,21 @@ export const __getBoardLocal = createAsyncThunk(
       console.log(payload);
       const { data } = await instance.get(
         `/tb/posts/search/${payload.selLocal}?keyword=${payload.useInput}&page=${payload.pageLocal}`
+      );
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+export const __getBoardLocalinfi = createAsyncThunk(
+  "GET_BOARD_LOCAL_INFI",
+  async (payload, thunkAPI) => {
+    try {
+      console.log(payload);
+      const { data } = await instance.get(
+        `/tb/posts/search/${payload.selLocal}?keyword=${payload.useInput}&page=${payload.page}`
       );
       console.log(data);
       return thunkAPI.fulfillWithValue(data);
@@ -184,8 +227,8 @@ export const __boardlike = createAsyncThunk(
 
 const initialState = {
   posts: [],
-  postTotal: [],
-  postLocal: [],
+  // postTotal: [],
+  // postLocal: [],
   isLoading: true,
   post: null,
   myposts: [],
@@ -201,36 +244,83 @@ const BoardSlice = createSlice({
     [__getBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
       console.log(action.payload);
+      state.posts = action.payload.data[0].postResponseDtoList;
+      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
+      //   state.posts.push(item)
+      // );
+      // state.isLastPage = action.payload.data[0].isLastPage;
+    },
+    [__getBoard.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getBoardinfi.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
       action.payload.data[0].postResponseDtoList.map((item, idx) =>
         state.posts.push(item)
       );
       state.isLastPage = action.payload.data[0].isLastPage;
     },
-    [__getBoard.rejected]: (state, action) => {
+    [__getBoardinfi.rejected]: (state, action) => {
       state.isLoading = false;
     },
+
     [__getBoardTotal.fulfilled]: (state, action) => {
       state.isLoading = false;
       console.log(action.payload);
+
+      state.posts = action.payload.data[0].postResponseDtoList;
+
       //state.postTotal.splice(0);
-      action.payload.data[0].postResponseDtoList.map((item, idx) =>
-        state.postTotal.push(item)
-      );
-      state.isLastPage = action.payload.data[0].isLastPage;
+      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
+      //   state.postTotal.push(item)
+      // );
+      // state.isLastPage = action.payload.data[0].isLastPage;
     },
+
     [__getBoardTotal.rejected]: (state, action) => {
       state.isLoading = false;
     },
-    [__getBoardLocal.fulfilled]: (state, action) => {
+    [__getBoardTotalinfi.fulfilled]: (state, action) => {
       state.isLoading = false;
       console.log(action.payload);
-      //state.postLocal.splice(0);
+
       action.payload.data[0].postResponseDtoList.map((item, idx) =>
-        state.postLocal.push(item)
+        state.posts.push(item)
       );
       state.isLastPage = action.payload.data[0].isLastPage;
     },
+
+    [__getBoardTotalinfi.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+
+    [__getBoardLocal.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+
+      state.posts = action.payload.data[0].postResponseDtoList;
+
+      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
+      //   state.postLocal.push(item)
+      // );
+      // state.isLastPage = action.payload.data[0].isLastPage;
+    },
+
     [__getBoardLocal.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getBoardLocalinfi.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+
+      action.payload.data[0].postResponseDtoList.map((item, idx) =>
+        state.posts.push(item)
+      );
+      state.isLastPage = action.payload.data[0].isLastPage;
+    },
+
+    [__getBoardLocalinfi.rejected]: (state, action) => {
       state.isLoading = false;
     },
     [__getbestfive.fulfilled]: (state, action) => {

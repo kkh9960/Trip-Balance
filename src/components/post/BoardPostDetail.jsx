@@ -129,7 +129,7 @@ const BoardPostDetail = () => {
   };
 
   const goProfile = () => {
-    navigate(`/tb/mypage/${post?.authorId}`);
+    navigate(`/memberpage/${post?.authorId}`);
   };
 
   const ImgHandlerTest = () => {};

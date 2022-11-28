@@ -1,8 +1,11 @@
 import axios from "axios";
 import { Cookies } from "react-cookie";
-const token = new Cookies().get("token");
-// access 토큰 개발자 tool app>cookie 받아오기
-const token2 = new Cookies().get("refreshToken");
+// const token = new Cookies().get("token");
+// // access 토큰 개발자 tool app>cookie 받아오기
+// const token2 = new Cookies().get("refreshToken");
+
+const token = localStorage.getItem("token");
+const token2 = localStorage.getItem("refreshToken");
 // refresh 토큰 받아오기
 axios.defaults.headers.common["Authorization"] = `${token}`;
 axios.defaults.headers.common["Refresh-Token"] = `${token2}`;

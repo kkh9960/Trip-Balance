@@ -52,8 +52,17 @@ function LoginPage() {
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
       sessionStorage.setItem("nickName", res.data.data.nickName);
-      setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
-      setCookie("token", res.request.getResponseHeader("authorization"));
+
+      localStorage.setItem(
+        "refreshToken",
+        res.request.getResponseHeader("refresh-token")
+      );
+      localStorage.setItem(
+        "token",
+        res.request.getResponseHeader("authorization")
+      );
+      // setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
+      // setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
 

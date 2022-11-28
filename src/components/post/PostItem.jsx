@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   __getbestfive,
   __getBoard,
+  __getBoardinfi,
   __getcategory,
+  __getBoardLocalinfi,
+  __getBoardTotalinfi,
   __getcatenormal,
   __getBoardTotal,
   __getBoardLocal,
@@ -19,11 +22,10 @@ const PostItem = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
-  console.log(isLast)
-  const postTotal = useSelector((state) => state.BoardSlice.postTotal);
-  console.log(postTotal)
-  const postLocal = useSelector((state) => state.BoardSlice.postLocal);
-  console.log(postLocal)
+  console.log(isLast);
+  // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
+  console.log(posts);
+  // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
   const [pageLocal, setPageLocal] = useState(0);
@@ -31,6 +33,7 @@ const PostItem = () => {
   const NICK = sessionStorage.getItem("nickName");
   const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
+  const [search, setsearch] = useState(1);
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
@@ -59,38 +62,48 @@ const PostItem = () => {
     dispatch(__getbestfive());
   }, []);
 
+  console.log("번호확인", search);
+  //일반검색 인피니티
   useEffect(() => {
     if (posts !== 0 && inView) {
-      if (isLast == false) {
-        dispatch(__getBoard(page));
-      setpage(page + 1);
-      } else {
-        console.log("끝이다.")
+      if (isLast == false && search == 1) {
+        dispatch(__getBoardinfi(page));
+        setpage(page + 1);
+      }
+      if (isLast == false && search == 2) {
+        dispatch(__getBoardTotalinfi({ useInput, page }));
+        setpage(page + 1);
+      }
+      if (isLast == false && search == 3) {
+        dispatch(__getBoardLocalinfi({ selLocal, useInput, page }));
+        setpage(page + 1);
       }
     }
   }, [inView]);
 
-  useEffect(() => {
-    if (postLocal !== 0 && inView) {
-      if(isLast == false) {
-      dispatch(__getBoardLocal({useInput, pageLocal, selLocal}));
-      setPageLocal(pageLocal + 1);
-      } else {
-        console.log("끝이다.")
-      }
-    }
-  }, [inView, postLocal]);
+  //로컬 검색
+  // useEffect(() => {
+  //   if (postLocal !== 0 && inView) {
+  //     if (isLast == false) {
+  //       dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
+  //       setPageLocal(pageLocal + 1);
+  //     } else {
+  //       console.log("끝이다.");
+  //     }
+  //   }
+  // }, [inView, postLocal]);
 
-  useEffect(() => {
-    if (postTotal !== 0 && inView) {
-      if(isLast == false) {
-      dispatch(__getBoardTotal({useInput, pageLocal}));
-      setPageLocal(pageLocal + 1);
-      } else {
-        console.log("끝이다.")
-      }
-    }
-  }, [inView, postTotal]);
+  // //토탈 검색
+  // useEffect(() => {
+  //   if (postTotal !== 0 && inView) {
+  //     if (isLast == false) {
+  //       dispatch(__getBoardTotal({ useInput, pageLocal }));
+  //       setPageLocal(pageLocal + 1);
+  //     } else {
+  //       console.log("끝이다.");
+  //     }
+  //   }
+  // }, [inView, postTotal]);
 
   const goPosrWrite = () => {
     if (NICK) {
@@ -107,44 +120,46 @@ const PostItem = () => {
       alert("로그인을 해주세요!");
     }
   };
-  const [selLocal, setSelLocal] = useState("0")
+  const [selLocal, setSelLocal] = useState("0");
   const getCategory = (e) => {
-    setSelLocal(e.target.value)
+    setSelLocal(e.target.value);
   };
 
   const getSearch = (e) => {
     e.preventDefault();
     if (selLocal == "0") {
-      console.log("보내줄것", useInput, pageLocal)
-      dispatch(__getBoardTotal({useInput, pageLocal}))
+      dispatch(__getBoardTotal({ useInput, pageLocal }));
+      setsearch(2);
     } else {
-      console.log("보내줄것", useInput, pageLocal, selLocal)
-      dispatch(__getBoardLocal({useInput, pageLocal, selLocal}))
+      dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
+      setsearch(3);
     }
-  }
+  };
+
+  const searchImg = "img/search.svg";
 
   return (
     <PostPageContainer>
       <TodayTitle>오늘의 여행지 검색</TodayTitle>
       <SearchBox>
         <SearchBoxForm onSubmit={getSearch}>
-        <CategorySearch onChange={getCategory}>
-          <option value="0">전체</option>
-          <option value="1">수도권</option>
-          <option value="2">강원도 + 경상도</option>
-          <option value="3">충청도 + 전라도</option>
-          <option value="4">제주도</option>
-          <option value="5">기타</option>
-        </CategorySearch>
-        <TitleSearchbox>
-          <TitleSearch
-            type="text"
-            placeholder="오늘의 핫한 여행지 검색하기"
-            value={useInput}
-            onChange={onChange}
-          ></TitleSearch>
-          <SearchIcon></SearchIcon>
-        </TitleSearchbox>
+          <CategorySearch onChange={getCategory}>
+            <option value="0">전체</option>
+            <option value="1">수도권</option>
+            <option value="2">강원도 + 경상도</option>
+            <option value="3">충청도 + 전라도</option>
+            <option value="4">제주도</option>
+            <option value="5">기타</option>
+          </CategorySearch>
+          <TitleSearchbox>
+            <TitleSearch
+              type="text"
+              placeholder="오늘의 핫한 여행지 검색하기"
+              value={useInput}
+              onChange={onChange}
+            ></TitleSearch>
+            <SearchIcon></SearchIcon>
+          </TitleSearchbox>
         </SearchBoxForm>
         <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
       </SearchBox>
@@ -152,11 +167,77 @@ const PostItem = () => {
         <PostBestfive best={best} />
       </PostLikeBestbox>
       <PostListWrap>
-        <PostListTitle>TB 추천여행지</PostListTitle>
+        <PostListTitle type="submit">TB 추천여행지</PostListTitle>
         <PostCardList>
-          {postTotal[0] ? (
-            postTotal.map((item, idx) => (
+          {/* {postTotal[0]
+            ? postTotal.map((item, idx) => (
+                <CardWrap
+                  search={posts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg
+                              ? item.profileImg
+                              : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              ))
+            : postLocal[0]
+            ? postLocal.map((item, idx) => (
+                <CardWrap
+                  search={posts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg
+                              ? item.profileImg
+                              : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              ))
+            :  */}
+          {posts &&
+            posts.map((item, idx) => (
               <CardWrap
+                key={idx}
                 search={posts}
                 onClick={() => {
                   goDetail(item.postId);
@@ -183,70 +264,7 @@ const PostItem = () => {
                   </Cardbody>
                 </CardTextbox>
               </CardWrap>
-            ))
-          ) : (
-            postLocal[0] ? (
-              postLocal.map((item, idx) => (
-                <CardWrap
-                  search={posts}
-                  onClick={() => {
-                    goDetail(item.postId);
-                  }}
-                >
-                  <CardImgbox>
-                    <CardImg src={item.image[0].imgURL} />
-                  </CardImgbox>
-                  <CardTextbox>
-                    <CardTitle>{item.title}</CardTitle>
-                    <Cardbody>
-                      <Userinfo>
-                        <UserImg
-                          src={
-                            item.profileImg ? item.profileImg : profiledefaultImg
-                          }
-                        />
-                        <CardUserName>{item.author}</CardUserName>
-                      </Userinfo>
-                      <Likeinfo>
-                        <LikeCount>{item.heartNum}</LikeCount>
-                        <LikeImg src="img/heart.svg" />
-                      </Likeinfo>
-                    </Cardbody>
-                  </CardTextbox>
-                </CardWrap>
-              ))
-            ) : (
-              posts.map((item, idx) => (
-                <CardWrap
-                  search={posts}
-                  onClick={() => {
-                    goDetail(item.postId);
-                  }}
-                >
-                  <CardImgbox>
-                    <CardImg src={item.image[0].imgURL} />
-                  </CardImgbox>
-                  <CardTextbox>
-                    <CardTitle>{item.title}</CardTitle>
-                    <Cardbody>
-                      <Userinfo>
-                        <UserImg
-                          src={
-                            item.profileImg ? item.profileImg : profiledefaultImg
-                          }
-                        />
-                        <CardUserName>{item.author}</CardUserName>
-                      </Userinfo>
-                      <Likeinfo>
-                        <LikeCount>{item.heartNum}</LikeCount>
-                        <LikeImg src="img/heart.svg" />
-                      </Likeinfo>
-                    </Cardbody>
-                  </CardTextbox>
-                </CardWrap>
-              ))
-            )
-          )}
+            ))}
         </PostCardList>
       </PostListWrap>
       <Viewbox>
@@ -397,6 +415,7 @@ const TitleSearchbox = styled.div`
   width: 690px;
   height: 60px;
   border-radius: 30px;
+  position: relative;
 `;
 const TitleSearch = styled.input`
   width: 100%;
@@ -408,7 +427,15 @@ const TitleSearch = styled.input`
   outline: none;
   border: 1px solid #d9d9d9;
 `;
-const SearchIcon = styled.div``;
+const SearchIcon = styled.button`
+  position: absolute;
+  top: 5px;
+  right: -10px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-image: url("img/search.svg");
+`;
 
 const PostgoWrite = styled.button`
   width: 344px;

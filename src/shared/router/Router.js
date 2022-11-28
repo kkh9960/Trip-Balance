@@ -10,6 +10,7 @@ import PostModifyPage from "../../pages/post/PostModifyPage";
 import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
+import KaKao from "../../components/login/KaKao";
 
 import Signup from "../../components/login/Signup";
 import MemberPage from "../../pages/memberPage/MemberPage";
@@ -31,6 +32,7 @@ const Router = () => {
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
+        <Route path="/tb/ouath/kakao" element={<KaKao />} />
       </Routes>
     </BrowserRouter>
   );
