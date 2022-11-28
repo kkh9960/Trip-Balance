@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import "./login.css";
-import TripImage from "../img/trip.jpg";
+import TripImage from "../../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useCookies } from "react-cookie";
-import instance from "../lib/instance";
-import useInput from "../hooks/useInput";
-import kakao from "../img/kakaologin.jpg";
+import instance from "../../lib/instance";
+import useInput from "../../hooks/useInput";
+import kakao from "../../img/kakaologin.jpg";
 import { ImExit } from "react-icons/im";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
 

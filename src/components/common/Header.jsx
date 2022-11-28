@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
-import LoginPage from "../../login/LoginPage";
+import LoginPage from "../login/LoginPage";
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
