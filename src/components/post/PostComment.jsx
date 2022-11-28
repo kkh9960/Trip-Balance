@@ -19,12 +19,21 @@ const PostComment = ({ idx, item, id, post }) => {
   const [recomment, setrecomment] = useState("");
   const [UserImage, setUserImage] = useState("");
   const [Editprofile, setEditprofile] = useState(false);
+  const [CommentImg, setCommentImg] = useState();
 
   useEffect(() => {
     if (item.profileImg == "") {
       setUserImage(UserDefaultImage);
     } else {
       setUserImage(item.profileImg);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (post.profileImg == "") {
+      setCommentImg(UserDefaultImage);
+    } else {
+      setCommentImg(post.profileImg);
     }
   }, []);
 
@@ -136,7 +145,7 @@ const PostComment = ({ idx, item, id, post }) => {
       {RecommentWrite ? (
         <St.BoardReCommentBox>
           <St.CommentWriteUserBox>
-            <St.CommentWriteImg src="../img/cmtdefault.svg" />
+            <St.CommentWriteImg src={CommentImg} />
             <St.CommentWriteUser>{post?.nickName}</St.CommentWriteUser>
           </St.CommentWriteUserBox>
           <St.ReCommentTextarea
