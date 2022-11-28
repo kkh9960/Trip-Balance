@@ -43,6 +43,8 @@ const PostBestfive = ({ best }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
+  console.log(best);
+
   const goPost = (id) => {
     navigator(`/detail/${id}`);
   };

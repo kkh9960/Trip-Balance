@@ -99,7 +99,7 @@ const PostComment = ({ idx, item, id, post }) => {
   console.log(item);
 
   const goprofile = () => {
-    navigator(`tb/mypage/${item.authorId}`);
+    navigator(`/memberpage/${item.authorId}`);
   };
 
   return (

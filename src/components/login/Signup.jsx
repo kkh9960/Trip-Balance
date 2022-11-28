@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../../redux/modules/Signup";
 import "./signup.css";
 import { motion } from "framer-motion";
-
+import Header from "../common/Header";
+import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 

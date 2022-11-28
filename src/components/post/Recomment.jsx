@@ -64,7 +64,7 @@ const Recomment = ({ item, cmtid }) => {
   console.log("대댓데이타", item);
 
   const goprofile = () => {
-    navigator(`/tb/mypage/${item.authorId}`);
+    navigator(`/memberpage/${item.authorId}`);
   };
 
   return (
