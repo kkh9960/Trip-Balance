@@ -25,7 +25,7 @@ const PostItem = () => {
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
-  console.log(page);
+
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
   console.log("데이터", posts);
@@ -35,7 +35,7 @@ const PostItem = () => {
   //   }
   //   console.log("key press");
   // };
-  const [test, settest] = useState(false);
+  const [test, settest] = useState(true);
   console.log(test);
   useEffect(() => {
     setTimeout(() => {
@@ -57,7 +57,7 @@ const PostItem = () => {
   useEffect(() => {
     if (posts.length !== 0 && inView) {
       dispatch(__getBoard(page)).then((res) => {
-        console.log(res);
+        console.log(res.last);
       });
       setpage(page + 1);
     }
@@ -122,42 +122,33 @@ const PostItem = () => {
           <PostListTitle>TB 추천여행지</PostListTitle>
           <PostCardList>
             {filteredProducts.map((item, idx) => (
-              <motion.div
-                className="loginPage"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+              <CardWrap
+                search={filteredProducts}
+                onClick={() => {
+                  goDetail(item.postId);
+                }}
               >
-                <CardWrap
-                  search={filteredProducts}
-                  onClick={() => {
-                    goDetail(item.postId);
-                  }}
-                >
-                  <CardImgbox>
-                    <CardImg src={item.image[0].imgURL} />
-                  </CardImgbox>
-                  <CardTextbox>
-                    <CardTitle>{item.title}</CardTitle>
-                    <Cardbody>
-                      <Userinfo>
-                        <UserImg
-                          src={
-                            item.profileImg
-                              ? item.profileImg
-                              : profiledefaultImg
-                          }
-                        />
-                        <CardUserName>{item.author}</CardUserName>
-                      </Userinfo>
-                      <Likeinfo>
-                        <LikeCount>{item.heartNum}</LikeCount>
-                        <LikeImg src="img/heart.svg" />
-                      </Likeinfo>
-                    </Cardbody>
-                  </CardTextbox>
-                </CardWrap>
-              </motion.div>
+                <CardImgbox>
+                  <CardImg src={item.image[0].imgURL} />
+                </CardImgbox>
+                <CardTextbox>
+                  <CardTitle>{item.title}</CardTitle>
+                  <Cardbody>
+                    <Userinfo>
+                      <UserImg
+                        src={
+                          item.profileImg ? item.profileImg : profiledefaultImg
+                        }
+                      />
+                      <CardUserName>{item.author}</CardUserName>
+                    </Userinfo>
+                    <Likeinfo>
+                      <LikeCount>{item.heartNum}</LikeCount>
+                      <LikeImg src="img/heart.svg" />
+                    </Likeinfo>
+                  </Cardbody>
+                </CardTextbox>
+              </CardWrap>
             ))}
           </PostCardList>
         </PostListWrap>
