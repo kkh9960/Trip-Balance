@@ -1,9 +1,6 @@
 import React from "react";
-import AddPostButton from "../../components/common/button/AddPostButton";
-import ScrollTopButton from "../../components/common/button/ScrollTopButton";
-import MiddleBar from "../../components/mainpage/middleBar/MiddleBar";
 import MapBar from "../../shared/api/map/MapBar";
-import DoughnutChart from "./mapBar/DoughnutChart";
+import DoughnutChart from "../../components/mainpage/mapBar/DoughnutChart";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
@@ -23,15 +20,9 @@ export default function MainPage() {
           <DoughnutChart />
         </t.mapGroup>
         <PostBar />
-        {/* <t.sideButtonGroup>
-          <AddPostButton />
-          <ScrollTopButton />
-        </t.sideButtonGroup> */}
       </t.main>
       <GameBanner />
       <Footer />
     </Layout>
   );
 }
-
-// Infinityscroll

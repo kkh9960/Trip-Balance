@@ -5,10 +5,11 @@ import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../../redux/modules/Signup";
 import "./signup.css";
 import { motion } from "framer-motion";
-
+import Header from "../common/Header";
 import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
+
 function RegisterPage() {
   const {
     register,
@@ -23,16 +24,12 @@ function RegisterPage() {
   const dispatch = useDispatch();
   const password = useRef();
   password.current = watch("password");
-  console.log(watch());
   const navigate = useNavigate();
   const [email, setEmail, emailchange] = useInput("");
   const [nickname, setnickname, nicknamechange] = useInput("");
 
   const nicknamecheck = () => {
-    console.log(nick);
-    console.log(typeof nick);
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
-      console.log(res);
       if (nickname.trim() === "") {
         alert("닉네임을입력해주세요!");
         return;

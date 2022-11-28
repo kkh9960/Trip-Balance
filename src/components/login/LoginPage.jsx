@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Signup from "./Signup";
+import Signup from "../../redux/modules/Signup";
 import "./login.css";
 import TripImage from "../../img/trip.jpg";
 import { motion } from "framer-motion";
@@ -51,12 +51,6 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-      // console.log(res)
-      // console.log(res.data.data)
-      // console.log(res.data.data.email)
-      // console.log(res.data.statusMsg)
-      // console.log(res.data.statusCode)
-
       sessionStorage.setItem("nickName", res.data.data.nickName);
       setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       setCookie("token", res.request.getResponseHeader("authorization"));

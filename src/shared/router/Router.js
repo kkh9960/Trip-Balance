@@ -11,6 +11,8 @@ import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
 
+import Signup from "../../components/login/Signup";
+import MemberPage from "../../pages/memberPage/MemberPage";
 // import Test from "../../pages/Test";
 const Router = () => {
   return (
@@ -18,7 +20,9 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/memberpage/:id" element={<MemberPage />} />
         <Route path="/post" element={<PostViewPage />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/write" element={<PostWritePage />} />
         <Route path="/detail/:id" element={<PostDetailPage />} />
         <Route path="/modify/:id" element={<PostModifyPage />} />

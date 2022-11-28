@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import "./PostBestfive.css";
+import { useNavigate } from "react-router-dom";
 
 const PostBestfive = ({ best }) => {
+  const navigator = useNavigate();
   useEffect(() => {
     let isDown = false;
     let startX;
@@ -41,13 +43,25 @@ const PostBestfive = ({ best }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
+  console.log(best);
+
+  const goPost = (id) => {
+    navigator(`/detail/${id}`);
+  };
+
   return (
     <main>
       <div className="wrapper">
         <ul className="items">
           {best &&
             best.map((item, idx) => (
-              <li className="item" key={idx}>
+              <li
+                className="item"
+                key={idx}
+                onClick={() => {
+                  goPost(item.postId);
+                }}
+              >
                 <div className="itemimgbox">
                   <img className="itemimg" src={item.img} />
                 </div>
