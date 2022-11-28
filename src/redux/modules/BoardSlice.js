@@ -9,6 +9,7 @@ export const __getBoard = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts?page=${payload}`);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -189,6 +190,7 @@ const initialState = {
   post: null,
   myposts: [],
   bestpost: [],
+  isLastPage: false,
 };
 
 const BoardSlice = createSlice({
@@ -198,8 +200,11 @@ const BoardSlice = createSlice({
   extraReducers: {
     [__getBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
-
-      action.payload.data.map((item, idx) => state.posts.push(item));
+      console.log(action.payload);
+      action.payload.data[0].postResponseDtoList.map((item, idx) =>
+        state.posts.push(item)
+      );
+      state.isLastPage = action.payload.data[0].isLastPage;
     },
     [__getBoard.rejected]: (state, action) => {
       state.isLoading = false;
@@ -207,7 +212,11 @@ const BoardSlice = createSlice({
     [__getBoardTotal.fulfilled]: (state, action) => {
       state.isLoading = false;
       console.log(action.payload);
-      action.payload.data.map((item, idx) => state.postTotal.push(item));
+      //state.postTotal.splice(0);
+      action.payload.data[0].postResponseDtoList.map((item, idx) =>
+        state.postTotal.push(item)
+      );
+      state.isLastPage = action.payload.data[0].isLastPage;
     },
     [__getBoardTotal.rejected]: (state, action) => {
       state.isLoading = false;
@@ -215,8 +224,11 @@ const BoardSlice = createSlice({
     [__getBoardLocal.fulfilled]: (state, action) => {
       state.isLoading = false;
       console.log(action.payload);
-      state.postLocal.splice(0);
-      action.payload.data.map((item, idx) => state.postLocal.push(item));
+      //state.postLocal.splice(0);
+      action.payload.data[0].postResponseDtoList.map((item, idx) =>
+        state.postLocal.push(item)
+      );
+      state.isLastPage = action.payload.data[0].isLastPage;
     },
     [__getBoardLocal.rejected]: (state, action) => {
       state.isLoading = false;

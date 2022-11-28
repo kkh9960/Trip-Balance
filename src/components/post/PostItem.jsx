@@ -18,19 +18,19 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
+  const isLast = useSelector((state) => state.BoardSlice.isLastPage);
+  console.log(isLast)
   const postTotal = useSelector((state) => state.BoardSlice.postTotal);
   console.log(postTotal)
   const postLocal = useSelector((state) => state.BoardSlice.postLocal);
   console.log(postLocal)
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
+  const [pageLocal, setPageLocal] = useState(0);
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
   const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
-  const filteredProducts = posts.filter((posts) => {
-    return posts.title.toLowerCase().includes(useInput.toLowerCase());
-  });
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
@@ -58,20 +58,40 @@ const PostItem = () => {
     }
     dispatch(__getbestfive());
   }, []);
+
   useEffect(() => {
     if (posts !== 0 && inView) {
-      console.log(page)
-      dispatch(__getBoard(page));
+      if (isLast == false) {
+        dispatch(__getBoard(page));
       setpage(page + 1);
+      } else {
+        console.log("끝이다.")
+      }
     }
   }, [inView]);
+
   useEffect(() => {
     if (postLocal !== 0 && inView) {
-      console.log(pageLocal)
+      if(isLast == false) {
       dispatch(__getBoardLocal({useInput, pageLocal, selLocal}));
-      setpage(pageLocal + 1);
+      setPageLocal(pageLocal + 1);
+      } else {
+        console.log("끝이다.")
+      }
     }
-  }, [inView]);
+  }, [inView, postLocal]);
+
+  useEffect(() => {
+    if (postTotal !== 0 && inView) {
+      if(isLast == false) {
+      dispatch(__getBoardTotal({useInput, pageLocal}));
+      setPageLocal(pageLocal + 1);
+      } else {
+        console.log("끝이다.")
+      }
+    }
+  }, [inView, postTotal]);
+
   const goPosrWrite = () => {
     if (NICK) {
       navigator("/write");
@@ -91,8 +111,6 @@ const PostItem = () => {
   const getCategory = (e) => {
     setSelLocal(e.target.value)
   };
-
-  const pageLocal = page - 1
 
   const getSearch = (e) => {
     e.preventDefault();
