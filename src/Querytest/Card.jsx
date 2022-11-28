@@ -5,6 +5,11 @@ export function Card({ title, postId }) {
     <div>
       <Title>타이틀:{title}</Title>
       <Title>아이디{postId}</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
     </div>
   );
 }

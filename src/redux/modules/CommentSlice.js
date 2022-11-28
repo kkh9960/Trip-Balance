@@ -236,6 +236,8 @@ const CommentSlice = createSlice({
     [__deleteReComment.fulfilled]: (state, action) => {
       state.isLoading = false;
 
+      console.log(action);
+
       const a = current(state).comments.filter(
         (a) => a.commentId === parseInt(action.payload.data.commentId)
       );

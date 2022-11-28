@@ -6,8 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
-import LoginPage from "../login/LoginPage";
-
+import LoginPage from "../../components/login/LoginPage";
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
@@ -32,8 +31,8 @@ const Header = () => {
       .then((res) => {
         sessionStorage.removeItem("nickName");
         sessionStorage.removeItem("email");
-        removeCookie("token");
-        removeCookie("refreshToken");
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
         alert("로그아웃완료!");
         window.location.reload();
       })

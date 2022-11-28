@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import MainPage from "../../pages/mainPage/MainPage";
-import MyPage from "../../pages/myPage/MyPage";
+import MyPage from "../../pages/mypage/MyPage";
 import PostViewPage from "../../pages/post/PostViewPage";
 import PostWritePage from "../../pages/post/PostWritePage";
 import PostDetailPage from "../../pages/post/PostDetailPage";
@@ -10,6 +10,8 @@ import PostModifyPage from "../../pages/post/PostModifyPage";
 import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
+import KaKao from "../../components/login/KaKao";
+
 import Signup from "../../components/login/Signup";
 import MemberPage from "../../pages/memberPage/MemberPage";
 // import Test from "../../pages/Test";
@@ -30,6 +32,7 @@ const Router = () => {
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
+        <Route path="/tb/ouath/kakao" element={<KaKao />} />
       </Routes>
     </BrowserRouter>
   );

@@ -112,7 +112,6 @@ function RegisterPage() {
       exit={{ opacity: 0 }}
     >
       <div>
-        {/* <Header /> */}
         <div className="signup-wrapper">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div style={{ textAlign: "center" }}>
