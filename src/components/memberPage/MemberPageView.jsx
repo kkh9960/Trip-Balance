@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as t from "./MyPageViewStyle";
+import * as t from "./MemberPageViewStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,12 +10,13 @@ import {
 } from "../../redux/modules/MyPageSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import Pagination from "../common/Pagination";
-import ProfileInformation from "./profileInformation/ProfileInformation";
+import MemberInformation from "./memberInformation/MemberInformation";
 import instance from "../../lib/instance";
-import InformationChart from "./profileInformation/InformationChart";
 import background from "../../img/3.jpg";
 
-export default function MyPageView() {
+export default function MemberPage() {
+  const id = useParams();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState([]);
@@ -25,8 +26,8 @@ export default function MyPageView() {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await instance.get("tb/mypage/info");
-      console.log(result);
+      const result = await instance.get(`tb/memberinfo/${id.id}`);
+
       setUserGameCnt(result.data.data.gameCnt);
       setUserCommentCnt(result.data.data.commentCnt);
       setUserPostCnt(result.data.data.postCnt);
@@ -35,26 +36,27 @@ export default function MyPageView() {
     fetchData();
   }, []);
 
-  // 내가 작성한 글목록
+  // 유저가 작성한 글목록
   const [posts, setPosts] = useState([]);
   const [writelimit, setWriteLimit] = useState(10);
   const [writepage, setWritePage] = useState(1);
   const writeoffset = (writepage - 1) * writelimit;
   useEffect(() => {
     async function fetchData() {
-      const result = await instance.get("tb/mypage/posts");
+      const result = await instance.get(`tb/memberinfo/posts/${id.id}`);
+      console.log("ghgh", result);
       setPosts(result.data.data);
     }
     fetchData();
   }, []);
-  // 내가 좋아요한 글목록
+  // 유저가 좋아요한 글목록
   const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   useEffect(() => {
     async function fetchData() {
-      const result = await instance.get("tb/mypage/hearts");
+      const result = await instance.get(`tb/memberinfo/hearts/${id.id}`);
       setMyPick(result.data.data);
     }
     fetchData();
@@ -62,7 +64,7 @@ export default function MyPageView() {
 
   return (
     <t.myInformationWrap>
-      <ProfileInformation />
+      <MemberInformation />
 
       <t.myTotalInfo>
         <span>BalanceGame</span>
@@ -78,31 +80,27 @@ export default function MyPageView() {
       <t.mySelectInformation>
         <t.myPickPostWrap>
           <t.itemHeader>
-            <h2>내가 좋아요한 게시물</h2>
+            <h2>좋아요한 게시물</h2>
             <t.thinLine />
           </t.itemHeader>
 
           <t.pickPostWrap>
-            {typeof myPick === typeof "string" ? (
-              <h1>좋아요한 글이 없습니다.</h1>
-            ) : (
-              myPick.slice(offset, offset + limit).map((idx) => {
-                if (myPick.length === 0) {
-                  return <t.empty>좋아요한 글이 없습니다.</t.empty>;
-                } else {
-                  return (
-                    <t.pickPostItem
-                      key={idx.postId}
-                      onClick={() => navigate(`/detail/${idx.postId}`)}
-                    >
-                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <div>{idx.nickName}</div>
-                    </t.pickPostItem>
-                  );
-                }
-              })
-            )}
+            {myPick.slice(offset, offset + limit).map((idx) => {
+              if (myPick.length === 0) {
+                return <t.empty>좋아요한 글이 없습니다.</t.empty>;
+              } else {
+                return (
+                  <t.pickPostItem
+                    key={idx.postId}
+                    onClick={() => navigate(`/detail/${idx.postId}`)}
+                  >
+                    <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                    <div>{idx.title}</div>
+                    <div>{idx.nickName}</div>
+                  </t.pickPostItem>
+                );
+              }
+            })}
           </t.pickPostWrap>
           <t.footer>
             <t.thinLine />
@@ -116,31 +114,27 @@ export default function MyPageView() {
         </t.myPickPostWrap>
         <t.myPostWrap>
           <t.itemHeader>
-            <h2>내가 작성한 글 목록</h2>
+            <h2>작성한 글 목록</h2>
 
             <t.thinLine />
           </t.itemHeader>
           <t.pickPostWrap>
-            {typeof posts === typeof "string" ? (
-              <h1>작성한 글이 없습니다.</h1>
-            ) : (
-              posts.slice(writeoffset, writeoffset + writelimit).map((idx) => {
-                if (posts.length === 0) {
-                  return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
-                } else {
-                  return (
-                    <t.pickPostItem
-                      key={idx.postId}
-                      onClick={() => navigate(`/detail/${idx.postId}`)}
-                    >
-                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <div>{idx.createdAt}</div>
-                    </t.pickPostItem>
-                  );
-                }
-              })
-            )}
+            {posts.slice(writeoffset, writeoffset + writelimit).map((idx) => {
+              if (posts.length === 0) {
+                return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
+              } else {
+                return (
+                  <t.pickPostItem
+                    key={idx.postId}
+                    onClick={() => navigate(`/detail/${idx.postId}`)}
+                  >
+                    <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                    <div>{idx.title}</div>
+                    <div>{idx.createdAt}</div>
+                  </t.pickPostItem>
+                );
+              }
+            })}
           </t.pickPostWrap>
 
           <t.footer>

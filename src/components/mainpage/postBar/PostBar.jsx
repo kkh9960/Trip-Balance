@@ -8,7 +8,6 @@ export default function Post() {
   const hotelList = useSelector((state) => state.MapSlice.data.hotel);
   const blogList = useSelector((state) => state.MapSlice?.data.blog);
 
-  console.log(hotelList);
   return (
     <t.postContainer>
       <t.hotelContainer>
@@ -17,7 +16,6 @@ export default function Post() {
           {hotelList &&
             hotelList[0].map((idx) => {
               if (hotelList === undefined) {
-                console.log(hotelList);
               } else {
                 if (hotelList.length === 0) {
                   return <h1 key={idx.id}>작성한 글이 없습니다.</h1>;

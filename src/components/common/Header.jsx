@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import * as t from "./HeaderStyle";
 import Layout from "./Layout";
 import TripImage from "../../img/trip.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
 import LoginPage from "../login/LoginPage";
+
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
@@ -45,14 +46,14 @@ const Header = () => {
   return (
     <>
       {header === "/" ? (
-        <Container1>
+        <t.Container1>
           {modal ? (
             <LoginPage />
           ) : (
             <Layout>
-              <WriteWrap>
+              <t.WriteWrap>
                 <Link to="/">
-                  <Logo
+                  <t.Logo
                     src={TripImage}
                     onClick={() => {
                       navigate("/post");
@@ -60,59 +61,59 @@ const Header = () => {
                   />
                 </Link>
 
-                <Posting
+                <t.Posting
                   onClick={() => {
                     navigate("/post");
                   }}
                 >
                   게시판
-                </Posting>
+                </t.Posting>
 
                 {email == null ? (
-                  <Mypage
+                  <t.Mypage
                     onClick={() => {
                       alert("로그인을 해주세요!");
                     }}
                   >
                     마이페이지
-                  </Mypage>
+                  </t.Mypage>
                 ) : (
-                  <Mypage
+                  <t.Mypage
                     onClick={() => {
                       navigate("/mypage");
                     }}
                   >
                     마이페이지
-                  </Mypage>
+                  </t.Mypage>
                 )}
                 {nickname ? (
                   <div>
                     <div>
-                      <Logout onClick={logout}>로그아웃</Logout>
+                      <t.Logout onClick={logout}>로그아웃</t.Logout>
                     </div>
                   </div>
                 ) : (
-                  <Login
+                  <t.Login
                     onClick={() => {
                       setModal(!modal);
                     }}
                   >
                     로그인
-                  </Login>
+                  </t.Login>
                 )}
-              </WriteWrap>
+              </t.WriteWrap>
             </Layout>
           )}
-        </Container1>
+        </t.Container1>
       ) : (
-        <Container2>
+        <t.Container2>
           {modal ? (
             <LoginPage />
           ) : (
             <Layout>
-              <WriteWrap>
+              <t.WriteWrap>
                 <Link to="/">
-                  <Logo
+                  <t.Logo
                     src={TripImage}
                     onClick={() => {
                       navigate("/post");
@@ -120,131 +121,54 @@ const Header = () => {
                   />
                 </Link>
 
-                <Posting
+                <t.Posting
                   onClick={() => {
                     navigate("/post");
                   }}
                 >
                   게시판
-                </Posting>
+                </t.Posting>
 
                 {email == null ? (
-                  <Mypage
+                  <t.Mypage
                     onClick={() => {
                       alert("로그인을 해주세요!");
                       setModal(!modal);
                     }}
                   >
                     마이페이지
-                  </Mypage>
+                  </t.Mypage>
                 ) : (
-                  <Mypage
+                  <t.Mypage
                     onClick={() => {
                       navigate("/mypage");
                     }}
                   >
                     마이페이지
-                  </Mypage>
+                  </t.Mypage>
                 )}
                 {nickname ? (
                   <div>
                     <div>
-                      <Logout onClick={logout}>로그아웃</Logout>
+                      <t.Logout onClick={logout}>로그아웃</t.Logout>
                     </div>
                   </div>
                 ) : (
-                  <Login
+                  <t.Login
                     onClick={() => {
                       setModal(!modal);
                     }}
                   >
                     로그인
-                  </Login>
+                  </t.Login>
                 )}
-              </WriteWrap>
+              </t.WriteWrap>
             </Layout>
           )}
-        </Container2>
+        </t.Container2>
       )}
     </>
   );
 };
 
 export default Header;
-
-const Nickname = styled.div`
-  display: flex;
-  position: relative;
-`;
-const Container1 = styled.div`
-  position: fixed;
-  z-index: 99;
-  width: 100%;
-  height: 120px;
-  margin: 0 auto;
-  text-underline-position: under;
-`;
-const Container2 = styled.div`
-  width: 100%;
-  height: 120px;
-  background-color: #fff;
-  margin: 0 auto;
-  text-underline-position: under;
-`;
-const Logo = styled.img`
-  width: 321.06px;
-  height: 105.3px;
-  display: flex;
-`;
-const WriteWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  top: 5px;
-`;
-
-const Posting = styled.button`
-  border-radius: 10px;
-  padding: -20px;
-  width: 200px;
-  margin-top: 56px;
-  margin-top: 10px;
-  font-size: 24px;
-`;
-const Trip = styled.button`
-  border-radius: 10px;
-  width: 200px;
-  margin-top: 56px;
-  margin-top: 10px;
-  font-size: 24px;
-`;
-
-const Mypage = styled.button`
-  border-radius: 10px;
-  width: 200px;
-  margin-top: 56px;
-  margin-top: 10px;
-  font-size: 24px;
-`;
-
-const Login = styled.button`
-  margin-top: 56px;
-  margin-top: 20px;
-  font-size: 24px;
-
-  align-items: center;
-`;
-
-const Logout = styled.button`
-  margin-top: 56px;
-  margin-top: 20px;
-  font-size: 24px;
-
-  display: flex;
-`;
-
-const Wrap = styled.div`
-  position: relative;
-  top: 30px;
-`;

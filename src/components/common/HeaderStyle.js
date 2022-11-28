@@ -6,13 +6,22 @@ export const Nickname = styled.div`
   left: 60px;
 `;
 
-export const Container = styled.div`
-  position: absolute;
+export const Container1 = styled.div`
+  position: fixed;
   z-index: 99;
   width: 100%;
   height: 120px;
   margin: 0 auto;
+  text-underline-position: under;
 `;
+export const Container2 = styled.div`
+  width: 100%;
+  height: 120px;
+  background-color: #fff;
+  margin: 0 auto;
+  text-underline-position: under;
+`;
+
 export const ContainerWhite = styled.div`
   height: 120px;
   background-color: #fff;
