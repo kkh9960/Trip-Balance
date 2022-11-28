@@ -4,14 +4,13 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import "./login.css";
-import TripImage from "../img/trip.jpg";
+import TripImage from "../../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useCookies } from "react-cookie";
-import instance from "../lib/instance";
-import useInput from "../hooks/useInput";
-import Header from "../component/Header";
-import kakao from "../img/kakaologin.jpg";
+import instance from "../../lib/instance";
+import useInput from "../../hooks/useInput";
+import kakao from "../../img/kakaologin.jpg";
 import { ImExit } from "react-icons/im";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
 
@@ -32,7 +31,6 @@ function LoginPage() {
   const [password, setPassword, pwchange] = useInput("");
   const [cookie, setCookie, removeCookie] = useCookies();
   const modalClose = () => {
-    setModal(!modal);
     window.location.reload();
   };
 
@@ -77,7 +75,7 @@ function LoginPage() {
     <div className="wrap">
       {/* <Header /> */}
 
-      {modal && (
+      {modal ? (
         <div className="auth-wrapper">
           <form onSubmit={onvaled}>
             <div className="cancel" onClick={modalClose}>
@@ -123,13 +121,15 @@ function LoginPage() {
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
               onClick={() => {
-                navigate("/Signup");
+                setModal(!modal);
               }}
             >
               회원가입
             </div>
           </form>
         </div>
+      ) : (
+        <Signup />
       )}
       {/* <Footer /> */}
     </div>

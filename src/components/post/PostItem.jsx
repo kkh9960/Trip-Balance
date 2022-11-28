@@ -6,25 +6,27 @@ import {
   __getBoard,
   __getcategory,
   __getcatenormal,
-} from "../redux/modules/BoardSlice";
+} from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
+import { useInView } from "react-intersection-observer";
+import { Loading2 } from "../Loading/Loading2";
 
-const Postitem = () => {
+const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
-  const [category, setCategory] = useState("");
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
-
   const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
+  const profiledefaultImg = "/img/default3.jpg";
+  const [ref, inView] = useInView();
 
   // const search = (e) => {
   //   if (e.key === "Enter") {
@@ -32,16 +34,14 @@ const Postitem = () => {
   //   }
   //   console.log("key press");
   // };
-
+  const [test, settest] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      settest(true);
+    }, 3000);
+  }, []);
   const onChange = (e) => {
     setUseInput(e.target.value);
-  };
-  const onCchange = (e) => {
-    const { name, value } = e.target;
-    setCategory({
-      ...category,
-      [name]: value,
-    });
   };
 
   useEffect(() => {
@@ -52,7 +52,12 @@ const Postitem = () => {
     }
     dispatch(__getbestfive());
   }, []);
-
+  useEffect(() => {
+    if (posts !== 0 && inView) {
+      dispatch(__getBoard(page));
+      setpage(page + 1);
+    }
+  }, [inView]);
   const goPosrWrite = () => {
     if (NICK) {
       navigator("/write");
@@ -60,20 +65,14 @@ const Postitem = () => {
       alert("글쓰기는 로그인후에 가능합니다.");
     }
   };
-
-  const GetPost = () => {
-    dispatch(__getBoard(page));
-    setpage(page + 1);
-  };
-
   const goDetail = (id) => {
+    console.log(id);
     if (email) {
       navigator(`/detail/${id}`);
     } else {
       alert("로그인을 해주세요!");
     }
   };
-
   const getCategory = (e) => {
     // console.log(e.target?.value);
     // if (e.target?.value == 0) {
@@ -126,7 +125,11 @@ const Postitem = () => {
                 <CardTitle>{item.title}</CardTitle>
                 <Cardbody>
                   <Userinfo>
-                    <UserImg src="/img/default3.jpg" />
+                    <UserImg
+                      src={
+                        item.profileImg ? item.profileImg : profiledefaultImg
+                      }
+                    />
                     <CardUserName>{item.author}</CardUserName>
                   </Userinfo>
                   <Likeinfo>
@@ -140,13 +143,16 @@ const Postitem = () => {
         </PostCardList>
       </PostListWrap>
       <Viewbox>
-        <Viewmore onClick={GetPost}>더 보기</Viewmore>
+        {test ? (
+          <div ref={ref}>
+            <Loading2 />
+          </div>
+        ) : null}
       </Viewbox>
     </PostPageContainer>
   );
 };
-
-export default Postitem;
+export default PostItem;
 
 const Viewbox = styled.div`
   width: 100%;

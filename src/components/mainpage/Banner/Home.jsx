@@ -1,11 +1,11 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import blue from "../img/blue.jpg";
-import bblue from "../img/bblue.jpg";
-import ameral from "../img/ameral.jpg";
-import logo from "../img/logo.jpg";
-import retro from "../img/retro.jpg";
-import logo3 from "../img/3logo.jpg";
+import blue from "../../../img/blue.jpg"
+import bblue from "../../../img/bblue.jpg";
+import ameral from "../../../img/ameral.jpg";
+import logo from "../../../img/logo.jpg";
+import retro from "../../../img/retro.jpg";
+import logo3 from "../../../img/3logo.jpg";
 import {
   Blue,
   Img,
@@ -23,14 +23,13 @@ import {
   Balance,
   Logo3,
   Balancce,
-  Hide,
 } from "./Banner";
 import { Link } from "react-router-dom";
 function Home(props) {
   return (
     <Carousel
       // autoPlay={false}
-      interval={4000}
+      interval={5000}
       next={() => {
         /* Do stuff */
       }}

@@ -1,32 +1,27 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 import MainPage from "../../pages/mainPage/MainPage";
 import MyPage from "../../pages/mypage/MyPage";
-import PostPage from "../../PostPage/PostPage";
-import BoardWrite from "../../pages/BoardWrite";
+import PostViewPage from "../../pages/post/PostViewPage";
+import PostWritePage from "../../pages/post/PostWritePage";
+import PostDetailPage from "../../pages/post/PostDetailPage";
+import PostModifyPage from "../../pages/post/PostModifyPage";
 import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
-import BoardPostDetail from "../../pages/BoardPostDetail";
-import BoardPostModify from "../../pages/BoardPostModify";
-import Loading from "../../components/Loading/Loading";
-import Signup from "../../login/Signup";
-import Posts, { InfiniteTest } from "../../Querytest/InfiniteTest";
-import Postitem from "../../PostPage/Postitem";
 
 // import Test from "../../pages/Test";
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/board" element={<BoardWrite />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/post" element={<Postitem />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/write" element={<BoardWrite />} />
-        <Route path="/detail/:id" element={<BoardPostDetail />} />
-        <Route path="/modify/:id" element={<BoardPostModify />} />
+        <Route path="/post" element={<PostViewPage />} />
+        <Route path="/write" element={<PostWritePage />} />
+        <Route path="/detail/:id" element={<PostDetailPage />} />
+        <Route path="/modify/:id" element={<PostModifyPage />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/start" element={<GameStart />} />
         <Route path="/game/:id" element={<Game />} />

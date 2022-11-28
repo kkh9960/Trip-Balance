@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   __deleteReComment,
   __modifyReComment,
-} from "../redux/modules/CommentSlice";
+} from "../../redux/modules/CommentSlice";
 import * as St from "./RecommentStyle";
 import { useNavigate } from "react-router-dom";
 

@@ -2,13 +2,13 @@ import React, { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addMemberThunk } from "../redux/modules/Signup";
+import { addMemberThunk } from "../../redux/modules/Signup";
 import "./signup.css";
 import { motion } from "framer-motion";
-import Header from "../component/Header";
+
 import LoginPage from "./LoginPage";
-import instance from "../lib/instance";
-import useInput from "../hooks/useInput";
+import instance from "../../lib/instance";
+import useInput from "../../hooks/useInput";
 function RegisterPage() {
   const {
     register,
@@ -29,7 +29,10 @@ function RegisterPage() {
   const [nickname, setnickname, nicknamechange] = useInput("");
 
   const nicknamecheck = () => {
+    console.log(nick);
+    console.log(typeof nick);
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
+      console.log(res);
       if (nickname.trim() === "") {
         alert("닉네임을입력해주세요!");
         return;
@@ -45,7 +48,9 @@ function RegisterPage() {
   };
 
   const idCheck = () => {
+    console.log(typeof LoginValue);
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
+      console.log(res);
       if (email.trim() === "") {
         alert("이메일을입력해주세요!");
         return;
@@ -86,11 +91,14 @@ function RegisterPage() {
         pwConfirm: data.password_confirm,
       })
     ).then((res) => {
+      console.log(res);
       if (res.payload.statusCode == 117) {
+        console.log(res);
         alert("중복된이메일이있습니다!");
         return;
       }
       if (res.payload.statusCode == 118) {
+        console.log(res);
         alert("중복된닉네임이있습니다!");
         return;
       }
@@ -107,7 +115,6 @@ function RegisterPage() {
       exit={{ opacity: 0 }}
     >
       <div>
-        {/* <Header /> */}
         <div className="signup-wrapper">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div style={{ textAlign: "center" }}>
