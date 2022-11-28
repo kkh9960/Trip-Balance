@@ -22,7 +22,6 @@ import Loading from "../Loading/Loading";
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
 
-
 const BoardPostDetail = () => {
   const navigate = useNavigate();
   const id = useParams();
@@ -182,7 +181,6 @@ const BoardPostDetail = () => {
                       </SwiperSlide>
                     );
                   })
-
                 ) : (
                   <SwiperSlide>
                     <SliderImage src={DefaultImega2} />

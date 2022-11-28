@@ -6,7 +6,7 @@ import {
   __getMyInformation,
   __putMyInformation,
 } from "../../../redux/modules/MyPageSlice";
-import profile from "../../../img/profile.jpg";
+import profile from "../../../img/noneprofile.jpg";
 import AWS from "aws-sdk";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
@@ -36,7 +36,7 @@ export default function ProfileInformation({}) {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/info");
-      if (result.data.data.profileImg === "" || undefined || null) {
+      if (result.data.data.profileImg === null || undefined) {
         setProfileImg(profile);
       } else {
         setProfileImg(result.data.data.profileImg);
@@ -74,6 +74,7 @@ export default function ProfileInformation({}) {
       Key: fileName,
     };
 
+    // if (profileImg === profile)
     await myBucket
       .putObject(params)
       .on("httpUploadProgress", (Progress, Response) => {
@@ -117,19 +118,8 @@ export default function ProfileInformation({}) {
   //   youInput ? setYouInput(false) : setYouInput(true);
   // };
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll); //clean up
-  //   };
-  // }, []);
-  // const handleScroll = () => {
-  //   if (window.scrollY > 80) {
-  //   }
-  // }
-
   return (
-    <>
+    <t.ProfileInformationView>
       <t.userName>
         {profileMode ? nickname : topNickname}
         <span>님의 마이페이지</span>
@@ -137,7 +127,7 @@ export default function ProfileInformation({}) {
       <t.UserInfor>
         {profileMode ? (
           <t.myInformation>
-            <t.ProfileImgBox src={profileImg} alt="img" />
+            <t.ProfileImgBox src={profileImg} alt="프로필사진" />
             <t.profileinfo>
               <t.nickName>HI. {nickname} 님</t.nickName>
               <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
@@ -234,6 +224,6 @@ export default function ProfileInformation({}) {
         )}
         <InformationChart />
       </t.UserInfor>
-    </>
+    </t.ProfileInformationView>
   );
 }

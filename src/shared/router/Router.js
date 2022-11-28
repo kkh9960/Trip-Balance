@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import MainPage from "../../pages/mainPage/MainPage";
-import MyPage from "../../pages/mypage/MyPage";
+import MyPage from "../../pages/myPage/MyPage";
 import PostViewPage from "../../pages/post/PostViewPage";
 import PostWritePage from "../../pages/post/PostWritePage";
 import PostDetailPage from "../../pages/post/PostDetailPage";
@@ -10,8 +10,8 @@ import PostModifyPage from "../../pages/post/PostModifyPage";
 import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
-import Signup from "../../login/Signup";
-
+import Signup from "../../components/login/Signup";
+import MemberPage from "../../pages/memberPage/MemberPage";
 // import Test from "../../pages/Test";
 const Router = () => {
   return (
@@ -19,6 +19,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/memberpage/:id" element={<MemberPage />} />
         <Route path="/post" element={<PostViewPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/write" element={<PostWritePage />} />
