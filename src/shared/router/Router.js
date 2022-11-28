@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import MainPage from "../../pages/mainPage/MainPage";
-import MyPage from "../../pages/mypage/MyPage.jsx";
+import MyPage from "../../pages/mypage/MyPage";
 import PostViewPage from "../../pages/post/PostViewPage";
 import PostWritePage from "../../pages/post/PostWritePage";
 import PostDetailPage from "../../pages/post/PostDetailPage";

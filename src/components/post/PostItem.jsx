@@ -6,20 +6,26 @@ import {
   __getBoard,
   __getcategory,
   __getcatenormal,
+  __getBoardTotal,
+  __getBoardLocal,
 } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
-import { InView, useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
+import { Loading2 } from "../Loading/Loading2";
 
 const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
+  const postTotal = useSelector((state) => state.BoardSlice.postTotal);
+  console.log(postTotal);
+  const postLocal = useSelector((state) => state.BoardSlice.postLocal);
+  console.log(postLocal);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
-
   const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
   const filteredProducts = posts.filter((posts) => {
@@ -28,29 +34,21 @@ const PostItem = () => {
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
-  
-  console.log("데이터", posts);
-
   // const search = (e) => {
   //   if (e.key === "Enter") {
   //     setUseInput(e.target.value);
   //   }
   //   console.log("key press");
   // };
-
   const [test, settest] = useState(false);
-
   useEffect(() => {
     setTimeout(() => {
       settest(true);
     }, 3000);
   }, []);
-
   const onChange = (e) => {
     setUseInput(e.target.value);
   };
-
-  console.log(posts);
 
   useEffect(() => {
     if (posts == 0) {
@@ -60,14 +58,20 @@ const PostItem = () => {
     }
     dispatch(__getbestfive());
   }, []);
-
   useEffect(() => {
     if (posts !== 0 && inView) {
+      console.log(page);
       dispatch(__getBoard(page));
       setpage(page + 1);
     }
   }, [inView]);
-
+  useEffect(() => {
+    if (postLocal !== 0 && inView) {
+      console.log(pageLocal);
+      dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
+      setpage(pageLocal + 1);
+    }
+  }, [inView]);
   const goPosrWrite = () => {
     if (NICK) {
       navigator("/write");
@@ -75,7 +79,6 @@ const PostItem = () => {
       alert("글쓰기는 로그인후에 가능합니다.");
     }
   };
-
   const goDetail = (id) => {
     console.log(id);
     if (email) {
@@ -84,85 +87,164 @@ const PostItem = () => {
       alert("로그인을 해주세요!");
     }
   };
-
+  const [selLocal, setSelLocal] = useState("0");
   const getCategory = (e) => {
-    // console.log(e.target?.value);
-    // if (e.target?.value == 0) {
-    //   dispatch(__getcatenormal());
-    // } else {
-    //   dispatch(__getcategory(e.target?.value));
-    // }
+    setSelLocal(e.target.value);
   };
 
-  console.log(posts);
-  console.log(best);
-  console.log(inView);
+  const pageLocal = page - 1;
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    if (selLocal == "0") {
+      console.log("보내줄것", useInput, pageLocal);
+      dispatch(__getBoardTotal({ useInput, pageLocal }));
+    } else {
+      console.log("보내줄것", useInput, pageLocal, selLocal);
+      dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
+    }
+  };
+
+  const searchImg = "img/search.svg";
 
   return (
     <PostPageContainer>
       <TodayTitle>오늘의 여행지 검색</TodayTitle>
       <SearchBox>
-        <CategorySearch onChange={getCategory}>
-          <option value="0">기본</option>
-          <option value="1">수도권</option>
-          <option value="2">강원도 + 경상도</option>
-          <option value="3">충청도 + 전라도</option>
-          <option value="4">제주도</option>
-          <option value="5">기타</option>
-        </CategorySearch>
-        <TitleSearchbox>
-          <TitleSearch
-            type="text"
-            placeholder="오늘의 핫한 여행지 검색하기"
-            value={useInput}
-            onChange={onChange}
-          ></TitleSearch>
-          <SearchIcon></SearchIcon>
-        </TitleSearchbox>
+        <SearchBoxForm onSubmit={getSearch}>
+          <CategorySearch onChange={getCategory}>
+            <option value="0">전체</option>
+            <option value="1">수도권</option>
+            <option value="2">강원도 + 경상도</option>
+            <option value="3">충청도 + 전라도</option>
+            <option value="4">제주도</option>
+            <option value="5">기타</option>
+          </CategorySearch>
+          <TitleSearchbox>
+            <TitleSearch
+              type="text"
+              placeholder="오늘의 핫한 여행지 검색하기"
+              value={useInput}
+              onChange={onChange}
+            ></TitleSearch>
+            <SearchIcon></SearchIcon>
+          </TitleSearchbox>
+        </SearchBoxForm>
         <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
       </SearchBox>
       <PostLikeBestbox>
         <PostBestfive best={best} />
       </PostLikeBestbox>
       <PostListWrap>
-        <PostListTitle>TB 추천여행지</PostListTitle>
+        <PostListTitle type="submit">TB 추천여행지</PostListTitle>
         <PostCardList>
-          {filteredProducts.map((item, idx) => (
-            <CardWrap
-              search={filteredProducts}
-              onClick={() => {
-                goDetail(item.postId);
-              }}
-            >
-              <CardImgbox>
-                <CardImg src={item.image[0].imgURL} />
-              </CardImgbox>
-              <CardTextbox>
-                <CardTitle>{item.title}</CardTitle>
-                <Cardbody>
-                  <Userinfo>
-                    <UserImg
-                      src={
-                        item.profileImg ? item.profileImg : profiledefaultImg
-                      }
-                    />
-                    <CardUserName>{item.author}</CardUserName>
-                  </Userinfo>
-                  <Likeinfo>
-                    <LikeCount>{item.heartNum}</LikeCount>
-                    <LikeImg src="img/heart.svg" />
-                  </Likeinfo>
-                </Cardbody>
-              </CardTextbox>
-            </CardWrap>
-          ))}
+          {postTotal[0]
+            ? postTotal.map((item, idx) => (
+                <CardWrap
+                  search={posts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg
+                              ? item.profileImg
+                              : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              ))
+            : postLocal[0]
+            ? postLocal.map((item, idx) => (
+                <CardWrap
+                  search={posts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg
+                              ? item.profileImg
+                              : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              ))
+            : posts.map((item, idx) => (
+                <CardWrap
+                  search={posts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg
+                              ? item.profileImg
+                              : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              ))}
         </PostCardList>
       </PostListWrap>
-      <Viewbox>{test ? <Viewmore ref={ref}>더 보기</Viewmore> : null}</Viewbox>
+      <Viewbox>
+        {test ? (
+          <div ref={ref}>
+            <Loading2 />
+          </div>
+        ) : null}
+      </Viewbox>
     </PostPageContainer>
   );
 };
-
 export default PostItem;
 
 const Viewbox = styled.div`
@@ -286,6 +368,10 @@ const SearchBox = styled.div`
   align-items: center;
   gap: 20px;
 `;
+const SearchBoxForm = styled.form`
+  display: flex;
+  align-items: center;
+`;
 const CategorySearch = styled.select`
   width: 344px;
   height: 60px;
@@ -297,6 +383,7 @@ const TitleSearchbox = styled.div`
   width: 690px;
   height: 60px;
   border-radius: 30px;
+  position: relative;
 `;
 const TitleSearch = styled.input`
   width: 100%;
@@ -308,7 +395,15 @@ const TitleSearch = styled.input`
   outline: none;
   border: 1px solid #d9d9d9;
 `;
-const SearchIcon = styled.div``;
+const SearchIcon = styled.button`
+  position: absolute;
+  top: 5px;
+  right: -10px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-image: url("img/search.svg");
+`;
 
 const PostgoWrite = styled.button`
   width: 344px;
