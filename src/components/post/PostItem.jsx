@@ -9,6 +9,7 @@ import {
 } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
+import { InView, useInView } from "react-intersection-observer";
 
 const PostItem = () => {
   const navigator = useNavigate();
@@ -24,6 +25,9 @@ const PostItem = () => {
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
+
+  const profiledefaultImg = "/img/default3.jpg";
+  const [ref, inView] = useInView();
   console.log("데이터", posts);
   // const search = (e) => {
   //   if (e.key === "Enter") {
@@ -31,6 +35,14 @@ const PostItem = () => {
   //   }
   //   console.log("key press");
   // };
+
+  const [test, settest] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      settest(true);
+    }, 3000);
+  }, []);
 
   const onChange = (e) => {
     setUseInput(e.target.value);
@@ -47,6 +59,13 @@ const PostItem = () => {
     dispatch(__getbestfive());
   }, []);
 
+  useEffect(() => {
+    if (posts !== 0 && inView) {
+      dispatch(__getBoard(page));
+      setpage(page + 1);
+    }
+  }, [inView]);
+
   const goPosrWrite = () => {
     if (NICK) {
       navigator("/write");
@@ -55,17 +74,12 @@ const PostItem = () => {
     }
   };
 
-  const GetPost = () => {
-    dispatch(__getBoard(page));
-    setpage(page + 1);
-  };
-
   const goDetail = (id) => {
-    console.log(id)
-    if(email) {
-    navigator(`/detail/${id}`);
+    console.log(id);
+    if (email) {
+      navigator(`/detail/${id}`);
     } else {
-      alert("로그인을 해주세요!")
+      alert("로그인을 해주세요!");
     }
   };
 
@@ -80,6 +94,7 @@ const PostItem = () => {
 
   console.log(posts);
   console.log(best);
+  console.log(inView);
 
   return (
     <PostPageContainer>
@@ -111,9 +126,12 @@ const PostItem = () => {
         <PostListTitle>TB 추천여행지</PostListTitle>
         <PostCardList>
           {filteredProducts.map((item, idx) => (
-            <CardWrap search={filteredProducts} onClick={() => {
-              goDetail(item.postId);
-              }}>
+            <CardWrap
+              search={filteredProducts}
+              onClick={() => {
+                goDetail(item.postId);
+              }}
+            >
               <CardImgbox>
                 <CardImg src={item.image[0].imgURL} />
               </CardImgbox>
@@ -121,7 +139,11 @@ const PostItem = () => {
                 <CardTitle>{item.title}</CardTitle>
                 <Cardbody>
                   <Userinfo>
-                    <UserImg src="/img/default3.jpg" />
+                    <UserImg
+                      src={
+                        item.profileImg ? item.profileImg : profiledefaultImg
+                      }
+                    />
                     <CardUserName>{item.author}</CardUserName>
                   </Userinfo>
                   <Likeinfo>
@@ -134,9 +156,7 @@ const PostItem = () => {
           ))}
         </PostCardList>
       </PostListWrap>
-      <Viewbox>
-        <Viewmore onClick={GetPost}>더 보기</Viewmore>
-      </Viewbox>
+      <Viewbox>{test ? <Viewmore ref={ref}>더 보기</Viewmore> : null}</Viewbox>
     </PostPageContainer>
   );
 };

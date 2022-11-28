@@ -32,36 +32,32 @@ const TopButton = () => {
   const nickname = sessionStorage.getItem("nickName");
   const navigate = useNavigate();
   const goLogin = () => {
-    alert('로그인이 필요합니다!')
+    alert("로그인이 필요합니다!");
     setModal(!modal);
-  }
+  };
 
   const [modal, setModal] = useState(false);
 
   return (
     <>
-    {modal ? (
-            <LoginPage />
-          ) : (
-    showButton && (
-      <ScrollContainer>
-        <Balance onClick={() => (
-          navigate("/start")
-        )}>밸런스게임</Balance>
-        {nickname ? (
-        <Write onClick={() => (
-          navigate("/write")
-        )}>글쓰기</Write>
-        ) : (
-        <Write onClick={goLogin}>글쓰기</Write>
-        )}
-        
+      {modal ? (
+        <LoginPage />
+      ) : (
+        showButton && (
+          <ScrollContainer>
+            <Balance onClick={() => navigate("/start")}>밸런스게임</Balance>
+            {nickname ? (
+              <Write onClick={() => navigate("/write")}>글쓰기</Write>
+            ) : (
+              <Write onClick={goLogin}>글쓰기</Write>
+            )}
 
-        <Top id="top" onClick={scrollToTop} type="button">
-          Top
-        </Top>
-      </ScrollContainer>)
-    )}
+            <Top id="top" onClick={scrollToTop} type="button">
+              Top
+            </Top>
+          </ScrollContainer>
+        )
+      )}
     </>
   );
 };

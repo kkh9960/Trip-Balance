@@ -10,7 +10,9 @@ import PostModifyPage from "../../pages/post/PostModifyPage";
 import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
+
 import Signup from "../../components/login/Signup";
+
 
 // import Test from "../../pages/Test";
 const Router = () => {

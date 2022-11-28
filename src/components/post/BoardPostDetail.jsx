@@ -22,7 +22,6 @@ import Loading from "../Loading/Loading";
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
 
-
 const BoardPostDetail = () => {
   const navigate = useNavigate();
   const id = useParams();
@@ -45,6 +44,7 @@ const BoardPostDetail = () => {
   const DefaultImega2 = "../img/default2.jpg";
   const heartsvg = "/img/heart.svg";
   const binheartsvg = "../img/binheart.svg";
+  const DefaultCmtImg = "../img/cmtdefault.svg";
 
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
@@ -53,18 +53,12 @@ const BoardPostDetail = () => {
 
   const nickname = sessionStorage.getItem("nickName");
 
-  console.log("응애 나 애기로딩", isLoading);
-
+  console.log("나 상세정보", post);
   console.log("나 댓글정보", comments);
-
-  console.log(post);
-  console.log(mypost);
 
   const [heart, setHeart] = useState(false);
   const [heartnum, setheartnum] = useState();
-
-  console.log(post?.heartNum);
-  console.log(post?.heartYn);
+  const [commentImg, setcommentImg] = useState();
 
   useEffect(() => {
     dispatch(__getBoardDetail(id));
@@ -81,11 +75,11 @@ const BoardPostDetail = () => {
   useEffect(() => {
     setLoading(isLoading);
   }, [isLoading]);
-  console.log(Loading);
 
   useEffect(() => {
     setHeart(post?.heartYn);
     setheartnum(post?.heartNum);
+    setcommentImg(post?.profileImg);
   }, [post]);
 
   const CheckLength = (e) => {
@@ -107,8 +101,6 @@ const BoardPostDetail = () => {
   const CommentHandler = (e) => {
     setcomment(e.target.value);
   };
-
-  console.log(comment);
 
   //댓글쓰기
   const WriteComment = () => {
@@ -139,8 +131,6 @@ const BoardPostDetail = () => {
   const goProfile = () => {
     navigate(`/tb/mypage/${post?.authorId}`);
   };
-
-  console.log(heart);
 
   const ImgHandlerTest = () => {};
 
@@ -182,7 +172,6 @@ const BoardPostDetail = () => {
                       </SwiperSlide>
                     );
                   })
-
                 ) : (
                   <SwiperSlide>
                     <SliderImage src={DefaultImega2} />
@@ -241,7 +230,9 @@ const BoardPostDetail = () => {
           <BoardCommentWrap>
             <BoardCommentBox>
               <CommentWriteUserBox>
-                <CommentWriteImg src="../img/cmtdefault.svg" />
+                <CommentWriteImg
+                  src={commentImg ? commentImg : DefaultCmtImg}
+                />
                 <CommentWriteUser>{post?.nickName}</CommentWriteUser>
               </CommentWriteUserBox>
               <CommentTextarea
@@ -300,7 +291,10 @@ const CommentWriteUser = styled.div`
   font-size: 18px;
   font-weight: bold;
 `;
-const CommentWriteImg = styled.img``;
+const CommentWriteImg = styled.img`
+  width: 30px;
+  height: 30px;
+`;
 
 const UserProfile = styled.div`
   background-color: #333;
