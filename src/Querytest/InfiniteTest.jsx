@@ -48,53 +48,52 @@
 //   );
 // };
 
-import axios from "axios";
-import { useEffect } from "react";
+// import axios from "axios";
+// import { useEffect } from "react";
 
-import InfiniteScroll from "react-infinite-scroller";
-import { useInView } from "react-intersection-observer";
-import { useInfiniteQuery } from "react-query";
+// import InfiniteScroll from "react-infinite-scroller";
+// import { useInView } from "react-intersection-observer";
+// import { useInfiniteQuery } from "react-query";
 
-import Card from "./Card";
-const fetchPostList = async (pageParam) => {
-  const res = await axios.get(`https://tbtbtb.shop/tb/posts?page=${pageParam}`);
-  const data = res.data;
-  console.log(res.data.data);
-  return { data, nextPage: pageParam + 1 };
-};
-function Posts() {
-  const { ref, inView } = useInView();
-  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    "posts",
+// import Card from "./Card";
+// const fetchPostList = async (pageParam) => {
+//   const res = await axios.get(`https://dexhome.shop/tb/posts?page=0`);
+//   const data = res.data;
+//   return { data, nextPage: pageParam + 1 };
+// };
+// function Posts() {
+//   const { ref, inView } = useInView();
+//   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+//     "posts",
 
-    ({ pageParam = 1 }) => fetchPostList(pageParam),
-    {
-      getNextPageParam: (lastPage) =>
-        !lastPage.isLast ? lastPage.nextPage : undefined,
-    }
-  );
+//     ({ pageParam = 1 }) => fetchPostList(pageParam),
+//     {
+//       getNextPageParam: (lastPage) =>
+//         !lastPage.isLast ? lastPage.nextPage : undefined,
+//     }
+//   );
 
-  const infiscroll = data?.pages;
-  console.log(infiscroll);
-  useEffect(() => {
-    if (inView) fetchNextPage();
-  }, [inView]);
+//   const infiscroll = data?.pages;
+//   console.log(data);
+//   useEffect(() => {
+//     if (inView) fetchNextPage();
+//   }, [inView]);
 
-  if (status === "loading") return <div>로딩...</div>;
-  if (status === "error") return <div>에러!!</div>;
+//   if (status === "loading") return <div>로딩...</div>;
+//   if (status === "error") return <div>에러!!</div>;
 
-  return (
-    <>
-      <div>
-        {infiscroll &&
-          infiscroll.map((posts) => (
-            <div key={posts.postId}>
-              <Card title={posts.title} postId={posts.postId} />
-            </div>
-          ))}
-      </div>
-      {isFetchingNextPage ? <div>로딩...</div> : <div ref={ref}></div>}
-    </>
-  );
-}
-export default Posts;
+//   return (
+//     <>
+//       <div>
+//         {infiscroll &&
+//           infiscroll.map((posts) => (
+//             <div key={posts.postId}>
+//               <Card title={posts.title} postId={posts.postId} />
+//             </div>
+//           ))}
+//       </div>
+//       {isFetchingNextPage ? <div>로딩...</div> : <div ref={ref}></div>}
+//     </>
+//   );
+// }
+// export default Posts;

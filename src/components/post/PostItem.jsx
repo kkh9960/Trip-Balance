@@ -9,7 +9,8 @@ import {
 } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
-import { InView, useInView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
+import { Loading2 } from "../Loading/Loading2";
 
 const PostItem = () => {
   const navigator = useNavigate();
@@ -19,7 +20,6 @@ const PostItem = () => {
   const [page, setpage] = useState(1);
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
-
   const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
   const filteredProducts = posts.filter((posts) => {
@@ -35,20 +35,15 @@ const PostItem = () => {
   //   }
   //   console.log("key press");
   // };
-
   const [test, settest] = useState(false);
-
   useEffect(() => {
     setTimeout(() => {
       settest(true);
     }, 3000);
   }, []);
-
   const onChange = (e) => {
     setUseInput(e.target.value);
   };
-
-  console.log(posts);
 
   useEffect(() => {
     if (posts == 0) {
@@ -58,14 +53,12 @@ const PostItem = () => {
     }
     dispatch(__getbestfive());
   }, []);
-
   useEffect(() => {
     if (posts !== 0 && inView) {
       dispatch(__getBoard(page));
       setpage(page + 1);
     }
   }, [inView]);
-
   const goPosrWrite = () => {
     if (NICK) {
       navigator("/write");
@@ -73,7 +66,6 @@ const PostItem = () => {
       alert("글쓰기는 로그인후에 가능합니다.");
     }
   };
-
   const goDetail = (id) => {
     console.log(id);
     if (email) {
@@ -82,7 +74,6 @@ const PostItem = () => {
       alert("로그인을 해주세요!");
     }
   };
-
   const getCategory = (e) => {
     // console.log(e.target?.value);
     // if (e.target?.value == 0) {
@@ -91,10 +82,6 @@ const PostItem = () => {
     //   dispatch(__getcategory(e.target?.value));
     // }
   };
-
-  console.log(posts);
-  console.log(best);
-  console.log(inView);
 
   return (
     <PostPageContainer>
@@ -156,11 +143,16 @@ const PostItem = () => {
           ))}
         </PostCardList>
       </PostListWrap>
-      <Viewbox>{test ? <Viewmore ref={ref}>더 보기</Viewmore> : null}</Viewbox>
+      <Viewbox>
+        {test ? (
+          <div ref={ref}>
+            <Loading2 />
+          </div>
+        ) : null}
+      </Viewbox>
     </PostPageContainer>
   );
 };
-
 export default PostItem;
 
 const Viewbox = styled.div`

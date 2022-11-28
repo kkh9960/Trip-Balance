@@ -31,7 +31,6 @@ function LoginPage() {
   const [password, setPassword, pwchange] = useInput("");
   const [cookie, setCookie, removeCookie] = useCookies();
   const modalClose = () => {
-    setModal(!modal);
     window.location.reload();
   };
 
@@ -70,7 +69,7 @@ function LoginPage() {
     <div className="wrap">
       {/* <Header /> */}
 
-      {modal && (
+      {modal ? (
         <div className="auth-wrapper">
           <form onSubmit={onvaled}>
             <div className="cancel" onClick={modalClose}>
@@ -116,13 +115,15 @@ function LoginPage() {
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
               onClick={() => {
-                navigate("/Signup");
+                setModal(!modal);
               }}
             >
               회원가입
             </div>
           </form>
         </div>
+      ) : (
+        <Signup />
       )}
       {/* <Footer /> */}
     </div>
