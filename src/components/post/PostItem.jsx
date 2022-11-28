@@ -28,7 +28,9 @@ const PostItem = () => {
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
+  
   console.log("데이터", posts);
+
   // const search = (e) => {
   //   if (e.key === "Enter") {
   //     setUseInput(e.target.value);

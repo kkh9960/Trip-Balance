@@ -34,7 +34,6 @@ const Header = () => {
         sessionStorage.removeItem("email");
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
-
         alert("로그아웃완료!");
         window.location.reload();
       })
