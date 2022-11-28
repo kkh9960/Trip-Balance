@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   __getbestfive,
   __getBoard,
+  __getBoardinfi,
   __getcategory,
+  __getBoardLocalinfi,
+  __getBoardTotalinfi,
   __getcatenormal,
   __getBoardTotal,
   __getBoardLocal,
@@ -18,19 +21,19 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
-  const postTotal = useSelector((state) => state.BoardSlice.postTotal);
-  console.log(postTotal);
-  const postLocal = useSelector((state) => state.BoardSlice.postLocal);
-  console.log(postLocal);
+  const isLast = useSelector((state) => state.BoardSlice.isLastPage);
+  console.log(isLast);
+  // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
+  console.log(posts);
+  // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
+  const [pageLocal, setPageLocal] = useState(0);
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
   const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
-  const filteredProducts = posts.filter((posts) => {
-    return posts.title.toLowerCase().includes(useInput.toLowerCase());
-  });
+  const [search, setsearch] = useState(1);
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
@@ -58,20 +61,50 @@ const PostItem = () => {
     }
     dispatch(__getbestfive());
   }, []);
+
+  console.log("번호확인", search);
+  //일반검색 인피니티
   useEffect(() => {
     if (posts !== 0 && inView) {
-      console.log(page);
-      dispatch(__getBoard(page));
-      setpage(page + 1);
+      if (isLast == false && search == 1) {
+        dispatch(__getBoardinfi(page));
+        setpage(page + 1);
+      }
+      if (isLast == false && search == 2) {
+        dispatch(__getBoardTotalinfi({ useInput, page }));
+        setpage(page + 1);
+      }
+      if (isLast == false && search == 3) {
+        dispatch(__getBoardLocalinfi({ selLocal, useInput, page }));
+        setpage(page + 1);
+      }
     }
   }, [inView]);
-  useEffect(() => {
-    if (postLocal !== 0 && inView) {
-      console.log(pageLocal);
-      dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
-      setpage(pageLocal + 1);
-    }
-  }, [inView]);
+
+  //로컬 검색
+  // useEffect(() => {
+  //   if (postLocal !== 0 && inView) {
+  //     if (isLast == false) {
+  //       dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
+  //       setPageLocal(pageLocal + 1);
+  //     } else {
+  //       console.log("끝이다.");
+  //     }
+  //   }
+  // }, [inView, postLocal]);
+
+  // //토탈 검색
+  // useEffect(() => {
+  //   if (postTotal !== 0 && inView) {
+  //     if (isLast == false) {
+  //       dispatch(__getBoardTotal({ useInput, pageLocal }));
+  //       setPageLocal(pageLocal + 1);
+  //     } else {
+  //       console.log("끝이다.");
+  //     }
+  //   }
+  // }, [inView, postTotal]);
+
   const goPosrWrite = () => {
     if (NICK) {
       navigator("/write");
@@ -92,16 +125,14 @@ const PostItem = () => {
     setSelLocal(e.target.value);
   };
 
-  const pageLocal = page - 1;
-
   const getSearch = (e) => {
     e.preventDefault();
     if (selLocal == "0") {
-      console.log("보내줄것", useInput, pageLocal);
       dispatch(__getBoardTotal({ useInput, pageLocal }));
+      setsearch(2);
     } else {
-      console.log("보내줄것", useInput, pageLocal, selLocal);
       dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
+      setsearch(3);
     }
   };
 
@@ -138,7 +169,7 @@ const PostItem = () => {
       <PostListWrap>
         <PostListTitle type="submit">TB 추천여행지</PostListTitle>
         <PostCardList>
-          {postTotal[0]
+          {/* {postTotal[0]
             ? postTotal.map((item, idx) => (
                 <CardWrap
                   search={posts}
@@ -202,37 +233,38 @@ const PostItem = () => {
                   </CardTextbox>
                 </CardWrap>
               ))
-            : posts.map((item, idx) => (
-                <CardWrap
-                  search={posts}
-                  onClick={() => {
-                    goDetail(item.postId);
-                  }}
-                >
-                  <CardImgbox>
-                    <CardImg src={item.image[0].imgURL} />
-                  </CardImgbox>
-                  <CardTextbox>
-                    <CardTitle>{item.title}</CardTitle>
-                    <Cardbody>
-                      <Userinfo>
-                        <UserImg
-                          src={
-                            item.profileImg
-                              ? item.profileImg
-                              : profiledefaultImg
-                          }
-                        />
-                        <CardUserName>{item.author}</CardUserName>
-                      </Userinfo>
-                      <Likeinfo>
-                        <LikeCount>{item.heartNum}</LikeCount>
-                        <LikeImg src="img/heart.svg" />
-                      </Likeinfo>
-                    </Cardbody>
-                  </CardTextbox>
-                </CardWrap>
-              ))}
+            :  */}
+          {posts &&
+            posts.map((item, idx) => (
+              <CardWrap
+                key={idx}
+                search={posts}
+                onClick={() => {
+                  goDetail(item.postId);
+                }}
+              >
+                <CardImgbox>
+                  <CardImg src={item.image[0].imgURL} />
+                </CardImgbox>
+                <CardTextbox>
+                  <CardTitle>{item.title}</CardTitle>
+                  <Cardbody>
+                    <Userinfo>
+                      <UserImg
+                        src={
+                          item.profileImg ? item.profileImg : profiledefaultImg
+                        }
+                      />
+                      <CardUserName>{item.author}</CardUserName>
+                    </Userinfo>
+                    <Likeinfo>
+                      <LikeCount>{item.heartNum}</LikeCount>
+                      <LikeImg src="img/heart.svg" />
+                    </Likeinfo>
+                  </Cardbody>
+                </CardTextbox>
+              </CardWrap>
+            ))}
         </PostCardList>
       </PostListWrap>
       <Viewbox>
