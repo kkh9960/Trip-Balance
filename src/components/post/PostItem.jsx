@@ -6,6 +6,8 @@ import {
   __getBoard,
   __getcategory,
   __getcatenormal,
+  __getBoardTotal,
+  __getBoardLocal,
 } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
@@ -16,6 +18,10 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
+  const postTotal = useSelector((state) => state.BoardSlice.postTotal);
+  console.log(postTotal)
+  const postLocal = useSelector((state) => state.BoardSlice.postLocal);
+  console.log(postLocal)
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
   const [useInput, setUseInput] = useState("");
@@ -28,7 +34,6 @@ const PostItem = () => {
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
-  console.log("데이터", posts);
   // const search = (e) => {
   //   if (e.key === "Enter") {
   //     setUseInput(e.target.value);
@@ -74,21 +79,31 @@ const PostItem = () => {
       alert("로그인을 해주세요!");
     }
   };
+  const [selLocal, setSelLocal] = useState("0")
   const getCategory = (e) => {
-    // console.log(e.target?.value);
-    // if (e.target?.value == 0) {
-    //   dispatch(__getcatenormal());
-    // } else {
-    //   dispatch(__getcategory(e.target?.value));
-    // }
+    setSelLocal(e.target.value)
   };
+
+  const pageLocal = page - 1
+
+  const getSearch = (e) => {
+    e.preventDefault();
+    if (selLocal == "0") {
+      console.log("보내줄것", useInput, pageLocal)
+      dispatch(__getBoardTotal({useInput, pageLocal}))
+    } else {
+      console.log("보내줄것", useInput, pageLocal, selLocal)
+      dispatch(__getBoardLocal({useInput, pageLocal, selLocal}))
+    }
+  }
 
   return (
     <PostPageContainer>
       <TodayTitle>오늘의 여행지 검색</TodayTitle>
       <SearchBox>
+        <SearchBoxForm onSubmit={getSearch}>
         <CategorySearch onChange={getCategory}>
-          <option value="0">기본</option>
+          <option value="0">전체</option>
           <option value="1">수도권</option>
           <option value="2">강원도 + 경상도</option>
           <option value="3">충청도 + 전라도</option>
@@ -104,6 +119,7 @@ const PostItem = () => {
           ></TitleSearch>
           <SearchIcon></SearchIcon>
         </TitleSearchbox>
+        </SearchBoxForm>
         <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
       </SearchBox>
       <PostLikeBestbox>
@@ -112,9 +128,102 @@ const PostItem = () => {
       <PostListWrap>
         <PostListTitle>TB 추천여행지</PostListTitle>
         <PostCardList>
-          {filteredProducts.map((item, idx) => (
+          {postTotal[0] ? (
+            postTotal.map((item, idx) => (
+              <CardWrap
+                search={posts}
+                onClick={() => {
+                  goDetail(item.postId);
+                }}
+              >
+                <CardImgbox>
+                  <CardImg src={item.image[0].imgURL} />
+                </CardImgbox>
+                <CardTextbox>
+                  <CardTitle>{item.title}</CardTitle>
+                  <Cardbody>
+                    <Userinfo>
+                      <UserImg
+                        src={
+                          item.profileImg ? item.profileImg : profiledefaultImg
+                        }
+                      />
+                      <CardUserName>{item.author}</CardUserName>
+                    </Userinfo>
+                    <Likeinfo>
+                      <LikeCount>{item.heartNum}</LikeCount>
+                      <LikeImg src="img/heart.svg" />
+                    </Likeinfo>
+                  </Cardbody>
+                </CardTextbox>
+              </CardWrap>
+            ))
+          ) : (
+            postLocal[0] ? (
+              postLocal.map((item, idx) => (
+                <CardWrap
+                  search={posts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg ? item.profileImg : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              ))
+            ) : (
+              posts.map((item, idx) => (
+                <CardWrap
+                  search={posts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg ? item.profileImg : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              ))
+            )
+          )}
+          {/* {posts.map((item, idx) => (
             <CardWrap
-              search={filteredProducts}
+              search={posts}
               onClick={() => {
                 goDetail(item.postId);
               }}
@@ -140,7 +249,7 @@ const PostItem = () => {
                 </Cardbody>
               </CardTextbox>
             </CardWrap>
-          ))}
+          ))} */}
         </PostCardList>
       </PostListWrap>
       <Viewbox>
@@ -275,6 +384,10 @@ const SearchBox = styled.div`
   margin-top: 50px;
   align-items: center;
   gap: 20px;
+`;
+const SearchBoxForm = styled.form`
+  display: flex;
+  align-items: center;
 `;
 const CategorySearch = styled.select`
   width: 344px;
