@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import PostBestfive from "./PostBestfive";
 import { useInView } from "react-intersection-observer";
 import { Loading2 } from "../Loading/Loading2";
-
+import { motion } from "framer-motion";
 const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const PostItem = () => {
   const filteredProducts = posts.filter((posts) => {
     return posts.title.toLowerCase().includes(useInput.toLowerCase());
   });
-
+  console.log(page);
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
   console.log("데이터", posts);
@@ -36,6 +36,7 @@ const PostItem = () => {
   //   console.log("key press");
   // };
   const [test, settest] = useState(false);
+  console.log(test);
   useEffect(() => {
     setTimeout(() => {
       settest(true);
@@ -54,8 +55,10 @@ const PostItem = () => {
     dispatch(__getbestfive());
   }, []);
   useEffect(() => {
-    if (posts !== 0 && inView) {
-      dispatch(__getBoard(page));
+    if (posts.length !== 0 && inView) {
+      dispatch(__getBoard(page)).then((res) => {
+        console.log(res);
+      });
       setpage(page + 1);
     }
   }, [inView]);
@@ -84,73 +87,89 @@ const PostItem = () => {
   };
 
   return (
-    <PostPageContainer>
-      <TodayTitle>오늘의 여행지 검색</TodayTitle>
-      <SearchBox>
-        <CategorySearch onChange={getCategory}>
-          <option value="0">기본</option>
-          <option value="1">수도권</option>
-          <option value="2">강원도 + 경상도</option>
-          <option value="3">충청도 + 전라도</option>
-          <option value="4">제주도</option>
-          <option value="5">기타</option>
-        </CategorySearch>
-        <TitleSearchbox>
-          <TitleSearch
-            type="text"
-            placeholder="오늘의 핫한 여행지 검색하기"
-            value={useInput}
-            onChange={onChange}
-          ></TitleSearch>
-          <SearchIcon></SearchIcon>
-        </TitleSearchbox>
-        <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
-      </SearchBox>
-      <PostLikeBestbox>
-        <PostBestfive best={best} />
-      </PostLikeBestbox>
-      <PostListWrap>
-        <PostListTitle>TB 추천여행지</PostListTitle>
-        <PostCardList>
-          {filteredProducts.map((item, idx) => (
-            <CardWrap
-              search={filteredProducts}
-              onClick={() => {
-                goDetail(item.postId);
-              }}
-            >
-              <CardImgbox>
-                <CardImg src={item.image[0].imgURL} />
-              </CardImgbox>
-              <CardTextbox>
-                <CardTitle>{item.title}</CardTitle>
-                <Cardbody>
-                  <Userinfo>
-                    <UserImg
-                      src={
-                        item.profileImg ? item.profileImg : profiledefaultImg
-                      }
-                    />
-                    <CardUserName>{item.author}</CardUserName>
-                  </Userinfo>
-                  <Likeinfo>
-                    <LikeCount>{item.heartNum}</LikeCount>
-                    <LikeImg src="img/heart.svg" />
-                  </Likeinfo>
-                </Cardbody>
-              </CardTextbox>
-            </CardWrap>
-          ))}
-        </PostCardList>
-      </PostListWrap>
-      <Viewbox>
-        {test ? (
-          <div ref={ref}>
-            <Loading2 />
-          </div>
-        ) : null}
-      </Viewbox>
-    </PostPageContainer>
+    <motion.div
+      className="loginPage"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <PostPageContainer>
+        <TodayTitle>오늘의 여행지 검색</TodayTitle>
+        <SearchBox>
+          <CategorySearch onChange={getCategory}>
+            <option value="0">기본</option>
+            <option value="1">수도권</option>
+            <option value="2">강원도 + 경상도</option>
+            <option value="3">충청도 + 전라도</option>
+            <option value="4">제주도</option>
+            <option value="5">기타</option>
+          </CategorySearch>
+          <TitleSearchbox>
+            <TitleSearch
+              type="text"
+              placeholder="오늘의 핫한 여행지 검색하기"
+              value={useInput}
+              onChange={onChange}
+            ></TitleSearch>
+            <SearchIcon></SearchIcon>
+          </TitleSearchbox>
+          <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
+        </SearchBox>
+        <PostLikeBestbox>
+          <PostBestfive best={best} />
+        </PostLikeBestbox>
+        <PostListWrap>
+          <PostListTitle>TB 추천여행지</PostListTitle>
+          <PostCardList>
+            {filteredProducts.map((item, idx) => (
+              <motion.div
+                className="loginPage"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <CardWrap
+                  search={filteredProducts}
+                  onClick={() => {
+                    goDetail(item.postId);
+                  }}
+                >
+                  <CardImgbox>
+                    <CardImg src={item.image[0].imgURL} />
+                  </CardImgbox>
+                  <CardTextbox>
+                    <CardTitle>{item.title}</CardTitle>
+                    <Cardbody>
+                      <Userinfo>
+                        <UserImg
+                          src={
+                            item.profileImg
+                              ? item.profileImg
+                              : profiledefaultImg
+                          }
+                        />
+                        <CardUserName>{item.author}</CardUserName>
+                      </Userinfo>
+                      <Likeinfo>
+                        <LikeCount>{item.heartNum}</LikeCount>
+                        <LikeImg src="img/heart.svg" />
+                      </Likeinfo>
+                    </Cardbody>
+                  </CardTextbox>
+                </CardWrap>
+              </motion.div>
+            ))}
+          </PostCardList>
+        </PostListWrap>
+        <Viewbox>
+          {test ? (
+            <div ref={ref}>
+              <Loading2 />
+            </div>
+          ) : null}
+        </Viewbox>
+      </PostPageContainer>
+    </motion.div>
   );
 };
 export default PostItem;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import Signup from "../../redux/modules/Signup";
+import Signup from "../login/Signup";
 import "./login.css";
 import TripImage from "../../img/trip.jpg";
 import { motion } from "framer-motion";
