@@ -1,18 +1,17 @@
 import React from "react";
-import styled from "styled-components";
+
 import Layout from "./Layout";
 import TripImage from "../../img/trip.jpg";
 import { AiFillGithub } from "react-icons/ai";
+import * as t from "./FooterStyle";
 const Footer = () => {
   return (
-    <Container>
-      <Layout>
-        <Compeney>
-          Trip Balance
-        </Compeney>
-        <Logo src={TripImage} />
-        <Information>
-          <Front>
+    <t.Container>
+      <>
+        <t.Compeney>Trip Balance</t.Compeney>
+        <t.Logo src={TripImage} />
+        <t.Information>
+          <t.Front>
             Thanks For Front:
             <a href="">
               <AiFillGithub />
@@ -30,8 +29,8 @@ const Footer = () => {
               <AiFillGithub />
               조광익
             </a>
-          </Front>
-          <Back>
+          </t.Front>
+          <t.Back>
             Thanks For Back:
             <a href="">
               <AiFillGithub />
@@ -45,57 +44,12 @@ const Footer = () => {
               <AiFillGithub />
               김장원
             </a>
-          </Back>
-          <Designer>Thanks For Designer: 서보영</Designer>
-        </Information>
-      </Layout>
-    </Container>
+          </t.Back>
+          <t.Designer>Thanks For Designer: 서보영</t.Designer>
+        </t.Information>
+      </>
+    </t.Container>
   );
 };
 
 export default Footer;
-
-const Container = styled.div`
-  background-color: #808080;
-  height: 432.91px;
-`;
-const Compeney = styled.div`
-  width: 953px;
-  height: 24px;
-  margin: 0px 434.4px 51.7px 5px;
-  font-family: Inter;
-  font-size: 20px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #fff;
-  position: relative;
-  /* margin-top: 41.8px; */
-`;
-const Information = styled.div`
-  width: 1088px;
-  height: 168px;
-  margin: 51.7px 0 42.8px 304.4px;
-  font-family: Inter;
-  font-size: 20px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #fff;
-  position: relative;
-  margin-top: -100px;
-`;
-const Logo = styled.img`
-  width: 300px;
-  position: relative;
-  bottom: -15px;
-`;
-const Front = styled.div``;
-const Back = styled.div``;
-const Designer = styled.div``;

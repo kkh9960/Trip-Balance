@@ -50,17 +50,16 @@ const Header = () => {
           {modal ? (
             <LoginPage />
           ) : (
-            <Layout>
-              <t.WriteWrap>
-                <Link to="/">
-                  <t.Logo
-                    src={TripImage}
-                    onClick={() => {
-                      navigate("/post");
-                    }}
-                  />
-                </Link>
-
+            <t.WriteWrap>
+              <Link to="/">
+                <t.Logo
+                  src={TripImage}
+                  onClick={() => {
+                    navigate("/post");
+                  }}
+                />
+              </Link>
+              <t.top>
                 <t.Posting
                   onClick={() => {
                     navigate("/post");
@@ -101,8 +100,8 @@ const Header = () => {
                     로그인
                   </t.Login>
                 )}
-              </t.WriteWrap>
-            </Layout>
+              </t.top>
+            </t.WriteWrap>
           )}
         </t.Container1>
       ) : (
@@ -110,7 +109,7 @@ const Header = () => {
           {modal ? (
             <LoginPage />
           ) : (
-            <Layout>
+            <>
               <t.WriteWrap>
                 <Link to="/">
                   <t.Logo
@@ -163,7 +162,7 @@ const Header = () => {
                   </t.Login>
                 )}
               </t.WriteWrap>
-            </Layout>
+            </>
           )}
         </t.Container2>
       )}

@@ -26,7 +26,7 @@ export default function MemberPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const result = await instance.get(`tb/memberinfo/${id.id}`);
+      const result = await instance.get(`tb/memberinfo/${id}`);
 
       setUserGameCnt(result.data.data.gameCnt);
       setUserCommentCnt(result.data.data.commentCnt);
@@ -44,7 +44,6 @@ export default function MemberPage() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`tb/memberinfo/posts/${id.id}`);
-      console.log("ghgh", result);
       setPosts(result.data.data);
     }
     fetchData();
@@ -54,14 +53,17 @@ export default function MemberPage() {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
+
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`tb/memberinfo/hearts/${id.id}`);
-      setMyPick(result.data.data);
+      console.log(result);
+      setMyPick(result);
     }
     fetchData();
   }, []);
 
+  console.log(myPick);
   return (
     <t.myInformationWrap>
       <MemberInformation />
@@ -85,22 +87,23 @@ export default function MemberPage() {
           </t.itemHeader>
 
           <t.pickPostWrap>
-            {myPick.slice(offset, offset + limit).map((idx) => {
-              if (myPick.length === 0) {
-                return <t.empty>좋아요한 글이 없습니다.</t.empty>;
-              } else {
-                return (
-                  <t.pickPostItem
-                    key={idx.postId}
-                    onClick={() => navigate(`/detail/${idx.postId}`)}
-                  >
-                    <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                    <div>{idx.title}</div>
-                    <div>{idx.nickName}</div>
-                  </t.pickPostItem>
-                );
-              }
-            })}
+            {myPick &&
+              myPick?.slice(offset, offset + limit).map((idx) => {
+                if (myPick.length === 0) {
+                  return <t.empty>좋아요한 글이 없습니다.</t.empty>;
+                } else {
+                  return (
+                    <t.pickPostItem
+                      key={idx.postId}
+                      onClick={() => navigate(`/detail/${idx.postId}`)}
+                    >
+                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                      <div>{idx.title}</div>
+                      <div>{idx.nickName}</div>
+                    </t.pickPostItem>
+                  );
+                }
+              })}
           </t.pickPostWrap>
           <t.footer>
             <t.thinLine />

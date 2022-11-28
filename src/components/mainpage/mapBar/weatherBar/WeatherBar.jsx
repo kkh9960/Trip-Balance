@@ -17,7 +17,7 @@ export default function WeatherBar() {
   const PCP = weatherdata[Object.keys(weatherdata)[10]]; // 강수량
 
   return (
-    <div>
+    <>
       <t.weather>
         <t.cityName>{cityName}</t.cityName>
         <t.countyName>{countyName}</t.countyName>
@@ -55,7 +55,12 @@ export default function WeatherBar() {
           </t.details>
         </t.bottom>
       </t.weather>
-    </div>
+      {/* <t.mobile>
+        <t.mobileTemper>{`${TMP}`}°C</t.mobileTemper>
+        <t.mobileCityName>{cityName}</t.mobileCityName>
+        <t.mobileCountyName>{countyName}</t.mobileCountyName>
+      </t.mobile> */}
+    </>
   );
 }
 

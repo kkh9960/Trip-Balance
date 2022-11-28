@@ -11,6 +11,5 @@ const LayoutBox = styled.div`
   margin: 0 auto;
   @media screen and (max-width: 500px) {
     width: 100%;
-    background-color: black;
   }
 `;

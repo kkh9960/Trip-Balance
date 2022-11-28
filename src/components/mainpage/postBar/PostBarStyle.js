@@ -22,6 +22,9 @@ export const postContainer = styled.div`
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `;
 //호텔추천
 export const hotelContainer = styled.div`

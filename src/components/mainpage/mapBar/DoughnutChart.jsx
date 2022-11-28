@@ -186,7 +186,7 @@ export default function DoughnutChart() {
     ],
   };
   return (
-    <>
+    <t.doughnutContainer>
       <WeatherBar />
       <t.chartViewbox>
         <t.chartView>
@@ -208,6 +208,6 @@ export default function DoughnutChart() {
           <Bar options={options3} data={barData3} />
         </t.barChartView>
       </t.chartViewbox>
-    </>
+    </t.doughnutContainer>
   );
 }
