@@ -8,7 +8,6 @@ export const __getBoard = createAsyncThunk(
   "GET_BOARD",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
       const { data } = await instance.get(`/tb/posts?page=${payload}`);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -24,7 +23,6 @@ export const __getBoardTotal = createAsyncThunk(
       const { data } = await instance.get(
         `/tb/posts/search?keyword=${payload.useInput}&page=${payload.pageLocal}`
       );
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -217,6 +215,7 @@ const BoardSlice = createSlice({
     [__getBoardLocal.fulfilled]: (state, action) => {
       state.isLoading = false;
       console.log(action.payload);
+      state.postLocal.splice(0);
       action.payload.data.map((item, idx) => state.postLocal.push(item));
     },
     [__getBoardLocal.rejected]: (state, action) => {

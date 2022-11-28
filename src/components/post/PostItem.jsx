@@ -60,8 +60,16 @@ const PostItem = () => {
   }, []);
   useEffect(() => {
     if (posts !== 0 && inView) {
+      console.log(page)
       dispatch(__getBoard(page));
       setpage(page + 1);
+    }
+  }, [inView]);
+  useEffect(() => {
+    if (postLocal !== 0 && inView) {
+      console.log(pageLocal)
+      dispatch(__getBoardLocal({useInput, pageLocal, selLocal}));
+      setpage(pageLocal + 1);
     }
   }, [inView]);
   const goPosrWrite = () => {
@@ -221,35 +229,6 @@ const PostItem = () => {
               ))
             )
           )}
-          {/* {posts.map((item, idx) => (
-            <CardWrap
-              search={posts}
-              onClick={() => {
-                goDetail(item.postId);
-              }}
-            >
-              <CardImgbox>
-                <CardImg src={item.image[0].imgURL} />
-              </CardImgbox>
-              <CardTextbox>
-                <CardTitle>{item.title}</CardTitle>
-                <Cardbody>
-                  <Userinfo>
-                    <UserImg
-                      src={
-                        item.profileImg ? item.profileImg : profiledefaultImg
-                      }
-                    />
-                    <CardUserName>{item.author}</CardUserName>
-                  </Userinfo>
-                  <Likeinfo>
-                    <LikeCount>{item.heartNum}</LikeCount>
-                    <LikeImg src="img/heart.svg" />
-                  </Likeinfo>
-                </Cardbody>
-              </CardTextbox>
-            </CardWrap>
-          ))} */}
         </PostCardList>
       </PostListWrap>
       <Viewbox>
