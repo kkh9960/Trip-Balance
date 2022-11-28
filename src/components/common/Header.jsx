@@ -32,8 +32,9 @@ const Header = () => {
       .then((res) => {
         sessionStorage.removeItem("nickName");
         sessionStorage.removeItem("email");
-        removeCookie("token");
-        removeCookie("refreshToken");
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
+
         alert("로그아웃완료!");
         window.location.reload();
       })
