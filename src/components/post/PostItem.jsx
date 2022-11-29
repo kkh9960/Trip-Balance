@@ -66,7 +66,7 @@ const PostItem = () => {
 
   console.log("번호확인", search);
 
-  //일반검색 인피니티
+  //일반검색 인피니티입니다.
   useEffect(() => {
     if (posts !== 0 && inView) {
       if (isLast == false && search == 1) {
