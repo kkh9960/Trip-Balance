@@ -6,7 +6,6 @@ import ameral from "../../../img/ameral.jpg";
 import logo from "../../../img/logo.jpg";
 import retro from "../../../img/retro.jpg";
 import logo3 from "../../../img/3logo.jpg";
-import RandomIcon from "@@mui/icons-material/Random"; // Note: this doesn't exist
 import {
   Blue,
   Img,
@@ -31,8 +30,14 @@ function Home(props) {
     <Carousel
       // autoPlay={false}
       interval={5000}
-      NextIcon={<img src="http://random.com/next" />}
-      PrevIcon={<img src="http://random.com/prev" />}
+      navButtonsAlwaysVisible={true}
+      indicators={false}
+      next={() => {
+        /* Do stuff */
+      }}
+      prev={() => {
+        /* Do other stuff */
+      }}
     >
       <Blue>
         <Img src={blue} />
