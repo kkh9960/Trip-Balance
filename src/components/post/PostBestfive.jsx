@@ -1,7 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./PostBestfive.css";
 import { useNavigate } from "react-router-dom";
+
 import styled from "styled-components";
+
+import LoginPage from "../login/LoginPage";
+
 
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
@@ -50,7 +54,16 @@ const PostBestfive = ({ best }) => {
     navigator(`/detail/${id}`);
   };
 
+  const [modal, setModal] = useState(false);
+  const email = sessionStorage.getItem("email");
+  const goLogin = () => {
+    alert("게시글 조회는 로그인 후 가능합니다.");
+    setModal(!modal);
+  };
+
+
   return (
+
     <Main>
       <Wrap>
         <Items className="items">
@@ -59,10 +72,9 @@ const PostBestfive = ({ best }) => {
               <Item
                 className="item"
                 key={idx}
-                onClick={() => {
-                  goPost(item.postId);
-                }}
+                onClick={goLogin}
               >
+
                 <ItemImgBox>
                   <ItemImg src={item.img} />
                 </ItemImgBox>
@@ -75,6 +87,7 @@ const PostBestfive = ({ best }) => {
         </Items>
       </Wrap>
     </Main>
+
   );
 };
 

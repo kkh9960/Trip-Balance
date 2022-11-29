@@ -26,7 +26,7 @@ export default function MemberInformationChart() {
   console.log(id);
   useEffect(() => {
     async function fetchData() {
-      const result = await instance.get(`/tb/memberinfo/balancedb/${id.id}`);
+      const result = await instance.get(`/tb/memberinfo/tripdb/${id.id}`);
       if (result.data?.data === "" || undefined) {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
