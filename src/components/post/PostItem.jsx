@@ -21,7 +21,7 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
-  const { isLoading } = useSelector((state) => state.BoardSlice.posts);
+
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
   console.log(isLast);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
