@@ -22,6 +22,7 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
+
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
   console.log(isLast);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
@@ -188,11 +189,7 @@ const PostItem = () => {
         </PostCardList>
       </PostListWrap>
       <Viewbox>
-        {test ? (
-          <div ref={ref}>
-            <Loading2 />
-          </div>
-        ) : null}
+        {test ? <div ref={ref}>{isLast ? "" : <Loading2 />}</div> : null}
       </Viewbox>
     </PostPageContainer>
         </>
