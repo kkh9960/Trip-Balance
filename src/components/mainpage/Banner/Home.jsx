@@ -1,11 +1,12 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import blue from "../../../img/blue.jpg"
+import blue from "../../../img/blue.jpg";
 import bblue from "../../../img/bblue.jpg";
 import ameral from "../../../img/ameral.jpg";
 import logo from "../../../img/logo.jpg";
 import retro from "../../../img/retro.jpg";
 import logo3 from "../../../img/3logo.jpg";
+import RandomIcon from "@@mui/icons-material/Random"; // Note: this doesn't exist
 import {
   Blue,
   Img,
@@ -30,12 +31,8 @@ function Home(props) {
     <Carousel
       // autoPlay={false}
       interval={5000}
-      next={() => {
-        /* Do stuff */
-      }}
-      prev={() => {
-        /* Do other stuff */
-      }}
+      NextIcon={<img src="http://random.com/next" />}
+      PrevIcon={<img src="http://random.com/prev" />}
     >
       <Blue>
         <Img src={blue} />
