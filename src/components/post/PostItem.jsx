@@ -260,9 +260,7 @@ const PostItem = () => {
       </PostListWrap>
       <Viewbox>
         {test ? (
-          <div ref={ref}>
-            <Loading2 />
-          </div>
+          <div ref={ref}>{isLast ? "더이상 글이없습니다" : <Loading2 />}</div>
         ) : null}
       </Viewbox>
     </PostPageContainer>
