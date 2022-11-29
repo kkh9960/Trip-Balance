@@ -134,55 +134,190 @@ const BoardPostDetail = () => {
 
   const ImgHandlerTest = () => {};
 
-  return loading ? (
-    <Loading />
-  ) : (
+  //이미지 슬라이드 부분
+  useEffect(() => {
+    setTimeout(() => {
+      const sliderWrap = document.querySelector(".slider__wrap");
+      const sliderImg = document.querySelector(".slider__img");
+      const sliderInner = document.querySelector(".slider__inner");
+      const slider = document.querySelectorAll(".slider");
+      const sliderBtn = document.querySelector(".slider__btn");
+      const sliderBtnPrev = sliderBtn.querySelector(".prev");
+      const sliderBtnNext = sliderBtn.querySelector(".next");
+      const sliderDot = document.querySelector(".slider__dot");
+
+      let currentIndex = 0;
+      let sliderWidth = sliderImg.offsetWidth; //이미지 가로 값
+      let sliderLength = slider.length; //이미지 갯수
+      let sliderFirst = slider[0]; //첫 번째 이미지
+      let sliderLast = slider[sliderLength - 1]; //마지막 이미지
+      let cloneFirst = sliderFirst.cloneNode(true); //첫 번째 이미지 복사
+      let cloneLast = sliderLast.cloneNode(true); //마지막 이미지 복사
+      let posInitial = "";
+      let dotIndex = "";
+      let sliderTimer = "";
+      let interval = 3000;
+
+      //이미지 복사
+      sliderInner.appendChild(cloneFirst);
+      sliderInner.insertBefore(cloneLast, sliderFirst);
+
+      //닷 메뉴 셋탕
+      function dotInit() {
+        for (let i = 0; i < sliderLength; i++) {
+          dotIndex += "<div class='dot'></div>";
+        }
+        dotIndex += "<div class='play'>play</div>";
+        dotIndex += "<div class='stop show'>stop</div>";
+        sliderDot.innerHTML = dotIndex;
+        sliderDot.firstElementChild.classList.add("active");
+      }
+      dotInit();
+
+      const dotActive = document.querySelectorAll(".slider__dot .dot");
+      //이미지 움직이기
+      function gotoSlider(index) {
+        dotActive.forEach((el) => {
+          el.classList.remove("active");
+        });
+
+        if (index == sliderLength) {
+          dotActive[0].classList.add("active");
+        } else {
+          dotActive[index]?.classList.add("active");
+        }
+
+        sliderInner.classList.add("transition");
+        sliderInner.style.left = -sliderWidth * (index + 1) + "px";
+
+        currentIndex = index;
+
+        //두 번째 이미지 : left: -2880px
+        //세 번째 이미지 : left: -4320px ...
+      }
+
+      //닷버튼 클릭
+      document.querySelectorAll(".slider__dot .dot").forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          gotoSlider(index);
+        });
+      });
+      //미리보기 클릭
+      document.querySelectorAll(".ImgPreview").forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          gotoSlider(index);
+        });
+      });
+
+      //자동재생
+      function autoPlay() {
+        sliderTimer = setInterval(() => {
+          gotoSlider(currentIndex + 1);
+        }, interval);
+      }
+
+      //자동스탑
+      function stopPlay() {
+        clearInterval(sliderTimer);
+      }
+      stopPlay();
+
+      sliderBtnPrev.addEventListener("click", () => {
+        let prevIndex = currentIndex - 1;
+        gotoSlider(prevIndex);
+      });
+
+      sliderBtnNext.addEventListener("click", () => {
+        let nextIndex = currentIndex + 1;
+        gotoSlider(nextIndex);
+      });
+
+      sliderInner.addEventListener("transitionend", () => {
+        sliderInner.classList.remove("transition");
+        if (currentIndex == -1) {
+          sliderInner.style.left = -(sliderLength * sliderWidth) + "px";
+          currentIndex = sliderLength - 1;
+        }
+        if (currentIndex == sliderLength) {
+          sliderInner.style.left = -(1 * sliderWidth) + "px";
+          currentIndex = 0;
+        }
+      });
+
+      sliderInner.addEventListener("mouseenter", () => {
+        stopPlay();
+      });
+      sliderInner.addEventListener(
+        "mouseleave",
+        () => {
+          if (document.querySelector(".play").classList.contains("show")) {
+            stopPlay();
+          } else {
+            autoPlay();
+          }
+        },
+        []
+      );
+
+      document.querySelector(".play").addEventListener("click", () => {
+        document.querySelector(".play").classList.remove("show");
+        document.querySelector(".stop").classList.add("show");
+        autoPlay();
+      });
+
+      document.querySelector(".stop").addEventListener("click", () => {
+        document.querySelector(".stop").classList.remove("show");
+        document.querySelector(".play").classList.add("show");
+        stopPlay();
+      });
+    }, 1000);
+  }, []);
+
+  return loading ? null : (
     <div>
       <BoardPostDetailContainer>
         <BoardPostDetailWrap>
           <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
           <ImegeWrap>
             <ImegeSlide>
-              <Swiper
-                effect={"cards"}
-                autoplay={{
-                  delay: 3000,
-                  disableOnInteraction: false,
-                }}
-                pagination={{
-                  // 페이징 적용, 1 2 3 4 5
-                  el: ".pagination", // 페이저 버튼 클래스명
-                  clickable: true, // 버튼 클릭 여부
-                  type: "bullets", // 버튼 모양 결정, bullets, fraction
-                  // 등등 ...
-                }}
-                navigation={{
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
-                }}
-                modules={[Navigation, EffectFade, Pagination, Autoplay]}
-                className="mySwiper"
-                loop={true}
-              >
-                {post?.mediaList[0] ? (
-                  post?.mediaList.map((item, idx) => {
-                    return (
-                      <SwiperSlide key={idx}>
-                        <SliderImage src={item} />
-                      </SwiperSlide>
-                    );
-                  })
-                ) : (
-                  <SwiperSlide>
-                    <SliderImage src={DefaultImega2} />
-                  </SwiperSlide>
-                )}
-              </Swiper>
+              <div className="slider__wrap">
+                <div className="slider__img">
+                  <div className="slider__inner">
+                    {post?.mediaList[0] ? (
+                      post?.mediaList.map((item, idx) => {
+                        return (
+                          <div className="slider" key={idx}>
+                            <img className="sliderimg" src={item} alt="" />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div className="slider">
+                        <img className="sliderimg" src={DefaultImega2} alt="" />
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="slider__btn">
+                  <div
+                    href="#"
+                    className="prev"
+                    style={{ background: "url(../img/leftarrow.svg)" }}
+                  ></div>
+                  <div
+                    href="#"
+                    className="next"
+                    style={{ background: "url(../img/rightarrow.svg)" }}
+                  ></div>
+                </div>
+                <div className="slider__dot"></div>
+              </div>
             </ImegeSlide>
             <ImegePreview>
               {post &&
                 post?.mediaList.map((el, idx) => (
                   <PreviewItem
+                    className="ImgPreview"
                     key={idx}
                     src={
                       post?.mediaList[idx] ? post?.mediaList[idx] : DefaultImega
@@ -287,13 +422,16 @@ const CommentWriteUserBox = styled.div`
   margin: 20px 0 0 20px;
   gap: 10px;
 `;
+
 const CommentWriteUser = styled.div`
   font-size: 18px;
   font-weight: bold;
 `;
+
 const CommentWriteImg = styled.img`
   width: 30px;
   height: 30px;
+  border-radius: 15px;
 `;
 
 const UserProfile = styled.div`
