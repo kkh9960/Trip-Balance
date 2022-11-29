@@ -63,6 +63,7 @@ const PostItem = () => {
   }, []);
 
   console.log("번호확인", search);
+
   //일반검색 인피니티
   useEffect(() => {
     if (posts !== 0 && inView) {
@@ -414,6 +415,7 @@ const CategorySearch = styled.select`
 const TitleSearchbox = styled.div`
   width: 690px;
   height: 60px;
+  margin-left: 20px;
   border-radius: 30px;
   position: relative;
 `;
