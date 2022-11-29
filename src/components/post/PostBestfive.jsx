@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./PostBestfive.css";
 import { useNavigate } from "react-router-dom";
+import LoginPage from "../login/LoginPage";
 
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
@@ -49,18 +50,46 @@ const PostBestfive = ({ best }) => {
     navigator(`/detail/${id}`);
   };
 
+  const [modal, setModal] = useState(false);
+  const email = sessionStorage.getItem("email");
+  const goLogin = () => {
+    alert("게시글 조회는 로그인 후 가능합니다.");
+    setModal(!modal);
+  };
+
+
   return (
-    <main>
+    <>
+    {modal ? (
+      <>
+        <LoginPage />
+        <main>
       <div className="wrapper">
         <ul className="items">
-          {best &&
-            best.map((item, idx) => (
+          {email ? (
+            (best && best.map((item, idx) => (
+                <li
+                  className="item"
+                  key={idx}
+                  onClick={() => {
+                    goPost(item.postId);
+                  }}
+                >
+                  <div className="itemimgbox">
+                    <img className="itemimg" src={item.img} />
+                  </div>
+                  <div className="textbox">
+                    <div className="heartcount">{item.heartNum}</div>
+                    <img className="heart" src="img/heart.svg" />
+                  </div>
+                </li>
+              )))
+          ) : (
+            (best && best.map((item, idx) => (
               <li
                 className="item"
                 key={idx}
-                onClick={() => {
-                  goPost(item.postId);
-                }}
+                onClick={goLogin}
               >
                 <div className="itemimgbox">
                   <img className="itemimg" src={item.img} />
@@ -70,10 +99,56 @@ const PostBestfive = ({ best }) => {
                   <img className="heart" src="img/heart.svg" />
                 </div>
               </li>
-            ))}
+            )))
+          )}
         </ul>
       </div>
     </main>
+      </>
+      ) : (
+    <main>
+      <div className="wrapper">
+        <ul className="items">
+          {email ? (
+            (best && best.map((item, idx) => (
+                <li
+                  className="item"
+                  key={idx}
+                  onClick={() => {
+                    goPost(item.postId);
+                  }}
+                >
+                  <div className="itemimgbox">
+                    <img className="itemimg" src={item.img} />
+                  </div>
+                  <div className="textbox">
+                    <div className="heartcount">{item.heartNum}</div>
+                    <img className="heart" src="img/heart.svg" />
+                  </div>
+                </li>
+              )))
+          ) : (
+            (best && best.map((item, idx) => (
+              <li
+                className="item"
+                key={idx}
+                onClick={goLogin}
+              >
+                <div className="itemimgbox">
+                  <img className="itemimg" src={item.img} />
+                </div>
+                <div className="textbox">
+                  <div className="heartcount">{item.heartNum}</div>
+                  <img className="heart" src="img/heart.svg" />
+                </div>
+              </li>
+            )))
+          )}
+        </ul>
+      </div>
+    </main>
+      )}
+    </>
   );
 };
 

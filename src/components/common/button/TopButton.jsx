@@ -29,7 +29,7 @@ const TopButton = () => {
     };
   }, []);
 
-  const nickname = sessionStorage.getItem("nickName");
+  const email = sessionStorage.getItem("email");
   const navigate = useNavigate();
   const goLogin = () => {
     alert("로그인이 필요합니다!");
@@ -46,7 +46,7 @@ const TopButton = () => {
         showButton && (
           <ScrollContainer>
             <Balance onClick={() => navigate("/start")}>밸런스게임</Balance>
-            {nickname ? (
+            {email ? (
               <Write onClick={() => navigate("/write")}>글쓰기</Write>
             ) : (
               <Write onClick={goLogin}>글쓰기</Write>

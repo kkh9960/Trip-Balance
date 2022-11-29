@@ -72,6 +72,7 @@ const Header = () => {
                   <t.Mypage
                     onClick={() => {
                       alert("로그인을 해주세요!");
+                      setModal(!modal);
                     }}
                   >
                     마이페이지
