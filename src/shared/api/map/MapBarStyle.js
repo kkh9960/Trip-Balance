@@ -7,4 +7,9 @@ export const mapContainer = styled.div`
   height: 580px;
   border-radius: 10px;
   border: 1px solid #000;
+  transition: 2s;
+  @media screen and (max-width: 500px) {
+    display: none;
+    transition: 2s;
+  }
 `;

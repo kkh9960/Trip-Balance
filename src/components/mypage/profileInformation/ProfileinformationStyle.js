@@ -19,7 +19,7 @@ export const UserInfor = styled.div`
   margin: 0 auto;
   align-content: center;
   justify-content: center;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -41,7 +41,7 @@ export const myInformation = styled.div`
       transform: translateX(0px);
     }
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     background-color: green;
   }
 `;
@@ -59,7 +59,7 @@ export const ProfileImgBox = styled.img`
     box-shadow: 0 0 10px;
     transition: 0.2s linear;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     width: 150px;
     height: 150px;
     margin: 20px;

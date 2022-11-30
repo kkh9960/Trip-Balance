@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import * as t from "./WeatherBarStyle";
 
 export default function WeatherBar() {
   const weatherdata = useSelector((state) => state.MapSlice.data.weather);
   const city = useSelector((state) => state.MapSlice.data?.cnt);
+  console.log(city);
   const cityName = city[0].location.split(" ")[0];
   const countyName = city[0].location.split(" ")[1];
 
@@ -16,11 +17,33 @@ export default function WeatherBar() {
   const SKY = weatherdata[Object.keys(weatherdata)[9]]; // 하늘상태
   const PCP = weatherdata[Object.keys(weatherdata)[10]]; // 강수량
 
+  const todayTime = () => {
+    let now = new Date();
+    let todayMonth = now.getMonth() + 1;
+    let todayData = now.getData();
+    const week = ["일", "월", "화", "수", "목", "금", "토"];
+    let dayOfWeek = week[now.getDay()];
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+
+    return `${todayMonth}월${todayData}일${dayOfWeek}요일${hours}시${minutes}분`;
+  };
+  const now = new Date();
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
+  const dayOfWeek = week[now.getDay()];
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+
+  const [time, setTime] = useState(hours + ":" + minutes);
+
   return (
     <div>
       <t.weather>
         <t.cityName>{cityName}</t.cityName>
         <t.countyName>{countyName}</t.countyName>
+        <t.timer>
+          {dayOfWeek}, {time}
+        </t.timer>
         <t.top>
           <t.iconBox>
             <t.weatherIcon

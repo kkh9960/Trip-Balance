@@ -8,6 +8,7 @@ import PostBar from "../../components/mainpage/postBar/PostBar";
 import * as t from "./MainPageStyle";
 import Home from "../../components/mainpage/Banner/Home";
 import GameBanner from "../../components/mainpage/GameBanner";
+// import MainSlider from "../../components/mainpage/imageSlide/MainSlider.jsx";
 
 export default function MainPage() {
   return (
@@ -15,6 +16,7 @@ export default function MainPage() {
       <Header />
       <t.main>
         <Home />
+        {/* <MainSlider /> */}
         <t.mapGroup>
           <MapBar />
           <DoughnutChart />

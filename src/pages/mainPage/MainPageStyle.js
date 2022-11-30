@@ -15,4 +15,7 @@ export const mapGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;

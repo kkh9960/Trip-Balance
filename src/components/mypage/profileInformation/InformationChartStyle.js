@@ -20,12 +20,7 @@ export const inforChartView = styled.div`
   height: 300px;
   margin: 0 5px;
   text-align: center;
-  after {
-    position: relative;
-    content: "이름";
-    top: -110px;
-    left: 80px;
-  }
+
   box-shadow: 0 0 10px;
   border-radius: 50%;
 `;

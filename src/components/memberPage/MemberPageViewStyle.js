@@ -45,7 +45,7 @@ export const myInformationWrap = styled.div`
   height: 100%;
   margin-top: 30px;
   background-color: transparent;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     background-color: gray;
     flex-direction: column;
     width: 100%;
@@ -67,7 +67,7 @@ export const myPickPostWrap = styled.div`
   padding: 10px 20px 10px 200px;
   background-color: #fff;
   box-shadow: 0 0 6px;
-  @media all and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     display: flex;
     width: 100vw;
     background-color: gray;
@@ -124,7 +124,7 @@ export const pickPostWrap = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     display: flex;
 
     background-color: green;

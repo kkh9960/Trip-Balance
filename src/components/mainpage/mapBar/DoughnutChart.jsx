@@ -27,14 +27,6 @@ ChartJS.register(
 
 export default function DoughnutChart() {
   const peopleData = useSelector((state) => state.MapSlice.data?.cnt);
-  const women = useState(peopleData[0]?.peopleCnt);
-  const men = useState(peopleData[1]?.peopleCnt);
-  const old1 = useState(peopleData[2]?.peopleCnt + peopleData[3]?.peopleCnt);
-  const old2 = useState(peopleData[4]?.peopleCnt + peopleData[5]?.peopleCnt);
-  const old3 = useState(peopleData[6]?.peopleCnt + peopleData[7]?.peopleCnt);
-  const family = useState(peopleData[8]?.peopleCnt);
-  const freinds = useState(peopleData[9]?.peopleCnt);
-  const familyChidren = useState(peopleData[10]?.peopleCnt);
 
   const chartData = {
     people: {
@@ -186,7 +178,7 @@ export default function DoughnutChart() {
     ],
   };
   return (
-    <>
+    <t.doughnutContainer>
       <WeatherBar />
       <t.chartViewbox>
         <t.chartView>
@@ -208,6 +200,6 @@ export default function DoughnutChart() {
           <Bar options={options3} data={barData3} />
         </t.barChartView>
       </t.chartViewbox>
-    </>
+    </t.doughnutContainer>
   );
 }
