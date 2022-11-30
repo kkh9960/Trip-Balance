@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const weather = styled.div`
-  width: 200px;
+  width: 195px;
   height: 550px;
   margin: 0 auto 0;
   padding: 0 20px 20px 20px;
@@ -16,9 +16,9 @@ export const weather = styled.div`
 `;
 
 export const cityName = styled.div`
-  width: 200px;
+  width: 300px;
   font-weight: 500;
-  font-size: 70px;
+  font-size: 56px;
   line-height: 100px;
   @media screen and (max-width: 480px) {
     position: absolute;

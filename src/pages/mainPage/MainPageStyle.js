@@ -9,8 +9,8 @@ export const mainImageBox = styled.div`
   height: 100vh;
 `;
 export const mapGroup = styled.div`
-  width: 100%;
-  height: 70vh;
+  width: 1326px;
+  height: 630;
   margin-left: 0;
   display: flex;
   align-items: center;

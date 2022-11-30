@@ -7,6 +7,11 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
+import { SlMenu } from "react-icons/sl";
+import { FaUserCircle } from "react-icons/fa";
+import { MdOutlineVideogameAsset } from "react-icons/md";
+import { HiClipboardDocumentList } from "react-icons/hi2";
+
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
@@ -41,6 +46,10 @@ const Header = () => {
         window.location.reload();
       });
   }
+  const [toggle, setToggle] = useState(true);
+  const toggleChange = () => {
+    return toggle ? setToggle(false) : setToggle(true);
+  };
 
   return (
     <>
@@ -49,23 +58,36 @@ const Header = () => {
           {modal ? (
             <LoginPage />
           ) : (
-            <Layout>
-              <t.WriteWrap>
-                <Link to="/">
-                  <t.Logo
-                    src={TripImage}
-                    onClick={() => {
-                      navigate("/post");
-                    }}
-                  />
-                </Link>
+            <>
+              <Link to="/">
+                <t.Logo
+                  src={TripImage}
+                  onClick={() => {
+                    navigate("/post");
+                  }}
+                />
+              </Link>
+              <t.toggleBtn toggle={toggle} onClick={toggleChange}>
+                <SlMenu />
+              </t.toggleBtn>
+              <t.WriteWrap toggle={toggle}>
+                <t.Game
+                  onClick={() => {
+                    navigate("/start");
+                  }}
+                >
+                  <MdOutlineVideogameAsset />
+                </t.Game>
 
                 <t.Posting
                   onClick={() => {
                     navigate("/post");
                   }}
                 >
-                  게시판
+                  <i>
+                    <HiClipboardDocumentList />
+                  </i>
+                  <p>게시판</p>
                 </t.Posting>
 
                 {email == null ? (
@@ -76,6 +98,7 @@ const Header = () => {
                     }}
                   >
                     마이페이지
+                    <FaUserCircle />
                   </t.Mypage>
                 ) : (
                   <t.Mypage
@@ -84,6 +107,7 @@ const Header = () => {
                     }}
                   >
                     마이페이지
+                    <FaUserCircle />
                   </t.Mypage>
                 )}
                 {nickname ? (
@@ -102,7 +126,7 @@ const Header = () => {
                   </t.Login>
                 )}
               </t.WriteWrap>
-            </Layout>
+            </>
           )}
         </t.Container1>
       ) : (
@@ -110,17 +134,19 @@ const Header = () => {
           {modal ? (
             <LoginPage />
           ) : (
-            <Layout>
-              <t.WriteWrap>
-                <Link to="/">
-                  <t.Logo
-                    src={TripImage}
-                    onClick={() => {
-                      navigate("/post");
-                    }}
-                  />
-                </Link>
-
+            <>
+              <Link to="/">
+                <t.Logo
+                  src={TripImage}
+                  onClick={() => {
+                    navigate("/post");
+                  }}
+                />
+              </Link>
+              <t.toggleBtn toggle={toggle} onClick={toggleChange}>
+                <SlMenu />
+              </t.toggleBtn>
+              <t.WriteWrap toggle={toggle}>
                 <t.Posting
                   onClick={() => {
                     navigate("/post");
@@ -163,7 +189,7 @@ const Header = () => {
                   </t.Login>
                 )}
               </t.WriteWrap>
-            </Layout>
+            </>
           )}
         </t.Container2>
       )}

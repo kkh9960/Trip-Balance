@@ -8,10 +8,12 @@ export const inforChartViewbox = styled.div`
   animation-name: slideRight;
   @keyframes slideRight {
     from {
-      transform: translateX(1000px);
+      opacity: 0;
+      /* transform: translateX(1000px); */
     }
     to {
-      transform: translateX(0px);
+      opacity: 1;
+      /* transform: translateX(0px); */
     }
   }
 `;

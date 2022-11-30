@@ -6,10 +6,12 @@ import MyPageView from "../../components/mypage/MyPageView";
 
 export default function MyPage() {
   return (
-    <Layout>
+    <>
       <Header />
-      <MyPageView />
-      <Footer />
-    </Layout>
+      <Layout>
+        <MyPageView />
+        <Footer />
+      </Layout>
+    </>
   );
 }

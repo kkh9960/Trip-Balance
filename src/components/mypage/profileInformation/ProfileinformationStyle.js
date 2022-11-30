@@ -35,10 +35,12 @@ export const myInformation = styled.div`
   animation-name: slideLeft;
   @keyframes slideLeft {
     from {
-      transform: translateX(-1000px);
+      opacity: 0;
+      /* transform: translateX(-1000px); */
     }
     to {
-      transform: translateX(0px);
+      opacity: 1;
+      /* transform: translateX(0px); */
     }
   }
   @media screen and (max-width: 480px) {

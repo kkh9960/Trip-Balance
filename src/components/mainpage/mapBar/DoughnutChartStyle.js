@@ -13,7 +13,7 @@ export const doughnutContainer = styled.div`
   }
 `;
 export const chartViewbox = styled.div`
-  width: 900px;
+  width: 650px;
 
   display: grid;
   align-items: end;
@@ -30,7 +30,7 @@ export const chartViewbox = styled.div`
   }
 `;
 export const chartView = styled.div`
-  width: 210px;
+  width: 195px;
   margin: 0 auto;
   text-align: center;
   border-radius: 50%;

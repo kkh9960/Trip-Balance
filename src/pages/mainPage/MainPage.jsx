@@ -12,19 +12,21 @@ import GameBanner from "../../components/mainpage/GameBanner";
 
 export default function MainPage() {
   return (
-    <Layout>
+    <>
       <Header />
-      <t.main>
-        <Home />
-        {/* <MainSlider /> */}
-        <t.mapGroup>
-          <MapBar />
-          <DoughnutChart />
-        </t.mapGroup>
-        <PostBar />
-      </t.main>
-      <GameBanner />
-      <Footer />
-    </Layout>
+      <Home />
+      {/* <MainSlider /> */}
+      <Layout>
+        <t.main>
+          <t.mapGroup>
+            <MapBar />
+            <DoughnutChart />
+          </t.mapGroup>
+          <PostBar />
+        </t.main>
+        <GameBanner />
+        <Footer />
+      </Layout>
+    </>
   );
 }
