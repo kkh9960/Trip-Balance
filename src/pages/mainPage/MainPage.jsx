@@ -6,7 +6,7 @@ import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
 import PostBar from "../../components/mainpage/postBar/PostBar";
 import * as t from "./MainPageStyle";
-import Home from "../../components/mainpage/Banner/Home";
+import Banner from "../../components/mainpage/Banner/Banner";
 import GameBanner from "../../components/mainpage/GameBanner";
 
 export default function MainPage() {
@@ -14,7 +14,7 @@ export default function MainPage() {
     <Layout>
       <Header />
       <t.main>
-        <Home />
+        <Banner />
         <t.mapGroup>
           <MapBar />
           <DoughnutChart />
