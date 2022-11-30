@@ -24,7 +24,6 @@ export const balanceButtonHover = styled.img`
   object-fit: cover;
   border-radius: 10px;
   color: white;
-  margin-top: 70px;
   filter: brightness(65%);
   position: absolute;
   top: 0px;
@@ -42,7 +41,6 @@ export const balanceButtonRightHover = styled.img`
   object-fit: cover;
   border-radius: 10px;
   color: white;
-  margin-top: 70px;
   filter: brightness(65%);
   position: absolute;
   top: 0px;
@@ -60,7 +58,6 @@ export const balanceButtonLeftHover = styled.img`
   object-fit: cover;
   border-radius: 10px;
   color: white;
-  margin-top: 70px;
   filter: brightness(65%);
   position: absolute;
   top: 0px;
@@ -129,13 +126,13 @@ export const balanceFirst = styled.button`
 
 export const firstWrap = styled.div`
   position: relative;
-  bottom: 70px;
+  //bottom: 70px;
   display: flex;
   justify-content: space-around;
 `;
 export const homeWrap = styled.div`
   position: relative;
-  bottom: 30px;
+  top: 30px;
   display: flex;
   justify-content: space-around;
 `;

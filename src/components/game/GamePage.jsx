@@ -73,13 +73,6 @@ export default function GamePage() {
             <g.balanceButtonRightHover src={FCharacter}/>
             <g.balanceText onClick={leftGo}>{gameData.data[0].leftAnswer}</g.balanceText>
             </g.balanceButtonBH>
-            {/*  */}
-            {/* <div>
-              <div onClick={leftGo}>
-                <div onClick={leftGo}>{gameData.data[0].leftAnswer}</div>
-              </div>
-            </div> */}
-            {/*  */}
             <g.balanceButtonBH>
             <g.balanceButton src={rightImg} onClick={rightGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={rightGo}/>
