@@ -5,6 +5,11 @@ export function Card({ title, postId }) {
     <div>
       <Title>타이틀:{title}</Title>
       <Title>아이디{postId}</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
+      <Title>타이틀:</Title>
     </div>
   );
 }
@@ -12,6 +17,5 @@ export function Card({ title, postId }) {
 export default Card;
 
 const Title = styled.div`
-  margin-top: 10px;
+  margin-top: 100px;
 `;
-const Img = styled.img``;

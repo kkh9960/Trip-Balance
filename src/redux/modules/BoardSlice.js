@@ -6,14 +6,131 @@ import instance from "../../lib/instance";
 
 export const __getBoard = createAsyncThunk(
   "GET_BOARD",
-  async (page, thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
-      const { data } = await instance.get(`/tb/posts/list/0?size=20`);
-
+      const { data } = await instance.get(`/tb/posts?page=${payload}`);
+      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
     }
+  }
+);
+
+export const __getBoardinfi = createAsyncThunk(
+  "GET_BOARD_INFI",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts?page=${payload}`);
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getBoardTotal = createAsyncThunk(
+  "GET_BOARD_TOTAL",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(
+        `/tb/posts/search?keyword=${payload.useInput}&page=${payload.pageLocal}`
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getBoardTotalinfi = createAsyncThunk(
+  "GET_BOARD_TOTAL_INFI",
+  async (payload, thunkAPI) => {
+    console.log(payload);
+    try {
+      const { data } = await instance.get(
+        `/tb/posts/search?keyword=${payload.useInput}&page=${payload.page}`
+      );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getBoardLocal = createAsyncThunk(
+  "GET_BOARD_LOCAL",
+  async (payload, thunkAPI) => {
+    try {
+      console.log(payload);
+      const { data } = await instance.get(
+        `/tb/posts/search/${payload.selLocal}?keyword=${payload.useInput}&page=${payload.pageLocal}`
+      );
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+export const __getBoardLocalinfi = createAsyncThunk(
+  "GET_BOARD_LOCAL_INFI",
+  async (payload, thunkAPI) => {
+    try {
+      console.log(payload);
+      const { data } = await instance.get(
+        `/tb/posts/search/${payload.selLocal}?keyword=${payload.useInput}&page=${payload.page}`
+      );
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getmypost = createAsyncThunk(
+  "GET_MY_POST_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts/otherpost/${payload}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getbestfive = createAsyncThunk(
+  "GET_BEST_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts/bestfive`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return console.log("상세에러", error);
+    }
+  }
+);
+
+export const __getcategory = createAsyncThunk(
+  "GET_CATEGORY_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts/search/${payload}`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
+  }
+);
+
+export const __getcatenormal = createAsyncThunk(
+  "GET_CATE_BOARD",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await instance.get(`/tb/posts?page=0`);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {}
   }
 );
 
@@ -64,7 +181,8 @@ export const __deleteBoard = createAsyncThunk(
     console.log("나글삭제페이로드", payload);
     try {
       const { data } = await instance.delete(`/tb/posts/${payload.id}`);
-      console.log("나글삭데이터", data);
+      alert("게시글이 삭제되었습니다");
+      window.location.replace("/post");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("글삭에러", error);
@@ -97,10 +215,9 @@ export const __modifyBoard = createAsyncThunk(
 export const __boardlike = createAsyncThunk(
   "BOARD_LIKE",
   async (payload, thunkAPI) => {
-    console.log("어흥페이로드", payload);
     try {
       const { data } = await instance.post(`tb/posts/${payload}/heart`);
-      console.log("어흥나 좋아요", data);
+      console.log("좋아요", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       console.log("좋아요 에러", error);
@@ -110,8 +227,13 @@ export const __boardlike = createAsyncThunk(
 
 const initialState = {
   posts: [],
+  // postTotal: [],
+  // postLocal: [],
   isLoading: true,
   post: null,
+  myposts: [],
+  bestpost: [],
+  isLastPage: false,
 };
 
 const BoardSlice = createSlice({
@@ -121,12 +243,116 @@ const BoardSlice = createSlice({
   extraReducers: {
     [__getBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.posts = action.payload.data;
-      console.log("어흥난풀필드", state, action);
+      console.log(action.payload);
+      state.posts = action.payload.data[0].postResponseDtoList;
+      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
+      //   state.posts.push(item)
+      // );
+      // state.isLastPage = action.payload.data[0].isLastPage;
     },
     [__getBoard.rejected]: (state, action) => {
       state.isLoading = false;
-      console.log("나리젝티드", action);
+    },
+    [__getBoardinfi.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+      action.payload.data[0].postResponseDtoList.map((item, idx) =>
+        state.posts.push(item)
+      );
+      state.isLastPage = action.payload.data[0].isLastPage;
+    },
+    [__getBoardinfi.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+
+    [__getBoardTotal.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+
+      state.posts = action.payload.data[0].postResponseDtoList;
+
+      //state.postTotal.splice(0);
+      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
+      //   state.postTotal.push(item)
+      // );
+      // state.isLastPage = action.payload.data[0].isLastPage;
+    },
+
+    [__getBoardTotal.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getBoardTotalinfi.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+
+      action.payload.data[0].postResponseDtoList.map((item, idx) =>
+        state.posts.push(item)
+      );
+      state.isLastPage = action.payload.data[0].isLastPage;
+    },
+
+    [__getBoardTotalinfi.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+
+    [__getBoardLocal.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+
+      state.posts = action.payload.data[0].postResponseDtoList;
+
+      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
+      //   state.postLocal.push(item)
+      // );
+      // state.isLastPage = action.payload.data[0].isLastPage;
+    },
+
+    [__getBoardLocal.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getBoardLocalinfi.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log(action.payload);
+
+      action.payload.data[0].postResponseDtoList.map((item, idx) =>
+        state.posts.push(item)
+      );
+      state.isLastPage = action.payload.data[0].isLastPage;
+    },
+
+    [__getBoardLocalinfi.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getbestfive.fulfilled]: (state, action) => {
+      state.isLoading = false;
+
+      state.bestpost = action.payload.data;
+    },
+    [__getbestfive.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getcategory.fulfilled]: (state, action) => {
+      state.isLoading = false;
+
+      state.posts = action.payload.data;
+    },
+    [__getcategory.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getcatenormal.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.posts = action.payload.data;
+    },
+    [__getcatenormal.rejected]: (state, action) => {
+      state.isLoading = false;
+    },
+    [__getmypost.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.myposts = action.payload.data;
+      console.log("내가쓴글", action.payload);
+    },
+    [__getmypost.rejected]: (state, action) => {
+      state.isLoading = false;
     },
 
     [__SearchBoard.fulfilled]: (state, action) => {
@@ -136,7 +362,6 @@ const BoardSlice = createSlice({
     },
     [__SearchBoard.rejected]: (state, action) => {
       state.isLoading = false;
-      console.log("나리젝티드", action);
     },
 
     [__getBoardDetail.pending]: (state, action) => {

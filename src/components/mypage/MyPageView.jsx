@@ -9,30 +9,15 @@ import {
   __getTotalGameData,
 } from "../../redux/modules/MyPageSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import Pagination from "./Pagination";
+import Pagination from "../common/Pagination";
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
 import InformationChart from "./profileInformation/InformationChart";
+import background from "../../img/3.jpg";
 
 export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.MyInforSlice.myinfor.memberId);
-  // console.log(userId);
-  // 유저 정보
-  // const userNickname = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.nickName
-  // );
-  // const userPostCnt = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.postCnt
-  // );
-  // const userCommentCnt = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.commentCnt
-  // );
-  // const userGameCnt = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.gameCnt
-  // );
-
   const [nickname, setNickname] = useState([]);
   const [userGameCnt, setUserGameCnt] = useState([]);
   const [userCommentCnt, setUserCommentCnt] = useState([]);
@@ -41,7 +26,7 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/info");
-
+      console.log(result);
       setUserGameCnt(result.data.data.gameCnt);
       setUserCommentCnt(result.data.data.commentCnt);
       setUserPostCnt(result.data.data.postCnt);
@@ -62,11 +47,6 @@ export default function MyPageView() {
     }
     fetchData();
   }, []);
-  // https://dexhome.shop/  https://tbtbtb.shop/
-  // const myWriteIn = useSelector((state) => state.MyInforSlice.data?.data);
-  // console.log(myWriteIN);
-
-  //
   // 내가 좋아요한 글목록
   const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
@@ -101,6 +81,7 @@ export default function MyPageView() {
             <h2>내가 좋아요한 게시물</h2>
             <t.thinLine />
           </t.itemHeader>
+
           <t.pickPostWrap>
             {typeof myPick === typeof "string" ? (
               <h1>좋아요한 글이 없습니다.</h1>
@@ -116,7 +97,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <div>{idx.title}</div>
-                      <h5>{idx.nickName}</h5>
+                      <div>{idx.nickName}</div>
                     </t.pickPostItem>
                   );
                 }
@@ -154,7 +135,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <div>{idx.title}</div>
-                      <h5>{idx.createdAt}</h5>
+                      <div>{idx.createdAt}</div>
                     </t.pickPostItem>
                   );
                 }

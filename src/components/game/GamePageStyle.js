@@ -1,8 +1,12 @@
 import styled from "styled-components";
-// import default2 from "../../img/default2.jpg";
 
 export const balanceButtonBH = styled.div`
   position: relative;
+  width: 500px;
+  height: 600px;
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
 `;
 
 export const balanceButton = styled.img`
@@ -11,7 +15,6 @@ export const balanceButton = styled.img`
   object-fit: cover;
   border-radius: 10px;
   color: white;
-  margin-top: 70px;
   filter: brightness(65%);
 `;
 
@@ -29,6 +32,7 @@ export const balanceButtonHover = styled.img`
   display: none;
   ${balanceButtonBH}:hover & {
     display: block;
+    z-index: 5;
   }
 `;
 
@@ -74,13 +78,15 @@ export const balanceButtonWrap = styled.div`
 `;
 
 export const balanceText = styled.div`
-  position: relative;
+  position: absolute;
   width: 500px;
+  height: 200px;
   text-align: center;
   color: white;
-  font-size: 5.2em;
+  font-size: 3.2em;
   text-shadow: 3px 3px 3px #000;
-  bottom: 360px;
+  display: flex;
+  align-items: center;
 `;
 
 export const balanceButtonWrapFinal = styled.div`
@@ -92,6 +98,7 @@ export const balanceButtonFinal = styled.button`
   width: 500px;
   height: 600px;
   margin-top: 70px;
+  margin-bottom: 70px;
   background-color: gray;
   object-fit: cover;
   border-radius: 10px;
@@ -135,6 +142,10 @@ export const homeWrap = styled.div`
 
 export const totalWrap = styled.div`
   background-image: url("../../img/backgroundimg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 1920px;
+  min-height: 929px;
   width: 100%;
-  height: 930px;
+  height: 100%;
 `;
