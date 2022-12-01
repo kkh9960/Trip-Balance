@@ -5,7 +5,11 @@ export const Wrap = styled.div`
 
   z-index: 1;
 `;
-
+export const Checkwrap = styled.div`
+  position: relative;
+  left: 400px;
+  bottom: -10px;
+`;
 export const SignupWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,6 +25,12 @@ export const SignupWrapper = styled.div`
   z-index: 2;
 `;
 
+export const Nicknamemsg = styled.div`
+  position: relative;
+  left: 80px;
+  top: 60px;
+  color: green;
+`;
 export const FormTag = styled.form`
   padding: 30px;
   width: 518px;
@@ -29,6 +39,7 @@ export const FormTag = styled.form`
   bottom: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
   position: relative;
 `;
 
@@ -59,7 +70,11 @@ export const SignUpTitle = styled.div`
   position: relative;
   left: 20px;
 `;
-
+export const EmailCheckError = styled.div`
+  position: relative;
+  left: 400px;
+  bottom: -10px;
+`;
 export const InputWrite = styled.input`
   display: block;
   box-sizing: border-box;
@@ -75,7 +90,7 @@ export const InputWrite = styled.input`
   font-size: 14px;
   margin-top: 20px;
   position: relative;
-  top: 37px;
+  top: 70px;
 `;
 
 export const Danger = styled.p`
@@ -97,6 +112,14 @@ export const Line = styled.div`
   position: relative;
   left: 80px;
   top: 60px;
+`;
+export const Emailmsg = styled.div`
+  position: relative;
+  left: 80px;
+  bottom: -40px;
+
+  color: green;
+  border: 1px solid red;
 `;
 
 export const SignUpBtn = styled.button`
@@ -127,7 +150,7 @@ export const EmailCheck = styled.button`
   height: 30px;
   position: relative;
   left: 240px;
-  bottom: 530px;
+  bottom: 500px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
@@ -138,7 +161,7 @@ export const NickNameCheck = styled.button`
   height: 30px;
   left: 240px;
   position: relative;
-  bottom: 480px;
+  bottom: 440px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   border-radius: 10px;

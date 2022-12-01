@@ -24,9 +24,7 @@ function LoginPage() {
   } = useForm();
   const [modal, setModal] = useState(true);
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const [email, setEmail, emailchange] = useInput("");
   const [password, setPassword, pwchange] = useInput("");
   const [cookie, setCookie, removeCookie] = useCookies();
