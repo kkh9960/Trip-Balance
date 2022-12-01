@@ -3,16 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
-import * as t from "./Loginstyle";
-import TripImage from "../../img/trip.jpg";
+import "./login.css";
+import TripImage from "../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useCookies } from "react-cookie";
-import instance from "../../lib/instance";
-import useInput from "../../hooks/useInput";
-import kakao from "../../img/kakaologin.jpg";
+import instance from "../lib/instance";
+import useInput from "../hooks/useInput";
+import Header from "../component/Header";
+import kakao from "../img/kakaologin.jpg";
 import { ImExit } from "react-icons/im";
-import { KAKAO_AUTH_URL } from "./AuthKakao";
 
 function LoginPage() {
   const {
@@ -31,8 +31,9 @@ function LoginPage() {
   const [password, setPassword, pwchange] = useInput("");
   const [cookie, setCookie, removeCookie] = useCookies();
   const modalClose = () => {
-    window.location.reload();
+    setModal(!modal);
   };
+  console.log(watch());
 
   const onvaled = (event) => {
     event.preventDefault();
@@ -51,10 +52,15 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-      console.log(res);
+      // console.log(res)
+      // console.log(res.data.data)
+      // console.log(res.data.data.email)
+      // console.log(res.data.statusMsg)
+      // console.log(res.data.statusCode)
+      sessionStorage.setItem("nickName", res.data.data.nickName);
 
-      // setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
-      // setCookie("token", res.request.getResponseHeader("authorization"));
+      setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
+      setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
         sessionStorage.setItem("nickName", res.data.data.nickName);
@@ -79,13 +85,13 @@ function LoginPage() {
   };
 
   return (
-    <t.Wrap>
-      {/* <Header /> */}
+    <div className="wrap">
+      <Header />
 
-      {modal ? (
-        <t.AuthWrapper>
-          <t.Formtag onSubmit={onvaled}>
-            <t.CancelBtn className="cancel" onClick={modalClose}>
+      {modal && (
+        <div className="auth-wrapper">
+          <form onSubmit={onvaled}>
+            <div className="cancel" onClick={modalClose}>
               <ImExit size={30} />
             </t.CancelBtn>
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
@@ -119,24 +125,24 @@ function LoginPage() {
 
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
 
-            <t.LoginBtn>로그인</t.LoginBtn>
-            <t.Line></t.Line>
-            <t.KakaoWrap href={KAKAO_AUTH_URL}>
-              <t.KakaoImg src={kakao} className="kakaoimg" />
-            </t.KakaoWrap>
-            <t.SignUpbtn
+            <button type="submit" style={{ textDecorationLine: "none" }}>
+              로그인
+            </button>
+            <div className="line"></div>
+            <button className="kaka">
+              <img src={kakao} className="kakaoimg" />
+            </button>
+            <div
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
               onClick={() => {
-                setModal(!modal);
+                navigate("/Signup");
               }}
             >
               회원가입
-            </t.SignUpbtn>
-          </t.Formtag>
-        </t.AuthWrapper>
-      ) : (
-        <Signup />
+            </div>
+          </form>
+        </div>
       )}
       {/* <Footer /> */}
     </t.Wrap>
