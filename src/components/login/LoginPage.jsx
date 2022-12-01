@@ -51,25 +51,29 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-      sessionStorage.setItem("nickName", res.data.data.nickName);
+      console.log(res);
 
-      localStorage.setItem(
-        "refreshToken",
-        res.request.getResponseHeader("refresh-token")
-      );
-      localStorage.setItem(
-        "token",
-        res.request.getResponseHeader("authorization")
-      );
       // setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       // setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
+        sessionStorage.setItem("nickName", res.data.data.nickName);
+        localStorage.setItem(
+          "refreshToken",
+          res.request.getResponseHeader("refresh-token")
+        );
+        localStorage.setItem(
+          "token",
+          res.request.getResponseHeader("authorization")
+        );
 
         alert("로그인완료!");
+
         window.location.reload();
-      } else {
-        alert(res.data.statusMsg);
+      } else if (res.data.statusCode == 110) {
+        alert("해당하는이메일이없습니다");
+      } else if (res.data.statusCode == 111) {
+        alert("비밀번호가틀렷습니다");
       }
     });
   };

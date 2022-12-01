@@ -124,9 +124,10 @@ export const SignUpBtn = styled.button`
 
 export const EmailCheck = styled.button`
   width: 100px;
+  height: 30px;
   position: relative;
-  left: 1140px;
-  bottom: 600px;
+  left: 240px;
+  bottom: 530px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
@@ -134,9 +135,10 @@ export const EmailCheck = styled.button`
 
 export const NickNameCheck = styled.button`
   width: 100px;
-  left: 1140px;
+  height: 30px;
+  left: 240px;
   position: relative;
-  bottom: 550px;
+  bottom: 480px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   border-radius: 10px;
