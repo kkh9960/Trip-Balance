@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./PostBestfive.css";
 import { useNavigate } from "react-router-dom";
+
+import styled from "styled-components";
+
 import LoginPage from "../login/LoginPage";
+
 
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
@@ -59,97 +63,108 @@ const PostBestfive = ({ best }) => {
 
 
   return (
-    <>
-    {modal ? (
-      <>
-        <LoginPage />
-        <main>
-      <div className="wrapper">
-        <ul className="items">
-          {email ? (
-            (best && best.map((item, idx) => (
-                <li
-                  className="item"
-                  key={idx}
-                  onClick={() => {
-                    goPost(item.postId);
-                  }}
-                >
-                  <div className="itemimgbox">
-                    <img className="itemimg" src={item.img} />
-                  </div>
-                  <div className="textbox">
-                    <div className="heartcount">{item.heartNum}</div>
-                    <img className="heart" src="img/heart.svg" />
-                  </div>
-                </li>
-              )))
-          ) : (
-            (best && best.map((item, idx) => (
-              <li
+
+    <Main>
+      <Wrap>
+        <Items className="items">
+          {best &&
+            best.map((item, idx) => (
+              <Item
                 className="item"
                 key={idx}
                 onClick={goLogin}
               >
-                <div className="itemimgbox">
-                  <img className="itemimg" src={item.img} />
-                </div>
-                <div className="textbox">
-                  <div className="heartcount">{item.heartNum}</div>
-                  <img className="heart" src="img/heart.svg" />
-                </div>
-              </li>
-            )))
-          )}
-        </ul>
-      </div>
-    </main>
-      </>
-      ) : (
-    <main>
-      <div className="wrapper">
-        <ul className="items">
-          {email ? (
-            (best && best.map((item, idx) => (
-                <li
-                  className="item"
-                  key={idx}
-                  onClick={() => {
-                    goPost(item.postId);
-                  }}
-                >
-                  <div className="itemimgbox">
-                    <img className="itemimg" src={item.img} />
-                  </div>
-                  <div className="textbox">
-                    <div className="heartcount">{item.heartNum}</div>
-                    <img className="heart" src="img/heart.svg" />
-                  </div>
-                </li>
-              )))
-          ) : (
-            (best && best.map((item, idx) => (
-              <li
-                className="item"
-                key={idx}
-                onClick={goLogin}
-              >
-                <div className="itemimgbox">
-                  <img className="itemimg" src={item.img} />
-                </div>
-                <div className="textbox">
-                  <div className="heartcount">{item.heartNum}</div>
-                  <img className="heart" src="img/heart.svg" />
-                </div>
-              </li>
-            )))
-          )}
-        </ul>
-      </div>
-    </main>
-      )}
-    </>
+
+                <ItemImgBox>
+                  <ItemImg src={item.img} />
+                </ItemImgBox>
+                <Textbox>
+                  <HeartCount>{item.heartNum}</HeartCount>
+                  <Heart src="img/heart.svg" />
+                </Textbox>
+              </Item>
+            ))}
+        </Items>
+      </Wrap>
+    </Main>
+
   );
 };
 
 export default PostBestfive;
+
+const Textbox = styled.div`
+  width: 344px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 10px;
+`;
+
+const Heart = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+
+const HeartCount = styled.div`
+  font-size: 20px;
+`;
+
+const ItemImgBox = styled.div`
+  width: 344px;
+  height: 274px;
+`;
+
+const ItemImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const Items = styled.ul`
+  padding: 0;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0;
+  cursor: pointer;
+`;
+
+const Wrap = styled.div`
+  position: relative;
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    content: "";
+    display: block;
+    width: 20px;
+    height: 100%;
+  }
+`;
+
+const Main = styled.main`
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 50px 0;
+  margin-top: 50px;
+  h1 {
+    margin-bottom: 50px;
+    text-align: center;
+  }
+`;
+
+const Item = styled.li`
+  list-style: none;
+  display: inline-block;
+  margin-left: 20px;
+  width: 344px;
+  height: 344px;
+  transition: all 0.3s;
+  &:hover {
+    transform: scale(1.03);
+  }
+`;

@@ -25,8 +25,8 @@ const BoardWrite = () => {
 
   //AWS S3 이미지 업로드 도전
   const onFileUpload = async (e) => {
-    const ACCESS_KEY = "AKIAXQKS7DPZ7R5C4WNA";
-    const SECRET_ACCESS_KEY = "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";
+    const ACCESS_KEY = process.env.ACCESS_KEY;
+    const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
     const REGION = "ap-northeast-2";
     const S3_BUCKET = "react-image-seongwoo";
 
@@ -105,12 +105,16 @@ const BoardWrite = () => {
     setcontents({
       ...contents,
       [name]: value,
+      category2: undefined,
     });
   };
 
   console.log(contents);
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (contents?.category2 == undefined || contents?.category2 == 0) {
+      alert("카테고리를 선택해주세요.");
+    }
     if (ImgPreview == 0) {
       alert("사진이 없으면 글쓰기가 불가능합니다.");
     } else {
@@ -126,6 +130,8 @@ const BoardWrite = () => {
       );
     }
   };
+
+  console.log(contents?.category2);
 
   const imagewrite = "img/imagewrite.jpg";
   const noimage = "img/noimage.jpg";
@@ -231,6 +237,9 @@ const BoardWrite = () => {
               >
                 {Cate == 1 && (
                   <>
+                    <option name="category2" value="0">
+                      카테고리를 선택해주세요.
+                    </option>
                     <option name="category2" value="1">
                       서울
                     </option>
@@ -253,6 +262,9 @@ const BoardWrite = () => {
                 )}
                 {Cate == 2 && (
                   <>
+                    <option name="category2" value="0">
+                      카테고리를 선택해주세요.
+                    </option>
                     <option name="category2" value="6">
                       속초
                     </option>
@@ -293,6 +305,9 @@ const BoardWrite = () => {
                 )}
                 {Cate == 3 && (
                   <>
+                    <option name="category2" value="0">
+                      카테고리를 선택해주세요.
+                    </option>
                     <option name="category2" value="17">
                       여수
                     </option>
@@ -333,6 +348,9 @@ const BoardWrite = () => {
                 )}
                 {Cate == 4 && (
                   <>
+                    <option name="category2" value="0">
+                      카테고리를 선택해주세요.
+                    </option>
                     <option name="category2" value="32">
                       서귀포
                     </option>
@@ -343,6 +361,9 @@ const BoardWrite = () => {
                 )}
                 {Cate == 5 && (
                   <>
+                    <option name="category2" value="0">
+                      카테고리를 선택해주세요.
+                    </option>
                     <option name="category2" value="28">
                       대구
                     </option>

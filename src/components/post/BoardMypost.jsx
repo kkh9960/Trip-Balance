@@ -50,7 +50,7 @@ const BoardMypost = ({ post, mypost }) => {
 
   return (
     <main>
-      <h1>{post.author}님의 다른글</h1>
+      <h1>{post?.author}님의 다른글</h1>
       <div className="wrapper">
         <ul className="items">
           {mypost &&
