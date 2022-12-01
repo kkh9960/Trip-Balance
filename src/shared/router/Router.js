@@ -1,41 +1,47 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
+
 import MainPage from "../../pages/mainPage/MainPage";
+
 import MyPage from "../../pages/mypage/MyPage";
-import PostViewPage from "../../pages/post/PostViewPage";
-import PostWritePage from "../../pages/post/PostWritePage";
-import PostDetailPage from "../../pages/post/PostDetailPage";
-import PostModifyPage from "../../pages/post/PostModifyPage";
+import PostPage from "../../PostPage/PostPage";
+import BoardWrite from "../../pages/BoardWrite";
 import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
-import KaKao from "../../components/login/KaKao";
+import BoardPostDetail from "../../pages/BoardPostDetail";
+import BoardPostModify from "../../pages/BoardPostModify";
+import Loading from "../../components/Loading/Loading";
+import Signup from "../../login/Signup";
 
-import Signup from "../../components/login/Signup";
-import MemberPage from "../../pages/memberPage/MemberPage";
+import Home from "../../Banner/Home";
+import { InfiniteTest } from "../../Querytest/InfiniteTest";
 
-// import Test from "../../pages/Test";
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/board" element={<BoardWrite />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/memberpage/:id" element={<MemberPage />} />
-        <Route path="/post" element={<PostViewPage />} />
-
-        <Route path="/write" element={<PostWritePage />} />
-        <Route path="/detail/:id" element={<PostDetailPage />} />
-        <Route path="/modify/:id" element={<PostModifyPage />} />
+        <Route path="/post" element={<PostPage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/write" element={<BoardWrite />} />
+        <Route path="/detail/:id" element={<BoardPostDetail />} />
+        <Route path="/modify/:id" element={<BoardPostModify />} />
         <Route path="/loading" element={<Loading />} />
         <Route path="/start" element={<GameStart />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
-        <Route path="/tb/ouath/kakao" element={<KaKao />} />
+
+        <Route path="/Signup" element={<Signup />} />
+        {/* <Route path="/" element={<InfiniteTest />} /> */}
+
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
 };
+
 export default Router;

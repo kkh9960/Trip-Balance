@@ -1,111 +1,92 @@
-import styled from "styled-components";
+import React, { useState } from "react";
+import Carousel from "react-material-ui-carousel";
+import blue from "../../../img/blue.jpg";
+import bblue from "../../../img/bblue.jpg";
+import ameral from "../../../img/ameral.jpg";
+import logo from "../../../img/logo.jpg";
+import retro from "../../../img/retro.jpg";
+import logo3 from "../../../img/3logo.jpg";
+import next from "../../../img/next.svg";
+import prev from "../../../img/prev.svg";
+import {
+  Blue,
+  Img,
+  Logo,
+  Title,
+  Trip,
+  Trip2,
+  Trip3,
+  Ameral,
+  Title2,
+  Comment,
+  Comment2,
+  Retro,
+  Bblue,
+  Balance,
+  Logo3,
+  Balancce,
+  Next,
+  Prev,
+  Stop,
+  NextWrap,
+} from "./BannerStyle";
+import { Link } from "react-router-dom";
 
-export const Blue = styled.div`
-  width: 100%;
-  height: 1056px;
-`;
-export const Title = styled.h1`
-  position: relative;
-  bottom: 750px;
-  left: 510px;
-  font-size: 70px;
-  color: #595c5d;
-  /* color: #3ec0e8; */
-  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ;
-`;
+function Banner() {
+  const [stop, setStop] = useState();
 
-export const Img = styled.img`
-  width: 100%;
-  height: 1056px;
-`;
-export const Img2 = styled.img`
-  width: 100%;
-  height: 1056px;
-`;
+  return (
+    <Carousel
+      autoPlay={false}
+      stopAutoPlayOnHover
+      navButtonsProps={{
+        // Change the colors and radius of the actual buttons. THIS STYLES BOTH BUTTONS
+        style: {
+          borderRadius: 10,
+          width: "none",
+          width: 0,
+          height: 0,
+          all: "unset",
+          position: "relative",
+          top: 50,
+        },
+      }}
+      indicators={false}
+      // interval={5000}
+      // navButtonsAlwaysVisible={false}
+      NextIcon={<Next src={next} />}
+      PrevIcon={<Prev src={prev} />}
+    >
+      <Blue>
+        <Img src={blue} />
+        <Logo src={logo} />
+        <Title>Trip Balance</Title>
+        <Trip>추천여행지</Trip>
+        <Trip2>추천여행지</Trip2>
+        <Trip3>추천여행지</Trip3>
+        <Stop>스톱</Stop>
+      </Blue>
+      <Ameral>
+        <Img src={ameral} />
+        <Link to="/start">
+          <Retro src={retro} />
+        </Link>
+        <Title2>밸런스게임</Title2>
+        <Comment>당신에게 맞는 여행지는 어디인가요?</Comment>
+        <Comment2>밸런스 게임을 통해서 당신의 여행지를 찾아보세요</Comment2>
+        <Stop>스톱</Stop>
+      </Ameral>
+      <Bblue>
+        <Img src={bblue} />
+        <Link to="/post">
+          <Logo3 src={logo3} />
+        </Link>
+        <Balance>Best Balance Trip</Balance>
+        <Balancce>가장 핫한 우리의 여행 이야기</Balancce>
+        <Stop>스톱</Stop>
+      </Bblue>
+    </Carousel>
+  );
+}
 
-export const Logo = styled.img`
-  position: absolute;
-  left: 1050px;
-  width: 360px;
-  height: 348px;
-  top: 350px;
-`;
-export const Trip = styled.div`
-  position: absolute;
-  color: white;
-  font-size: 20px;
-  top: 450px;
-  left: 510px;
-`;
-export const Trip2 = styled.div`
-  position: absolute;
-  color: royalblue;
-  top: 490px;
-  left: 510px;
-`;
-export const Trip3 = styled.div`
-  position: absolute;
-  color: #e9b245;
-  top: 520px;
-  left: 510px;
-`;
-export const Ameral = styled.div`
-  width: 100%;
-  height: 1056px;
-`;
-export const Title2 = styled.div`
-  position: relative;
-  font-size: 80px;
-  bottom: 710px;
-  left: 150px;
-
-  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ;
-`;
-export const Comment = styled.div`
-  position: absolute;
-  color: white;
-  font-size: 50px;
-  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  bottom: 500px;
-  left: 160px;
-`;
-export const Comment2 = styled.div`
-  position: absolute;
-  bottom: 400px;
-  left: 160px;
-  color: #ffffff;
-  font-size: 40px;
-  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ;
-`;
-
-export const Retro = styled.img`
-  position: absolute;
-  width: 360px;
-  height: 348px;
-  left: 1070px;
-  bottom: 350px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ;
-`;
-export const Bblue = styled.div`
-  width: 100%;
-  height: 1056px;
-`;
-export const Balance = styled.div`
-  position: absolute;
-  font-size: 130px;
-  top: 330px;
-  text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; ;
-`;
-export const Logo3 = styled.img`
-  width: 600px;
-  height: 348px;
-  position: absolute;
-  top: 350px;
-  left: 1070px;
-`;
-export const Balancce = styled.div`
-  font-size: 50px;
-  top: 500px;
-  position: absolute;
-  color: white;
-`;
+export default Banner;

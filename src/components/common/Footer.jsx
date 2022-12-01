@@ -3,13 +3,20 @@ import styled from "styled-components";
 import Layout from "./Layout";
 import TripImage from "../../img/trip.jpg";
 import { AiFillGithub } from "react-icons/ai";
+import {
+  Container,
+  Compeney,
+  Information,
+  Logo,
+  Front,
+  Back,
+  Designer,
+} from "./FooterStyle";
 const Footer = () => {
   return (
     <Container>
       <Layout>
-        <Compeney>
-          Trip Balance
-        </Compeney>
+        <Compeney>Trip Balance</Compeney>
         <Logo src={TripImage} />
         <Information>
           <Front>
@@ -54,48 +61,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-const Container = styled.div`
-  background-color: #808080;
-  height: 432.91px;
-`;
-const Compeney = styled.div`
-  width: 953px;
-  height: 24px;
-  margin: 0px 434.4px 51.7px 5px;
-  font-family: Inter;
-  font-size: 20px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #fff;
-  position: relative;
-  /* margin-top: 41.8px; */
-`;
-const Information = styled.div`
-  width: 1088px;
-  height: 168px;
-  margin: 51.7px 0 42.8px 304.4px;
-  font-family: Inter;
-  font-size: 20px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #fff;
-  position: relative;
-  margin-top: -100px;
-`;
-const Logo = styled.img`
-  width: 300px;
-  position: relative;
-  bottom: -15px;
-`;
-const Front = styled.div``;
-const Back = styled.div``;
-const Designer = styled.div``;

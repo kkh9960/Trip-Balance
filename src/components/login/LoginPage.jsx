@@ -4,15 +4,15 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import "./login.css";
-import TripImage from "../../img/trip.jpg";
+import TripImage from "../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useCookies } from "react-cookie";
-import instance from "../../lib/instance";
-import useInput from "../../hooks/useInput";
-import kakao from "../../img/kakaologin.jpg";
+import instance from "../lib/instance";
+import useInput from "../hooks/useInput";
+import Header from "../component/Header";
+import kakao from "../img/kakaologin.jpg";
 import { ImExit } from "react-icons/im";
-import { KAKAO_AUTH_URL } from "./AuthKakao";
 
 function LoginPage() {
   const {
@@ -31,8 +31,9 @@ function LoginPage() {
   const [password, setPassword, pwchange] = useInput("");
   const [cookie, setCookie, removeCookie] = useCookies();
   const modalClose = () => {
-    window.location.reload();
+    setModal(!modal);
   };
+  console.log(watch());
 
   const onvaled = (event) => {
     event.preventDefault();
@@ -51,64 +52,75 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
+      // console.log(res)
+      // console.log(res.data.data)
+      // console.log(res.data.data.email)
+      // console.log(res.data.statusMsg)
+      // console.log(res.data.statusCode)
       sessionStorage.setItem("nickName", res.data.data.nickName);
 
-      localStorage.setItem(
-        "refreshToken",
-        res.request.getResponseHeader("refresh-token")
-      );
-      localStorage.setItem(
-        "token",
-        res.request.getResponseHeader("authorization")
-      );
-      // setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
-      // setCookie("token", res.request.getResponseHeader("authorization"));
+      setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
+      setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
+        sessionStorage.setItem("nickName", res.data.data.nickName);
+        localStorage.setItem(
+          "refreshToken",
+          res.request.getResponseHeader("refresh-token")
+        );
+        localStorage.setItem(
+          "token",
+          res.request.getResponseHeader("authorization")
+        );
 
         alert("로그인완료!");
+
         window.location.reload();
-      } else {
-        alert(res.data.statusMsg);
+      } else if (res.data.statusCode == 110) {
+        alert("해당하는이메일이없습니다");
+      } else if (res.data.statusCode == 111) {
+        alert("비밀번호가틀렷습니다");
       }
     });
   };
 
   return (
     <div className="wrap">
-      {/* <Header /> */}
+      <Header />
 
-      {modal ? (
+      {modal && (
         <div className="auth-wrapper">
           <form onSubmit={onvaled}>
             <div className="cancel" onClick={modalClose}>
               <ImExit size={30} />
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <h1>로그인</h1>
-            </div>
+            </t.CancelBtn>
+            <t.LoginTitleWrap style={{ textAlign: "center" }}>
+              <t.LoginTitle>로그인</t.LoginTitle>
+            </t.LoginTitleWrap>
 
-            <input
+            <t.InputWrite
               value={email}
               name="email"
+              className="input"
               type="email"
               placeholder=" 이메일을 입력해주세요 ."
               onChange={emailchange}
             />
             {errors.email && <p>이메일은 필수 항목입니다.</p>}
 
-            <input
+            <t.InputWrite
               value={password}
               name="password"
               type="password"
+              className="input"
               placeholder=" 비밀번호를 입력해주세요 ."
               onChange={pwchange}
             />
             {errors.password && errors.password.type === "required" && (
-              <p> 비밀번호는 필수 항목입니다.</p>
+              <t.Danger> 비밀번호는 필수 항목입니다.</t.Danger>
             )}
             {errors.password && errors.password.type === "minLength" && (
-              <p>비밀번호는 6자 이상이어야 합니다</p>
+              <t.Danger>비밀번호는 6자 이상이어야 합니다</t.Danger>
             )}
 
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
@@ -117,25 +129,23 @@ function LoginPage() {
               로그인
             </button>
             <div className="line"></div>
-            <a className="kaka" href={KAKAO_AUTH_URL}>
+            <button className="kaka">
               <img src={kakao} className="kakaoimg" />
-            </a>
+            </button>
             <div
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
               onClick={() => {
-                setModal(!modal);
+                navigate("/Signup");
               }}
             >
               회원가입
             </div>
           </form>
         </div>
-      ) : (
-        <Signup />
       )}
       {/* <Footer /> */}
-    </div>
+    </t.Wrap>
   );
 }
 

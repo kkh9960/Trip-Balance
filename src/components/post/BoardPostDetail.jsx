@@ -405,12 +405,6 @@ const BoardPostDetail = () => {
 };
 export default BoardPostDetail;
 
-const Dot = styled.div`
-  width: 10px;
-  height: 10px;
-  background-color: black;
-`;
-
 const BoardContentsbox = styled.div`
   width: 100%;
   padding: 80px;
