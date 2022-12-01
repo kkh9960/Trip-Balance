@@ -24,13 +24,13 @@ export default function GamePage() {
   };
   const leftGo = (e) => {
     e.preventDefault();
-   // navigate(`/game/${GameID}/${gameData.data[0].leftId}`)
-    setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].leftId}`)}, 600);
+    navigate(`/game/${GameID}/${gameData.data[0].leftId}`)
+    //setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].leftId}`)}, 600);
   };
   const rightGo = (e) => {
     e.preventDefault();
-    //navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
-    setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].rightId}`)}, 600);
+    navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
+    //setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].rightId}`)}, 600);
   }
   const resultGo = (e) => {
     e.preventDefault();
