@@ -11,8 +11,6 @@ import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
 import KaKao from "../../components/login/KaKao";
-
-import Signup from "../../components/login/Signup";
 import MemberPage from "../../pages/memberPage/MemberPage";
 import TestSlide from "../../components/post/TestSlide";
 
