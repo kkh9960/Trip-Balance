@@ -19,9 +19,9 @@ function RegisterPage() {
     formState: { errors },
     handleSubmit,
   } = useForm({ mode: "onBlur" });
-
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [modal, setModal] = useState(false);
+
   const [checkError, setCheckError] = useState("");
   const [checkMsg, setCheckMsg] = useState("");
   const [dpNameCheck, setDpNameCheck] = useState(false);
@@ -29,17 +29,16 @@ function RegisterPage() {
   const [EmailCheckMsg, setEmailCheckMsg] = useState("");
   const [dpEmailCheck, setDpEmailCheck] = useState(false);
 
+
   const dispatch = useDispatch();
   const password = useRef();
   password.current = watch("password");
   const navigate = useNavigate();
   const [email, setEmail, emailchange] = useInput("");
   const [nickname, setnickname, nicknamechange] = useInput("");
-
   const modalClose = () => {
     window.location.reload();
   };
-
   const nicknamecheck = () => {
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
       if (nickname.trim() === "") {
@@ -48,15 +47,16 @@ function RegisterPage() {
       }
       if (res.data.statusCode == 0) {
         setCheckError(<FcCheckmark size={30} />);
+
         setCheckMsg("사용가능한닉네임입니다");
         setDpNameCheck(true);
       } else {
         setCheckMsg("이미 다른 사용자가 사용 중 입니다.");
         setDpNameCheck(false);
+
       }
     });
   };
-
   const idCheck = () => {
     console.log(typeof LoginValue);
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
@@ -84,7 +84,6 @@ function RegisterPage() {
   const nick = {
     nickName: nickname,
   };
-
   const onSubmit = async (data) => {
     if (email.trim() === "") {
       alert("이메일을입력해주세요!");
@@ -96,7 +95,6 @@ function RegisterPage() {
       pw: data.password,
       pwConfirm: data.password_confirm,
     });
-
     await dispatch(
       addMemberThunk({
         email: LoginValue.email,
@@ -120,7 +118,6 @@ function RegisterPage() {
       navigate("/");
     });
   };
-
   return (
     <motion.div
       className="loginPage"
@@ -142,14 +139,12 @@ function RegisterPage() {
               >
                 <BsFillArrowLeftCircleFill size={30} />
               </t.BackArrow>
-
               <t.Cancel onClick={modalClose}>
                 <ImExit size={30} />
               </t.Cancel>
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>
               </t.SignupTitleWrap>
-
               <t.InputWrite
                 name="email"
                 type="email"
@@ -159,8 +154,10 @@ function RegisterPage() {
               />
               <t.EmailCheck onClick={idCheck}>중복확인</t.EmailCheck>
 
+
               <t.EmailCheckError>{EmailCheckError}</t.EmailCheckError>
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
+
 
               <t.InputWrite
                 name="name"
@@ -173,7 +170,9 @@ function RegisterPage() {
               </t.NickNameCheck>
               <t.Checkwrap>{checkError}</t.Checkwrap>
 
+
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
+
 
               <t.InputWrite
                 placeholder=" 비밀번호를입력하세요 ."
@@ -186,10 +185,11 @@ function RegisterPage() {
                 })}
               />
 
+
+
               {errors.password && errors.password.type === "minLength" && (
                 <t.Danger>비밀번호는 8자 이상이어야 합니다</t.Danger>
               )}
-
               <t.InputWrite
                 placeholder=" 비밀번호를확인하세요."
                 name="password_confirm"
@@ -207,7 +207,6 @@ function RegisterPage() {
                 errors.password_confirm.type === "validate" && (
                   <t.Danger>암호가 일치하지 않습니다</t.Danger>
                 )}
-
               {errorFromSubmit && <p>{errorFromSubmit}</p>}
               <t.Line></t.Line>
               <t.SignUpBtn>회원가입</t.SignUpBtn>
@@ -221,5 +220,4 @@ function RegisterPage() {
     </motion.div>
   );
 }
-
 export default RegisterPage;

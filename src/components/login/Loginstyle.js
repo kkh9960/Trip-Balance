@@ -1,11 +1,8 @@
 import styled from "styled-components";
-
 export const Wrap = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
-
   z-index: 1;
 `;
-
 export const AuthWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,11 +13,9 @@ export const AuthWrapper = styled.div`
   justify-content: center;
   align-items: center;
   top: 3px;
-
   left: 0px;
   z-index: 2;
 `;
-
 export const Formtag = styled.form`
   padding: 30px;
   width: 518px;
@@ -49,7 +44,6 @@ export const CancelBtn = styled.div`
   }
 `;
 export const LoginTitleWrap = styled.div``;
-
 export const LoginTitle = styled.h1``;
 export const InputWrite = styled.input`
   display: block;
@@ -71,15 +65,13 @@ export const InputWrite = styled.input`
     width: 300px;
   }
 `;
-
 export const Danger = styled.p`
   color: #bf1650;
   before {
     display: inline;
-    content: "⚠ ";
+    content: ":경고: ";
   }
 `;
-
 export const LoginBtn = styled.button`
   width: 360px;
   height: 61px;
@@ -95,7 +87,6 @@ export const LoginBtn = styled.button`
     left: 10px;
   }
 `;
-
 export const Line = styled.div`
   width: 354px;
   border: 1px solid rgba(170, 170, 170, 0.7);
@@ -107,7 +98,6 @@ export const Line = styled.div`
     width: 300px;
   }
 `;
-
 export const KakaoWrap = styled.a`
   border: none;
   outline: none;
