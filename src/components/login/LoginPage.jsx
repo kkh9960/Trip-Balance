@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
-import "./login.css";
+import * as t from "./Loginstyle";
 import TripImage from "../../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
@@ -75,52 +75,52 @@ function LoginPage() {
   };
 
   return (
-    <div className="wrap">
+    <t.Wrap>
       {/* <Header /> */}
 
       {modal ? (
-        <div className="auth-wrapper">
-          <form onSubmit={onvaled}>
-            <div className="cancel" onClick={modalClose}>
+        <t.AuthWrapper>
+          <t.Formtag onSubmit={onvaled}>
+            <t.CancelBtn className="cancel" onClick={modalClose}>
               <ImExit size={30} />
-            </div>
-            <div style={{ textAlign: "center" }}>
-              <h1>로그인</h1>
-            </div>
+            </t.CancelBtn>
+            <t.LoginTitleWrap style={{ textAlign: "center" }}>
+              <t.LoginTitle>로그인</t.LoginTitle>
+            </t.LoginTitleWrap>
 
-            <input
+            <t.InputWrite
               value={email}
               name="email"
+              className="input"
               type="email"
               placeholder=" 이메일을 입력해주세요 ."
               onChange={emailchange}
             />
             {errors.email && <p>이메일은 필수 항목입니다.</p>}
 
-            <input
+            <t.InputWrite
               value={password}
               name="password"
               type="password"
+              className="input"
               placeholder=" 비밀번호를 입력해주세요 ."
               onChange={pwchange}
             />
             {errors.password && errors.password.type === "required" && (
-              <p> 비밀번호는 필수 항목입니다.</p>
+              <t.Danger> 비밀번호는 필수 항목입니다.</t.Danger>
             )}
             {errors.password && errors.password.type === "minLength" && (
-              <p>비밀번호는 6자 이상이어야 합니다</p>
+              <t.Danger>비밀번호는 6자 이상이어야 합니다</t.Danger>
             )}
 
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
 
-            <button type="submit" style={{ textDecorationLine: "none" }}>
-              로그인
-            </button>
-            <div className="line"></div>
-            <a className="kaka" href={KAKAO_AUTH_URL}>
-              <img src={kakao} className="kakaoimg" />
-            </a>
-            <div
+            <t.LoginBtn>로그인</t.LoginBtn>
+            <t.Line></t.Line>
+            <t.KakaoWrap href={KAKAO_AUTH_URL}>
+              <t.KakaoImg src={kakao} className="kakaoimg" />
+            </t.KakaoWrap>
+            <t.SignUpbtn
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
               onClick={() => {
@@ -128,14 +128,14 @@ function LoginPage() {
               }}
             >
               회원가입
-            </div>
-          </form>
-        </div>
+            </t.SignUpbtn>
+          </t.Formtag>
+        </t.AuthWrapper>
       ) : (
         <Signup />
       )}
       {/* <Footer /> */}
-    </div>
+    </t.Wrap>
   );
 }
 
