@@ -13,7 +13,6 @@ import useInput from "../../hooks/useInput";
 import kakao from "../../img/kakaologin.jpg";
 import { ImExit } from "react-icons/im";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
-
 function LoginPage() {
   const {
     setValue,
@@ -31,7 +30,6 @@ function LoginPage() {
   const modalClose = () => {
     window.location.reload();
   };
-
   const onvaled = (event) => {
     event.preventDefault();
     if (email.trim() === "") {
@@ -50,7 +48,6 @@ function LoginPage() {
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
       console.log(res);
-
       // setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
       // setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
@@ -64,9 +61,7 @@ function LoginPage() {
           "token",
           res.request.getResponseHeader("authorization")
         );
-
         alert("로그인완료!");
-
         window.location.reload();
       } else if (res.data.statusCode == 110) {
         alert("해당하는이메일이없습니다");
@@ -75,11 +70,9 @@ function LoginPage() {
       }
     });
   };
-
   return (
     <t.Wrap>
       {/* <Header /> */}
-
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
@@ -89,7 +82,6 @@ function LoginPage() {
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
               <t.LoginTitle>로그인</t.LoginTitle>
             </t.LoginTitleWrap>
-
             <t.InputWrite
               value={email}
               name="email"
@@ -99,7 +91,6 @@ function LoginPage() {
               onChange={emailchange}
             />
             {errors.email && <p>이메일은 필수 항목입니다.</p>}
-
             <t.InputWrite
               value={password}
               name="password"
@@ -114,9 +105,7 @@ function LoginPage() {
             {errors.password && errors.password.type === "minLength" && (
               <t.Danger>비밀번호는 6자 이상이어야 합니다</t.Danger>
             )}
-
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
-
             <t.LoginBtn>로그인</t.LoginBtn>
             <t.Line></t.Line>
             <t.KakaoWrap href={KAKAO_AUTH_URL}>
@@ -140,9 +129,7 @@ function LoginPage() {
     </t.Wrap>
   );
 }
-
 export default LoginPage;
-
 const Logo = styled.img``;
 // 필요할때 모달창쓰기
 // import React, { useState } from "react";
@@ -150,7 +137,6 @@ const Logo = styled.img``;
 //
 // const Home = () => {
 //   const [modal, setModal] = useState(false);
-
 //   return (
 //     <div>
 //       <button
@@ -164,5 +150,4 @@ const Logo = styled.img``;
 //     </div>
 //   );
 // };
-
 // export default Home;

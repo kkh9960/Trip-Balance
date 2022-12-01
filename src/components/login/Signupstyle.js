@@ -1,14 +1,14 @@
 import styled from "styled-components";
-
 export const Wrap = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
-
   z-index: 1;
 `;
 export const Checkwrap = styled.div`
   position: relative;
   left: 400px;
+
   bottom: -10px;
+
 `;
 export const SignupWrapper = styled.div`
   display: flex;
@@ -20,10 +20,10 @@ export const SignupWrapper = styled.div`
   justify-content: center;
   align-items: center;
   top: 3px;
-
   left: 0px;
   z-index: 2;
 `;
+
 
 export const Nicknamemsg = styled.div`
   position: relative;
@@ -31,6 +31,7 @@ export const Nicknamemsg = styled.div`
   top: 60px;
   color: green;
 `;
+
 export const FormTag = styled.form`
   padding: 30px;
   width: 518px;
@@ -42,17 +43,14 @@ export const FormTag = styled.form`
 
   position: relative;
 `;
-
 export const BackArrow = styled.div`
   position: relative;
   top: 30px;
 `;
-
 export const Cancel = styled.div`
   position: relative;
   left: 480px;
 `;
-
 export const SignupTitleWrap = styled.div``;
 export const SignUpTitle = styled.div`
   width: 200px;
@@ -70,11 +68,13 @@ export const SignUpTitle = styled.div`
   position: relative;
   left: 20px;
 `;
+
 export const EmailCheckError = styled.div`
   position: relative;
   left: 400px;
   bottom: -10px;
 `;
+
 export const InputWrite = styled.input`
   display: block;
   box-sizing: border-box;
@@ -92,20 +92,17 @@ export const InputWrite = styled.input`
   position: relative;
   top: 70px;
 `;
-
 export const Danger = styled.p`
   color: #bf1650;
   position: relative;
   top: 70px;
   left: 85px;
-
   before {
     color: red;
     display: inline;
-    content: "⚠ ";
+    content: ":경고: ";
   }
 `;
-
 export const Line = styled.div`
   width: 354px;
   border: 1px solid rgba(170, 170, 170, 0.7);
@@ -113,6 +110,7 @@ export const Line = styled.div`
   left: 80px;
   top: 60px;
 `;
+
 export const Emailmsg = styled.div`
   position: relative;
   left: 80px;
@@ -121,6 +119,7 @@ export const Emailmsg = styled.div`
   color: green;
   border: 1px solid red;
 `;
+
 
 export const SignUpBtn = styled.button`
   background: #00c1ec;
@@ -144,7 +143,6 @@ export const SignUpBtn = styled.button`
   left: 80px;
   transition: 1.1s;
 `;
-
 export const EmailCheck = styled.button`
   width: 100px;
   height: 30px;
@@ -155,7 +153,6 @@ export const EmailCheck = styled.button`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
 `;
-
 export const NickNameCheck = styled.button`
   width: 100px;
   height: 30px;

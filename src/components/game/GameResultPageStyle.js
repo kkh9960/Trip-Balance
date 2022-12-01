@@ -12,21 +12,21 @@ export const localImg = styled.img`
 export const localText = styled.div`
   position: relative;
   width: 500px;
-  text-align: center;
   color: white;
   font-size: 4.2em;
   text-shadow: 3px 3px 3px #000;
   bottom: 310px;
+  left: 120px;
 `;
 
 export const localTextContent = styled.div`
   position: relative;
-  width: 900px;
-  text-align: center;
+  width: 500px;
   color: white;
   font-size: x-large;
   text-shadow: 3px 3px 3px #000;
   bottom: 250px;
+  left: 130px;
 `;
 
 export const hotelImg = styled.img`

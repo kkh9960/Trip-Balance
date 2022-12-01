@@ -24,16 +24,18 @@ export default function GamePage() {
   };
   const leftGo = (e) => {
     e.preventDefault();
-    setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].leftId}`)}, 600);
+    navigate(`/game/${GameID}/${gameData.data[0].leftId}`)
+    //setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].leftId}`)}, 600);
   };
   const rightGo = (e) => {
     e.preventDefault();
-    setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].rightId}`)}, 600);
+    navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
+    //setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].rightId}`)}, 600);
   }
   const resultGo = (e) => {
     e.preventDefault();
     dispatch(__GameLastPost({GameID, QID}));
-    navigate(`/gameResult/${GameID}/${QID}`)
+    navigate(`/gameResult/${GameID}/${QID}`);
     window.location.reload();
   }
 
@@ -53,6 +55,7 @@ export default function GamePage() {
   // 움짤 만들어주시면 넣을 예정
 
   return (
+    // 글자 받아오면 띄어쓰기대로 나누기 정렬
     <g.totalWrap>
       <div>
       {QID >= 32 ? (
@@ -66,13 +69,13 @@ export default function GamePage() {
           <g.balanceButtonWrap>
             <g.balanceButtonBH>
             <g.balanceButton src={leftImg} onClick={leftGo}/>
-            <g.balanceButtonHover src={VCharacter}/>
+            <g.balanceButtonHover src={VCharacter} onClick={leftGo}/>
             <g.balanceButtonRightHover src={FCharacter}/>
             <g.balanceText onClick={leftGo}>{gameData.data[0].leftAnswer}</g.balanceText>
             </g.balanceButtonBH>
             <g.balanceButtonBH>
             <g.balanceButton src={rightImg} onClick={rightGo}/>
-            <g.balanceButtonHover src={VCharacter}/>
+            <g.balanceButtonHover src={VCharacter} onClick={rightGo}/>
             <g.balanceButtonLeftHover src={FCharacter}/>
             <g.balanceText onClick={rightGo}>{gameData.data[0].rightAnswer}</g.balanceText>
             </g.balanceButtonBH>
