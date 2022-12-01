@@ -96,7 +96,7 @@ export const InputWrite = styled.input`
 export const Danger = styled.p`
   color: #bf1650;
   position: relative;
-  top: 30px;
+  top: 70px;
   left: 85px;
 
   before {
