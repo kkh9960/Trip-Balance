@@ -28,6 +28,8 @@ export const Formtag = styled.form`
   position: relative;
   top: 60px;
   @media screen and (max-width: 746px) {
+    top: 10px;
+    height: 600px;
     width: 316px;
   }
 `;
@@ -37,6 +39,9 @@ export const CancelBtn = styled.div`
   cursor: pointer;
   width: 24px;
   height: 50px;
+  @media screen and (max-width: 746px) {
+    left: 300px;
+  }
 `;
 export const LoginTitleWrap = styled.div``;
 export const LoginTitle = styled.h1``;
@@ -56,6 +61,9 @@ export const InputWrite = styled.input`
   margin-top: 20px;
   position: relative;
   top: 37px;
+  @media screen and (max-width: 746px) {
+    width: 300px;
+  }
 `;
 export const Danger = styled.p`
   color: #bf1650;
@@ -74,6 +82,10 @@ export const LoginBtn = styled.button`
   border-radius: 10px;
   color: white;
   border: none;
+  @media screen and (max-width: 746px) {
+    width: 300px;
+    left: 10px;
+  }
 `;
 export const Line = styled.div`
   width: 354px;
@@ -81,6 +93,10 @@ export const Line = styled.div`
   position: relative;
   left: 80px;
   top: 110px;
+  @media screen and (max-width: 746px) {
+    left: 10px;
+    width: 300px;
+  }
 `;
 export const KakaoWrap = styled.a`
   border: none;
@@ -97,6 +113,9 @@ export const KakaoWrap = styled.a`
   border-radius: 10px;
   position: relative;
   left: 80px;
+  @media screen and (max-width: 746px) {
+    left: -25px;
+  }
 `;
 export const KakaoImg = styled.img`
   width: 360px;
@@ -104,6 +123,10 @@ export const KakaoImg = styled.img`
   position: relative;
   top: 120px;
   right: 21px;
+  @media screen and (max-width: 746px) {
+    width: 300px;
+    left: 10px;
+  }
 `;
 export const SignUpbtn = styled.div`
   position: relative;
