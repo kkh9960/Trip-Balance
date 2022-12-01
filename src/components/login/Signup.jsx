@@ -157,6 +157,7 @@ function RegisterPage() {
                 onChange={emailchange}
                 placeholder=" 이메일을 입력해주세요 ."
               />
+              <t.EmailCheck onClick={idCheck}>중복확인</t.EmailCheck>
 
               <t.EmailCheckError>{EmailCheckError}</t.EmailCheckError>
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
@@ -167,6 +168,9 @@ function RegisterPage() {
                 onChange={nicknamechange}
                 value={nickname}
               />
+              <t.NickNameCheck onClick={nicknamecheck}>
+                중복확인
+              </t.NickNameCheck>
               <t.Checkwrap>{checkError}</t.Checkwrap>
 
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
@@ -211,8 +215,6 @@ function RegisterPage() {
               이미 아이디가 있다면...{" "}
             </Link> */}
             </t.FormTag>
-            <t.EmailCheck onClick={idCheck}>중복확인</t.EmailCheck>
-            <t.NickNameCheck onClick={nicknamecheck}>중복확인</t.NickNameCheck>
           </t.SignupWrapper>
         )}
       </t.Wrap>

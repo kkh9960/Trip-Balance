@@ -8,7 +8,7 @@ export const Wrap = styled.div`
 export const Checkwrap = styled.div`
   position: relative;
   left: 400px;
-  bottom: -10px;
+  bottom: 10px;
 `;
 export const SignupWrapper = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export const SignupWrapper = styled.div`
 export const Nicknamemsg = styled.div`
   position: relative;
   left: 80px;
-  top: 60px;
+  top: 30px;
   color: green;
 `;
 export const FormTag = styled.form`
@@ -41,6 +41,11 @@ export const FormTag = styled.form`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
   position: relative;
+  @media screen and (max-width: 746px) {
+    top: 10px;
+    height: 600px;
+    width: 300px;
+  }
 `;
 
 export const BackArrow = styled.div`
@@ -69,11 +74,16 @@ export const SignUpTitle = styled.div`
   color: #555;
   position: relative;
   left: 20px;
+  @media screen and (max-width: 746px) {
+    top: -100px;
+    left: -80px;
+    font-size: 25px;
+  }
 `;
 export const EmailCheckError = styled.div`
   position: relative;
   left: 400px;
-  bottom: -10px;
+  bottom: 20px;
 `;
 export const InputWrite = styled.input`
   display: block;
@@ -88,9 +98,14 @@ export const InputWrite = styled.input`
   padding: 10px 15px;
   margin-bottom: 10px;
   font-size: 14px;
-  margin-top: 20px;
+
   position: relative;
   top: 70px;
+  @media screen and (max-width: 746px) {
+    width: 250px;
+    top: -100px;
+    right: 30px;
+  }
 `;
 
 export const Danger = styled.p`
@@ -112,6 +127,11 @@ export const Line = styled.div`
   position: relative;
   left: 80px;
   top: 60px;
+  @media screen and (max-width: 746px) {
+    top: -60px;
+    left: 20px;
+    width: 250px;
+  }
 `;
 export const Emailmsg = styled.div`
   position: relative;
@@ -119,7 +139,6 @@ export const Emailmsg = styled.div`
   bottom: -40px;
 
   color: green;
-  border: 1px solid red;
 `;
 
 export const SignUpBtn = styled.button`
@@ -143,25 +162,36 @@ export const SignUpBtn = styled.button`
   position: relative;
   left: 80px;
   transition: 1.1s;
+  @media screen and (max-width: 746px) {
+    bottom: 160px;
+    left: 45px;
+    width: 200px;
+  }
 `;
 
 export const EmailCheck = styled.button`
   width: 100px;
   height: 30px;
   position: relative;
-  left: 240px;
-  bottom: 500px;
+  bottom: -10px;
+  left: 450px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
+  @media screen and (max-width: 746px) {
+    top: -1790px;
+    left: 140px;
+    width: 80px;
+  }
 `;
 
 export const NickNameCheck = styled.button`
   width: 100px;
   height: 30px;
-  left: 240px;
+  left: 450px;
+  bottom: -10px;
   position: relative;
-  bottom: 440px;
+
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   border-radius: 10px;
