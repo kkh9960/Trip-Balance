@@ -50,10 +50,6 @@ function Banner() {
           position: "relative",
           top: 50,
         },
-        NextIcon: {
-          right: "100px",
-          position: "relative",
-        },
       }}
       indicators={false}
       // interval={5000}

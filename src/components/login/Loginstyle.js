@@ -32,6 +32,9 @@ export const Formtag = styled.form`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   top: 60px;
+  @media screen and (max-width: 746px) {
+    width: 316px;
+  }
 `;
 export const CancelBtn = styled.div`
   position: relative;
