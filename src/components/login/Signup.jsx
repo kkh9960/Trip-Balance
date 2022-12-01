@@ -21,8 +21,15 @@ function RegisterPage() {
   } = useForm({ mode: "onBlur" });
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [modal, setModal] = useState(false);
-  const [dpNameCheck, setDpNameCheck] = useState(false);
+
   const [checkError, setCheckError] = useState("");
+  const [checkMsg, setCheckMsg] = useState("");
+  const [dpNameCheck, setDpNameCheck] = useState(false);
+  const [EmailCheckError, setEmailCheckError] = useState("");
+  const [EmailCheckMsg, setEmailCheckMsg] = useState("");
+  const [dpEmailCheck, setDpEmailCheck] = useState(false);
+
+
   const dispatch = useDispatch();
   const password = useRef();
   password.current = watch("password");
@@ -40,11 +47,13 @@ function RegisterPage() {
       }
       if (res.data.statusCode == 0) {
         setCheckError(<FcCheckmark size={30} />);
+
+        setCheckMsg("사용가능한닉네임입니다");
         setDpNameCheck(true);
-      }
-      if (res.data.statusCode == 118) {
-        setCheckError("이미 다른 사용자가 사용 중 입니다.");
-        return;
+      } else {
+        setCheckMsg("이미 다른 사용자가 사용 중 입니다.");
+        setDpNameCheck(false);
+
       }
     });
   };
@@ -52,16 +61,20 @@ function RegisterPage() {
     console.log(typeof LoginValue);
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
       console.log(res);
+
+      if (res.data.statusCode == 0) {
+        setEmailCheckError(<FcCheckmark size={30} />);
+        setEmailCheckMsg("사용가능한이메일입니다");
+      }
+
       if (email.trim() === "") {
         alert("이메일을입력해주세요!");
         return;
       }
       if (res.data.statusCode == 117) {
-        alert("중복된이메일이잇습니다");
+        setEmailCheckMsg("중복된이메일입니다!");
+
         return;
-      }
-      if (res.data.statusCode == 0) {
-        alert("가입가능한이메일입니다");
       }
     });
   };
@@ -139,7 +152,12 @@ function RegisterPage() {
                 onChange={emailchange}
                 placeholder=" 이메일을 입력해주세요 ."
               />
-              {errors.email && <p>이메일형식이아닙니다</p>}
+
+
+              <t.EmailCheckError>{EmailCheckError}</t.EmailCheckError>
+              <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
+
+
               <t.InputWrite
                 name="name"
                 placeholder=" 닉네임 ."
@@ -147,6 +165,11 @@ function RegisterPage() {
                 value={nickname}
               />
               <t.Checkwrap>{checkError}</t.Checkwrap>
+
+
+              <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
+
+
               <t.InputWrite
                 placeholder=" 비밀번호를입력하세요 ."
                 name="password"
@@ -157,7 +180,9 @@ function RegisterPage() {
                   pattern: /[~!@#$%^&*()_+|<>?:{}]/,
                 })}
               />
-              {errors.password && <p>특수문자를포함해주세요</p>}
+
+
+
               {errors.password && errors.password.type === "minLength" && (
                 <t.Danger>비밀번호는 8자 이상이어야 합니다</t.Danger>
               )}

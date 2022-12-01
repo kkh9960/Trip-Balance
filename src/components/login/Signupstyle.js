@@ -6,7 +6,9 @@ export const Wrap = styled.div`
 export const Checkwrap = styled.div`
   position: relative;
   left: 400px;
-  bottom: 15px;
+
+  bottom: -10px;
+
 `;
 export const SignupWrapper = styled.div`
   display: flex;
@@ -21,6 +23,15 @@ export const SignupWrapper = styled.div`
   left: 0px;
   z-index: 2;
 `;
+
+
+export const Nicknamemsg = styled.div`
+  position: relative;
+  left: 80px;
+  top: 60px;
+  color: green;
+`;
+
 export const FormTag = styled.form`
   padding: 30px;
   width: 518px;
@@ -29,6 +40,7 @@ export const FormTag = styled.form`
   bottom: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
   position: relative;
 `;
 export const BackArrow = styled.div`
@@ -56,6 +68,13 @@ export const SignUpTitle = styled.div`
   position: relative;
   left: 20px;
 `;
+
+export const EmailCheckError = styled.div`
+  position: relative;
+  left: 400px;
+  bottom: -10px;
+`;
+
 export const InputWrite = styled.input`
   display: block;
   box-sizing: border-box;
@@ -71,12 +90,12 @@ export const InputWrite = styled.input`
   font-size: 14px;
   margin-top: 20px;
   position: relative;
-  top: 37px;
+  top: 70px;
 `;
 export const Danger = styled.p`
   color: #bf1650;
   position: relative;
-  top: 30px;
+  top: 70px;
   left: 85px;
   before {
     color: red;
@@ -91,6 +110,17 @@ export const Line = styled.div`
   left: 80px;
   top: 60px;
 `;
+
+export const Emailmsg = styled.div`
+  position: relative;
+  left: 80px;
+  bottom: -40px;
+
+  color: green;
+  border: 1px solid red;
+`;
+
+
 export const SignUpBtn = styled.button`
   background: #00c1ec;
   color: white;
@@ -118,7 +148,7 @@ export const EmailCheck = styled.button`
   height: 30px;
   position: relative;
   left: 240px;
-  bottom: 530px;
+  bottom: 500px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
@@ -128,7 +158,7 @@ export const NickNameCheck = styled.button`
   height: 30px;
   left: 240px;
   position: relative;
-  bottom: 480px;
+  bottom: 440px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   border-radius: 10px;
