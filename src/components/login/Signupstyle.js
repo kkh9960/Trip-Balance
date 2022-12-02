@@ -172,11 +172,6 @@ export const EmailCheck = styled.button`
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
-  @media screen and (max-width: 746px) {
-    top: -1790px;
-    left: 140px;
-    width: 80px;
-  }
 `;
 export const NickNameCheck = styled.button`
   width: 100px;

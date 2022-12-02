@@ -53,8 +53,8 @@ export default function ProfileInformation({}) {
   //이미지업로드
   const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
   const onFileUpload = async (e) => {
-    const ACCESS_KEY = "AKIAXQKS7DPZ7R5C4WNA";
-    const SECRET_ACCESS_KEY = "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";
+    const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
+    const SECRET_ACCESS_KEY = process.env.REACT_APP_SECRET_ACCESS_KEY;
     const REGION = "ap-northeast-2";
     const S3_BUCKET = "react-image-seongwoo";
     AWS.config.update({

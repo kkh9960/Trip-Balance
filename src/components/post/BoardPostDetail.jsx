@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/effect-flip";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
+
 import "./BoardPostDetail.css";
 import { __getComment, __postComment } from "../../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";
@@ -18,7 +12,7 @@ import {
   __boardlike,
 } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
-import Loading from "../Loading/Loading";
+
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
 
