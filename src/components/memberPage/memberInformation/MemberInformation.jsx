@@ -6,15 +6,15 @@ import {
   __getMyInformation,
   __putMyInformation,
 } from "../../../redux/modules/MyPageSlice";
-import profile from "../../../img/noneprofile.jpg";
+import profile from "../../../img/noneprofile.webp";
 import AWS from "aws-sdk";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./MemberInformationChart";
-import IconFacebooke from "../../../img/Facebook.png";
-import IconInstagram from "../../../img/Instagram.png";
-import IconYoutube from "../../../img/Youtube.png";
+// import IconFacebooke from "../../../img/Facebook.png";
+// import IconInstagram from "../../../img/Instagram.png";
+// import IconYoutube from "../../../img/Youtube.png";
 
 export default function MemberInformation() {
   const id = useParams();
@@ -35,7 +35,6 @@ export default function MemberInformation() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`/tb/memberinfo/${id.id}`);
-      console.log(result);
       if (result.data.data.profileImg === null || undefined) {
         setProfileImg(profile);
       } else {

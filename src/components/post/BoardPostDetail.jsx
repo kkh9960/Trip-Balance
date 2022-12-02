@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
 import "./BoardPostDetail.css";
 import { __getComment, __postComment } from "../../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";
@@ -11,6 +12,7 @@ import {
   __boardlike,
 } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
+
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
 
@@ -44,9 +46,6 @@ const BoardPostDetail = () => {
   const comments = useSelector((state) => state.commentSlice.comments);
 
   const nickname = sessionStorage.getItem("nickName");
-
-  console.log("나 상세정보", post);
-  console.log("나 댓글정보", comments);
 
   const [heart, setHeart] = useState(false);
   const [heartnum, setheartnum] = useState();

@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
 import BalanceButton from "./BalanceButton";
 import styled from "styled-components";
 import TopButton from "../common/button/TopButton";
-import { useDispatch, useSelector } from "react-redux";
-import { __getBoard } from "../../redux/modules/BoardSlice";
+
 import PostItem from "./PostItem";
 
 const PostPage = () => {
@@ -18,11 +15,11 @@ const PostPage = () => {
 
   return (
     <>
-   <PostItem/>
-        {/* <InfiniteScroll data={data} /> */}
+      <PostItem />
+      {/* <InfiniteScroll data={data} /> */}
       <BalanceButton />
       <TopButton />
-      </>
+    </>
   );
 };
 

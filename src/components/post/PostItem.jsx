@@ -24,9 +24,7 @@ const PostItem = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
 
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
-  console.log(isLast);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
-  console.log(posts);
   // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
@@ -64,8 +62,6 @@ const PostItem = () => {
     dispatch(__getbestfive());
   }, []);
 
-  console.log("번호확인", search);
-
   //일반검색 인피니티입니다.
   useEffect(() => {
     if (posts !== 0 && inView) {
@@ -95,7 +91,6 @@ const PostItem = () => {
     }
   };
   const goDetail = (id) => {
-    console.log(id);
     if (email) {
       navigator(`/detail/${id}`);
     } else {

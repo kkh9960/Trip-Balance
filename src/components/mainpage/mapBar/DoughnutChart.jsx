@@ -26,14 +26,6 @@ ChartJS.register(
 
 export default function DoughnutChart() {
   const peopleData = useSelector((state) => state.MapSlice.data?.cnt);
-  const women = useState(peopleData[0]?.peopleCnt);
-  const men = useState(peopleData[1]?.peopleCnt);
-  const old1 = useState(peopleData[2]?.peopleCnt + peopleData[3]?.peopleCnt);
-  const old2 = useState(peopleData[4]?.peopleCnt + peopleData[5]?.peopleCnt);
-  const old3 = useState(peopleData[6]?.peopleCnt + peopleData[7]?.peopleCnt);
-  const family = useState(peopleData[8]?.peopleCnt);
-  const freinds = useState(peopleData[9]?.peopleCnt);
-  const familyChidren = useState(peopleData[10]?.peopleCnt);
 
   const chartData = {
     people: {
@@ -48,6 +40,7 @@ export default function DoughnutChart() {
           ],
           borderColor: ["rgba(255, 99, 132, 0.7)", "rgba(54, 162, 235, 0.7)"],
           borderWidth: 3,
+          cutout: 40,
         },
       ],
     },
@@ -72,6 +65,7 @@ export default function DoughnutChart() {
             "rgba(75, 192, 192, 0.7)",
           ],
           borderWidth: 3,
+          cutout: 40,
         },
       ],
     },
@@ -96,13 +90,17 @@ export default function DoughnutChart() {
             "rgba(255, 159, 64, 1)",
           ],
           borderWidth: 3,
+          cutout: 40,
         },
       ],
+      options: {},
     },
   };
+
   // 바 차트
   const options1 = {
     responsive: true,
+    indexAxis: "y",
     plugins: {
       legend: {
         position: "top",
@@ -116,6 +114,7 @@ export default function DoughnutChart() {
   };
   const options2 = {
     responsive: true,
+    indexAxis: "y",
     plugins: {
       legend: {
         position: "top",
@@ -129,6 +128,7 @@ export default function DoughnutChart() {
   };
   const options3 = {
     responsive: true,
+    indexAxis: "y",
     plugins: {
       legend: {
         position: "top",
@@ -146,7 +146,7 @@ export default function DoughnutChart() {
     datasets: [
       {
         data: [peopleData[0]?.peopleCnt, peopleData[1]?.peopleCnt],
-        backgroundColor: ["rgba(255, 99, 132, 0.5)", "rgba(53, 162, 235, 0.5)"],
+        backgroundColor: ["rgba(255, 99, 132, 1)", "rgba(53, 162, 235, 1)"],
       },
     ],
   };
@@ -160,9 +160,9 @@ export default function DoughnutChart() {
           peopleData[6]?.peopleCnt + peopleData[7]?.peopleCnt,
         ],
         backgroundColor: [
-          "rgba(54, 162, 235, 0.7)",
-          "rgba(255, 206, 86, 0.7)",
-          "rgba(75, 192, 192, 0.7)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
         ],
       },
     ],
@@ -171,23 +171,24 @@ export default function DoughnutChart() {
     labels: ["가족", "연인/친구/혼자", "가족(아이동반)"],
     datasets: [
       {
+        fill: false,
         data: [
           peopleData[8]?.peopleCnt,
           peopleData[9]?.peopleCnt,
           peopleData[10]?.peopleCnt,
         ],
         backgroundColor: [
-          "rgba(75, 192, 192, 0.7)",
-          "rgba(153, 102, 255, 0.7)",
-          "rgba(255, 159, 64, 0.7)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
         ],
       },
     ],
   };
   return (
-    <>
-      <WeatherBar />
+    <t.doughnutContainer>
       <t.chartViewbox>
+        <WeatherBar />
         <t.chartView>
           <Doughnut data={chartData.people} />
         </t.chartView>
@@ -207,6 +208,6 @@ export default function DoughnutChart() {
           <Bar options={options3} data={barData3} />
         </t.barChartView>
       </t.chartViewbox>
-    </>
+    </t.doughnutContainer>
   );
 }

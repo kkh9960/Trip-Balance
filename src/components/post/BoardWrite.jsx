@@ -18,6 +18,7 @@ const BoardWrite = () => {
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [ModalEdit, setModalEdit] = useState(false);
 
+
   const options = {
     maxSizeMB: 1,
     maxWidthOrHeight: 1920,
@@ -34,6 +35,7 @@ const BoardWrite = () => {
     const SECRET_ACCESS_KEY = process.env.REACT_APP_SECRET_ACCESS_KEY;
     const REGION = "ap-northeast-2";
     const S3_BUCKET = "react-image-seongwoo";
+
 
     //원본
     const imageFile = e.target.files[0];
@@ -96,9 +98,9 @@ const BoardWrite = () => {
       window.alert(
         "앗, 이미지 업로드에 오류가 있어요! 관리자에게 문의해주세요😿"
       );
+
     }
   };
-  console.log(ImgPreview);
 
   useEffect(() => {
     setFileLink(imagewrite);
@@ -158,19 +160,8 @@ const BoardWrite = () => {
   const imagewrite = "img/imagewrite.jpg";
   const noimage = "img/noimage.jpg";
 
-  // console.log(
-  //   contents?.title,
-  //   contents?.content,
-  //   contents?.category1,
-  //   contents?.category2,
-  //   ImgPreview,
-  //   Pet
-  // );
-
   const imageremove = (id, i, i2) => {
-    console.log(id, i);
     let target = document.getElementById(id);
-    console.log(target);
     if (target == null) {
     } else {
       setImgPreview(ImgPreview.filter((el) => el.imgURL !== target.src));

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
+// import Loading from "../../components/Loading/Loading";
 import MainPage from "../../pages/mainPage/MainPage";
 import MyPage from "../../pages/mypage/MyPage";
 import PostViewPage from "../../pages/post/PostViewPage";
@@ -13,7 +13,6 @@ import GameResult from "../../pages/game/GameResult";
 import KaKao from "../../components/login/KaKao";
 import MemberPage from "../../pages/memberPage/MemberPage";
 import TestSlide from "../../components/post/TestSlide";
-
 // import Test from "../../pages/Test";
 const Router = () => {
   return (
@@ -23,11 +22,10 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/memberpage/:id" element={<MemberPage />} />
         <Route path="/post" element={<PostViewPage />} />
-
         <Route path="/write" element={<PostWritePage />} />
         <Route path="/detail/:id" element={<PostDetailPage />} />
         <Route path="/modify/:id" element={<PostModifyPage />} />
-        <Route path="/loading" element={<Loading />} />
+        {/* <Route path="/loading" element={<Loading />} /> */}
         <Route path="/start" element={<GameStart />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />

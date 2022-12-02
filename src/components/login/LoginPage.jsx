@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+
 import Signup from "./Signup";
 import * as t from "./Loginstyle";
-import TripImage from "../../img/trip.jpg";
-import { motion } from "framer-motion";
+
 import styled from "styled-components";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import kakao from "../../img/kakaologin.jpg";
-// import { ImExit } from "react-icons/im";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
-
 function LoginPage() {
   const {
     setValue,
@@ -23,15 +20,12 @@ function LoginPage() {
   } = useForm();
   const [modal, setModal] = useState(true);
   const [errorFromSubmit, setErrorFromSubmit] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const [email, setEmail, emailchange] = useInput("");
   const [password, setPassword, pwchange] = useInput("");
   const modalClose = () => {
     window.location.reload();
   };
-
   const onvaled = (event) => {
     event.preventDefault();
     if (email.trim() === "") {
@@ -49,41 +43,39 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-      sessionStorage.setItem("nickName", res.data.data.nickName);
 
-      localStorage.setItem(
-        "refreshToken",
-        res.request.getResponseHeader("refresh-token")
-      );
-      localStorage.setItem(
-        "token",
-        res.request.getResponseHeader("authorization")
-      );
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
-
+        sessionStorage.setItem("nickName", res.data.data.nickName);
+        localStorage.setItem(
+          "refreshToken",
+          res.request.getResponseHeader("refresh-token")
+        );
+        localStorage.setItem(
+          "token",
+          res.request.getResponseHeader("authorization")
+        );
         alert("로그인완료!");
         window.location.reload();
-      } else {
-        alert(res.data.statusMsg);
+      } else if (res.data.statusCode == 110) {
+        alert("해당하는이메일이없습니다");
+      } else if (res.data.statusCode == 111) {
+        alert("비밀번호가틀렷습니다");
       }
     });
   };
-
   return (
     <t.Wrap>
       {/* <Header /> */}
-
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
-            <t.CancelBtn className="cancel" onClick={modalClose}>
-              {/* <ImExit size={30} /> */}
-            </t.CancelBtn>
+
+            <t.CancelBtn className="cancel" onClick={modalClose}></t.CancelBtn>
+
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
               <t.LoginTitle>로그인</t.LoginTitle>
             </t.LoginTitleWrap>
-
             <t.InputWrite
               value={email}
               name="email"
@@ -93,7 +85,6 @@ function LoginPage() {
               onChange={emailchange}
             />
             {errors.email && <p>이메일은 필수 항목입니다.</p>}
-
             <t.InputWrite
               value={password}
               name="password"
@@ -108,9 +99,7 @@ function LoginPage() {
             {errors.password && errors.password.type === "minLength" && (
               <t.Danger>비밀번호는 6자 이상이어야 합니다</t.Danger>
             )}
-
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
-
             <t.LoginBtn>로그인</t.LoginBtn>
             <t.Line></t.Line>
             <t.KakaoWrap href={KAKAO_AUTH_URL}>
@@ -134,9 +123,7 @@ function LoginPage() {
     </t.Wrap>
   );
 }
-
 export default LoginPage;
-
 const Logo = styled.img``;
 // 필요할때 모달창쓰기
 // import React, { useState } from "react";
@@ -144,7 +131,6 @@ const Logo = styled.img``;
 //
 // const Home = () => {
 //   const [modal, setModal] = useState(false);
-
 //   return (
 //     <div>
 //       <button
@@ -158,5 +144,4 @@ const Logo = styled.img``;
 //     </div>
 //   );
 // };
-
 // export default Home;

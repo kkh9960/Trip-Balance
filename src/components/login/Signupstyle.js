@@ -1,11 +1,13 @@
 import styled from "styled-components";
-
 export const Wrap = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
-
   z-index: 1;
 `;
-
+export const Checkwrap = styled.div`
+  position: relative;
+  left: 400px;
+  bottom: 10px;
+`;
 export const SignupWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,9 +18,15 @@ export const SignupWrapper = styled.div`
   justify-content: center;
   align-items: center;
   top: 3px;
-
   left: 0px;
   z-index: 2;
+`;
+
+export const Nicknamemsg = styled.div`
+  position: relative;
+  left: 80px;
+  top: 30px;
+  color: green;
 `;
 
 export const FormTag = styled.form`
@@ -29,19 +37,22 @@ export const FormTag = styled.form`
   bottom: 10px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  position: relative;
-`;
 
+  position: relative;
+  @media screen and (max-width: 746px) {
+    top: 10px;
+    height: 600px;
+    width: 300px;
+  }
+`;
 export const BackArrow = styled.div`
   position: relative;
   top: 30px;
 `;
-
 export const Cancel = styled.div`
   position: relative;
   left: 480px;
 `;
-
 export const SignupTitleWrap = styled.div``;
 export const SignUpTitle = styled.div`
   width: 200px;
@@ -58,6 +69,17 @@ export const SignUpTitle = styled.div`
   color: #555;
   position: relative;
   left: 20px;
+  @media screen and (max-width: 746px) {
+    top: -100px;
+    left: -80px;
+    font-size: 25px;
+  }
+`;
+
+export const EmailCheckError = styled.div`
+  position: relative;
+  left: 400px;
+  bottom: 20px;
 `;
 
 export const InputWrite = styled.input`
@@ -73,30 +95,45 @@ export const InputWrite = styled.input`
   padding: 10px 15px;
   margin-bottom: 10px;
   font-size: 14px;
-  margin-top: 20px;
-  position: relative;
-  top: 37px;
-`;
 
+  position: relative;
+  top: 70px;
+  @media screen and (max-width: 746px) {
+    width: 250px;
+    top: -100px;
+    right: 30px;
+  }
+`;
 export const Danger = styled.p`
   color: #bf1650;
   position: relative;
-  top: 30px;
+  top: 70px;
   left: 85px;
-
   before {
     color: red;
     display: inline;
-    content: "⚠ ";
+    content: ":경고: ";
   }
 `;
-
 export const Line = styled.div`
   width: 354px;
   border: 1px solid rgba(170, 170, 170, 0.7);
   position: relative;
   left: 80px;
   top: 60px;
+  @media screen and (max-width: 746px) {
+    top: -60px;
+    left: 20px;
+    width: 250px;
+  }
+`;
+
+export const Emailmsg = styled.div`
+  position: relative;
+  left: 80px;
+  bottom: -40px;
+
+  color: green;
 `;
 
 export const SignUpBtn = styled.button`
@@ -120,23 +157,29 @@ export const SignUpBtn = styled.button`
   position: relative;
   left: 80px;
   transition: 1.1s;
+  @media screen and (max-width: 746px) {
+    bottom: 160px;
+    left: 45px;
+    width: 200px;
+  }
 `;
-
 export const EmailCheck = styled.button`
   width: 100px;
+  height: 30px;
   position: relative;
-  left: 1140px;
-  bottom: 600px;
+  bottom: -10px;
+  left: 450px;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
 `;
-
 export const NickNameCheck = styled.button`
   width: 100px;
-  left: 1140px;
+  height: 30px;
+  left: 450px;
+  bottom: -10px;
   position: relative;
-  bottom: 550px;
+
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   border-radius: 10px;
