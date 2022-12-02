@@ -13,7 +13,6 @@ import Pagination from "../common/Pagination";
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
 import InformationChart from "./profileInformation/InformationChart";
-import background from "../../img/3.jpg";
 
 export default function MyPageView() {
   const navigate = useNavigate();

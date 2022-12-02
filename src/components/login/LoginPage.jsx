@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import Signup from "./Signup";
 import * as t from "./Loginstyle";
-import TripImage from "../../img/trip.jpg";
+
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { useCookies } from "react-cookie";

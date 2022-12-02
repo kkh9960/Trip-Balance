@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./Layout";
-import TripImage from "../../img/trip.jpg";
+import mainlogo from "../../img/mainlogo.png";
 import { AiFillGithub } from "react-icons/ai";
 import * as t from "./FooterStyle";
 
@@ -9,9 +9,9 @@ const Footer = () => {
     <t.Container>
       <>
         <t.Compeney>Trip Balance</t.Compeney>
-        <t.Logo src={TripImage} />
+        <t.Logo src={mainlogo} />
         <t.Information>
-          <t.Front>
+          {/* <t.Front>
             Thanks For Front:
             <a href="">
               <AiFillGithub />
@@ -45,7 +45,7 @@ const Footer = () => {
               김장원
             </a>
           </t.Back>
-          <t.Designer>Thanks For Designer: 서보영</t.Designer>
+          <t.Designer>Thanks For Designer: 서보영</t.Designer> */}
         </t.Information>
       </>
     </t.Container>

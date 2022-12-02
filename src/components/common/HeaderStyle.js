@@ -10,7 +10,11 @@ export const Container1 = styled.div`
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-
+  background-color: rgba(0, 0, 0, 0.5);
+  :hover {
+    transition: 1s;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
   @media screen and (max-width: 480px) {
     position: fixed;
     height: 50px;
@@ -34,7 +38,11 @@ export const Container2 = styled.div`
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-
+  background-color: rgba(0, 0, 0, 0.5);
+  :hover {
+    transition: 1s;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
   @media screen and (max-width: 480px) {
     position: fixed;
     height: 50px;
@@ -56,12 +64,13 @@ export const ContainerWhite = styled.div`
   margin: 0 auto;
 `;
 
-export const toggleBtn = styled.button`
+export const toggleBtn = styled.div`
   display: none;
   position: absolute;
   right: 38px;
   top: 38px;
   font-size: 34px;
+  cursor: pointer;
   @media screen and (max-width: 480px) {
     display: block;
     right: 16px;
@@ -78,21 +87,21 @@ export const WriteWrap = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
   transition: 1s;
   :hover {
     transition: 1s;
     background-color: rgba(0, 0, 0, 0.7);
   }
-  button {
+  div {
     color: white;
+    text-align: center;
   }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
-    top: 50px;
     width: 100%;
     align-items: center;
+    justify-content: space-evenly;
   }
 
   @media screen and (max-width: 960px) {
@@ -104,15 +113,25 @@ export const WriteWrap = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 321.06px;
-  height: 120px;
+  width: 274.47px;
+  height: 90px;
   display: flex;
   transition: 0.5s;
+  margin-left: 300px;
+  transition: 1s;
   @media screen and (max-width: 480px) {
-    width: 100px;
-    height: 50px;
-
+    width: 140px;
+    height: 46px;
     transition: 0.5s;
+    margin-left: 30px;
+    transition: 1s;
+  }
+  @media screen and (max-width: 960px) {
+    width: 140px;
+    height: 46px;
+    transition: 0.5s;
+    margin-left: 30px;
+    transition: 1s;
   }
 `;
 
@@ -126,22 +145,10 @@ export const top = styled.button`
     align-items: center;
   }
 `;
-export const Game = styled.button`
-  font-size: 34px;
-  width: 170px;
-  :hover {
-    transition: 0.7s;
-    scale: 1.5;
-    transform: rotateY(360deg);
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 14px;
-  }
-`;
-
-export const Posting = styled.button`
+export const Game = styled.div`
   font-size: 24px;
   width: 170px;
+  cursor: pointer;
   p {
     display: none;
   }
@@ -149,38 +156,121 @@ export const Posting = styled.button`
     p {
       display: block;
     }
+    .icon {
+      display: none;
+    }
   }
-  /* :hover {
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+    .icon {
+      display: none;
+    }
     p {
       display: block;
     }
-  } */
-  @media screen and (max-width: 480px) {
-    font-size: 14px;
   }
 `;
 
-export const Mypage = styled.button`
+export const Posting = styled.div`
   font-size: 24px;
   width: 170px;
-
+  cursor: pointer;
+  p {
+    display: none;
+  }
+  :hover {
+    p {
+      display: block;
+    }
+    .icon {
+      display: none;
+    }
+  }
   @media screen and (max-width: 480px) {
     font-size: 14px;
+    .icon {
+      display: none;
+    }
+    p {
+      display: block;
+    }
   }
 `;
 
-export const Login = styled.button`
+export const Mypage = styled.div`
   font-size: 24px;
   width: 170px;
+  cursor: pointer;
+  p {
+    display: none;
+  }
+  :hover {
+    p {
+      display: block;
+    }
+    .icon {
+      display: none;
+    }
+  }
   @media screen and (max-width: 480px) {
-    font-size: 14px;
+    font-size: 10px;
+    .icon {
+      display: none;
+    }
+    p {
+      display: block;
+    }
   }
 `;
 
-export const Logout = styled.button`
+export const Login = styled.div`
   font-size: 24px;
   width: 170px;
+  cursor: pointer;
+  p {
+    display: none;
+  }
+  :hover {
+    p {
+      display: block;
+    }
+    .icon {
+      display: none;
+    }
+  }
   @media screen and (max-width: 480px) {
-    font-size: 14px;
+    font-size: 10px;
+    .icon {
+      display: none;
+    }
+    p {
+      display: block;
+    }
+  }
+`;
+
+export const Logout = styled.div`
+  font-size: 24px;
+  width: 170px;
+  cursor: pointer;
+  p {
+    display: none;
+  }
+  :hover {
+    p {
+      display: block;
+    }
+    .icon {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 10px;
+    .icon {
+      display: none;
+    }
+    p {
+      display: block;
+    }
   }
 `;

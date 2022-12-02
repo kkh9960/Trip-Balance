@@ -37,48 +37,49 @@ export default function WeatherBar() {
   const [time, setTime] = useState(hours + ":" + minutes);
 
   return (
-    <div>
-      <t.weather>
+    <t.weather>
+      <t.location>
         <t.cityName>{cityName}</t.cityName>
         <t.countyName>{countyName}</t.countyName>
+      </t.location>
+
+      <t.top>
+        <t.iconBox>
+          <t.weatherIcon
+            src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.webp`} //${weatherdata[Object.keys(weatherdata)[2]]}
+          />
+        </t.iconBox>
+        <t.temperatureBox>
+          <t.temperature>{`${TMP}`}°C</t.temperature>
+        </t.temperatureBox>
+      </t.top>
+      <t.bottom>
         <t.timer>
           {dayOfWeek}, {time}
         </t.timer>
-        <t.top>
-          <t.iconBox>
-            <t.weatherIcon
-              src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.gif`} //${weatherdata[Object.keys(weatherdata)[2]]}
-            />
-          </t.iconBox>
-          <t.temperatureBox>
-            <t.temperature>{`${TMP}`}°C</t.temperature>
-          </t.temperatureBox>
-        </t.top>
-        <t.bottom>
-          <t.details>
-            <t.parameterRow>
-              <t.parameterLabel>풍속</t.parameterLabel>
-              <t.parameterValue>{WSD}m/s</t.parameterValue>
-            </t.parameterRow>
-            <t.parameterRow>
-              <t.parameterLabel>습도</t.parameterLabel>
-              <t.parameterValue>{REH}%</t.parameterValue>
-            </t.parameterRow>
-            <t.parameterRow>
-              <t.parameterLabel>강수확률</t.parameterLabel>
-              <t.parameterValue> {POP}%</t.parameterValue>
-            </t.parameterRow>
-            <t.parameterRow>
-              <t.parameterLabel>강수량</t.parameterLabel>
-              <t.parameterValue>
-                {" "}
-                {PCP === "강수없음" ? PCP : (PCP, "mm")}
-              </t.parameterValue>
-            </t.parameterRow>
-          </t.details>
-        </t.bottom>
-      </t.weather>
-    </div>
+        <t.details>
+          <t.parameterRow>
+            <t.parameterLabel>풍속</t.parameterLabel>
+            <t.parameterValue>{WSD}m/s</t.parameterValue>
+          </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>습도</t.parameterLabel>
+            <t.parameterValue>{REH}%</t.parameterValue>
+          </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>강수확률</t.parameterLabel>
+            <t.parameterValue> {POP}%</t.parameterValue>
+          </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>강수량</t.parameterLabel>
+            <t.parameterValue>
+              {" "}
+              {PCP === "강수없음" ? PCP : (PCP, "mm")}
+            </t.parameterValue>
+          </t.parameterRow>
+        </t.details>
+      </t.bottom>
+    </t.weather>
   );
 }
 

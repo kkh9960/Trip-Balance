@@ -8,7 +8,7 @@ const initialState = {
       {
         peopleCnt: 0,
         gender: "male",
-        location: "서울",
+        location: "서울특별시",
       },
       {
         peopleCnt: 121841,

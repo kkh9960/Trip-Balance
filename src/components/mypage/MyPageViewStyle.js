@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import background from "../../img/3.jpg";
 //common
 export const userName = styled.div`
   width: 500px;
@@ -32,7 +31,6 @@ export const empty = styled.div``;
 export const backgroundImg = styled.div`
   width: 100%;
   height: 300px;
-  background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -126,8 +124,6 @@ export const pickPostWrap = styled.div`
   align-items: center;
   @media screen and (max-width: 480px) {
     display: flex;
-
-    background-color: green;
   }
 `;
 export const pickPostItem = styled.div`
@@ -179,7 +175,6 @@ export const mySelectInformation = styled.div`
       rgba(255, 255, 255, 0.9) 50%,
       rgba(255, 255, 255, 1) 100%
     ),
-    url(${background});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

@@ -12,7 +12,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Pagination from "../common/Pagination";
 import MemberInformation from "./memberInformation/MemberInformation";
 import instance from "../../lib/instance";
-import background from "../../img/3.jpg";
 
 export default function MemberPage() {
   const id = useParams();

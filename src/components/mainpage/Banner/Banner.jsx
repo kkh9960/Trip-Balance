@@ -3,9 +3,8 @@ import Carousel from "react-material-ui-carousel";
 import blue from "../../../img/blue.jpg";
 import bblue from "../../../img/bblue.jpg";
 import ameral from "../../../img/ameral.jpg";
-import logo from "../../../img/logo.jpg";
+import mainlogo from "../../../img/mainlogo.png";
 import retro from "../../../img/retro.jpg";
-import logo3 from "../../../img/3logo.jpg";
 import next from "../../../img/next.svg";
 import prev from "../../../img/prev.svg";
 import {
@@ -23,7 +22,6 @@ import {
   Retro,
   Bblue,
   Balance,
-  Logo3,
   Balancce,
   Next,
   Prev,
@@ -44,26 +42,21 @@ function Banner() {
         style: {
           borderRadius: 10,
           width: "none",
-          width: 0,
           height: 0,
           all: "unset",
           position: "relative",
           top: 50,
         },
-        NextIcon: {
-          right: "100px",
-          position: "relative",
-        },
       }}
       indicators={false}
       // interval={5000}
       // navButtonsAlwaysVisible={false}
-      NextIcon={<Next src={next} />}
-      PrevIcon={<Prev src={prev} />}
+      NextIcon={<Next src={next} alt="bannerbutton1" />}
+      PrevIcon={<Prev src={prev} alt="bannerbutton2" />}
     >
       <Blue>
-        <Img src={blue} />
-        <Logo src={logo} />
+        <Img src={blue} alt="mainimg1" />
+        <Logo src={mainlogo} />
         <Title>Trip Balance</Title>
         <Trip>추천여행지</Trip>
         <Trip2>추천여행지</Trip2>
@@ -71,7 +64,7 @@ function Banner() {
         <Stop>스톱</Stop>
       </Blue>
       <Ameral>
-        <Img src={ameral} />
+        <Img src={ameral} alt="mainimg2" />
         <Link to="/start">
           <Retro src={retro} />
         </Link>
@@ -81,10 +74,8 @@ function Banner() {
         <Stop>스톱</Stop>
       </Ameral>
       <Bblue>
-        <Img src={bblue} />
-        <Link to="/post">
-          <Logo3 src={logo3} />
-        </Link>
+        <Img src={bblue} alt="mainimg3" />
+        <Link to="/post">{/* <Logo3 src={""} /> */}</Link>
         <Balance>Best Balance Trip</Balance>
         <Balancce>가장 핫한 우리의 여행 이야기</Balancce>
         <Stop>스톱</Stop>

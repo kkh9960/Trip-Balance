@@ -44,7 +44,6 @@ export const myInformation = styled.div`
     }
   }
   @media screen and (max-width: 480px) {
-    background-color: green;
   }
 `;
 
@@ -124,7 +123,7 @@ export const introduce = styled.div`
   position: absolute;
   top: 160px;
 `;
-export const textName = styled.div`
+export const textName = styled.label`
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;

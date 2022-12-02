@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 export const weather = styled.div`
-  width: 195px;
-  height: 550px;
-  margin: 0 auto 0;
-  padding: 0 20px 20px 20px;
-  border-radius: 10px;
+  width: 100%;
+  height: 134px;
+  display: flex;
+
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
   @media screen and (max-width: 480px) {
     position: relative;
     width: 100%;
@@ -15,11 +18,13 @@ export const weather = styled.div`
   }
 `;
 
+export const location = styled.div``;
+
 export const cityName = styled.div`
-  width: 300px;
-  font-weight: 500;
+  width: 280px;
+  font-weight: 400;
   font-size: 56px;
-  line-height: 100px;
+  line-height: 67px;
   @media screen and (max-width: 480px) {
     position: absolute;
     font-size: 30px;
@@ -54,6 +59,9 @@ export const timer = styled.div`
   }
 `;
 
+export const top = styled.div`
+  display: flex;
+`;
 export const iconBox = styled.div`
   display: flex;
   justify-content: center;
@@ -67,9 +75,42 @@ export const iconBox = styled.div`
     width: 100%;
   }
 `;
-
-export const top = styled.div`
+export const weatherIcon = styled.img`
+  width: 130px;
+  margin-right: -0px;
+  @media screen and (max-width: 480px) {
+    width: 200px;
+  }
+`;
+export const temperatureBox = styled.div`
+  @media screen and (max-width: 480px) {
+    position: absolute;
+    left: 20px;
+    width: 200px;
+    height: 150px;
+  }
+`;
+export const temperature = styled.div`
   display: flex;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  font-size: 60px;
+  color: #000;
+  margin-left: -30px;
+  letter-spacing: -5px;
+  text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
+  @media screen and (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 80px;
+    color: #000;
+    margin: 0;
+    letter-spacing: -5px;
+    text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
+  }
 `;
 export const bottom = styled.div`
   display: flex;
@@ -87,46 +128,6 @@ export const weatherDescription = styled.div`
   font-size: 14px;
   line-height: 1;
   margin: 0;
-`;
-export const weatherIcon = styled.img`
-  width: 170px;
-  margin-right: -0px;
-  @media screen and (max-width: 480px) {
-    width: 200px;
-  }
-`;
-
-export const temperatureBox = styled.div`
-  @media screen and (max-width: 480px) {
-    position: absolute;
-    left: 20px;
-    width: 200px;
-    height: 150px;
-  }
-`;
-
-export const temperature = styled.div`
-  display: flex;
-  align-items: end;
-  width: 100%;
-  height: 100%;
-  font-weight: 600;
-  font-size: 50px;
-  color: #000;
-  margin-left: -20px;
-  letter-spacing: -5px;
-  text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
-  @media screen and (max-width: 480px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 600;
-    font-size: 80px;
-    color: #000;
-    margin: 0;
-    letter-spacing: -5px;
-    text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
-  }
 `;
 
 export const details = styled.div`
@@ -164,7 +165,6 @@ export const mobile = styled.div`
     width: 100%;
     height: 300px;
     font-size: 30px;
-    background-color: red;
   }
 `;
 export const mobileTemper = styled.div`

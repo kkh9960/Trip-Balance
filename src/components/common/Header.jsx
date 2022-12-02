@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as t from "./HeaderStyle";
 import Layout from "./Layout";
-import TripImage from "../../img/trip.jpg";
+import mainlogo from "../../img/mainlogo.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
-import { SlMenu } from "react-icons/sl";
+import { SlMenu, SlLogin, SlLogout } from "react-icons/sl";
 import { FaUserCircle } from "react-icons/fa";
 import { MdOutlineVideogameAsset } from "react-icons/md";
 import { HiClipboardDocumentList } from "react-icons/hi2";
@@ -60,12 +60,7 @@ const Header = () => {
           ) : (
             <>
               <Link to="/">
-                <t.Logo
-                  src={TripImage}
-                  onClick={() => {
-                    navigate("/post");
-                  }}
-                />
+                <t.Logo src={mainlogo} alt="logo" />
               </Link>
               <t.toggleBtn toggle={toggle} onClick={toggleChange}>
                 <SlMenu />
@@ -76,7 +71,8 @@ const Header = () => {
                     navigate("/start");
                   }}
                 >
-                  <MdOutlineVideogameAsset />
+                  <MdOutlineVideogameAsset className="icon" />
+                  <p>밸런스게임</p>
                 </t.Game>
 
                 <t.Posting
@@ -84,9 +80,8 @@ const Header = () => {
                     navigate("/post");
                   }}
                 >
-                  <i>
-                    <HiClipboardDocumentList />
-                  </i>
+                  <HiClipboardDocumentList className="icon" />
+
                   <p>게시판</p>
                 </t.Posting>
 
@@ -97,8 +92,9 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
-                    마이페이지
-                    <FaUserCircle />
+                    <FaUserCircle className="icon" />
+
+                    <p>마이페이지</p>
                   </t.Mypage>
                 ) : (
                   <t.Mypage
@@ -106,23 +102,26 @@ const Header = () => {
                       navigate("/mypage");
                     }}
                   >
-                    마이페이지
-                    <FaUserCircle />
+                    <FaUserCircle className="icon" />
+
+                    <p>마이페이지</p>
                   </t.Mypage>
                 )}
                 {nickname ? (
-                  <div>
-                    <div>
-                      <t.Logout onClick={logout}>로그아웃</t.Logout>
-                    </div>
-                  </div>
+                  <t.Logout onClick={logout}>
+                    <SlLogout className="icon" />
+
+                    <p>로그아웃</p>
+                  </t.Logout>
                 ) : (
                   <t.Login
                     onClick={() => {
                       setModal(!modal);
                     }}
                   >
-                    로그인
+                    <SlLogin className="icon" />
+
+                    <p>로그인</p>
                   </t.Login>
                 )}
               </t.WriteWrap>
@@ -136,23 +135,28 @@ const Header = () => {
           ) : (
             <>
               <Link to="/">
-                <t.Logo
-                  src={TripImage}
-                  onClick={() => {
-                    navigate("/post");
-                  }}
-                />
+                <t.Logo src={mainlogo} alt="logo" />
               </Link>
               <t.toggleBtn toggle={toggle} onClick={toggleChange}>
                 <SlMenu />
               </t.toggleBtn>
               <t.WriteWrap toggle={toggle}>
+                <t.Game
+                  onClick={() => {
+                    navigate("/start");
+                  }}
+                >
+                  <MdOutlineVideogameAsset className="icon" />
+                  <p>밸런스게임</p>
+                </t.Game>
                 <t.Posting
                   onClick={() => {
                     navigate("/post");
                   }}
                 >
-                  게시판
+                  <HiClipboardDocumentList className="icon" />
+
+                  <p>게시판</p>
                 </t.Posting>
 
                 {email == null ? (
@@ -162,7 +166,9 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
-                    마이페이지
+                    <FaUserCircle className="icon" />
+
+                    <p>마이페이지</p>
                   </t.Mypage>
                 ) : (
                   <t.Mypage
@@ -170,22 +176,26 @@ const Header = () => {
                       navigate("/mypage");
                     }}
                   >
-                    마이페이지
+                    <FaUserCircle className="icon" />
+
+                    <p>마이페이지</p>
                   </t.Mypage>
                 )}
                 {nickname ? (
-                  <div>
-                    <div>
-                      <t.Logout onClick={logout}>로그아웃</t.Logout>
-                    </div>
-                  </div>
+                  <t.Logout onClick={logout}>
+                    <SlLogout className="icon" />
+
+                    <p>로그아웃</p>
+                  </t.Logout>
                 ) : (
                   <t.Login
                     onClick={() => {
                       setModal(!modal);
                     }}
                   >
-                    로그인
+                    <SlLogin className="icon" />
+
+                    <p>로그인</p>
                   </t.Login>
                 )}
               </t.WriteWrap>
