@@ -8,10 +8,12 @@ export const inforChartViewbox = styled.div`
   animation-name: slideRight;
   @keyframes slideRight {
     from {
-      transform: translateX(1000px);
+      opacity: 0;
+      /* transform: translateX(1000px); */
     }
     to {
-      transform: translateX(0px);
+      opacity: 1;
+      /* transform: translateX(0px); */
     }
   }
 `;
@@ -20,12 +22,7 @@ export const inforChartView = styled.div`
   height: 300px;
   margin: 0 5px;
   text-align: center;
-  after {
-    position: relative;
-    content: "이름";
-    top: -110px;
-    left: 80px;
-  }
+
   box-shadow: 0 0 10px;
   border-radius: 50%;
 `;

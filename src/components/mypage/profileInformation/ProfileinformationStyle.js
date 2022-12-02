@@ -19,7 +19,7 @@ export const UserInfor = styled.div`
   margin: 0 auto;
   align-content: center;
   justify-content: center;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -35,14 +35,15 @@ export const myInformation = styled.div`
   animation-name: slideLeft;
   @keyframes slideLeft {
     from {
-      transform: translateX(-1000px);
+      opacity: 0;
+      /* transform: translateX(-1000px); */
     }
     to {
-      transform: translateX(0px);
+      opacity: 1;
+      /* transform: translateX(0px); */
     }
   }
-  @media screen and (max-width: 500px) {
-    background-color: green;
+  @media screen and (max-width: 480px) {
   }
 `;
 
@@ -59,7 +60,7 @@ export const ProfileImgBox = styled.img`
     box-shadow: 0 0 10px;
     transition: 0.2s linear;
   }
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     width: 150px;
     height: 150px;
     margin: 20px;
@@ -122,7 +123,7 @@ export const introduce = styled.div`
   position: absolute;
   top: 160px;
 `;
-export const textName = styled.div`
+export const textName = styled.label`
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;

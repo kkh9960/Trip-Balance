@@ -16,7 +16,6 @@ export const __getMyInformation = createAsyncThunk(
 export const __putMyInformation = createAsyncThunk(
   "PUT_MY_INFO",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.put(`tb/mypage/setinfo`, {
         nickName: payload.nickName,
@@ -33,7 +32,6 @@ export const __putMyInformation = createAsyncThunk(
 //   async (payload, thunkAPI) => {
 //     try {
 //       const { data } = await instance.get(`tb/mypage/totaldb`, payload);
-//       console.log(data);
 //       return thunkAPI.fulfillWithValue(data);
 //     } catch (error) {}
 //   }
@@ -55,7 +53,6 @@ export const __getMyPick = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get("tb/mypage/hearts", payload);
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }

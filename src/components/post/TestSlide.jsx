@@ -22,18 +22,12 @@ const TestSlide = () => {
       banner.style.transition = "all 0.5s";
     });
 
-    console.log(currentIndex);
-    console.log(nextIndex);
-
     setIndex((prevstate) => (prevstate + 1) % 3);
   };
 
   //앞으로가기
   function func() {
     let nextIndex = (currentIndex + 1) % 3; // 0 1 2 0 무한루프
-
-    console.log(nextIndex);
-    console.log(currentIndex);
 
     banner[currentIndex].style.opacity = "0"; //첫 번째 이미지를 안보이게
     banner[nextIndex].style.opacity = "1"; //두 번째 이미지를 보이게
@@ -49,9 +43,6 @@ const TestSlide = () => {
   function funct() {
     let nextIndex = currentIndex == 0 ? 2 : currentIndex - 1;
 
-    console.log(nextIndex);
-    console.log(currentIndex);
-
     banner[currentIndex].style.opacity = "0";
     banner[nextIndex].style.opacity = "1";
 
@@ -65,8 +56,6 @@ const TestSlide = () => {
   UseInterval(() => {
     SlideAuto();
   }, 6000);
-
-  console.log(currentIndex);
 
   useEffect(() => {
     switch (currentIndex) {

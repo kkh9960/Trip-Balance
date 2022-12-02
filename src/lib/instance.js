@@ -1,5 +1,4 @@
 import axios from "axios";
-
 // const token = new Cookies().get("token");
 // // access 토큰 개발자 tool app>cookie 받아오기
 // const token2 = new Cookies().get("refreshToken");
@@ -12,6 +11,7 @@ axios.defaults.headers.common["Refresh-Token"] = `${token2}`;
 // header에 토큰 받은것 담아주기 >> refresh 토큰으로 연장
 const instance = axios.create({
   baseURL: "https://dexhome.shop/", //"https://tbtbtb.shop/",
+
 
   headers: {
     "Content-Type": "application/json",

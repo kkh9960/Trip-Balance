@@ -1,25 +1,17 @@
 import React from "react";
-import styled from "styled-components";
 import Layout from "./Layout";
-import TripImage from "../../img/trip.jpg";
-import { AiFillGithub } from "react-icons/ai";
-import {
-  Container,
-  Compeney,
-  Information,
-  Logo,
-  Front,
-  Back,
-  Designer,
-} from "./FooterStyle";
+import mainlogo from "../../img/mainlogo.webp";
+// import { AiFillGithub } from "react-icons/ai";
+import * as t from "./FooterStyle";
+
 const Footer = () => {
   return (
-    <Container>
-      <Layout>
-        <Compeney>Trip Balance</Compeney>
-        <Logo src={TripImage} />
-        <Information>
-          <Front>
+    <t.Container>
+      <>
+        <t.Compeney>Trip Balance</t.Compeney>
+        <t.Logo src={mainlogo} />
+        <t.Information>
+          {/* <t.Front>
             Thanks For Front:
             <a href="">
               <AiFillGithub />
@@ -37,8 +29,8 @@ const Footer = () => {
               <AiFillGithub />
               조광익
             </a>
-          </Front>
-          <Back>
+          </t.Front>
+          <t.Back>
             Thanks For Back:
             <a href="">
               <AiFillGithub />
@@ -52,11 +44,11 @@ const Footer = () => {
               <AiFillGithub />
               김장원
             </a>
-          </Back>
-          <Designer>Thanks For Designer: 서보영</Designer>
-        </Information>
-      </Layout>
-    </Container>
+          </t.Back>
+          <t.Designer>Thanks For Designer: 서보영</t.Designer> */}
+        </t.Information>
+      </>
+    </t.Container>
   );
 };
 

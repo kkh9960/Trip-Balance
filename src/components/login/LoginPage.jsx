@@ -6,11 +6,9 @@ import Signup from "./Signup";
 import * as t from "./Loginstyle";
 
 import styled from "styled-components";
-
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import kakao from "../../img/kakaologin.jpg";
-import { ImExit } from "react-icons/im";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
 function LoginPage() {
   const {
@@ -25,7 +23,6 @@ function LoginPage() {
 
   const [email, setEmail, emailchange] = useInput("");
   const [password, setPassword, pwchange] = useInput("");
-
   const modalClose = () => {
     window.location.reload();
   };
@@ -46,9 +43,6 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-      console.log(res);
-      // setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
-      // setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
         sessionStorage.setItem("nickName", res.data.data.nickName);
@@ -75,9 +69,7 @@ function LoginPage() {
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
-            <t.CancelBtn className="cancel" onClick={modalClose}>
-              <ImExit size={30} />
-            </t.CancelBtn>
+            <t.CancelBtn className="cancel" onClick={modalClose}></t.CancelBtn>
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
               <t.LoginTitle>로그인</t.LoginTitle>
             </t.LoginTitleWrap>

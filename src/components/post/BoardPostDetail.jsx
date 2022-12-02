@@ -47,9 +47,6 @@ const BoardPostDetail = () => {
 
   const nickname = sessionStorage.getItem("nickName");
 
-  console.log("나 상세정보", post);
-  console.log("나 댓글정보", comments);
-
   const [heart, setHeart] = useState(false);
   const [heartnum, setheartnum] = useState();
   const [commentImg, setcommentImg] = useState();
