@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Loading from "../../components/Loading/Loading";
+// import Loading from "../../components/Loading/Loading";
 import MainPage from "../../pages/mainPage/MainPage";
 import MyPage from "../../pages/mypage/MyPage";
 import PostViewPage from "../../pages/post/PostViewPage";
@@ -25,7 +25,7 @@ const Router = () => {
         <Route path="/write" element={<PostWritePage />} />
         <Route path="/detail/:id" element={<PostDetailPage />} />
         <Route path="/modify/:id" element={<PostModifyPage />} />
-        <Route path="/loading" element={<Loading />} />
+        {/* <Route path="/loading" element={<Loading />} /> */}
         <Route path="/start" element={<GameStart />} />
         <Route path="/game/:id" element={<Game />} />
         <Route path="/game/:aa/:id" element={<Game />} />

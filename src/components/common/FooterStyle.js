@@ -3,6 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: #808080;
   height: 432.91px;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 export const Compeney = styled.div`
   width: 953px;

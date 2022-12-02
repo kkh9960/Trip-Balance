@@ -70,7 +70,6 @@ const PostComment = ({ idx, item, id, post }) => {
 
   const ReWriteHandler = () => {
     setRecommentWrite(!RecommentWrite);
-    console.log(RecommentWrite);
   };
 
   const ChangeEdit = (e) => {
@@ -95,8 +94,6 @@ const PostComment = ({ idx, item, id, post }) => {
   const CalcelComment = () => {
     setRecommentWrite(!RecommentWrite);
   };
-
-  console.log(item);
 
   const goprofile = () => {
     navigator(`/memberpage/${item.authorId}`);

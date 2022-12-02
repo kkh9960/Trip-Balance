@@ -23,7 +23,6 @@ export default function MemberInformationChart() {
     }
     fetchData();
   }, []);
-  console.log(id);
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`/tb/memberinfo/tripdb/${id.id}`);

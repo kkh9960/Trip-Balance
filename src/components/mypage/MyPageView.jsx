@@ -13,7 +13,6 @@ import Pagination from "../common/Pagination";
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
 import InformationChart from "./profileInformation/InformationChart";
-import background from "../../img/3.jpg";
 
 export default function MyPageView() {
   const navigate = useNavigate();
@@ -26,7 +25,6 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/info");
-      console.log(result);
       setUserGameCnt(result.data.data.gameCnt);
       setUserCommentCnt(result.data.data.commentCnt);
       setUserPostCnt(result.data.data.postCnt);

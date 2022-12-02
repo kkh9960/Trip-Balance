@@ -6,15 +6,15 @@ import {
   __getMyInformation,
   __putMyInformation,
 } from "../../../redux/modules/MyPageSlice";
-import profile from "../../../img/noneprofile.jpg";
+import profile from "../../../img/noneprofile.webp";
 import AWS from "aws-sdk";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./InformationChart";
-import IconFacebooke from "../../../img/Facebook.png";
-import IconInstagram from "../../../img/Instagram.png";
-import IconYoutube from "../../../img/Youtube.png";
+// import IconFacebooke from "../../../img/Facebook.png";
+// import IconInstagram from "../../../img/Instagram.png";
+// import IconYoutube from "../../../img/Youtube.png";
 import styled from "styled-components";
 
 export default function ProfileInformation({}) {
@@ -132,8 +132,10 @@ export default function ProfileInformation({}) {
               <t.nickName>HI. {nickname} 님</t.nickName>
               <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
               <t.introduce>
-                <t.textName>자기소개</t.textName>
-                <t.selfBox value={userSelf}></t.selfBox>
+                <t.textName>
+                  자기소개
+                  <t.selfBox value={userSelf}></t.selfBox>
+                </t.textName>
               </t.introduce>
               <t.snsLink>
                 {/* <t.textName>링크걸기</t.textName> */}
@@ -175,12 +177,14 @@ export default function ProfileInformation({}) {
               </t.nickName>
               <t.email style={{ top: "130px" }}>{userEmail}</t.email>
               <t.introduce>
-                <t.textName>자기소개</t.textName>
-                <t.selfBox
-                  onChange={introduceonChange}
-                  defaultValue={userSelf || ""}
-                  maxLength={100}
-                />
+                <t.textName>
+                  자기소개
+                  <t.selfBox
+                    onChange={introduceonChange}
+                    defaultValue={userSelf || ""}
+                    maxLength={100}
+                  />
+                </t.textName>
               </t.introduce>
               <t.snsLink>
                 {/* <t.textName>링크걸기</t.textName>
