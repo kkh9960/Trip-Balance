@@ -16,7 +16,7 @@ export default function GamePage() {
 
   const goFirst = (e) => {
     e.preventDefault();
-    navigate("/game/start");
+    navigate("/start");
   };
   const goHome = (e) => {
     e.preventDefault();
@@ -46,18 +46,17 @@ export default function GamePage() {
       : dispatch(__GameInfoGet({ GameID, QID }));
   }, [id]);
 
-  const leftImg = `../../img/gameImg/${gameData.data[0]?.leftId == null ? (2) : (gameData.data[0]?.leftId)}.jpg`         
-  const rightImg = `../../img/gameImg/${gameData.data[0]?.rightId == null ? (2) : (gameData.data[0]?.rightId)}.jpg`
+  const leftImg = `../../img/gameImg/${gameData.data[0]?.leftId == null ? (2) : (gameData.data[0]?.leftId)}.webp`         
+  const rightImg = `../../img/gameImg/${gameData.data[0]?.rightId == null ? (2) : (gameData.data[0]?.rightId)}.webp`
   const GameID = (gameData.data[1]?.gameId === null ? ("1") : gameData.data[1]?.gameId)
   const QID = parseInt(id.id)
-  const VCharacter = '../../img/smile.png'
-  const FCharacter = '../../img/unhappy.png'
+  const VCharacter = '../../img/gameCommonImg/smile.webp'
+  const FCharacter = '../../img/gameCommonImg/unhappy.webp'
   // 움짤 만들어주시면 넣을 예정
 
   return (
     // 글자 받아오면 띄어쓰기대로 나누기 정렬
     <g.totalWrap>
-      <div>
       {QID >= 32 ? (
         <g.balanceButtonWrapFinal>
           <g.balanceButtonFinal onClick={resultGo}>
@@ -65,7 +64,7 @@ export default function GamePage() {
           </g.balanceButtonFinal>          
         </g.balanceButtonWrapFinal>
       ) : (
-         <div>
+         <g.balanceViewWrap>
           <g.balanceButtonWrap>
             <g.balanceButtonBH>
             <g.balanceButton src={leftImg} onClick={leftGo}/>
@@ -87,9 +86,8 @@ export default function GamePage() {
           <g.homeWrap>
             <g.balanceFirst onClick={goHome}>메인으로</g.balanceFirst>
           </g.homeWrap>
-         </div>
+          </g.balanceViewWrap>
       )}
-      </div>
     </g.totalWrap>
   );
 }
