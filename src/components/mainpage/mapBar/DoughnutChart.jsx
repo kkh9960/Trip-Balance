@@ -11,7 +11,6 @@ import {
   Legend,
 } from "chart.js";
 import { Doughnut, Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 import { useSelector, useDispatch } from "react-redux";
 import * as t from "./DoughnutChartStyle";
 import WeatherBar from "./weatherBar/WeatherBar";

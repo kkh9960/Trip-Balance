@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "./Layout";
 import mainlogo from "../../img/mainlogo.png";
-import { AiFillGithub } from "react-icons/ai";
+// import { AiFillGithub } from "react-icons/ai";
 import * as t from "./FooterStyle";
 
 const Footer = () => {

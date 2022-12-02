@@ -7,10 +7,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
-import { SlMenu, SlLogin, SlLogout } from "react-icons/sl";
-import { FaUserCircle } from "react-icons/fa";
-import { MdOutlineVideogameAsset } from "react-icons/md";
-import { HiClipboardDocumentList } from "react-icons/hi2";
+import { SlMenu } from "react-icons/sl";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -71,7 +68,6 @@ const Header = () => {
                     navigate("/start");
                   }}
                 >
-                  <MdOutlineVideogameAsset className="icon" />
                   <p>밸런스게임</p>
                 </t.Game>
 
@@ -80,8 +76,6 @@ const Header = () => {
                     navigate("/post");
                   }}
                 >
-                  <HiClipboardDocumentList className="icon" />
-
                   <p>게시판</p>
                 </t.Posting>
 
@@ -92,8 +86,6 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
-                    <FaUserCircle className="icon" />
-
                     <p>마이페이지</p>
                   </t.Mypage>
                 ) : (
@@ -102,15 +94,11 @@ const Header = () => {
                       navigate("/mypage");
                     }}
                   >
-                    <FaUserCircle className="icon" />
-
                     <p>마이페이지</p>
                   </t.Mypage>
                 )}
                 {nickname ? (
                   <t.Logout onClick={logout}>
-                    <SlLogout className="icon" />
-
                     <p>로그아웃</p>
                   </t.Logout>
                 ) : (
@@ -119,8 +107,6 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
-                    <SlLogin className="icon" />
-
                     <p>로그인</p>
                   </t.Login>
                 )}
@@ -146,7 +132,6 @@ const Header = () => {
                     navigate("/start");
                   }}
                 >
-                  <MdOutlineVideogameAsset className="icon" />
                   <p>밸런스게임</p>
                 </t.Game>
                 <t.Posting
@@ -154,8 +139,6 @@ const Header = () => {
                     navigate("/post");
                   }}
                 >
-                  <HiClipboardDocumentList className="icon" />
-
                   <p>게시판</p>
                 </t.Posting>
 
@@ -166,8 +149,6 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
-                    <FaUserCircle className="icon" />
-
                     <p>마이페이지</p>
                   </t.Mypage>
                 ) : (
@@ -176,15 +157,11 @@ const Header = () => {
                       navigate("/mypage");
                     }}
                   >
-                    <FaUserCircle className="icon" />
-
                     <p>마이페이지</p>
                   </t.Mypage>
                 )}
                 {nickname ? (
                   <t.Logout onClick={logout}>
-                    <SlLogout className="icon" />
-
                     <p>로그아웃</p>
                   </t.Logout>
                 ) : (
@@ -193,8 +170,6 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
-                    <SlLogin className="icon" />
-
                     <p>로그인</p>
                   </t.Login>
                 )}
