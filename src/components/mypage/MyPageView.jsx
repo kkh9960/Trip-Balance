@@ -25,7 +25,6 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/info");
-      console.log(result);
       setUserGameCnt(result.data.data.gameCnt);
       setUserCommentCnt(result.data.data.commentCnt);
       setUserPostCnt(result.data.data.postCnt);

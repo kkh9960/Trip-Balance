@@ -22,8 +22,9 @@ export const hotelContainer = styled.div`
   height: 885px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   @media screen and (max-width: 480px) {
     width: 100%;
     height: 450px;

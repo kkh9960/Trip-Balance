@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "./Layout";
-import mainlogo from "../../img/mainlogo.png";
+import mainlogo from "../../img/mainlogo.webp";
 // import { AiFillGithub } from "react-icons/ai";
 import * as t from "./FooterStyle";
 

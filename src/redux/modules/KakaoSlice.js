@@ -13,7 +13,6 @@ export const KaKaoLogin = createAsyncThunk(
       const data = await axios.get(
         `https://tbtbtb.shop/tb/ouath/kakao?code=${payload}`
       );
-      console.log(data);
 
       // const [cookie, setCookie, removeCookie] = useCookies();
       // sessionStorage.setItem("email", data.data.data.email);
@@ -35,9 +34,7 @@ export const KaoKaoLoginSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [KaKaoLogin.fulfillWithValue]: (state, action) => {
-      console.log(action);
-    },
+    [KaKaoLogin.fulfillWithValue]: (state, action) => {},
     [KaKaoLogin.rejected]: (state, action) => {},
   },
 });

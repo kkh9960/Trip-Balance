@@ -17,8 +17,6 @@ const BoardWrite = () => {
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [ModalEdit, setModalEdit] = useState(false);
 
-  console.log(ImgPreview.length);
-
   // 이미지
 
   const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
@@ -42,8 +40,6 @@ const BoardWrite = () => {
       region: REGION,
     });
     const file = e.target.files[0];
-    console.log(file);
-    console.log(file.name);
 
     const fileName = file.name.replaceAll(" ", "");
 
@@ -60,20 +56,17 @@ const BoardWrite = () => {
         .putObject(params)
         .on("httpUploadProgress", (Progress, Response) => {
           alert("SUCCESS");
-          console.log(Response.request.httpRequest.path);
           const imgURL = S3URL + Response.request.httpRequest.path;
           setFileLink(imgURL);
-          console.log("123", imgURL);
           setImgPreview([...ImgPreview, { imgURL }]);
         })
         .send((err) => {
-          if (err) console.log(err);
+          if (err);
         });
     } else {
       alert("이미지는 10개까지만 업로드할수있습니다.");
     }
   };
-  console.log(ImgPreview);
 
   useEffect(() => {
     setFileLink(imagewrite);
@@ -109,7 +102,6 @@ const BoardWrite = () => {
     });
   };
 
-  console.log(contents);
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (contents?.category2 == undefined || contents?.category2 == 0) {
@@ -131,28 +123,13 @@ const BoardWrite = () => {
     }
   };
 
-  console.log(contents?.category2);
-
   const imagewrite = "img/imagewrite.jpg";
   const noimage = "img/noimage.jpg";
 
-  // console.log(
-  //   contents?.title,
-  //   contents?.content,
-  //   contents?.category1,
-  //   contents?.category2,
-  //   ImgPreview,
-  //   Pet
-  // );
-
   const imageremove = (id, i, i2) => {
-    console.log(id, i);
     let target = document.getElementById(id);
-    console.log(target);
     if (target == null) {
-      console.log("123");
     } else {
-      console.log("456");
       setImgPreview(ImgPreview.filter((el) => el.imgURL !== target.src));
       if (i) {
         setFileLink(i);

@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 import LoginPage from "../login/LoginPage";
 
-
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
   useEffect(() => {
@@ -48,8 +47,6 @@ const PostBestfive = ({ best }) => {
     slider.addEventListener("touchend", end);
   }, []);
 
-  console.log(best);
-
   const goPost = (id) => {
     navigator(`/detail/${id}`);
   };
@@ -61,20 +58,13 @@ const PostBestfive = ({ best }) => {
     setModal(!modal);
   };
 
-
   return (
-
     <Main>
       <Wrap>
         <Items className="items">
           {best &&
             best.map((item, idx) => (
-              <Item
-                className="item"
-                key={idx}
-                onClick={goLogin}
-              >
-
+              <Item className="item" key={idx} onClick={goLogin}>
                 <ItemImgBox>
                   <ItemImg src={item.img} />
                 </ItemImgBox>
@@ -87,7 +77,6 @@ const PostBestfive = ({ best }) => {
         </Items>
       </Wrap>
     </Main>
-
   );
 };
 

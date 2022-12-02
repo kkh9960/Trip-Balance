@@ -5,7 +5,6 @@ import * as t from "./WeatherBarStyle";
 export default function WeatherBar() {
   const weatherdata = useSelector((state) => state.MapSlice.data.weather);
   const city = useSelector((state) => state.MapSlice.data?.cnt);
-  console.log(city);
   const cityName = city[0].location.split(" ")[0];
   const countyName = city[0].location.split(" ")[1];
 

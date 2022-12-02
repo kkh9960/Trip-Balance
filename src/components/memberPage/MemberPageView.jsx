@@ -43,7 +43,6 @@ export default function MemberPage() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`tb/memberinfo/posts/${id.id}`);
-      console.log("ghgh", result);
       setPosts(result.data.data);
     }
     fetchData();

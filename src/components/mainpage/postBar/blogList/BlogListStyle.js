@@ -7,6 +7,8 @@ export const blogSection = styled.div`
     height: 996px;
     margin: 0 auto;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
   }
   @media screen and (max-width: 480px) {
@@ -19,8 +21,9 @@ export const blogContainer = styled.div`
   height: 885px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -45,25 +48,22 @@ export const blogList = styled.div`
 export const blogText = styled.div`
   width: 100%;
   height: 44px;
+  color: #333;
   font-size: 36px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
+  font-weight: 700;
+  line-height: 44px;
   letter-spacing: normal;
   text-align: center;
-  color: #000;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 `;
 export const blogListBox = styled.div`
-  background-color: #f2f2f2;
   @media screen and (min-width: 480px) {
-    background-color: gray;
     display: flex;
     width: 630px;
     height: 185px;
     border-radius: 20px 0px 0px 20px;
-    margin: 5px;
+    margin-bottom: 60px;
+    cursor: pointer;
   }
   @media screen and (max-width: 480px) {
     width: 315px;
@@ -74,10 +74,12 @@ export const blogListBox = styled.div`
 `;
 export const blogImgBox = styled.img`
   @media screen and (min-width: 480px) {
-    width: 285px;
-    height: 185px;
+    width: 284.47px;
+    height: 184.01px;
     object-fit: cover;
-    border-radius: 20px 0px 0 20px;
+    border-radius: 20px;
+    margin-right: 20px;
+    box-shadow: 0 0 2px;
   }
 
   @media screen and (max-width: 480px) {
@@ -91,6 +93,7 @@ export const blogImgBox = styled.img`
 export const blogContentsBox = styled.div`
   width: 355px;
   overflow: hidden;
+
   @media screen and (min-width: 480px) {
     width: 355px;
   }
@@ -119,21 +122,25 @@ export const blogTitle = styled.div`
     text-overflow: ellipsis;
   }
 `;
-export const blogContents = styled.div``;
+export const blogContents = styled.div`
+  width: 100%;
+  height: 100%;
+  color: #777;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 export const blogName = styled.div`
   @media screen and (min-width: 480px) {
     width: 300px;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    color: gray;
   }
   @media screen and (max-width: 480px) {
     width: 300px;
     font-size: 18px;
     font-weight: bold;
     text-align: center;
-    color: gray;
     margin-bottom: 5px;
   }
 `;

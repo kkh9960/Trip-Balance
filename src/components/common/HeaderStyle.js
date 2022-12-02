@@ -68,8 +68,8 @@ export const toggleBtn = styled.div`
   display: none;
   position: absolute;
   right: 38px;
-  top: 38px;
-  font-size: 34px;
+  margin: auto 0;
+  scale: 1.5;
   cursor: pointer;
   @media screen and (max-width: 480px) {
     display: block;
@@ -86,12 +86,12 @@ export const WriteWrap = styled.div`
   width: 900px;
   height: 100%;
   display: flex;
+
   align-items: center;
   justify-content: center;
   transition: 1s;
-  :hover {
-    transition: 1s;
-    background-color: rgba(0, 0, 0, 0.7);
+  img {
+    scale: 0.3;
   }
   div {
     color: white;
@@ -109,6 +109,9 @@ export const WriteWrap = styled.div`
     width: 100%;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
+    img {
+      scale: 0.2;
+    }
   }
 `;
 
@@ -129,6 +132,7 @@ export const Logo = styled.img`
   @media screen and (max-width: 960px) {
     width: 140px;
     height: 46px;
+    margin: 37px 0;
     transition: 0.5s;
     margin-left: 30px;
     transition: 1s;
@@ -156,13 +160,13 @@ export const Game = styled.div`
     p {
       display: block;
     }
-    .icon {
+    img {
       display: none;
     }
   }
   @media screen and (max-width: 480px) {
     font-size: 12px;
-    .icon {
+    img {
       display: none;
     }
     p {
@@ -182,13 +186,13 @@ export const Posting = styled.div`
     p {
       display: block;
     }
-    .icon {
+    img {
       display: none;
     }
   }
   @media screen and (max-width: 480px) {
     font-size: 14px;
-    .icon {
+    img {
       display: none;
     }
     p {
@@ -208,13 +212,13 @@ export const Mypage = styled.div`
     p {
       display: block;
     }
-    .icon {
+    img {
       display: none;
     }
   }
   @media screen and (max-width: 480px) {
     font-size: 10px;
-    .icon {
+    img {
       display: none;
     }
     p {
@@ -234,13 +238,13 @@ export const Login = styled.div`
     p {
       display: block;
     }
-    .icon {
+    img {
       display: none;
     }
   }
   @media screen and (max-width: 480px) {
     font-size: 10px;
-    .icon {
+    img {
       display: none;
     }
     p {
@@ -260,13 +264,13 @@ export const Logout = styled.div`
     p {
       display: block;
     }
-    .icon {
+    img {
       display: none;
     }
   }
   @media screen and (max-width: 480px) {
     font-size: 10px;
-    .icon {
+    img {
       display: none;
     }
     p {

@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import blue from "../../../img/blue.jpg";
-import bblue from "../../../img/bblue.jpg";
-import ameral from "../../../img/ameral.jpg";
-import mainlogo from "../../../img/mainlogo.png";
-import retro from "../../../img/retro.jpg";
+import blue from "../../../img/blue.webp";
+import bblue from "../../../img/bblue.webp";
+import ameral from "../../../img/ameral.webp";
+import mainlogo from "../../../img/mainlogo.webp";
 import next from "../../../img/next.svg";
 import prev from "../../../img/prev.svg";
 import {
@@ -56,7 +55,7 @@ function Banner() {
     >
       <Blue>
         <Img src={blue} alt="mainimg1" />
-        <Logo src={mainlogo} />
+        <Logo src={mainlogo} alt="mainlogoimg" />
         <Title>Trip Balance</Title>
         <Trip>추천여행지</Trip>
         <Trip2>추천여행지</Trip2>
@@ -66,7 +65,7 @@ function Banner() {
       <Ameral>
         <Img src={ameral} alt="mainimg2" />
         <Link to="/start">
-          <Retro src={retro} />
+          <Retro src={""} />
         </Link>
         <Title2>밸런스게임</Title2>
         <Comment>당신에게 맞는 여행지는 어디인가요?</Comment>

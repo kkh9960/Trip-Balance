@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
 import * as t from "./HeaderStyle";
 import Layout from "./Layout";
-import mainlogo from "../../img/mainlogo.png";
+import mainlogo from "../../img/mainlogo.webp";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
-import { SlMenu } from "react-icons/sl";
+import mainlist from "../../img/mainlist.webp";
+import maingame from "../../img/maingame.webp";
+import mainpost from "../../img/mainpost.webp";
+import mainmypage from "../../img/mainmypage.webp";
+import mainlogin from "../../img/mainlogin.webp";
+import mainlogout from "../../img/mainlogout.webp";
 
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-  const [cookie, setCookie, removeCookie] = useCookies();
   const nickname = sessionStorage.getItem("nickName");
   const [header, setHeader] = useState("/");
   const location = useLocation();
-  // console.log(`지금 accessToken: ${accessToken}`);
-  // console.log(`지금 refreshToken: ${refreshToken}`);
   useEffect(() => {
     setHeader(location.pathname);
   }, [location]);
   const email = sessionStorage.getItem("email");
   async function logout() {
-    // 백으로부터 받은 응답
-    //ss
-    // axios.defaults.headers.post["authorization"] = cookie.Access;
-    // axios.defaults.headers.post["refresh-token"] = cookie.Refresh;
-
     instance
       .post("/tb/logout")
       .then((res) => {
@@ -60,7 +56,7 @@ const Header = () => {
                 <t.Logo src={mainlogo} alt="logo" />
               </Link>
               <t.toggleBtn toggle={toggle} onClick={toggleChange}>
-                <SlMenu />
+                <img src={mainlist} alt="listicon" />
               </t.toggleBtn>
               <t.WriteWrap toggle={toggle}>
                 <t.Game
@@ -68,6 +64,7 @@ const Header = () => {
                     navigate("/start");
                   }}
                 >
+                  <img src={maingame} alt="maingameimg" />
                   <p>밸런스게임</p>
                 </t.Game>
 
@@ -76,6 +73,7 @@ const Header = () => {
                     navigate("/post");
                   }}
                 >
+                  <img src={mainpost} alt="mainpostimg" />
                   <p>게시판</p>
                 </t.Posting>
 
@@ -86,6 +84,7 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
+                    <img src={mainmypage} alt="mainmypageimg" />
                     <p>마이페이지</p>
                   </t.Mypage>
                 ) : (
@@ -94,11 +93,13 @@ const Header = () => {
                       navigate("/mypage");
                     }}
                   >
+                    <img src={mainmypage} alt="mainmypageimg" />
                     <p>마이페이지</p>
                   </t.Mypage>
                 )}
                 {nickname ? (
                   <t.Logout onClick={logout}>
+                    <img src={mainlogout} alt="mainlogoutimg" />
                     <p>로그아웃</p>
                   </t.Logout>
                 ) : (
@@ -107,6 +108,7 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
+                    <img src={mainlogin} alt="mainloginimg" />
                     <p>로그인</p>
                   </t.Login>
                 )}
@@ -124,7 +126,7 @@ const Header = () => {
                 <t.Logo src={mainlogo} alt="logo" />
               </Link>
               <t.toggleBtn toggle={toggle} onClick={toggleChange}>
-                <SlMenu />
+                <img src={mainlist} alt="listicon" />
               </t.toggleBtn>
               <t.WriteWrap toggle={toggle}>
                 <t.Game
@@ -132,6 +134,7 @@ const Header = () => {
                     navigate("/start");
                   }}
                 >
+                  <img src={maingame} alt="maingameimg" />
                   <p>밸런스게임</p>
                 </t.Game>
                 <t.Posting
@@ -139,6 +142,7 @@ const Header = () => {
                     navigate("/post");
                   }}
                 >
+                  <img src={mainpost} alt="mainpostimg" />
                   <p>게시판</p>
                 </t.Posting>
 
@@ -149,6 +153,7 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
+                    <img src={mainmypage} alt="mainmypageimg" />
                     <p>마이페이지</p>
                   </t.Mypage>
                 ) : (
@@ -157,11 +162,13 @@ const Header = () => {
                       navigate("/mypage");
                     }}
                   >
+                    <img src={mainmypage} alt="mainmypageimg" />
                     <p>마이페이지</p>
                   </t.Mypage>
                 )}
                 {nickname ? (
                   <t.Logout onClick={logout}>
+                    <img src={mainlogout} alt="mainlogoutimg" />
                     <p>로그아웃</p>
                   </t.Logout>
                 ) : (
@@ -170,6 +177,7 @@ const Header = () => {
                       setModal(!modal);
                     }}
                   >
+                    <img src={mainlogin} alt="mainloginimg" />
                     <p>로그인</p>
                   </t.Login>
                 )}
