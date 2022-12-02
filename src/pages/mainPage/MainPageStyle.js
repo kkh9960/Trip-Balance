@@ -14,12 +14,8 @@ export const mainImageBox = styled.div`
   height: 100vh;
 `;
 export const mapGroup = styled.div`
-  width: 1326px;
-  height: 630;
-  margin-left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: 940px;
   @media screen and (max-width: 480px) {
     width: 100%;
   }

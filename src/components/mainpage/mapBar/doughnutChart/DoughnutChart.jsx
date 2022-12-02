@@ -13,7 +13,7 @@ import {
 import { Doughnut, Bar } from "react-chartjs-2";
 import { useSelector, useDispatch } from "react-redux";
 import * as t from "./DoughnutChartStyle";
-import WeatherBar from "./weatherBar/WeatherBar";
+import WeatherBar from "../weatherBar/WeatherBar";
 
 ChartJS.register(
   ArcElement,

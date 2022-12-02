@@ -60,9 +60,5 @@ export default function MapBar() {
     }
   };
 
-  return (
-    <div>
-      <t.mapContainer id="map" />
-    </div>
-  );
+  return <t.mapContainer id="map" />;
 }

@@ -94,12 +94,14 @@ export const temperature = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 60px;
-  color: #000;
-  margin-left: -30px;
-  letter-spacing: -5px;
-  text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
+  line-height: 73px;
+  text-align: right;
+  color: #777;
+
+  p {
+  }
   @media screen and (max-width: 480px) {
     display: flex;
     justify-content: center;
@@ -132,7 +134,9 @@ export const weatherDescription = styled.div`
 
 export const details = styled.div`
   width: 100%;
-  padding-left: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   @media screen and (max-width: 480px) {
     width: 100%;
   }

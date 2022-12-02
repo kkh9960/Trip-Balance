@@ -49,7 +49,10 @@ export default function WeatherBar() {
           />
         </t.iconBox>
         <t.temperatureBox>
-          <t.temperature>{`${TMP}`}°C</t.temperature>
+          <t.temperature>
+            {`${TMP}`}
+            <p>°C</p>
+          </t.temperature>
         </t.temperatureBox>
       </t.top>
       <t.bottom>
@@ -57,25 +60,36 @@ export default function WeatherBar() {
           {dayOfWeek}, {time}
         </t.timer>
         <t.details>
-          <t.parameterRow>
-            <t.parameterLabel>풍속</t.parameterLabel>
-            <t.parameterValue>{WSD}m/s</t.parameterValue>
-          </t.parameterRow>
-          <t.parameterRow>
-            <t.parameterLabel>습도</t.parameterLabel>
-            <t.parameterValue>{REH}%</t.parameterValue>
-          </t.parameterRow>
-          <t.parameterRow>
-            <t.parameterLabel>강수확률</t.parameterLabel>
-            <t.parameterValue> {POP}%</t.parameterValue>
-          </t.parameterRow>
-          <t.parameterRow>
+          {/* <t.parameterRow>
             <t.parameterLabel>강수량</t.parameterLabel>
             <t.parameterValue>
               {" "}
               {PCP === "강수없음" ? PCP : (PCP, "mm")}
             </t.parameterValue>
           </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>강수확률</t.parameterLabel>
+            <t.parameterValue> {POP}%</t.parameterValue>
+          </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>습도</t.parameterLabel>
+            <t.parameterValue>{REH}%</t.parameterValue>
+          </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>풍속</t.parameterLabel>
+            <t.parameterValue>{WSD}m/s</t.parameterValue>
+          </t.parameterRow> */}
+          <t.parameterLabel>강수량</t.parameterLabel>
+          <t.parameterLabel>강수확률</t.parameterLabel>
+          <t.parameterLabel>습도</t.parameterLabel>
+          <t.parameterLabel>풍속</t.parameterLabel>
+          <t.parameterValue>
+            {" "}
+            {PCP === "강수없음" ? PCP : (PCP, "mm")}
+          </t.parameterValue>
+          <t.parameterValue> {POP}%</t.parameterValue>
+          <t.parameterValue>{REH}%</t.parameterValue>
+          <t.parameterValue>{WSD}m/s</t.parameterValue>
         </t.details>
       </t.bottom>
     </t.weather>

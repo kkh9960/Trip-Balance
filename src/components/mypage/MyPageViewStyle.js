@@ -41,7 +41,7 @@ export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  margin-top: 30px;
+  padding-top: 120px;
   background-color: transparent;
   @media screen and (max-width: 480px) {
     background-color: gray;
@@ -49,7 +49,76 @@ export const myInformationWrap = styled.div`
     width: 100%;
   }
 `;
+export const myTotalInfo = styled.div`
+  height: 150px;
 
+  background-color: #4cd8eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 30px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #555;
+`;
+
+//내가작성한글목록
+export const myPostWrap = styled.div`
+  position: relative;
+  width: 77%;
+  height: 45%;
+  margin-bottom: 40px;
+  float: right;
+  border-radius: 10px 0 0 10px;
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+  border: 2px solid gray;
+  border-right-style: none;
+  padding: 10px 200px 10px 20px;
+  box-shadow: 0 0 6px;
+`;
+export const postWrap = styled.div`
+  margin: 80px 30px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 480px) {
+    display: flex;
+  }
+`;
+export const postItem = styled.div`
+  width: 185px;
+  height: 239px;
+  border: 1px solid;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+`;
+export const postImg = styled.img`
+  width: 185px;
+  height: 142px;
+  border-radius: 10px;
+  object-fit: cover;
+`;
+export const postTitle = styled.div`
+  font-size: 20px;
+  font-weight: 400;
+`;
+export const postTime = styled.div`
+  position: absolute;
+  bottom: 0px;
+  font-size: 18px;
+  color: #787878;
+`;
+//좋아요한 게시글
 export const myPickPostWrap = styled.div`
   position: relative;
   width: 77%;
@@ -71,40 +140,7 @@ export const myPickPostWrap = styled.div`
     background-color: gray;
   }
 `;
-export const myPostWrap = styled.div`
-  position: relative;
-  width: 77%;
-  height: 45%;
-  margin-bottom: 40px;
-  float: right;
-  border-radius: 10px 0 0 10px;
-  display: flex;
-  background-color: #fff;
-  justify-content: center;
-  border: 2px solid gray;
-  border-right-style: none;
-  padding: 10px 200px 10px 20px;
-  box-shadow: 0 0 6px;
-`;
-export const myTotalInfo = styled.div`
-  height: 150px;
 
-  background-color: #4cd8eb;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  font-size: 30px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 1px;
-  text-align: center;
-  color: #555;
-`;
-
-//좋아요한 게시글
 export const itemHeader = styled.div`
   display: flex;
   position: absolute;
@@ -174,7 +210,7 @@ export const mySelectInformation = styled.div`
       rgba(255, 255, 255, 0.8) 35%,
       rgba(255, 255, 255, 0.9) 50%,
       rgba(255, 255, 255, 1) 100%
-    ),
+    )
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

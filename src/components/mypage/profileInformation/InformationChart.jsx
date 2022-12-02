@@ -50,7 +50,6 @@ export default function InformationChart() {
       ],
       datasets: [
         {
-          label: "# of Votes",
           data: [
             mypickData?.data?.data[0]?.match(/\d+/g)[0],
             mypickData?.data?.data[1]?.match(/\d+/g)[0],

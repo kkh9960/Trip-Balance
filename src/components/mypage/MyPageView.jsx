@@ -41,6 +41,7 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/posts");
+
       setPosts(result.data.data);
     }
     fetchData();
@@ -53,11 +54,11 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/hearts");
+
       setMyPick(result.data.data);
     }
     fetchData();
   }, []);
-
   return (
     <t.myInformationWrap>
       <ProfileInformation />
@@ -83,6 +84,8 @@ export default function MyPageView() {
           <t.pickPostWrap>
             {typeof myPick === typeof "string" ? (
               <h1>좋아요한 글이 없습니다.</h1>
+            ) : myPick === null ? (
+              <t.empty>좋아요한 글이 없습니다.</t.empty>
             ) : (
               myPick.slice(offset, offset + limit).map((idx) => {
                 if (myPick.length === 0) {
@@ -118,28 +121,30 @@ export default function MyPageView() {
 
             <t.thinLine />
           </t.itemHeader>
-          <t.pickPostWrap>
+          <t.postWrap>
             {typeof posts === typeof "string" ? (
               <h1>작성한 글이 없습니다.</h1>
+            ) : posts === null ? (
+              <t.empty>작성한 글이 없습니다.</t.empty>
             ) : (
               posts.slice(writeoffset, writeoffset + writelimit).map((idx) => {
                 if (posts.length === 0) {
                   return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
                 } else {
                   return (
-                    <t.pickPostItem
+                    <t.postItem
                       key={idx.postId}
                       onClick={() => navigate(`/detail/${idx.postId}`)}
                     >
-                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <div>{idx.createdAt}</div>
-                    </t.pickPostItem>
+                      <t.postImg src={idx.img} alt="게시글이미지" />
+                      <t.postTitle>{idx.title}</t.postTitle>
+                      <t.postTime>{idx.createdAt.split("T")[0]}</t.postTime>
+                    </t.postItem>
                   );
                 }
               })
             )}
-          </t.pickPostWrap>
+          </t.postWrap>
 
           <t.footer>
             <t.thinLine />
@@ -148,6 +153,7 @@ export default function MyPageView() {
               limit={writelimit}
               page={writepage}
               setPage={setWritePage}
+              defa
             />
           </t.footer>
         </t.myPostWrap>
