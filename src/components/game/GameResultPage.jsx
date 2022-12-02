@@ -41,9 +41,8 @@ export default function GameResultPage() {
     }
   }, [resultLocal]);
 
-  const resultImg = `../../img/resultImg/${
-    localId === null ? 32 : localId
-  }.jpg`;
+  const resultImg = `../../img/resultImg/${localId === null ? (32) : (localId)}.webp`
+
 
   return (
     <div>

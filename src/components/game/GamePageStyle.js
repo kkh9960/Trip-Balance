@@ -2,32 +2,30 @@ import styled from "styled-components";
 
 export const balanceButtonBH = styled.div`
   position: relative;
-  width: 500px;
-  height: 600px;
-  margin-top: 70px;
+  width: 483.68px;
+  height: 511.51px;
+  margin-top: 162.45px;
   display: flex;
   align-items: center;
 `;
 
 export const balanceButton = styled.img`
-  width: 500px;
-  height: 600px;
+  width: 483.68px;
+  height: 511.51px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 30px;
   color: white;
   filter: brightness(65%);
 `;
 
 export const balanceButtonHover = styled.img`
-  width: 500px;
-  height: 600px;
+  width: 100px;
+  height: 118.47px;
   object-fit: cover;
-  border-radius: 10px;
-  color: white;
-  filter: brightness(65%);
+  //filter: brightness(65%);
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 544.51px;
+  left: 191.84px;
   display: none;
   ${balanceButtonBH}:hover & {
     display: block;
@@ -36,14 +34,12 @@ export const balanceButtonHover = styled.img`
 `;
 
 export const balanceButtonRightHover = styled.img`
-  width: 500px;
-  height: 600px;
+  width: 111.86px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 10px;
-  color: white;
-  filter: brightness(65%);
+  //filter: brightness(65%);
   position: absolute;
-  top: 0px;
+  top: 544.51px;
   left: 960px;
   display: none;
   ${balanceButtonBH}:hover & {
@@ -53,14 +49,12 @@ export const balanceButtonRightHover = styled.img`
 `;
 
 export const balanceButtonLeftHover = styled.img`
-  width: 500px;
-  height: 600px;
+  width: 111.86px;
+  height: 80px;
   object-fit: cover;
-  border-radius: 10px;
-  color: white;
-  filter: brightness(65%);
+  //filter: brightness(65%);
   position: absolute;
-  top: 0px;
+  top: 544.51px;
   right: 960px;
   display: none;
   ${balanceButtonBH}:hover & {
@@ -69,9 +63,17 @@ export const balanceButtonLeftHover = styled.img`
   }
 `;
 
+export const balanceViewWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 export const balanceButtonWrap = styled.div`
   display: flex;
-  justify-content: space-around;
+  width: 1326px;
+  justify-content: space-between;
 `;
 
 export const balanceText = styled.div`
@@ -138,11 +140,11 @@ export const homeWrap = styled.div`
 `;
 
 export const totalWrap = styled.div`
-  background-image: url("../../img/backgroundimg.jpg");
+  background-image: url("../../img/gameCommonImg/backGroundImg.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  min-width: 1920px;
-  min-height: 929px;
+  min-width: 1903px;
+  min-height: 969px;
   width: 100%;
   height: 100%;
 `;
