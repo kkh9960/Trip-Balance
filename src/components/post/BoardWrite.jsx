@@ -25,8 +25,8 @@ const BoardWrite = () => {
 
   //AWS S3 이미지 업로드 도전
   const onFileUpload = async (e) => {
-    const ACCESS_KEY = process.env.ACCESS_KEY;
-    const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
+    const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
+    const SECRET_ACCESS_KEY = process.env.REACT_APP_SECRET_ACCESS_KEY;
     const REGION = "ap-northeast-2";
     const S3_BUCKET = "react-image-seongwoo";
 
