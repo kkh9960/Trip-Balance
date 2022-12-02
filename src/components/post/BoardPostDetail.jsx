@@ -106,16 +106,16 @@ const BoardPostDetail = () => {
   };
 
   //트러블슈팅## 좋아요 갯수 실시간 변환
-  //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다. 어흥
+  //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다.
 
   const Boardpostlike = () => {
     setHeart(!heart);
     dispatch(__boardlike(id.id));
 
     if (heart) {
-      setheartnum((prevstate) => prevstate - 1);
+      setheartnum(heartnum - 1);
     } else {
-      setheartnum((prevstate) => prevstate + 1);
+      setheartnum(heartnum + 1);
     }
   };
 

@@ -122,8 +122,10 @@ function RegisterPage() {
                 onClick={() => {
                   setModal(!modal);
                 }}
+
               ></t.BackArrow>
               <t.Cancel onClick={modalClose}></t.Cancel>
+
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>
               </t.SignupTitleWrap>
