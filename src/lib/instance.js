@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Cookies } from "react-cookie";
 // const token = new Cookies().get("token");
 // // access 토큰 개발자 tool app>cookie 받아오기
 // const token2 = new Cookies().get("refreshToken");

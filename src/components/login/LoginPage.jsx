@@ -7,11 +7,10 @@ import * as t from "./Loginstyle";
 import TripImage from "../../img/trip.jpg";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import kakao from "../../img/kakaologin.jpg";
-import { ImExit } from "react-icons/im";
+// import { ImExit } from "react-icons/im";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
 
 function LoginPage() {
@@ -29,7 +28,6 @@ function LoginPage() {
   const dispatch = useDispatch();
   const [email, setEmail, emailchange] = useInput("");
   const [password, setPassword, pwchange] = useInput("");
-  const [cookie, setCookie, removeCookie] = useCookies();
   const modalClose = () => {
     window.location.reload();
   };
@@ -61,8 +59,6 @@ function LoginPage() {
         "token",
         res.request.getResponseHeader("authorization")
       );
-      // setCookie("refreshToken", res.request.getResponseHeader("refresh-token"));
-      // setCookie("token", res.request.getResponseHeader("authorization"));
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
 
@@ -82,7 +78,7 @@ function LoginPage() {
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
             <t.CancelBtn className="cancel" onClick={modalClose}>
-              <ImExit size={30} />
+              {/* <ImExit size={30} /> */}
             </t.CancelBtn>
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
               <t.LoginTitle>로그인</t.LoginTitle>

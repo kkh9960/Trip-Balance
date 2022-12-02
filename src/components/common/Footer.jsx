@@ -1,8 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import Layout from "./Layout";
 import TripImage from "../../img/trip.jpg";
-import { AiFillGithub } from "react-icons/ai";
 import {
   Container,
   Compeney,
@@ -22,34 +20,34 @@ const Footer = () => {
           <Front>
             Thanks For Front:
             <a href="">
-              <AiFillGithub />
+              {/* <AiFillGithub /> */}
               곽규현
             </a>
             <a href="https://github.com/jnwnddh">
-              <AiFillGithub />
+              {/* <AiFillGithub /> */}
               이중오
             </a>
             <a href="">
-              <AiFillGithub />
+              {/* <AiFillGithub /> */}
               박성우
             </a>
             <a href="">
-              <AiFillGithub />
+              {/* <AiFillGithub /> */}
               조광익
             </a>
           </Front>
           <Back>
             Thanks For Back:
             <a href="">
-              <AiFillGithub />
+              {/* <AiFillGithub /> */}
               김영문
             </a>
             <a href="">
-              <AiFillGithub />
+              {/* <AiFillGithub /> */}
               방주은
             </a>
             <a href="">
-              <AiFillGithub />
+              {/* <AiFillGithub /> */}
               김장원
             </a>
           </Back>

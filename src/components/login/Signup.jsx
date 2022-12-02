@@ -9,8 +9,8 @@ import Header from "../common/Header";
 import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
-import { ImExit } from "react-icons/im";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+// import { ImExit } from "react-icons/im";
+// import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import * as t from "./Signupstyle";
 function RegisterPage() {
   const {
@@ -129,11 +129,11 @@ function RegisterPage() {
                   setModal(!modal);
                 }}
               >
-                <BsFillArrowLeftCircleFill size={30} />
+                {/* <BsFillArrowLeftCircleFill size={30} /> */}
               </t.BackArrow>
 
               <t.Cancel onClick={modalClose}>
-                <ImExit size={30} />
+                {/* <ImExit size={30} /> */}
               </t.Cancel>
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>

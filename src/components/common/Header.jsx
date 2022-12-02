@@ -3,14 +3,11 @@ import * as t from "./HeaderStyle";
 import Layout from "./Layout";
 import TripImage from "../../img/trip.jpg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useCookies } from "react-cookie";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
-  const [cookie, setCookie, removeCookie] = useCookies();
   const nickname = sessionStorage.getItem("nickName");
   const [header, setHeader] = useState("/");
   const location = useLocation();

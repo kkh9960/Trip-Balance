@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import AWS from "aws-sdk";
 import { __postBoard } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
+import imageCompression from "browser-image-compression";
 
 const BoardWrite = () => {
   const navigator = useNavigate();
@@ -17,7 +18,11 @@ const BoardWrite = () => {
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [ModalEdit, setModalEdit] = useState(false);
 
-  console.log(ImgPreview.length);
+  const options = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true,
+  };
 
   // 이미지
 
@@ -25,52 +30,72 @@ const BoardWrite = () => {
 
   //AWS S3 이미지 업로드 도전
   const onFileUpload = async (e) => {
-    const ACCESS_KEY = process.env.ACCESS_KEY;
-    const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
+    const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
+    const SECRET_ACCESS_KEY = process.env.REACT_APP_SECRET_ACCESS_KEY;
     const REGION = "ap-northeast-2";
     const S3_BUCKET = "react-image-seongwoo";
 
-    // AWS ACCESS KEY를 세팅합니다.
-    AWS.config.update({
-      accessKeyId: ACCESS_KEY,
-      secretAccessKey: SECRET_ACCESS_KEY,
-    });
+    //원본
+    const imageFile = e.target.files[0];
+    console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+    console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+    //리사이징
+    try {
+      const compressedFile = await imageCompression(imageFile, options);
+      console.log(
+        "compressedFile instanceof Blob",
+        compressedFile instanceof Blob
+      ); // true
+      console.log(
+        `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
+      );
+      // AWS ACCESS KEY를 세팅합니다.
 
-    // 버킷에 맞는 이름과 리전을 설정합니다.
-    const myBucket = new AWS.S3({
-      params: { Bucket: S3_BUCKET },
-      region: REGION,
-    });
-    const file = e.target.files[0];
-    console.log(file);
-    console.log(file.name);
+      AWS.config.update({
+        accessKeyId: ACCESS_KEY,
+        secretAccessKey: SECRET_ACCESS_KEY,
+      });
 
-    const fileName = file.name.replaceAll(" ", "");
+      // 버킷에 맞는 이름과 리전을 설정합니다.
+      const myBucket = new AWS.S3({
+        params: { Bucket: S3_BUCKET },
+        region: REGION,
+      });
+      const file = compressedFile;
+      console.log(file);
+      console.log(file.name);
 
-    // 파일과 파일이름을 넘겨주면 됩니다.
-    const params = {
-      ACL: "public-read",
-      Body: file,
-      Bucket: S3_BUCKET,
-      Key: fileName,
-    };
+      const fileName = file.name.replaceAll(" ", "");
 
-    if (ImgPreview.length < 10) {
-      await myBucket
-        .putObject(params)
-        .on("httpUploadProgress", (Progress, Response) => {
-          alert("SUCCESS");
-          console.log(Response.request.httpRequest.path);
-          const imgURL = S3URL + Response.request.httpRequest.path;
-          setFileLink(imgURL);
-          console.log("123", imgURL);
-          setImgPreview([...ImgPreview, { imgURL }]);
-        })
-        .send((err) => {
-          if (err) console.log(err);
-        });
-    } else {
-      alert("이미지는 10개까지만 업로드할수있습니다.");
+      // 파일과 파일이름을 넘겨주면 됩니다.
+      const params = {
+        ACL: "public-read",
+        Body: file,
+        Bucket: S3_BUCKET,
+        Key: fileName,
+      };
+
+      if (ImgPreview.length < 10) {
+        await myBucket
+          .putObject(params)
+          .on("httpUploadProgress", (Progress, Response) => {
+            alert("SUCCESS");
+            console.log(Response.request.httpRequest.path);
+            const imgURL = S3URL + Response.request.httpRequest.path;
+            setFileLink(imgURL);
+            console.log("123", imgURL);
+            setImgPreview([...ImgPreview, { imgURL }]);
+          })
+          .send((err) => {
+            if (err) console.log(err);
+          });
+      } else {
+        alert("이미지는 10개까지만 업로드할수있습니다.");
+      }
+    } catch (error) {
+      window.alert(
+        "앗, 이미지 업로드에 오류가 있어요! 관리자에게 문의해주세요😿"
+      );
     }
   };
   console.log(ImgPreview);
@@ -109,7 +134,6 @@ const BoardWrite = () => {
     });
   };
 
-  console.log(contents);
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (contents?.category2 == undefined || contents?.category2 == 0) {
@@ -131,8 +155,6 @@ const BoardWrite = () => {
     }
   };
 
-  console.log(contents?.category2);
-
   const imagewrite = "img/imagewrite.jpg";
   const noimage = "img/noimage.jpg";
 
@@ -150,9 +172,7 @@ const BoardWrite = () => {
     let target = document.getElementById(id);
     console.log(target);
     if (target == null) {
-      console.log("123");
     } else {
-      console.log("456");
       setImgPreview(ImgPreview.filter((el) => el.imgURL !== target.src));
       if (i) {
         setFileLink(i);
