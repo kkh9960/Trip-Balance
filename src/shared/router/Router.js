@@ -11,10 +11,8 @@ import Game from "../../pages/game/Game";
 import GameStart from "../../pages/game/GameStart";
 import GameResult from "../../pages/game/GameResult";
 import KaKao from "../../components/login/KaKao";
-
-import Signup from "../../components/login/Signup";
 import MemberPage from "../../pages/memberPage/MemberPage";
-
+import TestSlide from "../../components/post/TestSlide";
 // import Test from "../../pages/Test";
 const Router = () => {
   return (
@@ -24,7 +22,6 @@ const Router = () => {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/memberpage/:id" element={<MemberPage />} />
         <Route path="/post" element={<PostViewPage />} />
-
         <Route path="/write" element={<PostWritePage />} />
         <Route path="/detail/:id" element={<PostDetailPage />} />
         <Route path="/modify/:id" element={<PostModifyPage />} />
@@ -34,6 +31,7 @@ const Router = () => {
         <Route path="/game/:aa/:id" element={<Game />} />
         <Route path="/gameResult/:aa/:id" element={<GameResult />} />
         <Route path="/tb/ouath/kakao" element={<KaKao />} />
+        <Route path="/test" element={<TestSlide />} />
       </Routes>
     </BrowserRouter>
   );
