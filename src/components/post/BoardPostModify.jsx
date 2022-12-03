@@ -12,7 +12,6 @@ import Loading from "../Loading/Loading";
 const BoardPostModify = () => {
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
-  const DefaultImega = "../img/default1.jpg";
   const [ImgPreview, setImgPreview] = useState([]);
   const [Pet, setPet] = useState(0);
   const [contents, setcontents] = useState();
@@ -31,7 +30,6 @@ const BoardPostModify = () => {
 
   let localint = "";
   let localdetailint = "";
-  const catetwoRef = useRef();
 
   //지역 숫자변환
   switch (post?.local) {
@@ -182,28 +180,15 @@ const BoardPostModify = () => {
         data = [...data, { imgURL }];
         setImgPreview(data);
         setFileLink(mediaList[0]);
-        console.log("이미지주소", imgURL);
-        console.log(x);
-        console.log(data);
       }
     }
   }, [mediaList]);
 
-  console.log(data);
-  console.log(mediaList);
-  console.log(ImgPreview);
-
   useEffect(() => {
     if (localint) {
       setCate(localint);
-      console.log("test", localdetailint);
     }
   }, [localint]);
-
-  console.log(localdetailint);
-
-  console.log("어흥", localint);
-  console.log("어흥2", localdetailint);
 
   useEffect(() => {
     dispatch(__getBoardDetail(id));
@@ -221,9 +206,6 @@ const BoardPostModify = () => {
     }
     setPet(post?.pet);
   }, [post]);
-  console.log(Pet);
-
-  console.log(FileLink);
 
   // 이미지
 
@@ -249,8 +231,6 @@ const BoardPostModify = () => {
       region: REGION,
     });
     const file = e.target.files[0];
-    console.log(file);
-    console.log(file.name);
 
     const fileName = file.name.replaceAll(" ", "");
 
@@ -265,15 +245,14 @@ const BoardPostModify = () => {
     if (ImgPreview.length < 10) {
       await myBucket
         .putObject(params)
-        .on("httpUploadProgress", (Progress, Response) => {
+        .on("httpUploadProgress", (Response) => {
           alert("SUCCESS");
-          console.log(Response.request.httpRequest.path);
           const imgURL = S3URL + Response.request.httpRequest.path;
           setFileLink(imgURL);
           setImgPreview([...ImgPreview, { imgURL }]);
         })
         .send((err) => {
-          if (err) console.log(err);
+          if (err);
         });
     } else {
       alert("이미지는 10개까지만 업로드할수있습니다.");
@@ -310,7 +289,6 @@ const BoardPostModify = () => {
     });
   };
 
-  console.log(contents);
   const onSubmitHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -328,26 +306,17 @@ const BoardPostModify = () => {
 
   // 이미지 누르면 지워지기 + 남아있는 이미지 그림 보여주기
   const [imgremovelength, setimgremovelength] = useState(true);
-  const Imageremove = (e) => {
-    console.log(e.target.src);
-    setImgPreview(ImgPreview.filter((el) => el.imgURL !== e.target.src));
-    setimgremovelength(!imgremovelength);
-  };
+
   useEffect(() => {
     for (let x in ImgPreview) {
       setFileLink(ImgPreview[x].imgURL);
-      console.log("x", x);
     }
   }, [imgremovelength]);
 
   const imageremove = (id, i, i2) => {
-    console.log(id, i);
     let target = document.getElementById(id);
-    console.log(target);
     if (target == null) {
-      console.log("123");
     } else {
-      console.log("456");
       setImgPreview(ImgPreview.filter((el) => el.imgURL !== target.src));
       if (i) {
         setFileLink(i);
@@ -366,25 +335,6 @@ const BoardPostModify = () => {
       setFileLink(e.target.src);
     }
   };
-
-  console.log(FileLink);
-
-  console.log(Category);
-  console.log(Category2);
-
-  let testob = {
-    title: contents?.title,
-    content: contents?.content,
-    pet: Pet,
-    mediaList: ImgPreview,
-    category1: Category,
-    category2: Category2,
-    id: id.id,
-  };
-
-  console.log(Category2);
-
-  console.log(testob);
 
   const WriteOut = () => {
     navigator("/post");

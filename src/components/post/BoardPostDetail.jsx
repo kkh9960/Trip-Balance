@@ -28,12 +28,6 @@ const BoardPostDetail = () => {
   const userNickname = sessionStorage.getItem("nickName");
   const [loading, setLoading] = useState(true);
 
-  const ImegaURL = [
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EC%BD%9C%EB%A1%9C%EC%84%B8%EC%9B%80.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EB%93%80%EC%98%A41.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/EDO2.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/456123.jpg",
-  ];
   const DefaultImega = "../img/default1.jpg";
   const DefaultImega2 = "../img/default2.jpg";
   const heartsvg = "/img/heart.svg";
@@ -46,9 +40,6 @@ const BoardPostDetail = () => {
   const comments = useSelector((state) => state.commentSlice.comments);
 
   const nickname = sessionStorage.getItem("nickName");
-
-  console.log("나 상세정보", post);
-  console.log("나 댓글정보", comments);
 
   const [heart, setHeart] = useState(false);
   const [heartnum, setheartnum] = useState();
@@ -109,16 +100,16 @@ const BoardPostDetail = () => {
   };
 
   //트러블슈팅## 좋아요 갯수 실시간 변환
-  //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다. 어흥
+  //setState에 바로 연산자를 먹이면 예상결괏값으로 출력되지않는다. update 함수를 넣어줘야한다.
 
   const Boardpostlike = () => {
     setHeart(!heart);
     dispatch(__boardlike(id.id));
 
     if (heart) {
-      setheartnum((prevstate) => prevstate - 1);
+      setheartnum(heartnum - 1);
     } else {
-      setheartnum((prevstate) => prevstate + 1);
+      setheartnum(heartnum + 1);
     }
   };
 
@@ -131,7 +122,6 @@ const BoardPostDetail = () => {
   //이미지 슬라이드 부분
   useEffect(() => {
     setTimeout(() => {
-      const sliderWrap = document.querySelector(".slider__wrap");
       const sliderImg = document.querySelector(".slider__img");
       const sliderInner = document.querySelector(".slider__inner");
       const slider = document.querySelectorAll(".slider");
@@ -147,7 +137,7 @@ const BoardPostDetail = () => {
       let sliderLast = slider[sliderLength - 1]; //마지막 이미지
       let cloneFirst = sliderFirst.cloneNode(true); //첫 번째 이미지 복사
       let cloneLast = sliderLast.cloneNode(true); //마지막 이미지 복사
-      let posInitial = "";
+
       let dotIndex = "";
       let sliderTimer = "";
       let interval = 3000;

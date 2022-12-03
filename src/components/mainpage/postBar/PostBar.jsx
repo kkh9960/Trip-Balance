@@ -35,8 +35,8 @@ export default function Post() {
         </t.hotelList>
       </t.hotelContainer>
       <t.blogContainer>
+        <t.blogText>{cityName.split(" ")[1]}추천 블로그</t.blogText>
         <t.blogList>
-          <t.blogText>{cityName.split(" ")[1]}추천 블로그</t.blogText>
           {blogList &&
             blogList[0].map((idx) => {
               if (blogList.length === 0) {
@@ -49,9 +49,9 @@ export default function Post() {
                   >
                     <t.blogImgBox src={idx.thumbnail} alt="게시글이미지" />
                     <t.blogContentsBox>
+                      <t.blogName>{idx.blogName}</t.blogName>
                       <t.blogTitle>{idx.title}</t.blogTitle>
                       <t.blogContents>{idx.contents}</t.blogContents>
-                      <t.blogName>{idx.blogName}</t.blogName>
                     </t.blogContentsBox>
                   </t.blogListBox>
                 );

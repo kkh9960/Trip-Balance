@@ -3,14 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../../redux/modules/Signup";
-import { FcCheckmark } from "react-icons/fc";
+// import { FcCheckmark } from "react-icons/fc";
 import { motion } from "framer-motion";
 import Header from "../common/Header";
 import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
-import { ImExit } from "react-icons/im";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+// import { ImExit } from "react-icons/im";
+// import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import * as t from "./Signupstyle";
 function RegisterPage() {
   const {
@@ -29,7 +29,6 @@ function RegisterPage() {
   const [EmailCheckMsg, setEmailCheckMsg] = useState("");
   const [dpEmailCheck, setDpEmailCheck] = useState(false);
 
-
   const dispatch = useDispatch();
   const password = useRef();
   password.current = watch("password");
@@ -46,24 +45,20 @@ function RegisterPage() {
         return;
       }
       if (res.data.statusCode == 0) {
-        setCheckError(<FcCheckmark size={30} />);
+        setCheckError(<div size={30} />);
 
         setCheckMsg("사용가능한닉네임입니다");
         setDpNameCheck(true);
       } else {
         setCheckMsg("이미 다른 사용자가 사용 중 입니다.");
         setDpNameCheck(false);
-
       }
     });
   };
   const idCheck = () => {
-    console.log(typeof LoginValue);
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
-      console.log(res);
-
       if (res.data.statusCode == 0) {
-        setEmailCheckError(<FcCheckmark size={30} />);
+        setEmailCheckError(<div size={30} />);
         setEmailCheckMsg("사용가능한이메일입니다");
       }
 
@@ -89,12 +84,6 @@ function RegisterPage() {
       alert("이메일을입력해주세요!");
       return;
     }
-    console.log({
-      email: LoginValue.email,
-      nickName: nickname,
-      pw: data.password,
-      pwConfirm: data.password_confirm,
-    });
     await dispatch(
       addMemberThunk({
         email: LoginValue.email,
@@ -103,14 +92,11 @@ function RegisterPage() {
         pwConfirm: data.password_confirm,
       })
     ).then((res) => {
-      console.log(res);
       if (res.payload.statusCode == 117) {
-        console.log(res);
         alert("중복된이메일이있습니다!");
         return;
       }
       if (res.payload.statusCode == 118) {
-        console.log(res);
         alert("중복된닉네임이있습니다!");
         return;
       }
@@ -136,12 +122,10 @@ function RegisterPage() {
                 onClick={() => {
                   setModal(!modal);
                 }}
-              >
-                <BsFillArrowLeftCircleFill size={30} />
-              </t.BackArrow>
-              <t.Cancel onClick={modalClose}>
-                <ImExit size={30} />
-              </t.Cancel>
+
+              ></t.BackArrow>
+              <t.Cancel onClick={modalClose}></t.Cancel>
+
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>
               </t.SignupTitleWrap>
@@ -154,10 +138,8 @@ function RegisterPage() {
               />
               <t.EmailCheck onClick={idCheck}>중복확인</t.EmailCheck>
 
-
               <t.EmailCheckError>{EmailCheckError}</t.EmailCheckError>
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
-
 
               <t.InputWrite
                 name="name"
@@ -170,9 +152,7 @@ function RegisterPage() {
               </t.NickNameCheck>
               <t.Checkwrap>{checkError}</t.Checkwrap>
 
-
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
-
 
               <t.InputWrite
                 placeholder=" 비밀번호를입력하세요 ."
@@ -184,8 +164,6 @@ function RegisterPage() {
                   pattern: /[~!@#$%^&*()_+|<>?:{}]/,
                 })}
               />
-
-
 
               {errors.password && errors.password.type === "minLength" && (
                 <t.Danger>비밀번호는 8자 이상이어야 합니다</t.Danger>

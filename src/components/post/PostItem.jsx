@@ -5,10 +5,8 @@ import {
   __getbestfive,
   __getBoard,
   __getBoardinfi,
-  __getcategory,
   __getBoardLocalinfi,
   __getBoardTotalinfi,
-  __getcatenormal,
   __getBoardTotal,
   __getBoardLocal,
 } from "../../redux/modules/BoardSlice";
@@ -24,16 +22,13 @@ const PostItem = () => {
   const posts = useSelector((state) => state.BoardSlice.posts);
 
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
-  console.log(isLast);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
-  console.log(posts);
   // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
   const best = useSelector((state) => state.BoardSlice.bestpost);
   const [page, setpage] = useState(1);
   const [pageLocal, setPageLocal] = useState(0);
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
-  const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
 
@@ -64,8 +59,6 @@ const PostItem = () => {
     dispatch(__getbestfive());
   }, []);
 
-  console.log("번호확인", search);
-
   //일반검색 인피니티입니다.
   useEffect(() => {
     if (posts !== 0 && inView) {
@@ -95,7 +88,6 @@ const PostItem = () => {
     }
   };
   const goDetail = (id) => {
-    console.log(id);
     if (email) {
       navigator(`/detail/${id}`);
     } else {
@@ -118,8 +110,6 @@ const PostItem = () => {
       setsearch(3);
     }
   };
-
-  const searchImg = "img/search.svg";
 
   return (
     <>

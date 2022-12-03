@@ -24,9 +24,7 @@ export const __GameLastPost = createAsyncThunk(
         `tb/game/result/${payload.GameID}/${payload.QID}`
       );
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 );
 
@@ -36,9 +34,7 @@ export const __GameFirstGet = createAsyncThunk(
     try {
       const { data } = await instance.get("/tb/game/start");
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 );
 

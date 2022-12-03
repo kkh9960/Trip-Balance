@@ -12,7 +12,6 @@ const Recomment = ({ item, cmtid }) => {
 
   const dispatch = useDispatch();
   const UserDefaultImage = "../img/cmtdefault.svg";
-  const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
   const [EditRecomment, setEditRecomment] = useState("");
   const [ReUserImage, setReUserImage] = useState("");
@@ -25,10 +24,8 @@ const Recomment = ({ item, cmtid }) => {
   useEffect(() => {
     if (item.profileImg == "") {
       setReUserImage(UserDefaultImage);
-      console.log("나야나");
     } else {
       setReUserImage(item.profileImg);
-      console.log("나야나1=22");
     }
   }, []);
 
@@ -60,8 +57,6 @@ const Recomment = ({ item, cmtid }) => {
   const profile = () => {
     setEditprofile(!Editprofile);
   };
-
-  console.log("대댓데이타", item);
 
   const goprofile = () => {
     navigator(`/memberpage/${item.authorId}`);

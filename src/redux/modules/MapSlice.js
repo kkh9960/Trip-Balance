@@ -8,7 +8,7 @@ const initialState = {
       {
         peopleCnt: 0,
         gender: "male",
-        location: "서울",
+        location: "서울특별시",
       },
       {
         peopleCnt: 121841,
@@ -100,7 +100,6 @@ export const __getMapData = createAsyncThunk(
 export const __postMapData = createAsyncThunk(
   "POST_MAPDATA",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.post("/tb/apimap", payload);
       return thunkAPI.fulfillWithValue(data);
@@ -126,7 +125,6 @@ export const mapSlice = createSlice({
     },
     [__postMapData.pending]: (state) => {
       state.isLoading = true;
-      console.log("데이터 불러오는중");
     },
     [__postMapData.fulfilled]: (state, action) => {
       state.isLoading = false;
