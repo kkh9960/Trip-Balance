@@ -18,10 +18,9 @@ export default function MainPage() {
         <Header />
         <Banner />
         {/* <MainSlider /> */}
-
-        <t.mapGroup>
-          <MapBarView />
-        </t.mapGroup>
+        {/* <t.mapGroup>
+        </t.mapGroup> */}
+        <MapBarView />
 
         <HotelList />
         <BlogList />

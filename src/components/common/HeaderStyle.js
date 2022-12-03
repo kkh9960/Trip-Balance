@@ -125,6 +125,7 @@ export const Logo = styled.img`
   @media screen and (max-width: 480px) {
     width: 140px;
     height: 46px;
+    
     transition: 0.5s;
     margin-left: 30px;
     transition: 1s;

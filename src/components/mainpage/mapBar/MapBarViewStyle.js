@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const mapBarView = styled.div`
+  width: 100%;
+  height: 940px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  @media screen and (max-width: 480px) {
+    width:100%;
+    height:1200px;
+    display:flex;
+  }
+`;
+
 export const mapBarViewText = styled.div`
   width: 100%;
   text-align: center;
@@ -9,20 +24,9 @@ export const mapBarViewText = styled.div`
   margin-bottom: 57px;
   color: #333;
 `;
+
 export const mapWeatherChart = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-export const mapBarView = styled.div`
-  width: 1326px;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  @media screen and (max-width: 480px) {
-  }
 `;
