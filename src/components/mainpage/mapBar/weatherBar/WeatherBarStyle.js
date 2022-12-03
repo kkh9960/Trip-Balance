@@ -4,7 +4,7 @@ export const weather = styled.div`
   width: 100%;
   height: 134px;
   display: flex;
-
+  margin: auto;
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -61,6 +61,7 @@ export const timer = styled.div`
 
 export const top = styled.div`
   display: flex;
+  background:color;
 `;
 export const iconBox = styled.div`
   display: flex;
@@ -94,13 +95,15 @@ export const temperature = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  text-align: right;
+  color: #777;
+span{
   font-weight: 400;
   font-size: 60px;
   line-height: 73px;
-  text-align: right;
-  color: #777;
-
+}
   p {
+  font-size: 24px;
   }
   @media screen and (max-width: 480px) {
     display: flex;
@@ -148,15 +151,21 @@ export const parameterRow = styled.div`
 `;
 
 export const parameterLabel = styled.div`
-  text-align: left;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 24.2px;
 `;
 
 export const parameterValue = styled.div`
   text-align: right;
-  font-weight: 600;
-  font-size: 12px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 44px
+  p{
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 44px
+  }
 `;
 
 // export const parameterLabeltop = styled.div`

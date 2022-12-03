@@ -50,7 +50,7 @@ export default function WeatherBar() {
         </t.iconBox>
         <t.temperatureBox>
           <t.temperature>
-            {`${TMP}`}
+            <span>{`${TMP}`}</span>
             <p>°C</p>
           </t.temperature>
         </t.temperatureBox>
