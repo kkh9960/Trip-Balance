@@ -46,17 +46,18 @@ export default function GameResultPage() {
 
   return (
     <g.top>
-      <div>
+      <g.localImgBox>
         <g.localImg src={resultImg} />
-      </div>
-      <g.localText>
-        {game.data.data.trip == "" ? "로딩중입니다" : game.data.data.trip}
-      </g.localText>
-      <g.localTextContent>
-        {game.data.data.tripcontent == ""
-          ? "로딩중입니다"
-          : game.data.data.tripcontent}
-      </g.localTextContent>
+        <g.localText>
+          {game.data.data.trip == "" ? "로딩중입니다" : game.data.data.trip}
+        </g.localText>
+        <g.localTextContent>
+          {game.data.data.tripcontent == ""
+            ? "로딩중입니다"
+            : game.data.data.tripcontent}
+        </g.localTextContent>
+      </g.localImgBox>
+      <g.resultImgBox>
       <g.bigName>추천 숙소</g.bigName>
       <g.hotelWrap>
         {gameHotel &&
@@ -71,6 +72,8 @@ export default function GameResultPage() {
             </g.hotelInfo>
           ))}
       </g.hotelWrap>
+      </g.resultImgBox>
+      <g.resultImgBox>
       <g.bigName>추천 블로그</g.bigName>
       <g.hotelWrap>
         {blog &&
@@ -87,6 +90,7 @@ export default function GameResultPage() {
             </g.hotelInfo>
           ))}
       </g.hotelWrap>
+      </g.resultImgBox> 
     </g.top>
   );
 }

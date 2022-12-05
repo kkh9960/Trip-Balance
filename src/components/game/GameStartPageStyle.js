@@ -10,7 +10,9 @@ export const gameStartWrap = styled.div`
   width: 100%;
   height: 100%;
   background-image: url("../../img/gameCommonImg/backGroundImg.webp");
-  // 위 이미지는 배경이 제작되면 바뀔것
+  @media (max-width: 480px) {
+    background-image: url("../../img/gameCommonImg/backGroundImg.webp");
+  }
 `;
 
 export const gameStartTextWrap = styled.div`
