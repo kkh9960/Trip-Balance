@@ -12,10 +12,10 @@ const Footer = () => {
         <t.Compeney>Trip Balance</t.Compeney>
         <t.Logo src={mainlogo} />
         <t.Information>
-          {/* <t.Front>
+          <t.Front>
             Thanks For Front:
             <a href="">
-              {/* <AiFillGithub /> */}
+              {/* {/* <AiFillGithub /> */}
               곽규현
             </a>
             <a href="https://github.com/jnwnddh">
@@ -46,7 +46,7 @@ const Footer = () => {
               김장원
             </a>
           </t.Back>
-          <t.Designer>Thanks For Designer: 서보영</t.Designer> */}
+          <t.Designer>Thanks For Designer: 서보영</t.Designer>
         </t.Information>
       </>
     </t.Container>

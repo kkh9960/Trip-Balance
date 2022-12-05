@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const top = styled.div`
+  padding-top: 120px;
+`;
+
 export const localImg = styled.img`
   width: 90%;
   margin-left: 5%;

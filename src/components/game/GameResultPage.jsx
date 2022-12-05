@@ -45,7 +45,7 @@ export default function GameResultPage() {
 
 
   return (
-    <div>
+    <g.top>
       <div>
         <g.localImg src={resultImg} />
       </div>
@@ -64,7 +64,7 @@ export default function GameResultPage() {
             <g.hotelInfo key={hotel.id}>
               <div>
                 <a href={hotel.url && hotel.url} target="_blank">
-                  <g.hotelImg src={hotel.img && hotel.img}></g.hotelImg>
+                  <g.hotelImg alt="hotel img" src={hotel.img && hotel.img}></g.hotelImg>
                 </a>
               </div>
               <g.hotelName>{hotel.title && hotel.title}</g.hotelName>
@@ -78,7 +78,7 @@ export default function GameResultPage() {
             <g.hotelInfo key={blog.id}>
               <div>
                 <a href={blog.url && blog.url} target="_blank">
-                  <g.hotelImg
+                  <g.hotelImg alt="blog img"
                     src={blog.thumbnail && blog.thumbnail}
                   ></g.hotelImg>
                 </a>
@@ -87,6 +87,6 @@ export default function GameResultPage() {
             </g.hotelInfo>
           ))}
       </g.hotelWrap>
-    </div>
+    </g.top>
   );
 }

@@ -13,9 +13,9 @@ export default function PostViewPage() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Header />
       <Layout>
-        <PostPage />
+        <Header />
+          <PostPage />
         <Footer />
       </Layout>
     </motion.div>
