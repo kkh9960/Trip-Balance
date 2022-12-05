@@ -27,6 +27,11 @@ export const Nicknamemsg = styled.div`
   left: 80px;
   top: 30px;
   color: green;
+  @media screen and (max-width: 746px) {
+    top:-130px;
+    left: 0px;
+   
+  }
 `;
 
 export const FormTag = styled.form`
@@ -70,7 +75,7 @@ export const SignUpTitle = styled.div`
   position: relative;
   left: 20px;
   @media screen and (max-width: 746px) {
-    top: -100px;
+    top: -60px;
     left: -80px;
     font-size: 25px;
   }
@@ -78,8 +83,11 @@ export const SignUpTitle = styled.div`
 
 export const EmailCheckError = styled.div`
   position: relative;
-  left: 400px;
+  left: 100px;
   bottom: 20px;
+  @media screen and (max-width: 746px) {
+    
+  }
 `;
 
 export const InputWrite = styled.input`
@@ -99,9 +107,9 @@ export const InputWrite = styled.input`
   position: relative;
   top: 70px;
   @media screen and (max-width: 746px) {
-    width: 250px;
+    width: 300px;
     top: -100px;
-    right: 30px;
+    right: 0px;
   }
 `;
 export const Danger = styled.p`
@@ -113,6 +121,10 @@ export const Danger = styled.p`
     color: red;
     display: inline;
     content: ":경고: ";
+  }
+  @media screen and (max-width: 746px) {
+   top:-100px;
+   left:0px;
   }
 `;
 export const Line = styled.div`
@@ -134,6 +146,10 @@ export const Emailmsg = styled.div`
   bottom: -40px;
 
   color: green;
+  @media screen and (max-width: 746px) {
+   top:-130px;
+   left: 26px;
+  }
 `;
 
 export const SignUpBtn = styled.button`
@@ -172,6 +188,12 @@ export const EmailCheck = styled.button`
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
+  @media screen and (max-width: 746px) {
+   position: relative;
+   left: 220px;
+   top:-157px;
+   width: 70px;
+  }
 `;
 export const NickNameCheck = styled.button`
   width: 100px;
@@ -183,4 +205,10 @@ export const NickNameCheck = styled.button`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   border-radius: 10px;
+  @media screen and (max-width: 746px) {
+    position: relative;
+    left: 220px;
+    top: -157px;
+    width: 70px;
+  }
 `;

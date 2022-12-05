@@ -10,6 +10,7 @@ import Banner from "../../components/mainpage/Banner/Banner";
 import GameBanner from "../../components/mainpage/GameBanner";
 import HotelList from "../../components/mainpage/postBar/hotelList/HotelList";
 import BlogList from "../../components/mainpage/postBar/blogList/BlogList";
+import Footer from "../../components/common/Footer";
 // import MainSlider from "../../components/mainpage/imageSlide/MainSlider.jsx";
 
 export default function MainPage() {
@@ -28,6 +29,7 @@ export default function MainPage() {
         <HotelList />
         <BlogList />
         <GameBanner />
+        <Footer />
       </Layout>
     </>
   );
