@@ -104,7 +104,9 @@ export const balanceButtonRightHover = styled.img`
   object-fit: cover;
   position: absolute;
   top: 544.51px;
+
   left: 1022.3px;
+
   display: none;
   ${balanceButtonBH}:hover & {
     display: block;
@@ -126,7 +128,9 @@ export const balanceButtonLeftHover = styled.img`
   object-fit: cover;
   position: absolute;
   top: 544.51px;
+
   right: 1022.3px;
+
   display: none;
   ${balanceButtonBH}:hover & {
     display: block;
@@ -141,6 +145,22 @@ export const balanceButtonLeftHover = styled.img`
     right: 140%;
   }
 `;
+
+
+export const balanceViewWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const balanceButtonWrap = styled.div`
+  display: flex;
+  width: 1326px;
+  justify-content: space-between;
+`;
+
+
 
 export const balanceText = styled.div`
   position: absolute;
@@ -211,6 +231,16 @@ export const homeWrap = styled.div`
     top: 180px;
   }
 `;
+
+
+export const totalWrap = styled.div`
+  background-image: url("../../img/gameCommonImg/backGroundImg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-width: 1903px;
+  min-height: 969px;
+  width: 100%;
+  height: 100%;
 
 export const balanceButtonWrapFinal = styled.div`
   width: 1326px;

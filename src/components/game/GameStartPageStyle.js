@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const gameStartWrap = styled.div`
   display: flex;
   align-items: center;
+
   //justify-content: center;
   flex-direction: column;
   //min-width: 1903px;
@@ -19,12 +20,15 @@ export const gameStartWrap = styled.div`
     //min-width: 480px;
     //min-height: 924.83px;
   }
+
 `;
 
 export const gameStartTextWrap = styled.div`
   width: 1326px;
   height: 624.89px;
+
   margin-top: 162.19px;
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -36,7 +40,9 @@ export const gameStartTextWrap = styled.div`
 `;
 
 export const BalanceGameTITLE = styled.div`
+
   width: 540px;
+
   height: 114px;
   background-image: url("../../img/gameCommonImg/balanceGame.webp");
   background-repeat: no-repeat;
@@ -51,6 +57,7 @@ export const BalanceGameTITLE = styled.div`
 export const gameStartText = styled.div`
   width: 572px;
   height: 176px;
+
   padding-top: 25px;
   //font-family: "JejuGothic";
   font-style: normal;
