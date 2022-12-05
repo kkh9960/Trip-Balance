@@ -168,13 +168,13 @@ export const mySelectInformation = styled.div`
   width: 100%;
   height: 1700px;
   background: linear-gradient(
-      to top,
-      rgba(255, 255, 255, 0.6) 10%,
-      rgba(255, 255, 255, 0.7) 25%,
-      rgba(255, 255, 255, 0.8) 35%,
-      rgba(255, 255, 255, 0.9) 50%,
-      rgba(255, 255, 255, 1) 100%
-    ),
+    to top,
+    rgba(255, 255, 255, 0.6) 10%,
+    rgba(255, 255, 255, 0.7) 25%,
+    rgba(255, 255, 255, 0.8) 35%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
