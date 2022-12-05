@@ -5,6 +5,7 @@ import TopButton from "../common/button/TopButton";
 import PostItem from "./PostItem";
 
 const PostPage = () => {
+
   return (
     <>
       <PostItem />

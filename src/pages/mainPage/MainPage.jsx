@@ -4,13 +4,18 @@ import DoughnutChart from "../../components/mainpage/mapBar/DoughnutChart";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/common/Header";
 
+import Footer from "../../components/common/Footer";
+
 // import PostBar from "../../components/mainpage/postBar/PostBar";
 import * as t from "./MainPageStyle";
 import Banner from "../../components/mainpage/Banner/Banner";
 import GameBanner from "../../components/mainpage/GameBanner";
 import HotelList from "../../components/mainpage/postBar/hotelList/HotelList";
 import BlogList from "../../components/mainpage/postBar/blogList/BlogList";
+
 import Footer from "../../components/common/Footer";
+
+
 // import MainSlider from "../../components/mainpage/imageSlide/MainSlider.jsx";
 
 export default function MainPage() {

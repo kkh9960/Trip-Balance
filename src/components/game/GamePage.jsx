@@ -58,28 +58,36 @@ export default function GamePage() {
     // 글자 받아오면 띄어쓰기대로 나누기 정렬
     <g.totalWrap>
       {QID >= 32 ? (
-        <g.balanceButtonWrapFinal>
-          <g.balanceButtonFinal onClick={resultGo}>
-            결과페이지 보러가기
-          </g.balanceButtonFinal>          
-        </g.balanceButtonWrapFinal>
+          <g.balanceButtonWrapFinal>
+              <g.gameResultIcon/>
+              <g.gameResultText>
+                "결과가 나왔어요~ <br/>
+                자, 어디로 갈 지 한번 알아볼까요?
+              </g.gameResultText>
+              <g.balanceButtonFinal onClick={resultGo}>
+                게임결과보기
+              </g.balanceButtonFinal>         
+          </g.balanceButtonWrapFinal>
       ) : (
          <g.balanceViewWrap>
+
+           <g.balanceBlackWrap/>
+
           <g.balanceButtonWrap>
             <g.balanceButtonBH>
-            <g.balanceButton src={leftImg} onClick={leftGo}/>
+            <g.balanceButton alt="left img" src={leftImg} onClick={leftGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={leftGo}/>
             <g.balanceButtonRightHover src={FCharacter}/>
             <g.balanceText onClick={leftGo}>{gameData.data[0].leftAnswer}</g.balanceText>
             </g.balanceButtonBH>
             <g.balanceButtonBH>
-            <g.balanceButton src={rightImg} onClick={rightGo}/>
+            <g.balanceButton alt="right img" src={rightImg} onClick={rightGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={rightGo}/>
             <g.balanceButtonLeftHover src={FCharacter}/>
             <g.balanceText onClick={rightGo}>{gameData.data[0].rightAnswer}</g.balanceText>
             </g.balanceButtonBH>
           </g.balanceButtonWrap>
-          <g.vsLogo>v s</g.vsLogo>
+          <g.vsLogo/>
           <g.firstWrap>
             <g.balanceFirst onClick={goFirst}>처음으로</g.balanceFirst>
           </g.firstWrap>

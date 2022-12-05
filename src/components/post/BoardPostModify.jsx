@@ -307,6 +307,11 @@ const BoardPostModify = () => {
   // 이미지 누르면 지워지기 + 남아있는 이미지 그림 보여주기
   const [imgremovelength, setimgremovelength] = useState(true);
 
+  const Imageremove = (e) => {
+    setImgPreview(ImgPreview.filter((el) => el.imgURL !== e.target.src));
+    setimgremovelength(!imgremovelength);
+  };
+
   useEffect(() => {
     for (let x in ImgPreview) {
       setFileLink(ImgPreview[x].imgURL);
@@ -334,6 +339,17 @@ const BoardPostModify = () => {
     } else {
       setFileLink(e.target.src);
     }
+  };
+
+
+  let testob = {
+    title: contents?.title,
+    content: contents?.content,
+    pet: Pet,
+    mediaList: ImgPreview,
+    category1: Category,
+    category2: Category2,
+    id: id.id,
   };
 
   const WriteOut = () => {

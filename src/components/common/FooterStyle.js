@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+
   background-color: gray;
   height: 660.8px;
   border: 1px solid red;
@@ -28,6 +29,7 @@ export const Title = styled.div`
   
   color: white;
  
+
   text-align: left;
   }
   

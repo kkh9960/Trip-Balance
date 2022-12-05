@@ -43,6 +43,7 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
+
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
         sessionStorage.setItem("nickName", res.data.data.nickName);
@@ -69,6 +70,7 @@ function LoginPage() {
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
+
             <t.CancelBtn className="cancel" onClick={modalClose}></t.CancelBtn>
 
             <t.LoginTitleWrap style={{ textAlign: "center" }}>

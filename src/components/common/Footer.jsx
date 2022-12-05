@@ -1,4 +1,5 @@
 import React from "react";
+
 import * as t from "./FooterStyle";
 import footerlogo from "../../img/footerlogo.svg";
 const Footer = () => {
@@ -28,6 +29,7 @@ const Footer = () => {
           가지세요.”— 미국 사업가이자 Netflix 공동 CEO Reed Hastings
         </t.Best>
       </t.Wrap>
+
     </t.Container>
   );
 };
