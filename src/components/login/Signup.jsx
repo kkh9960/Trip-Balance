@@ -101,7 +101,7 @@ function RegisterPage() {
         return;
       }
       alert("회원가입완료!");
-      navigate("/");
+     window.location.reload();
     });
   };
   return (

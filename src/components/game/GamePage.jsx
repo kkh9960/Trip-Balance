@@ -70,7 +70,9 @@ export default function GamePage() {
           </g.balanceButtonWrapFinal>
       ) : (
          <g.balanceViewWrap>
+
            <g.balanceBlackWrap/>
+
           <g.balanceButtonWrap>
             <g.balanceButtonBH>
             <g.balanceButton alt="left img" src={leftImg} onClick={leftGo}/>

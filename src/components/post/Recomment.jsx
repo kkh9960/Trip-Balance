@@ -12,7 +12,6 @@ const Recomment = ({ item, cmtid }) => {
 
   const dispatch = useDispatch();
   const UserDefaultImage = "../img/cmtdefault.svg";
-  const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
   const [EditRecomment, setEditRecomment] = useState("");
   const [ReUserImage, setReUserImage] = useState("");

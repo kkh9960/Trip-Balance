@@ -5,10 +5,8 @@ import {
   __getbestfive,
   __getBoard,
   __getBoardinfi,
-  __getcategory,
   __getBoardLocalinfi,
   __getBoardTotalinfi,
-  __getcatenormal,
   __getBoardTotal,
   __getBoardLocal,
 } from "../../redux/modules/BoardSlice";
@@ -31,7 +29,6 @@ const PostItem = () => {
   const [pageLocal, setPageLocal] = useState(0);
   const [useInput, setUseInput] = useState("");
   const NICK = sessionStorage.getItem("nickName");
-  const [Cate, setCate] = useState("");
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
 
@@ -113,8 +110,6 @@ const PostItem = () => {
       setsearch(3);
     }
   };
-
-  const searchImg = "img/search.svg";
 
   return (
     <>

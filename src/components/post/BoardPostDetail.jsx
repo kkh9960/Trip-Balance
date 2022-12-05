@@ -28,12 +28,6 @@ const BoardPostDetail = () => {
   const userNickname = sessionStorage.getItem("nickName");
   const [loading, setLoading] = useState(true);
 
-  const ImegaURL = [
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EC%BD%9C%EB%A1%9C%EC%84%B8%EC%9B%80.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EB%93%80%EC%98%A41.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/EDO2.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/456123.jpg",
-  ];
   const DefaultImega = "../img/default1.jpg";
   const DefaultImega2 = "../img/default2.jpg";
   const heartsvg = "/img/heart.svg";
@@ -128,7 +122,6 @@ const BoardPostDetail = () => {
   //이미지 슬라이드 부분
   useEffect(() => {
     setTimeout(() => {
-      const sliderWrap = document.querySelector(".slider__wrap");
       const sliderImg = document.querySelector(".slider__img");
       const sliderInner = document.querySelector(".slider__inner");
       const slider = document.querySelectorAll(".slider");
@@ -144,7 +137,7 @@ const BoardPostDetail = () => {
       let sliderLast = slider[sliderLength - 1]; //마지막 이미지
       let cloneFirst = sliderFirst.cloneNode(true); //첫 번째 이미지 복사
       let cloneLast = sliderLast.cloneNode(true); //마지막 이미지 복사
-      let posInitial = "";
+
       let dotIndex = "";
       let sliderTimer = "";
       let interval = 3000;

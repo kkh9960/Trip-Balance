@@ -12,7 +12,6 @@ import Loading from "../Loading/Loading";
 const BoardPostModify = () => {
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
-  const DefaultImega = "../img/default1.jpg";
   const [ImgPreview, setImgPreview] = useState([]);
   const [Pet, setPet] = useState(0);
   const [contents, setcontents] = useState();
@@ -31,7 +30,6 @@ const BoardPostModify = () => {
 
   let localint = "";
   let localdetailint = "";
-  const catetwoRef = useRef();
 
   //지역 숫자변환
   switch (post?.local) {
@@ -247,7 +245,7 @@ const BoardPostModify = () => {
     if (ImgPreview.length < 10) {
       await myBucket
         .putObject(params)
-        .on("httpUploadProgress", (Progress, Response) => {
+        .on("httpUploadProgress", (Response) => {
           alert("SUCCESS");
           const imgURL = S3URL + Response.request.httpRequest.path;
           setFileLink(imgURL);
@@ -308,10 +306,12 @@ const BoardPostModify = () => {
 
   // 이미지 누르면 지워지기 + 남아있는 이미지 그림 보여주기
   const [imgremovelength, setimgremovelength] = useState(true);
+
   const Imageremove = (e) => {
     setImgPreview(ImgPreview.filter((el) => el.imgURL !== e.target.src));
     setimgremovelength(!imgremovelength);
   };
+
   useEffect(() => {
     for (let x in ImgPreview) {
       setFileLink(ImgPreview[x].imgURL);
@@ -340,6 +340,7 @@ const BoardPostModify = () => {
       setFileLink(e.target.src);
     }
   };
+
 
   let testob = {
     title: contents?.title,
