@@ -5,18 +5,10 @@ import TopButton from "../common/button/TopButton";
 import PostItem from "./PostItem";
 
 const PostPage = () => {
-  // const data = useSelector((state) => state.BoardSlice.posts);
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(__getBoard());
-  // }, []);
 
   return (
     <>
       <PostItem />
-      {/* <InfiniteScroll data={data} /> */}
       <BalanceButton />
       <TopButton />
     </>
