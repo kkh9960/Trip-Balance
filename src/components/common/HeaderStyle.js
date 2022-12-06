@@ -181,6 +181,12 @@ export const survey = styled.div`
     }
   }
 `;
+
+export const surveyLink = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
 export const Game = styled.div`
   font-size: 24px;
   width: 170px;
