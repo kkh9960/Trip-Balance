@@ -48,7 +48,7 @@ export default function GameResultPage() {
 
     <g.top>
       <g.localImgBox>
-        <g.localImg src={resultImg} />
+        <g.localImg src={resultImg} alt="결과창 메인 베너 이미지"/>
         <g.localText>
           {game.data.data.trip == "" ? "로딩중입니다" : game.data.data.trip}
         </g.localText>
