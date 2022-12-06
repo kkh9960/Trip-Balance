@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Test.css";
 import UseInterval from "../../hooks/useinterval";
 import { gsap } from "gsap";
+import { useNavigate } from "react-router-dom";
 
 const TestSlide = () => {
+  const navigator = useNavigate();
   const [currentIndex, setIndex] = useState(0);
+  const [mobileIndex, setImobilendex] = useState(0);
   const banner = document.querySelectorAll(".banner");
   const Img1 = "img/default3.jpg";
   const Img2 = "img/default5.jpg";
@@ -23,6 +26,21 @@ const TestSlide = () => {
     });
 
     setIndex((prevstate) => (prevstate + 1) % 3);
+  };
+
+  const mobileSlideAuto = () => {
+    const banner = document.querySelectorAll(".banner2");
+
+    let nextIndex = (mobileIndex + 1) % 3;
+
+    banner[mobileIndex].style.opacity = "0";
+    banner[nextIndex].style.opacity = "1";
+
+    banner.forEach((banner) => {
+      banner.style.transition = "all 0.5s";
+    });
+
+    setImobilendex((prevstate) => (prevstate + 1) % 3);
   };
 
   //앞으로가기
@@ -56,6 +74,10 @@ const TestSlide = () => {
   UseInterval(() => {
     SlideAuto();
   }, 6000);
+
+  UseInterval(() => {
+    mobileSlideAuto();
+  }, 3000);
 
   useEffect(() => {
     switch (currentIndex) {
@@ -131,6 +153,7 @@ const TestSlide = () => {
           x: -100,
           delay: 0,
           duration: 0,
+          display: "none",
         });
         gsap.to(".mainboard_img3", {
           opacity: 0,
@@ -173,6 +196,7 @@ const TestSlide = () => {
           delay: 1.4,
         });
         gsap.to(".mainboard_btn2", {
+          display: "block",
           duration: 1,
           y: 0,
           x: 100,
@@ -261,6 +285,7 @@ const TestSlide = () => {
           delay: 1.4,
         });
         gsap.to(".mainboard_btn3", {
+          display: "block",
           duration: 1,
           y: 0,
           x: 100,
@@ -307,6 +332,7 @@ const TestSlide = () => {
           x: -100,
           delay: 0,
           duration: 0,
+          display: "none",
         });
         gsap.to(".mainboard_img2", {
           opacity: 0,
@@ -329,71 +355,186 @@ const TestSlide = () => {
 
   useEffect(() => {}, []);
 
+  const goboard = (e) => {
+    e.preventDefault();
+    navigator("/post");
+  };
+
+  const gogame = (e) => {
+    e.preventDefault();
+    navigator("/start");
+  };
+
   return (
-    <main className="main">
-      <section id="banner_wrap">
-        <div className="banner_inner">
-          <div className="banner">
-            <div className="one">
-              <div className="main_board">
-                <div>
-                  <div className="mainboard_title">여행지 후기 게시판</div>
-                  <div className="mainboard_titleshadow">
-                    Travel destination review board
+    <>
+      <main className="main">
+        <section id="banner_wrap">
+          <div className="banner_inner">
+            <div className="banner">
+              <div className="one">
+                <div className="main_board">
+                  <div>
+                    <div className="mainboard_title">트립 밸런스</div>
+                    <div className="mainboard_titleshadow">
+                      Travel destination review board
+                    </div>
+                    <div className="mainboard_body">
+                      밸런스 게임을 통해서 여행지를 정해보세요.
+                    </div>
                   </div>
-                  <div className="mainboard_body">여행지 후기 멘트</div>
-                  <button className="mainboard_btn">게시판 가기</button>
+                  <div className="mainboard_imgbox">
+                    <div className="mainboard_img">
+                      <img src={Img1} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow"></div>
+                  </div>
                 </div>
-                <div className="mainboard_imgbox">
-                  <div className="mainboard_img">
-                    <img src={Img1} alt="" />
+              </div>
+            </div>
+            <div className="banner">
+              <div className="two">
+                <div className="main_board">
+                  <div>
+                    <div className="mainboard_title2">여행지 후기 게시판</div>
+                    <div className="mainboard_titleshadow2">
+                      Popular tourist destinations
+                    </div>
+                    <div className="mainboard_body2">우리들의 여행 이야기</div>
+                    {/* <button className="mainboard_btn2">게시판 가기</button> */}
                   </div>
-                  <div className="mainboard_imgshadow"></div>
+                  <div className="mainboard_imgbox2">
+                    <div className="mainboard_img2">
+                      <img src={Img3} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="banner">
+              <div className="three">
+                <div className="main_board">
+                  <div>
+                    <div className="mainboard_title3">밸런스 게임</div>
+                    <div className="mainboard_titleshadow3">Balance game</div>
+                    <div className="mainboard_body3">
+                      당신에게 맞는 여행지는 어디인가요?
+                      <br />
+                      밸런스 게임을 통해서 당신의 여행지를 찾아보세요.
+                    </div>
+                    {/* <button className="mainboard_btn3" onClick={gogame}>
+                    게시판 가기
+                  </button> */}
+                  </div>
+                  <div className="mainboard_imgbox3">
+                    <div className="mainboard_img3">
+                      <img src={Img2} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow3"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="banner">
-            <div className="two">
-              <div className="main_board">
-                <div>
-                  <div className="mainboard_title2">추천 여행지</div>
-                  <div className="mainboard_titleshadow2">
-                    Popular tourist destinations
+        </section>
+      </main>
+      <main className="main2">
+        <section id="banner_wrap2">
+          <div className="banner_inner2">
+            <div className="banner2">
+              <div
+                className="one2"
+                style={{
+                  background: "url(/img/banner1.webp)",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="main_board2">
+                  <div>
+                    <div className="mainboard_title4">트립 밸런스</div>
+                    {/* <div className="mainboard_titleshadow4">
+                      Travel destination review board
+                    </div> */}
+                    <div className="mainboard_body4">
+                      밸런스 게임을 통해서 <br />
+                      여행지를 정해보세요.
+                    </div>
                   </div>
-                  <div className="mainboard_body2">추천 여행지 멘트</div>
-                  <button className="mainboard_btn2">게시판 가기</button>
+                  <div className="mainboard_imgbox4">
+                    <div className="mainboard_img4">
+                      <img src={Img1} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow4"></div>
+                  </div>
                 </div>
-                <div className="mainboard_imgbox2">
-                  <div className="mainboard_img2">
-                    <img src={Img3} alt="" />
+              </div>
+            </div>
+            <div className="banner2">
+              <div
+                className="two2"
+                style={{
+                  background: "url(/img/banner2.webp)",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="main_board2">
+                  <div>
+                    <div className="mainboard_title5">여행지 후기 게시판</div>
+                    {/* <div className="mainboard_titleshadow5">
+                      Popular tourist destinations
+                    </div> */}
+                    <div className="mainboard_body5">우리들의 여행 이야기</div>
+                    {/* <button className="mainboard_btn5">게시판 가기</button> */}
                   </div>
-                  <div className="mainboard_imgshadow2"></div>
+                  <div className="mainboard_imgbox5">
+                    <div className="mainboard_img5">
+                      <img src={Img3} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow5"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="banner2">
+              <div
+                className="three2"
+                style={{
+                  background: "url(/img/banner3.webp)",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="main_board2">
+                  <div>
+                    <div className="mainboard_title6">밸런스 게임</div>
+                    {/* <div className="mainboard_titleshadow6">Balance game</div> */}
+                    <div className="mainboard_body6">
+                      당신에게 맞는 여행지는 어디인가요?
+                      <br />
+                      밸런스 게임을 통해서 당신의 여행지를 찾아보세요.
+                    </div>
+                    {/* <button className="mainboard_btn6" onClick={gogame}>
+                    게시판 가기
+                  </button> */}
+                  </div>
+                  <div className="mainboard_imgbox6">
+                    <div className="mainboard_img6">
+                      <img src={Img2} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow6"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="banner">
-            <div className="three">
-              <div className="main_board">
-                <div>
-                  <div className="mainboard_title3">밸런스 게임</div>
-                  <div className="mainboard_titleshadow3">Balance game</div>
-                  <div className="mainboard_body3">밸런스 게임 멘트</div>
-                  <button className="mainboard_btn3">게시판 가기</button>
-                </div>
-                <div className="mainboard_imgbox3">
-                  <div className="mainboard_img3">
-                    <img src={Img2} alt="" />
-                  </div>
-                  <div className="mainboard_imgshadow3"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </>
   );
 };
 

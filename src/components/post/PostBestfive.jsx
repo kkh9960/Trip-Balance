@@ -155,6 +155,7 @@ const Main = styled.main`
   padding: 50px 0;
   margin-top: 50px;
   @media screen and (max-width: 480px) {
+    max-width: 98%;
   }
 `;
 
