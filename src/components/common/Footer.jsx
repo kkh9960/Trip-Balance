@@ -1,7 +1,8 @@
 import React from "react";
-
+import Git from "../../img/git.svg";
 import * as t from "./FooterStyle";
 import footerlogo from "../../img/footerlogo.svg";
+import design from "../../img/design.svg"
 const Footer = () => {
   return (
     <t.Container>
@@ -13,19 +14,45 @@ const Footer = () => {
           가지세요.”— 미국 사업가이자 Netflix 공동 CEO Reed Hastings
         </t.Comment>
         <t.Hanhae>도움주신 분들</t.Hanhae>
-        <t.Front>FOR FORNT,FORBACK,FORDESIGIN </t.Front>
+        <t.Front>FOR FORNT </t.Front>
         <t.Fronts>
-          <t.FrontWrap>곽규현 박성우 이중오 조광익 서보영 </t.FrontWrap>
+          <t.FrontWrap>
+            <t.GitWrap href="https://github.com/kkh9960">
+              <t.Gitimg src={Git} />
+              곽규현
+            </t.GitWrap>
+            <t.GitWrap href="">
+              <t.Gitimg src={Git} /> 박성우
+            </t.GitWrap>
+            <t.GitWrap href="https://github.com/jnwnddh">
+              <t.Gitimg src={Git} /> 이중오
+            </t.GitWrap>
+            <t.GitWrap href="https://github.com/cho-light">
+              <t.Gitimg src={Git} />
+              조광익
+            </t.GitWrap>
+          
+          </t.FrontWrap>
         </t.Fronts>
-        <t.Back></t.Back>
+      <t.Back>BACK</t.Back>
         <t.Backs>
-          <t.BackWrap>김용문 방주은 김장원</t.BackWrap>
+          <t.BackWrap>
+            <t.GitWrap href="https://github.com/dydrkflqmdl">
+              <t.Gitimg src={Git} />
+              김용문
+            </t.GitWrap>
+            <t.GitWrap href="https://github.com/jueun330">
+              <t.Gitimg src={Git} />
+              방주은
+            </t.GitWrap>
+            <t.GitWrap href="https://github.com/chunngamm">
+              <t.Gitimg src={Git} />
+              김장원
+            </t.GitWrap>
+          </t.BackWrap>
         </t.Backs>
-        <t.Best>
-          주소 : (03161) 서울특별시 종로구 인사동 17길 41 사업자등록번호 :
-          102-81-39488 사업자정보확인 통신판매업신고번호 : 종로01-1806호
-          관광사업자 등록번호 : 제1993-000006호 개인정보 보호책임자 : 채철훈
-        </t.Best>
+        <t.Design>DISIGNER</t.Design>
+        <t.Name><img src={design}/>서보영</t.Name>
       </t.Wrap>
     </t.Container>
   );

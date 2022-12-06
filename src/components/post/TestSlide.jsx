@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Test.css";
 import UseInterval from "../../hooks/useinterval";
 import { gsap } from "gsap";
-import { useNavigate } from "react-router-dom";
+
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
 
 const TestSlide = () => {
   const navigator = useNavigate();
@@ -355,6 +357,7 @@ const TestSlide = () => {
 
   useEffect(() => {}, []);
 
+
   const goboard = (e) => {
     e.preventDefault();
     navigator("/post");
@@ -364,6 +367,7 @@ const TestSlide = () => {
     e.preventDefault();
     navigator("/start");
   };
+
 
   return (
     <>
@@ -408,6 +412,19 @@ const TestSlide = () => {
                     </div>
                     <div className="mainboard_imgshadow2"></div>
                   </div>
+
+                  <Link to="/post">
+                    <div
+                      className="mainboard_body2"
+                      onClick={() => {
+                        navigate("/post");
+                      }}
+                    >
+                      추천 여행지 멘트
+                    </div>
+                  </Link>
+                  <button className="mainboard_btn2">게시판 가기</button>
+
                 </div>
               </div>
             </div>
