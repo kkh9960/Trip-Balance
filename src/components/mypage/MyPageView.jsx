@@ -41,6 +41,7 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/posts");
+
       setPosts(result.data.data);
     }
     fetchData();
@@ -53,24 +54,42 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/hearts");
+
       setMyPick(result.data.data);
     }
     fetchData();
   }, []);
-
   return (
     <t.myInformationWrap>
       <ProfileInformation />
 
       <t.myTotalInfo>
-        <span>BalanceGame</span>
-        <span>{userGameCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            게임
+            <br />
+            횟수
+          </span>
+          <span>{userGameCnt}</span>
+        </t.myTotalInfoText>
         <t.textLine />
-        <span>작성한 게시글</span>
-        <span>{userPostCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            작성한
+            <br />
+            게시글
+          </span>
+          <span>{userPostCnt}</span>
+        </t.myTotalInfoText>
         <t.textLine />
-        <span>작성한 댓글</span>
-        <span>{userCommentCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            작성한
+            <br />
+            댓글
+          </span>
+          <span>{userCommentCnt}</span>
+        </t.myTotalInfoText>
       </t.myTotalInfo>
 
       <t.mySelectInformation>
@@ -82,7 +101,9 @@ export default function MyPageView() {
 
           <t.pickPostWrap>
             {typeof myPick === typeof "string" ? (
-              <h1>좋아요한 글이 없습니다.</h1>
+              <t.empty>좋아요한 글이 없습니다.</t.empty>
+            ) : myPick === null ? (
+              <t.empty>좋아요한 글이 없습니다.</t.empty>
             ) : (
               myPick.slice(offset, offset + limit).map((idx) => {
                 if (myPick.length === 0) {
@@ -94,8 +115,8 @@ export default function MyPageView() {
                       onClick={() => navigate(`/detail/${idx.postId}`)}
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <div>{idx.nickName}</div>
+                      <t.pickPostTitle>{idx.title}</t.pickPostTitle>
+                      <t.pickPostNickname>{idx.nickName}</t.pickPostNickname>
                     </t.pickPostItem>
                   );
                 }
@@ -115,31 +136,32 @@ export default function MyPageView() {
         <t.myPostWrap>
           <t.itemHeader>
             <h2>내가 작성한 글 목록</h2>
-
             <t.thinLine />
           </t.itemHeader>
-          <t.pickPostWrap>
+          <t.postWrap>
             {typeof posts === typeof "string" ? (
-              <h1>작성한 글이 없습니다.</h1>
+              <t.empty>작성한 글이 없습니다.</t.empty>
+            ) : posts === null ? (
+              <t.empty>작성한 글이 없습니다.</t.empty>
             ) : (
               posts.slice(writeoffset, writeoffset + writelimit).map((idx) => {
                 if (posts.length === 0) {
                   return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
                 } else {
                   return (
-                    <t.pickPostItem
+                    <t.postItem
                       key={idx.postId}
                       onClick={() => navigate(`/detail/${idx.postId}`)}
                     >
-                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <div>{idx.createdAt}</div>
-                    </t.pickPostItem>
+                      <t.postImg src={idx.img} alt="게시글이미지" />
+                      <t.postTitle>{idx.title}</t.postTitle>
+                      <t.postTime>{idx.createdAt.split("T")[0]}</t.postTime>
+                    </t.postItem>
                   );
                 }
               })
             )}
-          </t.pickPostWrap>
+          </t.postWrap>
 
           <t.footer>
             <t.thinLine />

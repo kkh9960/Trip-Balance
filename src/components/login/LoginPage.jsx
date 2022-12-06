@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-
 import { useForm } from "react-hook-form";
-
 import Signup from "./Signup";
 import * as t from "./Loginstyle";
-
-import styled from "styled-components";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import kakao from "../../img/kakaologin.jpg";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
+import Exit from "../../img/exit.svg"
 function LoginPage() {
   const {
     setValue,
@@ -70,8 +67,9 @@ function LoginPage() {
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
-
-            <t.CancelBtn className="cancel" onClick={modalClose}></t.CancelBtn>
+            <t.CancelBtn className="cancel" onClick={modalClose}>
+              <t.Exit src={Exit} />
+            </t.CancelBtn>
 
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
               <t.LoginTitle>로그인</t.LoginTitle>
@@ -102,9 +100,7 @@ function LoginPage() {
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
             <t.LoginBtn>로그인</t.LoginBtn>
             <t.Line></t.Line>
-            <t.KakaoWrap href={KAKAO_AUTH_URL}>
-              <t.KakaoImg src={kakao} className="kakaoimg" />
-            </t.KakaoWrap>
+
             <t.SignUpbtn
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
@@ -114,6 +110,9 @@ function LoginPage() {
             >
               회원가입
             </t.SignUpbtn>
+            <t.KakaoWrap href={KAKAO_AUTH_URL}>
+              <t.KakaoImg src={kakao} className="kakaoimg" />
+            </t.KakaoWrap>
           </t.Formtag>
         </t.AuthWrapper>
       ) : (

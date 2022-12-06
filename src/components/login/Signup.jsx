@@ -1,17 +1,15 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../../redux/modules/Signup";
-// import { FcCheckmark } from "react-icons/fc";
 import { motion } from "framer-motion";
-import Header from "../common/Header";
 import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
-// import { ImExit } from "react-icons/im";
-// import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import * as t from "./Signupstyle";
+import Exit from "../../img/exit.svg"
+import Back from "../../img/back.svg"
 function RegisterPage() {
   const {
     register,
@@ -123,8 +121,13 @@ function RegisterPage() {
                   setModal(!modal);
                 }}
 
-              ></t.BackArrow>
-              <t.Cancel onClick={modalClose}></t.Cancel>
+              >
+                <t.Back src={Back}/>
+
+              </t.BackArrow>
+              <t.Cancel onClick={modalClose}>
+                <t.Exit src={Exit}/>
+              </t.Cancel>
 
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>
@@ -188,9 +191,6 @@ function RegisterPage() {
               {errorFromSubmit && <p>{errorFromSubmit}</p>}
               <t.Line></t.Line>
               <t.SignUpBtn>회원가입</t.SignUpBtn>
-              {/* <Link style={{ color: "gray", textDecoration: "none" }}>
-              이미 아이디가 있다면...{" "}
-            </Link> */}
             </t.FormTag>
           </t.SignupWrapper>
         )}

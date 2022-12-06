@@ -8,7 +8,7 @@ export default function Post() {
   return (
     <t.blogSection>
       <t.blogContainer>
-        <t.blogText>{cityName.split(" ")[1]}추천 블로그</t.blogText>
+        <t.blogText>{cityName.split(" ")[1]} 여행 추천 블로그</t.blogText>
         <t.blogList>
           {blogList &&
             blogList.map((idx) => {
@@ -30,6 +30,8 @@ export default function Post() {
                 );
               }
             })}
+            <t.hr1/>
+            <t.hr2/>
         </t.blogList>
       </t.blogContainer>
     </t.blogSection>

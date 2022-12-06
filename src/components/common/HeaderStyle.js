@@ -11,13 +11,9 @@ export const Container1 = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  :hover {
-    transition: 1s;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
   @media screen and (max-width: 480px) {
     position: fixed;
-    height: 50px;
+    height: 60px;
     flex-wrap: wrap;
     align-items: center;
   }
@@ -25,6 +21,7 @@ export const Container1 = styled.div`
     position: fixed;
     flex-wrap: wrap;
     align-items: center;
+    transition: 1s;
     background-color: rgba(0, 0, 0, 0.5);
   }
 `;
@@ -39,13 +36,10 @@ export const Container2 = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  :hover {
-    transition: 1s;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
+
   @media screen and (max-width: 480px) {
     position: fixed;
-    height: 50px;
+    height: 60px;
     transition: 0.5s;
     flex-wrap: wrap;
     align-items: center;
@@ -64,18 +58,17 @@ export const ContainerWhite = styled.div`
   margin: 0 auto;
 `;
 
-export const toggleBtn = styled.div`
+export const toggleBtn = styled.img`
   display: none;
-  position: absolute;
-  right: 38px;
-  margin: auto 0;
-  scale: 1.5;
+  scale: 0.09;
   cursor: pointer;
+  right: -150px;
+  position: absolute;
   @media screen and (max-width: 480px) {
-    display: block;
-    right: 16px;
-    top: 10px;
     font-size: 22px;
+    scale: 0.05;
+    position: absolute;
+    right: -200px;
   }
   @media screen and (max-width: 960px) {
     display: block;
@@ -83,12 +76,13 @@ export const toggleBtn = styled.div`
 `;
 
 export const WriteWrap = styled.div`
-  width: 900px;
+  width: 760px;
   height: 100%;
   display: flex;
 
   align-items: center;
   justify-content: center;
+  background-color: red;
   transition: 1s;
   img {
     scale: 0.3;
@@ -97,6 +91,7 @@ export const WriteWrap = styled.div`
     color: white;
     text-align: center;
   }
+
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
@@ -115,12 +110,24 @@ export const WriteWrap = styled.div`
   }
 `;
 
+export const LogoBox = styled.div`
+  width: 274.47px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media screen and (max-width: 480px) {
+    width: 144px;
+    height: 60px;
+    margin: auto;
+  }
+`;
 export const Logo = styled.img`
   width: 274.47px;
   height: 90px;
   display: flex;
   transition: 0.5s;
-  margin-left: 300px;
+  margin-left: 250px;
   transition: 1s;
   @media screen and (max-width: 480px) {
     width: 140px;
@@ -130,11 +137,10 @@ export const Logo = styled.img`
     transition: 1s;
   }
   @media screen and (max-width: 960px) {
-    width: 140px;
-    height: 46px;
-    margin: 37px 0;
+    width: 144px;
+    height: 50px;
     transition: 0.5s;
-    margin-left: 30px;
+    margin: auto;
     transition: 1s;
   }
 `;
@@ -147,6 +153,32 @@ export const top = styled.button`
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+`;
+
+export const survey = styled.div`
+  font-size: 24px;
+  width: 170px;
+  cursor: pointer;
+  p {
+    display: none;
+  }
+  :hover {
+    p {
+      display: block;
+    }
+    img {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+    img {
+      display: none;
+    }
+    p {
+      display: block;
+    }
   }
 `;
 export const Game = styled.div`
