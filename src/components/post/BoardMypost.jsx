@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
-import "./BoardMypost.css";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const BoardMypost = ({ post, mypost }) => {
-  const navigator = useNavigate();
   useEffect(() => {
     let isDown = false;
     let startX;

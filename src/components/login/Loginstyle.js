@@ -15,6 +15,7 @@ export const AuthWrapper = styled.div`
   top: 3px;
   left: 0px;
   z-index: 2;
+  text-align: center;
 `;
 export const Formtag = styled.form`
   padding: 30px;
@@ -117,12 +118,17 @@ export const KakaoWrap = styled.a`
     left: -25px;
   }
 `;
+export const KaKaobox = styled.div`
+  text-align: center;
+`;
+
 export const KakaoImg = styled.img`
   width: 360px;
   height: 61px;
   position: relative;
   top: 120px;
   right: 21px;
+
   @media screen and (max-width: 746px) {
     width: 300px;
     left: 10px;

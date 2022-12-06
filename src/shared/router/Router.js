@@ -11,7 +11,6 @@ const GameStart = lazy(() => import("../../pages/game/GameStart"));
 const GameResult = lazy(() => import("../../pages/game/GameResult"));
 const KaKao = lazy(() => import("../../components/login/KaKao"));
 const Game = lazy(() => import("../../pages/game/Game"));
-
 const Router = () => {
   return (
     <Suspense fallback={<div>로딩중...</div>}>

@@ -43,7 +43,6 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
         sessionStorage.setItem("nickName", res.data.data.nickName);
@@ -70,7 +69,6 @@ function LoginPage() {
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
-
             <t.CancelBtn className="cancel" onClick={modalClose}></t.CancelBtn>
 
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
@@ -100,11 +98,11 @@ function LoginPage() {
               <t.Danger>비밀번호는 6자 이상이어야 합니다</t.Danger>
             )}
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
-            <t.LoginBtn>로그인</t.LoginBtn>
+            <t.LoginBtn type="submit">로그인</t.LoginBtn>
             <t.Line></t.Line>
-            <t.KakaoWrap href={KAKAO_AUTH_URL}>
+            <div>
               <t.KakaoImg src={kakao} className="kakaoimg" />
-            </t.KakaoWrap>
+            </div>
             <t.SignUpbtn
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}
