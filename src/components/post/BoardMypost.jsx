@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./BoardMypost.css";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 

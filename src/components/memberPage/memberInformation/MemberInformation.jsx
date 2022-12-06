@@ -1,13 +1,8 @@
 import React, { useState, useRef } from "react";
 import * as t from "./MemberInformationStyle";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  __getMyInformation,
-  __putMyInformation,
-} from "../../../redux/modules/MyPageSlice";
+import { useDispatch } from "react-redux";
 import profile from "../../../img/noneprofile.webp";
-import AWS from "aws-sdk";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
@@ -19,8 +14,8 @@ import InformationChart from "./MemberInformationChart";
 export default function MemberInformation() {
   const id = useParams();
 
-  const dispatch = useDispatch();
-  const [profileMode, setProfileMode] = useState(true);
+  
+ 
   const [profileImg, setProfileImg] = useState(profile);
   const [userEmail, setUserEmail] = useState();
   const [userSns, setUserSns] = useState();
@@ -28,10 +23,7 @@ export default function MemberInformation() {
   const [nickname, setNickname, nicknameChange] = useInput();
   const [topNickname, setTopNickname] = useState();
 
-  const profileImgInput = useRef();
-  const [instaInput, setInstaInput] = useState(true);
-  const [faceInput, setFaceInput] = useState(true);
-  const [youInput, setYouInput] = useState(true);
+  
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`/tb/memberinfo/${id.id}`);

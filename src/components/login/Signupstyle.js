@@ -21,7 +21,8 @@ export const SignupWrapper = styled.div`
   left: 0px;
   z-index: 2;
 `;
-
+export const Exit = styled.img`
+` 
 export const Nicknamemsg = styled.div`
   position: relative;
   left: 80px;
@@ -57,6 +58,9 @@ export const BackArrow = styled.div`
 export const Cancel = styled.div`
   position: relative;
   left: 480px;
+  @media screen and (max-width: 746px) {
+    left: 280px;
+  }
 `;
 export const SignupTitleWrap = styled.div``;
 export const SignUpTitle = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,10 +7,9 @@ import {
   Title,
   ArcElement,
   Tooltip,
-  Legend,
 } from "chart.js";
 import { Doughnut, Bar } from "react-chartjs-2";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import * as t from "./DoughnutChartStyle";
 import WeatherBar from "../weatherBar/WeatherBar";
 

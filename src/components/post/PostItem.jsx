@@ -20,7 +20,7 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
-
+  console.log(posts);
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
   // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
@@ -110,6 +110,7 @@ const PostItem = () => {
       setsearch(3);
     }
   };
+  
 
   return (
     <>
@@ -156,7 +157,12 @@ const PostItem = () => {
                       }}
                     >
                       <CardImgbox>
-                        <CardImg src={item.image[0].imgURL} />
+                        <CardImg
+                          src={
+                            item.image[0].imgURL
+                           
+                          }
+                        />
                       </CardImgbox>
                       <CardTextbox>
                         <CardTitle>{item.title}</CardTitle>

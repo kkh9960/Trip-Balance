@@ -1,17 +1,14 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../../redux/modules/Signup";
-// import { FcCheckmark } from "react-icons/fc";
 import { motion } from "framer-motion";
-import Header from "../common/Header";
 import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
-// import { ImExit } from "react-icons/im";
-// import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import * as t from "./Signupstyle";
+import Exit from "../../img/exit.svg"
 function RegisterPage() {
   const {
     register,
@@ -124,7 +121,9 @@ function RegisterPage() {
                 }}
 
               ></t.BackArrow>
-              <t.Cancel onClick={modalClose}></t.Cancel>
+              <t.Cancel onClick={modalClose}>
+                <t.Exit src={Exit}/>
+              </t.Cancel>
 
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>

@@ -1,5 +1,3 @@
-import axios from "axios";
-import Reactm, { useState } from "react";
 import { useEffect } from "react";
 import instance from "../../lib/instance";
 
