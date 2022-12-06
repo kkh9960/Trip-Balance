@@ -6,7 +6,7 @@ import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import kakao from "../../img/kakaologin.jpg";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
-import Exit from "../../img/exit.svg"
+import Exit from "../../img/exit.svg";
 function LoginPage() {
   const {
     setValue,
@@ -66,13 +66,9 @@ function LoginPage() {
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
-<<<<<<< HEAD
-            <t.CancelBtn className="cancel" onClick={modalClose}></t.CancelBtn>
-=======
             <t.CancelBtn className="cancel" onClick={modalClose}>
               <t.Exit src={Exit} />
             </t.CancelBtn>
->>>>>>> a63cd6ec5d401e3677cf57eea79181acff18c84b
 
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
               <t.LoginTitle>로그인</t.LoginTitle>
@@ -101,15 +97,9 @@ function LoginPage() {
               <t.Danger>비밀번호는 6자 이상이어야 합니다</t.Danger>
             )}
             {errorFromSubmit && <p>{errorFromSubmit}</p>}
-            <t.LoginBtn type="submit">로그인</t.LoginBtn>
+            <t.LoginBtn>로그인</t.LoginBtn>
             <t.Line></t.Line>
-<<<<<<< HEAD
-            <div>
-              <t.KakaoImg src={kakao} className="kakaoimg" />
-            </div>
-=======
 
->>>>>>> a63cd6ec5d401e3677cf57eea79181acff18c84b
             <t.SignUpbtn
               className="signup"
               style={{ color: "gray", textDecoration: "none" }}

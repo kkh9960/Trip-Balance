@@ -180,12 +180,12 @@ const MyPostTitlemobile = styled.div`
 `;
 
 const MyPostWrap = styled.div`
-  display: none;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 0;
+  margin-top: 50px;
   @media screen and (max-width: 480px) {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 50px 0;
-    margin-top: 50px;
+    display: none;
   }
 `;
 

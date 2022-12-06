@@ -15,7 +15,6 @@ export const AuthWrapper = styled.div`
   top: 3px;
   left: 0px;
   z-index: 2;
-  text-align: center;
 `;
 export const Formtag = styled.form`
   padding: 30px;
@@ -44,9 +43,7 @@ export const CancelBtn = styled.div`
     left: 300px;
   }
 `;
-export const Exit = styled.img`
-`
-
+export const Exit = styled.img``;
 
 export const LoginTitleWrap = styled.div``;
 export const LoginTitle = styled.h1``;
@@ -118,23 +115,18 @@ export const KakaoWrap = styled.a`
   border-radius: 10px;
   position: relative;
   left: 80px;
-  top:70px;
-  
+  top: 70px;
+
   @media screen and (max-width: 746px) {
     left: -25px;
   }
 `;
-export const KaKaobox = styled.div`
-  text-align: center;
-`;
-
 export const KakaoImg = styled.img`
   width: 360px;
   height: 61px;
   position: relative;
   top: 20px;
   right: 21px;
-
   @media screen and (max-width: 746px) {
     width: 300px;
     left: 10px;
