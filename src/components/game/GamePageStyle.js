@@ -146,7 +146,6 @@ export const balanceButtonLeftHover = styled.img`
     right: 140%;
   }
 `;
-
 export const balanceText = styled.div`
   position: absolute;
   width: 483.68px;

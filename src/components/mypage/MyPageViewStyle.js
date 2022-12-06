@@ -1,19 +1,5 @@
 import styled from "styled-components";
 //common
-export const userName = styled.div`
-  width: 500px;
-  font-size: 28px;
-  margin: 0 0 5px 170px;
-  span {
-    font-size: 22px;
-  }
-`;
-export const Line = styled.div`
-  width: 1100px;
-  height: 3px;
-  margin: 0 auto 15px;
-  background-color: black;
-`;
 export const thinLine = styled.div`
   width: 70%;
   height: 1px;
@@ -21,13 +7,34 @@ export const thinLine = styled.div`
   background-color: black;
 `;
 export const textLine = styled.div`
-  width: 2px;
-  height: 54.6px;
-  margin: 25px;
-  transform: (rotate: 90deg);
-  background-color: #555;
+  @media screen and (min-width: 481px) {
+    width: 2px;
+    height: 54.6px;
+    margin: 25px;
+    transform: (rotate: 90deg);
+    background-color: #555;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 2px;
+    height: 54.6px;
+    margin: 15px;
+    transform: (rotate: 90deg);
+    background-color: #555;
+  }
 `;
-export const empty = styled.div``;
+export const empty = styled.div`
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 28px;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    font-size: 18px;
+  }
+`;
 export const backgroundImg = styled.div`
   width: 100%;
   height: 300px;
@@ -36,101 +43,204 @@ export const backgroundImg = styled.div`
   background-position: center;
   background-attachment: fixed;
 `;
-
+//pageview
 export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  margin-top: 30px;
-  background-color: transparent;
+  padding-top: 120px;
   @media screen and (max-width: 480px) {
-    background-color: gray;
     flex-direction: column;
     width: 100%;
+    padding-top: 90px;
   }
-`;
-
-export const myPickPostWrap = styled.div`
-  position: relative;
-  width: 77%;
-  height: 45%;
-  margin-bottom: 40px;
-  margin-right: auto;
-  float: left;
-  border-radius: 0 10px 10px 0;
-  display: flex;
-  justify-content: center;
-  border: 2px solid gray;
-  border-left-style: none;
-  padding: 10px 20px 10px 200px;
-  background-color: #fff;
-  box-shadow: 0 0 6px;
-  @media screen and (max-width: 480px) {
-    display: flex;
-    width: 100vw;
-    background-color: gray;
-  }
-`;
-export const myPostWrap = styled.div`
-  position: relative;
-  width: 77%;
-  height: 45%;
-  margin-bottom: 40px;
-  float: right;
-  border-radius: 10px 0 0 10px;
-  display: flex;
-  background-color: #fff;
-  justify-content: center;
-  border: 2px solid gray;
-  border-right-style: none;
-  padding: 10px 200px 10px 20px;
-  box-shadow: 0 0 6px;
 `;
 export const myTotalInfo = styled.div`
   height: 150px;
-
   background-color: #4cd8eb;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  font-size: 30px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: 1px;
-  text-align: center;
-  color: #555;
+  @media screen and (max-width: 480px) {
+    background-color: #4cd8eb;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+  }
+`;
+export const myTotalInfoText = styled.div`
+  @media screen and (min-width: 481px) {
+    font-size: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #555;
+    br {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #555;
+    justify-content: space-evenly;
+    gap: 10px;
+  }
 `;
 
-//좋아요한 게시글
-export const itemHeader = styled.div`
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  width: 100%;
-  height: 100px;
-`;
-export const pickPostWrap = styled.div`
-  margin: 80px 30px;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+//내가작성한글목록
+export const myPostWrap = styled.div`
+  @media screen and (min-width: 481px) {
+    position: relative;
+    width: 77%;
+    height: 45%;
+    margin-bottom: 40px;
+    float: right;
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    background-color: #fff;
+    justify-content: center;
+    border: 2px solid gray;
+    border-right-style: none;
+    padding: 10px 200px 10px 20px;
+    box-shadow: 0 0 6px;
+  }
+
   @media screen and (max-width: 480px) {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 500px;
+  }
+`;
+export const postWrap = styled.div`
+  @media screen and (min-width: 481px) {
+    margin: 80px 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+export const postItem = styled.div`
+  width: 185px;
+  height: 239px;
+  border: 1px solid;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  @media screen and (max-width: 480px) {
+  }
+`;
+export const postImg = styled.img`
+  width: 185px;
+  height: 142px;
+  border-radius: 10px;
+  object-fit: cover;
+`;
+export const postTitle = styled.div`
+  font-size: 20px;
+  font-weight: 400;
+`;
+export const postTime = styled.div`
+  position: absolute;
+  bottom: 0px;
+  font-size: 18px;
+  color: #787878;
+`;
+//좋아요한 게시글
+export const myPickPostWrap = styled.div`
+  @media screen and (min-width: 481px) {
+    position: relative;
+    width: 77%;
+    height: 45%;
+    margin-bottom: 40px;
+    margin-right: auto;
+    float: left;
+    border-radius: 0 10px 10px 0;
+    display: flex;
+    justify-content: center;
+    border: 2px solid gray;
+    border-left-style: none;
+    padding: 10px 20px 10px 200px;
+    background-color: #fff;
+    box-shadow: 0 0 6px;
+  }
+
+  @media screen and (max-width: 480px) {
+    display: flex;
+    float: left;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 500px;
+    margin: 10px 0 20px 0;
+  }
+`;
+
+export const itemHeader = styled.div`
+  @media screen and (min-width: 481px) {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 100px;
+  }
+
+  @media screen and (max-width: 480px) {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
+export const pickPostWrap = styled.div`
+  @media screen and (min-width: 481px) {
+    margin: 80px 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 export const pickPostItem = styled.div`
   width: 180px;
   height: 260px;
   border: 0 solid black;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 10px;
   cursor: pointer;
@@ -140,45 +250,59 @@ export const pickPostImg = styled.img`
   height: 190px;
   margin: 0 0 10px;
   object-fit: cover;
-`;
-export const pickPostProfile = styled.img`
-  float: left;
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 3rem;
-  border-radius: 50%;
+  @media screen and (max-width: 480px) {
+    border-radius: 10px;
+    width: 180px;
+    height: 150px;
+    margin: 0 0 7px;
+    object-fit: cover;
+  }
 `;
 
+export const pickPostTitle = styled.div`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  @media screen and (max-width: 480px) {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 15px;
+    text-overflow: ellipsis;
+  }
+`;
 export const pickPostNickname = styled.div``;
 
 export const footer = styled.div`
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
+  @media screen and (min-width: 481px) {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export const mySelectInformation = styled.div`
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 30px 0 30px 0;
-  width: 100%;
-  height: 1700px;
-  background: linear-gradient(
 
-    to top,
-    rgba(255, 255, 255, 0.6) 10%,
-    rgba(255, 255, 255, 0.7) 25%,
-    rgba(255, 255, 255, 0.8) 35%,
-    rgba(255, 255, 255, 0.9) 50%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  @media screen and (min-width: 481px) {
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30px 0 30px 0;
+    width: 100%;
+    height: 1700px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
 
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
 `;

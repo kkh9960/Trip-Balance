@@ -9,7 +9,7 @@ export default function Post() {
   return (
     <t.hotelSection>
       <t.hotelContainer>
-        <t.hotelText>{cityName.split(" ")[1]}추천숙소</t.hotelText>
+        <t.hotelText>{cityName.split(" ")[1]} 추천 숙소</t.hotelText>
         <t.hotelList>
           {hotelList &&
             hotelList[0].map((idx) => {
@@ -30,6 +30,7 @@ export default function Post() {
                 }
               }
             })}
+            <t.hr/>
         </t.hotelList>
       </t.hotelContainer>
     </t.hotelSection>
