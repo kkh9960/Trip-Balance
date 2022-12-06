@@ -21,7 +21,9 @@ export default function GameStartPage() {
             결과보기 화면을 클릭하여 자신이 선호하는 <br/>
             여행지를 확인하세요~
           </g.gameStartText>
+
       <g.gameStartButton aria-label="Start" onClick={gameStart}/>
+
       <g.gameStartIcon/>
       </g.gameStartTextWrap>
     </g.gameStartWrap>

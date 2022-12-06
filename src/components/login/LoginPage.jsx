@@ -124,24 +124,3 @@ function LoginPage() {
   );
 }
 export default LoginPage;
-const Logo = styled.img``;
-// 필요할때 모달창쓰기
-// import React, { useState } from "react";
-// import LoginPage from "./Login";
-//
-// const Home = () => {
-//   const [modal, setModal] = useState(false);
-//   return (
-//     <div>
-//       <button
-//         onClick={() => {
-//           setModal(!modal);
-//         }}
-//       >
-//         로그인창
-//       </button>
-//       {modal == true ? <LoginPage /> : ""}
-//     </div>
-//   );
-// };
-// export default Home;

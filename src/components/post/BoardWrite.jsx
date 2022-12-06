@@ -10,7 +10,7 @@ const BoardWrite = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
-  const DefaultImega = "img/default1.jpg";
+
   const [ImgPreview, setImgPreview] = useState([]);
   const [Pet, setPet] = useState(0);
   const [contents, setcontents] = useState();
@@ -64,8 +64,7 @@ const BoardWrite = () => {
         region: REGION,
       });
       const file = compressedFile;
-      console.log(file);
-      console.log(file.name);
+
 
       const fileName = file.name.replaceAll(" ", "");
 
