@@ -99,21 +99,7 @@ export default function ProfileInformation({}) {
     setProfileMode(true);
   };
 
-  // const cancelprofile = () => {
-  //   setProfileMode(true);
-  //   setNickname(nickname);
-  //   setProfileImg(profileImg);
-  //   setUserSelf(userSelf);
-  // };
-  // const instalink = () => {
-  //   instaInput ? setInstaInput(false) : setInstaInput(true);
-  // };
-  // const facelink = () => {
-  //   faceInput ? setFaceInput(false) : setFaceInput(true);
-  // };
-  // const youlink = () => {
-  //   youInput ? setYouInput(false) : setYouInput(true);
-  // };
+  
   return (
     <t.ProfileInformationView>
       <t.userName>
