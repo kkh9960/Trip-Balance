@@ -23,7 +23,7 @@ export const chartViewbox = styled.div`
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 2fr 1fr;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     width: 100%;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
@@ -39,7 +39,7 @@ export const chartView = styled.div`
   border-radius: 50%;
   box-shadow: 0 0 10px;
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     width: 124px;
     height: 124px;
     margin: 0 auto;
@@ -51,7 +51,7 @@ export const chartView = styled.div`
 export const barChartView = styled.div`
   width: 195px;
   height: 125px;
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 480px) {
     display: none;
   }
 `;

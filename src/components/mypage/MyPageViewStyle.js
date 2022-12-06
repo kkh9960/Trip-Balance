@@ -28,6 +28,12 @@ export const empty = styled.div`
   text-align: center;
   margin: 0 auto;
   font-size: 28px;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    font-size: 18px;
+  }
 `;
 export const backgroundImg = styled.div`
   width: 100%;
@@ -58,6 +64,8 @@ export const myTotalInfo = styled.div`
   @media screen and (max-width: 480px) {
     background-color: #4cd8eb;
     width: 100%;
+    display: flex;
+    gap: 10px;
   }
 `;
 export const myTotalInfoText = styled.div`
@@ -79,6 +87,7 @@ export const myTotalInfoText = styled.div`
     text-align: center;
     color: #555;
     justify-content: space-evenly;
+    gap: 10px;
   }
 `;
 
@@ -122,9 +131,11 @@ export const postWrap = styled.div`
     width: 100%;
     height: 300px;
     display: flex;
-
     overflow: auto;
     white-space: nowrap;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 export const postItem = styled.div`
@@ -220,13 +231,16 @@ export const pickPostWrap = styled.div`
     display: flex;
     overflow: auto;
     white-space: nowrap;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 export const pickPostItem = styled.div`
   width: 180px;
   height: 260px;
   border: 0 solid black;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 10px;
   cursor: pointer;

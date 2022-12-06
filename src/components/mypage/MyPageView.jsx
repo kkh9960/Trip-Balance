@@ -65,7 +65,11 @@ export default function MyPageView() {
 
       <t.myTotalInfo>
         <t.myTotalInfoText>
-          <span>게임횟수</span>
+          <span>
+            게임
+            <br />
+            횟수
+          </span>
           <span>{userGameCnt}</span>
         </t.myTotalInfoText>
         <t.textLine />

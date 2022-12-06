@@ -125,11 +125,11 @@ export default function ProfileInformation({}) {
           <t.myInformation>
             <t.ProfileImgBox src={profileImg} alt="프로필사진" />
             <t.mobileID>
-              <t.mobileNickName>HI. {nickname} 님</t.mobileNickName>
+              <t.mobileNickName>{nickname} 님</t.mobileNickName>
               <t.mobileEmail>{userEmail}</t.mobileEmail>
             </t.mobileID>
             <t.profileinfo>
-              <t.nickName>HI. {nickname} 님</t.nickName>
+              <t.nickName>{nickname} 님</t.nickName>
               <t.email>{userEmail}</t.email>
               <t.introduce>
                 <t.textName>자기소개</t.textName>
@@ -165,8 +165,16 @@ export default function ProfileInformation({}) {
               ref={profileImgInput}
             />
             <t.mobileID>
-              <t.mobileNickName>HI. {nickname} 님</t.mobileNickName>
-              <t.mobileEmail>{userEmail.replace(".com", "")}</t.mobileEmail>
+              <t.mobileNickName>
+                <input
+                  type="text"
+                  onChange={nicknameChange}
+                  defaultValue={nickname || ""}
+                  maxLength={8}
+                />
+              </t.mobileNickName>
+
+              <t.mobileEmail>{userEmail}</t.mobileEmail>
             </t.mobileID>
             <t.profileinfo>
               <t.nickName>
@@ -174,7 +182,7 @@ export default function ProfileInformation({}) {
                   type="text"
                   onChange={nicknameChange}
                   defaultValue={nickname || ""}
-                  maxLength={10}
+                  maxLength={8}
                 />
               </t.nickName>
               <t.email style={{ top: "130px" }}>{userEmail}</t.email>
@@ -187,8 +195,8 @@ export default function ProfileInformation({}) {
                 />
               </t.introduce>
               <t.snsLink>
-                {/* <t.textName>링크걸기</t.textName>
-                {instaInput ? (
+                {/* <t.textName>링크걸기</t.textName> */}
+                {/* {instaInput ? (
                   <>
                     <t.snsIcon src={IconInstagram} onClick={instalink} />
                   </>

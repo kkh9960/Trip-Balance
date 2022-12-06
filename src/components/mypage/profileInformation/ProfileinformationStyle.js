@@ -27,7 +27,7 @@ export const userName = styled.div`
 export const ProfileInformationView = styled.div`
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 555px;
+    height: 1400px;
   }
 `;
 
@@ -37,7 +37,7 @@ export const UserInfor = styled.div`
   margin: 0 auto;
   align-content: center;
   justify-content: center;
-
+  gap: 25px;
   @media screen and (max-width: 480px) {
     width: 100%;
     display: flex;
@@ -67,6 +67,7 @@ export const myInformation = styled.div`
     position: relative;
     flex-direction: column;
     height: 100%;
+    margin-bottom: 40px;
   }
 `;
 
@@ -102,10 +103,28 @@ export const profileinfo = styled.div`
     width: 250px;
     height: 100%;
     margin: 0 5px;
+    input {
+      height: 45px;
+      font-size: 15px;
+      border: 0;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: #d9d9d9;
+    }
   }
   @media screen and (max-width: 480px) {
     width: 100%;
     height: 100%;
+    input {
+      height: 45px;
+      font-size: 15px;
+      border: 0;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 10px;
+      background-color: #d9d9d9;
+    }
   }
 `;
 export const mobileID = styled.div`
@@ -119,7 +138,8 @@ export const mobileID = styled.div`
 export const nickName = styled.div`
   top: 80px;
   position: absolute;
-  width: 230px;
+
+  width: 280px;
   height: 40px;
   font-size: 30px;
   font-weight: 400;
@@ -133,6 +153,7 @@ export const mobileNickName = styled.div`
     display: none;
   }
   @media screen and (max-width: 480px) {
+    text-align: center;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
@@ -158,6 +179,8 @@ export const mobileEmail = styled.div`
     display: none;
   }
   @media screen and (max-width: 480px) {
+    text-align: center;
+    margin: 0 auto;
     width: 150px;
     font-weight: 400;
     font-size: 16px;
@@ -191,16 +214,29 @@ export const textName = styled.label`
     display: none;
   }
 `;
-export const selfBox = styled.input`
-  resize: none;
-  overflow: hidden;
-  font-size: 15px;
-  border: 0;
-  border-radius: 5px;
-  height: 60px;
-  outline: none;
-  padding-left: 10px;
-  background-color: #d9d9d9;
+export const selfBox = styled.textarea`
+  @media screen and (min-width: 481px) {
+    resize: none;
+    overflow: hidden;
+    font-size: 15px;
+    border: 0;
+    border-radius: 5px;
+    width: 100%;
+    height: 90px;
+    outline: none;
+    padding-left: 10px;
+    background-color: #d9d9d9;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 15px;
+    border: 0;
+    border-radius: 5px;
+    height: 48px;
+    outline: none;
+    padding-left: 10px;
+    background-color: #d9d9d9;
+  }
 `;
 export const snsLink = styled.div`
   position: absolute;

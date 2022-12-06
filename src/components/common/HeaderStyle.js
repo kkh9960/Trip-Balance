@@ -11,10 +11,6 @@ export const Container1 = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  :hover {
-    transition: 1s;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
   @media screen and (max-width: 480px) {
     position: fixed;
     height: 60px;
@@ -40,10 +36,7 @@ export const Container2 = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  :hover {
-    transition: 1s;
-    background-color: rgba(0, 0, 0, 0.7);
-  }
+
   @media screen and (max-width: 480px) {
     position: fixed;
     height: 60px;
@@ -67,15 +60,15 @@ export const ContainerWhite = styled.div`
 
 export const toggleBtn = styled.img`
   display: none;
-  margin: auto 30px;
-  scale: 2;
+  scale: 0.09;
   cursor: pointer;
+  right: -150px;
+  position: absolute;
   @media screen and (max-width: 480px) {
-    display: block;
-    right: 10px;
     font-size: 22px;
-    scale: 1.6;
+    scale: 0.05;
     position: absolute;
+    right: -200px;
   }
   @media screen and (max-width: 960px) {
     display: block;
@@ -83,12 +76,13 @@ export const toggleBtn = styled.img`
 `;
 
 export const WriteWrap = styled.div`
-  width: 900px;
+  width: 760px;
   height: 100%;
   display: flex;
 
   align-items: center;
   justify-content: center;
+  background-color: red;
   transition: 1s;
   img {
     scale: 0.3;
@@ -109,7 +103,7 @@ export const WriteWrap = styled.div`
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     img {
       scale: 0.2;
     }
@@ -159,6 +153,32 @@ export const top = styled.button`
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+`;
+
+export const survey = styled.div`
+  font-size: 24px;
+  width: 170px;
+  cursor: pointer;
+  p {
+    display: none;
+  }
+  :hover {
+    p {
+      display: block;
+    }
+    img {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 12px;
+    img {
+      display: none;
+    }
+    p {
+      display: block;
+    }
   }
 `;
 export const Game = styled.div`

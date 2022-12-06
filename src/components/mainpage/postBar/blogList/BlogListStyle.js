@@ -9,7 +9,7 @@ export const blogSection = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column; 
+    flex-direction: column;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -40,17 +40,20 @@ export const blogList = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-evenly;
-    position:relative;
+    position: relative;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
     height: 400px;
     display: flex;
-    overflow:auto;
-    white-space:nowrap;
-    overflow-y:hidden;
+    overflow: auto;
+    white-space: nowrap;
+    overflow-y: hidden;
     text-align: center;
-    position:relative;
+    position: relative;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 export const blogText = styled.div`
@@ -153,22 +156,22 @@ export const blogName = styled.div`
   }
 `;
 export const hr1 = styled.div`
-position:absolute;
-width:95%;
-height:1px;
-top:215px;
-background-color:#ccc;
-@media screen and (max-width: 480px) {
-    display:none;
+  position: absolute;
+  width: 95%;
+  height: 1px;
+  top: 215px;
+  background-color: #ccc;
+  @media screen and (max-width: 480px) {
+    display: none;
   }
 `;
 export const hr2 = styled.div`
-position:absolute;
-width:95%;
-height:1px;
-bottom: 275px;
-background-color:#ccc;
-@media screen and (max-width: 480px) {
-    display:none;
+  position: absolute;
+  width: 95%;
+  height: 1px;
+  bottom: 275px;
+  background-color: #ccc;
+  @media screen and (max-width: 480px) {
+    display: none;
   }
 `;
