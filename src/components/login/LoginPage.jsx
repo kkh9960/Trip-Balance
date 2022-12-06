@@ -6,7 +6,7 @@ import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import kakao from "../../img/kakaologin.jpg";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
-import Exit from "../../img/exit.svg"
+import Exit from "../../img/exit.svg";
 function LoginPage() {
   const {
     setValue,
@@ -40,7 +40,6 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
-
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
         sessionStorage.setItem("nickName", res.data.data.nickName);

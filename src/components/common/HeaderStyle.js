@@ -17,7 +17,7 @@ export const Container1 = styled.div`
     flex-wrap: wrap;
     align-items: center;
   }
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1240px) {
     position: fixed;
     flex-wrap: wrap;
     align-items: center;
@@ -44,7 +44,7 @@ export const Container2 = styled.div`
     flex-wrap: wrap;
     align-items: center;
   }
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1240px) {
     position: fixed;
     transition: 0.5s;
     flex-wrap: wrap;
@@ -70,19 +70,17 @@ export const toggleBtn = styled.img`
     position: absolute;
     right: -200px;
   }
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1240px) {
     display: block;
   }
 `;
 
 export const WriteWrap = styled.div`
-  width: 760px;
+  width: 800px;
   height: 100%;
   display: flex;
-
   align-items: center;
   justify-content: center;
-  background-color: red;
   transition: 1s;
   img {
     scale: 0.3;
@@ -99,7 +97,7 @@ export const WriteWrap = styled.div`
     justify-content: space-evenly;
   }
 
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1240px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
     align-items: center;
@@ -136,7 +134,7 @@ export const Logo = styled.img`
     margin-left: 30px;
     transition: 1s;
   }
-  @media screen and (max-width: 960px) {
+  @media screen and (max-width: 1240px) {
     width: 144px;
     height: 50px;
     transition: 0.5s;
@@ -181,6 +179,12 @@ export const survey = styled.div`
     }
   }
 `;
+
+export const surveyLink = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
 export const Game = styled.div`
   font-size: 24px;
   width: 170px;
