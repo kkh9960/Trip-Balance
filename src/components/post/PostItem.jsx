@@ -473,7 +473,7 @@ const CategorySearch = styled.select`
 const TitleSearchbox = styled.div`
   width: 690px;
   height: 60px;
-  margin-left: 20px;
+  //margin-left: 20px;
   border-radius: 30px;
   position: relative;
   @media screen and (max-width: 480px) {
@@ -493,7 +493,7 @@ const TitleSearch = styled.input`
   @media screen and (max-width: 480px) {
     width: 90%;
     box-sizing: border-box;
-    margin-left: 10px;
+    margin-left: 5%;
   }
 `;
 const SearchIcon = styled.button`
