@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 import instance from "../../lib/instance";
 
 export const __GameInfoGet = createAsyncThunk(
@@ -29,7 +30,7 @@ export const __GameLastPost = createAsyncThunk(
 
 export const __GameFirstGet = createAsyncThunk(
   "Game_First",
-  async (thunkAPI) => {
+  async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get("/tb/game/start");
       return thunkAPI.fulfillWithValue(data);
