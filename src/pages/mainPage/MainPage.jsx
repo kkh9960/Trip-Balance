@@ -8,7 +8,9 @@ import TestSlide from "../../components/post/TestSlide"
 import GameBanner from "../../components/mainpage/GameBanner";
 import HotelList from "../../components/mainpage/postBar/hotelList/HotelList";
 import BlogList from "../../components/mainpage/postBar/blogList/BlogList";
+
 import Footer from "../../components/common/Footer";
+
 
 export default function MainPage() {
   return (
