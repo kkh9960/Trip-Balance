@@ -1,7 +1,6 @@
 import BalanceButton from "./BalanceButton";
 import styled from "styled-components";
 import TopButton from "../common/button/TopButton";
-
 import PostItem from "./PostItem";
 
 const PostPage = () => {
@@ -14,16 +13,20 @@ const PostPage = () => {
   // }, []);
 
   return (
-    <>
+    <PostContainer>
       <PostItem />
       {/* <InfiniteScroll data={data} /> */}
       <BalanceButton />
       <TopButton />
-    </>
+    </PostContainer>
   );
 };
 
 export default PostPage;
+
+const PostContainer = styled.div`
+  padding-top: 120px;
+`;
 
 const Layout = styled.div`
   width: 1550px;

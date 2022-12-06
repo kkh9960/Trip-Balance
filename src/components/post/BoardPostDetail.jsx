@@ -21,19 +21,9 @@ const BoardPostDetail = () => {
   const id = useParams();
   const [comment, setcomment] = useState("");
   const [cmtcount, setcmtcount] = useState(0);
-
-  const imagel = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const [imagelength, setimegelength] = useState(imagel);
   const dispatch = useDispatch();
-  const userNickname = sessionStorage.getItem("nickName");
   const [loading, setLoading] = useState(true);
 
-  const ImegaURL = [
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EC%BD%9C%EB%A1%9C%EC%84%B8%EC%9B%80.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/%EB%93%80%EC%98%A41.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/EDO2.jpg",
-    "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com/456123.jpg",
-  ];
   const DefaultImega = "../img/default1.jpg";
   const DefaultImega2 = "../img/default2.jpg";
   const heartsvg = "/img/heart.svg";
@@ -128,7 +118,6 @@ const BoardPostDetail = () => {
   //이미지 슬라이드 부분
   useEffect(() => {
     setTimeout(() => {
-      const sliderWrap = document.querySelector(".slider__wrap");
       const sliderImg = document.querySelector(".slider__img");
       const sliderInner = document.querySelector(".slider__inner");
       const slider = document.querySelectorAll(".slider");
@@ -144,7 +133,6 @@ const BoardPostDetail = () => {
       let sliderLast = slider[sliderLength - 1]; //마지막 이미지
       let cloneFirst = sliderFirst.cloneNode(true); //첫 번째 이미지 복사
       let cloneLast = sliderLast.cloneNode(true); //마지막 이미지 복사
-      let posInitial = "";
       let dotIndex = "";
       let sliderTimer = "";
       let interval = 3000;
@@ -265,7 +253,7 @@ const BoardPostDetail = () => {
   }, []);
 
   return loading ? null : (
-    <div>
+    <HeaderContainer>
       <BoardPostDetailContainer>
         <BoardPostDetailWrap>
           <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
@@ -340,6 +328,16 @@ const BoardPostDetail = () => {
                   <CateLocal>지역 : {post?.local}</CateLocal>
                   <CateDetail>도시 : {post?.localdetail}</CateDetail>
                 </BoardCateGory>
+                <TitleButtonWarpmobile>
+                  {nickname == post?.author ? (
+                    <>
+                      <ModifyButton onClick={modifyPost}>수정</ModifyButton>
+                      <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
+                    </>
+                  ) : (
+                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                  )}
+                </TitleButtonWarpmobile>
               </UserNameBox>
               <BoardBody>{post?.content}</BoardBody>
             </BoardContentsbox>
@@ -377,6 +375,26 @@ const BoardPostDetail = () => {
                 </CommentWriteButton>
               </CommentButtonBox>
             </BoardCommentBox>
+            <BoardCommentBoxmobile>
+              <CommentUserboxmobile>
+                <CommentImgmobile
+                  src={commentImg ? commentImg : DefaultCmtImg}
+                />
+                <CommentWriteUser>{post?.nickName}</CommentWriteUser>
+              </CommentUserboxmobile>
+              <CommentTextarea
+                name=""
+                maxLength="50"
+                id="comment"
+                placeholder="댓글을 남겨보세요."
+                value={comment}
+                onKeyUp={CheckLength}
+                onChange={CommentHandler}
+              />
+              <CommentWritebuttonmobile onClick={WriteComment}>
+                등록
+              </CommentWritebuttonmobile>
+            </BoardCommentBoxmobile>
             {comments &&
               comments?.map((item, idx) => (
                 <PostComment
@@ -391,14 +409,24 @@ const BoardPostDetail = () => {
           <BoardMypost post={post} mypost={mypost} />
         </BoardPostDetailWrap>
       </BoardPostDetailContainer>
-    </div>
+    </HeaderContainer>
   );
 };
 export default BoardPostDetail;
 
+const HeaderContainer = styled.div`
+  padding-top: 120px;
+`;
+
 const BoardContentsbox = styled.div`
   width: 100%;
-  padding: 80px;
+  padding: 70px;
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+  }
 `;
 const BoardcontentWrap = styled.div`
   border: 3px solid #d9d9d9;
@@ -406,6 +434,11 @@ const BoardcontentWrap = styled.div`
   height: auto;
   border-radius: 50px;
   margin-top: 70px;
+  @media screen and (max-width: 480px) {
+    margin-top: 30px;
+    border: none;
+    box-sizing: border-box;
+  }
 `;
 const CommentWriteUserBox = styled.div`
   display: flex;
@@ -417,6 +450,10 @@ const CommentWriteUserBox = styled.div`
 const CommentWriteUser = styled.div`
   font-size: 18px;
   font-weight: bold;
+  @media screen and (max-width: 480px) {
+    font-weight: normal;
+    margin-left: 10px;
+  }
 `;
 
 const CommentWriteImg = styled.img`
@@ -435,21 +472,35 @@ const UserProfile = styled.div`
 const CateLocal = styled.div`
   font-size: 22px;
   font-weight: lighter;
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 const CateDetail = styled.div`
   font-size: 22px;
   font-weight: lighter;
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const Postnickname = styled.div`
   font-size: 36px;
   margin-bottom: 25px;
   font-weight: bold;
+  @media screen and (max-width: 480px) {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
 `;
 
 const UserNameBox = styled.div`
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 480px) {
+    margin-top: 50px;
+  }
 `;
 const CommentCount = styled.span`
   font-size: 20px;
@@ -482,6 +533,27 @@ const CommentTextarea = styled.textarea`
   font-size: 16px;
   margin-top: 10px;
   margin-left: 20px;
+  @media screen and (max-width: 480px) {
+    width: 95%;
+    height: 150px;
+    margin: 10px;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #f2f2f2;
+  }
+`;
+
+const CommentWritebuttonmobile = styled.button`
+  max-width: 100%;
+  border: 1px solid #b0b0b0;
+  border-radius: 20px;
+  height: 50px;
+  color: #777;
+  font-size: 20px;
+  margin: 10px;
+  box-sizing: border-box;
 `;
 
 const BoardCommentBox = styled.div`
@@ -490,6 +562,33 @@ const BoardCommentBox = styled.div`
   border: 1px solid #b0b0b0;
   border-radius: 5px;
   margin-bottom: 10px;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+
+const BoardCommentBoxmobile = styled.div`
+  display: none;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    text-align: center;
+  }
+`;
+
+const CommentUserboxmobile = styled.div`
+  display: flex;
+  margin-left: 10px;
+`;
+
+const CommentImgmobile = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
 `;
 
 const BoardCommentWrap = styled.div`
@@ -523,6 +622,9 @@ const BoardBody = styled.div`
   min-height: 400px;
   font-weight: lighter;
   font-size: 24px;
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const BoardCateGory = styled.div`
@@ -538,6 +640,9 @@ const DeleteButton = styled.div`
   &:hover {
     opacity: 0.5;
   }
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const ModifyButton = styled.div`
@@ -546,15 +651,32 @@ const ModifyButton = styled.div`
   &:hover {
     opacity: 0.5;
   }
+  @media screen and (max-width: 480px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const TitleButtonWarp = styled.div`
   display: flex;
   margin-right: 10rem;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+
+const TitleButtonWarpmobile = styled.div`
+  display: none;
+  @media screen and (max-width: 480px) {
+    display: flex;
+  }
 `;
 
 const BoardTitle = styled.h2`
   font-size: 36px;
+  @media screen and (max-width: 480px) {
+    font-size: 1.6rem;
+    margin-right: 25px;
+  }
 `;
 
 const BoardTitleWrap = styled.div`
@@ -563,12 +685,19 @@ const BoardTitleWrap = styled.div`
   align-items: center;
   width: 100%;
   height: 80px;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
 
 const BoardPostDetailContainer = styled.div`
   max-width: 1440px;
   width: 95%;
   margin: 150px auto;
+  @media screen and (max-width: 480px) {
+    width: 98%;
+    margin: 0px auto;
+  }
 `;
 const BoardPostDetailWrap = styled.div`
   width: 100%;
@@ -577,27 +706,30 @@ const BoardPostDetailWrap = styled.div`
 const ImegeWrap = styled.div`
   width: 100%;
   display: flex;
-
   flex-direction: column;
+  @media screen and (max-width: 480px) {
+    width: 98%;
+  }
 `;
 
 const ImegeSlide = styled.div`
   width: 100%;
   height: 600px;
+  @media screen and (max-width: 480px) {
+    width: 98%;
+    height: 250px;
+  }
 `;
 
-const SliderImage = styled.img`
-  border-radius: 50px;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-`;
 const ImegePreview = styled.div`
   width: 100%;
   display: flex;
   height: 150px;
   margin-top: 20px;
   gap: 10px;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const PreviewItem = styled.img`
