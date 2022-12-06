@@ -8,17 +8,14 @@ import {
 } from "../../../redux/modules/MyPageSlice";
 import profile from "../../../img/noneprofile.webp";
 import AWS from "aws-sdk";
-import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./InformationChart";
 // import IconFacebooke from "../../../img/Facebook.png";
 // import IconInstagram from "../../../img/Instagram.png";
 // import IconYoutube from "../../../img/Youtube.png";
-import styled from "styled-components";
 
 export default function ProfileInformation({}) {
-  const id = useParams();
   const dispatch = useDispatch();
   const [profileMode, setProfileMode] = useState(true);
   const [profileImg, setProfileImg] = useState(profile);
@@ -117,7 +114,6 @@ export default function ProfileInformation({}) {
   // const youlink = () => {
   //   youInput ? setYouInput(false) : setYouInput(true);
   // };
-
   return (
     <t.ProfileInformationView>
       <t.userName>
@@ -128,14 +124,16 @@ export default function ProfileInformation({}) {
         {profileMode ? (
           <t.myInformation>
             <t.ProfileImgBox src={profileImg} alt="프로필사진" />
+            <t.mobileID>
+              <t.mobileNickName>{nickname} 님</t.mobileNickName>
+              <t.mobileEmail>{userEmail}</t.mobileEmail>
+            </t.mobileID>
             <t.profileinfo>
-              <t.nickName>HI. {nickname} 님</t.nickName>
-              <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
+              <t.nickName>{nickname} 님</t.nickName>
+              <t.email>{userEmail}</t.email>
               <t.introduce>
-                <t.textName>
-                  자기소개
-                  <t.selfBox value={userSelf}></t.selfBox>
-                </t.textName>
+                <t.textName>자기소개</t.textName>
+                <t.selfBox value={userSelf} />
               </t.introduce>
               <t.snsLink>
                 {/* <t.textName>링크걸기</t.textName> */}
@@ -166,29 +164,39 @@ export default function ProfileInformation({}) {
               onChange={onFileUpload}
               ref={profileImgInput}
             />
+            <t.mobileID>
+              <t.mobileNickName>
+                <input
+                  type="text"
+                  onChange={nicknameChange}
+                  defaultValue={nickname || ""}
+                  maxLength={8}
+                />
+              </t.mobileNickName>
+
+              <t.mobileEmail>{userEmail}</t.mobileEmail>
+            </t.mobileID>
             <t.profileinfo>
               <t.nickName>
                 <input
                   type="text"
                   onChange={nicknameChange}
                   defaultValue={nickname || ""}
-                  maxLength={10}
+                  maxLength={8}
                 />
               </t.nickName>
               <t.email style={{ top: "130px" }}>{userEmail}</t.email>
               <t.introduce>
-                <t.textName>
-                  자기소개
-                  <t.selfBox
-                    onChange={introduceonChange}
-                    defaultValue={userSelf || ""}
-                    maxLength={100}
-                  />
-                </t.textName>
+                <t.textName>자기소개</t.textName>
+                <t.selfBox
+                  onChange={introduceonChange}
+                  defaultValue={userSelf || ""}
+                  maxLength={50}
+                />
               </t.introduce>
               <t.snsLink>
-                {/* <t.textName>링크걸기</t.textName>
-                {instaInput ? (
+                {/* <t.textName>링크걸기</t.textName> */}
+                {/* {instaInput ? (
                   <>
                     <t.snsIcon src={IconInstagram} onClick={instalink} />
                   </>

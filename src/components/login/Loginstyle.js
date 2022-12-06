@@ -44,6 +44,10 @@ export const CancelBtn = styled.div`
     left: 300px;
   }
 `;
+export const Exit = styled.img`
+`
+
+
 export const LoginTitleWrap = styled.div``;
 export const LoginTitle = styled.h1``;
 export const InputWrite = styled.input`
@@ -114,6 +118,8 @@ export const KakaoWrap = styled.a`
   border-radius: 10px;
   position: relative;
   left: 80px;
+  top:70px;
+  
   @media screen and (max-width: 746px) {
     left: -25px;
   }
@@ -126,7 +132,7 @@ export const KakaoImg = styled.img`
   width: 360px;
   height: 61px;
   position: relative;
-  top: 120px;
+  top: 20px;
   right: 21px;
 
   @media screen and (max-width: 746px) {
@@ -137,7 +143,7 @@ export const KakaoImg = styled.img`
 export const SignUpbtn = styled.div`
   position: relative;
   text-align: center;
-  top: 150px;
+  top: 250px;
   font-size: 24px;
   cursor: pointer;
 `;
