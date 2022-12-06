@@ -100,8 +100,8 @@ export const bigName = styled.div`
   width: 252.62px;
   height: 43.93px;
   font-family: "Jalnan";
-  //font-family: 'Inter';
-  font-style: normal;
+ 
+  
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;
