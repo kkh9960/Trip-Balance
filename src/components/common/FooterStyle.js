@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
   background-color: gray;
- 
-  
+
   @media screen and (max-width: 746px) {
     width: 100%;
   }
@@ -13,15 +11,13 @@ export const Wrap = styled.div`
   @media screen and (max-width: 550px) {
     height: 660.8px;
     width: 100%;
-   
   }
 `;
 export const Footerlogo = styled.img`
-width: 300px;
+  width: 300px;
   @media screen and (max-width: 480px) {
     width: 183px;
     position: relative;
-    left: 90px;
     margin-top: 30px;
   }
 `;
@@ -34,10 +30,9 @@ export const Title = styled.div`
   position: relative;
   @media screen and (max-width: 480px) {
     margin-top: 50px;
-    width: 480px;
+    width: 100%;
     font-family: "Jalnan";
     color: white;
-    left: 30px;
     text-align: left;
   }
 `;
@@ -63,7 +58,7 @@ export const Hanhae = styled.div`
   color: white;
   opacity: 0.5;
   position: relative;
-  top:-15px;
+  top: -15px;
   @media screen and (max-width: 480px) {
     position: relative;
     top: 20px;
@@ -81,7 +76,7 @@ export const Front = styled.div`
   text-align: center;
   position: relative;
   left: 0px;
- 
+
   @media screen and (max-width: 480px) {
     top: 50px;
     text-align: center;

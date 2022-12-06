@@ -8,7 +8,6 @@ import {
   __modifyBoard,
 } from "../../redux/modules/BoardSlice";
 import imageCompression from "browser-image-compression";
-import Loading from "../Loading/Loading";
 
 const BoardPostModify = () => {
   const dispatch = useDispatch();
