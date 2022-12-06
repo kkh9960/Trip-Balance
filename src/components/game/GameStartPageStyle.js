@@ -20,7 +20,6 @@ export const gameStartWrap = styled.div`
     //min-width: 480px;
     //min-height: 924.83px;
   }
-
 `;
 
 export const gameStartTextWrap = styled.div`
@@ -40,7 +39,6 @@ export const gameStartTextWrap = styled.div`
 `;
 
 export const BalanceGameTITLE = styled.div`
-
   width: 540px;
 
   height: 114px;
@@ -73,7 +71,7 @@ export const gameStartText = styled.div`
     font-family: "DungGeunMo";
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 22px;
     text-align: center;
     color: #333333;
