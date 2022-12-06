@@ -31,10 +31,9 @@ const Footer = () => {
               <t.Gitimg src={Git} />
               조광익
             </t.GitWrap>
-          
           </t.FrontWrap>
         </t.Fronts>
-      <t.Back>BACK</t.Back>
+        <t.Back>BACK</t.Back>
         <t.Backs>
           <t.BackWrap>
             <t.GitWrap href="https://github.com/dydrkflqmdl">
@@ -52,7 +51,12 @@ const Footer = () => {
           </t.BackWrap>
         </t.Backs>
         <t.Design>DISIGNER</t.Design>
-        <t.Name><img src={design}/>서보영</t.Name>
+        <a href="https://linktr.ee/vozzang">
+          <t.Name>
+            <img src={design} />
+            서보영
+          </t.Name>
+        </a>
       </t.Wrap>
     </t.Container>
   );

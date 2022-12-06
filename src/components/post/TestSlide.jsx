@@ -343,7 +343,14 @@ const TestSlide = () => {
                     Travel destination review board
                   </div>
                   <div className="mainboard_body">여행지 후기 멘트</div>
-                  <button className="mainboard_btn">게시판 가기</button>
+                  <button
+                    className="mainboard_btn"
+                    onClick={() => {
+                      navigate("/post");
+                    }}
+                  >
+                    게시판 가기
+                  </button>
                 </div>
                 <div className="mainboard_imgbox">
                   <div className="mainboard_img">
@@ -363,14 +370,7 @@ const TestSlide = () => {
                     Popular tourist destinations
                   </div>
                   <Link to="/post">
-                    <div
-                      className="mainboard_body2"
-                      onClick={() => {
-                        navigate("/post");
-                      }}
-                    >
-                      추천 여행지 멘트
-                    </div>
+                    <div className="mainboard_body2">추천 여행지 멘트</div>
                   </Link>
                   <button className="mainboard_btn2">게시판 가기</button>
                 </div>
