@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHref, useNavigate } from "react-router-dom";
 import "./Test.css";
 import UseInterval from "../../hooks/useinterval";
 import { gsap } from "gsap";
@@ -14,11 +15,13 @@ const TestSlide = () => {
   const Img1 = "img/default3.jpg";
   const Img2 = "img/default5.jpg";
   const Img3 = "img/default6.jpg";
+  const Img4 = "img/default6.jpg";
 
+  const navigate = useNavigate();
   const SlideAuto = () => {
     const banner = document.querySelectorAll(".banner");
 
-    let nextIndex = (currentIndex + 1) % 3;
+    let nextIndex = (currentIndex + 1) % 4;
 
     banner[currentIndex].style.opacity = "0";
     banner[nextIndex].style.opacity = "1";
@@ -27,7 +30,7 @@ const TestSlide = () => {
       banner.style.transition = "all 0.5s";
     });
 
-    setIndex((prevstate) => (prevstate + 1) % 3);
+    setIndex((prevstate) => (prevstate + 1) % 4);
   };
 
   const mobileSlideAuto = () => {
@@ -75,355 +78,777 @@ const TestSlide = () => {
 
   UseInterval(() => {
     SlideAuto();
-  }, 6000);
+  }, 5500);
 
   UseInterval(() => {
     mobileSlideAuto();
   }, 3000);
 
   useEffect(() => {
-    switch (currentIndex) {
-      case 0:
-        gsap.to(".mainboard_title", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1,
-        });
-        gsap.to(".mainboard_titleshadow", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.2,
-        });
-        gsap.to(".mainboard_body", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.4,
-        });
-        gsap.to(".mainboard_btn", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_img", {
-          duration: 1,
-          y: 100,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_imgshadow", {
-          duration: 1,
-          y: -100,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_title3", {
-          duration: 0,
-          opacity: 0,
-          x: -100,
-          delay: 0,
-        });
-        gsap.to(".mainboard_titleshadow3", {
-          duration: 0,
-          opacity: 0,
-          x: -100,
-          delay: 0,
-        });
-        gsap.to(".mainboard_body3", {
-          opacity: 0,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        gsap.to(".mainboard_btn3", {
-          opacity: 0,
-          x: -100,
-          delay: 0,
-          duration: 0,
-          display: "none",
-        });
-        gsap.to(".mainboard_img3", {
-          opacity: 0,
-          y: -100,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        gsap.to(".mainboard_imgshadow3", {
-          opacity: 0,
-          y: 100,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        break;
-      case 1:
-        gsap.to(".mainboard_title2", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1,
-        });
-        gsap.to(".mainboard_titleshadow2", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.2,
-        });
-        gsap.to(".mainboard_body2", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.4,
-        });
-        gsap.to(".mainboard_btn2", {
-          display: "block",
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_img2", {
-          duration: 1,
-          y: 100,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_imgshadow2", {
-          duration: 1,
-          y: -100,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_title", {
-          duration: 0,
-          opacity: 0,
-          x: -100,
-          delay: 0,
-        });
-        gsap.to(".mainboard_titleshadow", {
-          duration: 0,
-          opacity: 0,
-          x: -100,
-          delay: 0,
-        });
-        gsap.to(".mainboard_body", {
-          opacity: 0,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        gsap.to(".mainboard_btn", {
-          opacity: 0,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        gsap.to(".mainboard_img", {
-          opacity: 0,
-          y: -100,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        gsap.to(".mainboard_imgshadow", {
-          opacity: 0,
-          y: 100,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        break;
-      case 2:
-        gsap.to(".mainboard_title3", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1,
-        });
-        gsap.to(".mainboard_titleshadow3", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.2,
-        });
-        gsap.to(".mainboard_body3", {
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.4,
-        });
-        gsap.to(".mainboard_btn3", {
-          display: "block",
-          duration: 1,
-          y: 0,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_img3", {
-          duration: 1,
-          y: 100,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_imgshadow3", {
-          duration: 1,
-          y: -100,
-          x: 100,
-          opacity: 1,
-          ease: "power1.out",
-          delay: 1.6,
-        });
-        gsap.to(".mainboard_title2", {
-          duration: 0,
-          opacity: 0,
-          x: -100,
-          delay: 0,
-        });
-        gsap.to(".mainboard_titleshadow2", {
-          duration: 0,
-          opacity: 0,
-          x: -100,
-          delay: 0,
-        });
-        gsap.to(".mainboard_body2", {
-          opacity: 0,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        gsap.to(".mainboard_btn2", {
-          opacity: 0,
-          x: -100,
-          delay: 0,
-          duration: 0,
-          display: "none",
-        });
-        gsap.to(".mainboard_img2", {
-          opacity: 0,
-          y: -100,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        gsap.to(".mainboard_imgshadow2", {
-          opacity: 0,
-          y: 100,
-          x: -100,
-          delay: 0,
-          duration: 0,
-        });
-        break;
-      default:
+    if (matchMedia("screen and (max-width: 480px)").matches) {
+      switch (currentIndex) {
+        case 0:
+          gsap.to(".mainboard_title", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn", {
+            duration: 1,
+            y: 0,
+            x: 0,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img", {
+            duration: 1,
+            y: 140,
+            x: -20,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow", {
+            duration: 1,
+            y: 130,
+            x: -10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title4", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow4", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body4", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn4", {
+            opacity: 0,
+            x: 0,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img4", {
+            opacity: 0,
+            y: 110,
+            x: -20,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow4", {
+            opacity: 0,
+            y: -100,
+            x: -10,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        case 1:
+          gsap.to(".mainboard_title2", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow2", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body2", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn2", {
+            duration: 1,
+            y: 10,
+            x: 0,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img2", {
+            duration: 1,
+            y: 170,
+            x: -15,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow2", {
+            duration: 1,
+            y: 190,
+            x: -5,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn", {
+            opacity: 0,
+            width: "150px",
+            x: 0,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img", {
+            opacity: 0,
+            y: -50,
+            x: -120,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow", {
+            opacity: 0,
+            y: -40,
+            x: -110,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        case 2:
+          gsap.to(".mainboard_title3", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow3", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body3", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn3", {
+            duration: 1,
+            y: -30,
+            x: -10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img3", {
+            duration: 1,
+            y: 145,
+            x: -20,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow3", {
+            duration: 1,
+            y: 180,
+            x: -10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title2", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow2", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body2", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn2", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img2", {
+            opacity: 0,
+            y: -10,
+            x: -20,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow2", {
+            opacity: 0,
+            y: -20,
+            x: -30,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        case 3:
+          gsap.to(".mainboard_title4", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow4", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body4", {
+            duration: 1,
+            y: 100,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn4", {
+            duration: 1,
+            y: 0,
+            x: 10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img4", {
+            duration: 1,
+            y: 160,
+            x: -20,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow4", {
+            duration: 1,
+            y: 180,
+            x: -10,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title3", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow3", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body3", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn3", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img3", {
+            opacity: 0,
+            y: -100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow3", {
+            opacity: 0,
+            y: 100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        default:
+      }
+    } else {
+      switch (currentIndex) {
+        case 0:
+          gsap.to(".mainboard_title", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img", {
+            duration: 1,
+            y: 200,
+            x: 200,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow", {
+            duration: 1,
+            y: 0,
+            x: 210,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title4", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow4", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body4", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn4", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img4", {
+            opacity: 0,
+            y: -100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow4", {
+            opacity: 0,
+            y: 100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        case 1:
+          gsap.to(".mainboard_title2", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow2", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body2", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn2", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img2", {
+            duration: 1,
+            y: 200,
+            x: 200,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow2", {
+            duration: 1,
+            y: 0,
+            x: 200,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img", {
+            opacity: 0,
+            y: -100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow", {
+            opacity: 0,
+            y: 100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        case 2:
+          gsap.to(".mainboard_title3", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow3", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body3", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn3", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img3", {
+            duration: 1,
+            y: 300,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow3", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title2", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow2", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body2", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn2", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img2", {
+            opacity: 0,
+            y: -100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow2", {
+            opacity: 0,
+            y: 100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        case 3:
+          gsap.to(".mainboard_title4", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1,
+          });
+          gsap.to(".mainboard_titleshadow4", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.2,
+          });
+          gsap.to(".mainboard_body4", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.4,
+          });
+          gsap.to(".mainboard_btn4", {
+            duration: 1,
+            y: 0,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_img4", {
+            duration: 1,
+            y: 300,
+            x: 100,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_imgshadow4", {
+            duration: 1,
+            y: 100,
+            x: 150,
+            opacity: 1,
+            ease: "power1.out",
+            delay: 1.6,
+          });
+          gsap.to(".mainboard_title3", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_titleshadow3", {
+            duration: 0,
+            opacity: 0,
+            x: -100,
+            delay: 0,
+          });
+          gsap.to(".mainboard_body3", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_btn3", {
+            opacity: 0,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_img3", {
+            opacity: 0,
+            y: -100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          gsap.to(".mainboard_imgshadow3", {
+            opacity: 0,
+            y: 100,
+            x: -100,
+            delay: 0,
+            duration: 0,
+          });
+          break;
+        default:
+      }
     }
+    if (currentIndex) {
+    }
+    console.log(currentIndex);
   }, [currentIndex]);
 
-  useEffect(() => {}, []);
-
-
-  const goboard = (e) => {
-    e.preventDefault();
-    navigator("/post");
-  };
-
-  const gogame = (e) => {
-    e.preventDefault();
-    navigator("/start");
-  };
-
-
   return (
-    <>
-      <main className="main">
-        <section id="banner_wrap">
-          <div className="banner_inner">
-            <div className="banner">
-              <div className="one">
-                <div className="main_board">
-                  <div>
-                    <div className="mainboard_title">트립 밸런스</div>
-                    <div className="mainboard_titleshadow">
-                      Travel destination review board
-                    </div>
-                    <div className="mainboard_body">
-                      밸런스 게임을 통해서 여행지를 정해보세요.
-                    </div>
+    <main className="main">
+      <section id="banner_wrap">
+        <div className="banner_inner">
+          <div className="banner">
+            <div className="one">
+              <div className="main_board">
+                <div>
+                  <div className="mainboard_title">
+                    Trip
+                    <br /> Balance
                   </div>
-                  <div className="mainboard_imgbox">
-                    <div className="mainboard_img">
-                      <img src={Img1} alt="" />
-                    </div>
-                    <div className="mainboard_imgshadow"></div>
+                  <div className="mainboard_titleshadow">트립 밸런스</div>
+                  <div className="mainboard_body"></div>
+                  {/* <button
+                    className="mainboard_btn"
+                  >
+                  </button> */}
+                </div>
+                <div className="mainboard_imgbox">
+                  <div className="mainboard_img">
+                    <img src={Img1} alt="" />
+
                   </div>
                 </div>
               </div>
             </div>
-            <div className="banner">
-              <div className="two">
-                <div className="main_board">
-                  <div>
-                    <div className="mainboard_title2">여행지 후기 게시판</div>
-                    <div className="mainboard_titleshadow2">
-                      Popular tourist destinations
-                    </div>
-                    <div className="mainboard_body2">우리들의 여행 이야기</div>
-                    {/* <button className="mainboard_btn2">게시판 가기</button> */}
-                  </div>
-                  <div className="mainboard_imgbox2">
-                    <div className="mainboard_img2">
-                      <img src={Img3} alt="" />
-                    </div>
-                    <div className="mainboard_imgshadow2"></div>
-                  </div>
 
-                  <Link to="/post">
-                    <div
-                      className="mainboard_body2"
-                      onClick={() => {
-                        navigate("/post");
-                      }}
-                    >
-                      추천 여행지 멘트
-                    </div>
-                  </Link>
-                  <button className="mainboard_btn2">게시판 가기</button>
+          </div>
+          <div className="banner">
+            <div className="two">
+              <div className="main_board">
+                <div>
+                  <div className="mainboard_title2">밸런스 게임</div>
+                  <div className="mainboard_titleshadow2">Balance game</div>
+                  <div className="mainboard_body2">
+                    여행지를 골라주는
+                    <br /> 밸런스 게임을 즐겨보세요
+                  </div>
+                  {/* <button
+                    className="mainboard_btn2"
+                    onClick={() => console.log()}
+                  >
+                    GameStart
+                  </button> */}
 
                 </div>
               </div>
@@ -453,38 +878,26 @@ const TestSlide = () => {
               </div>
             </div>
           </div>
-        </section>
-      </main>
-      <main className="main2">
-        <section id="banner_wrap2">
-          <div className="banner_inner2">
-            <div className="banner2">
-              <div
-                className="one2"
-                style={{
-                  background: "url(/img/banner1.webp)",
-                  backgroundRepeat: "no-repeat",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="main_board2">
-                  <div>
-                    <div className="mainboard_title4">트립 밸런스</div>
-                    {/* <div className="mainboard_titleshadow4">
-                      Travel destination review board
-                    </div> */}
-                    <div className="mainboard_body4">
-                      밸런스 게임을 통해서 <br />
-                      여행지를 정해보세요.
-                    </div>
+
+          <div className="banner">
+            <div className="three">
+              <div className="main_board">
+                <div>
+                  <div className="mainboard_title3">이벤트</div>
+                  <div className="mainboard_titleshadow3">
+                    설문에 참여하면
+                    <br /> 상품이 와르르!
                   </div>
-                  <div className="mainboard_imgbox4">
-                    <div className="mainboard_img4">
-                      <img src={Img1} alt="" />
-                    </div>
-                    <div className="mainboard_imgshadow4"></div>
+                  <div className="mainboard_body3">
+                    이벤트에 참여하고
+                    <br /> 기프티콘 받아가세요~
                   </div>
+                  {/* <button className="mainboard_btn3">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScZE6aTPE3qjPm9L6Y_r09bzjjtKVSCL_sWz77fHzqHShsq6g/viewform">
+                      응모하러가기
+                    </a>
+                  </button> */}
+
                 </div>
               </div>
             </div>
@@ -549,9 +962,38 @@ const TestSlide = () => {
               </div>
             </div>
           </div>
-        </section>
-      </main>
-    </>
+          <div className="banner">
+            <div className="four">
+              <div className="main_board">
+                <div>
+                  <div className="mainboard_title4">게시판</div>
+                  <div className="mainboard_titleshadow4">
+                    가장 핫한 우리
+                    <br /> 여행 이야기
+                  </div>
+                  <div className="mainboard_body4">
+                    당신의 이야기를 들려주세요
+                  </div>
+                  {/* <button
+                    className="mainboard_btn4"
+                    onClick={() => navigate("/post")}
+                  >
+                    게시판 가기
+                  </button> */}
+                </div>
+                <div className="mainboard_imgbox4">
+                  <div className="mainboard_img4">
+                    <img src={Img4} alt="" />
+                  </div>
+                  <div className="mainboard_imgshadow4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
   );
 };
 

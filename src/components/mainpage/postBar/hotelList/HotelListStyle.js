@@ -70,8 +70,8 @@ export const hotelList = styled.div`
     height: 400px;
     display: flex;
     overflow: auto;
-    white-space: nowrap;
     text-align: center;
+    white-space: nowrap;
     overflow-y: hidden;
     ::-webkit-scrollbar {
       display: none;

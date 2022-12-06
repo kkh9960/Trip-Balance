@@ -58,7 +58,6 @@ export const Footerlogo = styled.img`
   @media screen and (max-width: 480px) {
     width: 183px;
     position: relative;
-    left: 90px;
     margin-top: 30px;
   }
 `;
@@ -76,9 +75,11 @@ export const Title = styled.div`
     width: 100%;
     font-family: "Jalnan";
     color: white;
+
     align-items: center;
     justify-content: center;
     text-align: center;
+
   }
 `;
 export const Comment = styled.div`
