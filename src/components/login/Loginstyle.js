@@ -43,9 +43,7 @@ export const CancelBtn = styled.div`
     left: 300px;
   }
 `;
-export const Exit = styled.img`
-`
-
+export const Exit = styled.img``;
 
 export const LoginTitleWrap = styled.div``;
 export const LoginTitle = styled.h1``;
@@ -117,8 +115,8 @@ export const KakaoWrap = styled.a`
   border-radius: 10px;
   position: relative;
   left: 80px;
-  top:70px;
-  
+  top: 70px;
+
   @media screen and (max-width: 746px) {
     left: -25px;
   }

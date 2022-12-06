@@ -34,12 +34,7 @@ const PostItem = () => {
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
-  // const search = (e) => {
-  //   if (e.key === "Enter") {
-  //     setUseInput(e.target.value);
-  //   }
-  //   console.log("key press");
-  // };
+
   const [test, settest] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -110,7 +105,6 @@ const PostItem = () => {
       setsearch(3);
     }
   };
-  
 
   return (
     <>
@@ -157,12 +151,7 @@ const PostItem = () => {
                       }}
                     >
                       <CardImgbox>
-                        <CardImg
-                          src={
-                            item.image[0].imgURL
-                           
-                          }
-                        />
+                        <CardImg src={item.image[0].imgURL} />
                       </CardImgbox>
                       <CardTextbox>
                         <CardTitle>{item.title}</CardTitle>
@@ -444,6 +433,7 @@ const PostPageContainer = styled.div`
   margin-top: 100px;
   @media screen and (max-width: 480px) {
     margin-top: 50px;
+    box-sizing: border-box;
   }
 `;
 const TodayTitle = styled.div`

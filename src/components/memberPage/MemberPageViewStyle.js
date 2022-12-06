@@ -177,8 +177,8 @@ export const mySelectInformation = styled.div`
       rgba(255, 255, 255, 0.9) 50%,
       rgba(255, 255, 255, 1) 100%
     ),
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 `;
