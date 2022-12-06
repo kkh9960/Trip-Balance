@@ -34,12 +34,7 @@ const PostItem = () => {
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
-  // const search = (e) => {
-  //   if (e.key === "Enter") {
-  //     setUseInput(e.target.value);
-  //   }
-  //   console.log("key press");
-  // };
+ 
   const [test, settest] = useState(false);
   useEffect(() => {
     setTimeout(() => {

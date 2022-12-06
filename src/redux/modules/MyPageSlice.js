@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import instance from "../../lib/instance";
 
 // 회원정보
@@ -26,26 +25,6 @@ export const __putMyInformation = createAsyncThunk(
     } catch (error) {}
   }
 );
-// 밸런스게임데이터
-// export const __getTotalGameData = createAsyncThunk(
-//   "GET_MY_GAMEDATA",
-//   async (payload, thunkAPI) => {
-//     try {
-//       const { data } = await instance.get(`tb/mypage/totaldb`, payload);
-//       return thunkAPI.fulfillWithValue(data);
-//     } catch (error) {}
-//   }
-// );
-//회원이 작성한 글목록
-// export const __getMyPosts = createAsyncThunk(
-//   "GET_MY_POST",
-//   async (payload, thunkAPI) => {
-//     try {
-//       const { data } = await instance.get("tb/mypage/posts", payload);
-//       return thunkAPI.fulfillWithValue(data);
-//     } catch (error) {}
-//   }
-// );
 
 //좋아요한 글목록
 export const __getMyPick = createAsyncThunk(
@@ -97,17 +76,6 @@ export const MyInforSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    // [__getMyPosts.pending]: (state) => {
-    //   state.isLoading = true;
-    // },
-    // [__getMyPosts.fulfilled]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.myposts = action.payload.data;
-    // },
-    // [__getMyPosts.rejected]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.error = action.payload;
-    // },
     [__getMyWriteIn.pending]: (state) => {
       state.isLoading = true;
     },
