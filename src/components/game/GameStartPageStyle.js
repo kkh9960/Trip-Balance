@@ -42,7 +42,7 @@ export const BalanceGameTITLE = styled.div`
   width: 540px;
 
   height: 114px;
-  background-image: url("../../img/gameCommonImg/balanceGame.webp");
+  background-image: url("../../img/gameCommonImg/BalanceGame.webp");
   background-repeat: no-repeat;
   background-position: center;
   @media (max-width: 480px) {
