@@ -50,8 +50,8 @@ export default function GamePage() {
   const rightImg = `../../img/gameImg/${gameData.data[0]?.rightId == null ? (2) : (gameData.data[0]?.rightId)}.webp`
   const GameID = (gameData.data[1]?.gameId === null ? ("1") : gameData.data[1]?.gameId)
   const QID = parseInt(id.id)
-  const VCharacter = '../../img/gameCommonImg/smile.webp'
-  const FCharacter = '../../img/gameCommonImg/unhappy.webp'
+  const VCharacter = '../../img/gameCommonImg/happy.gif'
+  const FCharacter = '../../img/gameCommonImg/unhappy.gif'
   // 움짤 만들어주시면 넣을 예정
 
   return (

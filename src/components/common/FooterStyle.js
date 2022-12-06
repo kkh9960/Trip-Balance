@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
   background-color: gray;
- 
-  
+
   @media screen and (max-width: 746px) {
     width: 100%;
   }
@@ -13,7 +11,6 @@ export const Wrap = styled.div`
   @media screen and (max-width: 550px) {
     height: 660.8px;
     width: 100%;
-   
   }
 `;
 export const Design = styled.div`
@@ -57,7 +54,7 @@ top: 10px;
 margin: 2px;
 `
 export const Footerlogo = styled.img`
-width: 300px;
+  width: 300px;
   @media screen and (max-width: 480px) {
     width: 183px;
     position: relative;
@@ -74,13 +71,13 @@ export const Title = styled.div`
   color: white;
   position: relative;
   @media screen and (max-width: 480px) {
-    left:-40px;
+    left: -40px;
     margin-top: 50px;
-    width: 480px;
+    width: 100%;
     font-family: "Jalnan";
     color: white;
-   align-items: center;
-   justify-content: center;
+    align-items: center;
+    justify-content: center;
     text-align: center;
   }
 `;
@@ -106,7 +103,7 @@ export const Hanhae = styled.div`
   color: white;
   opacity: 0.5;
   position: relative;
-  top:-15px;
+  top: -15px;
   @media screen and (max-width: 480px) {
     position: relative;
     top: 20px;
@@ -123,7 +120,7 @@ export const Front = styled.div`
   text-align: center;
   position: relative;
   left: 0px;
- 
+
   @media screen and (max-width: 480px) {
     top: 50px;
     text-align: center;
@@ -137,8 +134,10 @@ export const Front = styled.div`
 export const Back = styled.div`
   text-align: center;
   position: relative;
+
   top: -5px;
   color: white;
+
   font-family: "Jalnan";
   opacity: 0.4;
   @media screen and (max-width: 480px) {
@@ -197,7 +196,7 @@ export const BackWrap = styled.div`
     text-align: center;
     font-family: "Jalnan";
     opacity: 0.5;
-    top:-20px
+    top: -20px;
   }
 `;
 export const Best = styled.div`

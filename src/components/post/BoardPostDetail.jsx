@@ -620,6 +620,7 @@ const BoardLike = styled.div`
 `;
 
 const BoardBody = styled.div`
+  font-family: "NotoSansKR";
   margin-top: 40px;
   width: 100%;
   min-height: 400px;

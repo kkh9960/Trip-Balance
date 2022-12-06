@@ -36,7 +36,8 @@ function RegisterPage() {
   const modalClose = () => {
     window.location.reload();
   };
-  const nicknamecheck = () => {
+  const nicknamecheck = (e) => {
+    e.stopPropagation();
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
       if (nickname.trim() === "") {
         alert("닉네임을입력해주세요!");
@@ -53,7 +54,8 @@ function RegisterPage() {
       }
     });
   };
-  const idCheck = () => {
+  const idCheck = (e) => {
+    e.stopPropagation();
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
       if (res.data.statusCode == 0) {
         setEmailCheckError(<div size={30} />);
@@ -77,7 +79,7 @@ function RegisterPage() {
   const nick = {
     nickName: nickname,
   };
-  const onSubmit = async (data) => {
+  const onSubmitEvery = async (data) => {
     if (email.trim() === "") {
       alert("이메일을입력해주세요!");
       return;
@@ -114,7 +116,7 @@ function RegisterPage() {
           <LoginPage />
         ) : (
           <t.SignupWrapper>
-            <t.FormTag onSubmit={handleSubmit(onSubmit)}>
+            <t.FormTag onSubmit={handleSubmit(onSubmitEvery)}>
               <t.BackArrow
                 className="backArrow"
                 onClick={() => {
@@ -139,7 +141,7 @@ function RegisterPage() {
                 onChange={emailchange}
                 placeholder=" 이메일을 입력해주세요 ."
               />
-              <t.EmailCheck onClick={idCheck}>중복확인</t.EmailCheck>
+              <t.EmailCheck onClick={idCheck} button type="button">중복확인</t.EmailCheck>
 
               <t.EmailCheckError>{EmailCheckError}</t.EmailCheckError>
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
@@ -150,7 +152,7 @@ function RegisterPage() {
                 onChange={nicknamechange}
                 value={nickname}
               />
-              <t.NickNameCheck onClick={nicknamecheck}>
+              <t.NickNameCheck onClick={nicknamecheck} button type="button">
                 중복확인
               </t.NickNameCheck>
               <t.Checkwrap>{checkError}</t.Checkwrap>

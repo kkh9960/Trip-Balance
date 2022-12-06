@@ -50,6 +50,7 @@ export default function MyPageView() {
       const result = await instance.get("tb/mypage/hearts");
 
       setMyPick(result.data.data);
+    
     }
     fetchData();
   }, []);
@@ -120,7 +121,7 @@ export default function MyPageView() {
           <t.footer>
             <t.thinLine />
             <Pagination
-              total={myPick.length}
+              total={typeof(myPick) === 'string' ? (myPick.length-10) : (myPick.length)}
               limit={limit}
               page={page}
               setPage={setPage}
@@ -159,8 +160,9 @@ export default function MyPageView() {
 
           <t.footer>
             <t.thinLine />
+
             <Pagination
-              total={posts.length}
+              total={typeof(posts) === 'string' ? (posts.length-10) : (posts.length)}
               limit={writelimit}
               page={writepage}
               setPage={setWritePage}
