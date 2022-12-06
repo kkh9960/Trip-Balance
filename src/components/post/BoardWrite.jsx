@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import AWS from "aws-sdk";
 import { __postBoard } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
+import imageCompression from "browser-image-compression";
 
 const BoardWrite = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
-  const DefaultImega = "img/default1.jpg";
   const [ImgPreview, setImgPreview] = useState([]);
   const [Pet, setPet] = useState(0);
   const [contents, setcontents] = useState();
@@ -17,60 +17,87 @@ const BoardWrite = () => {
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [ModalEdit, setModalEdit] = useState(false);
 
+  const options = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true,
+  };
+
   // 이미지
 
   const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
 
   //AWS S3 이미지 업로드 도전
   const onFileUpload = async (e) => {
-    const ACCESS_KEY = process.env.ACCESS_KEY;
-    const SECRET_ACCESS_KEY = process.env.SECRET_ACCESS_KEY;
+    const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
+    const SECRET_ACCESS_KEY = process.env.REACT_APP_SECRET_ACCESS_KEY;
     const REGION = "ap-northeast-2";
     const S3_BUCKET = "react-image-seongwoo";
 
-    // AWS ACCESS KEY를 세팅합니다.
-    AWS.config.update({
-      accessKeyId: ACCESS_KEY,
-      secretAccessKey: SECRET_ACCESS_KEY,
-    });
+    //원본
+    const imageFile = e.target.files[0];
+    console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+    console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+    //리사이징
+    try {
+      const compressedFile = await imageCompression(imageFile, options);
+      console.log(
+        "compressedFile instanceof Blob",
+        compressedFile instanceof Blob
+      ); // true
+      console.log(
+        `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
+      );
+      // AWS ACCESS KEY를 세팅합니다.
 
-    // 버킷에 맞는 이름과 리전을 설정합니다.
-    const myBucket = new AWS.S3({
-      params: { Bucket: S3_BUCKET },
-      region: REGION,
-    });
-    const file = e.target.files[0];
+      AWS.config.update({
+        accessKeyId: ACCESS_KEY,
+        secretAccessKey: SECRET_ACCESS_KEY,
+      });
 
-    const fileName = file.name.replaceAll(" ", "");
+      // 버킷에 맞는 이름과 리전을 설정합니다.
+      const myBucket = new AWS.S3({
+        params: { Bucket: S3_BUCKET },
+        region: REGION,
+      });
+      const file = compressedFile;
 
-    // 파일과 파일이름을 넘겨주면 됩니다.
-    const params = {
-      ACL: "public-read",
-      Body: file,
-      Bucket: S3_BUCKET,
-      Key: fileName,
-    };
+      const fileName = file.name.replaceAll(" ", "");
 
-    if (ImgPreview.length < 10) {
-      await myBucket
-        .putObject(params)
-        .on("httpUploadProgress", (Progress, Response) => {
-          alert("SUCCESS");
-          const imgURL = S3URL + Response.request.httpRequest.path;
-          setFileLink(imgURL);
-          setImgPreview([...ImgPreview, { imgURL }]);
-        })
-        .send((err) => {
-          if (err);
-        });
-    } else {
-      alert("이미지는 10개까지만 업로드할수있습니다.");
+      // 파일과 파일이름을 넘겨주면 됩니다.
+      const params = {
+        ACL: "public-read",
+        Body: file,
+        Bucket: S3_BUCKET,
+        Key: fileName,
+      };
+
+      if (ImgPreview.length < 10) {
+        await myBucket
+          .putObject(params)
+          .on("httpUploadProgress", (Progress, Response) => {
+            console.log(Response.request.httpRequest.path);
+            const imgURL = S3URL + Response.request.httpRequest.path;
+            setFileLink(imgURL);
+            console.log("123", imgURL);
+            setImgPreview([...ImgPreview, { imgURL }]);
+          })
+          .send((err) => {
+            if (err) console.log(err);
+          });
+      } else {
+        alert("이미지는 10개까지만 업로드할수있습니다.");
+      }
+    } catch (error) {
+      window.alert(
+        "앗, 이미지 업로드에 오류가 있어요! 관리자에게 문의해주세요😿"
+      );
     }
   };
 
-  useEffect(() => {
-    setFileLink(imagewrite);
-  }, []);
+  // useEffect(() => {
+  //   setFileLink(imagewrite);
+  // }, []);
 
   const PetHandler = () => {
     Pet == 1 ? setPet(0) : setPet(1);
@@ -158,7 +185,7 @@ const BoardWrite = () => {
   };
 
   return (
-    <>
+    <HeaderContainer>
       <BoardWriteContainer onSubmit={onSubmitHandler}>
         <TitleInput
           name="title"
@@ -394,6 +421,189 @@ const BoardWrite = () => {
             이미지로 설정됩니다.
           </ImegePreviewtext>
         </ImegePreviewBox>
+        <Categorysectionmobile>
+          <CategorySelect
+            name="category1"
+            id="cate_parent"
+            onChange={Categoryopen}
+          >
+            <option name="category1" value="0">
+              카테고리를 선택해주세요.
+            </option>
+            <option name="category1" value="1">
+              수도권
+            </option>
+            <option name="category1" value="2">
+              경상_강원도
+            </option>
+            <option name="category1" value="3">
+              충청_전라도
+            </option>
+            <option name="category1" value="4">
+              제주도
+            </option>
+            <option name="category1" value="5">
+              기타
+            </option>
+          </CategorySelect>
+          <CategorySelect
+            name="category2"
+            id="cate_child"
+            onChange={onCategoryHandler}
+            required
+          >
+            {Cate == 1 && (
+              <>
+                <option name="category2" value="0">
+                  카테고리를 선택해주세요.
+                </option>
+                <option name="category2" value="1">
+                  서울
+                </option>
+                <option name="category2" value="2">
+                  인천
+                </option>
+                <option name="category2" value="3">
+                  가평
+                </option>
+                <option name="category2" value="4">
+                  용인
+                </option>
+                <option name="category2" value="5">
+                  파주
+                </option>
+                <option name="category2" value="33">
+                  기타
+                </option>
+              </>
+            )}
+            {Cate == 2 && (
+              <>
+                <option name="category2" value="0">
+                  카테고리를 선택해주세요.
+                </option>
+                <option name="category2" value="6">
+                  속초
+                </option>
+                <option name="category2" value="7">
+                  강릉
+                </option>
+                <option name="category2" value="8">
+                  춘천
+                </option>
+                <option name="category2" value="9">
+                  양양
+                </option>
+                <option name="category2" value="10">
+                  평창
+                </option>
+                <option name="category2" value="11">
+                  부산
+                </option>
+                <option name="category2" value="12">
+                  거제
+                </option>
+                <option name="category2" value="13">
+                  통영
+                </option>
+                <option name="category2" value="14">
+                  포항
+                </option>
+                <option name="category2" value="15">
+                  경주
+                </option>
+                <option name="category2" value="16">
+                  안동
+                </option>
+                <option name="category2" value="33">
+                  기타
+                </option>
+              </>
+            )}
+            {Cate == 3 && (
+              <>
+                <option name="category2" value="0">
+                  카테고리를 선택해주세요.
+                </option>
+                <option name="category2" value="17">
+                  여수
+                </option>
+                <option name="category2" value="18">
+                  목포
+                </option>
+                <option name="category2" value="19">
+                  담양
+                </option>
+                <option name="category2" value="20">
+                  보성
+                </option>
+                <option name="category2" value="21">
+                  해남
+                </option>
+                <option name="category2" value="22">
+                  전주
+                </option>
+                <option name="category2" value="23">
+                  천안
+                </option>
+                <option name="category2" value="24">
+                  태안
+                </option>
+                <option name="category2" value="25">
+                  보령
+                </option>
+                <option name="category2" value="26">
+                  공주
+                </option>
+                <option name="category2" value="27">
+                  단양
+                </option>
+                <option name="category2" value="33">
+                  기타
+                </option>
+              </>
+            )}
+            {Cate == 4 && (
+              <>
+                <option name="category2" value="0">
+                  카테고리를 선택해주세요.
+                </option>
+                <option name="category2" value="32">
+                  서귀포
+                </option>
+                <option name="category2" value="33">
+                  기타
+                </option>
+              </>
+            )}
+            {Cate == 5 && (
+              <>
+                <option name="category2" value="0">
+                  카테고리를 선택해주세요.
+                </option>
+                <option name="category2" value="28">
+                  대구
+                </option>
+                <option name="category2" value="29">
+                  대전
+                </option>
+                <option name="category2" value="30">
+                  광주
+                </option>
+                <option name="category2" value="31">
+                  울산
+                </option>
+                <option name="category2" value="33">
+                  기타
+                </option>
+              </>
+            )}
+          </CategorySelect>
+          <PetCheckBox>
+            <PetLabel htmlFor="pet">반려동물동반여부</PetLabel>
+            <PetCheck type="checkbox" id="pet" onChange={PetHandler} />
+          </PetCheckBox>
+        </Categorysectionmobile>
 
         <BoardWriteTextarea
           name="content"
@@ -433,11 +643,15 @@ const BoardWrite = () => {
           </ModalWrap>
         </Modal>
       ) : null}
-    </>
+    </HeaderContainer>
   );
 };
 
 export default BoardWrite;
+
+const HeaderContainer = styled.div`
+  padding-top: 120px;
+`;
 
 const Outbtn = styled.button`
   font-size: 16px;
@@ -500,12 +714,20 @@ const BoardWriteContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media screen and (max-width: 480px) {
+    width: 95%;
+    max-width: 480px;
+    margin: 0px auto 50px;
+  }
 `;
 const BoardContentWrap = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   gap: 20px;
+  @media screen and (max-width: 480px) {
+    display: block;
+  }
 `;
 
 const TitleInput = styled.input`
@@ -517,6 +739,9 @@ const TitleInput = styled.input`
   border: none;
   padding: 5px;
   outline: none;
+  @media screen and (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 
 const BaordWritesection = styled.div`
@@ -526,20 +751,39 @@ const BaordWritesection = styled.div`
   display: flex;
   gap: 20px;
   flex-direction: column;
+  @media screen and (max-width: 480px) {
+    display: block;
+  }
 `;
+
 const ImagePreview = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  background: url("img/imagewrite.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media screen and (max-width: 480px) {
+    background: url("img/mbwrite.jpg");
+    background-position: center center;
+    background-size: cover;
+  }
 `;
+
 const ImegeSelectBox = styled.div`
   width: 100%;
   max-width: 1074px;
   height: 300px;
   position: relative;
   border: 4px dashed #cdcdcd;
+  @media screen and (max-width: 480px) {
+    box-sizing: border-box;
+    height: 250px;
+  }
 `;
+
 const ImegeInput = styled.input`
   position: absolute;
   width: 100%;
@@ -555,6 +799,9 @@ const ImegePreviewBox = styled.div`
   display: flex;
   padding: 20px 5px;
   flex-direction: column;
+  @media screen and (max-width: 480px) {
+    box-sizing: border-box;
+  }
 `;
 const ImegePreviewWrap = styled.div`
   display: flex;
@@ -562,6 +809,10 @@ const ImegePreviewWrap = styled.div`
   height: auto;
   gap: 20px;
   justify-content: center;
+  @media screen and (max-width: 480px) {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
 `;
 const ImegePreviewtext = styled.div`
   font-size: 16px;
@@ -575,6 +826,10 @@ const UploadImegePreview = styled.img`
   flex: 1;
   border: 2px solid #b3b3b3;
   border-radius: 4px;
+  @media screen and (max-width: 480px) {
+    width: 55px;
+    height: 70px;
+  }
 `;
 const UploadImageBox = styled.div`
   width: 100%;
@@ -594,6 +849,14 @@ const UploadImageBox = styled.div`
     bottom: 4px;
     left: 0;
     border-radius: 4px;
+    @media screen and (max-width: 480px) {
+      width: 59px;
+      height: 20px;
+      font-size: 12px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    width: 18%;
   }
 `;
 const Imagedelete = styled.div`
@@ -608,6 +871,12 @@ const Imagedelete = styled.div`
   background-image: url(img/imageremove.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  @media screen and (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+    right: 3px;
+    top: -10px;
+  }
 `;
 
 const BoardWriteTextarea = styled.textarea`
@@ -622,6 +891,10 @@ const BoardWriteTextarea = styled.textarea`
   &::-webkit-scrollbar {
     width: 0px;
   }
+  @media screen and (max-width: 480px) {
+    box-sizing: border-box;
+    height: 420px;
+  }
 `;
 
 const BoardButtonsection = styled.div`
@@ -631,13 +904,29 @@ const BoardButtonsection = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
 const Categorysection = styled.div`
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
+const Categorysectionmobile = styled.div`
+  display: none;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin: 10px auto;
+    flex-direction: column;
+    gap: 20px;
+  }
+`;
+
 const CategorySelect = styled.select`
   appearance: none;
   width: 100%;
@@ -649,7 +938,13 @@ const CategorySelect = styled.select`
   border-radius: 10px;
   border: 2px solid #777777;
   background: url(img/category.jpg) no-repeat right 13px center;
+  @media screen and (max-width: 480px) {
+    max-width: 100%;
+    height: 50px;
+    font-size: 18px;
+  }
 `;
+
 const PetCheckBox = styled.div`
   width: 100%;
   max-width: 344px;
@@ -660,7 +955,14 @@ const PetCheckBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+  @media screen and (max-width: 480px) {
+    max-width: 100%;
+    height: 50px;
+    font-size: 18px;
+    gap: 50px;
+  }
 `;
+
 const PetCheck = styled.input`
   width: 60px;
   height: 30px;
@@ -702,6 +1004,10 @@ const Buttonsection = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 const WriteButton = styled.button`
   font-size: 20px;
@@ -710,6 +1016,9 @@ const WriteButton = styled.button`
   width: 344px;
   height: 60px;
   border-radius: 10px;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 `;
 const Cancelbutton = styled.button`
   font-size: 20px;
@@ -718,4 +1027,7 @@ const Cancelbutton = styled.button`
   border-radius: 10px;
   color: #777777;
   border: 2px solid #777777;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+  }
 `;

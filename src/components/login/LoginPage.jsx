@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+
 import Signup from "./Signup";
 import * as t from "./Loginstyle";
 
-import { motion } from "framer-motion";
 import styled from "styled-components";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
@@ -44,6 +43,7 @@ function LoginPage() {
     };
     // 서버로 보내줄 로그인값
     const data = instance.post("tb/login", LoginValue).then((res) => {
+
       if (res.data.statusCode == 0) {
         sessionStorage.setItem("email", res.data.data.email);
         sessionStorage.setItem("nickName", res.data.data.nickName);
@@ -70,7 +70,9 @@ function LoginPage() {
       {modal ? (
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
+
             <t.CancelBtn className="cancel" onClick={modalClose}></t.CancelBtn>
+
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
               <t.LoginTitle>로그인</t.LoginTitle>
             </t.LoginTitleWrap>
@@ -122,24 +124,3 @@ function LoginPage() {
   );
 }
 export default LoginPage;
-const Logo = styled.img``;
-// 필요할때 모달창쓰기
-// import React, { useState } from "react";
-// import LoginPage from "./Login";
-//
-// const Home = () => {
-//   const [modal, setModal] = useState(false);
-//   return (
-//     <div>
-//       <button
-//         onClick={() => {
-//           setModal(!modal);
-//         }}
-//       >
-//         로그인창
-//       </button>
-//       {modal == true ? <LoginPage /> : ""}
-//     </div>
-//   );
-// };
-// export default Home;

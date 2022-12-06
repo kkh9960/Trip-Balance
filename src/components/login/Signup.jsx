@@ -101,7 +101,7 @@ function RegisterPage() {
         return;
       }
       alert("회원가입완료!");
-      navigate("/");
+     window.location.reload();
     });
   };
   return (
@@ -122,8 +122,10 @@ function RegisterPage() {
                 onClick={() => {
                   setModal(!modal);
                 }}
+
               ></t.BackArrow>
               <t.Cancel onClick={modalClose}></t.Cancel>
+
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>
               </t.SignupTitleWrap>

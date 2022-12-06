@@ -286,6 +286,7 @@ export const footer = styled.div`
 `;
 
 export const mySelectInformation = styled.div`
+
   @media screen and (min-width: 481px) {
     flex-direction: column;
     justify-content: space-around;
@@ -303,4 +304,5 @@ export const mySelectInformation = styled.div`
     flex-direction: column;
     width: 100%;
   }
+
 `;
