@@ -6,12 +6,13 @@ export const doughnutContainer = styled.div`
   display: flex;
   transition: 0.5s;
   margin: 0px 20px;
-  
+
   @media screen and (max-width: 480px) {
-    width: 440px;
-    height:250px;
+    width: 100%;
+    height: 250px;
     display: flex;
     flex-direction: column;
+    margin: 0px;
     transition: 0.5s;
   }
 `;
@@ -40,7 +41,7 @@ export const chartView = styled.div`
 
   @media screen and (max-width: 500px) {
     width: 124px;
-    height:124px;
+    height: 124px;
     margin: 0 auto;
     text-align: center;
     border-radius: 50%;

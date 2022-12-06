@@ -52,12 +52,17 @@ const Header = () => {
             <LoginPage />
           ) : (
             <>
-              <Link to="/">
-                <t.Logo src={mainlogo} alt="logo" />
-              </Link>
-              <t.toggleBtn toggle={toggle} onClick={toggleChange}>
-                <img src={mainlist} alt="listicon" />
-              </t.toggleBtn>
+              <t.LogoBox>
+                <Link to="/">
+                  <t.Logo src={mainlogo} alt="logo" />
+                </Link>
+              </t.LogoBox>
+              <t.toggleBtn
+                src={mainlist}
+                alt="listicon"
+                toggle={toggle}
+                onClick={toggleChange}
+              ></t.toggleBtn>
               <t.WriteWrap toggle={toggle}>
                 <t.Game
                   onClick={() => {
@@ -122,12 +127,17 @@ const Header = () => {
             <LoginPage />
           ) : (
             <>
-              <Link to="/">
-                <t.Logo src={mainlogo} alt="logo" />
-              </Link>
-              <t.toggleBtn toggle={toggle} onClick={toggleChange}>
-                <img src={mainlist} alt="listicon" />
-              </t.toggleBtn>
+              <t.LogoBox>
+                <Link to="/">
+                  <t.Logo src={mainlogo} alt="logo" />
+                </Link>
+              </t.LogoBox>
+              <t.toggleBtn
+                src={mainlist}
+                alt="listicon"
+                toggle={toggle}
+                onClick={toggleChange}
+              />
               <t.WriteWrap toggle={toggle}>
                 <t.Game
                   onClick={() => {

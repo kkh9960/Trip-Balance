@@ -9,7 +9,7 @@ export const weather = styled.div`
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
-  color:#777;
+  color: #777;
   align-self: start;
   @media screen and (max-width: 480px) {
     position: relative;
@@ -17,27 +17,25 @@ export const weather = styled.div`
     height: 100px;
     padding: 0;
     border-radius: 10px;
-    display:flex;
-    align-items:center;
-    justify-content:space-evenly;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 `;
 
 export const location = styled.div`
-width: 230px;
-height:134px;
-display:flex;
-margin-right:40px;
-flex-direction:column;
-text-align:right;
-@media screen and (max-width: 480px) {
-  width:180px;
-  height:90px;
-  text-align:center;
-  margin-right:0px;
-  align-self: start;
-  
-  /* color:${(props)=>(props < 3 ? 'red' : 'blue')} */
+  width: 250px;
+  height: 134px;
+  display: flex;
+  margin-right: 40px;
+  flex-direction: column;
+  text-align: right;
+  @media screen and (max-width: 480px) {
+    width: 180px;
+    height: 90px;
+    text-align: center;
+    margin-right: 0px;
+    align-self: start;
   }
 `;
 
@@ -46,12 +44,21 @@ export const cityName = styled.div`
   font-weight: 600;
   font-size: 44px;
   line-height: 67px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   @media screen and (max-width: 480px) {
-    width: 100%;;
-    height:60px;
+    display: none;
+  }
+`;
+export const mobileCityName = styled.div`
+  @media screen and (min-width: 480px) {
+    display: none;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 60px;
     font-size: 30px;
-    margin-bottom:0px;
+    margin-bottom: -10px;
+    font-weight: 600;
   }
 `;
 
@@ -63,10 +70,9 @@ export const countyName = styled.div`
   @media screen and (max-width: 480px) {
     font-size: 20px;
     width: 100%;
-    margin-bottom:0px;
+    margin-bottom: 0px;
   }
 `;
-
 
 export const top = styled.div`
   display: flex;
@@ -86,21 +92,20 @@ export const weatherIcon = styled.img`
   }
 `;
 export const temperatureBox = styled.div`
-  margin:0 auto;
-  width:100%;
-  height:100%;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   @media screen and (max-width: 480px) {
-    width:80px;
-    height:100%;
-    
+    width: 80px;
+    height: 100%;
   }
 `;
 export const timer = styled.div`
   @media screen and (max-width: 480px) {
-    display:none;
+    display: none;
     position: absolute;
     font-size: 20px;
-    text-align:left;
+    text-align: left;
     width: 50px;
     bottom: 30px;
     left: 40px;
@@ -108,21 +113,21 @@ export const timer = styled.div`
 `;
 export const temperature = styled.div`
   display: flex;
-  position:relative;
-  flex-direction:column;
+  position: relative;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   text-align: right;
   color: #777;
-  span{
+  span {
     font-weight: 400;
     font-size: 70px;
     line-height: 73px;
   }
   p {
-    position:absolute;
+    position: absolute;
     bottom: -43px;
-    right:0;
+    right: 0;
     font-size: 24px;
   }
   @media screen and (max-width: 480px) {
@@ -133,20 +138,20 @@ export const temperature = styled.div`
     font-size: 80px;
     color: #777;
     margin: 0;
-    p{
-    position:absolute;
-    bottom: -29px;
-    right:0;
-    font-size: 24px;
+    p {
+      position: absolute;
+      bottom: -43px;
+      right: 0;
+      font-size: 24px;
     }
   }
 `;
 export const bottom = styled.div`
   display: flex;
-  align-items:center;
-  justify-content:center;
-  width:334px;
-  height:100%;
+  align-items: center;
+  justify-content: center;
+  width: 334px;
+  height: 100%;
   @media screen and (max-width: 480px) {
   }
 `;
@@ -160,9 +165,9 @@ export const weatherDescription = styled.div`
 
 export const details = styled.div`
   width: 100%;
-  display:flex;
-  justify-content:space-evenly;
-  text-align:left;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
   @media screen and (max-width: 480px) {
     width: 185px;
   }
@@ -170,11 +175,11 @@ export const details = styled.div`
 
 export const parameterRow = styled.div`
   display: flex;
-  text-align:center;
-  align-items:center;
-  justify-content:space-evenly;
-  flex-direction:column;
-  height:100%;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
 `;
 
 export const parameterLabel = styled.div`
@@ -182,60 +187,23 @@ export const parameterLabel = styled.div`
   font-size: 20px;
   line-height: 24.2px;
   @media screen and (max-width: 480px) {
-    font-size:16px;
+    font-size: 16px;
+    font-weight: 200;
   }
 `;
 
 export const parameterValue = styled.div`
-  display:flex;
+  display: flex;
   font-size: 36px;
   font-weight: 400;
   line-height: 44px;
-  p{
+  p {
     font-size: 20px;
   }
   @media screen and (max-width: 480px) {
-    font-size:26px;
-    p{
-    font-size: 15px;
-  }
-  }
-`;
-
-// export const parameterLabeltop = styled.div`
-//  border-bottom: 1px solid #fff;
-// `;
-
-export const mobile = styled.div`
-  display: none;
-  @media screen and (max-width: 480px) {
-    width: 100%;
-    height: 300px;
-    font-size: 30px;
-  }
-`;
-export const mobileTemper = styled.div`
-  @media screen and (max-width: 480px) {
-    width: 150px;
-    height: 150px;
-    font-size: 75px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
-
-export const mobileCityName = styled.div`
-  @media screen and (max-width: 480px) {
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
-  }
-`;
-export const mobileCountyName = styled.div`
-  @media screen and (max-width: 480px) {
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
+    font-size: 26px;
+    p {
+      font-size: 15px;
+    }
   }
 `;

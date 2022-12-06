@@ -214,7 +214,7 @@ const PostItem = () => {
                   placeholder="오늘의 핫한 여행지 검색하기"
                   value={useInput}
                   onChange={onChange}
-                ></TitleSearch>
+                />
                 <SearchIcon></SearchIcon>
               </TitleSearchbox>
             </SearchBoxForm>

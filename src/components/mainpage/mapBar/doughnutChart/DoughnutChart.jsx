@@ -1,4 +1,3 @@
-/* global kakao */
 import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
@@ -25,7 +24,7 @@ ChartJS.register(
 );
 
 export default function DoughnutChart() {
-  const peopleData = useSelector((state) => state.MapSlice.data?.cnt);
+  const peopleData = useSelector((state) => state.MapSlice?.data?.cnt);
 
   const chartData = {
     people: {

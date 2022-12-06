@@ -9,9 +9,9 @@ export const mapBarView = styled.div`
   justify-content: center;
   flex-direction: column;
   @media screen and (max-width: 480px) {
-    width:100%;
-    height:1200px;
-    display:flex;
+    width: 100%;
+    height: 1200px;
+    display: flex;
   }
 `;
 

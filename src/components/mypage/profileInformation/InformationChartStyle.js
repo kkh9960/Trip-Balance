@@ -9,12 +9,13 @@ export const inforChartViewbox = styled.div`
   @keyframes slideRight {
     from {
       opacity: 0;
-      /* transform: translateX(1000px); */
     }
     to {
       opacity: 1;
-      /* transform: translateX(0px); */
     }
+  }
+  @media screen and (max-width: 480px) {
+    display: none;
   }
 `;
 export const inforChartView = styled.div`
