@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Test.css";
 import UseInterval from "../../hooks/useinterval";
 import { gsap } from "gsap";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const TestSlide = () => {
   const [currentIndex, setIndex] = useState(0);
@@ -328,7 +329,7 @@ const TestSlide = () => {
   }, [currentIndex]);
 
   useEffect(() => {}, []);
-
+  const navigate = useNavigate()
   return (
     <main className="main">
       <section id="banner_wrap">
@@ -361,7 +362,16 @@ const TestSlide = () => {
                   <div className="mainboard_titleshadow2">
                     Popular tourist destinations
                   </div>
-                  <div className="mainboard_body2">추천 여행지 멘트</div>
+                  <Link to="/post">
+                    <div
+                      className="mainboard_body2"
+                      onClick={() => {
+                        navigate("/post");
+                      }}
+                    >
+                      추천 여행지 멘트
+                    </div>
+                  </Link>
                   <button className="mainboard_btn2">게시판 가기</button>
                 </div>
                 <div className="mainboard_imgbox2">

@@ -16,6 +16,46 @@ export const Wrap = styled.div`
    
   }
 `;
+export const Design = styled.div`
+  text-align: center;
+  font-family: "Jalnan";
+  color: white;
+  opacity: 0.5;
+  position: relative;
+  top: -7px;
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    top: 120px;
+    position: relative;
+    font-family: "Jalnan";
+    color: white;
+    opacity: 0.5;
+  }
+`;
+export const Name = styled.div`
+  text-align: center;
+  font-family: "Jalnan";
+  color: white;
+  opacity: 0.5;
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    position: relative;
+    font-family: "Jalnan";
+    color: white;
+    top: 150px;
+    opacity: 0.5;
+  }
+`;
+export const GitWrap = styled.a`
+text-decoration: none;
+color: white;
+`
+export const Gitimg = styled.img`
+width: 30px;
+position:relative;
+top: 10px;
+margin: 2px;
+`
 export const Footerlogo = styled.img`
 width: 300px;
   @media screen and (max-width: 480px) {
@@ -97,8 +137,8 @@ export const Front = styled.div`
 export const Back = styled.div`
   text-align: center;
   position: relative;
-  top: -60px;
-  
+  top: -5px;
+  color: white;
   font-family: "Jalnan";
   opacity: 0.4;
   @media screen and (max-width: 480px) {
@@ -121,7 +161,7 @@ export const Fronts = styled.div`
 export const FrontWrap = styled.div`
   text-align: center;
   position: relative;
-
+  top: -15px;
   font-family: "Jalnan";
   margin-top: 10px;
   opacity: 0.3;
@@ -134,9 +174,11 @@ export const FrontWrap = styled.div`
   }
 `;
 export const Backs = styled.div`
+position: relative;
+  top:-15px;
   @media screen and (max-width: 480px) {
     position: relative;
-    top: 100px;
+    top: 110px;
     color: white;
   }
 `;

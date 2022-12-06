@@ -7,6 +7,7 @@ import TestSlide from "../../components/post/TestSlide"
 import GameBanner from "../../components/mainpage/GameBanner";
 import HotelList from "../../components/mainpage/postBar/hotelList/HotelList";
 import BlogList from "../../components/mainpage/postBar/blogList/BlogList";
+import TopButton from "../../components/common/button/TopButton";
 
 
 
@@ -22,6 +23,7 @@ export default function MainPage() {
         <BlogList />
         <GameBanner />
         <Footer />
+        <TopButton/>
       </Layout>
     </>
   );
