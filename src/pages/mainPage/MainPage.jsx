@@ -1,8 +1,11 @@
 import React from "react";
-import MapBar from "../../shared/api/map/MapBar";
-import DoughnutChart from "../../components/mainpage/mapBar/DoughnutChart";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/common/Header";
+
+import Footer from "../../components/common/Footer";
+import MapBarView from "../../components/mainpage/mapBar/MapBarView";
+// import PostBar from "../../components/mainpage/postBar/PostBar";
+
 import * as t from "./MainPageStyle";
 import TestSlide from "../../components/post/TestSlide"
 import GameBanner from "../../components/mainpage/GameBanner";
@@ -17,14 +20,8 @@ export default function MainPage() {
     <>
       <Layout>
         <Header />
-       <TestSlide/>
-        
-        <t.main>
-          <t.mapGroup>
-            <MapBar />
-            <DoughnutChart />
-          </t.mapGroup>
-        </t.main>
+        <TestSlide/>
+        <MapBarView />
         <HotelList />
         <BlogList />
         <GameBanner />

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const blogSection = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     max-width: 100%;
     min-width: 100px;
     height: 996px;
@@ -13,7 +13,11 @@ export const blogSection = styled.div`
   }
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 500px;
+    height: 570px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 export const blogContainer = styled.div`
@@ -24,17 +28,19 @@ export const blogContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   @media screen and (max-width: 480px) {
     width: 100%;
     height: 450px;
   }
 `;
 export const blogList = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     width: 1320px;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -42,7 +48,12 @@ export const blogList = styled.div`
     display: flex;
     overflow: auto;
     white-space: nowrap;
+    overflow-y: hidden;
     text-align: center;
+    position: relative;
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 export const blogText = styled.div`
@@ -57,7 +68,7 @@ export const blogText = styled.div`
   margin-bottom: 50px;
 `;
 export const blogListBox = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     display: flex;
     width: 630px;
     height: 185px;
@@ -73,7 +84,7 @@ export const blogListBox = styled.div`
   }
 `;
 export const blogImgBox = styled.img`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     width: 284.47px;
     height: 184.01px;
     object-fit: cover;
@@ -86,15 +97,16 @@ export const blogImgBox = styled.img`
     width: 315px;
     height: 230px;
     object-fit: cover;
-    border-radius: 20px 20px 0 0;
-    margin-bottom: 5px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 2px;
   }
 `;
 export const blogContentsBox = styled.div`
   width: 355px;
   overflow: hidden;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     width: 355px;
   }
   @media screen and (max-width: 480px) {
@@ -102,15 +114,14 @@ export const blogContentsBox = styled.div`
   }
 `;
 export const blogTitle = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     text-align: left;
     display: inline-block;
     width: 355px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     font-size: 18px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   @media screen and (max-width: 480px) {
     width: 300px;
@@ -130,7 +141,7 @@ export const blogContents = styled.div`
   text-overflow: ellipsis;
 `;
 export const blogName = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     width: 300px;
     font-size: 18px;
     font-weight: bold;
@@ -142,5 +153,25 @@ export const blogName = styled.div`
     font-weight: bold;
     text-align: center;
     margin-bottom: 5px;
+  }
+`;
+export const hr1 = styled.div`
+  position: absolute;
+  width: 95%;
+  height: 1px;
+  top: 215px;
+  background-color: #ccc;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+export const hr2 = styled.div`
+  position: absolute;
+  width: 95%;
+  height: 1px;
+  bottom: 275px;
+  background-color: #ccc;
+  @media screen and (max-width: 480px) {
+    display: none;
   }
 `;

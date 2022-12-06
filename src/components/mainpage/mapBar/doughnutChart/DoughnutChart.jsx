@@ -1,4 +1,3 @@
-/* global kakao */
 import React, { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
@@ -13,7 +12,7 @@ import {
 import { Doughnut, Bar } from "react-chartjs-2";
 import { useSelector, useDispatch } from "react-redux";
 import * as t from "./DoughnutChartStyle";
-import WeatherBar from "./weatherBar/WeatherBar";
+import WeatherBar from "../weatherBar/WeatherBar";
 
 ChartJS.register(
   ArcElement,
@@ -25,7 +24,7 @@ ChartJS.register(
 );
 
 export default function DoughnutChart() {
-  const peopleData = useSelector((state) => state.MapSlice.data?.cnt);
+  const peopleData = useSelector((state) => state.MapSlice?.data?.cnt);
 
   const chartData = {
     people: {

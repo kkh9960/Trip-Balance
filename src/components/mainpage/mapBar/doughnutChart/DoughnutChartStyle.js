@@ -6,13 +6,14 @@ export const doughnutContainer = styled.div`
   display: flex;
   transition: 0.5s;
   margin: 0px 20px;
-  @media screen and (max-width: 500px) {
+
+  @media screen and (max-width: 480px) {
     width: 100%;
+    height: 250px;
     display: flex;
     flex-direction: column;
+    margin: 0px;
     transition: 0.5s;
-    border: 1px solid black;
-    border-radius: 20px;
   }
 `;
 export const chartViewbox = styled.div`
@@ -22,8 +23,7 @@ export const chartViewbox = styled.div`
   justify-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 2fr 1fr;
-  @media screen and (max-width: 500px) {
-    display: none;
+  @media screen and (max-width: 480px) {
     width: 100%;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
@@ -33,13 +33,15 @@ export const chartViewbox = styled.div`
 `;
 export const chartView = styled.div`
   width: 238px;
+  height: 238px;
   margin: 0 10px;
   text-align: center;
   border-radius: 50%;
   box-shadow: 0 0 10px;
 
-  @media screen and (max-width: 500px) {
-    width: 100px;
+  @media screen and (max-width: 480px) {
+    width: 124px;
+    height: 124px;
     margin: 0 auto;
     text-align: center;
     border-radius: 50%;
@@ -48,8 +50,8 @@ export const chartView = styled.div`
 `;
 export const barChartView = styled.div`
   width: 195px;
-  height: 140px;
-  @media screen and (max-width: 500px) {
+  height: 125px;
+  @media screen and (max-width: 480px) {
     display: none;
   }
 `;
