@@ -61,8 +61,6 @@ const BoardWrite = () => {
         region: REGION,
       });
       const file = compressedFile;
-      console.log(file);
-      console.log(file.name);
 
       const fileName = file.name.replaceAll(" ", "");
 

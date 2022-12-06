@@ -46,7 +46,6 @@ const BoardMypost = ({ post, mypost }) => {
 
   const goPost = (id) => {
     window.location.replace(`/detail/${id}`);
-    // navigator(`/detail/${id}`);
   };
 
   return (

@@ -1,63 +1,193 @@
 import styled from "styled-components";
 
+export const top = styled.div`
+  padding-top: 120px;
+ 
+  @media screen and (max-width: 746px) {
+    width: 100%;
+  }
+`;
+
+export const localImgBox = styled.div`
+ 
+  
+  width: 1903px;
+  height: 504.21px;
+  display: flex;
+
+  justify-content: center;
+  position: relative;
+  @media screen and (max-width: 746px) {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+   
+  }
+`;
+
+export const resultImgBox = styled.div`
+  width: 1326px;
+  height: 463.93px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto 120px auto;
+  @media screen and (max-width: 746px) {
+    width: 100%;
+    margin: 0;
+    text-overflow: ellipsis;
+  }
+`;
+
 export const localImg = styled.img`
-  width: 90%;
-  margin-left: 5%;
-  height: 500px;
+  width: 1307.65px;
+  height: 504.21px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: gray;
+ @media screen and (max-width: 746px) {
+  position: relative;
+  width: 100%;
+  left: 0px;
+ }
 `;
 
 export const localText = styled.div`
-  position: relative;
+  font-family: "Jalnan";
   width: 500px;
   color: white;
   font-size: 4.2em;
   text-shadow: 3px 3px 3px #000;
-  bottom: 310px;
-  left: 120px;
+  position: absolute;
+  bottom: 50%;
+  left: 18%;
+  @media screen and (max-width: 746px) {
+    width: 100%;
+    left: 10px;
+    font-family: "Jalnan";
+  }
 `;
 
 export const localTextContent = styled.div`
-  position: relative;
+  font-family: "Jalnan";
   width: 500px;
   color: white;
   font-size: x-large;
   text-shadow: 3px 3px 3px #000;
-  bottom: 250px;
-  left: 130px;
+  position: absolute;
+  bottom: 35%;
+  left: 18%;
+  @media screen and (max-width: 746px) {
+    font-family: "Jalnan";
+    width: 100%;
+    left: 20px;
+  }
 `;
 
 export const hotelImg = styled.img`
-  width: 200px;
-  height: 200px;
+  width: 316.52px;
+  height: 330.42px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 20px;
+  @media screen and (max-width: 746px) {
+    margin: 10px;
+
+  }
 `;
 
 export const bigName = styled.div`
-  font-size: xx-large;
-  font-weight: 500;
-  margin-left: 100px;
-  margin-bottom: 20px;
+  width: 252.62px;
+  height: 43.93px;
+  font-family: "Jalnan";
+  //font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  color: #333333;
+  margin: 0 auto 40px auto;
+  @media screen and (max-width: 746px) {
+    font-family: "Jalnan";
+    font-size: 30px;
+    position: relative;
+    left: -90px;
+    top: 30px;
+  }
 `;
+export const blogName = styled.div`
+ font-family: "Jalnan";
+  width: 252.62px;
+  height: 43.93px;
+  position: relative;
+  //font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  color: #333333;
+  margin: 0 auto 40px auto;
+  @media screen and (max-width: 746px) {
+    font-family: "Jalnan";
+    width: 100%;
+    bottom: -30px;
+    left: -80px;
+    font-size: 30px;
+  }
+`;
+
 
 export const hotelWrap = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
-  justify-content: space-around;
+  width: 1326px;
+  justify-content: space-between;
+  @media screen and (max-width: 746px) {
+    width: 100%;
+    position: relative;
+    left: 10px;
+    overflow: auto;
+    white-space: nowrap;
+    
+  }
 `;
 
 export const hotelInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+
+  @media screen and (max-width: 746px) {
+    width: 100%;
+   
+
+  }
 `;
 
 export const hotelName = styled.div`
-  display: flex;
-  width: 200px;
-  justify-content: center;
+  width: 183.72px;
+  height: 28.96px;
+  font-family: "Jalnan";
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+  
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+  @media screen and (max-width: 746px) {
+    width: 300px;
+
+    font-family: "Jalnan";
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    left: 15px;
+    bottom: 7px;
+  }
 `;
