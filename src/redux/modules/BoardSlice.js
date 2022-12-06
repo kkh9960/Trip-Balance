@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import instance from "../../lib/instance";
 
 // 서버주소 : https://coding-kym.shop
@@ -9,7 +8,7 @@ export const __getBoard = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts?page=${payload}`);
-      console.log(data);
+      
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -22,7 +21,7 @@ export const __getBoardinfi = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts?page=${payload}`);
-      console.log(data);
+     
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return console.log("상세에러", error);
@@ -47,7 +46,7 @@ export const __getBoardTotal = createAsyncThunk(
 export const __getBoardTotalinfi = createAsyncThunk(
   "GET_BOARD_TOTAL_INFI",
   async (payload, thunkAPI) => {
-    console.log(payload);
+   
     try {
       const { data } = await instance.get(
         `/tb/posts/search?keyword=${payload.useInput}&page=${payload.page}`
@@ -63,7 +62,7 @@ export const __getBoardLocal = createAsyncThunk(
   "GET_BOARD_LOCAL",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
+     
       const { data } = await instance.get(
         `/tb/posts/search/${payload.selLocal}?keyword=${payload.useInput}&page=${payload.pageLocal}`
       );
@@ -78,7 +77,7 @@ export const __getBoardLocalinfi = createAsyncThunk(
   "GET_BOARD_LOCAL_INFI",
   async (payload, thunkAPI) => {
     try {
-      console.log(payload);
+     
       const { data } = await instance.get(
         `/tb/posts/search/${payload.selLocal}?keyword=${payload.useInput}&page=${payload.page}`
       );
@@ -104,7 +103,7 @@ export const __getmypost = createAsyncThunk(
 
 export const __getbestfive = createAsyncThunk(
   "GET_BEST_BOARD",
-  async (payload, thunkAPI) => {
+  async ( thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts/bestfive`);
       return thunkAPI.fulfillWithValue(data);
@@ -126,7 +125,7 @@ export const __getcategory = createAsyncThunk(
 
 export const __getcatenormal = createAsyncThunk(
   "GET_CATE_BOARD",
-  async (payload, thunkAPI) => {
+  async ( thunkAPI) => {
     try {
       const { data } = await instance.get(`/tb/posts?page=0`);
       return thunkAPI.fulfillWithValue(data);
@@ -163,7 +162,7 @@ export const __getBoardDetail = createAsyncThunk(
 export const __postBoard = createAsyncThunk(
   "POST_BOARD",
   async (payload, thunkAPI) => {
-    console.log("나글쓰기페이로드", payload);
+   
     try {
       const { data } = await instance.post("/tb/posts", payload);
       alert("게시글이 등록되었습니다.");
@@ -178,7 +177,7 @@ export const __postBoard = createAsyncThunk(
 export const __deleteBoard = createAsyncThunk(
   "DELETE_BOARD",
   async (payload, thunkAPI) => {
-    console.log("나글삭제페이로드", payload);
+   
     try {
       const { data } = await instance.delete(`/tb/posts/${payload.id}`);
       alert("게시글이 삭제되었습니다");
@@ -193,7 +192,7 @@ export const __deleteBoard = createAsyncThunk(
 export const __modifyBoard = createAsyncThunk(
   "modify_BOARD",
   async (payload, thunkAPI) => {
-    console.log("나글수정페이로드", payload);
+   
     try {
       const { data } = await instance.put(`/tb/posts/${payload.id}`, {
         title: payload.title,
@@ -243,19 +242,16 @@ const BoardSlice = createSlice({
   extraReducers: {
     [__getBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+      
       state.posts = action.payload.data[0].postResponseDtoList;
-      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
-      //   state.posts.push(item)
-      // );
-      // state.isLastPage = action.payload.data[0].isLastPage;
+      
     },
     [__getBoard.rejected]: (state, action) => {
       state.isLoading = false;
     },
     [__getBoardinfi.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+     
       action.payload.data[0].postResponseDtoList.map((item, idx) =>
         state.posts.push(item)
       );
@@ -267,7 +263,7 @@ const BoardSlice = createSlice({
 
     [__getBoardTotal.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+      
 
       state.posts = action.payload.data[0].postResponseDtoList;
 
@@ -284,7 +280,7 @@ const BoardSlice = createSlice({
 
     [__getBoardTotalinfi.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+     
 
       action.payload.data[0].postResponseDtoList.map((item, idx) =>
         state.posts.push(item)
@@ -298,14 +294,11 @@ const BoardSlice = createSlice({
 
     [__getBoardLocal.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+      
 
       state.posts = action.payload.data[0].postResponseDtoList;
 
-      // action.payload.data[0].postResponseDtoList.map((item, idx) =>
-      //   state.postLocal.push(item)
-      // );
-      // state.isLastPage = action.payload.data[0].isLastPage;
+     
     },
 
     [__getBoardLocal.rejected]: (state, action) => {
@@ -313,7 +306,7 @@ const BoardSlice = createSlice({
     },
     [__getBoardLocalinfi.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(action.payload);
+      
 
       action.payload.data[0].postResponseDtoList.map((item, idx) =>
         state.posts.push(item)
@@ -350,7 +343,7 @@ const BoardSlice = createSlice({
     [__getmypost.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.myposts = action.payload.data;
-      console.log("내가쓴글", action.payload);
+      
     },
     [__getmypost.rejected]: (state, action) => {
       state.isLoading = false;
@@ -359,7 +352,7 @@ const BoardSlice = createSlice({
     [__SearchBoard.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.posts = action.payload.data;
-      console.log("검색", state, action);
+     
     },
     [__SearchBoard.rejected]: (state, action) => {
       state.isLoading = false;
@@ -370,7 +363,7 @@ const BoardSlice = createSlice({
     },
     [__getBoardDetail.fulfilled]: (state, action) => {
       state.isLoading = false;
-      console.log(state.isLoading);
+     
       state.post = action.payload.data;
     },
     [__getBoardDetail.rejected]: (state, action) => {

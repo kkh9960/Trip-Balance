@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import AWS from "aws-sdk";
@@ -95,9 +95,7 @@ const BoardWrite = () => {
     }
   };
 
-  // useEffect(() => {
-  //   setFileLink(imagewrite);
-  // }, []);
+  
 
   const PetHandler = () => {
     Pet == 1 ? setPet(0) : setPet(1);

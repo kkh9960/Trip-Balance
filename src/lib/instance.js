@@ -1,7 +1,4 @@
 import axios from "axios";
-// const token = new Cookies().get("token");
-// // access 토큰 개발자 tool app>cookie 받아오기
-// const token2 = new Cookies().get("refreshToken");
 
 const token = localStorage.getItem("token");
 const token2 = localStorage.getItem("refreshToken");
@@ -19,7 +16,5 @@ const instance = axios.create({
     "Refresh-Token": `${token2}`,
   },
 });
-//if (token !== undefined && token !== null) {
-//  Headers.authorization = `Bearer ${token}`
-//}
+
 export default instance;

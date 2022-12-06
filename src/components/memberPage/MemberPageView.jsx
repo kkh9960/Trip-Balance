@@ -2,12 +2,6 @@ import React, { useState } from "react";
 import * as t from "./MemberPageViewStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __getMyPick,
-  __getMyInformation,
-  __getMyPosts,
-  __getTotalGameData,
-} from "../../redux/modules/MyPageSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import Pagination from "../common/Pagination";
 import MemberInformation from "./memberInformation/MemberInformation";

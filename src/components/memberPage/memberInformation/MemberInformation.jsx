@@ -7,9 +7,7 @@ import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./MemberInformationChart";
-// import IconFacebooke from "../../../img/Facebook.png";
-// import IconInstagram from "../../../img/Instagram.png";
-// import IconYoutube from "../../../img/Youtube.png";
+
 
 export default function MemberInformation() {
   const id = useParams();
@@ -41,16 +39,7 @@ export default function MemberInformation() {
     fetchData();
   }, []);
 
-  // const instalink = () => {
-  //   instaInput ? setInstaInput(false) : setInstaInput(true);
-  // };
-  // const facelink = () => {
-  //   faceInput ? setFaceInput(false) : setFaceInput(true);
-  // };
-  // const youlink = () => {
-  //   youInput ? setYouInput(false) : setYouInput(true);
-  // };
-
+  
   return (
     <t.ProfileInformationView>
       <t.userName>
@@ -67,10 +56,7 @@ export default function MemberInformation() {
               <t.selfBox value={userSelf} />
             </t.introduce>
             <t.snsLink>
-              {/* <t.textName>링크걸기</t.textName> */}
-              {/* <t.snsIcon src={IconInstagram} />
-                <t.snsIcon src={IconFacebooke} />
-                <t.snsIcon src={IconYoutube} /> */}
+            
             </t.snsLink>
           </t.profileinfo>
         </t.myInformation>

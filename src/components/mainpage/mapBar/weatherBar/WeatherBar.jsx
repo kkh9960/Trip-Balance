@@ -62,13 +62,7 @@ export default function WeatherBar() {
 
       <t.bottom>
         <t.details>
-          {/* <t.parameterRow>
-            <t.parameterLabel>강수량</t.parameterLabel>
-            <t.parameterValue>
-              {" "}
-              {PCP === "강수없음" ? PCP : (PCP, "mm")}
-            </t.parameterValue>
-          </t.parameterRow> */}
+         
           <t.parameterRow>
             <t.parameterLabel>강수확률</t.parameterLabel>
             <t.parameterValue>
