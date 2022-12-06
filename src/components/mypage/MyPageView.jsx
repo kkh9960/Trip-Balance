@@ -2,38 +2,15 @@ import React, { useState } from "react";
 import * as t from "./MyPageViewStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __getMyPick,
-  __getMyInformation,
-  __getMyPosts,
-  __getTotalGameData,
-} from "../../redux/modules/MyPageSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import Pagination from "./Pagination";
+import Pagination from "../common/Pagination";
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
-import InformationChart from "./profileInformation/InformationChart";
-import background from "../../img/3.jpg";
+
 
 export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.MyInforSlice.myinfor.memberId);
-  // console.log(userId);
-  // 유저 정보
-  // const userNickname = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.nickName
-  // );
-  // const userPostCnt = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.postCnt
-  // );
-  // const userCommentCnt = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.commentCnt
-  // );
-  // const userGameCnt = useSelector(
-  //   (state) => state.MyInforSlice.myinfor.gameCnt
-  // );
-
   const [nickname, setNickname] = useState([]);
   const [userGameCnt, setUserGameCnt] = useState([]);
   const [userCommentCnt, setUserCommentCnt] = useState([]);
@@ -42,7 +19,6 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/info");
-
       setUserGameCnt(result.data.data.gameCnt);
       setUserCommentCnt(result.data.data.commentCnt);
       setUserPostCnt(result.data.data.postCnt);
@@ -59,11 +35,11 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/posts");
+
       setPosts(result.data.data);
     }
     fetchData();
   }, []);
-  console.log(posts);
   // 내가 좋아요한 글목록
   const [myPick, setMyPick] = useState([]);
   const [limit, setLimit] = useState(10);
@@ -72,37 +48,43 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/hearts");
+
       setMyPick(result.data.data);
+    
     }
     fetchData();
   }, []);
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll); //clean up
-  //   };
-  // }, []);
-  // const handleScroll = () => {
-  //   console.log("scrolled");
-  //   if (window.scrollY > 80) {
-  //     console.log("100");
-  //   }
-  // };
-
   return (
     <t.myInformationWrap>
       <ProfileInformation />
 
       <t.myTotalInfo>
-        <span>BalanceGame</span>
-        <span>{userGameCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            게임
+            <br />
+            횟수
+          </span>
+          <span>{userGameCnt}</span>
+        </t.myTotalInfoText>
         <t.textLine />
-        <span>작성한 게시글</span>
-        <span>{userPostCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            작성한
+            <br />
+            게시글
+          </span>
+          <span>{userPostCnt}</span>
+        </t.myTotalInfoText>
         <t.textLine />
-        <span>작성한 댓글</span>
-        <span>{userCommentCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            작성한
+            <br />
+            댓글
+          </span>
+          <span>{userCommentCnt}</span>
+        </t.myTotalInfoText>
       </t.myTotalInfo>
 
       <t.mySelectInformation>
@@ -114,7 +96,9 @@ export default function MyPageView() {
 
           <t.pickPostWrap>
             {typeof myPick === typeof "string" ? (
-              <h1>좋아요한 글이 없습니다.</h1>
+              <t.empty>좋아요한 글이 없습니다.</t.empty>
+            ) : myPick === null ? (
+              <t.empty>좋아요한 글이 없습니다.</t.empty>
             ) : (
               myPick.slice(offset, offset + limit).map((idx) => {
                 if (myPick.length === 0) {
@@ -126,8 +110,8 @@ export default function MyPageView() {
                       onClick={() => navigate(`/detail/${idx.postId}`)}
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <div>{idx.nickName}</div>
+                      <t.pickPostTitle>{idx.title}</t.pickPostTitle>
+                      <t.pickPostNickname>{idx.nickName}</t.pickPostNickname>
                     </t.pickPostItem>
                   );
                 }
@@ -137,7 +121,7 @@ export default function MyPageView() {
           <t.footer>
             <t.thinLine />
             <Pagination
-              total={myPick.length}
+              total={typeof(myPick) === 'string' ? (myPick.length-10) : (myPick.length)}
               limit={limit}
               page={page}
               setPage={setPage}
@@ -147,36 +131,38 @@ export default function MyPageView() {
         <t.myPostWrap>
           <t.itemHeader>
             <h2>내가 작성한 글 목록</h2>
-
             <t.thinLine />
           </t.itemHeader>
-          <t.pickPostWrap>
+          <t.postWrap>
             {typeof posts === typeof "string" ? (
-              <h1>작성한 글이 없습니다.</h1>
+              <t.empty>작성한 글이 없습니다.</t.empty>
+            ) : posts === null ? (
+              <t.empty>작성한 글이 없습니다.</t.empty>
             ) : (
               posts.slice(writeoffset, writeoffset + writelimit).map((idx) => {
                 if (posts.length === 0) {
                   return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
                 } else {
                   return (
-                    <t.pickPostItem
+                    <t.postItem
                       key={idx.postId}
                       onClick={() => navigate(`/detail/${idx.postId}`)}
                     >
-                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                      <div>{idx.title}</div>
-                      <div>{idx.createdAt}</div>
-                    </t.pickPostItem>
+                      <t.postImg src={idx.img} alt="게시글이미지" />
+                      <t.postTitle>{idx.title}</t.postTitle>
+                      <t.postTime>{idx.createdAt.split("T")[0]}</t.postTime>
+                    </t.postItem>
                   );
                 }
               })
             )}
-          </t.pickPostWrap>
+          </t.postWrap>
 
           <t.footer>
             <t.thinLine />
+
             <Pagination
-              total={posts.length}
+              total={typeof(posts) === 'string' ? (posts.length-10) : (posts.length)}
               limit={writelimit}
               page={writepage}
               setPage={setWritePage}

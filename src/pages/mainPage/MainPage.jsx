@@ -1,37 +1,30 @@
 import React from "react";
-import AddPostButton from "../../components/common/button/AddPostButton";
-import ScrollTopButton from "../../components/common/button/ScrollTopButton";
-import MiddleBar from "../../components/mainpage/middleBar/MiddleBar";
-import MapBar from "../../shared/api/map/MapBar";
-import DoughnutChart from "./mapBar/DoughnutChart";
-import Layout from "../../component/Layout";
-import Header from "../../component/Header";
-import Footer from "../../component/Footer";
-import PostBar from "../../components/mainpage/postBar/PostBar";
+import Layout from "../../components/common/Layout";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
+import MapBarView from "../../components/mainpage/mapBar/MapBarView";
+
 import * as t from "./MainPageStyle";
-import Home from "../../Banner/Home";
-import GameBanner from "../../component/GameBanner";
+import TestSlide from "../../components/post/TestSlide";
+
+import GameBanner from "../../components/mainpage/GameBanner";
+import HotelList from "../../components/mainpage/postBar/hotelList/HotelList";
+import BlogList from "../../components/mainpage/postBar/blogList/BlogList";
+import TopButton from "../../components/common/button/TopButton";
+
+
 
 export default function MainPage() {
   return (
     <Layout>
       <Header />
-      <t.main>
-        <Home />
-        <t.mapGroup>
-          <MapBar />
-          <DoughnutChart />
-        </t.mapGroup>
-        <PostBar />
-        {/* <t.sideButtonGroup>
-          <AddPostButton />
-          <ScrollTopButton />
-        </t.sideButtonGroup> */}
-      </t.main>
+      <TestSlide />
+      <MapBarView />
+      <HotelList />
+      <BlogList />
       <GameBanner />
       <Footer />
     </Layout>
+
   );
 }
-
-// Infinityscroll

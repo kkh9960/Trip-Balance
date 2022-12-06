@@ -6,19 +6,16 @@ import {
   __getMyInformation,
   __putMyInformation,
 } from "../../../redux/modules/MyPageSlice";
-import profile from "../../../img/profile.jpg";
+import profile from "../../../img/noneprofile.webp";
 import AWS from "aws-sdk";
-import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./InformationChart";
-import IconFacebooke from "../../../img/Facebook.png";
-import IconInstagram from "../../../img/Instagram.png";
-import IconYoutube from "../../../img/Youtube.png";
-import styled from "styled-components";
+// import IconFacebooke from "../../../img/Facebook.png";
+// import IconInstagram from "../../../img/Instagram.png";
+// import IconYoutube from "../../../img/Youtube.png";
 
 export default function ProfileInformation({}) {
-  const id = useParams();
   const dispatch = useDispatch();
   const [profileMode, setProfileMode] = useState(true);
   const [profileImg, setProfileImg] = useState(profile);
@@ -36,7 +33,7 @@ export default function ProfileInformation({}) {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("/tb/mypage/info");
-      if (result.data.data.profileImg === "" || undefined || null) {
+      if (result.data.data.profileImg === null || undefined) {
         setProfileImg(profile);
       } else {
         setProfileImg(result.data.data.profileImg);
@@ -53,8 +50,8 @@ export default function ProfileInformation({}) {
   //이미지업로드
   const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
   const onFileUpload = async (e) => {
-    const ACCESS_KEY = "AKIAXQKS7DPZ7R5C4WNA";
-    const SECRET_ACCESS_KEY = "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";
+    const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
+    const SECRET_ACCESS_KEY = process.env.REACT_APP_SECRET_ACCESS_KEY;
     const REGION = "ap-northeast-2";
     const S3_BUCKET = "react-image-seongwoo";
     AWS.config.update({
@@ -74,6 +71,7 @@ export default function ProfileInformation({}) {
       Key: fileName,
     };
 
+    // if (profileImg === profile)
     await myBucket
       .putObject(params)
       .on("httpUploadProgress", (Progress, Response) => {
@@ -101,36 +99,9 @@ export default function ProfileInformation({}) {
     setProfileMode(true);
   };
 
-  // const cancelprofile = () => {
-  //   setProfileMode(true);
-  //   setNickname(nickname);
-  //   setProfileImg(profileImg);
-  //   setUserSelf(userSelf);
-  // };
-  // const instalink = () => {
-  //   instaInput ? setInstaInput(false) : setInstaInput(true);
-  // };
-  // const facelink = () => {
-  //   faceInput ? setFaceInput(false) : setFaceInput(true);
-  // };
-  // const youlink = () => {
-  //   youInput ? setYouInput(false) : setYouInput(true);
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll); //clean up
-  //   };
-  // }, []);
-  // const handleScroll = () => {
-  //   console.log("scrolled");
-  //   if (window.scrollY > 80) {
-  //   }
-  // }
-
+  
   return (
-    <>
+    <t.ProfileInformationView>
       <t.userName>
         {profileMode ? nickname : topNickname}
         <span>님의 마이페이지</span>
@@ -138,13 +109,17 @@ export default function ProfileInformation({}) {
       <t.UserInfor>
         {profileMode ? (
           <t.myInformation>
-            <t.ProfileImgBox src={profileImg} alt="img" />
+            <t.ProfileImgBox src={profileImg} alt="프로필사진" />
+            <t.mobileID>
+              <t.mobileNickName>{nickname} 님</t.mobileNickName>
+              <t.mobileEmail>{userEmail}</t.mobileEmail>
+            </t.mobileID>
             <t.profileinfo>
-              <t.nickName>HI. {nickname} 님</t.nickName>
-              <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
+              <t.nickName>{nickname} 님</t.nickName>
+              <t.email>{userEmail}</t.email>
               <t.introduce>
                 <t.textName>자기소개</t.textName>
-                <t.selfBox value={userSelf}></t.selfBox>
+                <t.selfBox value={userSelf} />
               </t.introduce>
               <t.snsLink>
                 {/* <t.textName>링크걸기</t.textName> */}
@@ -175,13 +150,25 @@ export default function ProfileInformation({}) {
               onChange={onFileUpload}
               ref={profileImgInput}
             />
+            <t.mobileID>
+              <t.mobileNickName>
+                <input
+                  type="text"
+                  onChange={nicknameChange}
+                  defaultValue={nickname || ""}
+                  maxLength={8}
+                />
+              </t.mobileNickName>
+
+              <t.mobileEmail>{userEmail}</t.mobileEmail>
+            </t.mobileID>
             <t.profileinfo>
               <t.nickName>
                 <input
                   type="text"
                   onChange={nicknameChange}
                   defaultValue={nickname || ""}
-                  maxLength={10}
+                  maxLength={8}
                 />
               </t.nickName>
               <t.email style={{ top: "130px" }}>{userEmail}</t.email>
@@ -190,12 +177,12 @@ export default function ProfileInformation({}) {
                 <t.selfBox
                   onChange={introduceonChange}
                   defaultValue={userSelf || ""}
-                  maxLength={100}
+                  maxLength={50}
                 />
               </t.introduce>
               <t.snsLink>
-                {/* <t.textName>링크걸기</t.textName>
-                {instaInput ? (
+                {/* <t.textName>링크걸기</t.textName> */}
+                {/* {instaInput ? (
                   <>
                     <t.snsIcon src={IconInstagram} onClick={instalink} />
                   </>
@@ -235,6 +222,6 @@ export default function ProfileInformation({}) {
         )}
         <InformationChart />
       </t.UserInfor>
-    </>
+    </t.ProfileInformationView>
   );
 }

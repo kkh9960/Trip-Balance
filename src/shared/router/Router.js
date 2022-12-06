@@ -1,40 +1,36 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MainPage from "../../pages/mainPage/MainPage";
-import MyPage from "../../pages/mypage/MyPage";
-import PostPage from "../../PostPage/PostPage";
-import BoardWrite from "../../pages/BoardWrite";
-import Game from "../../pages/game/Game";
-import GameStart from "../../pages/game/GameStart";
-import GameResult from "../../pages/game/GameResult";
-import BoardPostDetail from "../../pages/BoardPostDetail";
-import BoardPostModify from "../../pages/BoardPostModify";
-import Loading from "../../components/Loading/Loading";
-import Signup from "../../login/Signup";
-import Posts, { InfiniteTest } from "../../Querytest/InfiniteTest";
-import Postitem from "../../PostPage/Postitem";
-
-// import Test from "../../pages/Test";
+const MainPage = lazy(() => import("../../pages/mainPage/MainPage"));
+const MyPage = lazy(() => import("../../pages/mypage/MyPage"));
+const MemberPage = lazy(() => import("../../pages/memberPage/MemberPage"));
+const PostViewPage = lazy(() => import("../../pages/post/PostViewPage"));
+const PostWritePage = lazy(() => import("../../pages/post/PostWritePage"));
+const PostDetailPage = lazy(() => import("../../pages/post/PostDetailPage"));
+const PostModifyPage = lazy(() => import("../../pages/post/PostModifyPage"));
+const GameStart = lazy(() => import("../../pages/game/GameStart"));
+const GameResult = lazy(() => import("../../pages/game/GameResult"));
+const KaKao = lazy(() => import("../../components/login/KaKao"));
+const Game = lazy(() => import("../../pages/game/Game"));
 const Router = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/board" element={<BoardWrite />} />
-         <Route path="/" element={<MainPage />} /> 
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/post" element={<PostPage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/write" element={<BoardWrite />} />
-        <Route path="/detail/:id" element={<BoardPostDetail />} />
-        <Route path="/modify/:id" element={<BoardPostModify />} />
-        <Route path="/loading" element={<Loading />} />
-        <Route path="/start" element={<GameStart />} />
-        <Route path="/game/:id" element={<Game />} />
-        <Route path="/game/:aa/:id" element={<Game />} />
-        <Route path="/gameResult/:aa/:id" element={<GameResult />} />
-
-      </Routes>
-    </BrowserRouter>
+    <Suspense fallback={<div>로딩중...</div>}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/memberpage/:id" element={<MemberPage />} />
+          <Route path="/post" element={<PostViewPage />} />
+          <Route path="/write" element={<PostWritePage />} />
+          <Route path="/detail/:id" element={<PostDetailPage />} />
+          <Route path="/modify/:id" element={<PostModifyPage />} />
+          <Route path="/start" element={<GameStart />} />
+          <Route path="/game/:id" element={<Game />} />
+          <Route path="/game/:aa/:id" element={<Game />} />
+          <Route path="/gameResult/:aa/:id" element={<GameResult />} />
+          <Route path="/tb/ouath/kakao" element={<KaKao />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 };
 export default Router;

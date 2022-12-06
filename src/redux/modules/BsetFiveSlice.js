@@ -7,7 +7,6 @@ export const __getBestFive = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get("/tb/bestfive");
-      console.log("데이터는?", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }

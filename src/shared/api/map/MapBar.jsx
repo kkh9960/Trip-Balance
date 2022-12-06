@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getMapData, __postMapData } from "../../../redux/modules/MapSlice";
 import { markerdata } from "./MarkerData";
-import "./MapBarStyle.css";
+import * as t from "./MapBarStyle";
 
 const { kakao } = window;
 
@@ -60,9 +60,5 @@ export default function MapBar() {
     }
   };
 
-  return (
-    <div>
-      <div id="map" className="map" />
-    </div>
-  );
+  return <t.mapContainer id="map" />;
 }
