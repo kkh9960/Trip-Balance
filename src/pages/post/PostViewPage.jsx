@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/common/Header";
-
+import Footer from "../../components/common/Footer";
 import PostPage from "../../components/post/PostPage";
 import { motion } from "framer-motion";
 

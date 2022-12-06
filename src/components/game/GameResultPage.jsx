@@ -58,27 +58,28 @@ export default function GameResultPage() {
             : game.data.data.tripcontent}
         </g.localTextContent>
       </g.localImgBox>
+
       <g.resultImgBox>
 
-      <g.bigName>추천 숙소</g.bigName>
-      <g.hotelWrap>
-        {gameHotel &&
-          gameHotel.map((hotel) => (
-            <g.hotelInfo key={hotel.id}>
-              <div>
-                <a href={hotel.url && hotel.url} target="_blank">
+        <g.bigName>추천 숙소</g.bigName>
+        <g.hotelWrap>
+          {gameHotel &&
+            gameHotel.map((hotel) => (
+              <g.hotelInfo key={hotel.id}>
+                <div>
+                  <a href={hotel.url && hotel.url} target="_blank">
 
-                  <g.hotelImg alt="hotel img" src={hotel.img && hotel.img}></g.hotelImg>
+                    <g.hotelImg alt="hotel img" src={hotel.img && hotel.img}></g.hotelImg>
 
-                </a>
-              </div>
-              <g.hotelName>{hotel.title && hotel.title}</g.hotelName>
-            </g.hotelInfo>
-          ))}
-      </g.hotelWrap>
+                  </a>
+                </div>
+                <g.hotelName>{hotel.title && hotel.title}</g.hotelName>
+              </g.hotelInfo>
+            ))}
+        </g.hotelWrap>
       </g.resultImgBox>
       <g.resultImgBox>
-      <g.bigName>추천 블로그</g.bigName>
+      <g.blogName>추천 블로그</g.blogName>
       <g.hotelWrap>
         {blog &&
           blog.map((blog) => (
@@ -96,9 +97,11 @@ export default function GameResultPage() {
             </g.hotelInfo>
           ))}
       </g.hotelWrap>
+      
 
       </g.resultImgBox> 
     </g.top>
+    
 
   );
 }

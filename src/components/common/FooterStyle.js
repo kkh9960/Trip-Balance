@@ -3,18 +3,21 @@ import styled from "styled-components";
 export const Container = styled.div`
 
   background-color: gray;
-  height: 660.8px;
-  border: 1px solid red;
-  @media screen and (max-width: 480px) {
+ 
+  
+  @media screen and (max-width: 746px) {
+    width: 100%;
   }
 `;
 export const Wrap = styled.div`
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 550px) {
     height: 660.8px;
-    border: 1px solid red;
+    width: 100%;
+   
   }
 `;
 export const Footerlogo = styled.img`
+width: 300px;
   @media screen and (max-width: 480px) {
     width: 183px;
     position: relative;
@@ -23,25 +26,44 @@ export const Footerlogo = styled.img`
   }
 `;
 export const Title = styled.div`
-  @media screen and (max-width: 480px) {
-    margin-top:50px;
-   width: 480px;
-  
+  text-align: center;
+  top: -50px;
+  opacity: 0.7;
+  font-family: "Jalnan";
   color: white;
- 
-
-  text-align: left;
+  position: relative;
+  @media screen and (max-width: 480px) {
+    margin-top: 50px;
+    width: 480px;
+    font-family: "Jalnan";
+    color: white;
+    left: 30px;
+    text-align: left;
   }
-  
 `;
 export const Comment = styled.div`
+  color: white;
+  position: relative;
+  text-align: center;
+  opacity: 0.6;
+  top: -30px;
+  font-family: "Jalnan";
+  color: white;
   @media screen and (max-width: 480px) {
     color: white;
     position: relative;
-    bottom: -10px;
+    bottom: 80px;
+    opacity: 0.6;
+    font-weight: lighter;
   }
 `;
 export const Hanhae = styled.div`
+  text-align: center;
+  font-family: "Jalnan";
+  color: white;
+  opacity: 0.5;
+  position: relative;
+  top:-15px;
   @media screen and (max-width: 480px) {
     position: relative;
     top: 20px;
@@ -49,21 +71,36 @@ export const Hanhae = styled.div`
     font-size: 20px;
     text-align: center;
     color: white;
-    font-weight: bold;
+    font-family: "Jalnan";
   }
 `;
 export const Front = styled.div`
+  font-family: "Jalnan";
+  opacity: 0.3;
+  color: white;
+  text-align: center;
+  position: relative;
+  left: 0px;
+ 
   @media screen and (max-width: 480px) {
     top: 50px;
     text-align: center;
     left: -3px;
     color: white;
     position: relative;
+    font-family: "Jalnan";
   }
 `;
 
 export const Back = styled.div`
+  text-align: center;
+  position: relative;
+  top: -46px;
+  left: 200px;
+  font-family: "Jalnan";
+  opacity: 0.4;
   @media screen and (max-width: 480px) {
+    font-family: "Jalnan";
     top: -630px;
     text-align: center;
     left: -3px;
@@ -81,9 +118,19 @@ export const Fronts = styled.div`
   }
 `;
 export const FrontWrap = styled.div`
-@media screen and (max-width: 480px) {
   text-align: center;
-}
+  position: relative;
+  left: -90px;
+  font-family: "Jalnan";
+  margin-top: 10px;
+  opacity: 0.3;
+  color: white;
+  @media screen and (max-width: 480px) {
+    left: -10px;
+    text-align: center;
+    opacity: 0.5;
+    font-family: "Jalnan";
+  }
 `;
 export const Backs = styled.div`
   @media screen and (max-width: 480px) {
@@ -94,14 +141,31 @@ export const Backs = styled.div`
 `;
 
 export const BackWrap = styled.div`
+  opacity: 0.5;
+  margin-top: 3px;
+  font-family: "Jalnan";
+  position: relative;
+  left: 120px;
+  top: -20px;
+  text-align: center;
+  color: white;
+  opacity: 0.3;
   @media screen and (max-width: 480px) {
     text-align: center;
+    font-family: "Jalnan";
+    opacity: 0.5;
+    left: -5px;
   }
 `;
 export const Best = styled.div`
+  text-align: center;
+  position: relative;
+  top: -10px;
+  color: white;
+  opacity: 0.6;
   @media screen and (max-width: 480px) {
     position: relative;
-    top:150px;
+    top: 150px;
     color: white;
   }
 `;
