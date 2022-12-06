@@ -23,6 +23,10 @@ export const SignupWrapper = styled.div`
 `;
 export const Exit = styled.img`
 ` 
+export const Back = styled.img`
+width: 20px
+`
+
 export const Nicknamemsg = styled.div`
   position: relative;
   left: 80px;

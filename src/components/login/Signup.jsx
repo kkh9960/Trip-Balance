@@ -9,6 +9,7 @@ import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import * as t from "./Signupstyle";
 import Exit from "../../img/exit.svg"
+import Back from "../../img/back.svg"
 function RegisterPage() {
   const {
     register,
@@ -120,7 +121,10 @@ function RegisterPage() {
                   setModal(!modal);
                 }}
 
-              ></t.BackArrow>
+              >
+                <t.Back src={Back}/>
+
+              </t.BackArrow>
               <t.Cancel onClick={modalClose}>
                 <t.Exit src={Exit}/>
               </t.Cancel>
@@ -187,9 +191,6 @@ function RegisterPage() {
               {errorFromSubmit && <p>{errorFromSubmit}</p>}
               <t.Line></t.Line>
               <t.SignUpBtn>회원가입</t.SignUpBtn>
-              {/* <Link style={{ color: "gray", textDecoration: "none" }}>
-              이미 아이디가 있다면...{" "}
-            </Link> */}
             </t.FormTag>
           </t.SignupWrapper>
         )}
