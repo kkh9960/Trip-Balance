@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <t.Container>
       <t.Wrap>
-        <t.Footerlogo src={footerlogo} />
+        <t.Footerlogo src={footerlogo} alt="trip"/>
         <t.Title>(주)트립밸런스리더 :곽규현 부리더:김용문</t.Title>
         <t.Comment>
           “단기간의 성과에는 가차 없이 정직해지고 장기적으로는 낙관과 자신감을
