@@ -64,7 +64,7 @@ export default function MemberInformation() {
             <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
             <t.introduce>
               <t.textName>자기소개</t.textName>
-              <t.selfBox value={userSelf}></t.selfBox>
+              <t.selfBox value={userSelf} />
             </t.introduce>
             <t.snsLink>
               {/* <t.textName>링크걸기</t.textName> */}

@@ -10,6 +10,7 @@ import mainpost from "../../img/mainpost.webp";
 import mainmypage from "../../img/mainmypage.webp";
 import mainlogin from "../../img/mainlogin.webp";
 import mainlogout from "../../img/mainlogout.webp";
+import mainservey from "../../img/mainservey.webp";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -50,13 +51,22 @@ const Header = () => {
             <LoginPage />
           ) : (
             <>
-              <Link to="/">
-                <t.Logo src={mainlogo} alt="logo" />
-              </Link>
-              <t.toggleBtn toggle={toggle} onClick={toggleChange}>
-                <img src={mainlist} alt="listicon" />
-              </t.toggleBtn>
+              <t.LogoBox>
+                <Link to="/">
+                  <t.Logo src={mainlogo} alt="logo" />
+                </Link>
+              </t.LogoBox>
+              <t.toggleBtn
+                src={mainlist}
+                alt="listicon"
+                toggle={toggle}
+                onClick={toggleChange}
+              ></t.toggleBtn>
               <t.WriteWrap toggle={toggle}>
+                <t.survey>
+                  <img src={mainservey} alt="maingservey" />
+                  <p>설문조사</p>
+                </t.survey>
                 <t.Game
                   onClick={() => {
                     navigate("/start");
@@ -120,13 +130,22 @@ const Header = () => {
             <LoginPage />
           ) : (
             <>
-              <Link to="/">
-                <t.Logo src={mainlogo} alt="logo" />
-              </Link>
-              <t.toggleBtn toggle={toggle} onClick={toggleChange}>
-                <img src={mainlist} alt="listicon" />
-              </t.toggleBtn>
+              <t.LogoBox>
+                <Link to="/">
+                  <t.Logo src={mainlogo} alt="logo" />
+                </Link>
+              </t.LogoBox>
+              <t.toggleBtn
+                src={mainlist}
+                alt="listicon"
+                toggle={toggle}
+                onClick={toggleChange}
+              />
               <t.WriteWrap toggle={toggle}>
+                <t.survey>
+                  <img src={mainservey} alt="maingservey" />
+                  <p>설문조사</p>
+                </t.survey>
                 <t.Game
                   onClick={() => {
                     navigate("/start");

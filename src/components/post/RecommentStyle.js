@@ -15,6 +15,16 @@ export const RecommentContainer = styled.div`
     height: 27px;
     top: 50%;
     left: -75px;
+    @media screen and (max-width: 480px) {
+      left: -35px;
+      border: 1px solid #fafafa;
+      background-color: #fafafa;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    margin: 20px 0 0 50px;
+    max-width: 85%;
+    box-sizing: border-box;
   }
 `;
 
@@ -40,13 +50,22 @@ export const UserMypagego = styled.div`
 export const CommentUserImage = styled.img`
   width: 30px;
   height: 30px;
+  border-radius: 15px;
   object-fit: cover;
+  @media screen and (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
 `;
 
 export const CommentUser = styled.div`
   margin-left: 10px;
   font-size: 18px;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    font-size: 15px;
+  }
 `;
 export const Commentbody = styled.div`
   width: 100%;
@@ -56,9 +75,17 @@ export const CommentModifyinput = styled.input`
   padding: 2px;
   font-size: 18px;
   width: 90%;
+  @media screen and (max-width: 480px) {
+    font-size: 15px;
+    outline: none;
+    border: none;
+  }
 `;
 export const Commentdesc = styled.div`
   font-size: 18px;
+  @media screen and (max-width: 480px) {
+    font-size: 15px;
+  }
 `;
 export const CommentButtonBox = styled.div`
   display: flex;
@@ -69,8 +96,10 @@ export const CommentButton = styled.div`
   margin-top: 10px;
   margin-left: 20px;
   cursor: pointer;
-
   &:hover {
     color: #cdcdcd;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
   }
 `;

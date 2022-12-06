@@ -215,7 +215,7 @@ const PostItem = () => {
                   placeholder="오늘의 핫한 여행지 검색하기"
                   value={useInput}
                   onChange={onChange}
-                ></TitleSearch>
+                />
                 <SearchIcon></SearchIcon>
               </TitleSearchbox>
             </SearchBoxForm>
@@ -297,9 +297,18 @@ const Viewmore = styled.button`
   }
 `;
 
-const LikeImg = styled.img``;
+const LikeImg = styled.img`
+  @media screen and (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+`;
 const LikeCount = styled.div`
   margin-right: 10px;
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const UserImg = styled.img`
@@ -307,6 +316,11 @@ const UserImg = styled.img`
   height: 30px;
   object-fit: cover;
   border-radius: 15px;
+  @media screen and (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
 `;
 
 const Likeinfo = styled.div`
@@ -321,6 +335,10 @@ const Userinfo = styled.div`
 
 const CardUserName = styled.div`
   margin-left: 10px;
+  @media screen and (max-width: 480px) {
+    margin-left: 5px;
+    font-size: 14px;
+  }
 `;
 const Cardbody = styled.div`
   display: flex;
@@ -333,31 +351,55 @@ const CardTitle = styled.div`
   margin: 20px 20px 5px 20px;
   font-size: 18px;
   white-space: normal;
+  @media screen and (max-width: 480px) {
+    margin: 5px;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 140px;
+    text-overflow: ellipsis;
+  }
 `;
 
 const CardTextbox = styled.div`
   width: 100%;
   height: 135px;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 100px;
+  }
 `;
 
 const CardImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 `;
 const CardImgbox = styled.div`
   width: 100%;
   height: 365px;
+  border-radius: 20px;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 200px;
+  }
 `;
 const CardWrap = styled.div`
   width: 344px;
   height: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.4s;
+  border-radius: 20px;
   cursor: pointer;
   &:hover {
     transform: translate(0, -5px);
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  }
+  @media screen and (max-width: 480px) {
+    width: 95%;
+    height: 300px;
   }
 `;
 
@@ -367,17 +409,31 @@ const PostCardList = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-gap: 20px;
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 0 auto;
+    width: 95%;
+  }
 `;
 
 const PostListWrap = styled.div`
   margin: 60px auto 50px;
   width: 100%;
   height: auto;
+  @media screen and (max-width: 480px) {
+    margin: 10px auto 30px;
+  }
 `;
+
 const PostListTitle = styled.div`
   text-align: center;
   font-size: 36px;
   margin-bottom: 70px;
+  @media screen and (max-width: 480px) {
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
 `;
 
 const PostPageContainer = styled.div`
@@ -386,6 +442,9 @@ const PostPageContainer = styled.div`
   height: auto;
   margin: 0 auto;
   margin-top: 100px;
+  @media screen and (max-width: 480px) {
+    margin-top: 50px;
+  }
 `;
 const TodayTitle = styled.div`
   font-size: 30px;
@@ -396,10 +455,19 @@ const SearchBox = styled.div`
   margin-top: 50px;
   align-items: center;
   gap: 20px;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 const SearchBoxForm = styled.form`
   display: flex;
   align-items: center;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
 `;
 const CategorySearch = styled.select`
   width: 344px;
@@ -407,6 +475,10 @@ const CategorySearch = styled.select`
   border-radius: 30px;
   font-size: 20px;
   text-align: center;
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    height: 50px;
+  }
 `;
 const TitleSearchbox = styled.div`
   width: 690px;
@@ -414,6 +486,10 @@ const TitleSearchbox = styled.div`
   margin-left: 20px;
   border-radius: 30px;
   position: relative;
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 50px;
+  }
 `;
 const TitleSearch = styled.input`
   width: 100%;
@@ -424,6 +500,11 @@ const TitleSearch = styled.input`
   border-radius: 30px;
   outline: none;
   border: 1px solid #d9d9d9;
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    box-sizing: border-box;
+    margin-left: 10px;
+  }
 `;
 const SearchIcon = styled.button`
   position: absolute;
@@ -433,6 +514,13 @@ const SearchIcon = styled.button`
   width: 50px;
   height: 50px;
   background-image: url("img/search.svg");
+  @media screen and (max-width: 480px) {
+    background-image: url("img/mobilesearch.svg");
+    width: 30px;
+    height: 30px;
+    right: 40px;
+    top: 10px;
+  }
 `;
 
 const PostgoWrite = styled.button`
@@ -446,6 +534,11 @@ const PostgoWrite = styled.button`
   margin-left: 20px;
   &:hover {
     opacity: 0.8;
+  }
+  @media screen and (max-width: 480px) {
+    width: 90%;
+    height: 50px;
+    margin-left: 0px;
   }
 `;
 

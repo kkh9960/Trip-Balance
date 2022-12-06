@@ -39,41 +39,56 @@ export default function WeatherBar() {
     <t.weather>
       <t.location>
         <t.cityName>{cityName}</t.cityName>
+        <t.mobileCityName>{cityName.slice(0, 2)}</t.mobileCityName>
         <t.countyName>{countyName}</t.countyName>
       </t.location>
 
       <t.top>
         <t.iconBox>
           <t.weatherIcon
-            src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.webp`} //${weatherdata[Object.keys(weatherdata)[2]]}
+            src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.webp`}
           />
         </t.iconBox>
         <t.temperatureBox>
-          <t.temperature>{`${TMP}`}°C</t.temperature>
+          <t.timer>
+            {dayOfWeek}, {time}
+          </t.timer>
+          <t.temperature>
+            <span>{`${TMP}`}</span>
+            <p>°C</p>
+          </t.temperature>
         </t.temperatureBox>
       </t.top>
+
       <t.bottom>
-        <t.timer>
-          {dayOfWeek}, {time}
-        </t.timer>
         <t.details>
-          <t.parameterRow>
-            <t.parameterLabel>풍속</t.parameterLabel>
-            <t.parameterValue>{WSD}m/s</t.parameterValue>
-          </t.parameterRow>
-          <t.parameterRow>
-            <t.parameterLabel>습도</t.parameterLabel>
-            <t.parameterValue>{REH}%</t.parameterValue>
-          </t.parameterRow>
-          <t.parameterRow>
-            <t.parameterLabel>강수확률</t.parameterLabel>
-            <t.parameterValue> {POP}%</t.parameterValue>
-          </t.parameterRow>
-          <t.parameterRow>
+          {/* <t.parameterRow>
             <t.parameterLabel>강수량</t.parameterLabel>
             <t.parameterValue>
               {" "}
               {PCP === "강수없음" ? PCP : (PCP, "mm")}
+            </t.parameterValue>
+          </t.parameterRow> */}
+          <t.parameterRow>
+            <t.parameterLabel>강수확률</t.parameterLabel>
+            <t.parameterValue>
+              {" "}
+              {POP}
+              <p>%</p>
+            </t.parameterValue>
+          </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>습도</t.parameterLabel>
+            <t.parameterValue>
+              {REH}
+              <p>%</p>
+            </t.parameterValue>
+          </t.parameterRow>
+          <t.parameterRow>
+            <t.parameterLabel>풍속</t.parameterLabel>
+            <t.parameterValue>
+              {WSD}
+              <p>m/s</p>
             </t.parameterValue>
           </t.parameterRow>
         </t.details>

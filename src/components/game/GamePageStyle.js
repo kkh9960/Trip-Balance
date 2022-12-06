@@ -38,7 +38,6 @@ export const balanceViewWrap = styled.div`
   }
 `;
 
-
 export const balanceButtonWrap = styled.div`
   display: flex;
   width: 1326px;
@@ -147,16 +146,6 @@ export const balanceButtonLeftHover = styled.img`
     right: 140%;
   }
 `;
-
-
-
-
-
-
-
-
-
-
 export const balanceText = styled.div`
   position: absolute;
   width: 483.68px;
@@ -228,7 +217,6 @@ export const homeWrap = styled.div`
     top: 180px;
   }
 `;
-
 
 export const balanceButtonWrapFinal = styled.div`
   width: 1326px;

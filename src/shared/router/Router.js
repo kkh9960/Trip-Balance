@@ -1,4 +1,3 @@
-
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 const MainPage = lazy(() => import("../../pages/mainPage/MainPage"));
@@ -36,4 +35,3 @@ const Router = () => {
   );
 };
 export default Router;
-

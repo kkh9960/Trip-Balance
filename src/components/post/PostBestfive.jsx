@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./PostBestfive.css";
 import { useNavigate } from "react-router-dom";
-
 import styled from "styled-components";
-
-import LoginPage from "../login/LoginPage";
 
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
+  const email = sessionStorage.getItem("email");
   useEffect(() => {
     let isDown = false;
     let startX;
@@ -48,15 +45,14 @@ const PostBestfive = ({ best }) => {
   }, []);
 
   const goPost = (id) => {
-    navigator(`/detail/${id}`);
+    if (email) {
+      navigator(`/detail/${id}`);
+    } else {
+      alert("게시글 조회는 로그인 후 가능합니다.");
+    }
   };
 
-  const [modal, setModal] = useState(false);
-  const email = sessionStorage.getItem("email");
-  const goLogin = () => {
-    alert("게시글 조회는 로그인 후 가능합니다.");
-    setModal(!modal);
-  };
+  console.log(best);
 
   return (
     <Main>
@@ -64,7 +60,13 @@ const PostBestfive = ({ best }) => {
         <Items className="items">
           {best &&
             best.map((item, idx) => (
-              <Item className="item" key={idx} onClick={goLogin}>
+              <Item
+                className="item"
+                key={idx}
+                onClick={() => {
+                  goPost(item.postId);
+                }}
+              >
                 <ItemImgBox>
                   <ItemImg src={item.img} />
                 </ItemImgBox>
@@ -89,6 +91,10 @@ const Textbox = styled.div`
   align-items: center;
   justify-content: right;
   gap: 10px;
+  @media screen and (max-width: 480px) {
+    width: 244px;
+    height: 70px;
+  }
 `;
 
 const Heart = styled.img`
@@ -103,10 +109,17 @@ const HeartCount = styled.div`
 const ItemImgBox = styled.div`
   width: 344px;
   height: 274px;
+  border-radius: 20px;
+  @media screen and (max-width: 480px) {
+    width: 244px;
+    height: 174px;
+  }
 `;
 
 const ItemImg = styled.img`
   width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   height: 100%;
   object-fit: cover;
 `;
@@ -136,13 +149,12 @@ const Wrap = styled.div`
 `;
 
 const Main = styled.main`
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding: 50px 0;
   margin-top: 50px;
-  h1 {
-    margin-bottom: 50px;
-    text-align: center;
+  @media screen and (max-width: 480px) {
   }
 `;
 
@@ -153,7 +165,12 @@ const Item = styled.li`
   width: 344px;
   height: 344px;
   transition: all 0.3s;
+  border-bottom: 1px solid #ccc;
   &:hover {
     transform: scale(1.03);
+  }
+  @media screen and (max-width: 480px) {
+    width: 244px;
+    height: 244px;
   }
 `;

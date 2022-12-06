@@ -4,34 +4,61 @@ export const weather = styled.div`
   width: 100%;
   height: 134px;
   display: flex;
-
+  margin: 10px auto 0;
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
+  color: #777;
+  align-self: start;
   @media screen and (max-width: 480px) {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 100px;
     padding: 0;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 `;
 
-export const location = styled.div``;
+export const location = styled.div`
+  width: 250px;
+  height: 134px;
+  display: flex;
+  margin-right: 40px;
+  flex-direction: column;
+  text-align: right;
+  @media screen and (max-width: 480px) {
+    width: 180px;
+    height: 90px;
+    text-align: center;
+    margin-right: 0px;
+    align-self: start;
+  }
+`;
 
 export const cityName = styled.div`
-  width: 280px;
-  font-weight: 400;
-  font-size: 56px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 44px;
   line-height: 67px;
+  margin-bottom: 10px;
   @media screen and (max-width: 480px) {
-    position: absolute;
+    display: none;
+  }
+`;
+export const mobileCityName = styled.div`
+  @media screen and (min-width: 480px) {
+    display: none;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 60px;
     font-size: 30px;
-    width: 200px;
-    top: 100px;
-    left: 40px;
-    z-index: 1;
+    margin-bottom: -10px;
+    font-weight: 600;
   }
 `;
 
@@ -39,87 +66,93 @@ export const countyName = styled.div`
   font-weight: 400;
   font-size: 30px;
   line-height: 24px;
-  text-align: left;
   margin-bottom: 30px;
   @media screen and (max-width: 480px) {
-    position: absolute;
-    font-size: 30px;
-    width: 200px;
-    top: 170px;
-    left: 40px;
-  }
-`;
-export const timer = styled.div`
-  @media screen and (max-width: 480px) {
-    position: absolute;
     font-size: 20px;
-    width: 50px;
-    bottom: 30px;
-    left: 40px;
+    width: 100%;
+    margin-bottom: 0px;
   }
 `;
 
 export const top = styled.div`
   display: flex;
+  align-self: start;
 `;
 export const iconBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 480px) {
-    position: absolute;
-    justify-content: end;
-    top: 20px;
-    right: 25px;
-    font-size: 30px;
-    width: 100%;
   }
 `;
 export const weatherIcon = styled.img`
   width: 130px;
-  margin-right: -0px;
   @media screen and (max-width: 480px) {
-    width: 200px;
+    width: 80px;
   }
 `;
 export const temperatureBox = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   @media screen and (max-width: 480px) {
+    width: 80px;
+    height: 100%;
+  }
+`;
+export const timer = styled.div`
+  @media screen and (max-width: 480px) {
+    display: none;
     position: absolute;
-    left: 20px;
-    width: 200px;
-    height: 150px;
+    font-size: 20px;
+    text-align: left;
+    width: 50px;
+    bottom: 30px;
+    left: 40px;
   }
 `;
 export const temperature = styled.div`
   display: flex;
+  position: relative;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  font-weight: 600;
-  font-size: 60px;
-  color: #000;
-  margin-left: -30px;
-  letter-spacing: -5px;
-  text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
+  text-align: right;
+  color: #777;
+  span {
+    font-weight: 400;
+    font-size: 70px;
+    line-height: 73px;
+  }
+  p {
+    position: absolute;
+    bottom: -43px;
+    right: 0;
+    font-size: 24px;
+  }
   @media screen and (max-width: 480px) {
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: 600;
     font-size: 80px;
-    color: #000;
+    color: #777;
     margin: 0;
-    letter-spacing: -5px;
-    text-shadow: 2px 2px 0 #232323, -2px -2px 0 #eaeaea;
+    p {
+      position: absolute;
+      bottom: -43px;
+      right: 0;
+      font-size: 24px;
+    }
   }
 `;
 export const bottom = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  width: 334px;
+  height: 100%;
   @media screen and (max-width: 480px) {
-    position: absolute;
-    bottom: 30px;
-    left: 90px;
   }
 `;
 
@@ -132,66 +165,45 @@ export const weatherDescription = styled.div`
 
 export const details = styled.div`
   width: 100%;
-  padding-left: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: left;
   @media screen and (max-width: 480px) {
-    width: 100%;
+    width: 185px;
   }
 `;
 
 export const parameterRow = styled.div`
   display: flex;
-  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 100%;
 `;
 
 export const parameterLabel = styled.div`
-  text-align: left;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 24.2px;
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+    font-weight: 200;
+  }
 `;
 
 export const parameterValue = styled.div`
-  text-align: right;
-  font-weight: 600;
-  font-size: 12px;
-`;
-
-// export const parameterLabeltop = styled.div`
-//  border-bottom: 1px solid #fff;
-// `;
-
-export const mobile = styled.div`
-  display: none;
-  @media screen and (max-width: 480px) {
-    width: 100%;
-    height: 300px;
-    font-size: 30px;
+  display: flex;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 44px;
+  p {
+    font-size: 20px;
   }
-`;
-export const mobileTemper = styled.div`
   @media screen and (max-width: 480px) {
-    width: 150px;
-    height: 150px;
-    font-size: 75px;
-    background-color: green;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`;
-
-export const mobileCityName = styled.div`
-  @media screen and (max-width: 480px) {
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
-    background-color: green;
-  }
-`;
-export const mobileCountyName = styled.div`
-  @media screen and (max-width: 480px) {
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
-    background-color: green;
+    font-size: 26px;
+    p {
+      font-size: 15px;
+    }
   }
 `;
