@@ -152,11 +152,7 @@ export const balanceButtonLeftHover = styled.img`
 
 
 
-export const balanceButtonWrap = styled.div`
-  display: flex;
-  width: 1326px;
-  justify-content: space-between;
-`;
+
 
 
 

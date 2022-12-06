@@ -1,5 +1,5 @@
 /* global kakao */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,

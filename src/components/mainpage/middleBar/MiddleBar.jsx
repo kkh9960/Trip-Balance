@@ -15,7 +15,7 @@ export default function MiddleBar() {
   useEffect(() => {
     dispatch(__getBestFive());
   }, []);
-  // const bestList = useSelector((state) => state.bestList.data);
+  
 
   return (
     <div className="middleBarGroup">
@@ -33,17 +33,7 @@ export default function MiddleBar() {
                 <div className="bestFiveheart">하트</div>
               </div>
             </div>
-            {/* {bestList &&
-                    bestList.map((data) => {
-                      <div className="topList">
-                        <div className="List" key={data.heartnum}>
-                          <div className="img">이미지</div>
-                          <div className="title">{data.title}</div>
-                          <div className="comment">{data.comment}</div>
-                          <div className="heart">{data.heart}</div>
-                        </div>
-                      </div>;
-                  })} */}
+           
             <button onClick={() => setBestIsOpen(false)}>취소</button>
           </BestFiveSidebarBox>
         </>

@@ -7,7 +7,7 @@ import {
   __getBoardDetail,
   __modifyBoard,
 } from "../../redux/modules/BoardSlice";
-import Loading from "../Loading/Loading";
+
 
 const BoardPostModify = () => {
   const dispatch = useDispatch();
@@ -360,10 +360,8 @@ const BoardPostModify = () => {
     setModalEdit(!ModalEdit);
   };
 
-  return loading ? (
-    <Loading />
-  ) : (
-    <>
+ 
+   return( <>
       <BoardWriteContainer onSubmit={onSubmitHandler}>
         <TitleInput
           name="title"
