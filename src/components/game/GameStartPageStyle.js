@@ -52,7 +52,7 @@ export const gameStartText = styled.div`
   width: 572px;
   height: 176px;
   padding-top: 25px;
-  //font-family: "JejuGothic";
+  font-family: "DungGeunMo";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -63,7 +63,7 @@ export const gameStartText = styled.div`
     width: 100%;
     height: 176px;
     padding-top: 25px;
-    //font-family: "JejuGothic";
+    font-family: "DungGeunMo";
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
