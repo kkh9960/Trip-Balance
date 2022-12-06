@@ -62,7 +62,7 @@ export default function GamePage() {
               <g.gameResultIcon/>
               <g.gameResultText>
                 "결과가 나왔어요~ <br/>
-                자, 어디로 갈 지 한번 알아볼까요?
+                자, 어디로 갈 지 한번 알아볼까요?"
               </g.gameResultText>
               <g.balanceButtonFinal onClick={resultGo}>
                 게임결과보기

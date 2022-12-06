@@ -146,28 +146,13 @@ export const balanceButtonLeftHover = styled.img`
   }
 `;
 
-
-export const balanceViewWrap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-export const balanceButtonWrap = styled.div`
-  display: flex;
-  width: 1326px;
-  justify-content: space-between;
-`;
-
-
-
 export const balanceText = styled.div`
   position: absolute;
   width: 483.68px;
   height: 200px;
   text-align: center;
   color: white;
+  font-family: "DungGeunMo";
   font-size: 3.2em;
   text-shadow: 3px 3px 3px #000;
   display: flex;
@@ -197,15 +182,16 @@ export const vsLogo = styled.div`
 export const balanceFirst = styled.button`
   width: 300px;
   height: 70px;
-  background-color: gray;
+  background-color: #e44c4c;
+  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  font-family: "DungGeunMo";
   color: white;
   font-size: 1.4em;
   text-shadow: 3px 3px 3px #000;
   @media screen and (max-width: 480px) {
     width: 200px;
     height: 50px;
-    background-color: gray;
     border-radius: 10px;
     color: white;
     font-size: 0.9em;
@@ -231,16 +217,6 @@ export const homeWrap = styled.div`
     top: 180px;
   }
 `;
-
-
-export const totalWrap = styled.div`
-  background-image: url("../../img/gameCommonImg/backGroundImg.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-width: 1903px;
-  min-height: 969px;
-  width: 100%;
-  height: 100%;
 
 export const balanceButtonWrapFinal = styled.div`
   width: 1326px;
@@ -272,10 +248,10 @@ export const gameResultIcon = styled.div`
 export const gameResultText = styled.div`
   width: 596px;
   height: 120px;
-  font-family: "Dongle";
+  font-family: "DungGeunMo";
   font-style: normal;
   font-weight: 400;
-  font-size: 64px;
+  font-size: 34px;
   line-height: 60px;
   /* or 94% */
   text-align: center;
@@ -285,10 +261,10 @@ export const gameResultText = styled.div`
     /* width: 423px;
     height: 123px; */
     width: 94%;
-    font-family: "Dongle";
+    font-family: "DungGeunMo";
     font-style: normal;
     font-weight: 400;
-    font-size: 64px;
+    font-size: 34px;
     line-height: 60px;
     /* or 94% */
 
@@ -305,7 +281,7 @@ export const balanceButtonFinal = styled.button`
   background-color: #e44c4c;
   box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  font-family: "Reem Kufi";
+  font-family: "DungGeunMo";
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
