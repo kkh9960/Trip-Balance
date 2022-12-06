@@ -2,15 +2,13 @@ import styled from "styled-components";
 
 export const top = styled.div`
   padding-top: 120px;
- 
+
   @media screen and (max-width: 746px) {
     width: 100%;
   }
 `;
 
 export const localImgBox = styled.div`
- 
-  
   width: 1903px;
   height: 504.21px;
   display: flex;
@@ -22,7 +20,6 @@ export const localImgBox = styled.div`
     align-items: center;
     justify-content: center;
     left: 0;
-   
   }
 `;
 
@@ -46,11 +43,11 @@ export const localImg = styled.img`
   object-fit: cover;
   border-radius: 20px;
   background-color: gray;
- @media screen and (max-width: 746px) {
-  position: relative;
-  width: 100%;
-  left: 0px;
- }
+  @media screen and (max-width: 746px) {
+    position: relative;
+    width: 100%;
+    left: 0px;
+  }
 `;
 
 export const localText = styled.div`
@@ -63,7 +60,7 @@ export const localText = styled.div`
   bottom: 50%;
   left: 18%;
   @media screen and (max-width: 746px) {
-    width: 100%;
+    width: 90%;
     left: 10px;
     font-family: "Jalnan";
   }
@@ -80,7 +77,7 @@ export const localTextContent = styled.div`
   left: 18%;
   @media screen and (max-width: 746px) {
     font-family: "Jalnan";
-    width: 100%;
+    width: 90%;
     left: 20px;
   }
 `;
@@ -92,7 +89,6 @@ export const hotelImg = styled.img`
   border-radius: 20px;
   @media screen and (max-width: 746px) {
     margin: 10px;
-
   }
 `;
 
@@ -100,8 +96,7 @@ export const bigName = styled.div`
   width: 252.62px;
   height: 43.93px;
   font-family: "Jalnan";
-  //font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 400;
   font-size: 36px;
   line-height: 44px;
@@ -117,7 +112,7 @@ export const bigName = styled.div`
   }
 `;
 export const blogName = styled.div`
- font-family: "Jalnan";
+  font-family: "Jalnan";
   width: 252.62px;
   height: 43.93px;
   position: relative;
@@ -138,19 +133,23 @@ export const blogName = styled.div`
   }
 `;
 
-
 export const hotelWrap = styled.div`
-  display: flex;
   flex-direction: row;
   width: 1326px;
   justify-content: space-between;
+  display: flex;
+  overflow: auto;
+  white-space: nowrap;
+  overflow-y: hidden;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media screen and (max-width: 746px) {
     width: 100%;
     position: relative;
-    left: 10px;
+    //left: 10px;
     overflow: auto;
     white-space: nowrap;
-    
   }
 `;
 
@@ -160,8 +159,6 @@ export const hotelInfo = styled.div`
 
   @media screen and (max-width: 746px) {
     width: 100%;
-   
-
   }
 `;
 
@@ -172,7 +169,7 @@ export const hotelName = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   width: 300px;
-  
+
   font-style: normal;
   font-weight: 400;
   font-size: 24px;

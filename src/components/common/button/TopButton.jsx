@@ -71,6 +71,14 @@ const ScrollContainer = styled.div`
 
   width: 80px;
   height: 150px;
+   @media screen and (max-width: 480px) {
+    display: flex;
+    width: 100%;
+    right: 0%;
+    align-items: center;
+    justify-content: center;
+    bottom:-20px;
+   }
 `;
 const Top = styled.button`
   margin-top: 7px;
@@ -87,6 +95,11 @@ const Top = styled.button`
   cursor: pointer;
   :hover {
     color: rgb(142, 26, 26);
+  }
+  @media screen and (max-width: 480px) {
+    border-radius: 10px;
+    width: 120px;
+    background-color: white;
   }
 `;
 const Write = styled.button`
@@ -106,6 +119,11 @@ const Write = styled.button`
   :hover {
     color: rgb(142, 26, 26);
   }
+  @media screen and (max-width: 480px) {
+    border-radius: 10px;
+    width: 120px;
+    background-color: white;
+  }
 `;
 const Balance = styled.button`
   border: 1px solid red;
@@ -123,5 +141,10 @@ const Balance = styled.button`
   cursor: pointer;
   :hover {
     color: rgb(142, 26, 26);
+  }
+  @media screen and (max-width: 480px) {
+    border-radius: 10px;
+    width: 120px;
+    background-color: white;
   }
 `;

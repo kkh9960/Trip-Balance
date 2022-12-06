@@ -13,6 +13,46 @@ export const Wrap = styled.div`
     width: 100%;
   }
 `;
+export const Design = styled.div`
+  text-align: center;
+  font-family: "Jalnan";
+  color: white;
+  opacity: 0.5;
+  position: relative;
+  top: -7px;
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    top: 120px;
+    position: relative;
+    font-family: "Jalnan";
+    color: white;
+    opacity: 0.5;
+  }
+`;
+export const Name = styled.div`
+  text-align: center;
+  font-family: "Jalnan";
+  color: white;
+  opacity: 0.5;
+  @media screen and (max-width: 550px) {
+    text-align: center;
+    position: relative;
+    font-family: "Jalnan";
+    color: white;
+    top: 150px;
+    opacity: 0.5;
+  }
+`;
+export const GitWrap = styled.a`
+text-decoration: none;
+color: white;
+`
+export const Gitimg = styled.img`
+width: 30px;
+position:relative;
+top: 10px;
+margin: 2px;
+`
 export const Footerlogo = styled.img`
   width: 300px;
   @media screen and (max-width: 480px) {
@@ -23,17 +63,23 @@ export const Footerlogo = styled.img`
 `;
 export const Title = styled.div`
   text-align: center;
+  align-items: center;
   top: -50px;
   opacity: 0.7;
   font-family: "Jalnan";
   color: white;
   position: relative;
   @media screen and (max-width: 480px) {
+    left: -40px;
     margin-top: 50px;
     width: 100%;
     font-family: "Jalnan";
     color: white;
-    text-align: left;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
   }
 `;
 export const Comment = styled.div`
@@ -62,7 +108,6 @@ export const Hanhae = styled.div`
   @media screen and (max-width: 480px) {
     position: relative;
     top: 20px;
-    left: -10px;
     font-size: 20px;
     text-align: center;
     color: white;
@@ -90,15 +135,16 @@ export const Front = styled.div`
 export const Back = styled.div`
   text-align: center;
   position: relative;
-  top: -46px;
-  left: 200px;
+
+  top: -5px;
+  color: white;
+
   font-family: "Jalnan";
   opacity: 0.4;
   @media screen and (max-width: 480px) {
     font-family: "Jalnan";
     top: -630px;
     text-align: center;
-    left: -3px;
     top: 80px;
     color: white;
     position: relative;
@@ -115,22 +161,24 @@ export const Fronts = styled.div`
 export const FrontWrap = styled.div`
   text-align: center;
   position: relative;
-  left: -90px;
+  top: -15px;
   font-family: "Jalnan";
   margin-top: 10px;
   opacity: 0.3;
   color: white;
   @media screen and (max-width: 480px) {
-    left: -10px;
+    width: 100%;
     text-align: center;
     opacity: 0.5;
     font-family: "Jalnan";
   }
 `;
 export const Backs = styled.div`
+position: relative;
+  top:-15px;
   @media screen and (max-width: 480px) {
     position: relative;
-    top: 100px;
+    top: 110px;
     color: white;
   }
 `;
@@ -140,8 +188,8 @@ export const BackWrap = styled.div`
   margin-top: 3px;
   font-family: "Jalnan";
   position: relative;
-  left: 120px;
-  top: -20px;
+
+  top: 0px;
   text-align: center;
   color: white;
   opacity: 0.3;
@@ -149,18 +197,18 @@ export const BackWrap = styled.div`
     text-align: center;
     font-family: "Jalnan";
     opacity: 0.5;
-    left: -5px;
+    top: -20px;
   }
 `;
 export const Best = styled.div`
   text-align: center;
   position: relative;
-  top: -10px;
+  top: -1px;
   color: white;
   opacity: 0.6;
   @media screen and (max-width: 480px) {
     position: relative;
-    top: 150px;
+    top: 100px;
     color: white;
   }
 `;

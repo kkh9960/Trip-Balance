@@ -18,8 +18,6 @@ const UseInterval = (callback, delay) => {
       return () => clearInterval(id);
     }
   }, [delay]);
-
-  console.log(callback, delay);
 };
 
 export default UseInterval;

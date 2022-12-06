@@ -92,7 +92,6 @@ export const __getMapData = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.get("/tb/apimap/seoul", payload);
-      console.log(data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -101,7 +100,6 @@ export const __getMapData = createAsyncThunk(
 export const __postMapData = createAsyncThunk(
   "POST_MAPDATA",
   async (payload, thunkAPI) => {
-    console.log(payload);
     try {
       const { data } = await instance.post("/tb/apimap", payload);
       return thunkAPI.fulfillWithValue(data);

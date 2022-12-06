@@ -9,6 +9,7 @@ import {
 } from "../../redux/modules/BoardSlice";
 import imageCompression from "browser-image-compression";
 
+
 const BoardPostModify = () => {
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);

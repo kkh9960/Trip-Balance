@@ -20,7 +20,7 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
-
+  console.log(posts);
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
   // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
@@ -34,12 +34,7 @@ const PostItem = () => {
 
   const profiledefaultImg = "/img/default3.jpg";
   const [ref, inView] = useInView();
-  // const search = (e) => {
-  //   if (e.key === "Enter") {
-  //     setUseInput(e.target.value);
-  //   }
-  //   console.log("key press");
-  // };
+
   const [test, settest] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -438,6 +433,7 @@ const PostPageContainer = styled.div`
   margin-top: 100px;
   @media screen and (max-width: 480px) {
     margin-top: 50px;
+    box-sizing: border-box;
   }
 `;
 const TodayTitle = styled.div`
@@ -477,7 +473,7 @@ const CategorySearch = styled.select`
 const TitleSearchbox = styled.div`
   width: 690px;
   height: 60px;
-  margin-left: 20px;
+  //margin-left: 20px;
   border-radius: 30px;
   position: relative;
   @media screen and (max-width: 480px) {
@@ -497,7 +493,7 @@ const TitleSearch = styled.input`
   @media screen and (max-width: 480px) {
     width: 90%;
     box-sizing: border-box;
-    margin-left: 10px;
+    margin-left: 5%;
   }
 `;
 const SearchIcon = styled.button`

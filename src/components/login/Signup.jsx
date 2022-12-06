@@ -1,17 +1,15 @@
 import React, { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../../redux/modules/Signup";
-// import { FcCheckmark } from "react-icons/fc";
 import { motion } from "framer-motion";
-import Header from "../common/Header";
 import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
-// import { ImExit } from "react-icons/im";
-// import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import * as t from "./Signupstyle";
+import Exit from "../../img/exit.svg"
+import Back from "../../img/back.svg"
 function RegisterPage() {
   const {
     register,
@@ -38,7 +36,8 @@ function RegisterPage() {
   const modalClose = () => {
     window.location.reload();
   };
-  const nicknamecheck = () => {
+  const nicknamecheck = (e) => {
+    e.stopPropagation();
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
       if (nickname.trim() === "") {
         alert("닉네임을입력해주세요!");
@@ -55,7 +54,8 @@ function RegisterPage() {
       }
     });
   };
-  const idCheck = () => {
+  const idCheck = (e) => {
+    e.stopPropagation();
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
       if (res.data.statusCode == 0) {
         setEmailCheckError(<div size={30} />);
@@ -79,7 +79,7 @@ function RegisterPage() {
   const nick = {
     nickName: nickname,
   };
-  const onSubmit = async (data) => {
+  const onSubmitEvery = async (data) => {
     if (email.trim() === "") {
       alert("이메일을입력해주세요!");
       return;
@@ -116,15 +116,20 @@ function RegisterPage() {
           <LoginPage />
         ) : (
           <t.SignupWrapper>
-            <t.FormTag onSubmit={handleSubmit(onSubmit)}>
+            <t.FormTag onSubmit={handleSubmit(onSubmitEvery)}>
               <t.BackArrow
                 className="backArrow"
                 onClick={() => {
                   setModal(!modal);
                 }}
 
-              ></t.BackArrow>
-              <t.Cancel onClick={modalClose}></t.Cancel>
+              >
+                <t.Back src={Back}/>
+
+              </t.BackArrow>
+              <t.Cancel onClick={modalClose}>
+                <t.Exit src={Exit}/>
+              </t.Cancel>
 
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>
@@ -136,7 +141,7 @@ function RegisterPage() {
                 onChange={emailchange}
                 placeholder=" 이메일을 입력해주세요 ."
               />
-              <t.EmailCheck onClick={idCheck}>중복확인</t.EmailCheck>
+              <t.EmailCheck onClick={idCheck} button type="button">중복확인</t.EmailCheck>
 
               <t.EmailCheckError>{EmailCheckError}</t.EmailCheckError>
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
@@ -147,7 +152,7 @@ function RegisterPage() {
                 onChange={nicknamechange}
                 value={nickname}
               />
-              <t.NickNameCheck onClick={nicknamecheck}>
+              <t.NickNameCheck onClick={nicknamecheck} button type="button">
                 중복확인
               </t.NickNameCheck>
               <t.Checkwrap>{checkError}</t.Checkwrap>
@@ -188,9 +193,6 @@ function RegisterPage() {
               {errorFromSubmit && <p>{errorFromSubmit}</p>}
               <t.Line></t.Line>
               <t.SignUpBtn>회원가입</t.SignUpBtn>
-              {/* <Link style={{ color: "gray", textDecoration: "none" }}>
-              이미 아이디가 있다면...{" "}
-            </Link> */}
             </t.FormTag>
           </t.SignupWrapper>
         )}

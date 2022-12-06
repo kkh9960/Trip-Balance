@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as t from "./HeaderStyle";
-import Layout from "./Layout";
 import mainlogo from "../../img/mainlogo.webp";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
-import axios from "axios";
-
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
 import mainlist from "../../img/mainlist.webp";
@@ -35,6 +31,7 @@ const Header = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
         alert("로그아웃완료!");
+        navigate("/")
         window.location.reload();
       })
       .catch((err) => {
@@ -68,8 +65,10 @@ const Header = () => {
               ></t.toggleBtn>
               <t.WriteWrap toggle={toggle}>
                 <t.survey>
+                  <t.surveyLink href="https://forms.gle/TzPZQZzDxfgvzfkr8" target="_blank">
                   <img src={mainservey} alt="maingservey" />
                   <p>설문조사</p>
+                  </t.surveyLink>
                 </t.survey>
                 <t.Game
                   onClick={() => {
@@ -147,8 +146,10 @@ const Header = () => {
               />
               <t.WriteWrap toggle={toggle}>
                 <t.survey>
+                  <t.surveyLink href="https://forms.gle/TzPZQZzDxfgvzfkr8" target="_blank">
                   <img src={mainservey} alt="maingservey" />
                   <p>설문조사</p>
+                  </t.surveyLink>
                 </t.survey>
                 <t.Game
                   onClick={() => {

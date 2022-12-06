@@ -4,8 +4,13 @@ import "./Test.css";
 import UseInterval from "../../hooks/useinterval";
 import { gsap } from "gsap";
 
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
+
 const TestSlide = () => {
+  const navigator = useNavigate();
   const [currentIndex, setIndex] = useState(0);
+  const [mobileIndex, setImobilendex] = useState(0);
   const banner = document.querySelectorAll(".banner");
   const Img1 = "img/default3.jpg";
   const Img2 = "img/default5.jpg";
@@ -26,6 +31,21 @@ const TestSlide = () => {
     });
 
     setIndex((prevstate) => (prevstate + 1) % 4);
+  };
+
+  const mobileSlideAuto = () => {
+    const banner = document.querySelectorAll(".banner2");
+
+    let nextIndex = (mobileIndex + 1) % 3;
+
+    banner[mobileIndex].style.opacity = "0";
+    banner[nextIndex].style.opacity = "1";
+
+    banner.forEach((banner) => {
+      banner.style.transition = "all 0.5s";
+    });
+
+    setImobilendex((prevstate) => (prevstate + 1) % 3);
   };
 
   //앞으로가기
@@ -59,6 +79,10 @@ const TestSlide = () => {
   UseInterval(() => {
     SlideAuto();
   }, 5500);
+
+  UseInterval(() => {
+    mobileSlideAuto();
+  }, 3000);
 
   useEffect(() => {
     if (matchMedia("screen and (max-width: 480px)").matches) {
@@ -802,11 +826,12 @@ const TestSlide = () => {
                 <div className="mainboard_imgbox">
                   <div className="mainboard_img">
                     <img src={Img1} alt="" />
+
                   </div>
-                  <div className="mainboard_imgshadow"></div>
                 </div>
               </div>
             </div>
+
           </div>
           <div className="banner">
             <div className="two">
@@ -824,16 +849,36 @@ const TestSlide = () => {
                   >
                     GameStart
                   </button> */}
+
                 </div>
-                <div className="mainboard_imgbox2">
-                  <div className="mainboard_img2">
-                    <img src={Img3} alt="" />
+              </div>
+            </div>
+            <div className="banner">
+              <div className="three">
+                <div className="main_board">
+                  <div>
+                    <div className="mainboard_title3">밸런스 게임</div>
+                    <div className="mainboard_titleshadow3">Balance game</div>
+                    <div className="mainboard_body3">
+                      당신에게 맞는 여행지는 어디인가요?
+                      <br />
+                      밸런스 게임을 통해서 당신의 여행지를 찾아보세요.
+                    </div>
+                    {/* <button className="mainboard_btn3" onClick={gogame}>
+                    게시판 가기
+                  </button> */}
                   </div>
-                  <div className="mainboard_imgshadow2"></div>
+                  <div className="mainboard_imgbox3">
+                    <div className="mainboard_img3">
+                      <img src={Img2} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow3"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
           <div className="banner">
             <div className="three">
               <div className="main_board">
@@ -852,12 +897,67 @@ const TestSlide = () => {
                       응모하러가기
                     </a>
                   </button> */}
+
                 </div>
-                <div className="mainboard_imgbox3">
-                  <div className="mainboard_img3">
-                    <img src={Img2} alt="" />
+              </div>
+            </div>
+            <div className="banner2">
+              <div
+                className="two2"
+                style={{
+                  background: "url(/img/banner2.webp)",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="main_board2">
+                  <div>
+                    <div className="mainboard_title5">여행지 후기 게시판</div>
+                    {/* <div className="mainboard_titleshadow5">
+                      Popular tourist destinations
+                    </div> */}
+                    <div className="mainboard_body5">우리들의 여행 이야기</div>
+                    {/* <button className="mainboard_btn5">게시판 가기</button> */}
                   </div>
-                  <div className="mainboard_imgshadow3"></div>
+                  <div className="mainboard_imgbox5">
+                    <div className="mainboard_img5">
+                      <img src={Img3} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow5"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="banner2">
+              <div
+                className="three2"
+                style={{
+                  background: "url(/img/banner3.webp)",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="main_board2">
+                  <div>
+                    <div className="mainboard_title6">밸런스 게임</div>
+                    {/* <div className="mainboard_titleshadow6">Balance game</div> */}
+                    <div className="mainboard_body6">
+                      당신에게 맞는 여행지는 어디인가요?
+                      <br />
+                      밸런스 게임을 통해서 당신의 여행지를 찾아보세요.
+                    </div>
+                    {/* <button className="mainboard_btn6" onClick={gogame}>
+                    게시판 가기
+                  </button> */}
+                  </div>
+                  <div className="mainboard_imgbox6">
+                    <div className="mainboard_img6">
+                      <img src={Img2} alt="" />
+                    </div>
+                    <div className="mainboard_imgshadow6"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -893,6 +993,7 @@ const TestSlide = () => {
         </div>
       </section>
     </main>
+
   );
 };
 

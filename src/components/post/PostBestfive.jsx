@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -155,6 +155,7 @@ const Main = styled.main`
   padding: 50px 0;
   margin-top: 50px;
   @media screen and (max-width: 480px) {
+    max-width: 98%;
   }
 `;
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-
+import Topbutton from "../common/button/TopButton"
 import "./BoardPostDetail.css";
 import { __getComment, __postComment } from "../../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";
@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 import PostComment from "./PostComment";
 import BoardMypost from "./BoardMypost";
+import Footer from "../common/Footer";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -409,6 +410,8 @@ const BoardPostDetail = () => {
           <BoardMypost post={post} mypost={mypost} />
         </BoardPostDetailWrap>
       </BoardPostDetailContainer>
+      <Topbutton />
+      <Footer />
     </HeaderContainer>
   );
 };
@@ -617,6 +620,7 @@ const BoardLike = styled.div`
 `;
 
 const BoardBody = styled.div`
+  font-family: "NotoSansKR";
   margin-top: 40px;
   width: 100%;
   min-height: 400px;
