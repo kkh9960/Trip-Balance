@@ -79,8 +79,7 @@ function RegisterPage() {
   const nick = {
     nickName: nickname,
   };
-  const onSubmit = async (data) => {
-    data.preventDefault();
+  const onSubmitEvery = async (data) => {
     if (email.trim() === "") {
       alert("이메일을입력해주세요!");
       return;
@@ -117,7 +116,7 @@ function RegisterPage() {
           <LoginPage />
         ) : (
           <t.SignupWrapper>
-            <t.FormTag onSubmit={handleSubmit(onSubmit)}>
+            <t.FormTag onSubmit={handleSubmit(onSubmitEvery)}>
               <t.BackArrow
                 className="backArrow"
                 onClick={() => {
