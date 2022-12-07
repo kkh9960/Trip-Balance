@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import Topbutton from "../common/button/TopButton"
+import Topbutton from "../common/button/TopButton";
 import "./BoardPostDetail.css";
 import { __getComment, __postComment } from "../../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";

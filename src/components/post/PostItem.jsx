@@ -115,7 +115,10 @@ const PostItem = () => {
             <TodayTitle>오늘의 여행지 검색</TodayTitle>
             <SearchBox>
               <SearchBoxForm onSubmit={getSearch}>
-                <CategorySearch onChange={getCategory}>
+                <CategorySearch
+                  onChange={getCategory}
+                  style={{ fontFamily: "Jalnan" }}
+                >
                   <option value="0">전체</option>
                   <option value="1">수도권</option>
                   <option value="2">강원도 + 경상도</option>
@@ -139,7 +142,7 @@ const PostItem = () => {
               <PostBestfive best={best} />
             </PostLikeBestbox>
             <PostListWrap>
-              <PostListTitle type="submit">TB 추천여행지</PostListTitle>
+              <PostListTitle type="submit">여행 이야기</PostListTitle>
               <PostCardList>
                 {posts &&
                   posts.map((item, idx) => (
@@ -190,7 +193,10 @@ const PostItem = () => {
           <TodayTitle>오늘의 여행지 검색</TodayTitle>
           <SearchBox>
             <SearchBoxForm onSubmit={getSearch}>
-              <CategorySearch onChange={getCategory}>
+              <CategorySearch
+                onChange={getCategory}
+                style={{ fontFamily: "Jalnan" }}
+              >
                 <option value="0">전체</option>
                 <option value="1">수도권</option>
                 <option value="2">강원도 + 경상도</option>
@@ -214,7 +220,7 @@ const PostItem = () => {
             <PostBestfive best={best} />
           </PostLikeBestbox>
           <PostListWrap>
-            <PostListTitle type="submit">TB 추천여행지</PostListTitle>
+            <PostListTitle type="submit">여행 이야기</PostListTitle>
             <PostCardList>
               {posts &&
                 posts.map((item, idx) => (
