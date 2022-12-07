@@ -877,7 +877,6 @@ const TestSlide = () => {
                   <div className="mainboard_body4">
                     당신의 이야기를 들려주세요
                   </div>
-
                   {/* <button
                     className="mainboard_btn4"
                     onClick={() => navigate("/post")}
