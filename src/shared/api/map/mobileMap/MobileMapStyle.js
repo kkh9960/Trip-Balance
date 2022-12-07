@@ -6,7 +6,7 @@ export const mobileMapSection = styled.div`
   }
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 719px;
+    height: 619px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +19,7 @@ export const mobileMapImg = styled.img`
   width: 99%;
   @media screen and (max-width: 480px) {
     width: 99%;
-    height: 550px;
+    height: 420px;
     border: 1px solid black;
     margin: 0 auto 20px;
   }
@@ -38,17 +38,6 @@ export const mobileMapBtnGroup = styled.div`
 `;
 export const locationButton = styled.div`
   @media screen and (max-width: 480px) {
-    /* font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    color: #777;
-    width: 120px;
-    height: 72px;
-    border: 2px solid #777;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center; */
     position: relative;
     display: inline-block;
     padding: 15px 30px;
@@ -61,8 +50,6 @@ export const locationButton = styled.div`
     :hover {
       background-color: #a3a1a1;
       color: #e3dede;
-      border: 3px solid #a3a1a1;
-      color: #6e6e6e;
     }
   }
 `;

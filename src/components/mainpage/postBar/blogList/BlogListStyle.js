@@ -66,6 +66,9 @@ export const blogText = styled.div`
   letter-spacing: normal;
   text-align: center;
   margin-bottom: 50px;
+  @media screen and (max-width: 480px) {
+    font-size: 28px;
+  }
 `;
 export const blogListBox = styled.div`
   @media screen and (min-width: 481px) {
@@ -94,7 +97,7 @@ export const blogImgBox = styled.img`
   }
 
   @media screen and (max-width: 480px) {
-    width: 315px;
+    width: 285px;
     height: 230px;
     object-fit: cover;
     border-radius: 20px;
@@ -136,6 +139,7 @@ export const blogTitle = styled.div`
 export const blogContents = styled.div`
   width: 100%;
   height: 100%;
+  font-family: "NotoSansKR";
   color: #777;
   overflow: hidden;
   text-overflow: ellipsis;

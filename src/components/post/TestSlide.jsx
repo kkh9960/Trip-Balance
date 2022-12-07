@@ -775,9 +775,6 @@ const TestSlide = () => {
         default:
       }
     }
-    if (currentIndex) {
-    }
-    console.log(currentIndex);
   }, [currentIndex]);
 
   return (

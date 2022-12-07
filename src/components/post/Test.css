@@ -95,11 +95,9 @@
     opacity: 1;
   }
 
-
   .one {
     background-color: #49b2d3;
   }
-
 
   .two {
     background-color: #ddb423;
@@ -115,7 +113,6 @@
     padding: 250px 250px 250px 150px;
     display: flex;
   }
-
 
   .mainboard_title,
   .mainboard_title2,
@@ -206,7 +203,6 @@
     opacity: 0;
   }
 
-}
 /* 모바일버전 */
 @media screen and (max-width: 480px) {
   .main {
@@ -359,4 +355,3 @@
     opacity: 0;
   }
 }
-
