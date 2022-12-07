@@ -5,13 +5,15 @@ import * as t from "./BlogListStyle";
 export default function Post() {
   const cityName = useSelector((state) => state.MapSlice.data?.cnt[0].location);
   const blogList = useSelector((state) => state.MapSlice?.data.blog);
+
+  console.log(blogList);
   return (
     <t.blogSection>
       <t.blogContainer>
         <t.blogText>{cityName.split(" ")[1]} 여행 추천 블로그</t.blogText>
         <t.blogList>
           {blogList &&
-            blogList.map((idx) => {
+            blogList[0].map((idx) => {
               if (blogList.length === 0) {
                 return <h1 key={idx.id}>작성한 글이 없습니다.</h1>;
               } else {
@@ -30,8 +32,8 @@ export default function Post() {
                 );
               }
             })}
-            <t.hr1/>
-            <t.hr2/>
+          <t.hr1 />
+          <t.hr2 />
         </t.blogList>
       </t.blogContainer>
     </t.blogSection>

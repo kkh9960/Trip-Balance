@@ -9,17 +9,17 @@ export const top = styled.div`
 `;
 
 export const localImgBox = styled.div`
+  margin: 0 auto;
   width: 1903px;
   height: 504.21px;
   display: flex;
-
+  align-items: center;
   justify-content: center;
   position: relative;
   @media screen and (max-width: 746px) {
     width: 100%;
     align-items: center;
     justify-content: center;
-    left: 0;
   }
 `;
 

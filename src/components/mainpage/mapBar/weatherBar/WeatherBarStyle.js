@@ -50,15 +50,15 @@ export const cityName = styled.div`
   }
 `;
 export const mobileCityName = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     display: none;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
     height: 60px;
-    font-size: 30px;
+    font-size: 22px;
     margin-bottom: -10px;
-    font-weight: 600;
+    text-align: center;
   }
 `;
 
@@ -68,7 +68,7 @@ export const countyName = styled.div`
   line-height: 24px;
   margin-bottom: 30px;
   @media screen and (max-width: 480px) {
-    font-size: 20px;
+    font-size: 18px;
     width: 100%;
     margin-bottom: 0px;
   }
@@ -83,6 +83,7 @@ export const iconBox = styled.div`
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 480px) {
+    margin-right: -10px;
   }
 `;
 export const weatherIcon = styled.img`
@@ -134,7 +135,7 @@ export const temperature = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 600;
+    font-weight: 200;
     font-size: 80px;
     color: #777;
     margin: 0;
@@ -169,7 +170,7 @@ export const details = styled.div`
   justify-content: space-evenly;
   text-align: left;
   @media screen and (max-width: 480px) {
-    width: 185px;
+    width: 100%;
   }
 `;
 
@@ -180,6 +181,8 @@ export const parameterRow = styled.div`
   justify-content: space-evenly;
   flex-direction: column;
   height: 100%;
+  @media screen and (max-width: 480px) {
+  }
 `;
 
 export const parameterLabel = styled.div`
@@ -201,9 +204,15 @@ export const parameterValue = styled.div`
     font-size: 20px;
   }
   @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
     font-size: 26px;
     p {
       font-size: 15px;
+      font-weight: 0;
+      line-height: 0;
+      text-align: right;
+      margin-bottom: 5px;
     }
   }
 `;
