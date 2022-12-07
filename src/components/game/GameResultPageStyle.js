@@ -9,6 +9,7 @@ export const top = styled.div`
 `;
 
 export const localImgBox = styled.div`
+  margin: 0 auto;
   width: 1903px;
   height: 504.21px;
   display: flex;
@@ -30,6 +31,7 @@ export const localResultBox = styled.div`
     align-items: center;
     justify-content: center;
     //left: 0;
+
   }
 `;
 

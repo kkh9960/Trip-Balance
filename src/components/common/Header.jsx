@@ -4,13 +4,13 @@ import mainlogo from "../../img/mainlogo.webp";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
-import mainlist from "../../img/mainlist.webp";
-import maingame from "../../img/maingame.webp";
-import mainpost from "../../img/mainpost.webp";
-import mainmypage from "../../img/mainmypage.webp";
-import mainlogin from "../../img/mainlogin.webp";
-import mainlogout from "../../img/mainlogout.webp";
-import mainservey from "../../img/mainservey.webp";
+import mainlist from "../../img/mainlistW.webp";
+import maingame from "../../img/maingameW.webp";
+import mainpost from "../../img/mainpostW.webp";
+import mainmypage from "../../img/mainmypageW.webp";
+import mainlogin from "../../img/mainloginW.webp";
+import mainlogout from "../../img/mainlogoutW.webp";
+import mainservey from "../../img/mainserveyW.webp";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Header = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
         alert("로그아웃완료!");
-        navigate("/")
+        navigate("/");
         window.location.reload();
       })
       .catch((err) => {
@@ -59,15 +59,19 @@ const Header = () => {
               </t.LogoBox>
               <t.toggleBtn
                 src={mainlist}
+                yarns
                 alt="listicon"
                 toggle={toggle}
                 onClick={toggleChange}
               ></t.toggleBtn>
               <t.WriteWrap toggle={toggle}>
                 <t.survey>
-                  <t.surveyLink href="https://forms.gle/TzPZQZzDxfgvzfkr8" target="_blank">
-                  <img src={mainservey} alt="maingservey" />
-                  <p>설문조사</p>
+                  <t.surveyLink
+                    href="https://forms.gle/TzPZQZzDxfgvzfkr8"
+                    target="_blank"
+                  >
+                    <img src={mainservey} alt="maingservey" />
+                    <p>설문조사</p>
                   </t.surveyLink>
                 </t.survey>
                 <t.Game
@@ -146,9 +150,12 @@ const Header = () => {
               />
               <t.WriteWrap toggle={toggle}>
                 <t.survey>
-                  <t.surveyLink href="https://forms.gle/TzPZQZzDxfgvzfkr8" target="_blank">
-                  <img src={mainservey} alt="maingservey" />
-                  <p>설문조사</p>
+                  <t.surveyLink
+                    href="https://forms.gle/TzPZQZzDxfgvzfkr8"
+                    target="_blank"
+                  >
+                    <img src={mainservey} alt="maingservey" />
+                    <p>설문조사</p>
                   </t.surveyLink>
                 </t.survey>
                 <t.Game

@@ -1,4 +1,3 @@
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -30,7 +29,6 @@ export default function DoughnutChart() {
       labels: ["여성", "남성"],
       datasets: [
         {
-          label: "# of Votes",
           data: [peopleData[0]?.peopleCnt, peopleData[1]?.peopleCnt],
           backgroundColor: [
             "rgba(255, 99, 132, 0.7)",
@@ -46,7 +44,6 @@ export default function DoughnutChart() {
       labels: ["10~20대", "30~40대", "50대 이상"],
       datasets: [
         {
-          label: "# of Votes",
           data: [
             peopleData[2]?.peopleCnt + peopleData[3]?.peopleCnt,
             peopleData[4]?.peopleCnt + peopleData[5]?.peopleCnt,
@@ -187,15 +184,25 @@ export default function DoughnutChart() {
     <t.doughnutContainer>
       <t.chartViewbox>
         <WeatherBar />
-        <t.chartView>
-          <Doughnut data={chartData.people} />
-        </t.chartView>
-        <t.chartView>
-          <Doughnut data={chartData.age} />
-        </t.chartView>
-        <t.chartView>
-          <Doughnut data={chartData.family} />
-        </t.chartView>
+        <t.chartBox>
+          <t.chartView>
+            <Doughnut data={chartData.people} />
+          </t.chartView>
+          <t.chartNametag>성별</t.chartNametag>
+        </t.chartBox>
+        <t.chartBox>
+          <t.chartView>
+            <Doughnut data={chartData.age} />
+          </t.chartView>
+          <t.chartNametag>연령</t.chartNametag>
+        </t.chartBox>
+        <t.chartBox>
+          <t.chartView>
+            <Doughnut data={chartData.family} />
+          </t.chartView>
+          <t.chartNametag>구성원</t.chartNametag>
+        </t.chartBox>
+
         <t.barChartView>
           <Bar options={options1} data={barData1} />
         </t.barChartView>
