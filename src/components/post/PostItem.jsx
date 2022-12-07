@@ -139,7 +139,7 @@ const PostItem = () => {
               <PostBestfive best={best} />
             </PostLikeBestbox>
             <PostListWrap>
-              <PostListTitle type="submit">TB 추천여행지</PostListTitle>
+              <PostListTitle type="submit">여행 이야기</PostListTitle>
               <PostCardList>
                 {posts &&
                   posts.map((item, idx) => (
@@ -214,7 +214,7 @@ const PostItem = () => {
             <PostBestfive best={best} />
           </PostLikeBestbox>
           <PostListWrap>
-            <PostListTitle type="submit">TB 추천여행지</PostListTitle>
+            <PostListTitle type="submit">여행 이야기</PostListTitle>
             <PostCardList>
               {posts &&
                 posts.map((item, idx) => (
