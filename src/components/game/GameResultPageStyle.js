@@ -12,24 +12,23 @@ export const localImgBox = styled.div`
   width: 1903px;
   height: 504.21px;
   display: flex;
-
+  margin: 0 auto 0 auto;
   justify-content: center;
   position: relative;
   @media screen and (max-width: 746px) {
     width: 100%;
     align-items: center;
     justify-content: center;
-    left: 0;
+    //left: 0;
   }
 `;
-
 export const resultImgBox = styled.div`
   width: 1326px;
   height: 463.93px;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 0 auto 120px auto;
+  margin: 120px auto 10px auto;
   @media screen and (max-width: 746px) {
     width: 100%;
     margin: 0;
