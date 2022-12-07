@@ -34,7 +34,6 @@ export const localResultBox = styled.div`
 
   }
 `;
-
 export const resultImgBox = styled.div`
   width: 1326px;
   height: 463.93px;
