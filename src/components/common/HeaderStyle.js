@@ -66,7 +66,7 @@ export const toggleBtn = styled.img`
   @media screen and (max-width: 480px) {
     font-size: 22px;
     position: absolute;
-    right: -200px;
+    right: 20px;
   }
   @media screen and (max-width: 1240px) {
     display: block;

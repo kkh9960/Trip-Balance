@@ -6,7 +6,6 @@ export default function Post() {
   const cityName = useSelector((state) => state.MapSlice.data?.cnt[0].location);
   const blogList = useSelector((state) => state.MapSlice?.data.blog);
 
-  console.log(blogList);
   return (
     <t.blogSection>
       <t.blogContainer>

@@ -7,10 +7,11 @@ import { gsap } from "gsap";
 const TestSlide = () => {
   const [currentIndex, setIndex] = useState(0);
   const banner = document.querySelectorAll(".banner");
-  const Img1 = "img/default3.jpg";
-  const Img2 = "img/default5.jpg";
-  const Img3 = "img/default6.jpg";
-  const Img4 = "img/default6.jpg";
+  const Img1 = "img/bannerImg0.webp";
+  const Img2 = "img/bannerImg2.webp";
+  const Img3 = "img/bannerImg3.webp";
+  const Img4 = "img/bannerImg4.png";
+  const happy = "img/gameCommonImg/happy.gif";
 
   const navigate = useNavigate();
   const SlideAuto = () => {
@@ -58,7 +59,7 @@ const TestSlide = () => {
 
   UseInterval(() => {
     SlideAuto();
-  }, 5500);
+  }, 6500);
 
   useEffect(() => {
     if (matchMedia("screen and (max-width: 480px)").matches) {
@@ -844,6 +845,11 @@ const TestSlide = () => {
                     이벤트에 참여하고
                     <br /> 기프티콘 받아가세요~
                   </div>
+                  {/* <img
+                    className="mainboard_gif3"
+                    src={happy}
+                    style={{ width: "250px", position: "absolute" }}
+                  /> */}
                   {/* <button className="mainboard_btn3">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScZE6aTPE3qjPm9L6Y_r09bzjjtKVSCL_sWz77fHzqHShsq6g/viewform">
                       응모하러가기
@@ -871,6 +877,7 @@ const TestSlide = () => {
                   <div className="mainboard_body4">
                     당신의 이야기를 들려주세요
                   </div>
+
                   {/* <button
                     className="mainboard_btn4"
                     onClick={() => navigate("/post")}

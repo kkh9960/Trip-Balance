@@ -5,7 +5,6 @@ import * as t from "./HotelListStyle";
 export default function Post() {
   const cityName = useSelector((state) => state.MapSlice.data?.cnt[0].location);
   const hotelList = useSelector((state) => state.MapSlice.data.hotel);
-  console.log(hotelList);
   return (
     <t.hotelSection>
       <t.hotelContainer>
