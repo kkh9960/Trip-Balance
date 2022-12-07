@@ -60,13 +60,11 @@ export const ContainerWhite = styled.div`
 
 export const toggleBtn = styled.img`
   display: none;
-  scale: 0.09;
   cursor: pointer;
-  right: -150px;
   position: absolute;
+  right: 60px;
   @media screen and (max-width: 480px) {
     font-size: 22px;
-    scale: 0.05;
     position: absolute;
     right: -200px;
   }
@@ -80,11 +78,8 @@ export const WriteWrap = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   transition: 1s;
-  img {
-    scale: 0.3;
-  }
   div {
     color: white;
     text-align: center;

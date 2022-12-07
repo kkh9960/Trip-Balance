@@ -46,7 +46,7 @@ export default function WeatherBar() {
       <t.top>
         <t.iconBox>
           <t.weatherIcon
-            src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.webp`}
+            src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.gif`}
           />
         </t.iconBox>
         <t.temperatureBox>
@@ -62,7 +62,6 @@ export default function WeatherBar() {
 
       <t.bottom>
         <t.details>
-         
           <t.parameterRow>
             <t.parameterLabel>강수확률</t.parameterLabel>
             <t.parameterValue>

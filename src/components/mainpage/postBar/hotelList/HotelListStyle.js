@@ -55,6 +55,9 @@ export const hotelText = styled.div`
   text-align: center;
   margin-bottom: 56px;
   color: #f2f2f2;
+  @media screen and (max-width: 480px) {
+    font-size: 28px;
+  }
 `;
 export const hotelList = styled.div`
   @media screen and (min-width: 480px) {
@@ -106,4 +109,7 @@ export const hotelTitle = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  @media screen and (max-width: 480px) {
+    font-size: 20px;
+  }
 `;

@@ -41,14 +41,14 @@ export default function GameResultPage() {
     }
   }, [resultLocal]);
 
-  const resultImg = `../../img/resultImg/${localId === null ? (32) : (localId)}.webp`
-
+  const resultImg = `../../img/resultImg/${
+    localId === null ? 32 : localId
+  }.webp`;
 
   return (
-
     <g.top>
       <g.localImgBox>
-        <g.localImg src={resultImg} alt="결과창 메인 베너 이미지"/>
+        <g.localImg src={resultImg} alt="결과창 메인 베너 이미지" />
         <g.localText>
           {game.data.data.trip == "" ? "로딩중입니다" : game.data.data.trip}
         </g.localText>
@@ -58,9 +58,8 @@ export default function GameResultPage() {
             : game.data.data.tripcontent}
         </g.localTextContent>
       </g.localImgBox>
-
+      <g.localResultBox>
       <g.resultImgBox>
-
         <g.bigName>추천 숙소</g.bigName>
         <g.hotelWrap>
           {gameHotel &&
@@ -68,9 +67,10 @@ export default function GameResultPage() {
               <g.hotelInfo key={hotel.id}>
                 <div>
                   <a href={hotel.url && hotel.url} target="_blank">
-
-                    <g.hotelImg alt="hotel img" src={hotel.img && hotel.img}></g.hotelImg>
-
+                    <g.hotelImg
+                      alt="hotel img"
+                      src={hotel.img && hotel.img}
+                    ></g.hotelImg>
                   </a>
                 </div>
                 <g.hotelName>{hotel.title && hotel.title}</g.hotelName>
@@ -79,29 +79,27 @@ export default function GameResultPage() {
         </g.hotelWrap>
       </g.resultImgBox>
       <g.resultImgBox>
-      <g.blogName>추천 블로그</g.blogName>
-      <g.hotelWrap>
-        {blog &&
-          blog.map((blog) => (
-            <g.hotelInfo key={blog.id}>
-              <div>
-                <a href={blog.url && blog.url} target="_blank">
+        <g.blogName>추천 블로그</g.blogName>
+        <g.hotelWrap>
+          {blog &&
+            blog.map((blog) => (
+              <g.hotelInfo key={blog.id}>
+                <div>
+                  <a href={blog.url && blog.url} target="_blank">
+                    <g.hotelImg
+                      alt="blog img"
+                      src={blog.thumbnail && blog.thumbnail}
+                    ></g.hotelImg>
+                  </a>
+                </div>
+                <g.hotelName>{blog.title && blog.title}</g.hotelName>
+              </g.hotelInfo>
+            ))}
+        </g.hotelWrap>
+      </g.resultImgBox>
+                    
+      </g.localResultBox>
 
-                  <g.hotelImg alt="blog img"
-
-                    src={blog.thumbnail && blog.thumbnail}
-                  ></g.hotelImg>
-                </a>
-              </div>
-              <g.hotelName>{blog.title && blog.title}</g.hotelName>
-            </g.hotelInfo>
-          ))}
-      </g.hotelWrap>
-      
-
-      </g.resultImgBox> 
     </g.top>
-    
-
   );
 }

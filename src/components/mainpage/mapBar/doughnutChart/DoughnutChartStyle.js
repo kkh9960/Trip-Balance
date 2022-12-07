@@ -31,6 +31,16 @@ export const chartViewbox = styled.div`
     height: 250px;
   }
 `;
+
+export const chartBox = styled.div`
+  @media screen and (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+`;
 export const chartView = styled.div`
   width: 238px;
   height: 238px;
@@ -42,10 +52,23 @@ export const chartView = styled.div`
   @media screen and (max-width: 480px) {
     width: 124px;
     height: 124px;
-    margin: 0 auto;
+    margin: 10px auto;
     text-align: center;
     border-radius: 50%;
     box-shadow: 0 0 10px;
+  }
+`;
+
+export const chartNametag = styled.div`
+  @media screen and (min-width: 481px) {
+    display: none;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    margin-top: 5px;
+    color: #777;
   }
 `;
 export const barChartView = styled.div`
@@ -54,11 +77,4 @@ export const barChartView = styled.div`
   @media screen and (max-width: 480px) {
     display: none;
   }
-`;
-
-export const chartNametag = styled.div`
-  width: 100px;
-  height: 20px;
-  background-color: red;
-  left: 0px;
 `;
