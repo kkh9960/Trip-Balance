@@ -139,6 +139,7 @@ export const blogTitle = styled.div`
 export const blogContents = styled.div`
   width: 100%;
   height: 100%;
+  font-family: "NotoSansKR";
   color: #777;
   overflow: hidden;
   text-overflow: ellipsis;
