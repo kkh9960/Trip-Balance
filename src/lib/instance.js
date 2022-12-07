@@ -9,7 +9,6 @@ axios.defaults.headers.common["Refresh-Token"] = `${token2}`;
 const instance = axios.create({
   baseURL: "https://dexhome.shop/", //"https://tbtbtb.shop/",
 
-
   headers: {
     "Content-Type": "application/json",
     Authorization: `${token}`,
