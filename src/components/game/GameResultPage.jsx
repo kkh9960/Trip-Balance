@@ -58,9 +58,8 @@ export default function GameResultPage() {
             : game.data.data.tripcontent}
         </g.localTextContent>
       </g.localImgBox>
-
+      <g.localResultBox>
       <g.resultImgBox>
-
         <g.bigName>추천 숙소</g.bigName>
         <g.hotelWrap>
           {gameHotel &&
@@ -97,9 +96,8 @@ export default function GameResultPage() {
             </g.hotelInfo>
           ))}
       </g.hotelWrap>
-      
-
       </g.resultImgBox> 
+      </g.localResultBox>
     </g.top>
     
 
