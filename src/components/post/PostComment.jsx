@@ -11,29 +11,25 @@ import { useNavigate } from "react-router-dom";
 
 const PostComment = ({ idx, item, id, post }) => {
   const navigator = useNavigate();
+  console.log(item.author);
 
-  const UserDefaultImage = "../img/cmtdefault.svg";
+  const nickname = sessionStorage.getItem("nickName");
+
+  const UserDefaultImage = "../img/tb.jpg";
+
   const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
   const [RecommentWrite, setRecommentWrite] = useState(false);
   const [recomment, setrecomment] = useState("");
-  const [UserImage, setUserImage] = useState("");
+  const [UserImage, setUserImage] = useState();
   const [Editprofile, setEditprofile] = useState(false);
   const [CommentImg, setCommentImg] = useState();
 
   useEffect(() => {
-    if (item.profileImg == "") {
+    if (item.profileImg == null) {
       setUserImage(UserDefaultImage);
     } else {
       setUserImage(item.profileImg);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (post.profileImg == "") {
-      setCommentImg(UserDefaultImage);
-    } else {
-      setCommentImg(post.profileImg);
     }
   }, []);
 
@@ -127,6 +123,7 @@ const PostComment = ({ idx, item, id, post }) => {
           </St.Commentbody>
           <St.CommentButtonBox>
             <St.CommentButton onClick={ReWriteHandler}>댓글</St.CommentButton>
+
             {Editmode ? (
               <St.CommentButton onClick={ModifyCancel}>취소</St.CommentButton>
             ) : (
