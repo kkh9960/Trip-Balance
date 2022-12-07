@@ -22,6 +22,8 @@ export default function MainPage() {
       <BlogList />
       <GameBanner />
       <Footer />
+      <TopButton />
     </Layout>
+    //
   );
 }
