@@ -7,7 +7,6 @@ import Pagination from "../common/Pagination";
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
 
-
 export default function MyPageView() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -50,10 +49,11 @@ export default function MyPageView() {
       const result = await instance.get("tb/mypage/hearts");
 
       setMyPick(result.data.data);
-    
     }
     fetchData();
   }, []);
+
+  console.log(posts);
   return (
     <t.myInformationWrap>
       <ProfileInformation />
@@ -121,7 +121,9 @@ export default function MyPageView() {
           <t.footer>
             <t.thinLine />
             <Pagination
-              total={typeof(myPick) === 'string' ? (myPick.length-10) : (myPick.length)}
+              total={
+                typeof myPick === "string" ? myPick.length - 10 : myPick.length
+              }
               limit={limit}
               page={page}
               setPage={setPage}
@@ -162,7 +164,9 @@ export default function MyPageView() {
             <t.thinLine />
 
             <Pagination
-              total={typeof(posts) === 'string' ? (posts.length-10) : (posts.length)}
+              total={
+                typeof posts === "string" ? posts.length - 10 : posts.length
+              }
               limit={writelimit}
               page={writepage}
               setPage={setWritePage}
