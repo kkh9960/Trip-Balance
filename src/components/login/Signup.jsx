@@ -173,7 +173,7 @@ function RegisterPage() {
                 {...register("password", {
                   required: true,
                   minLength: 8,
-                  pattern: /[~!@#$%^&*()_+|<>?:{}]/,
+                 
                 })}
               />
 
