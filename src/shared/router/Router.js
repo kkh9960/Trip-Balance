@@ -27,7 +27,7 @@ const Router = () => {
           <Route path="/game/:id" element={<Game />} />
           <Route path="/game/:aa/:id" element={<Game />} />
           <Route path="/gameResult/:aa/:id" element={<GameResult />} />
-          <Route path="/tb/ouath/kakao" element={<KaKao />} />
+          <Route path="/tb/oauth/kakao" element={<KaKao />} />
         </Routes>
       </BrowserRouter>
     </Suspense>
