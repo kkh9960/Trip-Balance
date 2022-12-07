@@ -319,9 +319,8 @@ const BoardPostDetail = () => {
                       <ModifyButton onClick={modifyPost}>수정</ModifyButton>
                       <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
                     </>
-                  ) : (
-                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
-                  )}
+                  ) : // <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                  null}
                 </TitleButtonWarp>
               </BoardTitleWrap>
               <UserNameBox>
@@ -335,9 +334,8 @@ const BoardPostDetail = () => {
                       <ModifyButton onClick={modifyPost}>수정</ModifyButton>
                       <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
                     </>
-                  ) : (
-                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
-                  )}
+                  ) : // <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                  null}
                 </TitleButtonWarpmobile>
               </UserNameBox>
               <BoardBody>{post?.content}</BoardBody>
@@ -622,7 +620,7 @@ const BoardLike = styled.div`
 const BoardBody = styled.div`
   font-family: "NotoSansKR";
   margin-top: 40px;
-  width: 100%;
+  width: 90%;
   min-height: 400px;
   font-weight: lighter;
   font-size: 24px;

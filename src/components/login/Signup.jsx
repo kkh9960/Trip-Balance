@@ -107,9 +107,6 @@ function RegisterPage() {
   };
 
   const Reg = "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{6,}$";
-  useEffect(() => {
-    Reg(email);
-  }, [email]);
 
   return (
     <motion.div

@@ -70,9 +70,10 @@ const Recomment = ({ item, cmtid }) => {
             <St.CommentUserImage src={ReUserImage} />
           </div>
           <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-          {Editprofile ? (
-            <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
-          ) : null}
+          {Editprofile
+            ? // <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+              null
+            : null}
         </St.CommentUserBox>
         <St.Commentbody>
           {Editmode ? (
