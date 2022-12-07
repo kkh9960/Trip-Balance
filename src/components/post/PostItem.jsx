@@ -115,7 +115,10 @@ const PostItem = () => {
             <TodayTitle>오늘의 여행지 검색</TodayTitle>
             <SearchBox>
               <SearchBoxForm onSubmit={getSearch}>
-                <CategorySearch onChange={getCategory}>
+                <CategorySearch
+                  onChange={getCategory}
+                  style={{ fontFamily: "Jalnan" }}
+                >
                   <option value="0">전체</option>
                   <option value="1">수도권</option>
                   <option value="2">강원도 + 경상도</option>
@@ -190,7 +193,10 @@ const PostItem = () => {
           <TodayTitle>오늘의 여행지 검색</TodayTitle>
           <SearchBox>
             <SearchBoxForm onSubmit={getSearch}>
-              <CategorySearch onChange={getCategory}>
+              <CategorySearch
+                onChange={getCategory}
+                style={{ fontFamily: "Jalnan" }}
+              >
                 <option value="0">전체</option>
                 <option value="1">수도권</option>
                 <option value="2">강원도 + 경상도</option>
