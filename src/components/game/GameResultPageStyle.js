@@ -22,6 +22,16 @@ export const localImgBox = styled.div`
     //left: 0;
   }
 `;
+
+export const localResultBox = styled.div`
+  width: 1903px;
+  @media screen and (max-width: 746px) {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    //left: 0;
+  }
+`;
 export const resultImgBox = styled.div`
   width: 1326px;
   height: 463.93px;
