@@ -68,7 +68,6 @@ export default function DoughnutChart() {
       labels: ["가족", "연인/친구/혼자", "가족(아이동반)"],
       datasets: [
         {
-          label: "# of Votes",
           data: [
             peopleData[8]?.peopleCnt,
             peopleData[9]?.peopleCnt,
