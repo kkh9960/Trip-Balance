@@ -97,9 +97,6 @@ export const WriteWrap = styled.div`
     width: 100%;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.5);
-    img {
-      scale: 0.2;
-    }
   }
 `;
 

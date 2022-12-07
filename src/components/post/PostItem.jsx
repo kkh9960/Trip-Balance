@@ -32,7 +32,7 @@ const PostItem = () => {
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
 
-  const profiledefaultImg = "/img/default3.jpg";
+  const profiledefaultImg = "/img/tb.jpg";
   const [ref, inView] = useInView();
 
   const [test, settest] = useState(false);
