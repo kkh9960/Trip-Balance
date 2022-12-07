@@ -26,6 +26,6 @@ export default function MainPage() {
       <Footer />
       <TopButton/>
     </Layout>
-
+//
   );
 }
