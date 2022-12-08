@@ -45,15 +45,15 @@ export const Name = styled.div`
   }
 `;
 export const GitWrap = styled.a`
-text-decoration: none;
-color: white;
-`
+  text-decoration: none;
+  color: white;
+`;
 export const Gitimg = styled.img`
-width: 30px;
-position:relative;
-top: 10px;
-margin: 2px;
-`
+  width: 30px;
+  position: relative;
+  top: 10px;
+  margin: 2px;
+`;
 export const Footerlogo = styled.img`
 position: relative;
 top:40px;
@@ -86,7 +86,6 @@ export const Title = styled.div`
     align-items: center;
     justify-content: center;
     text-align: center;
-
   }
 `;
 export const Comment = styled.div`
@@ -183,8 +182,10 @@ export const FrontWrap = styled.div`
   }
 `;
 export const Backs = styled.div`
-position: relative;
-  top:-35px;
+
+  position: relative;
+  top: -15px;
+
   @media screen and (max-width: 480px) {
     position: relative;
     top: 0px;

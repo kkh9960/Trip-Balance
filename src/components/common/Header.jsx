@@ -64,7 +64,7 @@ const Header = () => {
                 alt="listicon"
                 toggle={toggle}
                 onClick={toggleChange}
-              ></t.toggleBtn>
+              />
               <t.toggleCancelBtn
                 src={maincancel}
                 alt="cancelicon"
@@ -152,6 +152,12 @@ const Header = () => {
               <t.toggleBtn
                 src={mainlist}
                 alt="listicon"
+                toggle={toggle}
+                onClick={toggleChange}
+              />
+              <t.toggleCancelBtn
+                src={maincancel}
+                alt="cancelicon"
                 toggle={toggle}
                 onClick={toggleChange}
               />
