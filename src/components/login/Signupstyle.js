@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const Wrap = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -21,11 +22,10 @@ export const SignupWrapper = styled.div`
   left: 0px;
   z-index: 2;
 `;
-export const Exit = styled.img`
-` 
+export const Exit = styled.img``;
 export const Back = styled.img`
-width: 20px
-`
+  width: 20px;
+`;
 
 export const Nicknamemsg = styled.div`
   position: relative;
@@ -33,9 +33,8 @@ export const Nicknamemsg = styled.div`
   top: 30px;
   color: green;
   @media screen and (max-width: 746px) {
-    top:-130px;
+    top: -130px;
     left: 0px;
-   
   }
 `;
 
@@ -94,7 +93,6 @@ export const EmailCheckError = styled.div`
   left: 100px;
   bottom: 20px;
   @media screen and (max-width: 746px) {
-    
   }
 `;
 
@@ -121,7 +119,22 @@ export const InputWrite = styled.input`
   }
 `;
 export const Danger = styled.p`
-  color: #bf1650;
+  color: block;
+  position: relative;
+  top: 70px;
+  left: 85px;
+  before {
+    color: black;
+    display: inline;
+    content: ":경고: ";
+  }
+  @media screen and (max-width: 746px) {
+    top: -100px;
+    left: 0px;
+  }
+`;
+export const Danger2 = styled.p`
+  color: red;
   position: relative;
   top: 70px;
   left: 85px;
@@ -131,10 +144,27 @@ export const Danger = styled.p`
     content: ":경고: ";
   }
   @media screen and (max-width: 746px) {
-   top:-100px;
-   left:0px;
+    top: -100px;
+    left: 0px;
   }
 `;
+
+export const Danger3 = styled.p`
+  color: green;
+  position: relative;
+  top: 70px;
+  left: 85px;
+  before {
+    color: green;
+    display: inline;
+    content: ":경고: ";
+  }
+  @media screen and (max-width: 746px) {
+    top: -100px;
+    left: 0px;
+  }
+`;
+
 export const Line = styled.div`
   width: 354px;
   border: 1px solid rgba(170, 170, 170, 0.7);
@@ -155,8 +185,8 @@ export const Emailmsg = styled.div`
 
   color: green;
   @media screen and (max-width: 746px) {
-   top:-130px;
-   left: 26px;
+    top: -130px;
+    left: 26px;
   }
 `;
 
@@ -197,10 +227,10 @@ export const EmailCheck = styled.button`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
   @media screen and (max-width: 746px) {
-   position: relative;
-   left: 220px;
-   top:-157px;
-   width: 70px;
+    position: relative;
+    left: 220px;
+    top: -157px;
+    width: 70px;
   }
 `;
 export const NickNameCheck = styled.button`
