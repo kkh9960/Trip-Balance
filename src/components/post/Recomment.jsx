@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 const Recomment = ({ item, cmtid }) => {
   const navigator = useNavigate();
 
+  const nickname = sessionStorage.getItem("nickName");
+  const cmtnick = item.author;
+
   const dispatch = useDispatch();
   const UserDefaultImage = "/img/tb.jpg";
   const [Editmode, setEditmode] = useState(false);
@@ -88,15 +91,25 @@ const Recomment = ({ item, cmtid }) => {
           )}
         </St.Commentbody>
         <St.CommentButtonBox>
-          {Editmode ? (
-            <St.CommentButton onClick={ModifyCancel}>취소</St.CommentButton>
-          ) : (
-            <St.CommentButton onClick={ModifyComment}>수정</St.CommentButton>
-          )}
-          {Editmode ? (
-            <St.CommentButton onClick={ModifyComplete}>완료</St.CommentButton>
-          ) : (
-            <St.CommentButton onClick={DeleteComment}>삭제</St.CommentButton>
+          {cmtnick == nickname && (
+            <>
+              {Editmode ? (
+                <St.CommentButton onClick={ModifyCancel}>취소</St.CommentButton>
+              ) : (
+                <St.CommentButton onClick={ModifyComment}>
+                  수정
+                </St.CommentButton>
+              )}
+              {Editmode ? (
+                <St.CommentButton onClick={ModifyComplete}>
+                  완료
+                </St.CommentButton>
+              ) : (
+                <St.CommentButton onClick={DeleteComment}>
+                  삭제
+                </St.CommentButton>
+              )}
+            </>
           )}
         </St.CommentButtonBox>
       </St.CommentBox>

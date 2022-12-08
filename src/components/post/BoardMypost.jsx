@@ -9,6 +9,8 @@ const BoardMypost = ({ post, mypost }) => {
 
   const params = useParams();
 
+  const anotherpost = filter.length;
+
   useEffect(() => {
     setfilter(
       mypost.filter((item) => {
@@ -63,7 +65,9 @@ const BoardMypost = ({ post, mypost }) => {
   return (
     <>
       <MyPostWrap>
-        <MyPostTitle>{post?.author}님의 다른글</MyPostTitle>
+        {anotherpost != 0 && (
+          <MyPostTitle>{post?.author}님의 다른글</MyPostTitle>
+        )}
         <PostItemWarp className="wrapper">
           <Itembox className="items">
             {filter &&
@@ -87,7 +91,9 @@ const BoardMypost = ({ post, mypost }) => {
           </Itembox>
         </PostItemWarp>
       </MyPostWrap>
-      <MyPostTitlemobile>{post?.author}님의 다른글</MyPostTitlemobile>
+      {anotherpost != 0 && (
+        <MyPostTitlemobile>{post?.author}님의 다른글</MyPostTitlemobile>
+      )}
       <PostCardList>
         {filter &&
           filter.map((item, idx) => (
