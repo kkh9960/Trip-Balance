@@ -191,7 +191,7 @@ position: relative;
     color: white;
   }
 `;
-
+//
 export const BackWrap = styled.div`
   opacity: 0.5;
   margin-top: 3px;
