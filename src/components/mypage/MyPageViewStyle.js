@@ -139,18 +139,17 @@ export const postWrap = styled.div`
   }
 `;
 export const postItem = styled.div`
-  width: 185px;
-  height: 240px;
-  border-radius: 10px;
   position: relative;
-  box-shadow: 0 0 6px;
-
+  width: 180px;
+  height: 240px;
+  border: 0 solid black;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px;
   cursor: pointer;
-  @media screen and (max-width: 480px) {
-  }
 `;
 export const postImg = styled.img`
-  width: 185px;
+  width: 180px;
   height: 142px;
   object-fit: cover;
 `;
@@ -159,6 +158,8 @@ export const postTitle = styled.div`
   font-weight: 400;
   padding: 5px 5px;
   margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 export const postTime = styled.div`
   position: absolute;
@@ -268,13 +269,14 @@ export const pickPostTitle = styled.div`
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+  overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   @media screen and (max-width: 480px) {
     font-weight: 400;
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 15px;
-    text-overflow: ellipsis;
   }
 `;
 export const pickPostNickname = styled.div`
