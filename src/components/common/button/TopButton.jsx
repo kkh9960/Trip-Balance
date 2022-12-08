@@ -52,17 +52,41 @@ const TopButton = () => {
             />
 
             {email ? (
-              <Write
+              <Writeimg
                 src="../../img/writebtn.webp"
                 onClick={() => {
                   navigate(`/write`);
                 }}
               />
             ) : (
-              <Write src="../../img/writebtn.webp" onClick={goLogin} />
+              <Writeimg src="../../img/writebtn.webp" onClick={goLogin} />
             )}
 
-            <Top src="../../img/topbtn.webp" onClick={scrollToTop} />
+            <Topimg src="../../img/topbtn.webp" onClick={scrollToTop} />
+            <MobileButtonWrap>
+              <MobileBtnbox>
+                <MobileBg
+                  src="../../img/bgbtn.webp"
+                  onClick={() => {
+                    navigate(`/start`);
+                  }}
+                />
+                {email ? (
+                  <MobileWrite
+                    src="../../img/writebtn.webp"
+                    onClick={() => {
+                      navigate(`/write`);
+                    }}
+                  />
+                ) : (
+                  <MobileWrite
+                    src="../../img/writebtn.webp"
+                    onClick={goLogin}
+                  />
+                )}
+                <MobileTop src="../../img/topbtn.webp" onClick={scrollToTop} />
+              </MobileBtnbox>
+            </MobileButtonWrap>
           </ScrollContainer>
         )
       )}
@@ -72,11 +96,50 @@ const TopButton = () => {
 
 export default TopButton;
 
+const MobileBg = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* opacity: 0.7; */
+`;
+const MobileWrite = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* opacity: 0.7; */
+`;
+const MobileTop = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* opacity: 0.7; */
+`;
+
+const MobileBtnbox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+`;
+
+const MobileButtonWrap = styled.div`
+  display: none;
+  @media screen and (max-width: 480px) {
+    display: block;
+    width: 100%;
+    height: 80px;
+  }
+`;
+
 const Bgimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const Writeimg = styled.img`
@@ -84,12 +147,18 @@ const Writeimg = styled.img`
   height: 70px;
   border-radius: 50%;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 const Topimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const ScrollContainer = styled.div`
@@ -106,8 +175,7 @@ const ScrollContainer = styled.div`
     right: 0%;
     align-items: center;
     justify-content: center;
-    bottom: -20px;
-    display: none;
+    bottom: -35px;
   }
 `;
 const Top = styled.button`
