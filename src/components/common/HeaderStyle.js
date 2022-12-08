@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export const BannerSection = styled.div`
-  width: 1325px;
-  background-color: red;
-`;
+export const BannerSection = styled.div``;
 export const Container1 = styled.div`
   position: fixed;
   display: flex;
