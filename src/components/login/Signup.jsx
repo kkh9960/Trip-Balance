@@ -32,6 +32,7 @@ function RegisterPage() {
   const [ckColor,setckColor]=useState();
   const [checkcolor, setcheckcolor] = useState(0);
   const [nickCheck,setnickCheck] = useState()
+  const [color, setColor] = useState("red");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Emailj =
@@ -49,10 +50,10 @@ function RegisterPage() {
       if (res.data.statusCode == 0) {
         setCheckError(<div size={30} />);
 
-        setCheckMsg(<div>사용가능한닉네임입니다</div>);
+        setCheckMsg("사용가능한닉네임입니다");
         setDpNameCheck(true);
       } else {
-        setCheckMsg("이미 다른 사용자가 사용 중 입니다.");
+        setCheckMsg(<div style={{color}}>이미 다른 사용자가 사용 중 입니다</div>);
         setDpNameCheck(false);
       }
     });
@@ -66,7 +67,9 @@ function RegisterPage() {
         return
       }
       if (res.data.statusCode == 117) {
-        setEmailCheckMsg("중복된이메일입니다!");
+        setEmailCheckMsg(
+          <div style={{ color }}>이미 다른 사용자가 사용 중 입니다</div>
+        );
       } else {
         setEmailCheckMsg("가입가능한이메일입니다");
       }

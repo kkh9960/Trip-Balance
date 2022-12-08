@@ -22,7 +22,7 @@ const Footer = () => {
               <t.Gitimg src={Git} />
               곽규현
             </t.GitWrap>
-            <t.GitWrap href="">
+            <t.GitWrap href="https://github.com/seongwoo9156">
               <t.Gitimg src={Git} /> 박성우
             </t.GitWrap>
             <t.GitWrap href="https://github.com/jnwnddh">
@@ -39,7 +39,7 @@ const Footer = () => {
             </t.GitWrap>
           </t.FrontWrap>
         </t.Fronts>
-       
+
         <t.Backs>
           <t.BackWrap>
             <t.GitWrap>BACK</t.GitWrap>

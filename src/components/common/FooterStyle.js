@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: gray;
-
+  width: 100%;
   @media screen and (max-width: 746px) {
     width: 100%;
   }
@@ -192,7 +192,7 @@ export const Backs = styled.div`
     color: white;
   }
 `;
-
+//
 export const BackWrap = styled.div`
   opacity: 0.5;
   margin-top: 3px;
