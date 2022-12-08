@@ -8,7 +8,7 @@ export const Container = styled.div`
   }
 `;
 export const Wrap = styled.div`
-height: 250px;
+  height: 250px;
   @media screen and (max-width: 550px) {
     height: 360px;
     width: 100%;
@@ -55,8 +55,8 @@ export const Gitimg = styled.img`
   margin: 2px;
 `;
 export const Footerlogo = styled.img`
-position: relative;
-top:40px;
+  position: relative;
+  top: 40px;
   width: 300px;
   @media screen and (max-width: 480px) {
     width: 183px;
@@ -157,8 +157,8 @@ export const Back = styled.div`
   }
 `;
 export const Fronts = styled.div`
-position: relative;
-top: -16px;
+  position: relative;
+  top: -16px;
   @media screen and (max-width: 480px) {
     position: relative;
     top: -10px;
@@ -182,9 +182,8 @@ export const FrontWrap = styled.div`
   }
 `;
 export const Backs = styled.div`
-
   position: relative;
-  top: -15px;
+  top: -35px;
 
   @media screen and (max-width: 480px) {
     position: relative;

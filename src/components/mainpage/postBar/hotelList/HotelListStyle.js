@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const hotelSection = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     max-width: 100%;
     min-width: 100px;
     height: 996px;
@@ -60,7 +60,7 @@ export const hotelText = styled.div`
   }
 `;
 export const hotelList = styled.div`
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 481px) {
     width: 1320px;
     display: flex;
     flex-wrap: wrap;
