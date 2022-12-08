@@ -89,10 +89,10 @@ export default function GamePage() {
           </g.balanceButtonWrap>
           <g.vsLogo/>
           <g.firstWrap>
-            <g.balanceFirst onClick={goFirst}>처음으로</g.balanceFirst>
+            <g.balanceFirst onClick={goFirst}></g.balanceFirst>
           </g.firstWrap>
           <g.homeWrap>
-            <g.balanceFirst onClick={goHome}>메인으로</g.balanceFirst>
+            <g.balanceFirst onClick={goHome}></g.balanceFirst>
           </g.homeWrap>
           </g.balanceViewWrap>
       )}
