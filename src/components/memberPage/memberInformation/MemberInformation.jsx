@@ -7,13 +7,11 @@ import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./MemberInformationChart";
-
+import MemberInformationChart from "./MemberInformationChart";
 
 export default function MemberInformation() {
   const id = useParams();
 
-  
- 
   const [profileImg, setProfileImg] = useState(profile);
   const [userEmail, setUserEmail] = useState();
   const [userSns, setUserSns] = useState();
@@ -21,7 +19,6 @@ export default function MemberInformation() {
   const [nickname, setNickname, nicknameChange] = useInput();
   const [topNickname, setTopNickname] = useState();
 
-  
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`/tb/memberinfo/${id.id}`);
@@ -39,7 +36,6 @@ export default function MemberInformation() {
     fetchData();
   }, []);
 
-  
   return (
     <t.ProfileInformationView>
       <t.userName>
@@ -48,20 +44,26 @@ export default function MemberInformation() {
       <t.UserInfor>
         <t.myInformation>
           <t.ProfileImgBox src={profileImg} alt="프로필사진" />
+          <t.mobileID>
+            <t.mobileNickName>{nickname} 님</t.mobileNickName>
+            <t.mobileEmail>{userEmail}</t.mobileEmail>
+          </t.mobileID>
           <t.profileinfo>
-            <t.nickName>HI. {nickname} 님</t.nickName>
-            <t.email style={{ color: "#848484" }}>{userEmail}</t.email>
+            <t.nickName>{nickname} 님</t.nickName>
+            <t.email>{userEmail}</t.email>
             <t.introduce>
               <t.textName>자기소개</t.textName>
               <t.selfBox value={userSelf} />
             </t.introduce>
             <t.snsLink>
-            
+              {/* <t.textName>링크걸기</t.textName> */}
+              {/* <t.snsIcon src={IconInstagram} />
+                <t.snsIcon src={IconFacebooke} />
+                <t.snsIcon src={IconYoutube} /> */}
             </t.snsLink>
           </t.profileinfo>
         </t.myInformation>
-
-        <InformationChart />
+        <MemberInformationChart />
       </t.UserInfor>
     </t.ProfileInformationView>
   );

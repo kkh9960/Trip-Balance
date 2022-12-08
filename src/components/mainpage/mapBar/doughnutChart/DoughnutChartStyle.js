@@ -50,8 +50,8 @@ export const chartView = styled.div`
   box-shadow: 0 0 10px;
 
   @media screen and (max-width: 480px) {
-    width: 124px;
-    height: 124px;
+    width: 104px;
+    height: 104px;
     margin: 10px auto;
     text-align: center;
     border-radius: 50%;
