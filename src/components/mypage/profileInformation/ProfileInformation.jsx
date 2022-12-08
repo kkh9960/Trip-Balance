@@ -36,7 +36,6 @@ export default function ProfileInformation({}) {
       } else {
         setProfileImg(result.data.data.profileImg);
       }
-      console.log("저장", result.data.data.nickName);
       setNickname(result.data.data.nickName);
       setUserEmail(result.data.data.email);
       setUserSelf(result.data.data.self);

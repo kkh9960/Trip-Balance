@@ -43,7 +43,7 @@ const Header = () => {
   }
   const [toggle, setToggle] = useState(true);
   const toggleChange = () => {
-    return toggle ? (setToggle(false), console.log("g")) : setToggle(true);
+    return toggle ? setToggle(false) : setToggle(true);
   };
 
   return (
