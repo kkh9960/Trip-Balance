@@ -147,7 +147,7 @@ export default function InformationChart() {
   };
   return (
     <t.inforChartViewbox>
-      <t.chartNametag>TOP. 10</t.chartNametag>
+      <t.chartNametag>TOP10</t.chartNametag>
       <t.inforChartBox>
         <t.inforChartBoxWrap>
           <t.chartName>나의 통계</t.chartName>

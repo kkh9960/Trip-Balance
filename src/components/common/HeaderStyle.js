@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const BannerSection = styled.div`
+  width: 1325px;
+  background-color: red;
+`;
 export const Container1 = styled.div`
   position: fixed;
   display: flex;
@@ -13,7 +17,7 @@ export const Container1 = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   @media screen and (max-width: 480px) {
     position: fixed;
-    height: 60px;
+    height: 30px;
     flex-wrap: wrap;
     align-items: center;
   }
@@ -39,7 +43,7 @@ export const Container2 = styled.div`
 
   @media screen and (max-width: 480px) {
     position: fixed;
-    height: 60px;
+    height: 30px;
     transition: 0.5s;
     flex-wrap: wrap;
     align-items: center;
@@ -64,15 +68,31 @@ export const toggleBtn = styled.img`
   position: absolute;
   right: 60px;
   @media screen and (max-width: 480px) {
-    font-size: 22px;
+    display: ${(props) => (props.toggle ? "flex" : "none")};
+    scale: 0.5;
     position: absolute;
     right: 20px;
   }
   @media screen and (max-width: 1240px) {
-    display: block;
+    display: ${(props) => (props.toggle ? "flex" : "none")};
   }
 `;
 
+export const toggleCancelBtn = styled.img`
+  display: ${(props) => (props.toggle ? "none" : "flex")};
+  cursor: pointer;
+  position: absolute;
+  right: 60px;
+  @media screen and (max-width: 480px) {
+    display: ${(props) => (props.toggle ? "none" : "flex")};
+    scale: 0.5;
+    position: absolute;
+    right: 20px;
+  }
+  @media screen and (max-width: 1240px) {
+    display: ${(props) => (props.toggle ? "none" : "flex")};
+  }
+`;
 export const WriteWrap = styled.div`
   width: 800px;
   height: 100%;
@@ -88,8 +108,10 @@ export const WriteWrap = styled.div`
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
+    height: 230px;
     align-items: center;
     justify-content: space-evenly;
+    flex-direction: column;
   }
 
   @media screen and (max-width: 1240px) {
@@ -102,14 +124,18 @@ export const WriteWrap = styled.div`
 
 export const LogoBox = styled.div`
   width: 274.47px;
-  height: 120px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 480px) {
     width: 144px;
-    height: 60px;
+    height: 100%;
     margin: auto;
+  }
+  @media screen and (max-width: 1240px) {
+    width: 274.47px;
+    height: 100%;
   }
 `;
 export const Logo = styled.img`
@@ -120,11 +146,9 @@ export const Logo = styled.img`
   margin-left: 250px;
   transition: 1s;
   @media screen and (max-width: 480px) {
-    width: 140px;
-    height: 46px;
+    scale: 0.5;
     transition: 0.5s;
     margin-left: 30px;
-    transition: 1s;
   }
   @media screen and (max-width: 1240px) {
     width: 144px;
@@ -162,7 +186,7 @@ export const survey = styled.div`
     }
   }
   @media screen and (max-width: 480px) {
-    font-size: 12px;
+    font-size: 14px;
     img {
       display: none;
     }
@@ -193,7 +217,8 @@ export const Game = styled.div`
     }
   }
   @media screen and (max-width: 480px) {
-    font-size: 12px;
+    font-size: 14px;
+
     img {
       display: none;
     }
@@ -245,7 +270,7 @@ export const Mypage = styled.div`
     }
   }
   @media screen and (max-width: 480px) {
-    font-size: 10px;
+    font-size: 14px;
     img {
       display: none;
     }
@@ -271,7 +296,7 @@ export const Login = styled.div`
     }
   }
   @media screen and (max-width: 480px) {
-    font-size: 10px;
+    font-size: 14px;
     img {
       display: none;
     }
@@ -297,7 +322,7 @@ export const Logout = styled.div`
     }
   }
   @media screen and (max-width: 480px) {
-    font-size: 10px;
+    font-size: 14px;
     img {
       display: none;
     }

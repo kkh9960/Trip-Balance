@@ -7,10 +7,10 @@ import { gsap } from "gsap";
 const TestSlide = () => {
   const [currentIndex, setIndex] = useState(0);
   const banner = document.querySelectorAll(".banner");
-  const Img1 = "img/bannerImg0.webp";
-  const Img2 = "img/bannerImg2.webp";
-  const Img3 = "img/bannerImg3.webp";
-  const Img4 = "img/bannerImg4.png";
+  const Img1 = "img/mainImg/bannerImg0.webp";
+  const Img2 = "img/mainImg/bannerImg2.webp";
+  const Img3 = "img/mainImg/bannerImg3.webp";
+  const Img4 = "img/mainImg/bannerImg4.png";
   const happy = "img/gameCommonImg/happy.gif";
 
   const navigate = useNavigate();
