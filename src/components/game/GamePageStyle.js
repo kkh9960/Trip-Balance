@@ -4,13 +4,11 @@ export const totalWrap = styled.div`
   background-image: url("../../img/gameCommonImg/backGroundImg.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  min-width: 1903px;
-  min-height: 969px;
+  width: 100vw;
+  height: 100vh;
   @media screen and (max-width: 480px) {
     background-image: url("../../img/gameCommonImg/backGroundImgM.webp");
     background-repeat: no-repeat;
-    min-height: 100%;
-    min-width: 100%;
   }
 `;
 
@@ -18,24 +16,16 @@ export const balanceBlackWrap = styled.div`
   position: absolute;
   background-color: black;
   opacity: 0.5;
-  min-width: 1903px;
-  min-height: 969px;
-  width: 100%;
-  height: 100%;
-  @media screen and (max-width: 480px) {
-    min-width: 100%;
-  }
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const balanceViewWrap = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  min-width: 1903px;
-  min-height: 969px;
-  @media screen and (max-width: 480px) {
-    min-width: 100%;
-  }
+  width: 100vw;
+  height: 100vh;
 `;
 
 export const balanceButtonWrap = styled.div`
@@ -44,9 +34,10 @@ export const balanceButtonWrap = styled.div`
   margin-top: 162.45px;
   justify-content: space-between;
   @media screen and (max-width: 480px) {
-    width: 90%; //426px;;
+    width: 90%;
     height: 300px;
-    margin-top: 133.94px;
+    margin-top: 18%;
+    //margin-top: 133.94px;
   }
 `;
 
@@ -80,7 +71,6 @@ export const balanceButtonHover = styled.img`
   width: 100px;
   height: 118.47px;
   object-fit: cover;
-  //filter: brightness(65%);
   position: absolute;
   top: 544.51px;
   left: 191.84px;
@@ -94,7 +84,6 @@ export const balanceButtonHover = styled.img`
     height: 83.43px;
     position: absolute;
     top: 313.39px;
-    //left: 66.71px;
     left: 30%;
   }
 `;
@@ -105,20 +94,17 @@ export const balanceButtonRightHover = styled.img`
   object-fit: cover;
   position: absolute;
   top: 544.51px;
-
   left: 1022.3px;
-
   display: none;
   ${balanceButtonBH}:hover & {
     display: block;
     z-index: 5;
   }
   @media screen and (max-width: 480px) {
-    width: 70.42px;
+    width: 90.42px;
     height: 83.43px;
     position: absolute;
     top: 313.39px;
-    //left: 288.87px;
     left: 140%;
   }
 `;
@@ -138,11 +124,10 @@ export const balanceButtonLeftHover = styled.img`
     z-index: 5;
   }
   @media screen and (max-width: 480px) {
-    width: 70.42px;
+    width: 90.42px;
     height: 83.43px;
     position: absolute;
     top: 313.39px;
-    //right: 288.87px;
     right: 140%;
   }
 `;
@@ -179,43 +164,34 @@ export const vsLogo = styled.div`
   }
 `;
 
-export const balanceFirst = styled.button`
-  width: 300px;
-  height: 70px;
-  background-color: #e44c4c;
-  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  font-family: "DungGeunMo";
-  color: white;
-  font-size: 1.4em;
-  text-shadow: 3px 3px 3px #000;
+export const moving = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  justify-content: space-between;
+  top: 10%;
   @media screen and (max-width: 480px) {
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    color: white;
-    font-size: 0.9em;
-    text-shadow: 3px 3px 3px #000;
+    top: 20%;
   }
 `;
 
 export const firstWrap = styled.div`
   position: relative;
-  display: flex;
+  width: 55px;
+  height: 55px;
+  background-repeat: no-repeat;
+  background-image: url("../../img/gameCommonImg/goFirst.webp");
   justify-content: space-around;
-  @media screen and (max-width: 480px) {
-    top: 140px;
-  }
 `;
 
 export const homeWrap = styled.div`
   position: relative;
-  top: 30px;
-  display: flex;
+  width: 55px;
+  height: 55px;
+  background-repeat: no-repeat;
+  background-image: url("../../img/gameCommonImg/goHome.webp");
   justify-content: space-around;
-  @media screen and (max-width: 480px) {
-    top: 180px;
-  }
 `;
 
 export const balanceButtonWrapFinal = styled.div`
@@ -230,8 +206,6 @@ export const balanceButtonWrapFinal = styled.div`
   @media screen and (max-width: 480px) {
     height: 100%;
     width: 100%;
-    //min-width: 480px;
-    min-height: 924.83px;
   }
 `;
 
@@ -289,7 +263,7 @@ export const balanceButtonFinal = styled.button`
   text-align: center;
   color: #ffffff;
   @media screen and (max-width: 480px) {
-    width: 360px;
+    width: 90%;
     height: 72px;
     margin-top: 124.03px;
   }

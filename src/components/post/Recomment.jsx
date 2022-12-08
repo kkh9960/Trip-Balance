@@ -10,8 +10,11 @@ import { useNavigate } from "react-router-dom";
 const Recomment = ({ item, cmtid }) => {
   const navigator = useNavigate();
 
+  const nickname = sessionStorage.getItem("nickName");
+  const cmtnick = item.author;
+
   const dispatch = useDispatch();
-  const UserDefaultImage = "../img/cmtdefault.svg";
+  const UserDefaultImage = "/img/tb.jpg";
   const [Editmode, setEditmode] = useState(false);
   const [EditRecomment, setEditRecomment] = useState("");
   const [ReUserImage, setReUserImage] = useState("");
@@ -22,7 +25,7 @@ const Recomment = ({ item, cmtid }) => {
   }, [item]);
 
   useEffect(() => {
-    if (item.profileImg == "") {
+    if (item.profileImg == null) {
       setReUserImage(UserDefaultImage);
     } else {
       setReUserImage(item.profileImg);
@@ -70,9 +73,10 @@ const Recomment = ({ item, cmtid }) => {
             <St.CommentUserImage src={ReUserImage} />
           </div>
           <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-          {Editprofile ? (
-            <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
-          ) : null}
+          {Editprofile
+            ? // <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+              null
+            : null}
         </St.CommentUserBox>
         <St.Commentbody>
           {Editmode ? (
@@ -87,15 +91,25 @@ const Recomment = ({ item, cmtid }) => {
           )}
         </St.Commentbody>
         <St.CommentButtonBox>
-          {Editmode ? (
-            <St.CommentButton onClick={ModifyCancel}>취소</St.CommentButton>
-          ) : (
-            <St.CommentButton onClick={ModifyComment}>수정</St.CommentButton>
-          )}
-          {Editmode ? (
-            <St.CommentButton onClick={ModifyComplete}>완료</St.CommentButton>
-          ) : (
-            <St.CommentButton onClick={DeleteComment}>삭제</St.CommentButton>
+          {cmtnick == nickname && (
+            <>
+              {Editmode ? (
+                <St.CommentButton onClick={ModifyCancel}>취소</St.CommentButton>
+              ) : (
+                <St.CommentButton onClick={ModifyComment}>
+                  수정
+                </St.CommentButton>
+              )}
+              {Editmode ? (
+                <St.CommentButton onClick={ModifyComplete}>
+                  완료
+                </St.CommentButton>
+              ) : (
+                <St.CommentButton onClick={DeleteComment}>
+                  삭제
+                </St.CommentButton>
+              )}
+            </>
           )}
         </St.CommentButtonBox>
       </St.CommentBox>

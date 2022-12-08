@@ -20,7 +20,6 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
-  console.log(posts);
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
   // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
@@ -32,7 +31,7 @@ const PostItem = () => {
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
 
-  const profiledefaultImg = "/img/default3.jpg";
+  const profiledefaultImg = "/img/tb.jpg";
   const [ref, inView] = useInView();
 
   const [test, settest] = useState(false);
@@ -115,7 +114,10 @@ const PostItem = () => {
             <TodayTitle>오늘의 여행지 검색</TodayTitle>
             <SearchBox>
               <SearchBoxForm onSubmit={getSearch}>
-                <CategorySearch onChange={getCategory}>
+                <CategorySearch
+                  onChange={getCategory}
+                  style={{ fontFamily: "Jalnan" }}
+                >
                   <option value="0">전체</option>
                   <option value="1">수도권</option>
                   <option value="2">강원도 + 경상도</option>
@@ -139,7 +141,7 @@ const PostItem = () => {
               <PostBestfive best={best} />
             </PostLikeBestbox>
             <PostListWrap>
-              <PostListTitle type="submit">TB 추천여행지</PostListTitle>
+              <PostListTitle type="submit">여행 이야기</PostListTitle>
               <PostCardList>
                 {posts &&
                   posts.map((item, idx) => (
@@ -190,7 +192,10 @@ const PostItem = () => {
           <TodayTitle>오늘의 여행지 검색</TodayTitle>
           <SearchBox>
             <SearchBoxForm onSubmit={getSearch}>
-              <CategorySearch onChange={getCategory}>
+              <CategorySearch
+                onChange={getCategory}
+                style={{ fontFamily: "Jalnan" }}
+              >
                 <option value="0">전체</option>
                 <option value="1">수도권</option>
                 <option value="2">강원도 + 경상도</option>
@@ -214,7 +219,7 @@ const PostItem = () => {
             <PostBestfive best={best} />
           </PostLikeBestbox>
           <PostListWrap>
-            <PostListTitle type="submit">TB 추천여행지</PostListTitle>
+            <PostListTitle type="submit">여행 이야기</PostListTitle>
             <PostCardList>
               {posts &&
                 posts.map((item, idx) => (
@@ -465,6 +470,7 @@ const CategorySearch = styled.select`
   border-radius: 30px;
   font-size: 20px;
   text-align: center;
+  margin-right: 20px;
   @media screen and (max-width: 480px) {
     width: 90%;
     height: 50px;

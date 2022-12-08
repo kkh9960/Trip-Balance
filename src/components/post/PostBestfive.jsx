@@ -1,4 +1,4 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -52,11 +52,10 @@ const PostBestfive = ({ best }) => {
     }
   };
 
-  console.log(best);
-
   return (
     <Main>
       <Wrap>
+        <BestfiveTitle>인기 게시글</BestfiveTitle>
         <Items className="items">
           {best &&
             best.map((item, idx) => (
@@ -83,6 +82,11 @@ const PostBestfive = ({ best }) => {
 };
 
 export default PostBestfive;
+
+const BestfiveTitle = styled.h2`
+  margin-bottom: 30px;
+  font-size: 2rem;
+`;
 
 const Textbox = styled.div`
   width: 344px;
@@ -145,6 +149,9 @@ const Wrap = styled.div`
     display: block;
     width: 20px;
     height: 100%;
+  }
+  h2 {
+    text-align: center;
   }
 `;
 

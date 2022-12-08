@@ -1,8 +1,24 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const BoardMypost = ({ post, mypost }) => {
+  const [filter, setfilter] = useState([]);
+
+  const params = useParams();
+
+  const anotherpost = filter.length;
+
+  useEffect(() => {
+    setfilter(
+      mypost.filter((item) => {
+        return item.postId != params.id;
+      })
+    );
+  }, [mypost]);
+
   useEffect(() => {
     let isDown = false;
     let startX;
@@ -49,11 +65,13 @@ const BoardMypost = ({ post, mypost }) => {
   return (
     <>
       <MyPostWrap>
-        <MyPostTitle>{post?.author}님의 다른글</MyPostTitle>
+        {anotherpost != 0 && (
+          <MyPostTitle>{post?.author}님의 다른글</MyPostTitle>
+        )}
         <PostItemWarp className="wrapper">
           <Itembox className="items">
-            {mypost &&
-              mypost.map((item, idx) => (
+            {filter &&
+              filter.map((item, idx) => (
                 <Item
                   className="item"
                   key={idx}
@@ -73,10 +91,12 @@ const BoardMypost = ({ post, mypost }) => {
           </Itembox>
         </PostItemWarp>
       </MyPostWrap>
-      <MyPostTitlemobile>{post?.author}님의 다른글</MyPostTitlemobile>
+      {anotherpost != 0 && (
+        <MyPostTitlemobile>{post?.author}님의 다른글</MyPostTitlemobile>
+      )}
       <PostCardList>
-        {mypost &&
-          mypost.map((item, idx) => (
+        {filter &&
+          filter.map((item, idx) => (
             <CardWrap
               key={idx}
               onClick={() => {
@@ -162,6 +182,7 @@ const PostCardList = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   grid-gap: 20px;
+  display: none;
   @media screen and (max-width: 480px) {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
