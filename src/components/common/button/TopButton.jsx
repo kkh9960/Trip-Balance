@@ -45,24 +45,24 @@ const TopButton = () => {
         showButton && (
           <ScrollContainer>
             <Bgimg
-              src="img/bgbtn.jpg"
+              src="../../img/bgbtn.webp"
               onClick={() => {
                 navigate(`/start`);
               }}
             />
 
             {email ? (
-              <Writeimg
-                src="img/writebtn.jpg"
+              <Write
+                src="../../img/writebtn.webp"
                 onClick={() => {
                   navigate(`/write`);
                 }}
               />
             ) : (
-              <Writeimg src="img/writebtn.jpg" onClick={goLogin} />
+              <Write src="../../img/writebtn.webp" onClick={goLogin} />
             )}
 
-            <Topimg src="img/topbtn.jpg" onClick={scrollToTop} />
+            <Top src="../../img/topbtn.webp" onClick={scrollToTop} />
           </ScrollContainer>
         )
       )}
