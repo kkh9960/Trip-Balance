@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const top = styled.div`
   padding-top: 120px;
-
+  width: 100vw;
+  height: 100vw;
   @media screen and (max-width: 746px) {
     width: 100%;
   }
@@ -26,12 +27,12 @@ export const localImgBox = styled.div`
 
 export const localResultBox = styled.div`
   width: 1903px;
+  margin: 0 auto 0 auto;
   @media screen and (max-width: 746px) {
     width: 100%;
     align-items: center;
     justify-content: center;
     //left: 0;
-
   }
 `;
 export const resultImgBox = styled.div`
