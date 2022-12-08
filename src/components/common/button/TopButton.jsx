@@ -100,19 +100,19 @@ const MobileBg = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  opacity: 0.7;
+  /* opacity: 0.7; */
 `;
 const MobileWrite = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  opacity: 0.7;
+  /* opacity: 0.7; */
 `;
 const MobileTop = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  opacity: 0.7;
+  /* opacity: 0.7; */
 `;
 
 const MobileBtnbox = styled.div`
