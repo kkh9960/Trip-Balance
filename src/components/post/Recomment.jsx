@@ -11,7 +11,7 @@ const Recomment = ({ item, cmtid }) => {
   const navigator = useNavigate();
 
   const dispatch = useDispatch();
-  const UserDefaultImage = "../img/cmtdefault.svg";
+  const UserDefaultImage = "/img/tb.jpg";
   const [Editmode, setEditmode] = useState(false);
   const [EditRecomment, setEditRecomment] = useState("");
   const [ReUserImage, setReUserImage] = useState("");
@@ -22,7 +22,7 @@ const Recomment = ({ item, cmtid }) => {
   }, [item]);
 
   useEffect(() => {
-    if (item.profileImg == "") {
+    if (item.profileImg == null) {
       setReUserImage(UserDefaultImage);
     } else {
       setReUserImage(item.profileImg);
@@ -70,9 +70,10 @@ const Recomment = ({ item, cmtid }) => {
             <St.CommentUserImage src={ReUserImage} />
           </div>
           <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-          {Editprofile ? (
-            <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
-          ) : null}
+          {Editprofile
+            ? // <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+              null
+            : null}
         </St.CommentUserBox>
         <St.Commentbody>
           {Editmode ? (

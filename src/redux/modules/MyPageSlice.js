@@ -16,14 +16,18 @@ export const __getMyInformation = createAsyncThunk(
 export const __putMyInformation = createAsyncThunk(
   "PUT_MY_INFO",
   async (payload, thunkAPI) => {
+    console.log(payload);
     try {
       const { data } = await instance.put(`tb/mypage/setinfo`, {
         nickName: payload.nickName,
         self: payload.self,
         profileImg: payload.profileImg,
       });
+      console.log("zz", data);
       return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
 );
 // 밸런스게임데이터
