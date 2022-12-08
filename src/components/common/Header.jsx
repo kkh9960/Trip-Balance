@@ -3,15 +3,16 @@ import * as t from "./HeaderStyle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
-
+import mainlogo from "../../img/mainlogo.webp"
+import mainlist from "../../img/mainlistW.webp"
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const nickname = sessionStorage.getItem("nickName");
   const [header, setHeader] = useState("/");
   const location = useLocation();
-  const mainlogo = "../../img/mainImg/mainlogo.webp";
-  const mainlist = "../../img/mainImg/mainlistW.webp";
+  // const mainlogo = "../";
+  // const mainlist = "../../img/mainImg/mainlistW.webp";
   const maingame = "../../img/mainImg/maingameW.webp";
   const mainpost = "../../img/mainImg/mainpostW.webp";
   const mainmypage = "../../img/mainImg/mainmypageW.webp";
