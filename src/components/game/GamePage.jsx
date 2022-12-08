@@ -88,12 +88,10 @@ export default function GamePage() {
             </g.balanceButtonBH>
           </g.balanceButtonWrap>
           <g.vsLogo/>
-          <g.firstWrap>
-            <g.balanceFirst onClick={goFirst}></g.balanceFirst>
-          </g.firstWrap>
-          <g.homeWrap>
-            <g.balanceFirst onClick={goHome}></g.balanceFirst>
-          </g.homeWrap>
+          <g.moving>
+            <g.firstWrap onClick={goFirst}></g.firstWrap>
+            <g.homeWrap onClick={goHome}></g.homeWrap>
+          </g.moving>
           </g.balanceViewWrap>
       )}
     </g.totalWrap>
