@@ -9,7 +9,6 @@ import {
 } from "../../redux/modules/BoardSlice";
 import imageCompression from "browser-image-compression";
 
-
 const BoardPostModify = () => {
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
@@ -827,6 +826,9 @@ export default BoardPostModify;
 
 const HeaderContainer = styled.div`
   padding-top: 120px;
+  @media screen and (max-width: 480px) {
+    padding-top: 80px;
+  }
 `;
 
 const Outbtn = styled.button`

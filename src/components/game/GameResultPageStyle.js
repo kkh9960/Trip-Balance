@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const top = styled.div`
   padding-top: 120px;
-  width: 100vw;
-  height: 100vw;
   @media screen and (max-width: 746px) {
     width: 100%;
+    padding-top: 80px;
   }
 `;
 

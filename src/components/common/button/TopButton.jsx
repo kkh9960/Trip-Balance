@@ -44,16 +44,25 @@ const TopButton = () => {
       ) : (
         showButton && (
           <ScrollContainer>
-            <Balance onClick={() => navigate("/start")}>밸런스게임</Balance>
+            <Bgimg
+              src="img/bgbtn.jpg"
+              onClick={() => {
+                navigate(`/start`);
+              }}
+            />
+
             {email ? (
-              <Write onClick={() => navigate("/write")}>글쓰기</Write>
+              <Writeimg
+                src="img/writebtn.jpg"
+                onClick={() => {
+                  navigate(`/write`);
+                }}
+              />
             ) : (
-              <Write onClick={goLogin}>글쓰기</Write>
+              <Writeimg src="img/writebtn.jpg" onClick={goLogin} />
             )}
 
-            <Top id="top" onClick={scrollToTop} type="button">
-              Top
-            </Top>
+            <Topimg src="img/topbtn.jpg" onClick={scrollToTop} />
           </ScrollContainer>
         )
       )}
@@ -63,6 +72,26 @@ const TopButton = () => {
 
 export default TopButton;
 
+const Bgimg = styled.img`
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+const Writeimg = styled.img`
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+const Topimg = styled.img`
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
 const ScrollContainer = styled.div`
   position: fixed;
   right: 3%;
@@ -71,14 +100,15 @@ const ScrollContainer = styled.div`
 
   width: 80px;
   height: 150px;
-   @media screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) {
     display: flex;
     width: 100%;
     right: 0%;
     align-items: center;
     justify-content: center;
-    bottom:-20px;
-   }
+    bottom: -20px;
+    display: none;
+  }
 `;
 const Top = styled.button`
   margin-top: 7px;
@@ -135,9 +165,9 @@ const Balance = styled.button`
   border: 1px solid rgb(210, 204, 193);
   border-radius: 50%;
   outline: none;
-  height: 70px;
+  height: 81px;
   margin-top: 8px;
-  width: 70px;
+  width: 81px;
   cursor: pointer;
   :hover {
     color: rgb(142, 26, 26);

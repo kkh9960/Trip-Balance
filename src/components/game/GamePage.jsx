@@ -90,6 +90,7 @@ export default function GamePage() {
           <g.vsLogo/>
           <g.moving>
             <g.firstWrap onClick={goFirst}></g.firstWrap>
+            <g.wrapDiv></g.wrapDiv>
             <g.homeWrap onClick={goHome}></g.homeWrap>
           </g.moving>
           </g.balanceViewWrap>
