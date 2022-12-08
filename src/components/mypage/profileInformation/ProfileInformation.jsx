@@ -99,7 +99,6 @@ export default function ProfileInformation({}) {
     setProfileMode(true);
   };
 
-  
   return (
     <t.ProfileInformationView>
       <t.userName>
@@ -127,7 +126,7 @@ export default function ProfileInformation({}) {
                 <t.snsIcon src={IconFacebooke} />
                 <t.snsIcon src={IconYoutube} /> */}
               </t.snsLink>
-              <t.buttonGroup>
+              <t.buttonGroup style={{ display: "none" }}>
                 <button onClick={changeprofile}>프로필변경</button>
               </t.buttonGroup>
             </t.profileinfo>

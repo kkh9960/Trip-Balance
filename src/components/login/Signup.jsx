@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addMemberThunk } from "../../redux/modules/Signup";
@@ -8,8 +8,9 @@ import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import * as t from "./Signupstyle";
-import Exit from "../../img/exit.svg"
-import Back from "../../img/back.svg"
+import Exit from "../../img/exit.svg";
+import Back from "../../img/back.svg";
+import { useEffect } from "react";
 function RegisterPage() {
   const {
     register,
@@ -101,9 +102,12 @@ function RegisterPage() {
         return;
       }
       alert("회원가입완료!");
-     window.location.reload();
+      window.location.reload();
     });
   };
+
+  const Reg = "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{6,}$";
+
   return (
     <motion.div
       className="loginPage"
@@ -122,13 +126,11 @@ function RegisterPage() {
                 onClick={() => {
                   setModal(!modal);
                 }}
-
               >
-                <t.Back src={Back}/>
-
+                <t.Back src={Back} />
               </t.BackArrow>
               <t.Cancel onClick={modalClose}>
-                <t.Exit src={Exit}/>
+                <t.Exit src={Exit} />
               </t.Cancel>
 
               <t.SignupTitleWrap>
@@ -141,7 +143,9 @@ function RegisterPage() {
                 onChange={emailchange}
                 placeholder=" 이메일을 입력해주세요 ."
               />
-              <t.EmailCheck onClick={idCheck} button type="button">중복확인</t.EmailCheck>
+              <t.EmailCheck onClick={idCheck} button type="button">
+                중복확인
+              </t.EmailCheck>
 
               <t.EmailCheckError>{EmailCheckError}</t.EmailCheckError>
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
@@ -166,7 +170,7 @@ function RegisterPage() {
                 {...register("password", {
                   required: true,
                   minLength: 8,
-                  pattern: /[~!@#$%^&*()_+|<>?:{}]/,
+                 
                 })}
               />
 

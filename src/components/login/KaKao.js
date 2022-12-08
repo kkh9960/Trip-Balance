@@ -12,7 +12,7 @@ const KaKao = () => {
   useEffect(() => {
     if (!!code) {
       instance
-        .get(`tb/ouath/kakao?code=${code}`)
+        .get(`tb/oauth/kakao?code=${code}`)
         .then((res) => {
           sessionStorage.setItem("email", res.data.data.email);
           sessionStorage.setItem("nickName", res.data.data.nickName);

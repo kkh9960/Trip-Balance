@@ -48,7 +48,7 @@ export const myInformationWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding-top: 120px;
+  padding-top: 130px;
   @media screen and (max-width: 480px) {
     flex-direction: column;
     width: 100%;
@@ -140,10 +140,11 @@ export const postWrap = styled.div`
 `;
 export const postItem = styled.div`
   width: 185px;
-  height: 239px;
-  border: 1px solid;
+  height: 240px;
   border-radius: 10px;
   position: relative;
+  box-shadow: 0 0 6px;
+
   cursor: pointer;
   @media screen and (max-width: 480px) {
   }
@@ -151,18 +152,21 @@ export const postItem = styled.div`
 export const postImg = styled.img`
   width: 185px;
   height: 142px;
-  border-radius: 10px;
   object-fit: cover;
 `;
 export const postTitle = styled.div`
   font-size: 20px;
   font-weight: 400;
+  padding: 5px 5px;
+  margin: 0 auto;
 `;
 export const postTime = styled.div`
   position: absolute;
   bottom: 0px;
   font-size: 18px;
   color: #787878;
+  margin-left: 5px;
+  margin-bottom: 10px;
 `;
 //좋아요한 게시글
 export const myPickPostWrap = styled.div`
@@ -237,6 +241,7 @@ export const pickPostWrap = styled.div`
   }
 `;
 export const pickPostItem = styled.div`
+  position: relative;
   width: 180px;
   height: 260px;
   border: 0 solid black;
@@ -248,7 +253,7 @@ export const pickPostItem = styled.div`
 export const pickPostImg = styled.img`
   width: 180px;
   height: 190px;
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   object-fit: cover;
   @media screen and (max-width: 480px) {
     border-radius: 10px;
@@ -272,7 +277,14 @@ export const pickPostTitle = styled.div`
     text-overflow: ellipsis;
   }
 `;
-export const pickPostNickname = styled.div``;
+export const pickPostNickname = styled.div`
+  position: absolute;
+  bottom: 0px;
+  font-size: 18px;
+  color: #787878;
+  margin-left: 5px;
+  margin-bottom: 10px;
+`;
 
 export const footer = styled.div`
   @media screen and (min-width: 481px) {
@@ -286,7 +298,6 @@ export const footer = styled.div`
 `;
 
 export const mySelectInformation = styled.div`
-
   @media screen and (min-width: 481px) {
     flex-direction: column;
     justify-content: space-around;
@@ -304,5 +315,4 @@ export const mySelectInformation = styled.div`
     flex-direction: column;
     width: 100%;
   }
-
 `;
