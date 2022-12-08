@@ -164,43 +164,46 @@ export const vsLogo = styled.div`
   }
 `;
 
-export const balanceFirst = styled.button`
-  /* width: 300px;
-  height: 70px;
-  background-color: #e44c4c;
-  box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  font-family: "DungGeunMo";
-  color: white;
-  font-size: 1.4em;
-  text-shadow: 3px 3px 3px #000;
+export const moving = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  justify-content: space-between;
+  top: 10%;
   @media screen and (max-width: 480px) {
-    width: 200px;
-    height: 50px;
-    border-radius: 10px;
-    color: white;
-    font-size: 0.9em;
-    text-shadow: 3px 3px 3px #000;
-  } */
+    top: 20%;
+  }
 `;
 
 export const firstWrap = styled.div`
   position: relative;
-  display: flex;
+  width: 55px;
+  height: 55px;
+  opacity: 80%;
+  background-repeat: no-repeat;
+  background-image: url("../../img/gameCommonImg/goFirst.webp");
   justify-content: space-around;
-  @media screen and (max-width: 480px) {
-    top: 17%;
-  }
+`;
+
+export const wrapDiv = styled.div`
+  position: relative;
+  width: 10px;
+  height: 55px;
+  opacity: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../img/gameCommonImg/line.webp");
 `;
 
 export const homeWrap = styled.div`
   position: relative;
-  top: 30px;
-  display: flex;
+  width: 55px;
+  height: 55px;
+  opacity: 80%;
+  background-repeat: no-repeat;
+  background-image: url("../../img/gameCommonImg/goHome.webp");
   justify-content: space-around;
-  @media screen and (max-width: 480px) {
-    top: 22%;
-  }
 `;
 
 export const balanceButtonWrapFinal = styled.div`

@@ -18,12 +18,12 @@ export const AuthWrapper = styled.div`
 `;
 export const Formtag = styled.form`
   padding: 30px;
-  width: 518px;
-  height: 726px;
+  width: 440px;
+  height: 650px;
   bottom: 70px;
   background-color: white;
   margin: 0 auto;
-  border-radius: 10px;
+  border-radius: 50px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   position: relative;
   top: 60px;
@@ -35,7 +35,8 @@ export const Formtag = styled.form`
 `;
 export const CancelBtn = styled.div`
   position: relative;
-  left: 500px;
+  left: 400px;
+  top:10px;
   cursor: pointer;
   width: 24px;
   height: 50px;
@@ -43,7 +44,9 @@ export const CancelBtn = styled.div`
     left: 300px;
   }
 `;
-export const Exit = styled.img``;
+export const Exit = styled.img`
+width: 30px;
+`;
 
 export const LoginTitleWrap = styled.div``;
 export const LoginTitle = styled.h1``;
@@ -77,7 +80,7 @@ export const Danger = styled.p`
 export const LoginBtn = styled.button`
   width: 360px;
   height: 61px;
-  left: 80px;
+  left: 40px;
   top: 100px;
   position: relative;
   background: #00c1ec;
@@ -93,7 +96,7 @@ export const Line = styled.div`
   width: 354px;
   border: 1px solid rgba(170, 170, 170, 0.7);
   position: relative;
-  left: 80px;
+  left: 40px;
   top: 110px;
   @media screen and (max-width: 746px) {
     left: 10px;
@@ -114,7 +117,7 @@ export const KakaoWrap = styled.a`
   height: 61px;
   border-radius: 10px;
   position: relative;
-  left: 80px;
+  left: 40px;
   top: 70px;
 
   @media screen and (max-width: 746px) {
@@ -135,7 +138,7 @@ export const KakaoImg = styled.img`
 export const SignUpbtn = styled.div`
   position: relative;
   text-align: center;
-  top: 250px;
+  top: 220px;
   font-size: 24px;
   cursor: pointer;
 `;

@@ -53,7 +53,6 @@ export default function MyPageView() {
     fetchData();
   }, []);
 
-  console.log(posts);
   return (
     <t.myInformationWrap>
       <ProfileInformation />

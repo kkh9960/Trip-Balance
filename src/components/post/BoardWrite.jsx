@@ -95,8 +95,6 @@ const BoardWrite = () => {
     }
   };
 
-  
-
   const PetHandler = () => {
     Pet == 1 ? setPet(0) : setPet(1);
   };
@@ -649,6 +647,9 @@ export default BoardWrite;
 
 const HeaderContainer = styled.div`
   padding-top: 120px;
+  @media screen and (max-width: 480px) {
+    padding-top: 80px;
+  }
 `;
 
 const Outbtn = styled.button`
@@ -957,7 +958,7 @@ const PetCheckBox = styled.div`
     max-width: 100%;
     height: 50px;
     font-size: 18px;
-    gap: 50px;
+    gap: 10px;
   }
 `;
 
@@ -993,6 +994,9 @@ const PetCheck = styled.input`
 const PetLabel = styled.label`
   font-size: 20px;
   color: #777777;
+  @media screen and (max-width: 480px) {
+    margin-left: 20px;
+  }
 `;
 
 const Buttonsection = styled.div`

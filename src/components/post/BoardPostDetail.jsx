@@ -41,13 +41,18 @@ const BoardPostDetail = () => {
   const [heart, setHeart] = useState(false);
   const [heartnum, setheartnum] = useState();
   const [commentImg, setcommentImg] = useState();
+  const [mypostready, setmypostready] = useState(false);
 
   useEffect(() => {
     dispatch(__getBoardDetail(id));
   }, []);
 
   useEffect(() => {
-    if (!isLoading) dispatch(__getmypost(post?.authorId));
+    if (post == null) {
+    } else {
+      dispatch(__getmypost(post?.authorId));
+      setmypostready(true);
+    }
   }, [isLoading]);
 
   useEffect(() => {
@@ -84,11 +89,18 @@ const BoardPostDetail = () => {
     setcomment(e.target.value);
   };
 
+  const Reg = /^\s+|\s+$/g;
+
   //댓글쓰기
   const WriteComment = () => {
-    dispatch(__postComment({ id, content: comment }));
-    setcomment("");
+    if (Reg.test(comment) || comment == "") {
+      alert("댓글은 빈칸으로 시작하거나 빈칸으로 끝날수 없습니다.");
+    } else {
+      dispatch(__postComment({ id, content: comment }));
+      setcomment("");
+    }
   };
+
   const modifyPost = () => {
     navigate(`/modify/${id.id}`);
   };
@@ -362,6 +374,7 @@ const BoardPostDetail = () => {
                 name=""
                 maxLength="200"
                 id="comment"
+                placeholder="댓글을 작성해 보세요."
                 value={comment}
                 onKeyUp={CheckLength}
                 onChange={CommentHandler}
@@ -405,7 +418,7 @@ const BoardPostDetail = () => {
                 />
               ))}
           </BoardCommentWrap>
-          <BoardMypost post={post} mypost={mypost} />
+          {mypostready && <BoardMypost post={post} mypost={mypost} />}
         </BoardPostDetailWrap>
       </BoardPostDetailContainer>
       <Topbutton />
@@ -417,6 +430,9 @@ export default BoardPostDetail;
 
 const HeaderContainer = styled.div`
   padding-top: 120px;
+  @media screen and (max-width: 480px) {
+    padding-top: 80px;
+  }
 `;
 
 const BoardContentsbox = styled.div`

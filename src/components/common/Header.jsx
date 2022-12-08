@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as t from "./HeaderStyle";
-import mainlogo from "../../img/mainlogo.webp";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
-import mainlist from "../../img/mainlistW.webp";
-import maingame from "../../img/maingameW.webp";
-import mainpost from "../../img/mainpostW.webp";
-import mainmypage from "../../img/mainmypageW.webp";
-import mainlogin from "../../img/mainloginW.webp";
-import mainlogout from "../../img/mainlogoutW.webp";
-import mainservey from "../../img/mainserveyW.webp";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -18,6 +10,16 @@ const Header = () => {
   const nickname = sessionStorage.getItem("nickName");
   const [header, setHeader] = useState("/");
   const location = useLocation();
+  const mainlogo = "../../img/mainImg/mainlogo.webp";
+  const mainlist = "../../img/mainImg/mainlistW.webp";
+  const maingame = "../../img/mainImg/maingameW.webp";
+  const mainpost = "../../img/mainImg/mainpostW.webp";
+  const mainmypage = "../../img/mainImg/mainmypageW.webp";
+  const mainlogin = "../../img/mainImg/mainloginW.webp";
+  const mainlogout = "../../img/mainImg/mainlogoutW.webp";
+  const mainservey = "../../img/mainImg/mainserveyW.webp";
+  const maincancel = "../../img/mainImg/mainCancelButtonW.webp";
+
   useEffect(() => {
     setHeader(location.pathname);
   }, [location]);
@@ -45,7 +47,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <t.BannerSection>
       {header === "/" ? (
         <t.Container1>
           {modal ? (
@@ -59,11 +61,16 @@ const Header = () => {
               </t.LogoBox>
               <t.toggleBtn
                 src={mainlist}
-                yarns
                 alt="listicon"
                 toggle={toggle}
                 onClick={toggleChange}
-              ></t.toggleBtn>
+              />
+              <t.toggleCancelBtn
+                src={maincancel}
+                alt="cancelicon"
+                toggle={toggle}
+                onClick={toggleChange}
+              />
               <t.WriteWrap toggle={toggle}>
                 <t.survey>
                   <t.surveyLink
@@ -148,6 +155,12 @@ const Header = () => {
                 toggle={toggle}
                 onClick={toggleChange}
               />
+              <t.toggleCancelBtn
+                src={maincancel}
+                alt="cancelicon"
+                toggle={toggle}
+                onClick={toggleChange}
+              />
               <t.WriteWrap toggle={toggle}>
                 <t.survey>
                   <t.surveyLink
@@ -215,7 +228,7 @@ const Header = () => {
           )}
         </t.Container2>
       )}
-    </>
+    </t.BannerSection>
   );
 };
 

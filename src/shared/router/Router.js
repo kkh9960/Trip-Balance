@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ScrollToTop from "./ScrollToTop.js";
 const MainPage = lazy(() => import("../../pages/mainPage/MainPage"));
 const MyPage = lazy(() => import("../../pages/mypage/MyPage"));
 const MemberPage = lazy(() => import("../../pages/memberPage/MemberPage"));
@@ -16,6 +17,7 @@ const Router = () => {
   return (
     <Suspense fallback={<div>로딩중...</div>}>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/mypage" element={<MyPage />} />
@@ -34,4 +36,5 @@ const Router = () => {
     </Suspense>
   );
 };
+
 export default Router;
