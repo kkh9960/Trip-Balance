@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -12,12 +12,9 @@ import Exit from "../../img/exit.svg";
 import Back from "../../img/back.svg";
 function RegisterPage() {
   const {
-    register,
-    watch,
     formState: { errors },
     handleSubmit,
   } = useForm({ mode: "onBlur" });
-  const [errorFromSubmit, setErrorFromSubmit] = useState("");
   const [modal, setModal] = useState(false);
   const [checkError, setCheckError] = useState("");
   const [checkMsg, setCheckMsg] = useState("");
@@ -25,16 +22,20 @@ function RegisterPage() {
   const [EmailCheckError, setEmailCheckError] = useState("");
   const [EmailCheckMsg, setEmailCheckMsg] = useState("");
   const [bimilcheck, setBimilcheck] = useState("문자혹은숫자6~12글자");
+  const [bimilCheckmsg,setBimilCheckmsg] = useState("")
   const [loading, setLoading] = useState(false);
+  const [emcheck,setemCheck] = useState();
   const [bimil, setBimil, bimilchange] = useInput("");
-  const [pwcheck, setpwCheck, pwcheckChange] = useInput("");
-  const dispatch = useDispatch();
-  const password = useRef();
-  password.current = watch("password");
-  const navigate = useNavigate();
+  const [pwcheck,setpwCheck,pwcheckChange] = useInput("");
   const [email, setEmail, emailchange] = useInput("");
   const [nickname, setnickname, nicknamechange] = useInput("");
+  const [ckColor,setckColor]=useState();
   const [checkcolor, setcheckcolor] = useState(0);
+  const [nickCheck,setnickCheck] = useState()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const Emailj =
+    /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
   const modalClose = () => {
     window.location.reload();
   };
@@ -42,12 +43,13 @@ function RegisterPage() {
     e.stopPropagation();
     instance.post("tb/signup/nicknamecheck", nick).then((res) => {
       if (nickname.trim() === "") {
-        alert("닉네임을입력해주세요!");
+        setCheckMsg("닉네임을입력해주세요");
         return;
       }
       if (res.data.statusCode == 0) {
         setCheckError(<div size={30} />);
-        setCheckMsg("사용가능한닉네임입니다");
+
+        setCheckMsg(<div>사용가능한닉네임입니다</div>);
         setDpNameCheck(true);
       } else {
         setCheckMsg("이미 다른 사용자가 사용 중 입니다.");
@@ -55,20 +57,18 @@ function RegisterPage() {
       }
     });
   };
+ 
   const idCheck = (e) => {
     e.stopPropagation();
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
-      if (res.data.statusCode == 0) {
-        setEmailCheckError(<div size={30} />);
-        setEmailCheckMsg("사용가능한이메일입니다");
-      }
       if (email.trim() === "") {
-        alert("이메일을입력해주세요!");
-        return;
+        setEmailCheckMsg("이메일을입력해주세요");
+        return
       }
       if (res.data.statusCode == 117) {
         setEmailCheckMsg("중복된이메일입니다!");
-        return;
+      } else {
+        setEmailCheckMsg("가입가능한이메일입니다");
       }
     });
   };
@@ -78,6 +78,7 @@ function RegisterPage() {
   const nick = {
     nickName: nickname,
   };
+
   const onSubmitEvery = async (data) => {
     setLoading(true);
     if (email.trim() === "") {
@@ -88,8 +89,8 @@ function RegisterPage() {
       addMemberThunk({
         email: LoginValue.email,
         nickName: nickname,
-        pw: data.password,
-        pwConfirm: data.password_confirm,
+        pw: bimil,
+        pwConfirm: pwcheck,
       })
     ).then((res) => {
       if (res.payload.statusCode == 117) {
@@ -120,11 +121,14 @@ function RegisterPage() {
       alert("회원가입완료!");
       window.location.reload();
     });
+ 
   };
-  const Reg = /^[A-Za-z0-9]{6,12}$/;
+
+
+  const Reg = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
   useEffect(() => {
     if (bimil == "") {
-      setBimilcheck("문자 혹은 숫자 6~12글자");
+      setBimilcheck("특수문자숫자문자8~12글자");
       setcheckcolor(0);
     } else {
       if (Reg.test(bimil)) {
@@ -136,7 +140,22 @@ function RegisterPage() {
       }
     }
   }, [bimil]);
-
+   
+ 
+ useEffect(() => {
+  if(pwcheck == ""){
+    setckColor(0)
+  }else{
+     if (bimil != pwcheck) {
+       setBimilCheckmsg("비밀번호가일치하지않습니다");
+       setckColor(1);
+     } else {
+       setBimilCheckmsg("비밀번호가일치합니다");
+       setckColor(2);
+     }
+  }
+  
+ }, [pwcheck,bimil]);
   return (
     <motion.div
       className="loginPage"
@@ -184,10 +203,11 @@ function RegisterPage() {
               <t.NickNameCheck onClick={nicknamecheck} button type="button">
                 중복확인
               </t.NickNameCheck>
-              <t.Checkwrap>{checkError}</t.Checkwrap>
+
+              <div>{emcheck}</div>
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
               <t.InputWrite
-                placeholder="문자 혹은 숫자를 사용한 6~12글자"
+                placeholder=" 특수문자포함8글자이상."
                 name="password"
                 type="password"
                 value={bimil}
@@ -198,13 +218,13 @@ function RegisterPage() {
               {checkcolor == 2 ? <t.Danger3>{bimilcheck}</t.Danger3> : null}
 
               <t.InputWrite
-                placeholder=" 비밀번호를 확인"
-                name="password_confirm"
+                placeholder=" 비밀번호를확인하세요"
                 type="password"
                 value={pwcheck}
                 onChange={pwcheckChange}
               />
-
+              {ckColor == 1 ? <t.Danger2>{bimilCheckmsg}</t.Danger2> : null}
+              {ckColor == 2 ? <t.Danger3>{bimilCheckmsg}</t.Danger3> : null}
               <t.SignUpBtn>회원가입</t.SignUpBtn>
             </t.FormTag>
           </t.SignupWrapper>

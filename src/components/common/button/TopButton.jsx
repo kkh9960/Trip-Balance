@@ -78,6 +78,7 @@ const ScrollContainer = styled.div`
     align-items: center;
     justify-content: center;
     bottom:-20px;
+    display: none;
    }
 `;
 const Top = styled.button`
