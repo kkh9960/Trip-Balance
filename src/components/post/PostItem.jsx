@@ -20,7 +20,6 @@ const PostItem = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.BoardSlice.posts);
-  console.log(posts);
   const isLast = useSelector((state) => state.BoardSlice.isLastPage);
   // const postTotal = useSelector((state) => state.BoardSlice.postTotal);
   // const postLocal = useSelector((state) => state.BoardSlice.postLocal);
@@ -32,7 +31,7 @@ const PostItem = () => {
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
 
-  const profiledefaultImg = "/img/default3.jpg";
+  const profiledefaultImg = "/img/tb.jpg";
   const [ref, inView] = useInView();
 
   const [test, settest] = useState(false);
@@ -471,6 +470,7 @@ const CategorySearch = styled.select`
   border-radius: 30px;
   font-size: 20px;
   text-align: center;
+  margin-right: 20px;
   @media screen and (max-width: 480px) {
     width: 90%;
     height: 50px;

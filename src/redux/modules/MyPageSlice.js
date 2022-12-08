@@ -13,19 +13,21 @@ export const __getMyInformation = createAsyncThunk(
   }
 );
 //회원정보 수정
-export const __putMyInformation = createAsyncThunk(
-  "PUT_MY_INFO",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await instance.put(`tb/mypage/setinfo`, {
-        nickName: payload.nickName,
-        self: payload.self,
-        profileImg: payload.profileImg,
-      });
-      return thunkAPI.fulfillWithValue(data);
-    } catch (error) {}
-  }
-);
+// export const __putMyInformation = createAsyncThunk(
+//   "PUT_MY_INFO",
+//   async (payload, thunkAPI) => {
+//     try {
+//       const { data } = await instance.put(`tb/mypage/setinfo`, {
+//         nickName: payload.nickName,
+//         self: payload.self,
+//         profileImg: payload.profileImg,
+//       });
+//       return thunkAPI.fulfillWithValue(data);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
 // 밸런스게임데이터
 // export const __getTotalGameData = createAsyncThunk(
 //   "GET_MY_GAMEDATA",

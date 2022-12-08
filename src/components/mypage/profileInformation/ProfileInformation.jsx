@@ -2,10 +2,7 @@ import React, { useState, useRef } from "react";
 import * as t from "./ProfileinformationStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  __getMyInformation,
-  __putMyInformation,
-} from "../../../redux/modules/MyPageSlice";
+import { __putMyInformation } from "../../../redux/modules/MyPageSlice";
 import profile from "../../../img/noneprofile.webp";
 import AWS from "aws-sdk";
 import useInput from "../../../hooks/useInput";
@@ -26,6 +23,7 @@ export default function ProfileInformation({}) {
   const [topNickname, setTopNickname] = useState();
 
   const profileImgInput = useRef();
+
   const [instaInput, setInstaInput] = useState(true);
   const [faceInput, setFaceInput] = useState(true);
   const [youInput, setYouInput] = useState(true);
@@ -84,22 +82,24 @@ export default function ProfileInformation({}) {
   const changeprofile = () => {
     setProfileMode(false);
   };
-  const saveprofile = () => {
-    dispatch(
-      __putMyInformation({
-        nickName: nickname,
-        self: userSelf,
-        profileImg: profileImg,
-      })
-    );
-    setNickname(nickname);
-    setProfileImg(profileImg);
-    setUserSelf(userSelf);
-    setTopNickname(nickname);
-    setProfileMode(true);
+
+  const saveprofile = async (e) => {
+    const { data } = await instance.put(`tb/mypage/setinfo`, {
+      nickName: nickname,
+      self: userSelf,
+      profileImg: profileImg,
+    });
+    if (data.statusCode === "118") {
+      alert("중복된 아이디입니다.");
+    } else {
+      setNickname(nickname);
+      setProfileImg(profileImg);
+      setUserSelf(userSelf);
+      setTopNickname(nickname);
+      setProfileMode(true);
+    }
   };
 
-  
   return (
     <t.ProfileInformationView>
       <t.userName>

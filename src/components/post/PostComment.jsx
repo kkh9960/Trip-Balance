@@ -12,17 +12,21 @@ import { useNavigate } from "react-router-dom";
 const PostComment = ({ idx, item, id, post }) => {
   const navigator = useNavigate();
 
-  const UserDefaultImage = "../img/cmtdefault.svg";
+  const nickname = sessionStorage.getItem("nickName");
+  const cmtnick = item.author;
+
+  const UserDefaultImage = "../img/tb.jpg";
+
   const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
   const [RecommentWrite, setRecommentWrite] = useState(false);
   const [recomment, setrecomment] = useState("");
   const [UserImage, setUserImage] = useState("");
   const [Editprofile, setEditprofile] = useState(false);
-  const [CommentImg, setCommentImg] = useState();
+  const [CommentImg, setCommentImg] = useState("");
 
   useEffect(() => {
-    if (item.profileImg == "") {
+    if (item.profileImg == null) {
       setUserImage(UserDefaultImage);
     } else {
       setUserImage(item.profileImg);
@@ -30,7 +34,7 @@ const PostComment = ({ idx, item, id, post }) => {
   }, []);
 
   useEffect(() => {
-    if (post.profileImg == "") {
+    if (post.profileImg == null) {
       setCommentImg(UserDefaultImage);
     } else {
       setCommentImg(post.profileImg);
@@ -76,15 +80,21 @@ const PostComment = ({ idx, item, id, post }) => {
     setEditcomment(e.target.value);
   };
 
+  const Reg = /^\s+|\s+$/g;
+
   const WriteReComment = () => {
-    dispatch(
-      __postReComment({
-        commentId: item.commentId,
-        content: recomment,
-      })
-    );
-    setRecommentWrite(!RecommentWrite);
-    setrecomment("");
+    if (Reg.test(recomment) || recomment == "") {
+      alert("댓글은 빈칸으로 시작하거나 빈칸으로 끝날수 없습니다.");
+    } else {
+      dispatch(
+        __postReComment({
+          commentId: item.commentId,
+          content: recomment,
+        })
+      );
+      setRecommentWrite(!RecommentWrite);
+      setrecomment("");
+    }
   };
 
   const profile = () => {
@@ -99,6 +109,8 @@ const PostComment = ({ idx, item, id, post }) => {
     navigator(`/memberpage/${item.authorId}`);
   };
 
+  useEffect(() => {}, []);
+
   return (
     <>
       <St.CommentWrap>
@@ -108,9 +120,10 @@ const PostComment = ({ idx, item, id, post }) => {
               <St.CommentUserImage src={UserImage} />
             </div>
             <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-            {Editprofile ? (
-              <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
-            ) : null}
+            {Editprofile
+              ? // <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+                null
+              : null}
           </St.CommentUserBox>
           <St.Commentbody>
             {Editmode ? (
@@ -126,15 +139,27 @@ const PostComment = ({ idx, item, id, post }) => {
           </St.Commentbody>
           <St.CommentButtonBox>
             <St.CommentButton onClick={ReWriteHandler}>댓글</St.CommentButton>
-            {Editmode ? (
-              <St.CommentButton onClick={ModifyCancel}>취소</St.CommentButton>
-            ) : (
-              <St.CommentButton onClick={ModifyComment}>수정</St.CommentButton>
-            )}
-            {Editmode ? (
-              <St.CommentButton onClick={ModifyComplete}>완료</St.CommentButton>
-            ) : (
-              <St.CommentButton onClick={DeleteComment}>삭제</St.CommentButton>
+            {cmtnick == nickname && (
+              <>
+                {Editmode ? (
+                  <St.CommentButton onClick={ModifyCancel}>
+                    취소
+                  </St.CommentButton>
+                ) : (
+                  <St.CommentButton onClick={ModifyComment}>
+                    수정
+                  </St.CommentButton>
+                )}
+                {Editmode ? (
+                  <St.CommentButton onClick={ModifyComplete}>
+                    완료
+                  </St.CommentButton>
+                ) : (
+                  <St.CommentButton onClick={DeleteComment}>
+                    삭제
+                  </St.CommentButton>
+                )}
+              </>
             )}
           </St.CommentButtonBox>
         </St.CommentBox>

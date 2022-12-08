@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const Wrap = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -169,6 +170,23 @@ export const Danger3 = styled.p`
     left: 0px;
   }
 `;
+
+// export const Danger3 = styled.p`
+//   color: green;
+//   position: relative;
+//   top: 70px;
+//   left: 85px;
+//   before {
+//     color: green;
+//     display: inline;
+//     content: ":경고: ";
+//   }
+//   @media screen and (max-width: 746px) {
+//     top: -100px;
+//     left: 0px;
+//   }
+// `;
+
 export const Line = styled.div`
   width: 354px;
   border: 1px solid rgba(170, 170, 170, 0.7);

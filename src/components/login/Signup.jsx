@@ -125,7 +125,6 @@ function RegisterPage() {
   };
 
 
-
   const Reg = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
   useEffect(() => {
     if (bimil == "") {
@@ -181,7 +180,6 @@ function RegisterPage() {
               <t.Cancel onClick={modalClose}>
                 <t.Exit src={Exit} />
               </t.Cancel>
-
               <t.SignupTitleWrap>
                 <t.SignUpTitle>회원가입</t.SignUpTitle>
               </t.SignupTitleWrap>
@@ -195,9 +193,7 @@ function RegisterPage() {
               <t.EmailCheck onClick={idCheck} button type="button">
                 중복확인
               </t.EmailCheck>
-
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
-
               <t.InputWrite
                 name="name"
                 placeholder=" 닉네임 ."
@@ -210,7 +206,6 @@ function RegisterPage() {
 
               <div>{emcheck}</div>
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
-
               <t.InputWrite
                 placeholder=" 특수문자포함8글자이상."
                 name="password"
