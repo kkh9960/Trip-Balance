@@ -10,15 +10,15 @@ const Header = () => {
   const nickname = sessionStorage.getItem("nickName");
   const [header, setHeader] = useState("/");
   const location = useLocation();
-  const mainlogo = "img/mainImg/mainlogo.webp";
-  const mainlist = "img/mainImg/mainlistW.webp";
-  const maingame = "img/mainImg/maingameW.webp";
-  const mainpost = "img/mainImg/mainpostW.webp";
-  const mainmypage = "img/mainImg/mainmypageW.webp";
-  const mainlogin = "img/mainImg/mainloginW.webp";
-  const mainlogout = "img/mainImg/mainlogoutW.webp";
-  const mainservey = "img/mainImg/mainserveyW.webp";
-  const maincancel = "img/mainImg/mainCancelButtonW.webp";
+  const mainlogo = "../../img/mainImg/mainlogo.webp";
+  const mainlist = "../../img/mainImg/mainlistW.webp";
+  const maingame = "../../img/mainImg/maingameW.webp";
+  const mainpost = "../../img/mainImg/mainpostW.webp";
+  const mainmypage = "../../img/mainImg/mainmypageW.webp";
+  const mainlogin = "../../img/mainImg/mainloginW.webp";
+  const mainlogout = "../../img/mainImg/mainlogoutW.webp";
+  const mainservey = "../../img/mainImg/mainserveyW.webp";
+  const maincancel = "../../img/mainImg/mainCancelButtonW.webp";
 
   useEffect(() => {
     setHeader(location.pathname);

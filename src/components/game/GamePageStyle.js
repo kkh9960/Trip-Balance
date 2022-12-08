@@ -180,15 +180,27 @@ export const firstWrap = styled.div`
   position: relative;
   width: 55px;
   height: 55px;
+  opacity: 80%;
   background-repeat: no-repeat;
   background-image: url("../../img/gameCommonImg/goFirst.webp");
   justify-content: space-around;
+`;
+
+export const wrapDiv = styled.div`
+  position: relative;
+  width: 10px;
+  height: 55px;
+  opacity: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("../../img/gameCommonImg/line.webp");
 `;
 
 export const homeWrap = styled.div`
   position: relative;
   width: 55px;
   height: 55px;
+  opacity: 80%;
   background-repeat: no-repeat;
   background-image: url("../../img/gameCommonImg/goHome.webp");
   justify-content: space-around;
