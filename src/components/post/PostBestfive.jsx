@@ -52,8 +52,6 @@ const PostBestfive = ({ best }) => {
     }
   };
 
-  console.log(best);
-
   return (
     <Main>
       <Wrap>

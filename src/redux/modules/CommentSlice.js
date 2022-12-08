@@ -33,6 +33,7 @@ export const __deleteComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.delete(`tb/comments/${payload}`);
+      alert("댓글이 삭제되었습니다.");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
@@ -84,6 +85,8 @@ export const __deleteReComment = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await instance.delete(`tb/recomments/${payload}`);
+      alert("댓글이 삭제되었습니다.");
+      window.location.reload();
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {}
   }
