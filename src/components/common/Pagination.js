@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 function Pagination({ total, limit, page, setPage }) {
   const numPages = Math.ceil(total / limit);
+  const scroll = () => {
+    window.clientHeight(0);
+  };
   return (
     <>
       <Nav>
@@ -10,19 +13,15 @@ function Pagination({ total, limit, page, setPage }) {
         </Button>
         {Array(numPages)
           .fill()
-          .map((_, i) =>
-            total === null ? (
-              <Button></Button>
-            ) : (
-              <Button
-                key={i + 1}
-                onClick={() => setPage(i + 1)}
-                aria-current={page === i + 1 ? "page" : null}
-              >
-                {i + 1}
-              </Button>
-            )
-          )}
+          .map((_, i) => (
+            <Button
+              key={i + 1}
+              onClick={() => setPage(i + 1)}
+              aria-current={page === i + 1 ? "page" : null}
+            >
+              {i + 1}
+            </Button>
+          ))}
         <Button onClick={() => setPage(page + 1)} disabled={page === numPages}>
           &gt;
         </Button>

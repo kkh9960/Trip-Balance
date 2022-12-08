@@ -12,18 +12,18 @@ export const Container1 = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-  @media screen and (max-width: 480px) {
-    position: fixed;
-    height: 30px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
   @media screen and (max-width: 1240px) {
     position: fixed;
     flex-wrap: wrap;
     align-items: center;
     transition: 1s;
     background-color: rgba(0, 0, 0, 0.5);
+  }
+  @media screen and (max-width: 480px) {
+    position: fixed;
+    height: 30px;
+    flex-wrap: wrap;
+    align-items: center;
   }
 `;
 
@@ -37,16 +37,15 @@ export const Container2 = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
-
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 1240px) {
     position: fixed;
-    height: 30px;
     transition: 0.5s;
     flex-wrap: wrap;
     align-items: center;
   }
-  @media screen and (max-width: 1240px) {
+  @media screen and (max-width: 480px) {
     position: fixed;
+    height: 30px;
     transition: 0.5s;
     flex-wrap: wrap;
     align-items: center;
@@ -64,14 +63,14 @@ export const toggleBtn = styled.img`
   cursor: pointer;
   position: absolute;
   right: 60px;
+  @media screen and (max-width: 1240px) {
+    display: ${(props) => (props.toggle ? "flex" : "none")};
+  }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "flex" : "none")};
     scale: 0.5;
     position: absolute;
     right: 20px;
-  }
-  @media screen and (max-width: 1240px) {
-    display: ${(props) => (props.toggle ? "flex" : "none")};
   }
 `;
 
@@ -80,14 +79,14 @@ export const toggleCancelBtn = styled.img`
   cursor: pointer;
   position: absolute;
   right: 60px;
+  @media screen and (max-width: 1240px) {
+    display: ${(props) => (props.toggle ? "none" : "flex")};
+  }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
     scale: 0.5;
     position: absolute;
     right: 20px;
-  }
-  @media screen and (max-width: 1240px) {
-    display: ${(props) => (props.toggle ? "none" : "flex")};
   }
 `;
 export const WriteWrap = styled.div`
@@ -102,6 +101,12 @@ export const WriteWrap = styled.div`
     text-align: center;
   }
 
+  @media screen and (max-width: 1240px) {
+    display: ${(props) => (props.toggle ? "none" : "flex")};
+    width: 100%;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
@@ -109,13 +114,6 @@ export const WriteWrap = styled.div`
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
-  }
-
-  @media screen and (max-width: 1240px) {
-    display: ${(props) => (props.toggle ? "none" : "flex")};
-    width: 100%;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -125,14 +123,14 @@ export const LogoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 1240px) {
+    width: 274.47px;
+    height: 100%;
+  }
   @media screen and (max-width: 480px) {
     width: 144px;
     height: 100%;
     margin: auto;
-  }
-  @media screen and (max-width: 1240px) {
-    width: 274.47px;
-    height: 100%;
   }
 `;
 export const Logo = styled.img`
@@ -142,17 +140,18 @@ export const Logo = styled.img`
   transition: 0.5s;
   margin-left: 250px;
   transition: 1s;
-  @media screen and (max-width: 480px) {
-    scale: 0.5;
-    transition: 0.5s;
-    margin-left: 30px;
-  }
   @media screen and (max-width: 1240px) {
     width: 144px;
     height: 50px;
     transition: 0.5s;
     margin: auto;
     transition: 1s;
+  }
+  @media screen and (max-width: 480px) {
+    width: 93px;
+    height: 30px;
+    transition: 0.5s;
+    margin-left: 30px;
   }
 `;
 

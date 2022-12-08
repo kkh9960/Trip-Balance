@@ -59,14 +59,32 @@ export default function MemberPage() {
       <MemberInformation />
 
       <t.myTotalInfo>
-        <span>BalanceGame</span>
-        <span>{userGameCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            게임
+            <br />
+            횟수
+          </span>
+          <span>{userGameCnt}</span>
+        </t.myTotalInfoText>
         <t.textLine />
-        <span>작성한 게시글</span>
-        <span>{userPostCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            작성한
+            <br />
+            게시글
+          </span>
+          <span>{userPostCnt}</span>
+        </t.myTotalInfoText>
         <t.textLine />
-        <span>작성한 댓글</span>
-        <span>{userCommentCnt}</span>
+        <t.myTotalInfoText>
+          <span>
+            작성한
+            <br />
+            댓글
+          </span>
+          <span>{userCommentCnt}</span>
+        </t.myTotalInfoText>
       </t.myTotalInfo>
 
       <t.mySelectInformation>

@@ -33,7 +33,7 @@ export default function MemberInformationChart() {
     }
     fetchData();
   }, []);
-
+  console.log();
   const chartData = {
     total: {
       option: [],
@@ -51,7 +51,6 @@ export default function MemberInformationChart() {
       ],
       datasets: [
         {
-          label: "# of Votes",
           data: [
             mypickData?.data?.data[0]?.match(/\d+/g)[0],
             mypickData?.data?.data[1]?.match(/\d+/g)[0],
@@ -107,7 +106,6 @@ export default function MemberInformationChart() {
       ],
       datasets: [
         {
-          label: "# of Votes",
           data: [
             totalData?.data?.data[0]?.match(/\d+/g)[0],
             totalData?.data?.data[1]?.match(/\d+/g)[0],
@@ -151,16 +149,20 @@ export default function MemberInformationChart() {
   };
   return (
     <t.inforChartViewbox>
-      <t.chartNametag></t.chartNametag>
+      <t.chartNametag>TOP10</t.chartNametag>
       <t.inforChartBox>
-        <div>나의 통계</div>
-        <t.inforChartView>
-          <Pie data={chartData.total} />
-        </t.inforChartView>
-        <div>전체 통계</div>
-        <t.inforChartView>
-          <Pie data={chartData.pick} />
-        </t.inforChartView>
+        <t.inforChartBoxWrap>
+          <t.chartName>나의 통계</t.chartName>
+          <t.inforChartView>
+            <Pie data={chartData.total} />
+          </t.inforChartView>
+        </t.inforChartBoxWrap>
+        <t.inforChartBoxWrap>
+          <t.chartName>전체 통계</t.chartName>
+          <t.inforChartView>
+            <Pie data={chartData.pick} />
+          </t.inforChartView>
+        </t.inforChartBoxWrap>
       </t.inforChartBox>
     </t.inforChartViewbox>
   );

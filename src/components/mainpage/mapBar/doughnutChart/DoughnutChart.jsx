@@ -11,6 +11,7 @@ import { Doughnut, Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import * as t from "./DoughnutChartStyle";
 import WeatherBar from "../weatherBar/WeatherBar";
+import { useEffect, useState } from "react";
 
 ChartJS.register(
   ArcElement,
@@ -23,6 +24,15 @@ ChartJS.register(
 
 export default function DoughnutChart() {
   const peopleData = useSelector((state) => state.MapSlice?.data?.cnt);
+  const [doughnutSize, setDoughnutSize] = useState(40);
+
+  useEffect(() => {
+    if (window.matchMedia("screen and (max-width: 480px)").matches) {
+      return setDoughnutSize(20);
+    } else {
+      return setDoughnutSize(40);
+    }
+  }, [setDoughnutSize]);
 
   const chartData = {
     people: {
@@ -36,7 +46,7 @@ export default function DoughnutChart() {
           ],
           borderColor: ["rgba(255, 99, 132, 0.7)", "rgba(54, 162, 235, 0.7)"],
           borderWidth: 3,
-          cutout: 40,
+          cutout: `${doughnutSize}`,
         },
       ],
     },
@@ -60,7 +70,7 @@ export default function DoughnutChart() {
             "rgba(75, 192, 192, 0.7)",
           ],
           borderWidth: 3,
-          cutout: 40,
+          cutout: `${doughnutSize}`,
         },
       ],
     },
@@ -84,7 +94,7 @@ export default function DoughnutChart() {
             "rgba(255, 159, 64, 1)",
           ],
           borderWidth: 3,
-          cutout: 40,
+          cutout: `${doughnutSize}`,
         },
       ],
       options: {},

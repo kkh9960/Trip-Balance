@@ -150,8 +150,16 @@ export const postItem = styled.div`
 `;
 export const postImg = styled.img`
   width: 180px;
-  height: 142px;
+  height: 190px;
+  margin: 0 0 6px;
   object-fit: cover;
+  @media screen and (max-width: 480px) {
+    border-radius: 10px;
+    width: 180px;
+    height: 150px;
+    margin: 0 0 7px;
+    object-fit: cover;
+  }
 `;
 export const postTitle = styled.div`
   font-size: 20px;
