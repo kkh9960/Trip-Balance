@@ -47,6 +47,7 @@ export const balanceButtonBH = styled.div`
   height: 511.51px;
   display: flex;
   align-items: center;
+  cursor: pointer;
   @media screen and (max-width: 480px) {
     width: 48%;
     height: 300px;
@@ -60,6 +61,7 @@ export const balanceButton = styled.img`
   object-fit: cover;
   border-radius: 30px;
   color: white;
+  cursor: pointer;
   filter: brightness(65%);
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -142,6 +144,8 @@ export const balanceText = styled.div`
   text-shadow: 3px 3px 3px #000;
   display: flex;
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
   @media screen and (max-width: 480px) {
     position: absolute;
     width: 70%;
@@ -184,6 +188,7 @@ export const firstWrap = styled.div`
   background-repeat: no-repeat;
   background-image: url("../../img/gameCommonImg/goFirst.webp");
   justify-content: space-around;
+  cursor: pointer;
 `;
 
 export const wrapDiv = styled.div`
@@ -204,6 +209,7 @@ export const homeWrap = styled.div`
   background-repeat: no-repeat;
   background-image: url("../../img/gameCommonImg/goHome.webp");
   justify-content: space-around;
+  cursor: pointer;
 `;
 
 export const balanceButtonWrapFinal = styled.div`
