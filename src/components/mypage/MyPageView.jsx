@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import * as t from "./MyPageViewStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ export default function MyPageView() {
   const [userGameCnt, setUserGameCnt] = useState([]);
   const [userCommentCnt, setUserCommentCnt] = useState([]);
   const [userPostCnt, setUserPostCnt] = useState([]);
-
+  const scrollx = useRef();
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/info");
@@ -64,6 +64,7 @@ export default function MyPageView() {
             <br />
             횟수
           </span>
+          {"\n"}
           <span>{userGameCnt}</span>
         </t.myTotalInfoText>
         <t.textLine />
@@ -73,6 +74,7 @@ export default function MyPageView() {
             <br />
             게시글
           </span>
+          {"\n"}
           <span>{userPostCnt}</span>
         </t.myTotalInfoText>
         <t.textLine />
@@ -82,6 +84,7 @@ export default function MyPageView() {
             <br />
             댓글
           </span>
+          {"\n"}
           <span>{userCommentCnt}</span>
         </t.myTotalInfoText>
       </t.myTotalInfo>
@@ -93,7 +96,7 @@ export default function MyPageView() {
             <t.thinLine />
           </t.itemHeader>
 
-          <t.pickPostWrap>
+          <t.pickPostWrap ref={scrollx}>
             {typeof myPick === typeof "string" ? (
               <t.empty>좋아요한 글이 없습니다.</t.empty>
             ) : myPick === null ? (
@@ -123,6 +126,7 @@ export default function MyPageView() {
               total={
                 typeof myPick === "string" ? myPick.length - 10 : myPick.length
               }
+              container="container"
               limit={limit}
               page={page}
               setPage={setPage}
@@ -134,7 +138,7 @@ export default function MyPageView() {
             <h2>내가 작성한 글 목록</h2>
             <t.thinLine />
           </t.itemHeader>
-          <t.postWrap>
+          <t.postWrap ref={scrollx}>
             {typeof posts === typeof "string" ? (
               <t.empty>작성한 글이 없습니다.</t.empty>
             ) : posts === null ? (
@@ -166,6 +170,7 @@ export default function MyPageView() {
               total={
                 typeof posts === "string" ? posts.length - 10 : posts.length
               }
+              scrollx={scrollx}
               limit={writelimit}
               page={writepage}
               setPage={setWritePage}

@@ -29,4 +29,30 @@ export const mapWeatherChart = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+  }
 `;
+export const mapGuide1 = styled.div`
+  width: 100%;
+  font-size: 20px;
+  margin: 40px auto;
+  text-align: center;
+  color: #777;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+export const mapGuide2 = styled.div`
+  display: none;
+  @media screen and (max-width: 480px) {
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+    margin: 20px auto;
+    text-align: center;
+    color: #777;
+  }
+`;
+
+export const mapGuideBtn = styled.div``;
