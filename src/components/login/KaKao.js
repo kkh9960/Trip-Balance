@@ -24,7 +24,7 @@ const KaKao = () => {
     }
   }, []);
 
-  return <div>KaKao</div>;
+  return <div></div>;
 };
 
 export default KaKao;

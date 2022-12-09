@@ -5,17 +5,27 @@ import AWS from "aws-sdk";
 import { __postBoard } from "../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
+import { useEffect } from "react";
 
 const BoardWrite = () => {
+  const form = {
+    category1: "",
+    category2: "",
+    content: "",
+    title: "",
+  };
+
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
   const [ImgPreview, setImgPreview] = useState([]);
   const [Pet, setPet] = useState(0);
-  const [contents, setcontents] = useState();
-  const [Cate, setCate] = useState("0");
+  const [contents, setcontents] = useState(form);
+  const [Cate, setCate] = useState(0);
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [ModalEdit, setModalEdit] = useState(false);
+  const [count, setcount] = useState();
+  const [titlecount, settitlecount] = useState(0);
 
   const options = {
     maxSizeMB: 1,
@@ -105,7 +115,30 @@ const BoardWrite = () => {
       ...contents,
       [name]: value,
     });
+    setcount(value.length);
+    if (value.length >= 1000) {
+      alert("내용은 999글자까지만 입력할수있습니다.");
+    }
   };
+
+  const Reg = /^\s+|\s+$/g;
+
+  const onChangetitleDataHandler = (e) => {
+    const { name, value } = e.target;
+    setcontents({
+      ...contents,
+      [name]: value,
+    });
+    settitlecount(value.length);
+  };
+
+  // useEffect(() => {
+  //   if ("title" in contents) {
+  //     console.log("재미업서");
+  //   } else {
+  //     console.log("재미잇서");
+  //   }
+  // }, [contents]);
 
   const onCategoryHandler = (e) => {
     const { name, value } = e.target;
@@ -125,24 +158,31 @@ const BoardWrite = () => {
     });
   };
 
+  console.log(contents);
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (contents?.category2 == undefined || contents?.category2 == 0) {
+    if (contents.category2 == "" || contents.category2 == undefined) {
       alert("카테고리를 선택해주세요.");
-    }
-    if (ImgPreview == 0) {
-      alert("사진이 없으면 글쓰기가 불가능합니다.");
     } else {
-      dispatch(
-        __postBoard({
-          title: contents?.title,
-          content: contents?.content,
-          local: contents?.category1,
-          localdetail: contents?.category2,
-          mediaList: ImgPreview,
-          pet: Pet,
-        })
-      );
+      if (ImgPreview == 0) {
+        alert("사진이 없으면 글쓰기가 불가능합니다.");
+      } else {
+        if (Reg.test(contents.title) || contents.title == "") {
+          alert("제목은 공백으로 시작하거나 끝날수 없습니다.");
+        } else {
+          dispatch(
+            __postBoard({
+              title: contents?.title,
+              content: contents?.content,
+              local: contents?.category1,
+              localdetail: contents?.category2,
+              mediaList: ImgPreview,
+              pet: Pet,
+            })
+          );
+        }
+      }
     }
   };
 
@@ -188,8 +228,7 @@ const BoardWrite = () => {
           type="text"
           placeholder="제목을 입력해주세요."
           maxLength="30"
-          required
-          onChange={onChangeDataHandler}
+          onChange={onChangetitleDataHandler}
         />
         <BoardContentWrap>
           <BaordWritesection>
@@ -211,7 +250,7 @@ const BoardWrite = () => {
                 onChange={Categoryopen}
               >
                 <option name="category1" value="0">
-                  카테고리를 선택해주세요.
+                  지역을 선택해주세요.
                 </option>
                 <option name="category1" value="1">
                   수도권
@@ -235,10 +274,17 @@ const BoardWrite = () => {
                 onChange={onCategoryHandler}
                 required
               >
+                {Cate == 0 && (
+                  <>
+                    <option name="category2" value="99">
+                      지역을 먼저 선택해주세요.
+                    </option>
+                  </>
+                )}
                 {Cate == 1 && (
                   <>
                     <option name="category2" value="0">
-                      카테고리를 선택해주세요.
+                      도시를 선택해주세요.
                     </option>
                     <option name="category2" value="1">
                       서울
@@ -263,7 +309,7 @@ const BoardWrite = () => {
                 {Cate == 2 && (
                   <>
                     <option name="category2" value="0">
-                      카테고리를 선택해주세요.
+                      도시를 선택해주세요.
                     </option>
                     <option name="category2" value="6">
                       속초
@@ -306,7 +352,7 @@ const BoardWrite = () => {
                 {Cate == 3 && (
                   <>
                     <option name="category2" value="0">
-                      카테고리를 선택해주세요.
+                      도시를 선택해주세요.
                     </option>
                     <option name="category2" value="17">
                       여수
@@ -349,7 +395,7 @@ const BoardWrite = () => {
                 {Cate == 4 && (
                   <>
                     <option name="category2" value="0">
-                      카테고리를 선택해주세요.
+                      도시를 선택해주세요.
                     </option>
                     <option name="category2" value="32">
                       서귀포
@@ -362,7 +408,7 @@ const BoardWrite = () => {
                 {Cate == 5 && (
                   <>
                     <option name="category2" value="0">
-                      카테고리를 선택해주세요.
+                      도시를 선택해주세요.
                     </option>
                     <option name="category2" value="28">
                       대구
@@ -424,7 +470,7 @@ const BoardWrite = () => {
             onChange={Categoryopen}
           >
             <option name="category1" value="0">
-              카테고리를 선택해주세요.
+              지역을 선택해주세요.
             </option>
             <option name="category1" value="1">
               수도권
@@ -448,10 +494,17 @@ const BoardWrite = () => {
             onChange={onCategoryHandler}
             required
           >
+            {Cate == 0 && (
+              <>
+                <option name="category2" value="99">
+                  지역을 먼저 선택해주세요.
+                </option>
+              </>
+            )}
             {Cate == 1 && (
               <>
                 <option name="category2" value="0">
-                  카테고리를 선택해주세요.
+                  도시를 선택해주세요.
                 </option>
                 <option name="category2" value="1">
                   서울
@@ -476,7 +529,7 @@ const BoardWrite = () => {
             {Cate == 2 && (
               <>
                 <option name="category2" value="0">
-                  카테고리를 선택해주세요.
+                  도시를 선택해주세요.
                 </option>
                 <option name="category2" value="6">
                   속초
@@ -519,7 +572,7 @@ const BoardWrite = () => {
             {Cate == 3 && (
               <>
                 <option name="category2" value="0">
-                  카테고리를 선택해주세요.
+                  도시를 선택해주세요.
                 </option>
                 <option name="category2" value="17">
                   여수
@@ -562,7 +615,7 @@ const BoardWrite = () => {
             {Cate == 4 && (
               <>
                 <option name="category2" value="0">
-                  카테고리를 선택해주세요.
+                  도시를 선택해주세요.
                 </option>
                 <option name="category2" value="32">
                   서귀포
@@ -575,7 +628,7 @@ const BoardWrite = () => {
             {Cate == 5 && (
               <>
                 <option name="category2" value="0">
-                  카테고리를 선택해주세요.
+                  도시를 선택해주세요.
                 </option>
                 <option name="category2" value="28">
                   대구
@@ -600,16 +653,19 @@ const BoardWrite = () => {
             <PetCheck type="checkbox" id="pet" onChange={PetHandler} />
           </PetCheckBox>
         </Categorysectionmobile>
-
-        <BoardWriteTextarea
-          name="content"
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="내용을 입력해 주세요."
-          required
-          onChange={onChangeDataHandler}
-        />
+        <Writebox>
+          <BoardWriteTextarea
+            name="content"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="내용을 입력해 주세요 최대 999글자까지 입력됩니다."
+            maxLength="999"
+            required
+            onChange={onChangeDataHandler}
+          />
+          <Countbox>{count} / 999</Countbox>
+        </Writebox>
 
         <Buttonsection>
           <WriteButton>등록</WriteButton>
@@ -644,6 +700,18 @@ const BoardWrite = () => {
 };
 
 export default BoardWrite;
+
+const Countbox = styled.span`
+  position: absolute;
+  font-size: 25px;
+  font-family: "NotoSansKR";
+  bottom: 20px;
+  right: 20px;
+`;
+
+const Writebox = styled.div`
+  position: relative;
+`;
 
 const HeaderContainer = styled.div`
   padding-top: 120px;

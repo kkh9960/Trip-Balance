@@ -63,6 +63,7 @@ export const CommentModifyinput = styled.input`
 `;
 export const Commentdesc = styled.div`
   font-size: 18px;
+  word-wrap: break-word;
   @media screen and (max-width: 480px) {
     font-size: 15px;
   }
