@@ -5,44 +5,6 @@ import styled from "styled-components";
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
   const email = sessionStorage.getItem("email");
-  useEffect(() => {
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    const slider = document.querySelector(".items");
-
-    const end = () => {
-      isDown = false;
-      slider.classList.remove("active");
-    };
-
-    const start = (e) => {
-      isDown = true;
-      slider.classList.add("active");
-      startX = e.pageX || e.touches[0].pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    };
-
-    const move = (e) => {
-      if (!isDown) return;
-
-      e.preventDefault();
-      const x = e.pageX || e.touches[0].pageX - slider.offsetLeft;
-      const dist = x - startX;
-      slider.scrollLeft = scrollLeft - dist;
-    };
-
-    slider.addEventListener("mousedown", start);
-    slider.addEventListener("touchstart", start);
-
-    slider.addEventListener("mousemove", move);
-    slider.addEventListener("touchmove", move);
-
-    slider.addEventListener("mouseleave", end);
-    slider.addEventListener("mouseup", end);
-    slider.addEventListener("touchend", end);
-  }, []);
 
   const goPost = (id) => {
     if (email) {
@@ -53,14 +15,15 @@ const PostBestfive = ({ best }) => {
   };
 
   return (
-    <Main>
-      <Wrap>
-        <BestfiveTitle>인기 게시글</BestfiveTitle>
-        <Items className="items">
+    <>
+      <Main>
+        <Titlebox>
+          <BestfiveTitle>인기 게시글</BestfiveTitle>
+        </Titlebox>
+        <Items>
           {best &&
             best.map((item, idx) => (
               <Item
-                className="item"
                 key={idx}
                 onClick={() => {
                   goPost(item.postId);
@@ -76,12 +39,57 @@ const PostBestfive = ({ best }) => {
               </Item>
             ))}
         </Items>
-      </Wrap>
-    </Main>
+        <Itemsmobile>
+          {best &&
+            best.map((item, idx) => (
+              <Itemmobile
+                key={idx}
+                onClick={() => {
+                  goPost(item.postId);
+                }}
+              >
+                <ItemImgBox>
+                  <ItemImg src={item.img} />
+                </ItemImgBox>
+                <Textbox>
+                  <HeartCount>{item.heartNum}</HeartCount>
+                  <Heart src="img/heart.svg" />
+                </Textbox>
+              </Itemmobile>
+            ))}
+        </Itemsmobile>
+      </Main>
+    </>
   );
 };
 
 export default PostBestfive;
+
+const Itemsmobile = styled.div`
+  display: none;
+  @media screen and (max-width: 480px) {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+
+const Itemmobile = styled.div`
+  margin-right: 30px;
+  width: 244px;
+  height: 244px;
+  transition: all 0.3s;
+  border-bottom: 1px solid #ccc;
+`;
+
+const Titlebox = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const BestfiveTitle = styled.h2`
   margin-bottom: 30px;
@@ -128,34 +136,44 @@ const ItemImg = styled.img`
   object-fit: cover;
 `;
 
-const Items = styled.ul`
+const Items = styled.div`
+  position: absolute;
+  top: -200%;
+  right: 36.15%;
+  box-sizing: border-box;
+  width: 400px;
+  height: 1440px;
   padding: 0;
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
   font-size: 0;
-  cursor: pointer;
+  transform: rotate(-90deg);
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 
-const Wrap = styled.div`
-  position: relative;
-  &:before,
-  &:after {
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    content: "";
-    display: block;
-    width: 20px;
-    height: 100%;
-  }
-  h2 {
-    text-align: center;
+const Item = styled.div`
+  margin-bottom: 50px;
+  width: 344px;
+  height: 344px;
+  transition: all 0.3s;
+  border-bottom: 1px solid #ccc;
+  transform: rotate(90deg);
+  cursor: pointer;
+  @media screen and (max-width: 480px) {
+    width: 244px;
+    height: 244px;
   }
 `;
+
+const Wrap = styled.div``;
 
 const Main = styled.main`
+  position: relative;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
@@ -163,22 +181,5 @@ const Main = styled.main`
   margin-top: 50px;
   @media screen and (max-width: 480px) {
     max-width: 98%;
-  }
-`;
-
-const Item = styled.li`
-  list-style: none;
-  display: inline-block;
-  margin-left: 20px;
-  width: 344px;
-  height: 344px;
-  transition: all 0.3s;
-  border-bottom: 1px solid #ccc;
-  &:hover {
-    transform: scale(1.03);
-  }
-  @media screen and (max-width: 480px) {
-    width: 244px;
-    height: 244px;
   }
 `;

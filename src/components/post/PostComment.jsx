@@ -120,10 +120,9 @@ const PostComment = ({ idx, item, id, post }) => {
               <St.CommentUserImage src={UserImage} />
             </div>
             <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-            {Editprofile
-              ? // <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
-                null
-              : null}
+            {Editprofile ? (
+              <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+            ) : null}
           </St.CommentUserBox>
           <St.Commentbody>
             {Editmode ? (
