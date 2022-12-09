@@ -68,14 +68,14 @@ export const toggleBtn = styled.img`
   }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "flex" : "none")};
-    scale: 0.5;
+    width: 18px;
     position: absolute;
     right: 20px;
   }
 `;
 
 export const toggleCancelBtn = styled.img`
-  display: ${(props) => (props.toggle ? "none" : "flex")};
+  display: none;
   cursor: pointer;
   position: absolute;
   right: 60px;
@@ -84,7 +84,7 @@ export const toggleCancelBtn = styled.img`
   }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
-    scale: 0.5;
+    width: 12px;
     position: absolute;
     right: 20px;
   }
@@ -171,14 +171,18 @@ export const survey = styled.div`
   width: 170px;
   cursor: pointer;
   p {
+    display: block;
+  }
+  img {
     display: none;
   }
   :hover {
     p {
-      display: block;
+      display: none;
     }
     img {
-      display: none;
+      display: flex;
+      margin: 0 auto;
     }
   }
   @media screen and (max-width: 480px) {
@@ -202,14 +206,18 @@ export const Game = styled.div`
   width: 170px;
   cursor: pointer;
   p {
+    display: block;
+  }
+  img {
     display: none;
   }
   :hover {
     p {
-      display: block;
+      display: none;
     }
     img {
-      display: none;
+      display: flex;
+      margin: 0 auto;
     }
   }
   @media screen and (max-width: 480px) {
@@ -229,14 +237,18 @@ export const Posting = styled.div`
   width: 170px;
   cursor: pointer;
   p {
+    display: block;
+  }
+  img {
     display: none;
   }
   :hover {
     p {
-      display: block;
+      display: none;
     }
     img {
-      display: none;
+      display: flex;
+      margin: 0 auto;
     }
   }
   @media screen and (max-width: 480px) {
@@ -255,14 +267,18 @@ export const Mypage = styled.div`
   width: 170px;
   cursor: pointer;
   p {
+    display: block;
+  }
+  img {
     display: none;
   }
   :hover {
     p {
-      display: block;
+      display: none;
     }
     img {
-      display: none;
+      display: flex;
+      margin: 0 auto;
     }
   }
   @media screen and (max-width: 480px) {
@@ -281,14 +297,18 @@ export const Login = styled.div`
   width: 170px;
   cursor: pointer;
   p {
+    display: block;
+  }
+  img {
     display: none;
   }
   :hover {
     p {
-      display: block;
+      display: none;
     }
     img {
-      display: none;
+      display: flex;
+      margin: 0 auto;
     }
   }
   @media screen and (max-width: 480px) {
@@ -307,14 +327,18 @@ export const Logout = styled.div`
   width: 170px;
   cursor: pointer;
   p {
+    display: block;
+  }
+  img {
     display: none;
   }
   :hover {
     p {
-      display: block;
+      display: none;
     }
     img {
-      display: none;
+      display: flex;
+      margin: 0 auto;
     }
   }
   @media screen and (max-width: 480px) {
