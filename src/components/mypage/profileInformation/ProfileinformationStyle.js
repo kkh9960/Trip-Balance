@@ -81,11 +81,8 @@ export const ProfileImgBox = styled.img`
     border: 5px double gray;
     box-shadow: 0 0 6px;
     transition: 0.2s linear;
-    :hover {
-      box-shadow: 0 0 10px;
-      transition: 0.2s linear;
-    }
   }
+
   @media screen and (max-width: 480px) {
     width: 230px;
     height: 230px;

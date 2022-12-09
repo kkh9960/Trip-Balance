@@ -6,7 +6,7 @@ export const mobileMapSection = styled.div`
   }
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 619px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,6 +16,7 @@ export const mobileMapSection = styled.div`
 `;
 
 export const mobileMapImg = styled.img`
+  display: none;
   width: 99%;
   @media screen and (max-width: 480px) {
     width: 99%;

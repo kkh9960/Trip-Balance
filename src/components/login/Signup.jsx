@@ -73,6 +73,11 @@ function RegisterPage() {
       } else {
         setEmailCheckMsg("가입가능한이메일입니다");
       }
+      if(!Emailj.test(email)){
+         setEmailCheckMsg(
+           <div style={{ color }}>이메일형식이 아닙니다</div>
+         );
+      }
     });
   };
   const LoginValue = {
@@ -210,7 +215,7 @@ function RegisterPage() {
               <div>{emcheck}</div>
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
               <t.InputWrite
-                placeholder=" 특수문자포함8글자이상."
+                placeholder="비밀번호를입력해주세요."
                 name="password"
                 type="password"
                 value={bimil}

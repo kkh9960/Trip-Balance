@@ -89,14 +89,14 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn", {
-            duration: 1,
-            y: 0,
-            x: 0,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn", {
+          //   duration: 1,
+          //   y: 0,
+          //   x: 0,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img", {
             duration: 1,
             y: 140,
@@ -131,12 +131,12 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn4", {
-            opacity: 0,
-            x: 0,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn4", {
+          //   opacity: 0,
+          //   x: 0,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img4", {
             opacity: 0,
             y: 110,
@@ -177,14 +177,14 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn2", {
-            duration: 1,
-            y: 10,
-            x: 0,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn2", {
+          //   duration: 1,
+          //   y: 10,
+          //   x: 0,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img2", {
             duration: 1,
             y: 170,
@@ -219,13 +219,13 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn", {
-            opacity: 0,
-            width: "150px",
-            x: 0,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn", {
+          //   opacity: 0,
+          //   width: "150px",
+          //   x: 0,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img", {
             opacity: 0,
             y: -50,
@@ -244,7 +244,7 @@ const TestSlide = () => {
         case 2:
           gsap.to(".mainboard_title3", {
             duration: 1,
-            y: 100,
+            y: 50,
             x: 10,
             opacity: 1,
             ease: "power1.out",
@@ -252,7 +252,7 @@ const TestSlide = () => {
           });
           gsap.to(".mainboard_titleshadow3", {
             duration: 1,
-            y: 100,
+            y: 50,
             x: 10,
             opacity: 1,
             ease: "power1.out",
@@ -260,23 +260,23 @@ const TestSlide = () => {
           });
           gsap.to(".mainboard_body3", {
             duration: 1,
-            y: 100,
+            y: 40,
             x: 10,
             opacity: 1,
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn3", {
-            duration: 1,
-            y: -30,
-            x: -10,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn3", {
+          //   duration: 1,
+          //   y: -30,
+          //   x: -10,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img3", {
             duration: 1,
-            y: 145,
+            y: 45,
             x: -20,
             opacity: 1,
             ease: "power1.out",
@@ -284,7 +284,7 @@ const TestSlide = () => {
           });
           gsap.to(".mainboard_imgshadow3", {
             duration: 1,
-            y: 180,
+            y: 80,
             x: -10,
             opacity: 1,
             ease: "power1.out",
@@ -308,12 +308,12 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn2", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn2", {
+          //   opacity: 0,
+          //   x: -100,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img2", {
             opacity: 0,
             y: -10,
@@ -354,14 +354,14 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn4", {
-            duration: 1,
-            y: 0,
-            x: 10,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn4", {
+          //   duration: 1,
+          //   y: 0,
+          //   x: 10,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img4", {
             duration: 1,
             y: 160,
@@ -396,12 +396,12 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn3", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn3", {
+          //   opacity: 0,
+          //   x: -100,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img3", {
             opacity: 0,
             y: -100,
@@ -446,14 +446,14 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn", {
-            duration: 1,
-            y: 0,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn", {
+          //   duration: 1,
+          //   y: 0,
+          //   x: 100,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img", {
             duration: 1,
             y: 200,
@@ -488,12 +488,12 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn4", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn4", {
+          //   opacity: 0,
+          //   x: -100,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img4", {
             opacity: 0,
             y: -100,
@@ -534,14 +534,14 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn2", {
-            duration: 1,
-            y: 0,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn2", {
+          //   duration: 1,
+          //   y: 0,
+          //   x: 100,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img2", {
             duration: 1,
             y: 200,
@@ -576,12 +576,12 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn", {
+          //   opacity: 0,
+          //   x: -100,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img", {
             opacity: 0,
             y: -100,
@@ -622,14 +622,14 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn3", {
-            duration: 1,
-            y: 0,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn3", {
+          //   duration: 1,
+          //   y: 0,
+          //   x: 100,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img3", {
             duration: 1,
             y: 300,
@@ -664,12 +664,12 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn2", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn2", {
+          //   opacity: 0,
+          //   x: -100,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img2", {
             opacity: 0,
             y: -100,
@@ -710,14 +710,14 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          gsap.to(".mainboard_btn4", {
-            duration: 1,
-            y: 0,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
+          // gsap.to(".mainboard_btn4", {
+          //   duration: 1,
+          //   y: 0,
+          //   x: 100,
+          //   opacity: 1,
+          //   ease: "power1.out",
+          //   delay: 1.6,
+          // });
           gsap.to(".mainboard_img4", {
             duration: 1,
             y: 300,
@@ -752,12 +752,12 @@ const TestSlide = () => {
             delay: 0,
             duration: 0,
           });
-          gsap.to(".mainboard_btn3", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
+          // gsap.to(".mainboard_btn3", {
+          //   opacity: 0,
+          //   x: -100,
+          //   delay: 0,
+          //   duration: 0,
+          // });
           gsap.to(".mainboard_img3", {
             opacity: 0,
             y: -100,

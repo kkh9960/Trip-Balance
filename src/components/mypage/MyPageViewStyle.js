@@ -95,17 +95,12 @@ export const myTotalInfoText = styled.div`
 export const myPostWrap = styled.div`
   @media screen and (min-width: 481px) {
     position: relative;
-    width: 77%;
-    height: 45%;
+    width: 100%;
+    height: 100%;
     margin-bottom: 40px;
-    float: right;
-    border-radius: 10px 0 0 10px;
     display: flex;
-    background-color: #fff;
+    flex-direction: column;
     justify-content: center;
-    border: 2px solid gray;
-    border-right-style: none;
-    padding: 10px 200px 10px 20px;
     box-shadow: 0 0 6px;
   }
 
@@ -120,12 +115,11 @@ export const myPostWrap = styled.div`
 `;
 export const postWrap = styled.div`
   @media screen and (min-width: 481px) {
-    margin: 80px 30px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    margin: 10px auto;
+    width: 1000px;
+    height: 560px;
+    display: inline flex;
+    flex-flow: row wrap;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -150,7 +144,7 @@ export const postItem = styled.div`
 `;
 export const postImg = styled.img`
   width: 180px;
-  height: 190px;
+  height: 160px;
   margin: 0 0 6px;
   object-fit: cover;
   @media screen and (max-width: 480px) {
@@ -168,6 +162,7 @@ export const postTitle = styled.div`
   margin: 0 auto;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 export const postTime = styled.div`
   position: absolute;
@@ -181,19 +176,13 @@ export const postTime = styled.div`
 export const myPickPostWrap = styled.div`
   @media screen and (min-width: 481px) {
     position: relative;
-    width: 77%;
-    height: 45%;
-    margin-bottom: 40px;
-    margin-right: auto;
-    float: left;
-    border-radius: 0 10px 10px 0;
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    border: 2px solid gray;
-    border-left-style: none;
-    padding: 10px 20px 10px 200px;
-    background-color: #fff;
     box-shadow: 0 0 6px;
+    margin-bottom: 30px;
   }
 
   @media screen and (max-width: 480px) {
@@ -211,11 +200,9 @@ export const myPickPostWrap = styled.div`
 export const itemHeader = styled.div`
   @media screen and (min-width: 481px) {
     display: flex;
-    position: absolute;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    top: 0;
     width: 100%;
     height: 100px;
   }
@@ -231,12 +218,11 @@ export const itemHeader = styled.div`
 `;
 export const pickPostWrap = styled.div`
   @media screen and (min-width: 481px) {
-    margin: 80px 30px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    margin: 10px auto;
+    width: 1000px;
+    height: 560px;
+    display: inline flex;
+    flex-flow: row wrap;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -298,9 +284,7 @@ export const pickPostNickname = styled.div`
 
 export const footer = styled.div`
   @media screen and (min-width: 481px) {
-    position: absolute;
     width: 100%;
-    bottom: 0px;
   }
   @media screen and (max-width: 480px) {
     width: 100%;
@@ -309,11 +293,12 @@ export const footer = styled.div`
 
 export const mySelectInformation = styled.div`
   @media screen and (min-width: 481px) {
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 30px 0 30px 0;
+    margin: 30px 0 30px 0;
     width: 100%;
-    height: 1700px;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

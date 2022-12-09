@@ -30,6 +30,7 @@ const PostItem = () => {
   const NICK = sessionStorage.getItem("nickName");
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
+  const [bestview, setbestview] = useState(true);
 
   const profiledefaultImg = "/img/tb.jpg";
   const [ref, inView] = useInView();
@@ -99,9 +100,17 @@ const PostItem = () => {
     if (selLocal == "0") {
       dispatch(__getBoardTotal({ useInput, pageLocal }));
       setsearch(2);
+      setbestview(false);
+      if (useInput == "") {
+        setbestview(true);
+      } else {
+        setbestview(false);
+      }
     } else {
       dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
       setsearch(3);
+      console.log(55);
+      setbestview(false);
     }
   };
 
@@ -138,7 +147,7 @@ const PostItem = () => {
               <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
             </SearchBox>
             <PostLikeBestbox>
-              <PostBestfive best={best} />
+              {bestview ? <PostBestfive best={best} /> : null}
             </PostLikeBestbox>
             <PostListWrap>
               <PostListTitle type="submit">여행 이야기</PostListTitle>
@@ -216,7 +225,7 @@ const PostItem = () => {
             <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
           </SearchBox>
           <PostLikeBestbox>
-            <PostBestfive best={best} />
+            {bestview ? <PostBestfive best={best} /> : null}
           </PostLikeBestbox>
           <PostListWrap>
             <PostListTitle type="submit">여행 이야기</PostListTitle>
@@ -345,6 +354,9 @@ const CardTitle = styled.div`
   margin: 20px 20px 5px 20px;
   font-size: 18px;
   white-space: normal;
+  overflow: hidden;
+  width: 300px;
+  text-overflow: ellipsis;
   @media screen and (max-width: 480px) {
     margin: 5px;
     font-size: 15px;
@@ -539,6 +551,8 @@ const PostgoWrite = styled.button`
 `;
 
 const PostLikeBestbox = styled.div`
-  width: 100%;
-  height: auto;
+  height: 600px;
+  @media screen and (max-width: 480px) {
+    height: 420px;
+  }
 `;

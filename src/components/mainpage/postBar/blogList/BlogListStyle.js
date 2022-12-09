@@ -121,6 +121,7 @@ export const blogTitle = styled.div`
     text-align: left;
     display: inline-block;
     width: 355px;
+    height: 20%;
     font-size: 18px;
     font-weight: bold;
     overflow: hidden;
@@ -138,24 +139,29 @@ export const blogTitle = styled.div`
 `;
 export const blogContents = styled.div`
   width: 100%;
-  height: 100%;
+  height: 60%;
   font-family: "NotoSansKR";
   color: #777;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 10px;
 `;
 export const blogName = styled.div`
   @media screen and (min-width: 481px) {
-    width: 300px;
-    font-size: 18px;
+    width: 100%;
+    height: 20%;
+    font-family: "NotoSansKR";
+    font-size: 15px;
     font-weight: bold;
-    text-align: center;
+    text-align: right;
   }
   @media screen and (max-width: 480px) {
     width: 300px;
-    font-size: 18px;
+    font-family: "NotoSansKR";
+    font-size: 15px;
     font-weight: bold;
-    text-align: center;
+    text-align: right;
+    margin-top: 10px;
     margin-bottom: 5px;
   }
 `;

@@ -98,6 +98,9 @@ export const hotelImgBox = styled.img`
   margin-bottom: 10px;
   object-fit: cover;
   border-radius: 20px;
+  :hover {
+    cursor: pointer;
+  }
 `;
 export const hotelTitle = styled.div`
   width: 280px;
@@ -109,6 +112,9 @@ export const hotelTitle = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  :hover {
+    cursor: pointer;
+  }
   @media screen and (max-width: 480px) {
     font-size: 20px;
   }

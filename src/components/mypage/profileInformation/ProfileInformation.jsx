@@ -141,6 +141,7 @@ export default function ProfileInformation({}) {
                 cursor: "pointer",
               }}
               onClick={() => profileImgInput.current.click()}
+              profileMode={profileMode}
             />
             <input
               type="file"
