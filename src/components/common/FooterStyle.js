@@ -8,7 +8,7 @@ export const Container = styled.div`
   }
 `;
 export const Wrap = styled.div`
-  height: 250px;
+  height: 240px;
   @media screen and (max-width: 550px) {
     height: 320px;
     width: 100%;
@@ -80,7 +80,7 @@ export const Footerlogo = styled.img`
 export const Title = styled.div`
   text-align: center;
   align-items: center;
-  top: -60px;
+  top: -70px;
   opacity: 0.7;
   font-family: "Jalnan";
   color: white;
@@ -102,7 +102,7 @@ export const Comment = styled.div`
   position: relative;
   text-align: center;
   opacity: 0.6;
-  top: -45px;
+  top: -55px;
   font-family: "Jalnan";
   color: white;
   @media screen and (max-width: 480px) {
@@ -119,7 +119,7 @@ export const Hanhae = styled.div`
   color: white;
   opacity: 0.5;
   position: relative;
-  top: -25px;
+  top: -35px;
   @media screen and (max-width: 480px) {
     position: relative;
     top: -20px;
@@ -167,7 +167,7 @@ export const Back = styled.div`
 `;
 export const Fronts = styled.div`
   position: relative;
-  top: -16px;
+  top: -30px;
   @media screen and (max-width: 480px) {
     width: 400px;
     position: relative;
@@ -193,7 +193,7 @@ export const FrontWrap = styled.div`
 `;
 export const Backs = styled.div`
   position: relative;
-  top: -35px;
+  top: -55px;
 
   @media screen and (max-width: 480px) {
     position: relative;
