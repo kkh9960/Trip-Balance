@@ -8,12 +8,18 @@ export const Container = styled.div`
   }
 `;
 export const Wrap = styled.div`
-  height: 270px;
+  height: 250px;
   @media screen and (max-width: 550px) {
-    height: 360px;
+    height: 320px;
     width: 100%;
   }
 `;
+export const DesignWrap = styled.div`
+margin-top: 10px;
+`
+
+
+
 export const Design = styled.div`
   text-align: center;
   font-family: "Jalnan";
@@ -53,6 +59,9 @@ export const Gitimg = styled.img`
   position: relative;
   top: 10px;
   margin: 2px;
+ @media screen and (max-width: 480px) {
+  width: 25px;
+ }
 `;
 export const Footerlogo = styled.img`
   position: relative;
@@ -160,6 +169,7 @@ export const Fronts = styled.div`
   position: relative;
   top: -16px;
   @media screen and (max-width: 480px) {
+    width: 400px;
     position: relative;
     top: -10px;
     color: white;
@@ -187,8 +197,9 @@ export const Backs = styled.div`
 
   @media screen and (max-width: 480px) {
     position: relative;
-    top: 0px;
+    top: -20px;
     color: white;
+    margin-top: 10px;
   }
 `;
 //
