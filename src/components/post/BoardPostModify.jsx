@@ -368,6 +368,14 @@ const BoardPostModify = () => {
     setModalEdit(!ModalEdit);
   };
 
+  const INJECTIONRegex = /[%=*><]/g;
+  const RegexTest = (e) => {
+    if (INJECTIONRegex.test(e.target.value)) {
+      alert("보안 : 특수문자(<,>,*,=,%)는 입력이 제한됩니다.");
+      e.target.value = e.target.value.replace(/[%=*><]/g, "");
+    }
+  };
+
   return loading ? null : (
     <HeaderContainer>
       <BoardWriteContainer onSubmit={onSubmitHandler}>
@@ -379,6 +387,7 @@ const BoardPostModify = () => {
           value={contents?.title || ""}
           required
           onChange={onChangeDataHandler}
+          onKeyUp={RegexTest}
         />
         <BoardContentWrap>
           <BaordWritesection>
@@ -788,6 +797,7 @@ const BoardPostModify = () => {
           placeholder="내용을 입력해 주세요."
           required
           onChange={onChangeDataHandler}
+          onKeyUp={RegexTest}
         />
 
         <Buttonsection>
