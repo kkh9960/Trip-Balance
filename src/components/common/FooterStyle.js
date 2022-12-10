@@ -8,7 +8,7 @@ export const Container = styled.div`
   }
 `;
 export const Wrap = styled.div`
-  height: 250px;
+  height: 270px;
   @media screen and (max-width: 550px) {
     height: 360px;
     width: 100%;
@@ -57,7 +57,7 @@ export const Gitimg = styled.img`
 export const Footerlogo = styled.img`
   position: relative;
   top: 40px;
-  width: 300px;
+  width: 20vw;
   @media screen and (max-width: 480px) {
     width: 183px;
     position: relative;

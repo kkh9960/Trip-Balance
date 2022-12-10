@@ -28,13 +28,13 @@ const Footer = () => {
             <t.GitWrap href="https://github.com/jnwnddh">
               <t.Gitimg src={Git} /> 이중오
             </t.GitWrap>
-            <br></br>
+            
             <t.GitWrap href="https://github.com/cho-light">
               <t.Gitimg src={Git} />
               조광익
             </t.GitWrap>
             <t.GitWrap href="https://linktr.ee/vozzang">
-              <img src={design} />
+              <t.Design src={design} />
               DESIGNER 서보영
             </t.GitWrap>
           </t.FrontWrap>
