@@ -121,7 +121,8 @@ const BoardWrite = () => {
     }
   };
 
-  const Reg = /^\s+|\s+$/g;
+  const BlankRegex = /^\s+|\s+$/g;
+  const INJECTIONRegex = /[%=*><]/g;
 
   const onChangetitleDataHandler = (e) => {
     const { name, value } = e.target;
@@ -168,7 +169,7 @@ const BoardWrite = () => {
       if (ImgPreview == 0) {
         alert("사진이 없으면 글쓰기가 불가능합니다.");
       } else {
-        if (Reg.test(contents.title) || contents.title == "") {
+        if (BlankRegex.test(contents.title) || contents.title == "") {
           alert("제목은 공백으로 시작하거나 끝날수 없습니다.");
         } else {
           dispatch(
@@ -220,6 +221,13 @@ const BoardWrite = () => {
     setModalEdit(!ModalEdit);
   };
 
+  const RegexTest = (e) => {
+    if (INJECTIONRegex.test(e.target.value)) {
+      alert("보안 : 특수문자(<,>,*,=,%)는 입력이 제한됩니다.");
+      e.target.value = e.target.value.replace(/[%=*><]/g, "");
+    }
+  };
+
   return (
     <HeaderContainer>
       <BoardWriteContainer onSubmit={onSubmitHandler}>
@@ -229,6 +237,7 @@ const BoardWrite = () => {
           placeholder="제목을 입력해주세요."
           maxLength="30"
           onChange={onChangetitleDataHandler}
+          onKeyUp={RegexTest}
         />
         <BoardContentWrap>
           <BaordWritesection>
@@ -663,6 +672,7 @@ const BoardWrite = () => {
             maxLength="999"
             required
             onChange={onChangeDataHandler}
+            onKeyUp={RegexTest}
           />
           <Countbox>{count} / 999</Countbox>
         </Writebox>
