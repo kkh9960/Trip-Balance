@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: gray;
   width: 100%;
-//
+  //
   @media screen and (max-width: 746px) {
     width: 100%;
   }
@@ -11,15 +11,13 @@ export const Container = styled.div`
 export const Wrap = styled.div`
   height: 290px;
   @media screen and (max-width: 550px) {
-    height: 370px;
+    height: 400px;
     width: 100%;
   }
 `;
 export const DesignWrap = styled.div`
-margin-top: 10px;
-`
-
-
+  margin-top: 10px;
+`;
 
 export const Design = styled.div`
   text-align: center;
@@ -60,9 +58,9 @@ export const Gitimg = styled.img`
   position: relative;
   top: 10px;
   margin: 2px;
- @media screen and (max-width: 480px) {
-  width: 25px;
- }
+  @media screen and (max-width: 480px) {
+    width: 25px;
+  }
 `;
 export const Footerlogo = styled.img`
   position: relative;
@@ -170,7 +168,6 @@ export const Fronts = styled.div`
   position: relative;
   top: -30px;
   @media screen and (max-width: 480px) {
-    width: 400px;
     position: relative;
     top: -10px;
     color: white;
@@ -185,11 +182,16 @@ export const FrontWrap = styled.div`
   margin-top: 10px;
   opacity: 0.3;
   color: white;
+  br {
+    display: none;
+  }
   @media screen and (max-width: 480px) {
-    width: 100%;
     text-align: center;
     opacity: 0.5;
     font-family: "Jalnan";
+    br {
+      display: flex;
+    }
   }
 `;
 export const Backs = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import Git from "../../img/git.svg";
 import * as t from "./FooterStyle";
 import footerlogo from "../../img/footerlogo.svg";
-import design from "../../img/design.svg"
+import design from "../../img/design.svg";
 const Footer = () => {
   return (
     <t.Container>
@@ -25,10 +25,10 @@ const Footer = () => {
             <t.GitWrap href="https://github.com/seongwoo9156">
               <t.Gitimg src={Git} /> 박성우
             </t.GitWrap>
+            <br />
             <t.GitWrap href="https://github.com/jnwnddh">
               <t.Gitimg src={Git} /> 이중오
             </t.GitWrap>
-
             <t.GitWrap href="https://github.com/cho-light">
               <t.Gitimg src={Git} />
               조광익
