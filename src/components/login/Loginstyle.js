@@ -2,12 +2,14 @@ import styled from "styled-components";
 export const Wrap = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
+  
 `;
 export const AuthWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+  
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
@@ -78,6 +80,7 @@ export const Danger = styled.p`
   }
 `;
 export const LoginBtn = styled.button`
+font-size: 17px;
   width: 360px;
   height: 61px;
   left: 40px;
