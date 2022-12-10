@@ -25,7 +25,6 @@ ChartJS.register(
 export default function DoughnutChart() {
   const peopleData = useSelector((state) => state.MapSlice?.data?.cnt);
   const [doughnutSize, setDoughnutSize] = useState(40);
-
   useEffect(() => {
     if (window.matchMedia("screen and (max-width: 480px)").matches) {
       return setDoughnutSize(20);
@@ -33,7 +32,6 @@ export default function DoughnutChart() {
       return setDoughnutSize(40);
     }
   }, [setDoughnutSize]);
-
   const chartData = {
     people: {
       labels: ["여성", "남성"],
@@ -86,12 +84,12 @@ export default function DoughnutChart() {
           backgroundColor: [
             "rgba(75, 192, 192, 0.7)",
             "rgba(153, 102, 255, 0.7)",
-            "rgba(255, 159, 64, 0.7)",
+            "#f72121",
           ],
           borderColor: [
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
+            "#f72121",
           ],
           borderWidth: 3,
           cutout: `${doughnutSize}`,
@@ -101,56 +99,13 @@ export default function DoughnutChart() {
     },
   };
 
-  // 바 차트
-  const options1 = {
-    responsive: true,
-    indexAxis: "y",
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "성별",
-      },
-      labels: {},
-    },
-  };
-  const options2 = {
-    responsive: true,
-    indexAxis: "y",
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "연령별",
-      },
-      labels: {},
-    },
-  };
-  const options3 = {
-    responsive: true,
-    indexAxis: "y",
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      title: {
-        display: true,
-        text: "구성원",
-      },
-      labels: {},
-    },
-  };
-
   const barData1 = {
     labels: ["여성", "남성"],
     datasets: [
       {
         data: [peopleData[0]?.peopleCnt, peopleData[1]?.peopleCnt],
         backgroundColor: ["rgba(255, 99, 132, 1)", "rgba(53, 162, 235, 1)"],
+        indexAxis: "y",
       },
     ],
   };
@@ -168,6 +123,7 @@ export default function DoughnutChart() {
           "rgba(255, 206, 86, 1)",
           "rgba(75, 192, 192, 1)",
         ],
+        indexAxis: "y",
       },
     ],
   };
@@ -184,8 +140,9 @@ export default function DoughnutChart() {
         backgroundColor: [
           "rgba(75, 192, 192, 1)",
           "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
+          "#f72121",
         ],
+        indexAxis: "y",
       },
     ],
   };
@@ -213,13 +170,13 @@ export default function DoughnutChart() {
         </t.chartBox>
 
         <t.barChartView>
-          <Bar options={options1} data={barData1} />
+          <Bar data={barData1} />
         </t.barChartView>
         <t.barChartView>
-          <Bar options={options2} data={barData2} />
+          <Bar data={barData2} />
         </t.barChartView>
         <t.barChartView>
-          <Bar options={options3} data={barData3} />
+          <Bar data={barData3} />
         </t.barChartView>
       </t.chartViewbox>
     </t.doughnutContainer>
