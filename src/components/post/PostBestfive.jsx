@@ -1,21 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import LoginPage from "../login/LoginPage";
 
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
   const email = sessionStorage.getItem("email");
+  const [modal, setmodal] = useState(false);
 
   const goPost = (id) => {
     if (email) {
       navigator(`/detail/${id}`);
     } else {
       alert("게시글 조회는 로그인 후 가능합니다.");
+      setmodal(!modal);
     }
   };
 
   return (
     <>
+      {modal ? <LoginPage /> : null}
       <Main>
         <Titlebox>
           <BestfiveTitle>인기 게시글</BestfiveTitle>

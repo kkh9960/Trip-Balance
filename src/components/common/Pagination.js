@@ -1,12 +1,7 @@
 import styled from "styled-components";
 
-function Pagination({ total, limit, page, setPage, scrollx }) {
+function Pagination({ total, limit, page, setPage }) {
   const numPages = Math.ceil(total / limit);
-  const scrollreset = () => {
-    const scrollX = scrollx.scrollLeft();
-    scrollx.scrollLeft((scrollX -= 100));
-    console.log("hhh");
-  };
   return (
     <>
       <Nav>
@@ -19,7 +14,6 @@ function Pagination({ total, limit, page, setPage, scrollx }) {
             <Button
               key={i + 1}
               onClick={() => setPage(i + 1)}
-              onChange={scrollreset}
               aria-current={page === i + 1 ? "page" : null}
             >
               {i + 1}

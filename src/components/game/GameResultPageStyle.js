@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const top = styled.div`
-  padding-top: 120px;
+  padding-top: 180px;
 
   @media screen and (max-width: 746px) {
     width: 100%;

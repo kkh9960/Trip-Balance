@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import * as t from "./MyPageViewStyle";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Pagination from "../common/Pagination";
 import ProfileInformation from "./profileInformation/ProfileInformation";
 import instance from "../../lib/instance";
@@ -14,7 +14,7 @@ export default function MyPageView() {
   const [userGameCnt, setUserGameCnt] = useState([]);
   const [userCommentCnt, setUserCommentCnt] = useState([]);
   const [userPostCnt, setUserPostCnt] = useState([]);
-  const scrollx = useRef();
+
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/info");
@@ -96,7 +96,7 @@ export default function MyPageView() {
             <t.thinLine />
           </t.itemHeader>
 
-          <t.pickPostWrap ref={scrollx}>
+          <t.pickPostWrap>
             {typeof myPick === typeof "string" ? (
               <t.empty>좋아요한 글이 없습니다.</t.empty>
             ) : myPick === null ? (
@@ -126,7 +126,6 @@ export default function MyPageView() {
               total={
                 typeof myPick === "string" ? myPick.length - 10 : myPick.length
               }
-              container="container"
               limit={limit}
               page={page}
               setPage={setPage}
@@ -138,7 +137,7 @@ export default function MyPageView() {
             <h2>내가 작성한 글 목록</h2>
             <t.thinLine />
           </t.itemHeader>
-          <t.postWrap ref={scrollx}>
+          <t.postWrap>
             {typeof posts === typeof "string" ? (
               <t.empty>작성한 글이 없습니다.</t.empty>
             ) : posts === null ? (
@@ -170,7 +169,6 @@ export default function MyPageView() {
               total={
                 typeof posts === "string" ? posts.length - 10 : posts.length
               }
-              scrollx={scrollx}
               limit={writelimit}
               page={writepage}
               setPage={setWritePage}

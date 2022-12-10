@@ -278,6 +278,14 @@ const BoardPostDetail = () => {
     }, 1000);
   }, []);
 
+  const INJECTIONRegex = /[%=*><]/g;
+  const RegexTest = (e) => {
+    if (INJECTIONRegex.test(e.target.value)) {
+      alert("보안 : 특수문자(<,>,*,=,%)는 입력이 제한됩니다.");
+      e.target.value = e.target.value.replace(/[%=*><]/g, "");
+    }
+  };
+
   return loading ? null : (
     <HeaderContainer>
       <BoardPostDetailContainer>
@@ -387,7 +395,10 @@ const BoardPostDetail = () => {
                 id="comment"
                 placeholder="댓글을 작성해 보세요."
                 value={comment}
-                onKeyUp={CheckLength}
+                onKeyUp={(e) => {
+                  CheckLength(e);
+                  RegexTest(e);
+                }}
                 onChange={CommentHandler}
               />
               <CommentButtonBox>

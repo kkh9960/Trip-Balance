@@ -147,7 +147,9 @@ const PostItem = () => {
               <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
             </SearchBox>
             <PostLikeBestbox>
-              {bestview ? <PostBestfive best={best} /> : null}
+              {bestview ? (
+                <PostBestfive best={best} setModal={setModal} modal={modal} />
+              ) : null}
             </PostLikeBestbox>
             <PostListWrap>
               <PostListTitle type="submit">여행 이야기</PostListTitle>
