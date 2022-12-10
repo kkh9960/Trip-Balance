@@ -171,7 +171,7 @@ const ScrollContainer = styled.div`
   width: 80px;
   height: 150px;
   @media screen and (max-width: 480px) {
-    display: flex;
+    display: none;
     width: 100%;
     right: 0%;
     align-items: center;
