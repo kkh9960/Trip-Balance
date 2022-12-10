@@ -10,15 +10,14 @@ export const weather = styled.div`
   grid-row-start: 1;
   grid-row-end: 2;
   color: #777;
-  align-self: start;
   @media screen and (max-width: 480px) {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 100%;
     padding: 0;
-    border-radius: 10px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
     justify-content: space-evenly;
   }
 `;
@@ -31,11 +30,11 @@ export const location = styled.div`
   flex-direction: column;
   text-align: right;
   @media screen and (max-width: 480px) {
-    width: 180px;
-    height: 90px;
+    width: 170px;
+    height: 100%;
     text-align: center;
     margin-right: 0px;
-    align-self: start;
+    z-index: 1;
   }
 `;
 
@@ -55,10 +54,12 @@ export const mobileCityName = styled.div`
   }
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 60px;
+    height: 100%;
     font-size: 22px;
     margin-bottom: -10px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -70,13 +71,22 @@ export const countyName = styled.div`
   @media screen and (max-width: 480px) {
     font-size: 18px;
     width: 100%;
+    height: 100%;
     margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
 export const top = styled.div`
   display: flex;
   align-self: start;
+  @media screen and (max-width: 480px) {
+    width: 70%;
+    height: 100%;
+    margin-left: -10px;
+  }
 `;
 export const iconBox = styled.div`
   display: flex;
@@ -84,6 +94,8 @@ export const iconBox = styled.div`
   align-items: center;
   @media screen and (max-width: 480px) {
     margin-right: -10px;
+    width: 100%;
+    height: 100%;
   }
 `;
 export const weatherIcon = styled.img`
@@ -97,52 +109,54 @@ export const temperatureBox = styled.div`
   width: 100%;
   height: 100%;
   @media screen and (max-width: 480px) {
-    width: 80px;
+    width: 100%;
     height: 100%;
   }
 `;
 export const timer = styled.div`
   @media screen and (max-width: 480px) {
     display: none;
-    position: absolute;
-    font-size: 20px;
-    text-align: left;
-    width: 50px;
-    bottom: 30px;
-    left: 40px;
   }
 `;
 export const temperature = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  text-align: right;
-  color: #777;
-  span {
-    font-weight: 400;
-    font-size: 70px;
-    line-height: 73px;
-  }
-  p {
-    position: absolute;
-    bottom: -43px;
-    right: 0;
-    font-size: 24px;
+  @media screen and (min-width: 481px) {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+    color: #777;
+    span {
+      font-weight: 400;
+      font-size: 70px;
+      line-height: 73px;
+    }
+    p {
+      position: absolute;
+      bottom: -70px;
+      right: 0;
+      font-size: 24px;
+    }
   }
   @media screen and (max-width: 480px) {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     font-weight: 200;
     font-size: 80px;
     color: #777;
     margin: 0;
+    span {
+      font-weight: 400;
+      font-size: 60px;
+      line-height: 83px;
+    }
     p {
-      position: absolute;
-      bottom: -43px;
-      right: 0;
+      margin-top: -8px;
+      margin-left: 10px;
+      text-align: right;
       font-size: 24px;
     }
   }
@@ -154,6 +168,7 @@ export const bottom = styled.div`
   width: 334px;
   height: 100%;
   @media screen and (max-width: 480px) {
+    height: 100%;
   }
 `;
 
@@ -189,9 +204,10 @@ export const parameterLabel = styled.div`
   font-weight: 200;
   font-size: 20px;
   line-height: 24.2px;
+  align-self: start;
   @media screen and (max-width: 480px) {
-    font-size: 16px;
-    font-weight: 200;
+    font-size: 14px;
+    font-weight: 100;
   }
 `;
 
@@ -208,7 +224,7 @@ export const parameterValue = styled.div`
     flex-direction: column;
     font-size: 26px;
     p {
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 0;
       line-height: 0;
       text-align: right;

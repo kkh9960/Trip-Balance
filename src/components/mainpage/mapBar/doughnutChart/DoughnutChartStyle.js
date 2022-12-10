@@ -12,7 +12,7 @@ export const doughnutContainer = styled.div`
     height: 250px;
     display: flex;
     flex-direction: column;
-    margin: 0px;
+    margin: 10px auto;
     transition: 0.5s;
   }
 `;
@@ -50,6 +50,14 @@ export const chartView = styled.div`
   box-shadow: 0 0 10px;
 
   @media screen and (max-width: 480px) {
+    width: 104px;
+    height: 104px;
+    margin: 10px auto;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px;
+  }
+  @media screen and (max-width: 360px) {
     width: 104px;
     height: 104px;
     margin: 10px auto;
