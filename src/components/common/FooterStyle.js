@@ -3,14 +3,15 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: gray;
   width: 100%;
+
   @media screen and (max-width: 746px) {
     width: 100%;
   }
 `;
 export const Wrap = styled.div`
-  height: 240px;
+  height: 290px;
   @media screen and (max-width: 550px) {
-    height: 320px;
+    height: 370px;
     width: 100%;
   }
 `;
@@ -80,14 +81,14 @@ export const Footerlogo = styled.img`
 export const Title = styled.div`
   text-align: center;
   align-items: center;
-  top: -70px;
+  top: -100px;
   opacity: 0.7;
   font-family: "Jalnan";
   color: white;
   position: relative;
   @media screen and (max-width: 480px) {
     left: -40px;
-    margin-top: 50px;
+    margin-top: 90px;
     width: 100%;
     font-family: "Jalnan";
     color: white;
@@ -102,7 +103,7 @@ export const Comment = styled.div`
   position: relative;
   text-align: center;
   opacity: 0.6;
-  top: -55px;
+  top: -70px;
   font-family: "Jalnan";
   color: white;
   @media screen and (max-width: 480px) {
