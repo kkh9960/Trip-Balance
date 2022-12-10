@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Wrap = styled.div`
   height: 300px;
   @media screen and (max-width: 550px) {
-    height: 320px;
+    height: 370px;
     width: 100%;
   }
 `;
@@ -88,7 +88,7 @@ export const Title = styled.div`
   position: relative;
   @media screen and (max-width: 480px) {
     left: -40px;
-    margin-top: 50px;
+    margin-top: 90px;
     width: 100%;
     font-family: "Jalnan";
     color: white;
@@ -103,7 +103,7 @@ export const Comment = styled.div`
   position: relative;
   text-align: center;
   opacity: 0.6;
-  top: -55px;
+  top: -70px;
   font-family: "Jalnan";
   color: white;
   @media screen and (max-width: 480px) {
