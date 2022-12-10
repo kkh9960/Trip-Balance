@@ -196,7 +196,7 @@ function RegisterPage() {
                 type="email"
                 value={email}
                 onChange={emailchange}
-                placeholder=" 이메일을 입력해주세요 ."
+                placeholder=" 이메일 ."
               />
               <t.EmailCheck onClick={idCheck} button type="button">
                 중복확인
@@ -204,7 +204,7 @@ function RegisterPage() {
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
               <t.InputWrite
                 name="name"
-                placeholder=" 닉네임 ."
+                placeholder=" 닉네임."
                 onChange={nicknamechange}
                 value={nickname}
               />
@@ -215,7 +215,7 @@ function RegisterPage() {
               <div>{emcheck}</div>
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
               <t.InputWrite
-                placeholder="비밀번호를입력해주세요."
+                placeholder="비밀번호."
                 name="password"
                 type="password"
                 value={bimil}
@@ -226,7 +226,7 @@ function RegisterPage() {
               {checkcolor == 2 ? <t.Danger3>{bimilcheck}</t.Danger3> : null}
 
               <t.InputWrite
-                placeholder=" 비밀번호를확인하세요"
+                placeholder=" 비밀번호확인"
                 type="password"
                 value={pwcheck}
                 onChange={pwcheckChange}
