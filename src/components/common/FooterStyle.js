@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: gray;
   width: 100%;
+
   @media screen and (max-width: 746px) {
     width: 100%;
   }
 `;
 export const Wrap = styled.div`
-  height: 240px;
+  height: 300px;
   @media screen and (max-width: 550px) {
     height: 320px;
     width: 100%;
@@ -80,7 +81,7 @@ export const Footerlogo = styled.img`
 export const Title = styled.div`
   text-align: center;
   align-items: center;
-  top: -70px;
+  top: -100px;
   opacity: 0.7;
   font-family: "Jalnan";
   color: white;
