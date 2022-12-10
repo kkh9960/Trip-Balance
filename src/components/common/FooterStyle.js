@@ -11,14 +11,17 @@ export const Container = styled.div`
 export const Wrap = styled.div`
   height: 290px;
   @media screen and (max-width: 550px) {
+
     height: 400px;
 
     width: 100%;
   }
 `;
 export const DesignWrap = styled.div`
+
   margin-top: 10px;
 `;
+
 
 export const Design = styled.div`
   text-align: center;
@@ -63,6 +66,7 @@ export const Gitimg = styled.img`
   @media screen and (max-width: 480px) {
     width: 25px;
   }
+
 `;
 export const Footerlogo = styled.img`
   position: relative;
@@ -87,7 +91,7 @@ export const Title = styled.div`
   color: white;
   position: relative;
   @media screen and (max-width: 480px) {
-    left: -30px;
+    left: -40px;
     margin-top: 90px;
     width: 100%;
     font-family: "Jalnan";
@@ -170,6 +174,7 @@ export const Fronts = styled.div`
   position: relative;
   top: -30px;
   @media screen and (max-width: 480px) {
+    width: 400px;
     position: relative;
     top: -10px;
     color: white;
