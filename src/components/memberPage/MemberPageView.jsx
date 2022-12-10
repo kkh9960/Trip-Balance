@@ -65,6 +65,7 @@ export default function MemberPage() {
             <br />
             횟수
           </span>
+          {"\n"}
           <span>{userGameCnt}</span>
         </t.myTotalInfoText>
         <t.textLine />
@@ -74,6 +75,7 @@ export default function MemberPage() {
             <br />
             게시글
           </span>
+          {"\n"}
           <span>{userPostCnt}</span>
         </t.myTotalInfoText>
         <t.textLine />
@@ -83,6 +85,7 @@ export default function MemberPage() {
             <br />
             댓글
           </span>
+          {"\n"}
           <span>{userCommentCnt}</span>
         </t.myTotalInfoText>
       </t.myTotalInfo>
@@ -90,32 +93,40 @@ export default function MemberPage() {
       <t.mySelectInformation>
         <t.myPickPostWrap>
           <t.itemHeader>
-            <h2>좋아요한 게시물</h2>
+            <h2>내가 좋아요한 게시물</h2>
             <t.thinLine />
           </t.itemHeader>
 
           <t.pickPostWrap>
-            {myPick.slice(offset, offset + limit).map((idx) => {
-              if (myPick.length === 0) {
-                return <t.empty>좋아요한 글이 없습니다.</t.empty>;
-              } else {
-                return (
-                  <t.pickPostItem
-                    key={idx.postId}
-                    onClick={() => navigate(`/detail/${idx.postId}`)}
-                  >
-                    <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                    <div>{idx.title}</div>
-                    <div>{idx.nickName}</div>
-                  </t.pickPostItem>
-                );
-              }
-            })}
+            {typeof myPick === typeof "string" ? (
+              <t.empty>좋아요한 글이 없습니다.</t.empty>
+            ) : myPick === null ? (
+              <t.empty>좋아요한 글이 없습니다.</t.empty>
+            ) : (
+              myPick.slice(offset, offset + limit).map((idx) => {
+                if (myPick.length === 0) {
+                  return <t.empty>좋아요한 글이 없습니다.</t.empty>;
+                } else {
+                  return (
+                    <t.pickPostItem
+                      key={idx.postId}
+                      onClick={() => navigate(`/detail/${idx.postId}`)}
+                    >
+                      <t.pickPostImg src={idx.img} alt="게시글이미지" />
+                      <t.pickPostTitle>{idx.title}</t.pickPostTitle>
+                      <t.pickPostNickname>{idx.nickName}</t.pickPostNickname>
+                    </t.pickPostItem>
+                  );
+                }
+              })
+            )}
           </t.pickPostWrap>
           <t.footer>
             <t.thinLine />
             <Pagination
-              total={myPick.length}
+              total={
+                typeof myPick === "string" ? myPick.length - 10 : myPick.length
+              }
               limit={limit}
               page={page}
               setPage={setPage}
@@ -124,33 +135,41 @@ export default function MemberPage() {
         </t.myPickPostWrap>
         <t.myPostWrap>
           <t.itemHeader>
-            <h2>작성한 글 목록</h2>
-
+            <h2>내가 작성한 글 목록</h2>
             <t.thinLine />
           </t.itemHeader>
-          <t.pickPostWrap>
-            {posts.slice(writeoffset, writeoffset + writelimit).map((idx) => {
-              if (posts.length === 0) {
-                return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
-              } else {
-                return (
-                  <t.pickPostItem
-                    key={idx.postId}
-                    onClick={() => navigate(`/detail/${idx.postId}`)}
-                  >
-                    <t.pickPostImg src={idx.img} alt="게시글이미지" />
-                    <div>{idx.title}</div>
-                    <div>{idx.createdAt}</div>
-                  </t.pickPostItem>
-                );
-              }
-            })}
-          </t.pickPostWrap>
+          <t.postWrap>
+            {typeof posts === typeof "string" ? (
+              <t.empty>작성한 글이 없습니다.</t.empty>
+            ) : posts === null ? (
+              <t.empty>작성한 글이 없습니다.</t.empty>
+            ) : (
+              posts.slice(writeoffset, writeoffset + writelimit).map((idx) => {
+                if (posts.length === 0) {
+                  return <h1 key={idx.postId}>작성한 글이 없습니다.</h1>;
+                } else {
+                  return (
+                    <t.postItem
+                      key={idx.postId}
+                      onClick={() => navigate(`/detail/${idx.postId}`)}
+                    >
+                      <t.postImg src={idx.img} alt="게시글이미지" />
+                      <t.postTitle>{idx.title}</t.postTitle>
+                      <t.postTime>{idx.createdAt.split("T")[0]}</t.postTime>
+                    </t.postItem>
+                  );
+                }
+              })
+            )}
+          </t.postWrap>
 
           <t.footer>
             <t.thinLine />
+
             <Pagination
-              total={posts.length}
+              total={
+                typeof posts === "string" ? posts.length - 10 : posts.length
+              }
               limit={writelimit}
               page={writepage}
               setPage={setWritePage}

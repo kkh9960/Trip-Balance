@@ -35,14 +35,7 @@ export const empty = styled.div`
     font-size: 18px;
   }
 `;
-export const backgroundImg = styled.div`
-  width: 100%;
-  height: 300px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-`;
+
 //pageview
 export const myInformationWrap = styled.div`
   position: relative;
