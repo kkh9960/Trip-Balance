@@ -23,7 +23,6 @@ export default function MapBar() {
     };
 
     const map = new kakao.maps.Map(container, options);
-
     markerdata.forEach((el) => {
       const marker = new kakao.maps.Marker({
         map: map,
@@ -49,13 +48,11 @@ export default function MapBar() {
         dispatch(__postMapData({ lat, lng, location }));
       });
     });
-
     function makeOverListener(map, marker, infowindow) {
       return function () {
         infowindow.open(map, marker);
       };
     }
-
     function makeOutListener(infowindow) {
       return function () {
         infowindow.close();

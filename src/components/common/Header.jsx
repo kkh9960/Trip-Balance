@@ -41,31 +41,27 @@ export default function Header() {
         window.location.reload();
       });
   }
+
   const [toggle, setToggle] = useState(true);
   const toggleChange = () => {
     return toggle ? setToggle(false) : setToggle(true);
   };
 
   const [headerScroll, setHeaderScroll] = useState(false);
-  const pageLocation = useLocation();
-
   useEffect(() => {
     const handleShowButton = () => {
       if (window.scrollY > 670) {
         setHeaderScroll(true);
-        console.log(headerScroll);
       } else {
         setHeaderScroll(false);
-        console.log(headerScroll);
       }
     };
-
     window.addEventListener("scroll", handleShowButton);
     return () => {
       window.removeEventListener("scroll", handleShowButton);
     };
   }, [headerScroll]);
-  console.log(useLocation());
+
   return (
     <>
       {header === "/" ? (

@@ -5,7 +5,7 @@ import Footer from "../../components/common/Footer";
 import MapBarView from "../../components/mainpage/mapBar/MapBarView";
 
 import * as t from "./MainPageStyle";
-import TestSlide from "../../components/mainpage/slideBanner/TestSlide";
+import TestSlide from "../../components/mainpage/sliderBanner/TestSlide";
 
 import GameBanner from "../../components/mainpage/gameBanner/GameBanner";
 import HotelList from "../../components/mainpage/postBar/hotelList/HotelList";
