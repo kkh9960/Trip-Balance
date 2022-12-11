@@ -1,23 +1,64 @@
 import styled from "styled-components";
 
-export const BannerSection = styled.div``;
-export const Container1 = styled.div`
+export const BannerSection1 = styled.div`
+  @media screen and (min-width: 481px) {
+    width: 100%;
+    height: 120px;
+    position: fixed;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    background-color: ${(props) =>
+      props.headerScroll ? "rgba(0, 0, 0, 0.7)" : ""};
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    position: fixed;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    position: fixed;
+    height: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+`;
+export const BannerSection2 = styled.div`
+  width: 100%;
+  height: 120px;
   position: fixed;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  background-color: rgba(0, 0, 0, 0.7);
+  @media screen and (max-width: 480px) {
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+`;
+export const Container1 = styled.div`
   display: flex;
   top: 0;
-  z-index: 99;
-  width: 100%;
+  width: 1360px;
   height: 120px;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
   @media screen and (max-width: 1240px) {
     position: fixed;
     flex-wrap: wrap;
     align-items: center;
-    transition: 1s;
-    background-color: rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    width: 100%;
   }
   @media screen and (max-width: 480px) {
     position: fixed;
@@ -28,20 +69,19 @@ export const Container1 = styled.div`
 `;
 
 export const Container2 = styled.div`
-  position: fixed;
   display: flex;
-  z-index: 99;
-  width: 100%;
+  width: 1360px;
   height: 120px;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
   @media screen and (max-width: 1240px) {
     position: fixed;
     transition: 0.5s;
     flex-wrap: wrap;
     align-items: center;
+    width: 100%;
   }
   @media screen and (max-width: 480px) {
     position: fixed;
@@ -95,7 +135,7 @@ export const WriteWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  transition: 1s;
+  transition: 0.5s;
   div {
     color: white;
     text-align: center;
@@ -105,7 +145,8 @@ export const WriteWrap = styled.div`
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${(props) =>
+      props.headerScroll ? "rgba(0, 0, 0, 0.7)" : ""};
   }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
@@ -114,6 +155,7 @@ export const WriteWrap = styled.div`
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
   }
 `;
 
