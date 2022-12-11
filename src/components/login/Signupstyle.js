@@ -29,6 +29,8 @@ export const Back = styled.img`
   width: 20px;
 `;
 export const Nicknamemsg = styled.div`
+  font-style: NotoSansKR;
+  font-size: 17px;
   position: relative;
   top: -120px;
   left: 45px;
@@ -123,6 +125,8 @@ export const Danger = styled.p`
   color: block;
   font-style: NotoSansKR;
   font-size: 17px;
+  color:gray;
+  opacity: 0.8;
   font-weight: 100px;
   position: relative;
   top: -98px;
@@ -233,7 +237,7 @@ export const SignUpBtn = styled.button`
   left: 35px;
   transition: 1.1s;
   @media screen and (max-width: 746px) {
-    bottom: 160px;
+    top: -105px;
     left: 45px;
     width: 200px;
   }
@@ -255,8 +259,7 @@ export const EmailCheck = styled.button`
   }
 `;
 export const NickNameCheck = styled.button`
-font-style: NotoSansKR;
-font-size: 17px;
+
   width: 100px;
   height: 30px;
   left: 289px;

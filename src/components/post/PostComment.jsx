@@ -108,8 +108,13 @@ const PostComment = ({ idx, item, id, post }) => {
   const goprofile = () => {
     navigator(`/memberpage/${item.authorId}`);
   };
-
-  useEffect(() => {}, []);
+  const INJECTIONRegex = /[%=*><]/g;
+  const RegexTest = (e) => {
+    if (INJECTIONRegex.test(e.target.value)) {
+      alert("보안 : 특수문자(<,>,*,=,%)는 입력이 제한됩니다.");
+      e.target.value = e.target.value.replace(/[%=*><]/g, "");
+    }
+  };
 
   return (
     <>
@@ -120,10 +125,9 @@ const PostComment = ({ idx, item, id, post }) => {
               <St.CommentUserImage src={UserImage} />
             </div>
             <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-            {Editprofile
-              ? // <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
-                null
-              : null}
+            {Editprofile ? (
+              <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+            ) : null}
           </St.CommentUserBox>
           <St.Commentbody>
             {Editmode ? (
@@ -132,6 +136,7 @@ const PostComment = ({ idx, item, id, post }) => {
                 maxLength="200"
                 onChange={ChangeEdit}
                 value={Editcomment}
+                onKeyUp={RegexTest}
               />
             ) : (
               <St.Commentdesc>{item?.content}</St.Commentdesc>
@@ -175,6 +180,7 @@ const PostComment = ({ idx, item, id, post }) => {
             maxLength="50"
             value={recomment}
             onChange={ReCommentHandler}
+            onKeyUp={RegexTest}
           />
           <St.CommentBtnBox>
             <St.CommentBtn onClick={CalcelComment}>취소</St.CommentBtn>

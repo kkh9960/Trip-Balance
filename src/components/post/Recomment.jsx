@@ -65,6 +65,14 @@ const Recomment = ({ item, cmtid }) => {
     navigator(`/memberpage/${item.authorId}`);
   };
 
+  const INJECTIONRegex = /[%=*><]/g;
+  const RegexTest = (e) => {
+    if (INJECTIONRegex.test(e.target.value)) {
+      alert("보안 : 특수문자(<,>,*,=,%)는 입력이 제한됩니다.");
+      e.target.value = e.target.value.replace(/[%=*><]/g, "");
+    }
+  };
+
   return (
     <St.RecommentContainer>
       <St.CommentBox>
@@ -73,10 +81,9 @@ const Recomment = ({ item, cmtid }) => {
             <St.CommentUserImage src={ReUserImage} />
           </div>
           <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-          {Editprofile
-            ? // <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
-              null
-            : null}
+          {Editprofile ? (
+            <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
+          ) : null}
         </St.CommentUserBox>
         <St.Commentbody>
           {Editmode ? (
@@ -85,6 +92,7 @@ const Recomment = ({ item, cmtid }) => {
               maxLength="200"
               onChange={ChangeEdit}
               value={EditRecomment}
+              onKeyUp={RegexTest}
             />
           ) : (
             <St.Commentdesc>{item?.content}</St.Commentdesc>

@@ -32,6 +32,7 @@ function RegisterPage() {
   const [ckColor,setckColor]=useState();
   const [checkcolor, setcheckcolor] = useState(0);
   const [nickCheck,setnickCheck] = useState()
+  const [color, setColor] = useState("red");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const Emailj =
@@ -49,10 +50,10 @@ function RegisterPage() {
       if (res.data.statusCode == 0) {
         setCheckError(<div size={30} />);
 
-        setCheckMsg(<div>사용가능한닉네임입니다</div>);
+        setCheckMsg("사용가능한닉네임입니다");
         setDpNameCheck(true);
       } else {
-        setCheckMsg("이미 다른 사용자가 사용 중 입니다.");
+        setCheckMsg(<div style={{color}}>이미 다른 사용자가 사용 중 입니다</div>);
         setDpNameCheck(false);
       }
     });
@@ -66,9 +67,16 @@ function RegisterPage() {
         return
       }
       if (res.data.statusCode == 117) {
-        setEmailCheckMsg("중복된이메일입니다!");
+        setEmailCheckMsg(
+          <div style={{ color }}>이미 다른 사용자가 사용 중 입니다</div>
+        );
       } else {
         setEmailCheckMsg("가입가능한이메일입니다");
+      }
+      if(!Emailj.test(email)){
+         setEmailCheckMsg(
+           <div style={{ color }}>이메일형식이 아닙니다</div>
+         );
       }
     });
   };
@@ -188,7 +196,7 @@ function RegisterPage() {
                 type="email"
                 value={email}
                 onChange={emailchange}
-                placeholder=" 이메일을 입력해주세요 ."
+                placeholder=" 이메일 ."
               />
               <t.EmailCheck onClick={idCheck} button type="button">
                 중복확인
@@ -196,7 +204,7 @@ function RegisterPage() {
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
               <t.InputWrite
                 name="name"
-                placeholder=" 닉네임 ."
+                placeholder=" 닉네임."
                 onChange={nicknamechange}
                 value={nickname}
               />
@@ -207,7 +215,7 @@ function RegisterPage() {
               <div>{emcheck}</div>
               <t.Nicknamemsg>{checkMsg}</t.Nicknamemsg>
               <t.InputWrite
-                placeholder=" 특수문자포함8글자이상."
+                placeholder="비밀번호."
                 name="password"
                 type="password"
                 value={bimil}
@@ -218,7 +226,7 @@ function RegisterPage() {
               {checkcolor == 2 ? <t.Danger3>{bimilcheck}</t.Danger3> : null}
 
               <t.InputWrite
-                placeholder=" 비밀번호를확인하세요"
+                placeholder=" 비밀번호확인"
                 type="password"
                 value={pwcheck}
                 onChange={pwcheckChange}

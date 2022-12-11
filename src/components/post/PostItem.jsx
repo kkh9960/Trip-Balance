@@ -30,6 +30,7 @@ const PostItem = () => {
   const NICK = sessionStorage.getItem("nickName");
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
+  const [bestview, setbestview] = useState(true);
 
   const profiledefaultImg = "/img/tb.jpg";
   const [ref, inView] = useInView();
@@ -99,9 +100,17 @@ const PostItem = () => {
     if (selLocal == "0") {
       dispatch(__getBoardTotal({ useInput, pageLocal }));
       setsearch(2);
+      setbestview(false);
+      if (useInput == "") {
+        setbestview(true);
+      } else {
+        setbestview(false);
+      }
     } else {
       dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
       setsearch(3);
+      console.log(55);
+      setbestview(false);
     }
   };
 
@@ -138,7 +147,9 @@ const PostItem = () => {
               <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
             </SearchBox>
             <PostLikeBestbox>
-              <PostBestfive best={best} />
+              {bestview ? (
+                <PostBestfive best={best} setModal={setModal} modal={modal} />
+              ) : null}
             </PostLikeBestbox>
             <PostListWrap>
               <PostListTitle type="submit">여행 이야기</PostListTitle>
@@ -216,7 +227,7 @@ const PostItem = () => {
             <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
           </SearchBox>
           <PostLikeBestbox>
-            <PostBestfive best={best} />
+            {bestview ? <PostBestfive best={best} /> : null}
           </PostLikeBestbox>
           <PostListWrap>
             <PostListTitle type="submit">여행 이야기</PostListTitle>
@@ -340,11 +351,18 @@ const Cardbody = styled.div`
   justify-content: space-between;
   margin-top: 20px;
   margin-left: 10px;
+  @media screen and (max-width: 480px) {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
 `;
 const CardTitle = styled.div`
   margin: 20px 20px 5px 20px;
   font-size: 18px;
   white-space: normal;
+  overflow: hidden;
+  width: 300px;
+  text-overflow: ellipsis;
   @media screen and (max-width: 480px) {
     margin: 5px;
     font-size: 15px;
@@ -360,7 +378,7 @@ const CardTextbox = styled.div`
   height: 135px;
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 100px;
+    height: 60px;
   }
 `;
 
@@ -377,7 +395,7 @@ const CardImgbox = styled.div`
   border-radius: 20px;
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 200px;
+    height: 140px;
   }
 `;
 const CardWrap = styled.div`
@@ -393,7 +411,7 @@ const CardWrap = styled.div`
   }
   @media screen and (max-width: 480px) {
     width: 95%;
-    height: 300px;
+    height: 200px;
   }
 `;
 
@@ -472,6 +490,7 @@ const CategorySearch = styled.select`
   text-align: center;
   margin-right: 20px;
   @media screen and (max-width: 480px) {
+    margin-right: 0px;
     width: 90%;
     height: 50px;
   }
@@ -539,6 +558,8 @@ const PostgoWrite = styled.button`
 `;
 
 const PostLikeBestbox = styled.div`
-  width: 100%;
-  height: auto;
+  height: 600px;
+  @media screen and (max-width: 480px) {
+    height: 420px;
+  }
 `;

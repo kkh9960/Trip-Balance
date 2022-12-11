@@ -138,7 +138,6 @@ const BoardPostDetail = () => {
       const sliderBtnPrev = sliderBtn.querySelector(".prev");
       const sliderBtnNext = sliderBtn.querySelector(".next");
       const sliderDot = document.querySelector(".slider__dot");
-
       let currentIndex = 0;
       let sliderWidth = sliderImg.offsetWidth; //이미지 가로 값
       let sliderLength = slider.length; //이미지 갯수
@@ -204,7 +203,13 @@ const BoardPostDetail = () => {
       //자동재생
       function autoPlay() {
         sliderTimer = setInterval(() => {
-          gotoSlider(currentIndex + 1);
+          if (document.querySelectorAll(".ImgPreview").length == 1) {
+          } else {
+            if (sliderInner.classList.contains("transition")) {
+            } else {
+              gotoSlider(currentIndex + 1);
+            }
+          }
         }, interval);
       }
 
@@ -214,14 +219,22 @@ const BoardPostDetail = () => {
       }
       stopPlay();
 
+      //이전
       sliderBtnPrev.addEventListener("click", () => {
         let prevIndex = currentIndex - 1;
-        gotoSlider(prevIndex);
+        if (sliderInner.classList.contains("transition")) {
+        } else {
+          gotoSlider(prevIndex);
+        }
       });
 
+      //다음
       sliderBtnNext.addEventListener("click", () => {
         let nextIndex = currentIndex + 1;
-        gotoSlider(nextIndex);
+        if (sliderInner.classList.contains("transition")) {
+        } else {
+          gotoSlider(nextIndex);
+        }
       });
 
       sliderInner.addEventListener("transitionend", () => {
@@ -265,6 +278,14 @@ const BoardPostDetail = () => {
     }, 1000);
   }, []);
 
+  const INJECTIONRegex = /[%=*><]/g;
+  const RegexTest = (e) => {
+    if (INJECTIONRegex.test(e.target.value)) {
+      alert("보안 : 특수문자(<,>,*,=,%)는 입력이 제한됩니다.");
+      e.target.value = e.target.value.replace(/[%=*><]/g, "");
+    }
+  };
+
   return loading ? null : (
     <HeaderContainer>
       <BoardPostDetailContainer>
@@ -275,19 +296,15 @@ const BoardPostDetail = () => {
               <div className="slider__wrap">
                 <div className="slider__img">
                   <div className="slider__inner">
-                    {post?.mediaList[0] ? (
-                      post?.mediaList.map((item, idx) => {
-                        return (
-                          <div className="slider" key={idx}>
-                            <img className="sliderimg" src={item} alt="" />
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="slider">
-                        <img className="sliderimg" src={DefaultImega2} alt="" />
-                      </div>
-                    )}
+                    {post?.mediaList[0]
+                      ? post?.mediaList.map((item, idx) => {
+                          return (
+                            <div className="slider" key={idx}>
+                              <img className="sliderimg" src={item} alt="" />
+                            </div>
+                          );
+                        })
+                      : null}
                   </div>
                 </div>
                 <div className="slider__btn">
@@ -331,8 +348,9 @@ const BoardPostDetail = () => {
                       <ModifyButton onClick={modifyPost}>수정</ModifyButton>
                       <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
                     </>
-                  ) : // <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
-                  null}
+                  ) : (
+                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                  )}
                 </TitleButtonWarp>
               </BoardTitleWrap>
               <UserNameBox>
@@ -346,8 +364,9 @@ const BoardPostDetail = () => {
                       <ModifyButton onClick={modifyPost}>수정</ModifyButton>
                       <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
                     </>
-                  ) : // <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
-                  null}
+                  ) : (
+                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                  )}
                 </TitleButtonWarpmobile>
               </UserNameBox>
               <BoardBody>{post?.content}</BoardBody>
@@ -376,7 +395,10 @@ const BoardPostDetail = () => {
                 id="comment"
                 placeholder="댓글을 작성해 보세요."
                 value={comment}
-                onKeyUp={CheckLength}
+                onKeyUp={(e) => {
+                  CheckLength(e);
+                  RegexTest(e);
+                }}
                 onChange={CommentHandler}
               />
               <CommentButtonBox>
@@ -639,6 +661,8 @@ const BoardBody = styled.div`
   width: 90%;
   min-height: 400px;
   font-weight: lighter;
+  white-space: normal;
+  word-wrap: break-word;
   font-size: 24px;
   @media screen and (max-width: 480px) {
     font-size: 1.2rem;

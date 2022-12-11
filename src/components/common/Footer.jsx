@@ -2,7 +2,7 @@ import React from "react";
 import Git from "../../img/git.svg";
 import * as t from "./FooterStyle";
 import footerlogo from "../../img/footerlogo.svg";
-import design from "../../img/design.svg"
+import design from "../../img/design.svg";
 const Footer = () => {
   return (
     <t.Container>
@@ -22,24 +22,20 @@ const Footer = () => {
               <t.Gitimg src={Git} />
               곽규현
             </t.GitWrap>
-            <t.GitWrap href="">
+            <t.GitWrap href="https://github.com/seongwoo9156">
               <t.Gitimg src={Git} /> 박성우
             </t.GitWrap>
+            <br />
             <t.GitWrap href="https://github.com/jnwnddh">
               <t.Gitimg src={Git} /> 이중오
             </t.GitWrap>
-            <br></br>
             <t.GitWrap href="https://github.com/cho-light">
               <t.Gitimg src={Git} />
               조광익
             </t.GitWrap>
-            <t.GitWrap href="https://linktr.ee/vozzang">
-              <img src={design} />
-              DESIGNER 서보영
-            </t.GitWrap>
           </t.FrontWrap>
         </t.Fronts>
-       
+
         <t.Backs>
           <t.BackWrap>
             <t.GitWrap>BACK</t.GitWrap>
@@ -55,6 +51,10 @@ const Footer = () => {
               <t.Gitimg src={Git} />
               김장원
             </t.GitWrap>
+            <t.DesignWrap href="https://linktr.ee/vozzang">
+              <t.Design src={design} />
+              DESIGNER 서보영
+            </t.DesignWrap>
           </t.BackWrap>
         </t.Backs>
       </t.Wrap>

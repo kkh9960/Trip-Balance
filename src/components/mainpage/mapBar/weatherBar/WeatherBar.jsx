@@ -18,22 +18,24 @@ export default function WeatherBar() {
 
   const todayTime = () => {
     let now = new Date();
-    let todayMonth = now.getMonth() + 1;
-    let todayData = now.getData();
-    const week = ["일", "월", "화", "수", "목", "금", "토"];
-    let dayOfWeek = week[now.getDay()];
+    let week = ["일", "월", "화", "수", "목", "금", "토"];
+    let curWeek = week[now.getDay()];
     let hours = now.getHours();
     let minutes = now.getMinutes();
-
-    return `${todayMonth}월${todayData}일${dayOfWeek}요일${hours}시${minutes}분`;
+  
+    setHours(hours)
+    setMinutes(minutes)
+    setDayOfWeek(curWeek)
   };
-  const now = new Date();
-  const week = ["일", "월", "화", "수", "목", "금", "토"];
-  const dayOfWeek = week[now.getDay()];
-  const hours = now.getHours();
-  const minutes = now.getMinutes();
 
-  const [time, setTime] = useState(hours + ":" + minutes);
+  const startTime = () => {
+    setInterval(todayTime, 1000)
+  }
+  startTime();
+
+  const [hours, setHours] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [dayOfWeek, setDayOfWeek] = useState("");
 
   return (
     <t.weather>
@@ -51,7 +53,9 @@ export default function WeatherBar() {
         </t.iconBox>
         <t.temperatureBox>
           <t.timer>
-            {dayOfWeek}, {time}
+            {dayOfWeek},<br/>
+            {hours < 10 ? ("0"+hours) : (hours)}:
+            {minutes < 10 ? ("0"+minutes) : (minutes)}
           </t.timer>
           <t.temperature>
             <span>{`${TMP}`}</span>
