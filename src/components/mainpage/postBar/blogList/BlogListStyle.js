@@ -65,7 +65,7 @@ export const blogText = styled.div`
   line-height: 44px;
   letter-spacing: normal;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 56px;
   @media screen and (max-width: 480px) {
     font-size: 28px;
   }

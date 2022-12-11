@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHref, useNavigate } from "react-router-dom";
 import "./Test.css";
-import UseInterval from "../../hooks/useinterval";
+import UseInterval from "../../../hooks/useinterval";
 import { gsap } from "gsap";
 
 const TestSlide = () => {
@@ -59,7 +59,7 @@ const TestSlide = () => {
 
   UseInterval(() => {
     SlideAuto();
-  }, 6500);
+  }, 4500);
 
   useEffect(() => {
     if (matchMedia("screen and (max-width: 480px)").matches) {

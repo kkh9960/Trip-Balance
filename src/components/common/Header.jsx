@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
 
-const Header = () => {
+export default function Header() {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const nickname = sessionStorage.getItem("nickName");
@@ -46,190 +46,212 @@ const Header = () => {
     return toggle ? setToggle(false) : setToggle(true);
   };
 
+  const [headerScroll, setHeaderScroll] = useState(false);
+  const pageLocation = useLocation();
+
+  useEffect(() => {
+    const handleShowButton = () => {
+      if (window.scrollY > 670) {
+        setHeaderScroll(true);
+        console.log(headerScroll);
+      } else {
+        setHeaderScroll(false);
+        console.log(headerScroll);
+      }
+    };
+
+    window.addEventListener("scroll", handleShowButton);
+    return () => {
+      window.removeEventListener("scroll", handleShowButton);
+    };
+  }, [headerScroll]);
+  console.log(useLocation());
   return (
-    <t.BannerSection>
+    <>
       {header === "/" ? (
-        <t.Container1>
-          {modal ? (
-            <LoginPage />
-          ) : (
-            <>
-              <t.LogoBox>
-                <Link to="/">
-                  <t.Logo src={mainlogo} alt="logo" />
-                </Link>
-              </t.LogoBox>
-              <t.toggleBtn
-                src={mainlist}
-                alt="listicon"
-                toggle={toggle}
-                onClick={toggleChange}
-              />
-              <t.toggleCancelBtn
-                src={maincancel}
-                alt="cancelicon"
-                toggle={toggle}
-                onClick={toggleChange}
-              />
-              <t.WriteWrap toggle={toggle}>
-                <t.survey>
-                  <t.surveyLink
-                    href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                    target="_blank"
+        <t.BannerSection1 headerScroll={headerScroll}>
+          <t.Container1>
+            {modal ? (
+              <LoginPage />
+            ) : (
+              <>
+                <t.LogoBox>
+                  <Link to="/">
+                    <t.Logo src={mainlogo} alt="logo" />
+                  </Link>
+                </t.LogoBox>
+                <t.toggleBtn
+                  src={mainlist}
+                  alt="listicon"
+                  toggle={toggle}
+                  onClick={toggleChange}
+                />
+                <t.toggleCancelBtn
+                  src={maincancel}
+                  alt="cancelicon"
+                  toggle={toggle}
+                  onClick={toggleChange}
+                />
+                <t.WriteWrap toggle={toggle} headerScroll={headerScroll}>
+                  <t.survey>
+                    <t.surveyLink
+                      href="https://forms.gle/TzPZQZzDxfgvzfkr8"
+                      target="_blank"
+                    >
+                      <img src={mainservey} alt="maingservey" />
+                      <p>설문조사</p>
+                    </t.surveyLink>
+                  </t.survey>
+                  <t.Game
+                    onClick={() => {
+                      navigate("/start");
+                    }}
                   >
-                    <img src={mainservey} alt="maingservey" />
-                    <p>설문조사</p>
-                  </t.surveyLink>
-                </t.survey>
-                <t.Game
-                  onClick={() => {
-                    navigate("/start");
-                  }}
-                >
-                  <img src={maingame} alt="maingameimg" />
-                  <p>밸런스게임</p>
-                </t.Game>
+                    <img src={maingame} alt="maingameimg" />
+                    <p>밸런스게임</p>
+                  </t.Game>
 
-                <t.Posting
-                  onClick={() => {
-                    navigate("/post");
-                  }}
-                >
-                  <img src={mainpost} alt="mainpostimg" />
-                  <p>게시판</p>
-                </t.Posting>
+                  <t.Posting
+                    onClick={() => {
+                      navigate("/post");
+                    }}
+                  >
+                    <img src={mainpost} alt="mainpostimg" />
+                    <p>게시판</p>
+                  </t.Posting>
 
-                {email == null ? (
-                  <t.Mypage
-                    onClick={() => {
-                      alert("로그인을 해주세요!");
-                      setModal(!modal);
-                    }}
-                  >
-                    <img src={mainmypage} alt="mainmypageimg" />
-                    <p>마이페이지</p>
-                  </t.Mypage>
-                ) : (
-                  <t.Mypage
-                    onClick={() => {
-                      navigate("/mypage");
-                    }}
-                  >
-                    <img src={mainmypage} alt="mainmypageimg" />
-                    <p>마이페이지</p>
-                  </t.Mypage>
-                )}
-                {nickname ? (
-                  <t.Logout onClick={logout}>
-                    <img src={mainlogout} alt="mainlogoutimg" />
-                    <p>로그아웃</p>
-                  </t.Logout>
-                ) : (
-                  <t.Login
-                    onClick={() => {
-                      setModal(!modal);
-                    }}
-                  >
-                    <img src={mainlogin} alt="mainloginimg" />
-                    <p>로그인</p>
-                  </t.Login>
-                )}
-              </t.WriteWrap>
-            </>
-          )}
-        </t.Container1>
+                  {email == null ? (
+                    <t.Mypage
+                      onClick={() => {
+                        alert("로그인을 해주세요!");
+                        setModal(!modal);
+                      }}
+                    >
+                      <img src={mainmypage} alt="mainmypageimg" />
+                      <p>마이페이지</p>
+                    </t.Mypage>
+                  ) : (
+                    <t.Mypage
+                      onClick={() => {
+                        navigate("/mypage");
+                      }}
+                    >
+                      <img src={mainmypage} alt="mainmypageimg" />
+                      <p>마이페이지</p>
+                    </t.Mypage>
+                  )}
+                  {nickname ? (
+                    <t.Logout onClick={logout}>
+                      <img src={mainlogout} alt="mainlogoutimg" />
+                      <p>로그아웃</p>
+                    </t.Logout>
+                  ) : (
+                    <t.Login
+                      onClick={() => {
+                        setModal(!modal);
+                      }}
+                    >
+                      <img src={mainlogin} alt="mainloginimg" />
+                      <p>로그인</p>
+                    </t.Login>
+                  )}
+                </t.WriteWrap>
+              </>
+            )}
+          </t.Container1>
+        </t.BannerSection1>
       ) : (
-        <t.Container2>
-          {modal ? (
-            <LoginPage />
-          ) : (
-            <>
-              <t.LogoBox>
-                <Link to="/">
-                  <t.Logo src={mainlogo} alt="logo" />
-                </Link>
-              </t.LogoBox>
-              <t.toggleBtn
-                src={mainlist}
-                alt="listicon"
-                toggle={toggle}
-                onClick={toggleChange}
-              />
-              <t.toggleCancelBtn
-                src={maincancel}
-                alt="cancelicon"
-                toggle={toggle}
-                onClick={toggleChange}
-              />
-              <t.WriteWrap toggle={toggle}>
-                <t.survey>
-                  <t.surveyLink
-                    href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                    target="_blank"
+        <t.BannerSection2>
+          <t.Container2>
+            {modal ? (
+              <LoginPage />
+            ) : (
+              <>
+                <t.LogoBox>
+                  <Link to="/">
+                    <t.Logo src={mainlogo} alt="logo" />
+                  </Link>
+                </t.LogoBox>
+                <t.toggleBtn
+                  src={mainlist}
+                  alt="listicon"
+                  toggle={toggle}
+                  onClick={toggleChange}
+                />
+                <t.toggleCancelBtn
+                  src={maincancel}
+                  alt="cancelicon"
+                  toggle={toggle}
+                  onClick={toggleChange}
+                />
+                <t.WriteWrap toggle={toggle}>
+                  <t.survey>
+                    <t.surveyLink
+                      href="https://forms.gle/TzPZQZzDxfgvzfkr8"
+                      target="_blank"
+                    >
+                      <img src={mainservey} alt="maingservey" />
+                      <p>설문조사</p>
+                    </t.surveyLink>
+                  </t.survey>
+                  <t.Game
+                    onClick={() => {
+                      navigate("/start");
+                    }}
                   >
-                    <img src={mainservey} alt="maingservey" />
-                    <p>설문조사</p>
-                  </t.surveyLink>
-                </t.survey>
-                <t.Game
-                  onClick={() => {
-                    navigate("/start");
-                  }}
-                >
-                  <img src={maingame} alt="maingameimg" />
-                  <p>밸런스게임</p>
-                </t.Game>
-                <t.Posting
-                  onClick={() => {
-                    navigate("/post");
-                  }}
-                >
-                  <img src={mainpost} alt="mainpostimg" />
-                  <p>게시판</p>
-                </t.Posting>
+                    <img src={maingame} alt="maingameimg" />
+                    <p>밸런스게임</p>
+                  </t.Game>
+                  <t.Posting
+                    onClick={() => {
+                      navigate("/post");
+                    }}
+                  >
+                    <img src={mainpost} alt="mainpostimg" />
+                    <p>게시판</p>
+                  </t.Posting>
 
-                {email == null ? (
-                  <t.Mypage
-                    onClick={() => {
-                      alert("로그인을 해주세요!");
-                      setModal(!modal);
-                    }}
-                  >
-                    <img src={mainmypage} alt="mainmypageimg" />
-                    <p>마이페이지</p>
-                  </t.Mypage>
-                ) : (
-                  <t.Mypage
-                    onClick={() => {
-                      navigate("/mypage");
-                    }}
-                  >
-                    <img src={mainmypage} alt="mainmypageimg" />
-                    <p>마이페이지</p>
-                  </t.Mypage>
-                )}
-                {nickname ? (
-                  <t.Logout onClick={logout}>
-                    <img src={mainlogout} alt="mainlogoutimg" />
-                    <p>로그아웃</p>
-                  </t.Logout>
-                ) : (
-                  <t.Login
-                    onClick={() => {
-                      setModal(!modal);
-                    }}
-                  >
-                    <img src={mainlogin} alt="mainloginimg" />
-                    <p>로그인</p>
-                  </t.Login>
-                )}
-              </t.WriteWrap>
-            </>
-          )}
-        </t.Container2>
+                  {email == null ? (
+                    <t.Mypage
+                      onClick={() => {
+                        alert("로그인을 해주세요!");
+                        setModal(!modal);
+                      }}
+                    >
+                      <img src={mainmypage} alt="mainmypageimg" />
+                      <p>마이페이지</p>
+                    </t.Mypage>
+                  ) : (
+                    <t.Mypage
+                      onClick={() => {
+                        navigate("/mypage");
+                      }}
+                    >
+                      <img src={mainmypage} alt="mainmypageimg" />
+                      <p>마이페이지</p>
+                    </t.Mypage>
+                  )}
+                  {nickname ? (
+                    <t.Logout onClick={logout}>
+                      <img src={mainlogout} alt="mainlogoutimg" />
+                      <p>로그아웃</p>
+                    </t.Logout>
+                  ) : (
+                    <t.Login
+                      onClick={() => {
+                        setModal(!modal);
+                      }}
+                    >
+                      <img src={mainlogin} alt="mainloginimg" />
+                      <p>로그인</p>
+                    </t.Login>
+                  )}
+                </t.WriteWrap>
+              </>
+            )}
+          </t.Container2>
+        </t.BannerSection2>
       )}
-    </t.BannerSection>
+    </>
   );
-};
-
-export default Header;
+}
