@@ -351,6 +351,10 @@ const Cardbody = styled.div`
   justify-content: space-between;
   margin-top: 20px;
   margin-left: 10px;
+  @media screen and (max-width: 480px) {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
 `;
 const CardTitle = styled.div`
   margin: 20px 20px 5px 20px;
@@ -374,7 +378,7 @@ const CardTextbox = styled.div`
   height: 135px;
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 100px;
+    height: 60px;
   }
 `;
 
@@ -391,7 +395,7 @@ const CardImgbox = styled.div`
   border-radius: 20px;
   @media screen and (max-width: 480px) {
     width: 100%;
-    height: 200px;
+    height: 140px;
   }
 `;
 const CardWrap = styled.div`
@@ -407,7 +411,7 @@ const CardWrap = styled.div`
   }
   @media screen and (max-width: 480px) {
     width: 95%;
-    height: 300px;
+    height: 200px;
   }
 `;
 
@@ -486,6 +490,7 @@ const CategorySearch = styled.select`
   text-align: center;
   margin-right: 20px;
   @media screen and (max-width: 480px) {
+    margin-right: 0px;
     width: 90%;
     height: 50px;
   }
