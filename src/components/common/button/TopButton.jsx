@@ -162,7 +162,6 @@ const Topimg = styled.img`
 `;
 
 const ScrollContainer = styled.div`
-  display: none;
   position: fixed;
   right: 3%;
   bottom: 10%;
