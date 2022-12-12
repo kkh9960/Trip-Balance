@@ -17,7 +17,7 @@ const TestSlide = () => {
   const SlideAuto = () => {
     const banner = document.querySelectorAll(".banner");
 
-    let nextIndex = (currentIndex + 1) % 4;
+    let nextIndex = (currentIndex + 1) % 3;
 
     banner[currentIndex].style.opacity = "0";
     banner[nextIndex].style.opacity = "1";
@@ -26,7 +26,7 @@ const TestSlide = () => {
       banner.style.transition = "all 0.5s";
     });
 
-    setIndex((prevstate) => (prevstate + 1) % 4);
+    setIndex((prevstate) => (prevstate + 1) % 3);
   };
 
   //앞으로가기
@@ -242,7 +242,7 @@ const TestSlide = () => {
           });
           break;
         case 2:
-          gsap.to(".mainboard_title3", {
+          gsap.to(".mainboard_title4", {
             duration: 1,
             y: 50,
             x: 10,
@@ -250,7 +250,7 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1,
           });
-          gsap.to(".mainboard_titleshadow3", {
+          gsap.to(".mainboard_titleshadow4", {
             duration: 1,
             y: 50,
             x: 10,
@@ -258,7 +258,7 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.2,
           });
-          gsap.to(".mainboard_body3", {
+          gsap.to(".mainboard_body4", {
             duration: 1,
             y: 40,
             x: 10,
@@ -274,7 +274,7 @@ const TestSlide = () => {
           //   ease: "power1.out",
           //   delay: 1.6,
           // });
-          gsap.to(".mainboard_img3", {
+          gsap.to(".mainboard_img4", {
             duration: 1,
             y: 45,
             x: -20,
@@ -282,7 +282,7 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.6,
           });
-          gsap.to(".mainboard_imgshadow3", {
+          gsap.to(".mainboard_imgshadow4", {
             duration: 1,
             y: 80,
             x: -10,
@@ -329,94 +329,7 @@ const TestSlide = () => {
             duration: 0,
           });
           break;
-        case 3:
-          gsap.to(".mainboard_title4", {
-            duration: 1,
-            y: 100,
-            x: 10,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1,
-          });
-          gsap.to(".mainboard_titleshadow4", {
-            duration: 1,
-            y: 100,
-            x: 10,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.2,
-          });
-          gsap.to(".mainboard_body4", {
-            duration: 1,
-            y: 100,
-            x: 10,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.4,
-          });
-          // gsap.to(".mainboard_btn4", {
-          //   duration: 1,
-          //   y: 0,
-          //   x: 10,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
-          gsap.to(".mainboard_img4", {
-            duration: 1,
-            y: 160,
-            x: -20,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
-          gsap.to(".mainboard_imgshadow4", {
-            duration: 1,
-            y: 180,
-            x: -10,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
-          gsap.to(".mainboard_title3", {
-            duration: 0,
-            opacity: 0,
-            x: -100,
-            delay: 0,
-          });
-          gsap.to(".mainboard_titleshadow3", {
-            duration: 0,
-            opacity: 0,
-            x: -100,
-            delay: 0,
-          });
-          gsap.to(".mainboard_body3", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
-          // gsap.to(".mainboard_btn3", {
-          //   opacity: 0,
-          //   x: -100,
-          //   delay: 0,
-          //   duration: 0,
-          // });
-          gsap.to(".mainboard_img3", {
-            opacity: 0,
-            y: -100,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
-          gsap.to(".mainboard_imgshadow3", {
-            opacity: 0,
-            y: 100,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
-          break;
+
         default:
       }
     } else {
@@ -598,7 +511,7 @@ const TestSlide = () => {
           });
           break;
         case 2:
-          gsap.to(".mainboard_title3", {
+          gsap.to(".mainboard_title4", {
             duration: 1,
             y: 0,
             x: 100,
@@ -606,7 +519,7 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1,
           });
-          gsap.to(".mainboard_titleshadow3", {
+          gsap.to(".mainboard_titleshadow4", {
             duration: 1,
             y: 0,
             x: 100,
@@ -614,7 +527,7 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.2,
           });
-          gsap.to(".mainboard_body3", {
+          gsap.to(".mainboard_body4", {
             duration: 1,
             y: 0,
             x: 100,
@@ -630,7 +543,7 @@ const TestSlide = () => {
           //   ease: "power1.out",
           //   delay: 1.6,
           // });
-          gsap.to(".mainboard_img3", {
+          gsap.to(".mainboard_img4", {
             duration: 1,
             y: 300,
             x: 100,
@@ -638,7 +551,7 @@ const TestSlide = () => {
             ease: "power1.out",
             delay: 1.6,
           });
-          gsap.to(".mainboard_imgshadow3", {
+          gsap.to(".mainboard_imgshadow4", {
             duration: 1,
             y: 0,
             x: 100,
@@ -685,94 +598,7 @@ const TestSlide = () => {
             duration: 0,
           });
           break;
-        case 3:
-          gsap.to(".mainboard_title4", {
-            duration: 1,
-            y: 0,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1,
-          });
-          gsap.to(".mainboard_titleshadow4", {
-            duration: 1,
-            y: 0,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.2,
-          });
-          gsap.to(".mainboard_body4", {
-            duration: 1,
-            y: 0,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.4,
-          });
-          // gsap.to(".mainboard_btn4", {
-          //   duration: 1,
-          //   y: 0,
-          //   x: 100,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
-          gsap.to(".mainboard_img4", {
-            duration: 1,
-            y: 300,
-            x: 100,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
-          gsap.to(".mainboard_imgshadow4", {
-            duration: 1,
-            y: 100,
-            x: 150,
-            opacity: 1,
-            ease: "power1.out",
-            delay: 1.6,
-          });
-          gsap.to(".mainboard_title3", {
-            duration: 0,
-            opacity: 0,
-            x: -100,
-            delay: 0,
-          });
-          gsap.to(".mainboard_titleshadow3", {
-            duration: 0,
-            opacity: 0,
-            x: -100,
-            delay: 0,
-          });
-          gsap.to(".mainboard_body3", {
-            opacity: 0,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
-          // gsap.to(".mainboard_btn3", {
-          //   opacity: 0,
-          //   x: -100,
-          //   delay: 0,
-          //   duration: 0,
-          // });
-          gsap.to(".mainboard_img3", {
-            opacity: 0,
-            y: -100,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
-          gsap.to(".mainboard_imgshadow3", {
-            opacity: 0,
-            y: 100,
-            x: -100,
-            delay: 0,
-            duration: 0,
-          });
-          break;
+
         default:
       }
     }
@@ -832,7 +658,7 @@ const TestSlide = () => {
               </div>
             </div>
           </div>
-          <div className="banner">
+          {/* <div className="banner">
             <div className="three">
               <div className="main_board">
                 <div>
@@ -845,16 +671,16 @@ const TestSlide = () => {
                     이벤트에 참여하고
                     <br /> 기프티콘 받아가세요~
                   </div>
-                  {/* <img
+                  <img
                     className="mainboard_gif3"
                     src={happy}
                     style={{ width: "250px", position: "absolute" }}
-                  /> */}
-                  {/* <button className="mainboard_btn3">
+                  />
+                  <button className="mainboard_btn3">
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScZE6aTPE3qjPm9L6Y_r09bzjjtKVSCL_sWz77fHzqHShsq6g/viewform">
                       응모하러가기
                     </a>
-                  </button> */}
+                  </button>
                 </div>
                 <div className="mainboard_imgbox3">
                   <div className="mainboard_img3">
@@ -864,7 +690,7 @@ const TestSlide = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="banner">
             <div className="four">
               <div className="main_board">
