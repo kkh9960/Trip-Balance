@@ -89,6 +89,7 @@ export default function Header() {
                   onClick={toggleChange}
                 />
                 <t.WriteWrap toggle={toggle} headerScroll={headerScroll}>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");
@@ -172,6 +173,7 @@ export default function Header() {
                   onClick={toggleChange}
                 />
                 <t.WriteWrap toggle={toggle}>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");
