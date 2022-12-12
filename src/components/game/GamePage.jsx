@@ -13,32 +13,31 @@ export default function GamePage() {
   const dispatch = useDispatch();
 
   const gameData = useSelector((state) => state.gameInfo.data)
+  console.log(gameData)
 
   const goFirst = (e) => {
     e.preventDefault();
     navigate("/start");
-    window.location.reload();
+    dispatch(__GameFirstGet());
   };
   const goHome = (e) => {
     e.preventDefault();
     navigate("/");
+    dispatch(__GameFirstGet());
   };
   const leftGo = (e) => {
     e.preventDefault();
     navigate(`/game/${GameID}/${gameData.data[0].leftId}`)
-    //setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].leftId}`)}, 600);
   };
   const rightGo = (e) => {
     e.preventDefault();
     navigate(`/game/${GameID}/${gameData.data[0].rightId}`)
-    //setTimeout(() => {navigate(`/game/${GameID}/${gameData.data[0].rightId}`)}, 600);
-  }
+  };
   const resultGo = (e) => {
     e.preventDefault();
     dispatch(__GameLastPost({GameID, QID}));
-    navigate(`/gameResult/${GameID}/${QID}`);
-    window.location.reload();
-  }
+    setTimeout(()=> navigate(`/gameResult/${GameID}/${QID}`), 500);    
+  };
 
 
   useEffect(() => {
@@ -53,10 +52,8 @@ export default function GamePage() {
   const QID = parseInt(id.id)
   const VCharacter = '../../img/gameCommonImg/happy.gif'
   const FCharacter = '../../img/gameCommonImg/unhappy.gif'
-  // 움짤 만들어주시면 넣을 예정
 
   return (
-    // 글자 받아오면 띄어쓰기대로 나누기 정렬
     <g.totalWrap>
       {QID >= 32 ? (
           <g.balanceButtonWrapFinal>
@@ -79,13 +76,13 @@ export default function GamePage() {
             <g.balanceButton alt="left img" src={leftImg} onClick={leftGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={leftGo}/>
             <g.balanceButtonRightHover src={FCharacter}/>
-            <g.balanceText onClick={leftGo}>{gameData.data[0].leftAnswer}</g.balanceText>
+            <g.balanceText onClick={leftGo}>{gameData.data[0] && gameData.data[0].leftAnswer}</g.balanceText>
             </g.balanceButtonBH>
             <g.balanceButtonBH>
             <g.balanceButton alt="right img" src={rightImg} onClick={rightGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={rightGo}/>
             <g.balanceButtonLeftHover src={FCharacter}/>
-            <g.balanceText onClick={rightGo}>{gameData.data[0].rightAnswer}</g.balanceText>
+            <g.balanceText onClick={rightGo}>{gameData.data[0] && gameData.data[0].rightAnswer}</g.balanceText>
             </g.balanceButtonBH>
           </g.balanceButtonWrap>
           <g.vsLogo/>
