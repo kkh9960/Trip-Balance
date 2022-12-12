@@ -145,8 +145,7 @@ export const WriteWrap = styled.div`
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
     align-items: center;
-    background-color: ${(props) =>
-      props.headerScroll ? "rgba(0, 0, 0, 0.7)" : ""};
+    background-color: rgba(0, 0, 0, 0.7);
   }
   @media screen and (max-width: 480px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};

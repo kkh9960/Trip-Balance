@@ -181,7 +181,7 @@ export const mobileEmail = styled.div`
   @media screen and (max-width: 480px) {
     text-align: center;
     margin: 0 auto;
-    width: 150px;
+    width: 100%;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;

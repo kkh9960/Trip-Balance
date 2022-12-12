@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import * as t from "./MemberInformationStyle";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import profile from "../../../img/noneprofile.webp";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
@@ -11,7 +10,7 @@ import MemberInformationChart from "./MemberInformationChart";
 
 export default function MemberInformation() {
   const id = useParams();
-
+  const profile = "/img/mypage/noneporfile.webp";
   const [profileImg, setProfileImg] = useState(profile);
   const [userEmail, setUserEmail] = useState();
   const [userSns, setUserSns] = useState();
@@ -53,7 +52,7 @@ export default function MemberInformation() {
             <t.email>{userEmail}</t.email>
             <t.introduce>
               <t.textName>자기소개</t.textName>
-              <t.selfBox value={userSelf} />
+              <t.selfBox value={userSelf} readOnly />
             </t.introduce>
             <t.snsLink>
               {/* <t.textName>링크걸기</t.textName> */}

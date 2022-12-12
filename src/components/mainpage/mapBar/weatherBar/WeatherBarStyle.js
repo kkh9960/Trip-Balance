@@ -134,7 +134,7 @@ export const temperature = styled.div`
     }
     p {
       position: absolute;
-      bottom: -70px;
+      bottom: -50px;
       right: 0;
       font-size: 24px;
     }
