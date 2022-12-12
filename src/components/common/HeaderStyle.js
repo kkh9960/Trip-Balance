@@ -180,7 +180,6 @@ export const Logo = styled.img`
   height: 90px;
   display: flex;
   transition: 0.5s;
-  margin-left: 250px;
   transition: 1s;
   @media screen and (max-width: 1240px) {
     width: 144px;
