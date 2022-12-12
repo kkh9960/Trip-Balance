@@ -3,8 +3,8 @@ import * as t from "./HeaderStyle";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import instance from "../../lib/instance";
 import LoginPage from "../../components/login/LoginPage";
-import mainlogo from "../../img/mainlogo.webp"
-import mainlist from "../../img/mainlistW.webp"
+import mainlogo from "../../img/mainlogo.webp";
+import mainlist from "../../img/mainlistW.webp";
 const Header = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
@@ -73,15 +73,6 @@ const Header = () => {
                 onClick={toggleChange}
               />
               <t.WriteWrap toggle={toggle}>
-                <t.survey>
-                  <t.surveyLink
-                    href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                    target="_blank"
-                  >
-                    <img src={mainservey} alt="maingservey" />
-                    <p>설문조사</p>
-                  </t.surveyLink>
-                </t.survey>
                 <t.Game
                   onClick={() => {
                     navigate("/start");
@@ -163,15 +154,6 @@ const Header = () => {
                 onClick={toggleChange}
               />
               <t.WriteWrap toggle={toggle}>
-                <t.survey>
-                  <t.surveyLink
-                    href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                    target="_blank"
-                  >
-                    <img src={mainservey} alt="maingservey" />
-                    <p>설문조사</p>
-                  </t.surveyLink>
-                </t.survey>
                 <t.Game
                   onClick={() => {
                     navigate("/start");
