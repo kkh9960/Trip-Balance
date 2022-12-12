@@ -100,19 +100,19 @@ const MobileBg = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.9;
 `;
 const MobileWrite = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.9;
 `;
 const MobileTop = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.9;
 `;
 
 const MobileBtnbox = styled.div`
@@ -136,7 +136,7 @@ const Bgimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.9;
   cursor: pointer;
   @media screen and (max-width: 480px) {
     display: none;
@@ -147,7 +147,7 @@ const Writeimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.9;
   cursor: pointer;
   @media screen and (max-width: 480px) {
     display: none;
@@ -157,7 +157,7 @@ const Topimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  opacity: 0.5;
+  opacity: 0.9;
   cursor: pointer;
   @media screen and (max-width: 480px) {
     display: none;
