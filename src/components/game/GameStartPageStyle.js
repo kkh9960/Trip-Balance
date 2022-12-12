@@ -73,7 +73,8 @@ export const gameStartText = styled.div`
 export const gameStartButton = styled.button`
   width: 309.28px;
   height: 35.09px;
-  background-image: url("../../img/gameCommonImg/startGame.webp");
+  background-size: cover;
+  background-image: url("../../img/gameCommonImg/gameStart.webp");
   animation: sli 1.9s ease-in-out;
   animation-iteration-count: infinite;
   @keyframes sli {
