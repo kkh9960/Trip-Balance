@@ -45,7 +45,7 @@ const TopButton = () => {
         showButton && (
           <ScrollContainer>
             <Bgimg
-              src="../../img/btngame.webp"
+              src="../../img/topgame.webp"
               onClick={() => {
                 navigate(`/start`);
               }}
@@ -53,38 +53,38 @@ const TopButton = () => {
 
             {email ? (
               <Writeimg
-                src="../../img/writebtn.webp"
+                src="../../img/topwrite.webp"
                 onClick={() => {
                   navigate(`/write`);
                 }}
               />
             ) : (
-              <Writeimg src="../../img/writebtn.webp" onClick={goLogin} />
+              <Writeimg src="../../img/topwrite.webp" onClick={goLogin} />
             )}
 
-            <Topimg src="../../img/topbtn.webp" onClick={scrollToTop} />
+            <Topimg src="../../img/topgo.webp" onClick={scrollToTop} />
             <MobileButtonWrap>
               <MobileBtnbox>
                 <MobileBg
-                  src="../../img/bgbtn.webp"
+                  src="../../img/topgame.webp"
                   onClick={() => {
                     navigate(`/start`);
                   }}
                 />
                 {email ? (
                   <MobileWrite
-                    src="../../img/writebtn.webp"
+                    src="../../img/topwrite.webp"
                     onClick={() => {
                       navigate(`/write`);
                     }}
                   />
                 ) : (
                   <MobileWrite
-                    src="../../img/writebtn.webp"
+                    src="../../img/topwrite.webp"
                     onClick={goLogin}
                   />
                 )}
-                <MobileTop src="../../img/topbtn.webp" onClick={scrollToTop} />
+                <MobileTop src="../../img/topgo.webp" onClick={scrollToTop} />
               </MobileBtnbox>
             </MobileButtonWrap>
           </ScrollContainer>
@@ -100,19 +100,19 @@ const MobileBg = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  /* opacity: 0.7; */
+  opacity: 0.5;
 `;
 const MobileWrite = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  /* opacity: 0.7; */
+  opacity: 0.5;
 `;
 const MobileTop = styled.img`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  /* opacity: 0.7; */
+  opacity: 0.5;
 `;
 
 const MobileBtnbox = styled.div`
@@ -136,6 +136,7 @@ const Bgimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  opacity: 0.5;
   cursor: pointer;
   @media screen and (max-width: 480px) {
     display: none;
@@ -146,6 +147,7 @@ const Writeimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  opacity: 0.5;
   cursor: pointer;
   @media screen and (max-width: 480px) {
     display: none;
@@ -155,6 +157,7 @@ const Topimg = styled.img`
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  opacity: 0.5;
   cursor: pointer;
   @media screen and (max-width: 480px) {
     display: none;
