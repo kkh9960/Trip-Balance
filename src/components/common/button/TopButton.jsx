@@ -45,7 +45,7 @@ const TopButton = () => {
         showButton && (
           <ScrollContainer>
             <Bgimg
-              src="../../img/bgbtn.webp"
+              src="../../img/btngame.webp"
               onClick={() => {
                 navigate(`/start`);
               }}
