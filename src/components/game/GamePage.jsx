@@ -17,6 +17,7 @@ export default function GamePage() {
   const goFirst = (e) => {
     e.preventDefault();
     navigate("/start");
+    window.location.reload();
   };
   const goHome = (e) => {
     e.preventDefault();
