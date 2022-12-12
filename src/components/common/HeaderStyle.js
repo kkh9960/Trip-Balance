@@ -166,6 +166,41 @@ export const top = styled.button`
   }
 `;
 
+export const survey = styled.div`
+  font-size: 24px;
+  width: 170px;
+  cursor: pointer;
+  p {
+    display: block;
+  }
+  img {
+    display: none;
+  }
+  :hover {
+    p {
+      display: none;
+    }
+    img {
+      display: flex;
+      margin: 0 auto;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+    img {
+      display: none;
+    }
+    p {
+      display: block;
+    }
+  }
+`;
+
+export const surveyLink = styled.a`
+  text-decoration: none;
+  color: white;
+`;
+
 export const Game = styled.div`
   font-size: 24px;
   width: 170px;
