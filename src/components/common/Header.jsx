@@ -89,15 +89,7 @@ export default function Header() {
                   onClick={toggleChange}
                 />
                 <t.WriteWrap toggle={toggle} headerScroll={headerScroll}>
-                  <t.survey>
-                    <t.surveyLink
-                      href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                      target="_blank"
-                    >
-                      <img src={mainservey} alt="maingservey" />
-                      <p>설문조사</p>
-                    </t.surveyLink>
-                  </t.survey>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");
@@ -181,15 +173,7 @@ export default function Header() {
                   onClick={toggleChange}
                 />
                 <t.WriteWrap toggle={toggle}>
-                  <t.survey>
-                    <t.surveyLink
-                      href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                      target="_blank"
-                    >
-                      <img src={mainservey} alt="maingservey" />
-                      <p>설문조사</p>
-                    </t.surveyLink>
-                  </t.survey>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");
