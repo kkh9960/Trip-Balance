@@ -10,7 +10,7 @@ import InformationChart from "./InformationChart";
 
 export default function ProfileInformation({}) {
   const dispatch = useDispatch();
-  const profile = "/img/mypage/noneporfile.webp";
+  const profile = "/img/mypage/noneprofile.webp";
   const camera = "/img/mypage/profileImgChange.webp";
   const insta = "/img/mypage/insta.webp";
   const face = "/img/mypage/facebook.webp";
@@ -111,7 +111,6 @@ export default function ProfileInformation({}) {
       setProfileMode(true);
     }
   };
-  console.log(instaLink);
   return (
     <t.ProfileInformationView>
       <t.userName>
@@ -204,7 +203,7 @@ export default function ProfileInformation({}) {
                 <t.selfBox
                   onChange={introduceonChange}
                   defaultValue={userSelf || ""}
-                  maxLength={100}
+                  maxLength={50}
                 />
               </t.introduce>
               <t.snsLink>

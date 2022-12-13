@@ -10,13 +10,20 @@ import MemberInformationChart from "./MemberInformationChart";
 
 export default function MemberInformation() {
   const id = useParams();
-  const profile = "/img/mypage/noneporfile.webp";
+  const profile = "/img/mypage/noneprofile.webp";
+  const insta = "/img/mypage/insta.webp";
+  const face = "/img/mypage/facebook.webp";
+  const you = "/img/mypage/youtube.webp";
+  const [profileMode, setProfileMode] = useState(true);
   const [profileImg, setProfileImg] = useState(profile);
   const [userEmail, setUserEmail] = useState();
-  const [userSns, setUserSns] = useState();
   const [userSelf, setUserSelf, introduceonChange] = useInput();
   const [nickname, setNickname, nicknameChange] = useInput();
   const [topNickname, setTopNickname] = useState();
+
+  const [instaLink, setInstaLink, instaChange] = useInput();
+  const [faceLink, setFaceLink, faceChange] = useInput();
+  const [youLink, setYouLink, youChange] = useInput();
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +36,9 @@ export default function MemberInformation() {
       setNickname(result.data.data.nickName);
       setUserEmail(result.data.data.email);
       setUserSelf(result.data.data.self);
-      setUserSns(result.data.data.sns);
+      setInstaLink(result.data.data.insta);
+      setFaceLink(result.data.data.facebook);
+      setYouLink(result.data.data.youtube);
       setTopNickname(result.data.data.nickName);
     }
     fetchData();
@@ -54,11 +63,22 @@ export default function MemberInformation() {
               <t.textName>자기소개</t.textName>
               <t.selfBox value={userSelf} readOnly />
             </t.introduce>
-            <t.snsLink>
-              {/* <t.textName>링크걸기</t.textName> */}
-              {/* <t.snsIcon src={IconInstagram} />
-                <t.snsIcon src={IconFacebooke} />
-                <t.snsIcon src={IconYoutube} /> */}
+            <t.snsLink profileMode={profileMode}>
+              <t.textName>링크걸기</t.textName>
+              <t.linkWrap>
+                <t.link href={`https://www.instagram.com/${instaLink}`}>
+                  <t.snsIcon src={insta} />
+                  <t.linkBox value={instaLink} readOnly />
+                </t.link>
+                <t.link href={`https://ko-kr.facebook.com/${faceLink}`}>
+                  <t.snsIcon src={face} />
+                  <t.linkBox value={faceLink} readOnly />
+                </t.link>
+                <t.link href={`https://www.youtube.com/${youLink}`}>
+                  <t.snsIcon src={you} />
+                  <t.linkBox value={youLink} readOnly />
+                </t.link>
+              </t.linkWrap>
             </t.snsLink>
           </t.profileinfo>
         </t.myInformation>

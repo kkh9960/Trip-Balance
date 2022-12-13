@@ -267,7 +267,9 @@ export const selfBox = styled.textarea`
     font-size: 15px;
     border: 0;
     border-radius: 5px;
-    height: 48px;
+    margin: 0 auto;
+    width: 70%;
+    height: 50px;
     outline: none;
     padding-left: 10px;
     background-color: #d9d9d9;
@@ -299,6 +301,7 @@ export const snsLink = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 10px;
   }
 `;
 export const linkWrap = styled.div`
@@ -322,10 +325,10 @@ export const snsInput = styled.input`
   height: 33px;
   font-size: 15px;
   border: 0;
-  border-radius: 0 5px 5px 0;
+  border-radius: 5px;
   outline: none;
   padding-left: 10px;
-  margin-left: -10px;
+  margin-left: -5px;
   background-color: #d9d9d9;
   transition: 1;
   animation: 0.5s;
@@ -387,7 +390,7 @@ export const buttonGroup = styled.div`
     }
   }
   @media screen and (max-width: 480px) {
-    width: 97%;
+    width: 70%;
     height: 48px;
     border: 2px solid gray;
     border-radius: 10px;

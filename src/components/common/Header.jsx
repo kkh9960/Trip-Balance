@@ -88,16 +88,7 @@ export default function Header() {
                   toggle={toggle}
                   onClick={toggleChange}
                 />
-                <t.WriteWrap toggle={toggle} headerScroll={headerScroll}>
-                  <t.survey>
-                    <t.surveyLink
-                      href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                      target="_blank"
-                    >
-                      <img src={mainservey} alt="maingservey" />
-                      <p>설문조사</p>
-                    </t.surveyLink>
-                  </t.survey>
+                <t.WriteWrap1 toggle={toggle} headerScroll={headerScroll}>
                   <t.Game
                     onClick={() => {
                       navigate("/start");
@@ -151,7 +142,7 @@ export default function Header() {
                       <p>로그인</p>
                     </t.Login>
                   )}
-                </t.WriteWrap>
+                </t.WriteWrap1>
               </>
             )}
           </t.Container1>
@@ -180,16 +171,7 @@ export default function Header() {
                   toggle={toggle}
                   onClick={toggleChange}
                 />
-                <t.WriteWrap toggle={toggle}>
-                  <t.survey>
-                    <t.surveyLink
-                      href="https://forms.gle/TzPZQZzDxfgvzfkr8"
-                      target="_blank"
-                    >
-                      <img src={mainservey} alt="maingservey" />
-                      <p>설문조사</p>
-                    </t.surveyLink>
-                  </t.survey>
+                <t.WriteWrap2 toggle={toggle}>
                   <t.Game
                     onClick={() => {
                       navigate("/start");
@@ -242,7 +224,7 @@ export default function Header() {
                       <p>로그인</p>
                     </t.Login>
                   )}
-                </t.WriteWrap>
+                </t.WriteWrap2>
               </>
             )}
           </t.Container2>
