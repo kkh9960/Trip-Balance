@@ -31,6 +31,7 @@ const PostItem = () => {
   const email = sessionStorage.getItem("email");
   const [search, setsearch] = useState(1);
   const [bestview, setbestview] = useState(true);
+  const [bestcheck, setbestcheck] = useState(true);
 
   const profiledefaultImg = "/img/tb.jpg";
   const [ref, inView] = useInView();
@@ -146,11 +147,11 @@ const PostItem = () => {
               </SearchBoxForm>
               <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
             </SearchBox>
-            <PostLikeBestbox>
-              {bestview ? (
+            {bestview ? (
+              <PostLikeBestbox>
                 <PostBestfive best={best} setModal={setModal} modal={modal} />
-              ) : null}
-            </PostLikeBestbox>
+              </PostLikeBestbox>
+            ) : null}
             <PostListWrap>
               <PostListTitle type="submit">여행 이야기</PostListTitle>
               <PostCardList>
@@ -226,9 +227,11 @@ const PostItem = () => {
             </SearchBoxForm>
             <PostgoWrite onClick={goPosrWrite}>게시글 작성</PostgoWrite>
           </SearchBox>
-          <PostLikeBestbox>
-            {bestview ? <PostBestfive best={best} /> : null}
-          </PostLikeBestbox>
+          {bestview ? (
+            <PostLikeBestbox>
+              <PostBestfive best={best} />
+            </PostLikeBestbox>
+          ) : null}
           <PostListWrap>
             <PostListTitle type="submit">여행 이야기</PostListTitle>
             <PostCardList>

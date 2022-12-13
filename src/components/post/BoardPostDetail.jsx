@@ -35,6 +35,7 @@ const BoardPostDetail = () => {
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
   const mypost = useSelector((state) => state.BoardSlice.myposts);
   const comments = useSelector((state) => state.commentSlice.comments);
+  const render = useSelector((state) => state.rootReducer.profilebtn.lender);
 
   const nickname = sessionStorage.getItem("nickName");
 
@@ -46,6 +47,8 @@ const BoardPostDetail = () => {
   useEffect(() => {
     dispatch(__getBoardDetail(id));
   }, []);
+
+  useEffect(() => {}, [render]);
 
   useEffect(() => {
     if (post == null) {

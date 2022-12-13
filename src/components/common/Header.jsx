@@ -88,7 +88,9 @@ export default function Header() {
                   toggle={toggle}
                   onClick={toggleChange}
                 />
+
                 <t.WriteWrap1 toggle={toggle} headerScroll={headerScroll}>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");
@@ -100,7 +102,7 @@ export default function Header() {
 
                   <t.Posting
                     onClick={() => {
-                      navigate("/post");
+                      window.location.replace("/post");
                     }}
                   >
                     <img src={mainpost} alt="mainpostimg" />
@@ -171,7 +173,9 @@ export default function Header() {
                   toggle={toggle}
                   onClick={toggleChange}
                 />
+
                 <t.WriteWrap2 toggle={toggle}>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");

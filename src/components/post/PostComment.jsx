@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   __deleteComment,
   __modifyComment,
@@ -11,6 +11,11 @@ import { useNavigate } from "react-router-dom";
 
 const PostComment = ({ idx, item, id, post }) => {
   const navigator = useNavigate();
+
+  const Profilebtn = useSelector(
+    (state) => state.rootReducer.profilebtn.profile
+  );
+  const lender = useSelector((state) => state.rootReducer.profilebtn.lender);
 
   const nickname = sessionStorage.getItem("nickName");
   const cmtnick = item.author;
@@ -24,6 +29,8 @@ const PostComment = ({ idx, item, id, post }) => {
   const [UserImage, setUserImage] = useState("");
   const [Editprofile, setEditprofile] = useState(false);
   const [CommentImg, setCommentImg] = useState("");
+  const [Editprofile2, setEditprofile2] = useState(false);
+  const [time, settime] = useState();
 
   useEffect(() => {
     if (item.profileImg == null) {
@@ -98,7 +105,9 @@ const PostComment = ({ idx, item, id, post }) => {
   };
 
   const profile = () => {
-    setEditprofile(!Editprofile);
+    setEditprofile2(!Editprofile2);
+    dispatch({ type: "BTN_TOGGLE" });
+    settime(new Date());
   };
 
   const CalcelComment = () => {
@@ -116,6 +125,58 @@ const PostComment = ({ idx, item, id, post }) => {
     }
   };
 
+  useEffect(() => {
+    //현재시간
+    var now = new Date();
+    //기준시간
+    var writeDay = new Date(time);
+
+    //현재 시간과 기준시간의 차이를 getTime을 통해 구한다
+    var difference = now.getTime() - writeDay.getTime();
+    //초로 바꿔준다
+    // difference = Math.trunc(difference / 1000);
+
+    // 초
+    const seconds = 1;
+    // 분
+    const minute = seconds * 60;
+    // 시
+    const hour = minute * 60;
+    // 일
+    const day = hour * 24;
+    // 달
+    const mon = day * 30;
+    // 년
+    const year = mon * 12;
+
+    let ResultTime = "";
+
+    if (difference < seconds) {
+      ResultTime = "바로"; // 1초보다 작으면 바로 전
+    } else if (difference < minute) {
+      ResultTime = Math.trunc(difference / seconds) + "초 ";
+      //분보다 작으면 몇초전인지
+    } else if (difference < hour) {
+      ResultTime = Math.trunc(difference / minute) + "분 ";
+      //시보다 작으면 몇분전인지
+    } else if (difference < day) {
+      ResultTime = Math.trunc(difference / hour) + "시 ";
+      //일보다 작으면 몇시간전인지
+    } else if (difference < mon) {
+      ResultTime = Math.trunc(difference / day) + "일 ";
+      //달보다 작으면 몇일 전인지
+    } else if (difference < year) {
+      ResultTime = Math.trunc(difference / mon) + "달 ";
+      //년보다 작으면 몇달전인지
+    } else {
+      ResultTime = Math.trunc(difference / year) + "년 ";
+    }
+
+    if (difference > 15) {
+      setEditprofile2(false);
+    }
+  }, [lender]);
+
   return (
     <>
       <St.CommentWrap>
@@ -125,7 +186,7 @@ const PostComment = ({ idx, item, id, post }) => {
               <St.CommentUserImage src={UserImage} />
             </div>
             <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
-            {Editprofile ? (
+            {Editprofile2 ? (
               <St.UserMypagego onClick={goprofile}>프로필보기</St.UserMypagego>
             ) : null}
           </St.CommentUserBox>
