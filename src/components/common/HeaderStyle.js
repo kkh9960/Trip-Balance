@@ -129,7 +129,7 @@ export const toggleCancelBtn = styled.img`
     right: 20px;
   }
 `;
-export const WriteWrap = styled.div`
+export const WriteWrap1 = styled.div`
   width: 800px;
   height: 100%;
   display: flex;
@@ -140,7 +140,6 @@ export const WriteWrap = styled.div`
     color: white;
     text-align: center;
   }
-
   @media screen and (max-width: 1240px) {
     display: ${(props) => (props.toggle ? "none" : "flex")};
     width: 100%;
@@ -158,7 +157,33 @@ export const WriteWrap = styled.div`
     background-color: rgba(0, 0, 0, 0.7);
   }
 `;
-
+export const WriteWrap2 = styled.div`
+  width: 800px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: 0.5s;
+  div {
+    color: white;
+    text-align: center;
+  }
+  @media screen and (max-width: 1240px) {
+    display: ${(props) => (props.toggle ? "none" : "flex")};
+    width: 100%;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  @media screen and (max-width: 480px) {
+    display: ${(props) => (props.toggle ? "none" : "flex")};
+    width: 100%;
+    height: 230px;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+`;
 export const LogoBox = styled.div`
   width: 274.47px;
   height: 100%;

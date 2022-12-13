@@ -3,17 +3,18 @@ import * as t from "./ProfileinformationStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __putMyInformation } from "../../../redux/modules/MyPageSlice";
-import profile from "../../../img/noneprofile.webp";
 import AWS from "aws-sdk";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./InformationChart";
-// import IconFacebooke from "../../../img/Facebook.png";
-// import IconInstagram from "../../../img/Instagram.png";
-// import IconYoutube from "../../../img/Youtube.png";
 
 export default function ProfileInformation({}) {
   const dispatch = useDispatch();
+  const profile = "/img/mypage/noneprofile.webp";
+  const camera = "/img/mypage/profileImgChange.webp";
+  const insta = "/img/mypage/insta.webp";
+  const face = "/img/mypage/facebook.webp";
+  const you = "/img/mypage/youtube.webp";
   const [profileMode, setProfileMode] = useState(true);
   const [profileImg, setProfileImg] = useState(profile);
   const [userEmail, setUserEmail] = useState();
@@ -23,7 +24,9 @@ export default function ProfileInformation({}) {
   const [topNickname, setTopNickname] = useState();
 
   const profileImgInput = useRef();
-
+  const [instaLink, setInstaLink, instaChange] = useInput();
+  const [faceLink, setFaceLink, faceChange] = useInput();
+  const [youLink, setYouLink, youChange] = useInput();
   const [instaInput, setInstaInput] = useState(true);
   const [faceInput, setFaceInput] = useState(true);
   const [youInput, setYouInput] = useState(true);
@@ -39,7 +42,9 @@ export default function ProfileInformation({}) {
       setNickname(result.data.data.nickName);
       setUserEmail(result.data.data.email);
       setUserSelf(result.data.data.self);
-      setUserSns(result.data.data.sns);
+      setInstaLink(result.data.data.insta);
+      setFaceLink(result.data.data.facebook);
+      setYouLink(result.data.data.youtube);
       setTopNickname(result.data.data.nickName);
     }
     fetchData();
@@ -88,6 +93,9 @@ export default function ProfileInformation({}) {
       nickName: nickname,
       self: userSelf,
       profileImg: profileImg,
+      insta: instaLink,
+      facebook: faceLink,
+      youtube: youLink,
     });
     if (data.statusCode === "118") {
       alert("중복된 아이디입니다.");
@@ -96,10 +104,13 @@ export default function ProfileInformation({}) {
       setProfileImg(profileImg);
       setUserSelf(userSelf);
       setTopNickname(nickname);
+      setInstaLink(instaLink);
+      setYouLink(youLink);
+      setFaceLink(faceLink);
+      setInstaInput(true);
       setProfileMode(true);
     }
   };
-
   return (
     <t.ProfileInformationView>
       <t.userName>
@@ -119,18 +130,29 @@ export default function ProfileInformation({}) {
               <t.email>{userEmail}</t.email>
               <t.introduce>
                 <t.textName>자기소개</t.textName>
-                <t.selfBox value={userSelf} />
+                <t.selfBox value={userSelf} readOnly />
               </t.introduce>
-              <t.snsLink>
-                {/* <t.textName>링크걸기</t.textName> */}
-                {/* <t.snsIcon src={IconInstagram} />
-                <t.snsIcon src={IconFacebooke} />
-                <t.snsIcon src={IconYoutube} /> */}
+              <t.snsLink profileMode={profileMode}>
+                <t.textName>링크걸기</t.textName>
+                <t.linkWrap>
+                  <t.link href={`https://www.instagram.com/${instaLink}`}>
+                    <t.snsIcon src={insta} />
+                    <t.linkBox value={instaLink} readOnly />
+                  </t.link>
+                  <t.link href={`https://ko-kr.facebook.com/${faceLink}`}>
+                    <t.snsIcon src={face} />
+                    <t.linkBox value={faceLink} readOnly />
+                  </t.link>
+                  <t.link href={`https://www.youtube.com/${youLink}`}>
+                    <t.snsIcon src={you} />
+                    <t.linkBox value={youLink} readOnly />
+                  </t.link>
+                </t.linkWrap>
               </t.snsLink>
-              <t.buttonGroup>
-                <button onClick={changeprofile}>프로필변경</button>
-              </t.buttonGroup>
             </t.profileinfo>
+            <t.buttonGroup>
+              <button onClick={changeprofile}>프로필변경</button>
+            </t.buttonGroup>
           </t.myInformation>
         ) : (
           <t.myInformation>
@@ -143,6 +165,9 @@ export default function ProfileInformation({}) {
               onClick={() => profileImgInput.current.click()}
               profileMode={profileMode}
             />
+            <t.profileImgChange onClick={() => profileImgInput.current.click()}>
+              <t.camera src={camera} />
+            </t.profileImgChange>
             <input
               type="file"
               style={{ display: "none" }}
@@ -165,7 +190,7 @@ export default function ProfileInformation({}) {
             </t.mobileID>
             <t.profileinfo>
               <t.nickName>
-                <input
+                <t.nickInput
                   type="text"
                   onChange={nicknameChange}
                   defaultValue={nickname || ""}
@@ -182,43 +207,81 @@ export default function ProfileInformation({}) {
                 />
               </t.introduce>
               <t.snsLink>
-                {/* <t.textName>링크걸기</t.textName> */}
-                {/* {instaInput ? (
-                  <>
-                    <t.snsIcon src={IconInstagram} onClick={instalink} />
-                  </>
-                ) : (
-                  <>
-                    <t.snsIcon src={IconInstagram} onClick={instalink} />
-                    <input type="text" />
-                  </>
-                )}
-                {faceInput ? (
-                  <>
-                    <t.snsIcon src={IconFacebooke} onClick={facelink} />
-                  </>
-                ) : (
-                  <>
-                    <t.snsIcon src={IconFacebooke} onClick={facelink} />
-                    <input type="text" />
-                  </>
-                )}
-                {youInput ? (
-                  <>
-                    <t.snsIcon src={IconYoutube} onClick={youlink} />
-                  </>
-                ) : (
-                  <>
-                    <t.snsIcon src={IconYoutube} onClick={youlink} />
-                    <input type="text" />
-                  </>
-                )} */}
+                <t.textName>링크걸기</t.textName>
+                <t.instaLinkbox>
+                  {profileMode ? (
+                    <>
+                      <t.snsIcon
+                        src={insta}
+                        onClick={() => setInstaInput(false)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <t.snsIcon
+                        src={insta}
+                        onClick={() => setInstaInput(true)}
+                      />
+                      <t.snsInput
+                        type="text"
+                        onChange={instaChange}
+                        placeholder="아이디를 적어주세요"
+                        defaultValue={instaLink}
+                        maxLength={15}
+                        instaInput={instaInput}
+                      />
+                    </>
+                  )}
+                </t.instaLinkbox>
+                <t.faceLinkbox>
+                  {profileMode ? (
+                    <>
+                      <t.snsIcon
+                        src={face}
+                        onClick={() => setFaceInput(false)}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <t.snsIcon
+                        src={face}
+                        onClick={() => setFaceInput(true)}
+                      />
+                      <t.snsInput
+                        type="text"
+                        onChange={faceChange}
+                        placeholder="아이디를 적어주세요"
+                        defaultValue={faceLink}
+                        maxLength={15}
+                        faceInput={faceInput}
+                      />
+                    </>
+                  )}
+                </t.faceLinkbox>
+                <t.youLinkbox>
+                  {profileMode ? (
+                    <>
+                      <t.snsIcon src={you} onClick={() => setYouInput(false)} />
+                    </>
+                  ) : (
+                    <>
+                      <t.snsIcon src={you} onClick={() => setYouInput(true)} />
+                      <t.snsInput
+                        type="text"
+                        onChange={youChange}
+                        placeholder="아이디를 적어주세요"
+                        defaultValue={youLink}
+                        maxLength={35}
+                        faceInput={youInput}
+                      />
+                    </>
+                  )}
+                </t.youLinkbox>
               </t.snsLink>
-              <t.buttonGroup>
-                <button onClick={saveprofile}>저장</button>
-                {/* <button onClick={cancelprofile}>취소</button> */}
-              </t.buttonGroup>
             </t.profileinfo>
+            <t.buttonGroup>
+              <button onClick={saveprofile}>저장</button>
+            </t.buttonGroup>
           </t.myInformation>
         )}
         <InformationChart />

@@ -25,9 +25,11 @@ export const textLine = styled.div`
 `;
 export const empty = styled.div`
   width: 100%;
+
   text-align: center;
-  margin: 0 auto;
+  margin: auto;
   font-size: 28px;
+
   @media screen and (max-width: 480px) {
     width: 100%;
     text-align: center;
