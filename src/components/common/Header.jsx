@@ -88,7 +88,9 @@ export default function Header() {
                   toggle={toggle}
                   onClick={toggleChange}
                 />
-                <t.WriteWrap toggle={toggle} headerScroll={headerScroll}>
+
+                <t.WriteWrap1 toggle={toggle} headerScroll={headerScroll}>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");
@@ -142,7 +144,7 @@ export default function Header() {
                       <p>로그인</p>
                     </t.Login>
                   )}
-                </t.WriteWrap>
+                </t.WriteWrap1>
               </>
             )}
           </t.Container1>
@@ -171,7 +173,9 @@ export default function Header() {
                   toggle={toggle}
                   onClick={toggleChange}
                 />
-                <t.WriteWrap toggle={toggle}>
+
+                <t.WriteWrap2 toggle={toggle}>
+
                   <t.Game
                     onClick={() => {
                       navigate("/start");
@@ -224,7 +228,7 @@ export default function Header() {
                       <p>로그인</p>
                     </t.Login>
                   )}
-                </t.WriteWrap>
+                </t.WriteWrap2>
               </>
             )}
           </t.Container2>
