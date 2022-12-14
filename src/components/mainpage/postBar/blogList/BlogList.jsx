@@ -24,8 +24,10 @@ export default function Post() {
                     <t.blogImgBox src={idx.thumbnail} alt="게시글이미지" />
                     <t.blogContentsBox>
                       <t.blogTitle>{idx.title}</t.blogTitle>
-                      <t.blogContents>{(idx.contents).substr(0,100)+"...."}</t.blogContents>
-                      <t.blogName>{"- "+idx.blogName+" -"}</t.blogName>
+                      <t.blogContents>
+                        {idx.contents.substr(0, 87) + "...."}
+                      </t.blogContents>
+                      <t.blogName>{"- " + idx.blogName + " -"}</t.blogName>
                     </t.blogContentsBox>
                   </t.blogListBox>
                 );
