@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
-import BoardPostModify from "../../components/post/BoardPostModify";
+import BoardPostModify from "../../components/post/BoardPostModify/BoardPostModify";
 import { motion } from "framer-motion";
 
 export default function PostViewPage() {

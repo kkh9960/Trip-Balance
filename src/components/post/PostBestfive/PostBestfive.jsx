@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as St from "./PostBestfiveStyle";
-import LoginPage from "../login/LoginPage";
+import LoginPage from "../../login/LoginPage";
 
 const PostBestfive = ({ best }) => {
   const navigator = useNavigate();
@@ -34,11 +34,11 @@ const PostBestfive = ({ best }) => {
                 }}
               >
                 <St.ItemImgBox>
-                  <St.ItemImg src={item.img} />
+                  <St.ItemImg src={item.img} alt="" />
                 </St.ItemImgBox>
                 <St.Textbox>
                   <St.HeartCount>{item.heartNum}</St.HeartCount>
-                  <St.Heart src="img/heart.svg" />
+                  <St.Heart src="img/board/heart.svg" alt="" />
                 </St.Textbox>
               </St.Item>
             ))}
@@ -53,11 +53,11 @@ const PostBestfive = ({ best }) => {
                 }}
               >
                 <St.ItemImgBox>
-                  <St.ItemImg src={item.img} />
+                  <St.ItemImg src={item.img} alt="" />
                 </St.ItemImgBox>
                 <St.Textbox>
                   <St.HeartCount>{item.heartNum}</St.HeartCount>
-                  <St.Heart src="img/heart.svg" />
+                  <St.Heart src="img/board/heart.svg" alt="" />
                 </St.Textbox>
               </St.Itemmobile>
             ))}

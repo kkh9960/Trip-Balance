@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import AWS from "aws-sdk";
-import { __postBoard } from "../../redux/modules/BoardSlice";
+import { __postBoard } from "../../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
 import * as St from "./BoardWriteStyle";
@@ -48,6 +47,7 @@ const BoardWrite = () => {
     const imageFile = e.target.files[0];
     console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
     console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+
     //리사이징
     try {
       const compressedFile = await imageCompression(imageFile, options);
@@ -187,8 +187,8 @@ const BoardWrite = () => {
     }
   };
 
-  const imagewrite = "img/imagewrite.jpg";
-  const noimage = "img/noimage.jpg";
+  const imagewrite = "img/board/imagewrite.jpg";
+  const noimage = "img/board/noimage.jpg";
 
   const imageremove = (id, i, i2) => {
     let target = document.getElementById(id);
@@ -207,7 +207,7 @@ const BoardWrite = () => {
     }
   };
   const previewchange = (e) => {
-    if (e.target.src.includes("img/noimage.jpg")) {
+    if (e.target.src.includes("img/board/noimage.jpg")) {
     } else {
       setFileLink(e.target.src);
     }
@@ -242,7 +242,7 @@ const BoardWrite = () => {
         <St.BoardContentWrap>
           <St.BaordWritesection>
             <St.ImegeSelectBox>
-              <St.ImagePreview src={FileLink} />
+              <St.ImagePreview src={FileLink} alt="" />
               <St.ImegeInput
                 type="file"
                 accept="image/*"

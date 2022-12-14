@@ -45,7 +45,7 @@ const TopButton = () => {
         showButton && (
           <ScrollContainer>
             <Bgimg
-              src="../../img/topgame.webp"
+              src="../../img/Topbutton/topgame.webp"
               onClick={() => {
                 navigate(`/start`);
               }}
@@ -53,38 +53,47 @@ const TopButton = () => {
 
             {email ? (
               <Writeimg
-                src="../../img/topwrite.webp"
+                src="../../img/Topbutton/topwrite.webp"
                 onClick={() => {
                   navigate(`/write`);
                 }}
               />
             ) : (
-              <Writeimg src="../../img/topwrite.webp" onClick={goLogin} />
+              <Writeimg
+                src="../../img/Topbutton/topwrite.webp"
+                onClick={goLogin}
+              />
             )}
 
-            <Topimg src="../../img/topgo.webp" onClick={scrollToTop} />
+            <Topimg
+              src="../../img/Topbutton/topgo.webp"
+              onClick={scrollToTop}
+            />
             <MobileButtonWrap>
               <MobileBtnbox>
                 <MobileBg
-                  src="../../img/topgame.webp"
+                  src="../../img/Topbutton/topgame.webp"
                   onClick={() => {
                     navigate(`/start`);
                   }}
                 />
                 {email ? (
                   <MobileWrite
-                    src="../../img/topwrite.webp"
+                    src="../../img/Topbutton/topwrite.webp"
                     onClick={() => {
                       navigate(`/write`);
                     }}
                   />
                 ) : (
                   <MobileWrite
-                    src="../../img/topwrite.webp"
+                    src="../../img/Topbutton/topwrite.webp"
                     onClick={goLogin}
                   />
                 )}
-                <MobileTop src="../../img/topgo.webp" onClick={scrollToTop} />
+                <MobileTop
+                  src="../../img/Topbutton/topgo.webp"
+                  onClick={scrollToTop}
+                />
               </MobileBtnbox>
             </MobileButtonWrap>
           </ScrollContainer>
