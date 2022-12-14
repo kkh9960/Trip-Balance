@@ -407,23 +407,3 @@ export const buttonGroup = styled.div`
     }
   }
 `;
-
-export const detailPickInfo = styled.div`
-  /* width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(33%, auto));
-  grid-template-rows: repeat(2, minmax(100px, 50%)); */
-`;
-export const detailPickInfoTotal = styled.div``;
-export const detailPickInfoCategory = styled.div`
-  background-color: #73e4bc;
-  width: 135px;
-  height: 135px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
