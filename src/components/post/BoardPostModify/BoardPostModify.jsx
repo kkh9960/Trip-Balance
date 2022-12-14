@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import * as St from "./BoardPostModifyStyle";
 import { useDispatch, useSelector } from "react-redux";
 import AWS from "aws-sdk";
@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import {
   __getBoardDetail,
   __modifyBoard,
-} from "../../redux/modules/BoardSlice";
+} from "../../../redux/modules/BoardSlice";
 import imageCompression from "browser-image-compression";
 
 const BoardPostModify = () => {
@@ -25,8 +25,8 @@ const BoardPostModify = () => {
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
   const [loading, setloading] = useState(true);
   const [ModalEdit, setModalEdit] = useState(false);
-  const imagewrite = "../img/imagewrite.jpg";
-  const noimage = "../img/noimage.jpg";
+  const imagewrite = "../img/board/imagewrite.jpg";
+  const noimage = "../img/board/noimage.jpg";
 
   let localint = "";
   let localdetailint = "";
@@ -354,7 +354,7 @@ const BoardPostModify = () => {
     }
   };
   const previewchange = (e) => {
-    if (e.target.src.includes("img/noimage.jpg")) {
+    if (e.target.src.includes("img/board/noimage.jpg")) {
     } else {
       setFileLink(e.target.src);
     }
@@ -392,7 +392,7 @@ const BoardPostModify = () => {
         <St.BoardContentWrap>
           <St.BaordWritesection>
             <St.ImegeSelectBox>
-              <St.ImagePreview src={FileLink} />
+              <St.ImagePreview src={FileLink} alt="" />
               <St.ImegeInput
                 type="file"
                 accept="image/*"

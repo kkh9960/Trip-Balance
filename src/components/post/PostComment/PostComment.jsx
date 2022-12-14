@@ -4,23 +4,20 @@ import {
   __deleteComment,
   __modifyComment,
   __postReComment,
-} from "../../redux/modules/CommentSlice";
+} from "../../../redux/modules/CommentSlice";
 import * as St from "./PostCommentStyle";
-import Recomment from "./Recomment.jsx";
+import Recomment from "../Recomment/Recomment.jsx";
 import { useNavigate } from "react-router-dom";
 
 const PostComment = ({ idx, item, id, post }) => {
   const navigator = useNavigate();
 
-  const Profilebtn = useSelector(
-    (state) => state.rootReducer.profilebtn.profile
-  );
   const lender = useSelector((state) => state.rootReducer.profilebtn.lender);
 
   const nickname = sessionStorage.getItem("nickName");
   const cmtnick = item.author;
 
-  const UserDefaultImage = "../img/tb.jpg";
+  const UserDefaultImage = "../img/board/tb.jpg";
 
   const [Editcomment, setEditcomment] = useState("");
   const [Editmode, setEditmode] = useState(false);
@@ -183,7 +180,7 @@ const PostComment = ({ idx, item, id, post }) => {
         <St.CommentBox>
           <St.CommentUserBox>
             <div>
-              <St.CommentUserImage src={UserImage} />
+              <St.CommentUserImage src={UserImage} alt="" />
             </div>
             <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
             {Editprofile2 ? (
@@ -233,7 +230,7 @@ const PostComment = ({ idx, item, id, post }) => {
       {RecommentWrite ? (
         <St.BoardReCommentBox>
           <St.CommentWriteUserBox>
-            <St.CommentWriteImg src={CommentImg} />
+            <St.CommentWriteImg src={CommentImg} alt="" />
             <St.CommentWriteUser>{post?.nickName}</St.CommentWriteUser>
           </St.CommentWriteUserBox>
           <St.ReCommentTextarea

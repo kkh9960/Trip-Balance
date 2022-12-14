@@ -3,27 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   __deleteReComment,
   __modifyReComment,
-} from "../../redux/modules/CommentSlice";
+} from "../../../redux/modules/CommentSlice";
 import * as St from "./RecommentStyle";
 import { useNavigate } from "react-router-dom";
 
 const Recomment = ({ item, cmtid }) => {
   const navigator = useNavigate();
 
-  const Profilebtn = useSelector(
-    (state) => state.rootReducer.profilebtn.profile
-  );
   const lender = useSelector((state) => state.rootReducer.profilebtn.lender);
 
   const nickname = sessionStorage.getItem("nickName");
   const cmtnick = item.author;
 
   const dispatch = useDispatch();
-  const UserDefaultImage = "/img/tb.jpg";
+  const UserDefaultImage = "/img/board/tb.jpg";
   const [Editmode, setEditmode] = useState(false);
   const [EditRecomment, setEditRecomment] = useState("");
   const [ReUserImage, setReUserImage] = useState("");
-  const [Editprofile, setEditprofile] = useState(Profilebtn);
   const [Editprofile2, setEditprofile2] = useState(false);
 
   const [time, settime] = useState();
@@ -161,7 +157,7 @@ const Recomment = ({ item, cmtid }) => {
       <St.CommentBox>
         <St.CommentUserBox>
           <div>
-            <St.CommentUserImage src={ReUserImage} />
+            <St.CommentUserImage src={ReUserImage} alt="" />
           </div>
           <St.CommentUser onClick={profile}>{item.author}</St.CommentUser>
           {Editprofile2 ? (

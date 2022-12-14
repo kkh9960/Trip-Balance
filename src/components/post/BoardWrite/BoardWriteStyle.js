@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const Countbox = styled.span`
+  position: absolute;
+  font-size: 25px;
+  font-family: "NotoSansKR";
+  bottom: 20px;
+  right: 20px;
+`;
+
+export const Writebox = styled.div`
+  position: relative;
+`;
+
 export const HeaderContainer = styled.div`
   padding-top: 120px;
   @media screen and (max-width: 480px) {
@@ -115,12 +127,12 @@ export const ImagePreview = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: url("img/imagewrite.jpg");
+  background: url("img/board/imagewrite.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   @media screen and (max-width: 480px) {
-    background: url("img/mbwrite.jpg");
+    background: url("img/board/mbwrite.jpg");
     background-position: center center;
     background-size: cover;
   }
@@ -217,19 +229,18 @@ export const Imagedelete = styled.div`
   cursor: pointer;
   position: absolute;
   top: -15px;
-  right: -3px;
+  right: -4px;
   width: 30px;
   height: 30px;
   border: 1px solid #b3b3b3;
   border-radius: 50%;
-  background-image: url(img/imageremove.jpg);
+  background-image: url(../img/board/imageremove.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
   @media screen and (max-width: 480px) {
     width: 20px;
     height: 20px;
-    right: 3px;
+    right: -5px;
     top: -10px;
   }
 `;
@@ -292,7 +303,7 @@ export const CategorySelect = styled.select`
   color: #777777;
   border-radius: 10px;
   border: 2px solid #777777;
-  background: url(img/category.jpg) no-repeat right 13px center;
+  background: url(img/board/category.jpg) no-repeat right 13px center;
   @media screen and (max-width: 480px) {
     max-width: 100%;
     height: 50px;
@@ -314,7 +325,7 @@ export const PetCheckBox = styled.div`
     max-width: 100%;
     height: 50px;
     font-size: 18px;
-    gap: 50px;
+    gap: 10px;
   }
 `;
 
@@ -350,6 +361,9 @@ export const PetCheck = styled.input`
 export const PetLabel = styled.label`
   font-size: 20px;
   color: #777777;
+  @media screen and (max-width: 480px) {
+    margin-left: 20px;
+  }
 `;
 
 export const Buttonsection = styled.div`
