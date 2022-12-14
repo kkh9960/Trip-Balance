@@ -5,8 +5,8 @@ export const userName = styled.div`
     width: 500px;
     font-size: 28px;
     animation: 3s;
-    animation-name: slideLeft;
     margin: 0 0 5px 300px;
+    animation-name: mypageOpacity;
     span {
       font-size: 22px;
     }
@@ -51,8 +51,8 @@ export const myInformation = styled.div`
   display: flex;
   align-items: center;
   animation: 2s;
-  animation-name: slideLeft;
-  @keyframes slideLeft {
+  animation-name: mypageOpacity;
+  @keyframes mypageOpacity {
     from {
       opacity: 0;
       /* transform: translateX(-1000px); */
@@ -216,7 +216,7 @@ export const mobileEmail = styled.div`
   @media screen and (max-width: 480px) {
     text-align: center;
     margin: 0 auto;
-    width: 150px;
+    width: 100%;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;

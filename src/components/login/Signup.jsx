@@ -204,7 +204,7 @@ function RegisterPage() {
               <t.Emailmsg>{EmailCheckMsg}</t.Emailmsg>
               <t.InputWrite
                 name="name"
-                placeholder=" 닉네임."
+                placeholder=" 닉네임"
                 onChange={nicknamechange}
                 value={nickname}
               />

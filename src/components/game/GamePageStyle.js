@@ -37,7 +37,6 @@ export const balanceButtonWrap = styled.div`
     width: 90%;
     height: 300px;
     margin-top: 18%;
-    //margin-top: 133.94px;
   }
 `;
 
@@ -171,6 +170,7 @@ export const vsLogo = styled.div`
 export const moving = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   flex-direction: row;
   width: 150px;
   justify-content: space-between;
@@ -187,14 +187,15 @@ export const firstWrap = styled.div`
   opacity: 80%;
   background-repeat: no-repeat;
   background-image: url("../../img/gameCommonImg/goFirst.webp");
+  background-size: cover;
   justify-content: space-around;
   cursor: pointer;
 `;
 
 export const wrapDiv = styled.div`
   position: relative;
-  width: 10px;
-  height: 55px;
+  width: 4px;
+  height: 32px;
   opacity: 80%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -203,11 +204,12 @@ export const wrapDiv = styled.div`
 
 export const homeWrap = styled.div`
   position: relative;
-  width: 55px;
-  height: 55px;
+  width: 43px;
+  height: 47px;
   opacity: 80%;
   background-repeat: no-repeat;
   background-image: url("../../img/gameCommonImg/goHome.webp");
+  background-size: cover;
   justify-content: space-around;
   cursor: pointer;
 `;
