@@ -61,11 +61,9 @@ export const myTotalInfo = styled.div`
   @keyframes mypageslide {
     from {
       opacity: 0;
-      /* transform: translateX(-1000px); */
     }
     to {
       opacity: 1;
-      /* transform: translateX(0px); */
     }
   }
   @media screen and (max-width: 480px) {

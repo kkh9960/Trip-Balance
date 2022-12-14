@@ -74,7 +74,6 @@ export default function ProfileInformation({}) {
       Key: fileName,
     };
 
-    // if (profileImg === profile)
     await myBucket
       .putObject(params)
       .on("httpUploadProgress", (Progress, Response) => {
@@ -111,6 +110,7 @@ export default function ProfileInformation({}) {
       setProfileMode(true);
     }
   };
+
   return (
     <t.ProfileInformationView>
       <t.userName>
@@ -181,7 +181,7 @@ export default function ProfileInformation({}) {
                 <input
                   type="text"
                   onChange={nicknameChange}
-                  defaultValue={nickname || ""}
+                  defaultValue={nickname}
                   maxLength={8}
                 />
               </t.mobileNickName>

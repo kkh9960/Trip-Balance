@@ -409,14 +409,3 @@ export const buttonGroup = styled.div`
     }
   }
 `;
-
-export const detailPickInfoTotal = styled.div``;
-export const detailPickInfoCategory = styled.div`
-  background-color: #73e4bc;
-  width: 135px;
-  height: 135px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;

@@ -5,15 +5,16 @@ import UseInterval from "../../../hooks/useinterval";
 import { gsap } from "gsap";
 
 const TestSlide = () => {
-  const [currentIndex, setIndex] = useState(0);
-  const banner = document.querySelectorAll(".banner");
   const Img1 = "img/mainImg/bannerImg0.webp";
   const Img2 = "img/mainImg/bannerImg2.webp";
   const Img3 = "img/mainImg/bannerImg3.webp";
   const Img4 = "img/mainImg/bannerImg4.png";
   const happy = "img/gameCommonImg/happy.gif";
+  const banner = document.querySelectorAll(".banner");
+  const [currentIndex, setIndex] = useState(0);
 
   const navigate = useNavigate();
+
   const SlideAuto = () => {
     const banner = document.querySelectorAll(".banner");
 
@@ -617,7 +618,7 @@ const TestSlide = () => {
                     <br /> Balance
                   </div>
                   <div className="mainboard_titleshadow">트립 밸런스</div>
-                  <div className="mainboard_body"></div>
+                  <div className="mainboard_body"> </div>
                   {/* <button
                     className="mainboard_btn"
                   >
