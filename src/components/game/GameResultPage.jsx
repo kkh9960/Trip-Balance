@@ -28,8 +28,8 @@ export default function GameResultPage() {
     game.data.data.trip === null || undefined
       ? undefined
       : game?.data?.data?.trip;
-  const gameHotel = useSelector((state) => state.gameResult?.hotel?.data);
-  const blog = useSelector((state) => state.gameResult?.blog?.data)?.slice(
+  const gameHotel = useSelector((state) => state.gameResult.hotel.data);
+  const blog = useSelector((state) => state.gameResult.blog.data)?.slice(
     0,
     4
   );

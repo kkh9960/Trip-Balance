@@ -13,7 +13,6 @@ export default function GamePage() {
   const dispatch = useDispatch();
 
   const gameData = useSelector((state) => state.gameInfo.data)
-  console.log(gameData)
 
   const goFirst = (e) => {
     e.preventDefault();
@@ -46,9 +45,9 @@ export default function GamePage() {
       : dispatch(__GameInfoGet({ GameID, QID }));
   }, [id]);
 
-  const leftImg = `../../img/gameImg/${gameData.data[0]?.leftId == null ? (2) : (gameData.data[0]?.leftId)}.webp`         
-  const rightImg = `../../img/gameImg/${gameData.data[0]?.rightId == null ? (2) : (gameData.data[0]?.rightId)}.webp`
-  const GameID = (gameData.data[1]?.gameId === null ? ("1") : gameData.data[1]?.gameId)
+  const leftImg = `../../img/gameImg/${gameData.data[0] && gameData.data[0].leftId == null ? (2) : (gameData.data[0] && gameData.data[0].leftId)}.webp`         
+  const rightImg = `../../img/gameImg/${gameData.data[0] && gameData.data[0].rightId == null ? (2) : (gameData.data[0] && gameData.data[0].rightId)}.webp`
+  const GameID = (gameData.data[1] && gameData.data[1].gameId === null ? ("1") : gameData.data[1] && gameData.data[1].gameId)
   const QID = parseInt(id.id)
   const VCharacter = '../../img/gameCommonImg/happy.gif'
   const FCharacter = '../../img/gameCommonImg/unhappy.gif'
