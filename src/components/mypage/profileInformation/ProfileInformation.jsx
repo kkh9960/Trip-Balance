@@ -130,22 +130,22 @@ export default function ProfileInformation({}) {
               <t.email>{userEmail}</t.email>
               <t.introduce>
                 <t.textName>자기소개</t.textName>
-                <t.selfBox value={userSelf} readOnly />
+                <t.selfBox value={userSelf || ""} readOnly />
               </t.introduce>
               <t.snsLink profileMode={profileMode}>
                 <t.textName>링크걸기</t.textName>
                 <t.linkWrap>
                   <t.link href={`https://www.instagram.com/${instaLink}`}>
                     <t.snsIcon src={insta} />
-                    <t.linkBox value={instaLink} readOnly />
+                    <t.linkBox value={instaLink || ""} readOnly />
                   </t.link>
                   <t.link href={`https://ko-kr.facebook.com/${faceLink}`}>
                     <t.snsIcon src={face} />
-                    <t.linkBox value={faceLink} readOnly />
+                    <t.linkBox value={faceLink || ""} readOnly />
                   </t.link>
                   <t.link href={`https://www.youtube.com/${youLink}`}>
                     <t.snsIcon src={you} />
-                    <t.linkBox value={youLink} readOnly />
+                    <t.linkBox value={youLink || ""} readOnly />
                   </t.link>
                 </t.linkWrap>
               </t.snsLink>
@@ -226,9 +226,8 @@ export default function ProfileInformation({}) {
                         type="text"
                         onChange={instaChange}
                         placeholder="아이디를 적어주세요"
-                        defaultValue={instaLink}
+                        defaultValue={instaLink || ""}
                         maxLength={15}
-                        instaInput={instaInput}
                       />
                     </>
                   )}
@@ -251,9 +250,8 @@ export default function ProfileInformation({}) {
                         type="text"
                         onChange={faceChange}
                         placeholder="아이디를 적어주세요"
-                        defaultValue={faceLink}
+                        defaultValue={faceLink || ""}
                         maxLength={15}
-                        faceInput={faceInput}
                       />
                     </>
                   )}
@@ -270,9 +268,8 @@ export default function ProfileInformation({}) {
                         type="text"
                         onChange={youChange}
                         placeholder="아이디를 적어주세요"
-                        defaultValue={youLink}
+                        defaultValue={youLink || ""}
                         maxLength={35}
-                        faceInput={youInput}
                       />
                     </>
                   )}

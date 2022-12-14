@@ -22,15 +22,15 @@ export default function WeatherBar() {
     let curWeek = week[now.getDay()];
     let hours = now.getHours();
     let minutes = now.getMinutes();
-  
-    setHours(hours)
-    setMinutes(minutes)
-    setDayOfWeek(curWeek)
+
+    setHours(hours);
+    setMinutes(minutes);
+    setDayOfWeek(curWeek);
   };
 
   const startTime = () => {
-    setInterval(todayTime, 1000)
-  }
+    setInterval(todayTime, 1000);
+  };
   startTime();
 
   const [hours, setHours] = useState("");
@@ -53,9 +53,10 @@ export default function WeatherBar() {
         </t.iconBox>
         <t.temperatureBox>
           <t.timer>
-            {dayOfWeek},<br/>
-            {hours < 10 ? ("0"+hours) : (hours)}:
-            {minutes < 10 ? ("0"+minutes) : (minutes)}
+            {dayOfWeek}
+            <br />
+            {hours < 10 ? "0" + hours : hours}:
+            {minutes < 10 ? "0" + minutes : minutes}
           </t.timer>
           <t.temperature>
             <span>{`${TMP}`}</span>

@@ -56,6 +56,18 @@ export const myTotalInfo = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: 4s;
+  animation-name: mypageslide;
+  @keyframes mypageslide {
+    from {
+      opacity: 0;
+      /* transform: translateX(-1000px); */
+    }
+    to {
+      opacity: 1;
+      /* transform: translateX(0px); */
+    }
+  }
   @media screen and (max-width: 480px) {
     background-color: #4cd8eb;
     width: 100%;
@@ -291,8 +303,8 @@ export const mySelectInformation = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 30px 0 30px 0;
-    width: 100%;
+    margin: 30px auto 30px;
+    width: 1326px;
     height: 100%;
     background-repeat: no-repeat;
     background-size: cover;

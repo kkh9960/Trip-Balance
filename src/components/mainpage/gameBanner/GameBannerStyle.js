@@ -4,12 +4,24 @@ export const GameBanner = styled.div`
   width: 100%;
   height: 300px;
   cursor: pointer;
+  background: linear-gradient(25deg, #5602cc 20%, #4501d5 25%, #4402bf 35%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media screen and (max-width: 480px) {
-    height: 180px;
+    height: 140px;
   }
 `;
 
 export const GamestartBannerImg = styled.img`
-  width: 100%;
-  height: 100%;
+  @media screen and (min-width: 481px) {
+    width: 1326px;
+    height: 300px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    height: 140px;
+  }
 `;
