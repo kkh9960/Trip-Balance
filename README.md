@@ -52,6 +52,7 @@
 </div>
 Component 단위의 작성을 통해 UI를 구성하는 개별적인 view단위의 개발을 하여 하나의 컴포넌트를 여러 부분에 다중 사용할수 있게 만들어 생산성과 유지 보수를 용이하게 하고 JSX를 사용해 컴포넌트를 쉽게 구성할수 있도록 해주며 Vitual DOM을 이용해 연산 비용을 줄일수 있기에 React 라이브러리를 사용하게 되었습니다.
 </details>
+
 <details>
 <summary> Redux-Toolkik </summary>
 <div markdown="1">	
@@ -61,6 +62,7 @@ Component 단위의 작성을 통해 UI를 구성하는 개별적인 view단위�
 리덕스 툴킷은 리덕스와 달리 action value와 action Creater를 정의하지 않고 작성할 수 있어 보일러 플레이트 코드를 줄일 수 있고, Redux 자체만으로는 스토어 설정이 어려워 추가적인 라이브러리도 설치해야 하지만, Toolkit의 경우 유틸리티 함수들이 대부분 포함 되어 있어 Redux사용에 추가적인 라이브러리 설치가 필요 없다는 점 때문에 Redux-Toolkit을 선택하게 되었습니다. <br/>
 또한 비동기 통신을 수월하게 만들어주는 thunk가 있어 선택하였습니다.
 </details>
+
 <details>
 <summary> Axios </summary>
 <div markdown="1">	
@@ -69,12 +71,29 @@ Component 단위의 작성을 통해 UI를 구성하는 개별적인 view단위�
 axios를 선정한 이유는 Promise 기반으로 만들어졌기 때문에 데이터 다루기가 편리하고 브라우저 호환성이 뛰어나 선정했습니다. <br/>
 또한 비동기로 HTTP통신을 할 수 있으며 return을 promise 객체로 해 주기 때문에 response 데이터를 다루기 쉬워 선택하였습니다.
 </details>
+
+<details>
+<summary> React-Router </summary>
+<div markdown="1">	
+<br>
+</div>
+리엑트 라우터 사용이유
+</details>
+
 <details>
 <summary> Styled-components </summary>
 <div markdown="1">	
 <br>
 </div>
   <p> 스타일드 컴포넌트 사용이유 </p>
+</details>
+
+<details>
+<summary> Kakao - API </summary>
+<div markdown="1">	
+<br>
+</div>
+  <p> 카카오 API 사용이유 </p>
 </details> 
 
 </br>
