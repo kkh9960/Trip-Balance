@@ -72,13 +72,13 @@ export default function GamePage() {
 
           <g.balanceButtonWrap>
             <g.balanceButtonBH>
-            <g.balanceButton alt="left img" src={leftImg} onClick={leftGo}/>
+            <g.balanceButton alt="left img" rel="preload" src={leftImg} onClick={leftGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={leftGo}/>
             <g.balanceButtonRightHover src={FCharacter}/>
             <g.balanceText onClick={leftGo}>{gameData.data[0] && gameData.data[0].leftAnswer}</g.balanceText>
             </g.balanceButtonBH>
             <g.balanceButtonBH>
-            <g.balanceButton alt="right img" src={rightImg} onClick={rightGo}/>
+            <g.balanceButton alt="right img" rel="preload" src={rightImg} onClick={rightGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={rightGo}/>
             <g.balanceButtonLeftHover src={FCharacter}/>
             <g.balanceText onClick={rightGo}>{gameData.data[0] && gameData.data[0].rightAnswer}</g.balanceText>
