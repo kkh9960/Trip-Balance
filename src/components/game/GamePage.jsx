@@ -13,7 +13,6 @@ export default function GamePage() {
   const dispatch = useDispatch();
 
   const gameData = useSelector((state) => state.gameInfo.data)
-  console.log(gameData)
 
   const goFirst = (e) => {
     e.preventDefault();
@@ -46,9 +45,9 @@ export default function GamePage() {
       : dispatch(__GameInfoGet({ GameID, QID }));
   }, [id]);
 
-  const leftImg = `../../img/gameImg/${gameData.data[0]?.leftId == null ? (2) : (gameData.data[0]?.leftId)}.webp`         
-  const rightImg = `../../img/gameImg/${gameData.data[0]?.rightId == null ? (2) : (gameData.data[0]?.rightId)}.webp`
-  const GameID = (gameData.data[1]?.gameId === null ? ("1") : gameData.data[1]?.gameId)
+  const leftImg = `../../img/gameImg/${gameData.data[0] && gameData.data[0].leftId == null ? (2) : (gameData.data[0] && gameData.data[0].leftId)}.webp`         
+  const rightImg = `../../img/gameImg/${gameData.data[0] && gameData.data[0].rightId == null ? (2) : (gameData.data[0] && gameData.data[0].rightId)}.webp`
+  const GameID = (gameData.data[1] && gameData.data[1].gameId === null ? ("1") : gameData.data[1] && gameData.data[1].gameId)
   const QID = parseInt(id.id)
   const VCharacter = '../../img/gameCommonImg/happy.gif'
   const FCharacter = '../../img/gameCommonImg/unhappy.gif'
@@ -73,13 +72,13 @@ export default function GamePage() {
 
           <g.balanceButtonWrap>
             <g.balanceButtonBH>
-            <g.balanceButton alt="left img" src={leftImg} onClick={leftGo}/>
+            <g.balanceButton alt="left img" rel="preload" src={leftImg} onClick={leftGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={leftGo}/>
             <g.balanceButtonRightHover src={FCharacter}/>
             <g.balanceText onClick={leftGo}>{gameData.data[0] && gameData.data[0].leftAnswer}</g.balanceText>
             </g.balanceButtonBH>
             <g.balanceButtonBH>
-            <g.balanceButton alt="right img" src={rightImg} onClick={rightGo}/>
+            <g.balanceButton alt="right img" rel="preload" src={rightImg} onClick={rightGo}/>
             <g.balanceButtonHover src={VCharacter} onClick={rightGo}/>
             <g.balanceButtonLeftHover src={FCharacter}/>
             <g.balanceText onClick={rightGo}>{gameData.data[0] && gameData.data[0].rightAnswer}</g.balanceText>

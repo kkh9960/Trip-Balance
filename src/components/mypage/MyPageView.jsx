@@ -47,12 +47,10 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/hearts");
-
       setMyPick(result.data.data);
     }
     fetchData();
   }, []);
-
   return (
     <t.myInformationWrap>
       <ProfileInformation />

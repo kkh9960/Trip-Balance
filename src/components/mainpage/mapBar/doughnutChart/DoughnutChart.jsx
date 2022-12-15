@@ -32,6 +32,7 @@ export default function DoughnutChart() {
       return setDoughnutSize(40);
     }
   }, [setDoughnutSize]);
+
   const chartData = {
     people: {
       labels: ["여성", "남성"],

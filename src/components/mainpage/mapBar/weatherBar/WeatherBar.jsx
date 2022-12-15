@@ -22,15 +22,15 @@ export default function WeatherBar() {
     let curWeek = week[now.getDay()];
     let hours = now.getHours();
     let minutes = now.getMinutes();
-  
-    setHours(hours)
-    setMinutes(minutes)
-    setDayOfWeek(curWeek)
+
+    setHours(hours);
+    setMinutes(minutes);
+    setDayOfWeek(curWeek);
   };
 
   const startTime = () => {
-    setInterval(todayTime, 1000)
-  }
+    setInterval(todayTime, 1000);
+  };
   startTime();
 
   const [hours, setHours] = useState("");
@@ -53,9 +53,10 @@ export default function WeatherBar() {
         </t.iconBox>
         <t.temperatureBox>
           <t.timer>
-            {dayOfWeek},<br/>
-            {hours < 10 ? ("0"+hours) : (hours)}:
-            {minutes < 10 ? ("0"+minutes) : (minutes)}
+            {dayOfWeek}
+            <br />
+            {hours < 10 ? "0" + hours : hours}:
+            {minutes < 10 ? "0" + minutes : minutes}
           </t.timer>
           <t.temperature>
             <span>{`${TMP}`}</span>
@@ -93,8 +94,3 @@ export default function WeatherBar() {
     </t.weather>
   );
 }
-
-//- 하늘상태(SKY) 코드 : 맑음(1), 구름많음(3), 흐림(4)
-//- 강수형태(PTY) 코드 : (초단기) 없음(0), 비(1), 비/눈(2), 눈(3), 빗방울(5), 빗방울눈날림(6), 눈날림(7)
-//                      (단기) 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4)
-//- 강수량(PCP) 코드 :
