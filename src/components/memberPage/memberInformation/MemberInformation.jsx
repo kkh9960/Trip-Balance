@@ -1,11 +1,9 @@
 import React, { useState, useRef } from "react";
 import * as t from "./MemberInformationStyle";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
-import InformationChart from "./MemberInformationChart";
 import MemberInformationChart from "./MemberInformationChart";
 
 export default function MemberInformation() {

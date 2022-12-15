@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as t from "./MemberPageViewStyle";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Pagination from "../common/Pagination";
 import MemberInformation from "./memberInformation/MemberInformation";
@@ -11,7 +10,6 @@ export default function MemberPage() {
   const id = useParams();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [nickname, setNickname] = useState([]);
   const [userGameCnt, setUserGameCnt] = useState([]);
   const [userCommentCnt, setUserCommentCnt] = useState([]);

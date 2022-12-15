@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import * as t from "./MemberInformationChartStyle";
 import instance from "../../../lib/instance";
@@ -18,7 +18,6 @@ export default function MemberInformationChart() {
         setTotalData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setTotalData(result);
-        console.log("토탈", result);
       }
     }
     fetchData();
@@ -30,7 +29,6 @@ export default function MemberInformationChart() {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setMyPickData(result);
-        console.log("내선택", result);
       }
     }
     fetchData();

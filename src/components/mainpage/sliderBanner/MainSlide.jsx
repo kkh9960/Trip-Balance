@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./MainSlideStyle.css";
 import UseInterval from "../../../hooks/useinterval";
 import { gsap } from "gsap";
@@ -57,14 +56,6 @@ const MainSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          // gsap.to(".mainboard_btn", {
-          //   duration: 1,
-          //   y: 0,
-          //   x: 0,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
           gsap.to(".mainboard_img", {
             duration: 1,
             y: 140,
@@ -99,12 +90,6 @@ const MainSlide = () => {
             delay: 0,
             duration: 0,
           });
-          // gsap.to(".mainboard_btn4", {
-          //   opacity: 0,
-          //   x: 0,
-          //   delay: 0,
-          //   duration: 0,
-          // });
           gsap.to(".mainboard_img4", {
             opacity: 0,
             y: 110,
@@ -145,14 +130,6 @@ const MainSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          // gsap.to(".mainboard_btn2", {
-          //   duration: 1,
-          //   y: 10,
-          //   x: 0,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
           gsap.to(".mainboard_img2", {
             duration: 1,
             y: 170,
@@ -187,13 +164,6 @@ const MainSlide = () => {
             delay: 0,
             duration: 0,
           });
-          // gsap.to(".mainboard_btn", {
-          //   opacity: 0,
-          //   width: "150px",
-          //   x: 0,
-          //   delay: 0,
-          //   duration: 0,
-          // });
           gsap.to(".mainboard_img", {
             opacity: 0,
             y: -50,
@@ -234,14 +204,6 @@ const MainSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          // gsap.to(".mainboard_btn3", {
-          //   duration: 1,
-          //   y: -30,
-          //   x: -10,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
           gsap.to(".mainboard_img4", {
             duration: 1,
             y: 45,
@@ -276,12 +238,6 @@ const MainSlide = () => {
             delay: 0,
             duration: 0,
           });
-          // gsap.to(".mainboard_btn2", {
-          //   opacity: 0,
-          //   x: -100,
-          //   delay: 0,
-          //   duration: 0,
-          // });
           gsap.to(".mainboard_img2", {
             opacity: 0,
             y: -10,
@@ -327,14 +283,6 @@ const MainSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          // gsap.to(".mainboard_btn", {
-          //   duration: 1,
-          //   y: 0,
-          //   x: 100,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
           gsap.to(".mainboard_img", {
             duration: 1,
             y: 200,
@@ -369,12 +317,6 @@ const MainSlide = () => {
             delay: 0,
             duration: 0,
           });
-          // gsap.to(".mainboard_btn4", {
-          //   opacity: 0,
-          //   x: -100,
-          //   delay: 0,
-          //   duration: 0,
-          // });
           gsap.to(".mainboard_img4", {
             opacity: 0,
             y: -100,
@@ -415,14 +357,6 @@ const MainSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          // gsap.to(".mainboard_btn2", {
-          //   duration: 1,
-          //   y: 0,
-          //   x: 100,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
           gsap.to(".mainboard_img2", {
             duration: 1,
             y: 200,
@@ -457,12 +391,6 @@ const MainSlide = () => {
             delay: 0,
             duration: 0,
           });
-          // gsap.to(".mainboard_btn", {
-          //   opacity: 0,
-          //   x: -100,
-          //   delay: 0,
-          //   duration: 0,
-          // });
           gsap.to(".mainboard_img", {
             opacity: 0,
             y: -100,
@@ -503,14 +431,6 @@ const MainSlide = () => {
             ease: "power1.out",
             delay: 1.4,
           });
-          // gsap.to(".mainboard_btn3", {
-          //   duration: 1,
-          //   y: 0,
-          //   x: 100,
-          //   opacity: 1,
-          //   ease: "power1.out",
-          //   delay: 1.6,
-          // });
           gsap.to(".mainboard_img4", {
             duration: 1,
             y: 300,
@@ -545,12 +465,6 @@ const MainSlide = () => {
             delay: 0,
             duration: 0,
           });
-          // gsap.to(".mainboard_btn2", {
-          //   opacity: 0,
-          //   x: -100,
-          //   delay: 0,
-          //   duration: 0,
-          // });
           gsap.to(".mainboard_img2", {
             opacity: 0,
             y: -100,
@@ -586,10 +500,6 @@ const MainSlide = () => {
                   </div>
                   <div className="mainboard_titleshadow">트립 밸런스</div>
                   <div className="mainboard_body"> </div>
-                  {/* <button
-                    className="mainboard_btn"
-                  >
-                  </button> */}
                 </div>
                 <div className="mainboard_imgbox">
                   <div className="mainboard_img">
@@ -610,12 +520,6 @@ const MainSlide = () => {
                     여행지를 골라주는
                     <br /> 밸런스 게임을 즐겨보세요
                   </div>
-                  {/* <button
-                    className="mainboard_btn2"
-                    onClick={() => console.log()}
-                  >
-                    GameStart
-                  </button> */}
                 </div>
                 <div className="mainboard_imgbox2">
                   <div className="mainboard_img2">
@@ -626,39 +530,6 @@ const MainSlide = () => {
               </div>
             </div>
           </div>
-          {/* <div className="banner">
-            <div className="three">
-              <div className="main_board">
-                <div>
-                  <div className="mainboard_title3">이벤트</div>
-                  <div className="mainboard_titleshadow3">
-                    설문에 참여하면
-                    <br /> 상품이 와르르!
-                  </div>
-                  <div className="mainboard_body3">
-                    이벤트에 참여하고
-                    <br /> 기프티콘 받아가세요~
-                  </div>
-                  <img
-                    className="mainboard_gif3"
-                    src={happy}
-                    style={{ width: "250px", position: "absolute" }}
-                  />
-                  <button className="mainboard_btn3">
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScZE6aTPE3qjPm9L6Y_r09bzjjtKVSCL_sWz77fHzqHShsq6g/viewform">
-                      응모하러가기
-                    </a>
-                  </button>
-                </div>
-                <div className="mainboard_imgbox3">
-                  <div className="mainboard_img3">
-                    <img src={Img2} alt="" />
-                  </div>
-                  <div className="mainboard_imgshadow3"></div>
-                </div>
-              </div>
-            </div>
-          </div> */}
           <div className="banner">
             <div className="four">
               <div className="main_board">
@@ -671,12 +542,6 @@ const MainSlide = () => {
                   <div className="mainboard_body4">
                     당신의 이야기를 들려주세요
                   </div>
-                  {/* <button
-                    className="mainboard_btn4"
-                    onClick={() => navigate("/post")}
-                  >
-                    게시판 가기
-                  </button> */}
                 </div>
                 <div className="mainboard_imgbox4">
                   <div className="mainboard_img4">

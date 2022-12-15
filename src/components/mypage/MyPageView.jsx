@@ -9,7 +9,6 @@ import instance from "../../lib/instance";
 
 export default function MyPageView() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [nickname, setNickname] = useState([]);
   const [userGameCnt, setUserGameCnt] = useState([]);
   const [userCommentCnt, setUserCommentCnt] = useState([]);
