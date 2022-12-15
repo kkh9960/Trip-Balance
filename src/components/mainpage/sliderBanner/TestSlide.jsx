@@ -30,33 +30,33 @@ const TestSlide = () => {
     setIndex((prevstate) => (prevstate + 1) % 3);
   };
 
-  //앞으로가기
-  function func() {
-    let nextIndex = (currentIndex + 1) % 3; // 0 1 2 0 무한루프
+  // //앞으로가기
+  // function func() {
+  //   let nextIndex = (currentIndex + 1) % 3; // 0 1 2 0 무한루프
 
-    banner[currentIndex].style.opacity = "0"; //첫 번째 이미지를 안보이게
-    banner[nextIndex].style.opacity = "1"; //두 번째 이미지를 보이게
+  //   banner[currentIndex].style.opacity = "0"; //첫 번째 이미지를 안보이게
+  //   banner[nextIndex].style.opacity = "1"; //두 번째 이미지를 보이게
 
-    banner.forEach((banner) => {
-      banner.style.transition = "all 0.5s"; //자연스레 바뀌는 효과
-    });
+  //   banner.forEach((banner) => {
+  //     banner.style.transition = "all 0.5s"; //자연스레 바뀌는 효과
+  //   });
 
-    currentIndex = nextIndex; // 함수가 한번 실행될때마다 넥스트값을 커렌트값에 옮겨준다.
-  }
+  //   currentIndex = nextIndex; // 함수가 한번 실행될때마다 넥스트값을 커렌트값에 옮겨준다.
+  // }
 
-  //뒤로가기
-  function funct() {
-    let nextIndex = currentIndex == 0 ? 2 : currentIndex - 1;
+  // //뒤로가기
+  // function funct() {
+  //   let nextIndex = currentIndex == 0 ? 2 : currentIndex - 1;
 
-    banner[currentIndex].style.opacity = "0";
-    banner[nextIndex].style.opacity = "1";
+  //   banner[currentIndex].style.opacity = "0";
+  //   banner[nextIndex].style.opacity = "1";
 
-    banner.forEach((banner) => {
-      banner.style.transition = "all 0.5s";
-    });
+  //   banner.forEach((banner) => {
+  //     banner.style.transition = "all 0.5s";
+  //   });
 
-    currentIndex = nextIndex;
-  }
+  //   currentIndex = nextIndex;
+  // }
 
   UseInterval(() => {
     SlideAuto();

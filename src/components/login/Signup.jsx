@@ -22,16 +22,16 @@ function RegisterPage() {
   const [EmailCheckError, setEmailCheckError] = useState("");
   const [EmailCheckMsg, setEmailCheckMsg] = useState("");
   const [bimilcheck, setBimilcheck] = useState("문자혹은숫자6~12글자");
-  const [bimilCheckmsg,setBimilCheckmsg] = useState("")
+  const [bimilCheckmsg, setBimilCheckmsg] = useState("");
   const [loading, setLoading] = useState(false);
-  const [emcheck,setemCheck] = useState();
+  const [emcheck, setemCheck] = useState();
   const [bimil, setBimil, bimilchange] = useInput("");
-  const [pwcheck,setpwCheck,pwcheckChange] = useInput("");
+  const [pwcheck, setpwCheck, pwcheckChange] = useInput("");
   const [email, setEmail, emailchange] = useInput("");
   const [nickname, setnickname, nicknamechange] = useInput("");
-  const [ckColor,setckColor]=useState();
+  const [ckColor, setckColor] = useState();
   const [checkcolor, setcheckcolor] = useState(0);
-  const [nickCheck,setnickCheck] = useState()
+  const [nickCheck, setnickCheck] = useState();
   const [color, setColor] = useState("red");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,18 +53,20 @@ function RegisterPage() {
         setCheckMsg("사용가능한닉네임입니다");
         setDpNameCheck(true);
       } else {
-        setCheckMsg(<div style={{color}}>이미 다른 사용자가 사용 중 입니다</div>);
+        setCheckMsg(
+          <div style={{ color }}>이미 다른 사용자가 사용 중 입니다</div>
+        );
         setDpNameCheck(false);
       }
     });
   };
- 
+
   const idCheck = (e) => {
     e.stopPropagation();
     instance.post("tb/signup/idcheck", LoginValue).then((res) => {
       if (email.trim() === "") {
         setEmailCheckMsg("이메일을입력해주세요");
-        return
+        return;
       }
       if (res.data.statusCode == 117) {
         setEmailCheckMsg(
@@ -73,10 +75,8 @@ function RegisterPage() {
       } else {
         setEmailCheckMsg("가입가능한이메일입니다");
       }
-      if(!Emailj.test(email)){
-         setEmailCheckMsg(
-           <div style={{ color }}>이메일형식이 아닙니다</div>
-         );
+      if (!Emailj.test(email)) {
+        setEmailCheckMsg(<div style={{ color }}>이메일형식이 아닙니다</div>);
       }
     });
   };
@@ -117,10 +117,7 @@ function RegisterPage() {
         alert("닉네임은 빈칸을포함할수없습니다");
         return;
       }
-      if (nickname.search(/\s/) != -1) {
-        alert("이메일은 빈칸을포함할수없습니다");
-        return;
-      }
+
       if (nickname.trim() === "") {
         alert("닉네임을입력하세요");
         return;
@@ -129,11 +126,12 @@ function RegisterPage() {
       alert("회원가입완료!");
       window.location.reload();
     });
- 
   };
 
-
   const Reg = /^(?=.*[a-zA-Z])((?=.*\d)(?=.*\W)).{8,16}$/;
+  //?=다음 소문자대문자a부터z까지,*반복
+  //\W non word를 표현하며 알파벳 + 숫자 + _ 가 아닌 문자를 의미한다.
+
   useEffect(() => {
     if (bimil == "") {
       setBimilcheck("특수문자숫자문자8~12글자");
@@ -148,22 +146,20 @@ function RegisterPage() {
       }
     }
   }, [bimil]);
-   
- 
- useEffect(() => {
-  if(pwcheck == ""){
-    setckColor(0)
-  }else{
-     if (bimil != pwcheck) {
-       setBimilCheckmsg("비밀번호가일치하지않습니다");
-       setckColor(1);
-     } else {
-       setBimilCheckmsg("비밀번호가일치합니다");
-       setckColor(2);
-     }
-  }
-  
- }, [pwcheck,bimil]);
+
+  useEffect(() => {
+    if (pwcheck == "") {
+      setckColor(0);
+    } else {
+      if (bimil != pwcheck) {
+        setBimilCheckmsg("비밀번호가일치하지않습니다");
+        setckColor(1);
+      } else {
+        setBimilCheckmsg("비밀번호가일치합니다");
+        setckColor(2);
+      }
+    }
+  }, [pwcheck, bimil]);
   return (
     <motion.div
       className="loginPage"

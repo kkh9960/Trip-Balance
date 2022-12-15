@@ -9,10 +9,7 @@ import { KAKAO_AUTH_URL } from "./AuthKakao";
 import Exit from "../../img/exit.svg";
 function LoginPage() {
   const {
-    setValue,
-    watch,
-    register,
-    handleSubmit,
+
     formState: { errors },
   } = useForm();
   const [modal, setModal] = useState(true);
