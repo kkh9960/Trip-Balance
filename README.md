@@ -25,7 +25,7 @@
 
 </div>
 
-<h3>Front End</h3>
+<h3>Member</h3>
 <p align=>
 <img src="https://img.shields.io/badge/곽규현-61DAFB?style=for-the-badge&logo=react&logoColor=white"> 
 <a href="https://github.com/kkh9960"><img src="https://img.shields.io/badge/GITHUB-61DAFB?style=for-the-badge&logo=GitHub&logoColor=white&link=https://github.com/kkh9960"/></a>
