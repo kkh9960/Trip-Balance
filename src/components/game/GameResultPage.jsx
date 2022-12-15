@@ -29,7 +29,7 @@ export default function GameResultPage() {
       ? undefined
       : game.data.data && game.data.data.trip;
   const gameHotel = useSelector((state) => state.gameResult.hotel && state.gameResult.hotel.data);
-  const blog = useSelector((state) => state.gameResult.blog && state.gameResult.blog.data).slice(
+  const blog = useSelector((state) => state.gameResult.blog && state.gameResult.blog.data)?.slice(
     0,
     4
   );
