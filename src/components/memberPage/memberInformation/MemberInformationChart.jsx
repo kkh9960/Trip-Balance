@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import * as t from "./MemberInformationChartStyle";
 import instance from "../../../lib/instance";
@@ -25,7 +25,7 @@ export default function MemberInformationChart() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`/tb/memberinfo/tripdb/${id.id}`);
-      if (result.data?.data === "" || undefined) {
+      if (result.data?.data === "회원이 실행한 게임이 없습니다.") {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setMyPickData(result);
@@ -33,7 +33,6 @@ export default function MemberInformationChart() {
     }
     fetchData();
   }, []);
-  console.log();
   const chartData = {
     total: {
       option: [],

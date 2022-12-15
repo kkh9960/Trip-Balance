@@ -1,14 +1,16 @@
 import React, { useState, useRef } from "react";
 import * as t from "./ProfileinformationStyle";
 import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
+
 import AWS from "aws-sdk";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./InformationChart";
 
-export default function ProfileInformation({}) {
-  const dispatch = useDispatch();
+export default function ProfileInformation() {
   const profile = "/img/mypage/noneprofile.webp";
   const camera = "/img/mypage/profileImgChange.webp";
   const insta = "/img/mypage/insta.webp";
@@ -17,7 +19,6 @@ export default function ProfileInformation({}) {
   const [profileMode, setProfileMode] = useState(true);
   const [profileImg, setProfileImg] = useState(profile);
   const [userEmail, setUserEmail] = useState();
-  const [userSns, setUserSns] = useState();
   const [userSelf, setUserSelf, introduceonChange] = useInput();
   const [nickname, setNickname, nicknameChange] = useInput();
   const [topNickname, setTopNickname] = useState();

@@ -22,10 +22,11 @@ export const Viewmore = styled.button`
 `;
 
 export const LikeImg = styled.img`
+  width: 20px;
+  height: 20px;
   @media screen and (max-width: 480px) {
     width: 20px;
     height: 20px;
-    border-radius: 10px;
   }
 `;
 export const LikeCount = styled.div`
