@@ -116,8 +116,11 @@ classname 이름이 중복되어 원하지않는 스타일이 적용되는 일�
 게시글 검색을 구현하는 과정에서 카테고리별 조회 api를 분리하여 각각의 state에담아 구현하였는데, 다른 카테고리를 검색하는 경우 기존 데이터가 남아있고 무한스크롤이 중첩되는 문제가 발생하였습니다. <br><br>
 
 해결방안 1 카테고리별 조회 api의 데이터 형식을 20개씩 늘려가는 방식으로 만들고 splice를 사용해 기존 검색 결과를 지우는 방법으로 문제를 해결하였습니다.<br>
+<img src="https://user-images.githubusercontent.com/109525872/207901150-a476ab46-7e38-4a57-909d-b3cb542bdc21.png" width="600" height="280"><br>
   
-해결방안 2 데이터가담기는 변수를 하나로 통합하여 검색데이터 전체를 하나의 변수로관리하고 검색시 state내의 데이터를 새롭게 재할당 무한스크롤로 들어오는 추가 데이터 -> 배열에 추가하엿습니다
+해결방안 2 데이터가담기는 변수를 하나로 통합하여 검색데이터 전체를 하나의 변수로관리하고 검색시 state내의 데이터를 새롭게 재할당 무한스크롤로 들어오는 추가 데이터 -> 배열에 추가하엿습니다<br>
+<img src="https://user-images.githubusercontent.com/109525872/207901204-cb5008e5-30cf-4bbe-9ff9-56a7cb25842b.png" width="600" height="280">
+<img src="https://user-images.githubusercontent.com/109525872/207901230-032601af-f965-4217-ac1f-26f5b6bcf134.png" width="600" height="380">
 
 </details>
 <details>
@@ -126,6 +129,9 @@ classname 이름이 중복되어 원하지않는 스타일이 적용되는 일�
 <br>
 </div>
 lighthouse를이용해서 성능측정 결과 및접근성,권장사항 점수가 낮아 성능 개선과 페이지 최적화 진행 결정하였습니다.<br><br>
+  
+  <img src="https://user-images.githubusercontent.com/109525872/207904900-63b206f8-3e8a-4110-8402-261e817b3168.png" width="600" height="380">
+  <img src="https://user-images.githubusercontent.com/109525872/207904411-103c4be3-8fb2-43f7-96fa-3d52f9d4cf7c.png" width="600" height="380">
 
 1. 이미지 랜더링시간을줄이기위해 jpeg,svg,png => webp로통일 이미지용량줄이기를 진행하였습니다.<br><br>
 
@@ -133,7 +139,7 @@ lighthouse를이용해서 성능측정 결과 및접근성,권장사항 점수�
 
 3. 세번째 레이지로딩방식을통한 최적화방식을적용하엿습니다. 큰번들을 쪼개어서 사용자가 머무는페이지에 불필요한 번들파일은 로딩되지않고 동적으로처리해서 필요한 번들파일만쓰는형식으로
 초기렌더링시간을 단축시키게하였습니다.
-  
+![image](https://user-images.githubusercontent.com/109525872/207900994-0695d999-ad21-4148-998f-908f59863ffc.png)
 </details> 
 
 </br>
