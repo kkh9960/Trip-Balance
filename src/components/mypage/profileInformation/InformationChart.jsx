@@ -27,6 +27,7 @@ export default function InformationChart() {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setMyPickData(result);
+        console.log(result);
       }
     }
     fetchData();

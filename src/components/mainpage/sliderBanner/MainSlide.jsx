@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useHref, useNavigate } from "react-router-dom";
-import "./Test.css";
+import { useNavigate } from "react-router-dom";
+import "./MainSlideStyle.css";
 import UseInterval from "../../../hooks/useinterval";
 import { gsap } from "gsap";
 
-const TestSlide = () => {
+const MainSlide = () => {
   const Img1 = "img/mainImg/bannerImg0.webp";
-  const Img2 = "img/mainImg/bannerImg2.webp";
   const Img3 = "img/mainImg/bannerImg3.webp";
   const Img4 = "img/mainImg/bannerImg4.png";
-  const happy = "img/gameCommonImg/happy.gif";
-  const banner = document.querySelectorAll(".banner");
   const [currentIndex, setIndex] = useState(0);
-
-  const navigate = useNavigate();
 
   const SlideAuto = () => {
     const banner = document.querySelectorAll(".banner");
@@ -29,34 +24,6 @@ const TestSlide = () => {
 
     setIndex((prevstate) => (prevstate + 1) % 3);
   };
-
-  // //앞으로가기
-  // function func() {
-  //   let nextIndex = (currentIndex + 1) % 3; // 0 1 2 0 무한루프
-
-  //   banner[currentIndex].style.opacity = "0"; //첫 번째 이미지를 안보이게
-  //   banner[nextIndex].style.opacity = "1"; //두 번째 이미지를 보이게
-
-  //   banner.forEach((banner) => {
-  //     banner.style.transition = "all 0.5s"; //자연스레 바뀌는 효과
-  //   });
-
-  //   currentIndex = nextIndex; // 함수가 한번 실행될때마다 넥스트값을 커렌트값에 옮겨준다.
-  // }
-
-  // //뒤로가기
-  // function funct() {
-  //   let nextIndex = currentIndex == 0 ? 2 : currentIndex - 1;
-
-  //   banner[currentIndex].style.opacity = "0";
-  //   banner[nextIndex].style.opacity = "1";
-
-  //   banner.forEach((banner) => {
-  //     banner.style.transition = "all 0.5s";
-  //   });
-
-  //   currentIndex = nextIndex;
-  // }
 
   UseInterval(() => {
     SlideAuto();
@@ -726,4 +693,4 @@ const TestSlide = () => {
   );
 };
 
-export default TestSlide;
+export default MainSlide;

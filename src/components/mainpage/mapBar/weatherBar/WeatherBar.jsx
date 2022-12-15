@@ -49,6 +49,7 @@ export default function WeatherBar() {
         <t.iconBox>
           <t.weatherIcon
             src={`icon/${weatherdata[Object.keys(weatherdata)[2]]}.gif`}
+            alt="weatherIcon"
           />
         </t.iconBox>
         <t.temperatureBox>

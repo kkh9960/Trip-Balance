@@ -18,6 +18,7 @@ export default function MemberInformationChart() {
         setTotalData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setTotalData(result);
+        console.log("토탈", result);
       }
     }
     fetchData();
@@ -25,15 +26,15 @@ export default function MemberInformationChart() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get(`/tb/memberinfo/tripdb/${id.id}`);
-      if (result.data?.data === "" || undefined) {
+      if (result.data?.data === "회원이 실행한 게임이 없습니다.") {
         setMyPickData(result.data.data.push("지역: 빈값, 값: 0"));
       } else {
         setMyPickData(result);
+        console.log("내선택", result);
       }
     }
     fetchData();
   }, []);
-  console.log();
   const chartData = {
     total: {
       option: [],
