@@ -43,8 +43,8 @@
 <a href="https://github.com/seongwoo9156"><img src="https://img.shields.io/badge/GITHUB-61DAFB?style=for-the-badge&logo=GitHub&logoColor=white&link=https://github.com/seongwoo9156"/></a>
 
 -------
-
 <h2> 기술 스택 & 라이브러리 사용 이유 </h2>
+
 <details>
 <summary> React </summary>
 <div markdown="1">	
@@ -69,7 +69,6 @@ Component 단위의 작성을 통해 UI를 구성하는 개별적인 view단위�
 axios를 선정한 이유는 Promise 기반으로 만들어졌기 때문에 데이터 다루기가 편리하고 브라우저 호환성이 뛰어나 선정했습니다. <br/>
 또한 비동기로 HTTP통신을 할 수 있으며 return을 promise 객체로 해 주기 때문에 response 데이터를 다루기 쉬워 선택하였습니다.
 </details>
-<details>
 <details>
 <summary> Styled-components </summary>
 <div markdown="1">	
