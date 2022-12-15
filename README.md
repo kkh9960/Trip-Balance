@@ -117,6 +117,7 @@ classname 이름이 중복되어 원하지않는 스타일이 적용되는 일�
 
 해결방안 1 카테고리별 조회 api의 데이터 형식을 20개씩 늘려가는 방식으로 만들고 splice를 사용해 기존 검색 결과를 지우는 방법으로 문제를 해결하였습니다.<br>
 <img src="https://user-images.githubusercontent.com/109525872/207901150-a476ab46-7e38-4a57-909d-b3cb542bdc21.png" width="600" height="280"><br>
+하지만 카테고리를 변경 후에 검색하는 경우 state가 달라 기존 데이터를 삭제해주지 못하는 경우가 발생하였습니다.
   
 해결방안 2 데이터가담기는 변수를 하나로 통합하여 검색데이터 전체를 하나의 변수로관리하고 검색시 state내의 데이터를 새롭게 재할당 무한스크롤로 들어오는 추가 데이터 -> 배열에 추가하엿습니다<br>
 <img src="https://user-images.githubusercontent.com/109525872/207901204-cb5008e5-30cf-4bbe-9ff9-56a7cb25842b.png" width="600" height="280">
