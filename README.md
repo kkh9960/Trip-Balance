@@ -20,7 +20,7 @@
 |🔩 Part|⚙ Stacks ⚙|
 |:---:|:---:|
 |📃 Code| <img src="https://img.shields.io/badge/js-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"> | 
-|🛠 Tech| <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=React&logoColor=white"> |
+|🛠 Tech| <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=React&logoColor=white"> <img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=white"> <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"> |
 |⚙️ Tool| <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=Jira%20Software&logoColor=white"> <img src="https://img.shields.io/badge/IntelliJ IDEA-000000?style=for-the-badge&logo=IntelliJ%20IDEA&logoColor=white"> <img src="https://img.shields.io/badge/SSL-F68212?style=for-the-badge&logo=Open%20Access&logoColor=white">|
 
 </div>
