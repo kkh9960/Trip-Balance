@@ -47,6 +47,7 @@ export const CancelBtn = styled.div`
   }
 `;
 export const Exit = styled.img`
+height: 30px;
 width: 30px;
 @media screen and (max-width: 746px) {
   position: relative;
@@ -112,20 +113,17 @@ export const Line = styled.div`
   }
 `;
 export const KakaoWrap = styled.a`
-  border: none;
+  
+  /* border: none; */
   outline: none;
   color: white;
-  text-transform: uppercase;
-  margin-top: 110px;
-  padding: 20px;
   font-size: 16px;
   font-weight: 100;
-  letter-spacing: 10px;
-  width: 360px;
-  height: 61px;
+  width: 370px;
+  height: 65px;
   border-radius: 10px;
   position: relative;
-  left: 40px;
+  left: 60px;
   top: 70px;
 
   @media screen and (max-width: 746px) {
@@ -133,8 +131,10 @@ export const KakaoWrap = styled.a`
   }
 `;
 export const KakaoImg = styled.img`
+  object-fit: cover;
   width: 360px;
   height: 61px;
+  border-radius: 10px;
   position: relative;
   top: 20px;
   right: 21px;

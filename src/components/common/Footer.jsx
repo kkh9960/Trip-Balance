@@ -1,5 +1,5 @@
 import React from "react";
-import Git from "../../img/git.svg";
+import Git from "../../img/git.webp";
 import * as t from "./FooterStyle";
 
 const Footer = () => {
@@ -15,20 +15,20 @@ const Footer = () => {
 
         <t.Fronts>
           <t.FrontWrap>
-            <t.GitWrap>FRONT</t.GitWrap>
+            <t.text>FRONT</t.text>
             <t.GitWrap href="https://github.com/kkh9960">
-              <t.Gitimg src={Git} />
+              <t.Gitimg src={Git} alt="git" />
               곽규현
             </t.GitWrap>
             <t.GitWrap href="https://github.com/seongwoo9156">
-              <t.Gitimg src={Git} /> 박성우
+              <t.Gitimg src={Git} alt="git" /> 박성우
             </t.GitWrap>
             <br />
             <t.GitWrap href="https://github.com/jnwnddh">
-              <t.Gitimg src={Git} /> 이중오
+              <t.Gitimg src={Git} alt="git" /> 이중오
             </t.GitWrap>
             <t.GitWrap href="https://github.com/cho-light">
-              <t.Gitimg src={Git} />
+              <t.Gitimg src={Git} alt="git" />
               조광익
             </t.GitWrap>
           </t.FrontWrap>
@@ -36,17 +36,17 @@ const Footer = () => {
 
         <t.Backs>
           <t.BackWrap>
-            <t.GitWrap>BACK</t.GitWrap>
+            <t.text>BACK</t.text>
             <t.GitWrap href="https://github.com/dydrkflqmdl">
-              <t.Gitimg src={Git} />
+              <t.Gitimg src={Git} alt="git" />
               김용문
             </t.GitWrap>
             <t.GitWrap href="https://github.com/jueun330">
-              <t.Gitimg src={Git} />
+              <t.Gitimg src={Git} alt="git" />
               방주은
             </t.GitWrap>
             <t.GitWrap href="https://github.com/chunngamm">
-              <t.Gitimg src={Git} />
+              <t.Gitimg src={Git} alt="git" />
               김장원
             </t.GitWrap>
             <t.DesignWrap href="https://linktr.ee/vozzang">

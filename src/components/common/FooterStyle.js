@@ -20,7 +20,10 @@ export const Wrap = styled.div`
 export const DesignWrap = styled.div`
 margin-top: 10px;
 `
-
+export const text = styled.div`
+position: relative;
+top:10px;
+`
 
 
 export const Design = styled.div`
@@ -59,12 +62,14 @@ export const GitWrap = styled.a`
 `;
 export const Gitimg = styled.img`
   width: 30px;
+  height: 30px;
   position: relative;
   top: 10px;
   margin: 2px;
- @media screen and (max-width: 480px) {
-  width: 25px;
- }
+  @media screen and (max-width: 480px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 export const Footerlogo = styled.img`
   position: relative;
@@ -84,7 +89,7 @@ export const Title = styled.div`
   text-align: center;
   align-items: center;
   top: 15px;
-  opacity: 0.7;
+  opacity: 0.5;
   font-family: "Jalnan";
   color: white;
   position: relative;
@@ -103,7 +108,7 @@ export const Comment = styled.div`
   color: white;
   position: relative;
   text-align: center;
-  opacity: 0.6;
+ opacity: 0.3;
   top: 30px;
   font-family: "Jalnan";
   color: white;
@@ -119,7 +124,7 @@ export const Hanhae = styled.div`
   text-align: center;
   font-family: "Jalnan";
   color: white;
-  opacity: 0.5;
+  opacity: 0.6;
   position: relative;
   top: 45px;
   @media screen and (max-width: 480px) {
