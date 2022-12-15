@@ -3,14 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: gray;
   width: 100%;
-  
-//
+
+  //
   @media screen and (max-width: 746px) {
     width: 100%;
   }
 `;
 export const Wrap = styled.div`
-
   height: 260px;
   @media screen and (max-width: 550px) {
     height: 370px;
@@ -18,10 +17,12 @@ export const Wrap = styled.div`
   }
 `;
 export const DesignWrap = styled.div`
-margin-top: 10px;
-`
-
-
+  margin-top: 10px;
+`;
+export const text = styled.div`
+  position: relative;
+  top: 10px;
+`;
 
 export const Design = styled.div`
   text-align: center;
@@ -59,12 +60,14 @@ export const GitWrap = styled.a`
 `;
 export const Gitimg = styled.img`
   width: 30px;
+  height: 30px;
   position: relative;
   top: 10px;
   margin: 2px;
- @media screen and (max-width: 480px) {
-  width: 25px;
- }
+  @media screen and (max-width: 480px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 export const Footerlogo = styled.img`
   position: relative;
@@ -83,8 +86,8 @@ export const Footerlogo = styled.img`
 export const Title = styled.div`
   text-align: center;
   align-items: center;
-  top: 30px;
-  opacity: 0.7;
+  top: 15px;
+  opacity: 0.5;
   font-family: "Jalnan";
   color: white;
   position: relative;
@@ -103,8 +106,8 @@ export const Comment = styled.div`
   color: white;
   position: relative;
   text-align: center;
-  opacity: 0.6;
-  top: 45px;
+  opacity: 0.3;
+  top: 30px;
   font-family: "Jalnan";
   color: white;
   @media screen and (max-width: 480px) {
@@ -119,12 +122,12 @@ export const Hanhae = styled.div`
   text-align: center;
   font-family: "Jalnan";
   color: white;
-  opacity: 0.5;
+  opacity: 0.6;
   position: relative;
-  top: 60px;
+  top: 45px;
   @media screen and (max-width: 480px) {
     position: relative;
-    top: 90px;
+    top: 40px;
     font-size: 20px;
     text-align: center;
     color: white;
@@ -146,6 +149,7 @@ export const Front = styled.div`
     color: white;
     position: relative;
     font-family: "Jalnan";
+    display: none;
   }
 `;
 
@@ -169,11 +173,11 @@ export const Back = styled.div`
 `;
 export const Fronts = styled.div`
   position: relative;
-  top: 65px;
+  top: 45px;
   @media screen and (max-width: 480px) {
-    width: 400px;
+    width: 100%;
     position: relative;
-    top: 100px;
+    top: 50px;
     color: white;
     align-items: center;
   }
@@ -195,11 +199,11 @@ export const FrontWrap = styled.div`
 `;
 export const Backs = styled.div`
   position: relative;
-  top: 50px;
+  top: 25px;
 
   @media screen and (max-width: 480px) {
     position: relative;
-    top:100px;
+    top: 50px;
     color: white;
     margin-top: 10px;
   }
