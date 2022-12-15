@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import * as t from "./ProfileinformationStyle";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { __putMyInformation } from "../../../redux/modules/MyPageSlice";
 import AWS from "aws-sdk";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";

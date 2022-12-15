@@ -4,9 +4,9 @@ import Signup from "./Signup";
 import * as t from "./Loginstyle";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
-import kakao from "../../img/kakaologin.jpg";
+import kakao from "../../img/kakaologin.webp";
 import { KAKAO_AUTH_URL } from "./AuthKakao";
-import Exit from "../../img/exit.svg";
+import Exit from "../../img/exit.webp";
 function LoginPage() {
   const {
 
@@ -64,7 +64,7 @@ function LoginPage() {
         <t.AuthWrapper>
           <t.Formtag onSubmit={onvaled}>
             <t.CancelBtn className="cancel" onClick={modalClose}>
-              <t.Exit src={Exit} />
+              <t.Exit src={Exit} alt="exit" />
             </t.CancelBtn>
 
             <t.LoginTitleWrap style={{ textAlign: "center" }}>
@@ -107,7 +107,7 @@ function LoginPage() {
               회원가입
             </t.SignUpbtn>
             <t.KakaoWrap href={KAKAO_AUTH_URL}>
-              <t.KakaoImg src={kakao} className="kakaoimg" />
+              <t.KakaoImg src={kakao} className="kakaoimg"alt="kakao" />
             </t.KakaoWrap>
           </t.Formtag>
         </t.AuthWrapper>

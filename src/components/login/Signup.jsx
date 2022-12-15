@@ -8,8 +8,8 @@ import LoginPage from "./LoginPage";
 import instance from "../../lib/instance";
 import useInput from "../../hooks/useInput";
 import * as t from "./Signupstyle";
-import Exit from "../../img/exit.svg";
-import Back from "../../img/back.svg";
+import Exit from "../../img/exit.webp";
+import Back from "../../img/back.webp";
 function RegisterPage() {
   const {
     formState: { errors },
@@ -175,6 +175,7 @@ function RegisterPage() {
             <t.FormTag onSubmit={handleSubmit(onSubmitEvery)}>
               <t.BackArrow
                 className="backArrow"
+                alt
                 onClick={() => {
                   setModal(!modal);
                 }}
