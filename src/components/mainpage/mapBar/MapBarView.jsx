@@ -7,7 +7,7 @@ import * as t from "./MapBarViewStyle";
 export default function mapBarView() {
   const mapGuideButton1 = "../../img/mainImg/mainguidebutton1.webp";
   const mapGuideButton2 = "../../img/mainImg/mainguidebutton2.webp";
-
+//하나의틀
   return (
     <t.mapBarView>
       <t.mapBarViewText>지역별 여행객 정보</t.mapBarViewText>

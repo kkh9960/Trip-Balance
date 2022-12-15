@@ -32,7 +32,7 @@ export const Formtag = styled.form`
   @media screen and (max-width: 746px) {
     top: 10px;
     height: 600px;
-    width: 316px;
+    width: 270px;
   }
 `;
 export const CancelBtn = styled.div`
@@ -48,6 +48,10 @@ export const CancelBtn = styled.div`
 `;
 export const Exit = styled.img`
 width: 30px;
+@media screen and (max-width: 746px) {
+  position: relative;
+  left: -50px;
+}
 `;
 
 export const LoginTitleWrap = styled.div``;
@@ -70,6 +74,7 @@ export const InputWrite = styled.input`
   top: 37px;
   @media screen and (max-width: 746px) {
     width: 300px;
+    left: -15px;
   }
 `;
 export const Danger = styled.p`
@@ -92,7 +97,7 @@ font-size: 17px;
   border: none;
   @media screen and (max-width: 746px) {
     width: 300px;
-    left: 10px;
+    left: -10px;
   }
 `;
 export const Line = styled.div`
@@ -102,7 +107,7 @@ export const Line = styled.div`
   left: 40px;
   top: 110px;
   @media screen and (max-width: 746px) {
-    left: 10px;
+    left: -10px;
     width: 300px;
   }
 `;
@@ -124,7 +129,7 @@ export const KakaoWrap = styled.a`
   top: 70px;
 
   @media screen and (max-width: 746px) {
-    left: -25px;
+    left: -40px;
   }
 `;
 export const KakaoImg = styled.img`
