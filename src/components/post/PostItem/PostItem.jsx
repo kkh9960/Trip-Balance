@@ -15,7 +15,6 @@ import PostBestfive from "../PostBestfive/PostBestfive";
 import { useInView } from "react-intersection-observer";
 import { Loading2 } from "../../Loading/Loading2";
 import LoginPage from "../../login/LoginPage";
-import Imgix from "react-imgix";
 
 const PostItem = () => {
   const navigator = useNavigate();
@@ -107,7 +106,6 @@ const PostItem = () => {
     } else {
       dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
       setsearch(3);
-      console.log(55);
       setbestview(false);
     }
   };

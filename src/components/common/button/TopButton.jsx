@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginPage from "../../login/LoginPage";
-import * as t  from "./Topbuttonstyle"
+import * as t from "./Topbuttonstyle";
+
 const TopButton = () => {
   const [showButton, setShowButton] = useState(false);
 
+  const topgo = "/img/Topbutton/topgo.webp";
+  const topwrite = "/img/Topbutton/topwrite.webp";
+  const topgame = "/img/Topbutton/topgame.webp";
   const scrollToTop = () => {
     window.scroll({
       top: 0,
@@ -44,7 +48,8 @@ const TopButton = () => {
         showButton && (
           <t.ScrollContainer>
             <t.Bgimg
-              src="../../img/topgame.webp"
+              src={topgame}
+              alt="icon"
               onClick={() => {
                 navigate(`/start`);
               }}
@@ -52,38 +57,38 @@ const TopButton = () => {
 
             {email ? (
               <t.Writeimg
-                src="../../img/topwrite.webp"
+                src={topwrite}
+                alt="icon"
                 onClick={() => {
                   navigate(`/write`);
                 }}
               />
             ) : (
-              <t.Writeimg src="../../img/topwrite.webp" onClick={goLogin} />
+              <t.Writeimg src={topwrite} alt="icon" onClick={goLogin} />
             )}
 
-            <t.Topimg src="../../img/topgo.webp" onClick={scrollToTop} />
+            <t.Topimg src={topgo} alt="icon" onClick={scrollToTop} />
             <t.MobileButtonWrap>
               <t.MobileBtnbox>
                 <t.MobileBg
-                  src="../../img/topgame.webp"
+                  src={topgame}
+                  alt="icon"
                   onClick={() => {
                     navigate(`/start`);
                   }}
                 />
                 {email ? (
                   <t.MobileWrite
-                    src="../../img/topwrite.webp"
+                    src={topwrite}
+                    alt="icon"
                     onClick={() => {
                       navigate(`/write`);
                     }}
                   />
                 ) : (
-                  <t.MobileWrite
-                    src="../../img/topwrite.webp"
-                    onClick={goLogin}
-                  />
+                  <t.MobileWrite src={topwrite} alt="icon" onClick={goLogin} />
                 )}
-                <t.MobileTop src="../../img/topgo.webp" onClick={scrollToTop} />
+                <t.MobileTop src={topgo} alt="icon" onClick={scrollToTop} />
               </t.MobileBtnbox>
             </t.MobileButtonWrap>
           </t.ScrollContainer>
@@ -94,4 +99,3 @@ const TopButton = () => {
 };
 
 export default TopButton;
-

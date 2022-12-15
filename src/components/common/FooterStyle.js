@@ -3,14 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: gray;
   width: 100%;
-  
-//
+
+  //
   @media screen and (max-width: 746px) {
     width: 100%;
   }
 `;
 export const Wrap = styled.div`
-
   height: 260px;
   @media screen and (max-width: 550px) {
     height: 370px;
@@ -18,13 +17,12 @@ export const Wrap = styled.div`
   }
 `;
 export const DesignWrap = styled.div`
-margin-top: 10px;
-`
+  margin-top: 10px;
+`;
 export const text = styled.div`
-position: relative;
-top:10px;
-`
-
+  position: relative;
+  top: 10px;
+`;
 
 export const Design = styled.div`
   text-align: center;
@@ -108,7 +106,7 @@ export const Comment = styled.div`
   color: white;
   position: relative;
   text-align: center;
- opacity: 0.3;
+  opacity: 0.3;
   top: 30px;
   font-family: "Jalnan";
   color: white;
@@ -129,7 +127,7 @@ export const Hanhae = styled.div`
   top: 45px;
   @media screen and (max-width: 480px) {
     position: relative;
-    top: 90px;
+    top: 40px;
     font-size: 20px;
     text-align: center;
     color: white;
@@ -151,6 +149,7 @@ export const Front = styled.div`
     color: white;
     position: relative;
     font-family: "Jalnan";
+    display: none;
   }
 `;
 
@@ -176,9 +175,9 @@ export const Fronts = styled.div`
   position: relative;
   top: 45px;
   @media screen and (max-width: 480px) {
-    width: 400px;
+    width: 100%;
     position: relative;
-    top: 100px;
+    top: 50px;
     color: white;
     align-items: center;
   }
@@ -204,7 +203,7 @@ export const Backs = styled.div`
 
   @media screen and (max-width: 480px) {
     position: relative;
-    top:100px;
+    top: 50px;
     color: white;
     margin-top: 10px;
   }
