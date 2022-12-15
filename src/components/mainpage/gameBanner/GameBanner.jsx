@@ -6,7 +6,7 @@ export default function GameBanner() {
   const navigate = useNavigate();
   return (
     <t.GameBanner onClick={() => navigate("/start")}>
-      <t.GamestartBannerImg src="img/gameBannerImg.webp" />
+      <t.GamestartBannerImg src="img/mainImg/gameBannerImg.webp" />
     </t.GameBanner>
   );
 }
