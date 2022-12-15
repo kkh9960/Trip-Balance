@@ -45,19 +45,10 @@ const BoardWrite = () => {
 
     //원본
     const imageFile = e.target.files[0];
-    console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
-    console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
 
     //리사이징
     try {
       const compressedFile = await imageCompression(imageFile, options);
-      console.log(
-        "compressedFile instanceof Blob",
-        compressedFile instanceof Blob
-      ); // true
-      console.log(
-        `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
-      );
       // AWS ACCESS KEY를 세팅합니다.
 
       AWS.config.update({
@@ -86,10 +77,8 @@ const BoardWrite = () => {
         await myBucket
           .putObject(params)
           .on("httpUploadProgress", (Progress, Response) => {
-            console.log(Response.request.httpRequest.path);
             const imgURL = S3URL + Response.request.httpRequest.path;
             setFileLink(imgURL);
-            console.log("123", imgURL);
             setImgPreview([...ImgPreview, { imgURL }]);
           })
           .send((err) => {
@@ -122,7 +111,6 @@ const BoardWrite = () => {
   };
 
   const BlankRegex = /^\s+|\s+$/g;
-  const INJECTIONRegex = /[%=*><]/g;
 
   const onChangetitleDataHandler = (e) => {
     const { name, value } = e.target;
@@ -132,14 +120,6 @@ const BoardWrite = () => {
     });
     settitlecount(value.length);
   };
-
-  // useEffect(() => {
-  //   if ("title" in contents) {
-  //     console.log("재미업서");
-  //   } else {
-  //     console.log("재미잇서");
-  //   }
-  // }, [contents]);
 
   const onCategoryHandler = (e) => {
     const { name, value } = e.target;
@@ -158,8 +138,6 @@ const BoardWrite = () => {
       category2: undefined,
     });
   };
-
-  console.log(contents);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -220,6 +198,8 @@ const BoardWrite = () => {
   const ModalHandler = () => {
     setModalEdit(!ModalEdit);
   };
+
+  const INJECTIONRegex = /[%=*><]/g;
 
   const RegexTest = (e) => {
     if (INJECTIONRegex.test(e.target.value)) {
