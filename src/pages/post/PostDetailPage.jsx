@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layout from "../../components/common/Layout";
 import Header from "../../components/common/Header";
 // import Footer from "../../components/common/Footer";
-import BoardPostDetail from "../../components/post/BoardPostDetail";
+import BoardPostDetail from "../../components/post/BoardPostDetail/BoardPostDetail";
 
 export default function MyPage() {
   const [test, settest] = useState(false);

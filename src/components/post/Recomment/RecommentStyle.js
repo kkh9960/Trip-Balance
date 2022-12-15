@@ -10,7 +10,7 @@ export const RecommentContainer = styled.div`
   &::before {
     content: "";
     position: absolute;
-    background-image: url(../img/cmtarrow.svg);
+    background-image: url(../img/board/cmtarrow.svg);
     width: 27px;
     height: 27px;
     top: 50%;

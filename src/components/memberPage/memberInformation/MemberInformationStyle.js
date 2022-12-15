@@ -5,8 +5,8 @@ export const userName = styled.div`
     width: 500px;
     font-size: 28px;
     animation: 3s;
-    animation-name: slideLeft;
     margin: 0 0 5px 300px;
+    animation-name: mypageOpacity;
     span {
       font-size: 22px;
     }
@@ -51,8 +51,8 @@ export const myInformation = styled.div`
   display: flex;
   align-items: center;
   animation: 2s;
-  animation-name: slideLeft;
-  @keyframes slideLeft {
+  animation-name: mypageOpacity;
+  @keyframes mypageOpacity {
     from {
       opacity: 0;
       /* transform: translateX(-1000px); */
@@ -216,7 +216,7 @@ export const mobileEmail = styled.div`
   @media screen and (max-width: 480px) {
     text-align: center;
     margin: 0 auto;
-    width: 150px;
+    width: 100%;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -406,24 +406,4 @@ export const buttonGroup = styled.div`
       transition: 0.2s linear;
     }
   }
-`;
-
-export const detailPickInfo = styled.div`
-  /* width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(33%, auto));
-  grid-template-rows: repeat(2, minmax(100px, 50%)); */
-`;
-export const detailPickInfoTotal = styled.div``;
-export const detailPickInfoCategory = styled.div`
-  background-color: #73e4bc;
-  width: 135px;
-  height: 135px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;

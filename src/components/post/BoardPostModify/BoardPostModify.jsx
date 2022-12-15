@@ -1,31 +1,216 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import * as St from "./BoardPostModifyStyle";
+import { useDispatch, useSelector } from "react-redux";
 import AWS from "aws-sdk";
-import { __postBoard } from "../../redux/modules/BoardSlice";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import {
+  __getBoardDetail,
+  __modifyBoard,
+} from "../../../redux/modules/BoardSlice";
 import imageCompression from "browser-image-compression";
-import { useEffect } from "react";
 
-const BoardWrite = () => {
-  const form = {
-    category1: "",
-    category2: "",
-    content: "",
-    title: "",
-  };
-
-  const navigator = useNavigate();
+const BoardPostModify = () => {
   const dispatch = useDispatch();
   const [FileLink, setFileLink] = useState(null);
   const [ImgPreview, setImgPreview] = useState([]);
   const [Pet, setPet] = useState(0);
-  const [contents, setcontents] = useState(form);
-  const [Cate, setCate] = useState(0);
+  const [contents, setcontents] = useState();
+  const [Cate, setCate] = useState("0");
+  const [Category, setCategory] = useState();
+  const [Category2, setCategory2] = useState();
   const formoon = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const id = useParams();
+  const mediaList = useSelector((state) => state.BoardSlice.post?.mediaList);
+  const post = useSelector((state) => state.BoardSlice.post);
+  const isLoading = useSelector((state) => state.BoardSlice.isLoading);
+  const [loading, setloading] = useState(true);
   const [ModalEdit, setModalEdit] = useState(false);
-  const [count, setcount] = useState();
-  const [titlecount, settitlecount] = useState(0);
+  const imagewrite = "../img/board/imagewrite.jpg";
+  const noimage = "../img/board/noimage.jpg";
+
+  let localint = "";
+  let localdetailint = "";
+
+  //지역 숫자변환
+  switch (post?.local) {
+    case "수도권":
+      localint = 1;
+      break;
+    case "경상_강원도":
+      localint = 2;
+      break;
+    case "충청_전라도":
+      localint = 3;
+      break;
+    case "제주도":
+      localint = 4;
+      break;
+    case "기타":
+      localint = 5;
+      break;
+    default:
+      localint = 0;
+  }
+  //지역2 숫자변환
+  switch (post?.localdetail) {
+    case "서울":
+      localdetailint = 1;
+      break;
+    case "인천":
+      localdetailint = 2;
+      break;
+    case "가평":
+      localdetailint = 3;
+      break;
+    case "용인":
+      localdetailint = 4;
+      break;
+    case "파주":
+      localdetailint = 5;
+      break;
+    case "속초":
+      localdetailint = 6;
+      break;
+    case "강릉":
+      localdetailint = 7;
+      break;
+    case "춘천":
+      localdetailint = 8;
+      break;
+    case "양양":
+      localdetailint = 9;
+      break;
+    case "평창":
+      localdetailint = 10;
+      break;
+    case "부산":
+      localdetailint = 11;
+      break;
+    case "거제":
+      localdetailint = 12;
+      break;
+    case "통영":
+      localdetailint = 13;
+      break;
+    case "포항":
+      localdetailint = 14;
+      break;
+    case "경주":
+      localdetailint = 15;
+      break;
+    case "안동":
+      localdetailint = 16;
+      break;
+    case "여수":
+      localdetailint = 17;
+      break;
+    case "목포":
+      localdetailint = 18;
+      break;
+    case "담양":
+      localdetailint = 19;
+      break;
+    case "보성":
+      localdetailint = 20;
+      break;
+    case "해남":
+      localdetailint = 21;
+      break;
+    case "전주":
+      localdetailint = 22;
+      break;
+    case "천안":
+      localdetailint = 23;
+      break;
+    case "태안":
+      localdetailint = 24;
+      break;
+    case "보령":
+      localdetailint = 25;
+      break;
+    case "공주":
+      localdetailint = 26;
+      break;
+    case "단양":
+      localdetailint = 27;
+      break;
+    case "대구":
+      localdetailint = 28;
+      break;
+    case "대전":
+      localdetailint = 29;
+      break;
+    case "광주":
+      localdetailint = 30;
+      break;
+    case "울산":
+      localdetailint = 31;
+      break;
+    case "서귀포":
+      localdetailint = 32;
+      break;
+    case "기타":
+      localdetailint = 33;
+      break;
+    default:
+      localint = 0;
+  }
+
+  useEffect(() => {
+    setCategory(localint);
+    setCategory2(localdetailint);
+  }, [localint, localdetailint]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setloading(false);
+    }
+  }, [isLoading]);
+
+  let data = [];
+
+  //setState는 즉각적으로 업데이트하지않고 promise를 통해 비동기적으로 변경시키므로
+  //반복문이 끝나기전까지는 state가 변경되지않는다. 1번부터 4번까지라면, 4번째 데이터만 state에 반영된다.
+  //변수에 담아서 해결
+  useEffect(() => {
+    if (mediaList) {
+      for (let x in mediaList) {
+        const imgURL = mediaList[x];
+        data = [...data, { imgURL }];
+        setImgPreview(data);
+        setFileLink(mediaList[0]);
+      }
+    }
+  }, [mediaList]);
+
+  useEffect(() => {
+    if (localint) {
+      setCate(localint);
+    }
+  }, [localint]);
+
+  useEffect(() => {
+    dispatch(__getBoardDetail(id));
+  }, []);
+
+  useEffect(() => {
+    if (post) {
+      setcontents({
+        title: post?.title,
+        content: post?.content,
+        local: Category,
+        localdetail: Category2,
+        pet: post?.Pet,
+      });
+    }
+    setPet(post?.pet);
+  }, [post]);
+
+  // 이미지
+
+  const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
+
+  //AWS S3 이미지 업로드 도전
 
   const options = {
     maxSizeMB: 1,
@@ -33,11 +218,6 @@ const BoardWrite = () => {
     useWebWorker: true,
   };
 
-  // 이미지
-
-  const S3URL = "https://react-image-seongwoo.s3.ap-northeast-2.amazonaws.com";
-
-  //AWS S3 이미지 업로드 도전
   const onFileUpload = async (e) => {
     const ACCESS_KEY = process.env.REACT_APP_ACCESS_KEY;
     const SECRET_ACCESS_KEY = process.env.REACT_APP_SECRET_ACCESS_KEY;
@@ -59,7 +239,6 @@ const BoardWrite = () => {
         `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
       );
       // AWS ACCESS KEY를 세팅합니다.
-
       AWS.config.update({
         accessKeyId: ACCESS_KEY,
         secretAccessKey: SECRET_ACCESS_KEY,
@@ -70,7 +249,7 @@ const BoardWrite = () => {
         params: { Bucket: S3_BUCKET },
         region: REGION,
       });
-      const file = compressedFile;
+      const file = e.target.files[0];
 
       const fileName = file.name.replaceAll(" ", "");
 
@@ -86,14 +265,12 @@ const BoardWrite = () => {
         await myBucket
           .putObject(params)
           .on("httpUploadProgress", (Progress, Response) => {
-            console.log(Response.request.httpRequest.path);
             const imgURL = S3URL + Response.request.httpRequest.path;
             setFileLink(imgURL);
-            console.log("123", imgURL);
             setImgPreview([...ImgPreview, { imgURL }]);
           })
           .send((err) => {
-            if (err) console.log(err);
+            if (err);
           });
       } else {
         alert("이미지는 10개까지만 업로드할수있습니다.");
@@ -115,34 +292,11 @@ const BoardWrite = () => {
       ...contents,
       [name]: value,
     });
-    setcount(value.length);
-    if (value.length >= 1000) {
-      alert("내용은 999글자까지만 입력할수있습니다.");
-    }
   };
-
-  const BlankRegex = /^\s+|\s+$/g;
-  const INJECTIONRegex = /[%=*><]/g;
-
-  const onChangetitleDataHandler = (e) => {
-    const { name, value } = e.target;
-    setcontents({
-      ...contents,
-      [name]: value,
-    });
-    settitlecount(value.length);
-  };
-
-  // useEffect(() => {
-  //   if ("title" in contents) {
-  //     console.log("재미업서");
-  //   } else {
-  //     console.log("재미잇서");
-  //   }
-  // }, [contents]);
 
   const onCategoryHandler = (e) => {
     const { name, value } = e.target;
+    setCategory2(value);
     setcontents({
       ...contents,
       [name]: value,
@@ -152,43 +306,36 @@ const BoardWrite = () => {
   const Categoryopen = (e) => {
     const { name, value } = e.target;
     setCate(value);
+    setCategory(value);
     setcontents({
       ...contents,
       [name]: value,
-      category2: undefined,
     });
   };
 
-  console.log(contents);
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (contents.category2 == "" || contents.category2 == undefined) {
-      alert("카테고리를 선택해주세요.");
-    } else {
-      if (ImgPreview == 0) {
-        alert("사진이 없으면 글쓰기가 불가능합니다.");
-      } else {
-        if (BlankRegex.test(contents.title) || contents.title == "") {
-          alert("제목은 공백으로 시작하거나 끝날수 없습니다.");
-        } else {
-          dispatch(
-            __postBoard({
-              title: contents?.title,
-              content: contents?.content,
-              local: contents?.category1,
-              localdetail: contents?.category2,
-              mediaList: ImgPreview,
-              pet: Pet,
-            })
-          );
-        }
-      }
-    }
+    dispatch(
+      __modifyBoard({
+        title: contents?.title,
+        content: contents?.content,
+        pet: Pet,
+        mediaList: ImgPreview,
+        category1: +Category,
+        category2: +Category2,
+        id: id.id,
+      })
+    );
   };
 
-  const imagewrite = "img/imagewrite.jpg";
-  const noimage = "img/noimage.jpg";
+  // 이미지 누르면 지워지기 + 남아있는 이미지 그림 보여주기
+  const [imgremovelength, setimgremovelength] = useState(true);
+
+  useEffect(() => {
+    for (let x in ImgPreview) {
+      setFileLink(ImgPreview[x].imgURL);
+    }
+  }, [imgremovelength]);
 
   const imageremove = (id, i, i2) => {
     let target = document.getElementById(id);
@@ -207,7 +354,7 @@ const BoardWrite = () => {
     }
   };
   const previewchange = (e) => {
-    if (e.target.src.includes("img/noimage.jpg")) {
+    if (e.target.src.includes("img/board/noimage.jpg")) {
     } else {
       setFileLink(e.target.src);
     }
@@ -221,6 +368,7 @@ const BoardWrite = () => {
     setModalEdit(!ModalEdit);
   };
 
+  const INJECTIONRegex = /[%=*><]/g;
   const RegexTest = (e) => {
     if (INJECTIONRegex.test(e.target.value)) {
       alert("보안 : 특수문자(<,>,*,=,%)는 입력이 제한됩니다.");
@@ -228,38 +376,41 @@ const BoardWrite = () => {
     }
   };
 
-  return (
-    <HeaderContainer>
-      <BoardWriteContainer onSubmit={onSubmitHandler}>
-        <TitleInput
+  return loading ? null : (
+    <St.HeaderContainer>
+      <St.BoardWriteContainer onSubmit={onSubmitHandler}>
+        <St.TitleInput
           name="title"
           type="text"
           placeholder="제목을 입력해주세요."
           maxLength="30"
-          onChange={onChangetitleDataHandler}
+          value={contents?.title || ""}
+          required
+          onChange={onChangeDataHandler}
           onKeyUp={RegexTest}
         />
-        <BoardContentWrap>
-          <BaordWritesection>
-            <ImegeSelectBox>
-              <ImagePreview src={FileLink} />
-              <ImegeInput
+        <St.BoardContentWrap>
+          <St.BaordWritesection>
+            <St.ImegeSelectBox>
+              <St.ImagePreview src={FileLink} alt="" />
+              <St.ImegeInput
                 type="file"
                 accept="image/*"
                 onChange={onFileUpload}
               />
-            </ImegeSelectBox>
-          </BaordWritesection>
+            </St.ImegeSelectBox>
+          </St.BaordWritesection>
 
-          <BoardButtonsection>
-            <Categorysection>
-              <CategorySelect
+          <St.BoardButtonsection>
+            <St.Categorysection>
+              <St.CategorySelect
                 name="category1"
                 id="cate_parent"
+                value={Category}
                 onChange={Categoryopen}
               >
                 <option name="category1" value="0">
-                  지역을 선택해주세요.
+                  카테고리를 선택해주세요.
                 </option>
                 <option name="category1" value="1">
                   수도권
@@ -276,25 +427,16 @@ const BoardWrite = () => {
                 <option name="category1" value="5">
                   기타
                 </option>
-              </CategorySelect>
-              <CategorySelect
+              </St.CategorySelect>
+              <St.CategorySelect
                 name="category2"
                 id="cate_child"
+                value={Category2}
                 onChange={onCategoryHandler}
                 required
               >
-                {Cate == 0 && (
-                  <>
-                    <option name="category2" value="99">
-                      지역을 먼저 선택해주세요.
-                    </option>
-                  </>
-                )}
                 {Cate == 1 && (
                   <>
-                    <option name="category2" value="0">
-                      도시를 선택해주세요.
-                    </option>
                     <option name="category2" value="1">
                       서울
                     </option>
@@ -317,9 +459,6 @@ const BoardWrite = () => {
                 )}
                 {Cate == 2 && (
                   <>
-                    <option name="category2" value="0">
-                      도시를 선택해주세요.
-                    </option>
                     <option name="category2" value="6">
                       속초
                     </option>
@@ -360,9 +499,6 @@ const BoardWrite = () => {
                 )}
                 {Cate == 3 && (
                   <>
-                    <option name="category2" value="0">
-                      도시를 선택해주세요.
-                    </option>
                     <option name="category2" value="17">
                       여수
                     </option>
@@ -403,9 +539,6 @@ const BoardWrite = () => {
                 )}
                 {Cate == 4 && (
                   <>
-                    <option name="category2" value="0">
-                      도시를 선택해주세요.
-                    </option>
                     <option name="category2" value="32">
                       서귀포
                     </option>
@@ -416,9 +549,6 @@ const BoardWrite = () => {
                 )}
                 {Cate == 5 && (
                   <>
-                    <option name="category2" value="0">
-                      도시를 선택해주세요.
-                    </option>
                     <option name="category2" value="28">
                       대구
                     </option>
@@ -436,26 +566,26 @@ const BoardWrite = () => {
                     </option>
                   </>
                 )}
-              </CategorySelect>
-              <PetCheckBox>
-                <PetLabel htmlFor="pet">반려동물동반여부</PetLabel>
-                <PetCheck type="checkbox" id="pet" onChange={PetHandler} />
-              </PetCheckBox>
-            </Categorysection>
-          </BoardButtonsection>
-        </BoardContentWrap>
-        <ImegePreviewBox>
-          <ImegePreviewWrap>
+              </St.CategorySelect>
+              <St.PetCheckBox>
+                <St.PetLabel htmlFor="pet">반려동물동반여부</St.PetLabel>
+                <St.PetCheck type="checkbox" id="pet" onChange={PetHandler} />
+              </St.PetCheckBox>
+            </St.Categorysection>
+          </St.BoardButtonsection>
+        </St.BoardContentWrap>
+        <St.ImegePreviewBox>
+          <St.ImegePreviewWrap>
             {formoon.map((e, i) => (
-              <UploadImageBox key={i}>
-                <UploadImegePreview
+              <St.UploadImageBox key={i}>
+                <St.UploadImegePreview
                   key={i}
                   id={ImgPreview[i]?.imgURL}
                   src={ImgPreview[i]?.imgURL ? ImgPreview[i]?.imgURL : noimage}
                   alt=""
                   onClick={previewchange}
                 />
-                <Imagedelete
+                <St.Imagedelete
                   onClick={() =>
                     imageremove(
                       ImgPreview[i]?.imgURL,
@@ -463,23 +593,25 @@ const BoardWrite = () => {
                       ImgPreview[i + 1]?.imgURL
                     )
                   }
-                ></Imagedelete>
-              </UploadImageBox>
+                ></St.Imagedelete>
+              </St.UploadImageBox>
             ))}
-          </ImegePreviewWrap>
-          <ImegePreviewtext>
+          </St.ImegePreviewWrap>
+          <St.ImegePreviewtext>
             이미지는 총 10개까지 첨부 할 수 있으며, 맨 처음 이미지가 대표
             이미지로 설정됩니다.
-          </ImegePreviewtext>
-        </ImegePreviewBox>
-        <Categorysectionmobile>
-          <CategorySelect
+          </St.ImegePreviewtext>
+        </St.ImegePreviewBox>
+
+        <St.Categorysectionmobile>
+          <St.CategorySelect
             name="category1"
             id="cate_parent"
+            value={Category}
             onChange={Categoryopen}
           >
             <option name="category1" value="0">
-              지역을 선택해주세요.
+              카테고리를 선택해주세요.
             </option>
             <option name="category1" value="1">
               수도권
@@ -496,24 +628,18 @@ const BoardWrite = () => {
             <option name="category1" value="5">
               기타
             </option>
-          </CategorySelect>
-          <CategorySelect
+          </St.CategorySelect>
+          <St.CategorySelect
             name="category2"
             id="cate_child"
+            value={Category2}
             onChange={onCategoryHandler}
             required
           >
-            {Cate == 0 && (
-              <>
-                <option name="category2" value="99">
-                  지역을 먼저 선택해주세요.
-                </option>
-              </>
-            )}
             {Cate == 1 && (
               <>
                 <option name="category2" value="0">
-                  도시를 선택해주세요.
+                  카테고리를 선택해주세요.
                 </option>
                 <option name="category2" value="1">
                   서울
@@ -538,7 +664,7 @@ const BoardWrite = () => {
             {Cate == 2 && (
               <>
                 <option name="category2" value="0">
-                  도시를 선택해주세요.
+                  카테고리를 선택해주세요.
                 </option>
                 <option name="category2" value="6">
                   속초
@@ -581,7 +707,7 @@ const BoardWrite = () => {
             {Cate == 3 && (
               <>
                 <option name="category2" value="0">
-                  도시를 선택해주세요.
+                  카테고리를 선택해주세요.
                 </option>
                 <option name="category2" value="17">
                   여수
@@ -624,7 +750,7 @@ const BoardWrite = () => {
             {Cate == 4 && (
               <>
                 <option name="category2" value="0">
-                  도시를 선택해주세요.
+                  카테고리를 선택해주세요.
                 </option>
                 <option name="category2" value="32">
                   서귀포
@@ -637,7 +763,7 @@ const BoardWrite = () => {
             {Cate == 5 && (
               <>
                 <option name="category2" value="0">
-                  도시를 선택해주세요.
+                  카테고리를 선택해주세요.
                 </option>
                 <option name="category2" value="28">
                   대구
@@ -656,458 +782,54 @@ const BoardWrite = () => {
                 </option>
               </>
             )}
-          </CategorySelect>
-          <PetCheckBox>
-            <PetLabel htmlFor="pet">반려동물동반여부</PetLabel>
-            <PetCheck type="checkbox" id="pet" onChange={PetHandler} />
-          </PetCheckBox>
-        </Categorysectionmobile>
-        <Writebox>
-          <BoardWriteTextarea
-            name="content"
-            id=""
-            cols="30"
-            rows="10"
-            placeholder="내용을 입력해 주세요 최대 999글자까지 입력됩니다."
-            maxLength="999"
-            required
-            onChange={onChangeDataHandler}
-            onKeyUp={RegexTest}
-          />
-          <Countbox>{count} / 999</Countbox>
-        </Writebox>
+          </St.CategorySelect>
+          <St.PetCheckBox>
+            <St.PetLabel htmlFor="pet">반려동물동반여부</St.PetLabel>
+            <St.PetCheck type="checkbox" id="pet" onChange={PetHandler} />
+          </St.PetCheckBox>
+        </St.Categorysectionmobile>
 
-        <Buttonsection>
-          <WriteButton>등록</WriteButton>
-          <Cancelbutton type="button" onClick={ModalHandler}>
+        <St.BoardWriteTextarea
+          name="content"
+          value={contents?.content}
+          cols="30"
+          rows="10"
+          placeholder="내용을 입력해 주세요."
+          required
+          onChange={onChangeDataHandler}
+          onKeyUp={RegexTest}
+        />
+
+        <St.Buttonsection>
+          <St.WriteButton>등록</St.WriteButton>
+          <St.Cancelbutton type="button" onClick={ModalHandler}>
             취소
-          </Cancelbutton>
-        </Buttonsection>
-      </BoardWriteContainer>
+          </St.Cancelbutton>
+        </St.Buttonsection>
+      </St.BoardWriteContainer>
 
       {ModalEdit ? (
-        <Modal onClick={ModalHandler}>
-          <ModalWrap>
-            <ModalCont
+        <St.Modal onClick={ModalHandler}>
+          <St.ModalWrap>
+            <St.ModalCont
               onClick={(event) => {
                 event.stopPropagation();
               }}
             >
-              <ModalTextbox>
-                <div>글 작성을 그만두고 나가시겠습니까?</div>
+              <St.ModalTextbox>
+                <div>글 수정을 취소하고 나가시겠습니까?</div>
                 <span>작성 내용은 저장되지 않습니다.</span>
-              </ModalTextbox>
-              <ModalBtnbox>
-                <Outbtn onClick={WriteOut}>나가기</Outbtn>
-                <Cancelbtn onClick={ModalHandler}>취소</Cancelbtn>
-              </ModalBtnbox>
-            </ModalCont>
-          </ModalWrap>
-        </Modal>
+              </St.ModalTextbox>
+              <St.ModalBtnbox>
+                <St.Outbtn onClick={WriteOut}>나가기</St.Outbtn>
+                <St.Cancelbtn onClick={ModalHandler}>취소</St.Cancelbtn>
+              </St.ModalBtnbox>
+            </St.ModalCont>
+          </St.ModalWrap>
+        </St.Modal>
       ) : null}
-    </HeaderContainer>
+    </St.HeaderContainer>
   );
 };
 
-export default BoardWrite;
-
-const Countbox = styled.span`
-  position: absolute;
-  font-size: 25px;
-  font-family: "NotoSansKR";
-  bottom: 20px;
-  right: 20px;
-`;
-
-const Writebox = styled.div`
-  position: relative;
-`;
-
-const HeaderContainer = styled.div`
-  padding-top: 120px;
-  @media screen and (max-width: 480px) {
-    padding-top: 80px;
-  }
-`;
-
-const Outbtn = styled.button`
-  font-size: 16px;
-  background-color: #00c1ec;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-`;
-const Cancelbtn = styled.button`
-  font-size: 16px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: 1px solid #777777;
-`;
-
-const ModalBtnbox = styled.div`
-  display: flex;
-  gap: 30px;
-`;
-
-const ModalTextbox = styled.div`
-  padding: 50px 50px 30px 50px;
-  span {
-    color: red;
-  }
-`;
-
-const ModalCont = styled.div`
-  height: 200px;
-  width: 400px;
-  background-color: #fff;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-`;
-
-const ModalWrap = styled.div`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
-
-const BoardWriteContainer = styled.form`
-  width: 95%;
-  max-width: 1440px;
-  margin: 100px auto;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  @media screen and (max-width: 480px) {
-    width: 95%;
-    max-width: 480px;
-    margin: 0px auto 50px;
-  }
-`;
-const BoardContentWrap = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  gap: 20px;
-  @media screen and (max-width: 480px) {
-    display: block;
-  }
-`;
-
-const TitleInput = styled.input`
-  width: 100%;
-  height: 40px;
-  font-size: 30px;
-  font-weight: bold;
-  border-radius: 5px;
-  border: none;
-  padding: 5px;
-  outline: none;
-  @media screen and (max-width: 480px) {
-    font-size: 20px;
-  }
-`;
-
-const BaordWritesection = styled.div`
-  width: 100%;
-  max-width: 1074px;
-  height: auto;
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-  @media screen and (max-width: 480px) {
-    display: block;
-  }
-`;
-
-const ImagePreview = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: url("img/imagewrite.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  @media screen and (max-width: 480px) {
-    background: url("img/mbwrite.jpg");
-    background-position: center center;
-    background-size: cover;
-  }
-`;
-
-const ImegeSelectBox = styled.div`
-  width: 100%;
-  max-width: 1074px;
-  height: 300px;
-  position: relative;
-  border: 4px dashed #cdcdcd;
-  @media screen and (max-width: 480px) {
-    box-sizing: border-box;
-    height: 250px;
-  }
-`;
-
-const ImegeInput = styled.input`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  opacity: 0;
-  object-fit: contain;
-`;
-const ImegePreviewBox = styled.div`
-  width: 100%;
-  max-width: 1440px;
-  height: auto;
-  display: flex;
-  padding: 20px 5px;
-  flex-direction: column;
-  @media screen and (max-width: 480px) {
-    box-sizing: border-box;
-  }
-`;
-const ImegePreviewWrap = styled.div`
-  display: flex;
-  width: 100%;
-  height: auto;
-  gap: 20px;
-  justify-content: center;
-  @media screen and (max-width: 480px) {
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-`;
-const ImegePreviewtext = styled.div`
-  font-size: 16px;
-  color: #b3b3b3;
-  margin: 15px 0 0 5px;
-`;
-const UploadImegePreview = styled.img`
-  width: 110px;
-  height: 133px;
-  object-fit: cover;
-  flex: 1;
-  border: 2px solid #b3b3b3;
-  border-radius: 4px;
-  @media screen and (max-width: 480px) {
-    width: 55px;
-    height: 70px;
-  }
-`;
-const UploadImageBox = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
-  &:first-child::before {
-    content: "대표";
-    text-align: center;
-    line-height: 2;
-    width: 114px;
-    height: 40px;
-    color: #fff;
-    font-weight: bold;
-    font-size: 20px;
-    background-color: #00c1ec;
-    position: absolute;
-    bottom: 4px;
-    left: 0;
-    border-radius: 4px;
-    @media screen and (max-width: 480px) {
-      width: 59px;
-      height: 20px;
-      font-size: 12px;
-    }
-  }
-  @media screen and (max-width: 480px) {
-    width: 18%;
-  }
-`;
-const Imagedelete = styled.div`
-  cursor: pointer;
-  position: absolute;
-  top: -15px;
-  right: -3px;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #b3b3b3;
-  border-radius: 50%;
-  background-image: url(img/imageremove.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  @media screen and (max-width: 480px) {
-    width: 20px;
-    height: 20px;
-    right: 3px;
-    top: -10px;
-  }
-`;
-
-const BoardWriteTextarea = styled.textarea`
-  width: 99%;
-  height: 722px;
-  outline: none;
-  resize: none;
-  border: 2px solid #aaaaaa;
-  border-radius: 10px;
-  font-size: 17px;
-  padding: 10px;
-  &::-webkit-scrollbar {
-    width: 0px;
-  }
-  @media screen and (max-width: 480px) {
-    box-sizing: border-box;
-    height: 420px;
-  }
-`;
-
-const BoardButtonsection = styled.div`
-  width: 100%;
-  max-width: 344px;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Categorysection = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-const Categorysectionmobile = styled.div`
-  display: none;
-  @media screen and (max-width: 480px) {
-    width: 100%;
-    height: auto;
-    display: flex;
-    margin: 10px auto;
-    flex-direction: column;
-    gap: 20px;
-  }
-`;
-
-const CategorySelect = styled.select`
-  appearance: none;
-  width: 100%;
-  max-width: 344px;
-  height: 60px;
-  text-align: center;
-  font-size: 20px;
-  color: #777777;
-  border-radius: 10px;
-  border: 2px solid #777777;
-  background: url(img/category.jpg) no-repeat right 13px center;
-  @media screen and (max-width: 480px) {
-    max-width: 100%;
-    height: 50px;
-    font-size: 18px;
-  }
-`;
-
-const PetCheckBox = styled.div`
-  width: 100%;
-  max-width: 344px;
-  height: 60px;
-  border: 2px solid #777777;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  @media screen and (max-width: 480px) {
-    max-width: 100%;
-    height: 50px;
-    font-size: 18px;
-    gap: 10px;
-  }
-`;
-
-const PetCheck = styled.input`
-  width: 60px;
-  height: 30px;
-  position: relative;
-  -webkit-appearance: none;
-  background: #c6c6c6;
-  border-radius: 15px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  transition: all 0.5s;
-  &:checked {
-    background: #03a9f4;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    top: 0;
-    left: 0;
-    background: #fff;
-    transform: scale(1.1);
-    transition: all 0.5s;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  &:checked::before {
-    left: 30px;
-  }
-`;
-const PetLabel = styled.label`
-  font-size: 20px;
-  color: #777777;
-  @media screen and (max-width: 480px) {
-    margin-left: 20px;
-  }
-`;
-
-const Buttonsection = styled.div`
-  width: 100%;
-  height: auto;
-  gap: 50px;
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-    gap: 20px;
-  }
-`;
-const WriteButton = styled.button`
-  font-size: 20px;
-  color: #fff;
-  background-color: #00c1ec;
-  width: 344px;
-  height: 60px;
-  border-radius: 10px;
-  @media screen and (max-width: 480px) {
-    width: 100%;
-  }
-`;
-const Cancelbutton = styled.button`
-  font-size: 20px;
-  width: 344px;
-  height: 60px;
-  border-radius: 10px;
-  color: #777777;
-  border: 2px solid #777777;
-  @media screen and (max-width: 480px) {
-    width: 100%;
-  }
-`;
+export default BoardPostModify;

@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import Topbutton from "../common/button/TopButton";
+import * as St from "./BoardPostDetailStyle";
+import Topbutton from "../../common/button/TopButton";
 import "./BoardPostDetail.css";
-import { __getComment, __postComment } from "../../redux/modules/CommentSlice";
+import {
+  __getComment,
+  __postComment,
+} from "../../../redux/modules/CommentSlice";
 import { useParams } from "react-router-dom";
 import {
   __getBoardDetail,
   __getmypost,
   __deleteBoard,
   __boardlike,
-} from "../../redux/modules/BoardSlice";
+} from "../../../redux/modules/BoardSlice";
 import { useNavigate } from "react-router-dom";
 
-import PostComment from "./PostComment";
-import BoardMypost from "./BoardMypost";
-import Footer from "../common/Footer";
+import PostComment from "../PostComment/PostComment";
+import BoardMypost from "../BoardMypost/BoardMypost";
+import Footer from "../../common/Footer";
 
 const BoardPostDetail = () => {
   const navigate = useNavigate();
@@ -25,11 +28,10 @@ const BoardPostDetail = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
-  const DefaultImega = "../img/default1.jpg";
-  const DefaultImega2 = "../img/default2.jpg";
-  const heartsvg = "/img/heart.svg";
-  const binheartsvg = "../img/binheart.svg";
-  const DefaultCmtImg = "../img/cmtdefault.svg";
+  const DefaultImega = "../img/board/default2.jpg";
+  const heartsvg = "../img/board/heart.svg";
+  const binheartsvg = "../img/board/binheart.svg";
+  const DefaultCmtImg = "../img/board/cmtdefault.svg";
 
   const post = useSelector((state) => state.BoardSlice.post);
   const isLoading = useSelector((state) => state.BoardSlice.isLoading);
@@ -290,12 +292,12 @@ const BoardPostDetail = () => {
   };
 
   return loading ? null : (
-    <HeaderContainer>
-      <BoardPostDetailContainer>
-        <BoardPostDetailWrap>
-          <Postnickname>{post?.author} 님의 여행이야기</Postnickname>
-          <ImegeWrap>
-            <ImegeSlide>
+    <St.HeaderContainer>
+      <St.BoardPostDetailContainer>
+        <St.BoardPostDetailWrap>
+          <St.Postnickname>{post?.author} 님의 여행이야기</St.Postnickname>
+          <St.ImegeWrap>
+            <St.ImegeSlide>
               <div className="slider__wrap">
                 <div className="slider__img">
                   <div className="slider__inner">
@@ -314,21 +316,21 @@ const BoardPostDetail = () => {
                   <div
                     href="#"
                     className="prev"
-                    style={{ background: "url(../img/leftarrow.svg)" }}
+                    style={{ background: "url(../img/board/leftarrow.svg)" }}
                   ></div>
                   <div
                     href="#"
                     className="next"
-                    style={{ background: "url(../img/rightarrow.svg)" }}
+                    style={{ background: "url(../img/board/rightarrow.svg)" }}
                   ></div>
                 </div>
                 <div className="slider__dot"></div>
               </div>
-            </ImegeSlide>
-            <ImegePreview>
+            </St.ImegeSlide>
+            <St.ImegePreview>
               {post &&
                 post?.mediaList.map((el, idx) => (
-                  <PreviewItem
+                  <St.PreviewItem
                     className="ImgPreview"
                     key={idx}
                     src={
@@ -338,61 +340,74 @@ const BoardPostDetail = () => {
                     onClick={ImgHandlerTest}
                   />
                 ))}
-            </ImegePreview>
-          </ImegeWrap>
+            </St.ImegePreview>
+          </St.ImegeWrap>
 
-          <BoardcontentWrap>
-            <BoardContentsbox>
-              <BoardTitleWrap>
-                <BoardTitle>{post?.title}</BoardTitle>
-                <TitleButtonWarp>
+          <St.BoardcontentWrap>
+            <St.BoardContentsbox>
+              <St.BoardTitleWrap>
+                <St.BoardTitle>{post?.title}</St.BoardTitle>
+                <St.TitleButtonWarp>
                   {nickname == post?.author ? (
                     <>
-                      <ModifyButton onClick={modifyPost}>수정</ModifyButton>
-                      <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
+                      <St.ModifyButton onClick={modifyPost}>
+                        수정
+                      </St.ModifyButton>
+                      <St.DeleteButton onClick={DeletePost}>
+                        삭제
+                      </St.DeleteButton>
                     </>
                   ) : (
-                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                    <St.UserProfile onClick={goProfile}>
+                      글쓴이 프로필
+                    </St.UserProfile>
                   )}
-                </TitleButtonWarp>
-              </BoardTitleWrap>
-              <UserNameBox>
-                <BoardCateGory>
-                  <CateLocal>지역 : {post?.local}</CateLocal>
-                  <CateDetail>도시 : {post?.localdetail}</CateDetail>
-                </BoardCateGory>
-                <TitleButtonWarpmobile>
+                </St.TitleButtonWarp>
+              </St.BoardTitleWrap>
+              <St.UserNameBox>
+                <St.BoardCateGory>
+                  <St.CateLocal>지역 : {post?.local}</St.CateLocal>
+                  <St.CateDetail>도시 : {post?.localdetail}</St.CateDetail>
+                </St.BoardCateGory>
+                <St.TitleButtonWarpmobile>
                   {nickname == post?.author ? (
                     <>
-                      <ModifyButton onClick={modifyPost}>수정</ModifyButton>
-                      <DeleteButton onClick={DeletePost}>삭제</DeleteButton>
+                      <St.ModifyButton onClick={modifyPost}>
+                        수정
+                      </St.ModifyButton>
+                      <St.DeleteButton onClick={DeletePost}>
+                        삭제
+                      </St.DeleteButton>
                     </>
                   ) : (
-                    <UserProfile onClick={goProfile}>글쓴이 프로필</UserProfile>
+                    <St.UserProfile onClick={goProfile}>
+                      글쓴이 프로필
+                    </St.UserProfile>
                   )}
-                </TitleButtonWarpmobile>
-              </UserNameBox>
-              <BoardBody>{post?.content}</BoardBody>
-            </BoardContentsbox>
-            <BoardLike onClick={Boardpostlike}>
-              <BoardLikeImage
+                </St.TitleButtonWarpmobile>
+              </St.UserNameBox>
+              <St.BoardBody>{post?.content}</St.BoardBody>
+            </St.BoardContentsbox>
+            <St.BoardLike onClick={Boardpostlike}>
+              <St.BoardLikeImage
                 src={post && heart ? heartsvg : binheartsvg}
                 alt=""
               />
 
-              <BoardLikeCount>{heartnum}</BoardLikeCount>
-            </BoardLike>
-          </BoardcontentWrap>
+              <St.BoardLikeCount>{heartnum}</St.BoardLikeCount>
+            </St.BoardLike>
+          </St.BoardcontentWrap>
 
-          <BoardCommentWrap>
-            <BoardCommentBox>
-              <CommentWriteUserBox>
-                <CommentWriteImg
+          <St.BoardCommentWrap>
+            <St.BoardCommentBox>
+              <St.CommentWriteUserBox>
+                <St.CommentWriteImg
                   src={commentImg ? commentImg : DefaultCmtImg}
+                  alt=""
                 />
-                <CommentWriteUser>{post?.nickName}</CommentWriteUser>
-              </CommentWriteUserBox>
-              <CommentTextarea
+                <St.CommentWriteUser>{post?.nickName}</St.CommentWriteUser>
+              </St.CommentWriteUserBox>
+              <St.CommentTextarea
                 name=""
                 maxLength="200"
                 id="comment"
@@ -404,22 +419,22 @@ const BoardPostDetail = () => {
                 }}
                 onChange={CommentHandler}
               />
-              <CommentButtonBox>
-                <CommentCount>{cmtcount}</CommentCount>
-                <CommentCount>/200</CommentCount>
-                <CommentWriteButton onClick={WriteComment}>
+              <St.CommentButtonBox>
+                <St.CommentCount>{cmtcount}</St.CommentCount>
+                <St.CommentCount>/200</St.CommentCount>
+                <St.CommentWriteButton onClick={WriteComment}>
                   댓글 등록
-                </CommentWriteButton>
-              </CommentButtonBox>
-            </BoardCommentBox>
-            <BoardCommentBoxmobile>
-              <CommentUserboxmobile>
-                <CommentImgmobile
+                </St.CommentWriteButton>
+              </St.CommentButtonBox>
+            </St.BoardCommentBox>
+            <St.BoardCommentBoxmobile>
+              <St.CommentUserboxmobile>
+                <St.CommentImgmobile
                   src={commentImg ? commentImg : DefaultCmtImg}
                 />
-                <CommentWriteUser>{post?.nickName}</CommentWriteUser>
-              </CommentUserboxmobile>
-              <CommentTextarea
+                <St.CommentWriteUser>{post?.nickName}</St.CommentWriteUser>
+              </St.CommentUserboxmobile>
+              <St.CommentTextarea
                 name=""
                 maxLength="50"
                 id="comment"
@@ -428,10 +443,10 @@ const BoardPostDetail = () => {
                 onKeyUp={CheckLength}
                 onChange={CommentHandler}
               />
-              <CommentWritebuttonmobile onClick={WriteComment}>
+              <St.CommentWritebuttonmobile onClick={WriteComment}>
                 등록
-              </CommentWritebuttonmobile>
-            </BoardCommentBoxmobile>
+              </St.CommentWritebuttonmobile>
+            </St.BoardCommentBoxmobile>
             {comments &&
               comments?.map((item, idx) => (
                 <PostComment
@@ -442,346 +457,13 @@ const BoardPostDetail = () => {
                   post={post}
                 />
               ))}
-          </BoardCommentWrap>
+          </St.BoardCommentWrap>
           {mypostready && <BoardMypost post={post} mypost={mypost} />}
-        </BoardPostDetailWrap>
-      </BoardPostDetailContainer>
+        </St.BoardPostDetailWrap>
+      </St.BoardPostDetailContainer>
       <Topbutton />
       <Footer />
-    </HeaderContainer>
+    </St.HeaderContainer>
   );
 };
 export default BoardPostDetail;
-
-const HeaderContainer = styled.div`
-  padding-top: 120px;
-  @media screen and (max-width: 480px) {
-    padding-top: 80px;
-  }
-`;
-
-const BoardContentsbox = styled.div`
-  width: 100%;
-  padding: 70px;
-  @media screen and (max-width: 480px) {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-`;
-const BoardcontentWrap = styled.div`
-  border: 3px solid #d9d9d9;
-  width: 100%;
-  height: auto;
-  border-radius: 50px;
-  margin-top: 70px;
-  @media screen and (max-width: 480px) {
-    margin-top: 30px;
-    border: none;
-    box-sizing: border-box;
-  }
-`;
-const CommentWriteUserBox = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 20px 0 0 20px;
-  gap: 10px;
-`;
-
-const CommentWriteUser = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  @media screen and (max-width: 480px) {
-    font-weight: normal;
-    margin-left: 10px;
-  }
-`;
-
-const CommentWriteImg = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-`;
-
-const UserProfile = styled.div`
-  background-color: #333;
-  color: #fff;
-  padding: 8px 20px;
-  cursor: pointer;
-`;
-
-const CateLocal = styled.div`
-  font-size: 22px;
-  font-weight: lighter;
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
-`;
-const CateDetail = styled.div`
-  font-size: 22px;
-  font-weight: lighter;
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
-`;
-
-const Postnickname = styled.div`
-  font-size: 36px;
-  margin-bottom: 25px;
-  font-weight: bold;
-  @media screen and (max-width: 480px) {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
-    font-weight: bold;
-  }
-`;
-
-const UserNameBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  @media screen and (max-width: 480px) {
-    margin-top: 50px;
-  }
-`;
-const CommentCount = styled.span`
-  font-size: 20px;
-  color: #777777;
-`;
-const CommentWriteButton = styled.button`
-  border-left: 1px solid #b0b0b0;
-  padding: 20px 60px;
-  margin-left: 20px;
-  color: #777777;
-  font-size: 20px;
-`;
-
-const CommentButtonBox = styled.div`
-  width: 100%;
-  border-top: 1px solid #b0b0b0;
-  display: flex;
-  justify-content: right;
-  margin-top: 10px;
-  align-items: center;
-`;
-
-const CommentTextarea = styled.textarea`
-  height: 80px;
-  width: 95%;
-  resize: none;
-  border: none;
-  font-size: 16px;
-  outline: none;
-  font-size: 16px;
-  margin-top: 10px;
-  margin-left: 20px;
-  @media screen and (max-width: 480px) {
-    width: 95%;
-    height: 150px;
-    margin: 10px;
-    border: none;
-    box-sizing: border-box;
-    border-radius: 20px;
-    padding: 10px;
-    background-color: #f2f2f2;
-  }
-`;
-
-const CommentWritebuttonmobile = styled.button`
-  max-width: 100%;
-  border: 1px solid #b0b0b0;
-  border-radius: 20px;
-  height: 50px;
-  color: #777;
-  font-size: 20px;
-  margin: 10px;
-  box-sizing: border-box;
-`;
-
-const BoardCommentBox = styled.div`
-  width: 100%;
-  height: auto;
-  border: 1px solid #b0b0b0;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-
-const BoardCommentBoxmobile = styled.div`
-  display: none;
-  @media screen and (max-width: 480px) {
-    width: 100%;
-    height: auto;
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    text-align: center;
-  }
-`;
-
-const CommentUserboxmobile = styled.div`
-  display: flex;
-  margin-left: 10px;
-`;
-
-const CommentImgmobile = styled.img`
-  width: 30px;
-  height: 30px;
-  border-radius: 15px;
-`;
-
-const BoardCommentWrap = styled.div`
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  margin-top: 50px;
-`;
-
-const BoardLikeCount = styled.div`
-  margin-left: 10px;
-`;
-const BoardLikeImage = styled.img``;
-
-const BoardLike = styled.div`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 35px;
-  border-radius: 10px;
-  border: 1px solid #cdcdcd;
-  align-items: center;
-  margin: 0 auto 50px;
-`;
-
-const BoardBody = styled.div`
-  font-family: "NotoSansKR";
-  margin-top: 40px;
-  width: 90%;
-  min-height: 400px;
-  font-weight: lighter;
-  white-space: normal;
-  word-wrap: break-word;
-  font-size: 24px;
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
-`;
-
-const BoardCateGory = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-
-const DeleteButton = styled.div`
-  font-size: 24px;
-  margin-left: 20px;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.5;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
-`;
-
-const ModifyButton = styled.div`
-  cursor: pointer;
-  font-size: 24px;
-  &:hover {
-    opacity: 0.5;
-  }
-  @media screen and (max-width: 480px) {
-    font-size: 1.2rem;
-  }
-`;
-
-const TitleButtonWarp = styled.div`
-  display: flex;
-  margin-right: 10rem;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-
-const TitleButtonWarpmobile = styled.div`
-  display: none;
-  @media screen and (max-width: 480px) {
-    display: flex;
-  }
-`;
-
-const BoardTitle = styled.h2`
-  font-size: 36px;
-  @media screen and (max-width: 480px) {
-    font-size: 1.6rem;
-    margin-right: 25px;
-  }
-`;
-
-const BoardTitleWrap = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 80px;
-  @media screen and (max-width: 480px) {
-    flex-direction: column;
-  }
-`;
-
-const BoardPostDetailContainer = styled.div`
-  max-width: 1440px;
-  width: 95%;
-  margin: 150px auto;
-  @media screen and (max-width: 480px) {
-    width: 98%;
-    margin: 0px auto;
-  }
-`;
-const BoardPostDetailWrap = styled.div`
-  width: 100%;
-`;
-
-const ImegeWrap = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  @media screen and (max-width: 480px) {
-    width: 98%;
-  }
-`;
-
-const ImegeSlide = styled.div`
-  width: 100%;
-  height: 600px;
-  @media screen and (max-width: 480px) {
-    width: 98%;
-    height: 250px;
-  }
-`;
-
-const ImegePreview = styled.div`
-  width: 100%;
-  display: flex;
-  height: 150px;
-  margin-top: 20px;
-  gap: 10px;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-
-const PreviewItem = styled.img`
-  max-width: 135px;
-  width: 100%;
-  flex: 1;
-  height: 100%;
-  border-radius: 30px;
-  object-fit: cover;
-`;

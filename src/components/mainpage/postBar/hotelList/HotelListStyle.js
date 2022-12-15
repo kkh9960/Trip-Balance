@@ -27,6 +27,7 @@ export const hr = styled.div`
   position: absolute;
   width: 95%;
   height: 1px;
+  top: 373px;
   background-color: #ccc;
   @media screen and (max-width: 480px) {
     display: none;
@@ -57,6 +58,7 @@ export const hotelText = styled.div`
   color: #f2f2f2;
   @media screen and (max-width: 480px) {
     font-size: 28px;
+    margin-bottom: 36px;
   }
 `;
 export const hotelList = styled.div`
@@ -84,12 +86,16 @@ export const hotelList = styled.div`
 export const hotelListBox = styled.div`
   width: 280px;
   height: 328px;
-  border-radius: 20px;
   margin: 25px 10px 10px 10px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #ccc;
+  :hover {
+    scale: 1.01;
+  }
   @media screen and (max-width: 480px) {
     width: 100%;
+    height: 322px;
   }
 `;
 export const hotelImgBox = styled.img`
@@ -97,16 +103,17 @@ export const hotelImgBox = styled.img`
   height: 282px;
   margin-bottom: 10px;
   object-fit: cover;
-  border-radius: 20px;
+
   :hover {
     cursor: pointer;
   }
 `;
 export const hotelTitle = styled.div`
-  width: 280px;
+  width: 100%;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   font-size: 24px;
-  font-weight: 400;
   color: #f2f2f2;
   display: inline-block;
   white-space: nowrap;
@@ -114,6 +121,7 @@ export const hotelTitle = styled.div`
   text-overflow: ellipsis;
   :hover {
     cursor: pointer;
+    color: #333;
   }
   @media screen and (max-width: 480px) {
     font-size: 20px;

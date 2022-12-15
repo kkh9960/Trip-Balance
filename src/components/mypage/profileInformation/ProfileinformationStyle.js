@@ -5,7 +5,7 @@ export const userName = styled.div`
     width: 500px;
     font-size: 28px;
     animation: 3s;
-    animation-name: slideLeft;
+    animation-name: mypageOpacity;
     margin: 0 0 5px 300px;
     span {
       font-size: 22px;
@@ -25,6 +25,10 @@ export const userName = styled.div`
 `;
 
 export const ProfileInformationView = styled.div`
+  @media screen and (min-width: 481px) {
+    width: 1326px;
+    margin: 0 auto;
+  }
   @media screen and (max-width: 480px) {
     width: 100%;
     height: 1520px;
@@ -51,15 +55,13 @@ export const myInformation = styled.div`
   display: flex;
   align-items: center;
   animation: 2s;
-  animation-name: slideLeft;
-  @keyframes slideLeft {
+  animation-name: mypageOpacity;
+  @keyframes mypageOpacity {
     from {
       opacity: 0;
-      /* transform: translateX(-1000px); */
     }
     to {
       opacity: 1;
-      /* transform: translateX(0px); */
     }
   }
   @media screen and (max-width: 480px) {
@@ -374,7 +376,7 @@ export const buttonGroup = styled.div`
     display: flex;
     align-items: end;
     justify-content: center;
-    box-shadow: 0 0 4px;
+    box-shadow: 0 0 2px;
 
     button {
       width: 100%;
@@ -406,24 +408,4 @@ export const buttonGroup = styled.div`
       transition: 0.2s linear;
     }
   }
-`;
-
-export const detailPickInfo = styled.div`
-  /* width: 100%;
-  height: 100%;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(33%, auto));
-  grid-template-rows: repeat(2, minmax(100px, 50%)); */
-`;
-export const detailPickInfoTotal = styled.div``;
-export const detailPickInfoCategory = styled.div`
-  background-color: #73e4bc;
-  width: 135px;
-  height: 135px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
