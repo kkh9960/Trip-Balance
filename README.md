@@ -10,6 +10,8 @@
 <div>
 
 ![image](https://user-images.githubusercontent.com/77573910/206633198-1de82ce6-a604-4b8d-a520-6a412251021b.png)
+  
+-------
 
 </div>
 
@@ -26,6 +28,8 @@
 
 </div>
 
+-------
+
 <h3>Member</h3>
 <p align=>
 <img src="https://img.shields.io/badge/곽규현-61DAFB?style=for-the-badge&logo=react&logoColor=white"> 
@@ -41,7 +45,42 @@
 <a href="https://github.com/seongwoo9156"><img src="https://img.shields.io/badge/GITHUB-61DAFB?style=for-the-badge&logo=GitHub&logoColor=white&link=https://github.com/seongwoo9156"/></a>
 
 -------
-<div style="white-space:nowrap; overflow:auto;  width:500px; height:150px;">
+  
+<h2> 트러블 슈팅 </h2>
+<details>
+<summary> 검색 필터 후 무한 스크롤 </summary>
+<div markdown="1">	
+<br>
+</div>
+  <p> 검색 필터 후 무한 스크롤 내용 </p>
+</details>
+<details>
+<summary> 웹 페이지 성능 최적화 </summary>
+<div markdown="1">	
+<br>
+</div>
+  <p> 웹 페이지 성능 최적화 내용 </p>
+</details> 
+
+</br>
+
+<h2> UT 개선사항 </h2>
+<details>
+<summary> SQL문 </summary>
+<div markdown="1">	
+<br>
+</div>
+  <p> SQL문 내용 </p>
+</details>
+<details>
+<summary> 게임 재 진행시 기존 데이터가 남아있는 현상 </summary>
+<div markdown="1">	
+<br>
+</div>
+  <p> 게임 재 진행시 기존 데이터가 남아있는 현상 </p>
+</details> 
+
+-------
 
   <h2> 🚌 Trip Balane 서비스 미리보기 (Mobile) </h2>
 
