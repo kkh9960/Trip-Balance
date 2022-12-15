@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import LoginPage from "../../login/LoginPage";
-
+import * as t  from "./Topbuttonstyle"
 const TopButton = () => {
   const [showButton, setShowButton] = useState(false);
 
@@ -43,8 +42,8 @@ const TopButton = () => {
         <LoginPage />
       ) : (
         showButton && (
-          <ScrollContainer>
-            <Bgimg
+          <t.ScrollContainer>
+            <t.Bgimg
               src="../../img/topgame.webp"
               onClick={() => {
                 navigate(`/start`);
@@ -52,42 +51,42 @@ const TopButton = () => {
             />
 
             {email ? (
-              <Writeimg
+              <t.Writeimg
                 src="../../img/topwrite.webp"
                 onClick={() => {
                   navigate(`/write`);
                 }}
               />
             ) : (
-              <Writeimg src="../../img/topwrite.webp" onClick={goLogin} />
+              <t.Writeimg src="../../img/topwrite.webp" onClick={goLogin} />
             )}
 
-            <Topimg src="../../img/topgo.webp" onClick={scrollToTop} />
-            <MobileButtonWrap>
-              <MobileBtnbox>
-                <MobileBg
+            <t.Topimg src="../../img/topgo.webp" onClick={scrollToTop} />
+            <t.MobileButtonWrap>
+              <t.MobileBtnbox>
+                <t.MobileBg
                   src="../../img/topgame.webp"
                   onClick={() => {
                     navigate(`/start`);
                   }}
                 />
                 {email ? (
-                  <MobileWrite
+                  <t.MobileWrite
                     src="../../img/topwrite.webp"
                     onClick={() => {
                       navigate(`/write`);
                     }}
                   />
                 ) : (
-                  <MobileWrite
+                  <t.MobileWrite
                     src="../../img/topwrite.webp"
                     onClick={goLogin}
                   />
                 )}
-                <MobileTop src="../../img/topgo.webp" onClick={scrollToTop} />
-              </MobileBtnbox>
-            </MobileButtonWrap>
-          </ScrollContainer>
+                <t.MobileTop src="../../img/topgo.webp" onClick={scrollToTop} />
+              </t.MobileBtnbox>
+            </t.MobileButtonWrap>
+          </t.ScrollContainer>
         )
       )}
     </>
@@ -96,156 +95,3 @@ const TopButton = () => {
 
 export default TopButton;
 
-const MobileBg = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  opacity: 0.9;
-`;
-const MobileWrite = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  opacity: 0.9;
-`;
-const MobileTop = styled.img`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  opacity: 0.9;
-`;
-
-const MobileBtnbox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-`;
-
-const MobileButtonWrap = styled.div`
-  display: none;
-  @media screen and (max-width: 480px) {
-    display: block;
-    width: 100%;
-    height: 80px;
-  }
-`;
-
-const Bgimg = styled.img`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  opacity: 0.9;
-  cursor: pointer;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-
-const Writeimg = styled.img`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  opacity: 0.9;
-  cursor: pointer;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-const Topimg = styled.img`
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  opacity: 0.9;
-  cursor: pointer;
-  @media screen and (max-width: 480px) {
-    display: none;
-  }
-`;
-
-const ScrollContainer = styled.div`
-  position: fixed;
-  right: 3%;
-  bottom: 10%;
-  z-index: 1;
-
-  width: 80px;
-  height: 150px;
-  @media screen and (max-width: 480px) {
-    display: flex;
-    width: 100%;
-    right: 0%;
-    align-items: center;
-    justify-content: center;
-    bottom: -35px;
-  }
-`;
-const Top = styled.button`
-  margin-top: 7px;
-  font-weight: bold;
-  font-size: 15px;
-  height: 70px;
-  width: 70px;
-  padding: 15px 10px;
-  background-color: #d9d9d9;
-  color: black;
-  border: 1px solid rgb(210, 204, 193);
-  border-radius: 50%;
-  outline: none;
-  cursor: pointer;
-  :hover {
-    color: rgb(142, 26, 26);
-  }
-  @media screen and (max-width: 480px) {
-    border-radius: 10px;
-    width: 120px;
-    background-color: white;
-  }
-`;
-const Write = styled.button`
-  border: 1px solid red;
-  font-weight: bold;
-  font-size: 15px;
-  padding: 15px 10px;
-  background-color: #d9d9d9;
-  color: black;
-  border: 1px solid rgb(210, 204, 193);
-  border-radius: 50%;
-  outline: none;
-  height: 70px;
-  margin-top: 8px;
-  width: 70px;
-  cursor: pointer;
-  :hover {
-    color: rgb(142, 26, 26);
-  }
-  @media screen and (max-width: 480px) {
-    border-radius: 10px;
-    width: 120px;
-    background-color: white;
-  }
-`;
-const Balance = styled.button`
-  border: 1px solid red;
-  font-weight: bold;
-  font-size: 15px;
-  padding: 15px 10px;
-  background-color: #d9d9d9;
-  color: black;
-  border: 1px solid rgb(210, 204, 193);
-  border-radius: 50%;
-  outline: none;
-  height: 81px;
-  margin-top: 8px;
-  width: 81px;
-  cursor: pointer;
-  :hover {
-    color: rgb(142, 26, 26);
-  }
-  @media screen and (max-width: 480px) {
-    border-radius: 10px;
-    width: 120px;
-    background-color: white;
-  }
-`;

@@ -2,7 +2,7 @@ import React from "react";
 import Git from "../../img/git.svg";
 import * as t from "./FooterStyle";
 
-import design from "../../img/design.svg";
+
 const Footer = () => {
   return (
     <t.Container>
@@ -51,7 +51,7 @@ const Footer = () => {
               김장원
             </t.GitWrap>
             <t.DesignWrap href="https://linktr.ee/vozzang">
-              <t.Design src={design} />
+              
               DESIGNER 서보영
             </t.DesignWrap>
           </t.BackWrap>
