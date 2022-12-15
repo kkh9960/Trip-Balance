@@ -117,7 +117,7 @@ export const InputWrite = styled.input`
   top: -100px;
   @media screen and (max-width: 746px) {
     width: 300px;
-    top: -100px;
+    top: -110px;
     right: 0px;
   }
 `;
@@ -170,8 +170,8 @@ export const Danger3 = styled.p`
     content: ":경고: ";
   }
   @media screen and (max-width: 746px) {
-    top: -100px;
-    left: 0px;
+    top: -110px;
+    left: 10px;
   }
 `;
 
@@ -237,7 +237,7 @@ export const SignUpBtn = styled.button`
   left: 35px;
   transition: 1.1s;
   @media screen and (max-width: 746px) {
-    top: -105px;
+    top: -125px;
     left: 45px;
     width: 200px;
   }
@@ -254,7 +254,7 @@ export const EmailCheck = styled.button`
   @media screen and (max-width: 746px) {
     position: relative;
     left: 220px;
-    top: -157px;
+    top: -165px;
     width: 70px;
   }
 `;
@@ -271,7 +271,7 @@ export const NickNameCheck = styled.button`
   @media screen and (max-width: 746px) {
     position: relative;
     left: 220px;
-    top: -157px;
+    top: -165px;
     width: 70px;
   }
 `;
