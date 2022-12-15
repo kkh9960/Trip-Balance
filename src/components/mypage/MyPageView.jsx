@@ -9,7 +9,6 @@ import instance from "../../lib/instance";
 
 export default function MyPageView() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [nickname, setNickname] = useState([]);
   const [userGameCnt, setUserGameCnt] = useState([]);
   const [userCommentCnt, setUserCommentCnt] = useState([]);
@@ -47,12 +46,10 @@ export default function MyPageView() {
   useEffect(() => {
     async function fetchData() {
       const result = await instance.get("tb/mypage/hearts");
-
       setMyPick(result.data.data);
     }
     fetchData();
   }, []);
-
   return (
     <t.myInformationWrap>
       <ProfileInformation />
@@ -113,7 +110,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <t.pickPostTitle>{idx.title}</t.pickPostTitle>
-                      <t.pickPostNickname>{idx.nickName}</t.pickPostNickname>
+                      <t.pickPostNickname>- {idx.nickName}</t.pickPostNickname>
                     </t.pickPostItem>
                   );
                 }

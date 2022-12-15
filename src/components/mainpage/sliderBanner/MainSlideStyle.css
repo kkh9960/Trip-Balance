@@ -170,15 +170,39 @@
     margin-left: 400px;
     position: relative;
   }
-  .mainboard_img,
-  .mainboard_img2,
-  .mainboard_img3,
-  .mainboard_img4 {
+  .mainboard_img {
+    position: absolute;
+    top: -200px;
+    left: -30px;
+    width: 480px;
+    height: 532px;
+    z-index: 2;
+    opacity: 0;
+  }
+  .mainboard_img2 {
     position: absolute;
     top: -200px;
     left: -30px;
     width: 500px;
     height: 500px;
+    z-index: 2;
+    opacity: 0;
+  }
+  .mainboard_img3 {
+    position: absolute;
+    top: -200px;
+    left: -30px;
+    width: 360px;
+    height: 578px;
+    z-index: 2;
+    opacity: 0;
+  }
+  .mainboard_img4 {
+    position: absolute;
+    top: -200px;
+    left: -30px;
+    width: 530px;
+    height: 480px;
     z-index: 2;
     opacity: 0;
   }

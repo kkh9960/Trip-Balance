@@ -1,11 +1,9 @@
 import React, { useState, useRef } from "react";
 import * as t from "./MemberInformationStyle";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
-import InformationChart from "./MemberInformationChart";
 import MemberInformationChart from "./MemberInformationChart";
 
 export default function MemberInformation() {
@@ -67,15 +65,15 @@ export default function MemberInformation() {
               <t.textName>링크걸기</t.textName>
               <t.linkWrap>
                 <t.link href={`https://www.instagram.com/${instaLink}`}>
-                  <t.snsIcon src={insta} />
+                  <t.snsIcon src={insta} alt="snsicon" />
                   <t.linkBox value={instaLink || ""} readOnly />
                 </t.link>
                 <t.link href={`https://ko-kr.facebook.com/${faceLink}`}>
-                  <t.snsIcon src={face} />
+                  <t.snsIcon src={face} alt="snsicon" />
                   <t.linkBox value={faceLink || ""} readOnly />
                 </t.link>
                 <t.link href={`https://www.youtube.com/${youLink}`}>
-                  <t.snsIcon src={you} />
+                  <t.snsIcon src={you} alt="snsicon" />
                   <t.linkBox value={youLink || ""} readOnly />
                 </t.link>
               </t.linkWrap>
