@@ -118,18 +118,19 @@ axios를 선정한 이유는 Promise 기반으로 만들어졌기 때문에 데�
 
 <h2> UT 개선사항 </h2>
 <details>
-<summary> SQL문 </summary>
+<summary> 고객 반응 및 마케팅 결과 </summary>
 <div markdown="1">	
 <br>
 </div>
-  <p> SQL문 내용 </p>
+  <img src = "https://user-images.githubusercontent.com/113871636/207862376-1904124c-6ce1-4d90-99dc-c562a723db3e.png">
 </details>
 <details>
-<summary> 게임 재 진행시 기존 데이터가 남아있는 현상 </summary>
+<summary> 개선사항 </summary>
 <div markdown="1">	
 <br>
 </div>
-  <p> 게임 재 진행시 기존 데이터가 남아있는 현상 </p>
+  <img src = "https://user-images.githubusercontent.com/113871636/207862502-99a468f5-693a-44ed-bbc0-0a546296082f.png">
+
 </details> 
 
 -------
