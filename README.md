@@ -45,7 +45,25 @@
 <a href="https://github.com/seongwoo9156"><img src="https://img.shields.io/badge/GITHUB-61DAFB?style=for-the-badge&logo=GitHub&logoColor=white&link=https://github.com/seongwoo9156"/></a>
 
 -------
-  
+
+<h2> 기술 스택 & 라이브러리 사용 이유 </h2>
+<details>
+<summary> Redux-Toolkik </summary>
+<div markdown="1">	
+<br>
+</div>
+  <p> 툴킷 내용 </p>
+</details>
+<details>
+<summary> Styled-components </summary>
+<div markdown="1">	
+<br>
+</div>
+  <p> 스타일드 컴포넌트 사용이유 </p>
+</details> 
+
+</br>
+
 <h2> 트러블 슈팅 </h2>
 <details>
 <summary> 검색 필터 후 무한 스크롤 </summary>
