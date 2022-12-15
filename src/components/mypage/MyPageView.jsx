@@ -110,7 +110,7 @@ export default function MyPageView() {
                     >
                       <t.pickPostImg src={idx.img} alt="게시글이미지" />
                       <t.pickPostTitle>{idx.title}</t.pickPostTitle>
-                      <t.pickPostNickname>{idx.nickName}</t.pickPostNickname>
+                      <t.pickPostNickname>- {idx.nickName}</t.pickPostNickname>
                     </t.pickPostItem>
                   );
                 }
