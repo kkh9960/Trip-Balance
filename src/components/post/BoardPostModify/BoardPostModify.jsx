@@ -226,18 +226,9 @@ const BoardPostModify = () => {
 
     //원본
     const imageFile = e.target.files[0];
-    console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
-    console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
     //리사이징
     try {
       const compressedFile = await imageCompression(imageFile, options);
-      console.log(
-        "compressedFile instanceof Blob",
-        compressedFile instanceof Blob
-      ); // true
-      console.log(
-        `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
-      );
       // AWS ACCESS KEY를 세팅합니다.
       AWS.config.update({
         accessKeyId: ACCESS_KEY,
@@ -249,7 +240,7 @@ const BoardPostModify = () => {
         params: { Bucket: S3_BUCKET },
         region: REGION,
       });
-      const file = e.target.files[0];
+      const file = compressedFile;
 
       const fileName = file.name.replaceAll(" ", "");
 
