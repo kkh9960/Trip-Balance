@@ -127,11 +127,10 @@ export const KakaoWrap = styled.a`
   top: 70px;
 
   @media screen and (max-width: 746px) {
-    left: -40px;
+    left: -20px;
   }
 `;
 export const KakaoImg = styled.img`
-  object-fit: cover;
   width: 360px;
   height: 61px;
   border-radius: 10px;
@@ -149,4 +148,8 @@ export const SignUpbtn = styled.div`
   top: 220px;
   font-size: 24px;
   cursor: pointer;
+  @media screen and (max-width: 746px) {
+    position: relative;
+    top: 210px;
+  }
 `;
