@@ -137,7 +137,7 @@ export const Danger = styled.p`
     content: ":경고: ";
   }
   @media screen and (max-width: 746px) {
-    top: -100px;
+    top: -110px;
     left: 7px;
   }
 `;
@@ -154,7 +154,7 @@ export const Danger2 = styled.p`
     content: ":경고: ";
   }
   @media screen and (max-width: 746px) {
-    top: -100px;
+    top: -110px;
     left: 8px;
   }
 `;
@@ -237,7 +237,7 @@ export const SignUpBtn = styled.button`
   left: 35px;
   transition: 1.1s;
   @media screen and (max-width: 746px) {
-    top: -125px;
+    top: -113px;
     left: 45px;
     width: 200px;
   }
