@@ -10,7 +10,7 @@ export const Container = styled.div`
   }
 `;
 export const Wrap = styled.div`
-
+  
   height: 260px;
   @media screen and (max-width: 550px) {
     height: 370px;
