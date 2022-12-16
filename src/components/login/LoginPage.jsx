@@ -9,7 +9,6 @@ import { KAKAO_AUTH_URL } from "./AuthKakao";
 import Exit from "../../img/exit.webp";
 function LoginPage() {
   const {
-
     formState: { errors },
   } = useForm();
   const [modal, setModal] = useState(true);

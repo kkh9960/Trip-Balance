@@ -173,7 +173,7 @@ export const postTime = styled.div`
   position: absolute;
   bottom: 0px;
   font-size: 18px;
-  color: #787878;
+  color: #333;
   margin-left: 5px;
   margin-bottom: 10px;
 `;
@@ -271,6 +271,7 @@ export const pickPostTitle = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-left: 5px;
   @media screen and (max-width: 480px) {
     font-weight: 400;
     font-size: 18px;
@@ -279,11 +280,12 @@ export const pickPostTitle = styled.div`
   }
 `;
 export const pickPostNickname = styled.div`
-  position: absolute;
   bottom: 0px;
   font-size: 18px;
-  color: #787878;
-  margin-left: 5px;
+  color: #333;
+  text-align: right;
+  margin-top: 7px;
+  margin-right: 10px;
   margin-bottom: 10px;
 `;
 

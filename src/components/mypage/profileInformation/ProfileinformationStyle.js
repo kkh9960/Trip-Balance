@@ -367,7 +367,7 @@ export const buttonGroup = styled.div`
   @media screen and (min-width: 481px) {
     position: absolute;
     z-index: 0;
-    bottom: 50px;
+    bottom: 56px;
     left: 116px;
     width: 120px;
     height: 68px;
@@ -377,17 +377,21 @@ export const buttonGroup = styled.div`
     align-items: end;
     justify-content: center;
     box-shadow: 0 0 2px;
-
+    transition: 0.5s;
+    :hover {
+      transition: 0.5s;
+      transform: translateY(2px);
+    }
     button {
       width: 100%;
       font-size: 15px;
       margin-bottom: 7px;
-      color: gray;
+      color: black;
       transition: 0.2s linear;
       font-weight: 700;
     }
     button:hover {
-      color: black;
+      color: #333;
       transition: 0.2s linear;
     }
   }
@@ -404,7 +408,7 @@ export const buttonGroup = styled.div`
       font-size: 15px;
       line-height: 24px;
       text-align: center;
-      color: #333;
+      color: black;
       transition: 0.2s linear;
     }
   }

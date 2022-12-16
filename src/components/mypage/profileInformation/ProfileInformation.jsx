@@ -1,14 +1,16 @@
 import React, { useState, useRef } from "react";
 import * as t from "./ProfileinformationStyle";
 import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
+
 import AWS from "aws-sdk";
 import useInput from "../../../hooks/useInput";
 import instance from "../../../lib/instance";
 import InformationChart from "./InformationChart";
 
-export default function ProfileInformation({}) {
-  const dispatch = useDispatch();
+export default function ProfileInformation() {
   const profile = "/img/mypage/noneprofile.webp";
   const camera = "/img/mypage/profileImgChange.webp";
   const insta = "/img/mypage/insta.webp";
@@ -17,7 +19,6 @@ export default function ProfileInformation({}) {
   const [profileMode, setProfileMode] = useState(true);
   const [profileImg, setProfileImg] = useState(profile);
   const [userEmail, setUserEmail] = useState();
-  const [userSns, setUserSns] = useState();
   const [userSelf, setUserSelf, introduceonChange] = useInput();
   const [nickname, setNickname, nicknameChange] = useInput();
   const [topNickname, setTopNickname] = useState();
@@ -119,7 +120,7 @@ export default function ProfileInformation({}) {
       <t.UserInfor>
         {profileMode ? (
           <t.myInformation>
-            <t.ProfileImgBox src={profileImg} alt="프로필사진" />
+            <t.ProfileImgBox src={profileImg} alt="profileimg" />
             <t.mobileID>
               <t.mobileNickName>{nickname} 님</t.mobileNickName>
               <t.mobileEmail>{userEmail}</t.mobileEmail>
@@ -135,15 +136,15 @@ export default function ProfileInformation({}) {
                 <t.textName>링크걸기</t.textName>
                 <t.linkWrap>
                   <t.link href={`https://www.instagram.com/${instaLink}`}>
-                    <t.snsIcon src={insta} />
+                    <t.snsIcon src={insta} alt="snsicon" />
                     <t.linkBox value={instaLink || ""} readOnly />
                   </t.link>
                   <t.link href={`https://ko-kr.facebook.com/${faceLink}`}>
-                    <t.snsIcon src={face} />
+                    <t.snsIcon src={face} alt="snsicon" />
                     <t.linkBox value={faceLink || ""} readOnly />
                   </t.link>
                   <t.link href={`https://www.youtube.com/${youLink}`}>
-                    <t.snsIcon src={you} />
+                    <t.snsIcon src={you} alt="snsicon" />
                     <t.linkBox value={youLink || ""} readOnly />
                   </t.link>
                 </t.linkWrap>
@@ -163,11 +164,13 @@ export default function ProfileInformation({}) {
               }}
               onClick={() => profileImgInput.current.click()}
               profileMode={profileMode}
+              alt="progileimg"
             />
             <t.profileImgChange onClick={() => profileImgInput.current.click()}>
-              <t.camera src={camera} />
+              <t.camera src={camera} alt="cameraicon" />
             </t.profileImgChange>
             <input
+              aria-label="ProfileImgBox"
               type="file"
               style={{ display: "none" }}
               accept="image/jpg,image/png,image/jpeg"
@@ -212,6 +215,7 @@ export default function ProfileInformation({}) {
                     <>
                       <t.snsIcon
                         src={insta}
+                        alt="snsicon"
                         onClick={() => setInstaInput(false)}
                       />
                     </>
@@ -219,6 +223,7 @@ export default function ProfileInformation({}) {
                     <>
                       <t.snsIcon
                         src={insta}
+                        alt="snsicon"
                         onClick={() => setInstaInput(true)}
                       />
                       <t.snsInput
@@ -236,6 +241,7 @@ export default function ProfileInformation({}) {
                     <>
                       <t.snsIcon
                         src={face}
+                        alt="snsicon"
                         onClick={() => setFaceInput(false)}
                       />
                     </>
@@ -243,6 +249,7 @@ export default function ProfileInformation({}) {
                     <>
                       <t.snsIcon
                         src={face}
+                        alt="snsicon"
                         onClick={() => setFaceInput(true)}
                       />
                       <t.snsInput
@@ -258,11 +265,19 @@ export default function ProfileInformation({}) {
                 <t.youLinkbox>
                   {profileMode ? (
                     <>
-                      <t.snsIcon src={you} onClick={() => setYouInput(false)} />
+                      <t.snsIcon
+                        src={you}
+                        alt="snsicon"
+                        onClick={() => setYouInput(false)}
+                      />
                     </>
                   ) : (
                     <>
-                      <t.snsIcon src={you} onClick={() => setYouInput(true)} />
+                      <t.snsIcon
+                        src={you}
+                        alt="snsicon"
+                        onClick={() => setYouInput(true)}
+                      />
                       <t.snsInput
                         type="text"
                         onChange={youChange}

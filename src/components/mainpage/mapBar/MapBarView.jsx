@@ -1,6 +1,5 @@
 import React from "react";
 import MapBar from "../../../shared/api/map/MapBar";
-import MobileMap from "../../../shared/api/map/mobileMap/MobileMap";
 import DoughnutChart from "./doughnutChart/DoughnutChart";
 import * as t from "./MapBarViewStyle";
 

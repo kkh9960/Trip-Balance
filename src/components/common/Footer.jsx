@@ -2,7 +2,6 @@ import React from "react";
 import Git from "../../img/git.webp";
 import * as t from "./FooterStyle";
 
-
 const Footer = () => {
   return (
     <t.Container>

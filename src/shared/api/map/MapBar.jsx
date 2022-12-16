@@ -12,7 +12,7 @@ export default function MapBar() {
 
   useEffect(() => {
     mapscript();
-    // dispatch(__getMapData());
+    dispatch(__getMapData());
   }, []);
 
   const mapscript = () => {

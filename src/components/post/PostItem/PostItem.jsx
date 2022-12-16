@@ -106,176 +106,198 @@ const PostItem = () => {
     } else {
       dispatch(__getBoardLocal({ useInput, pageLocal, selLocal }));
       setsearch(3);
-      console.log(55);
       setbestview(false);
     }
   };
 
   return (
     <>
-      {modal ? (
+      {posts && (
         <>
-          <LoginPage />
-          <St.PostPageContainer>
-            <St.TodayTitle>오늘의 여행지 검색</St.TodayTitle>
-            <St.SearchBox>
-              <St.SearchBoxForm onSubmit={getSearch}>
-                <St.CategorySearch
-                  onChange={getCategory}
-                  style={{ fontFamily: "Jalnan" }}
-                >
-                  <option value="0">전체</option>
-                  <option value="1">수도권</option>
-                  <option value="2">강원도 + 경상도</option>
-                  <option value="3">충청도 + 전라도</option>
-                  <option value="4">제주도</option>
-                  <option value="5">기타</option>
-                </St.CategorySearch>
-                <St.TitleSearchbox>
-                  <St.TitleSearch
-                    type="text"
-                    placeholder="오늘의 핫한 여행지 검색하기"
-                    value={useInput}
-                    onChange={onChange}
-                  ></St.TitleSearch>
-                  <St.SearchIcon></St.SearchIcon>
-                </St.TitleSearchbox>
-              </St.SearchBoxForm>
-              <St.PostgoWrite onClick={goPosrWrite}>게시글 작성</St.PostgoWrite>
-            </St.SearchBox>
-            {bestview ? (
-              <St.PostLikeBestbox>
-                <PostBestfive best={best} setModal={setModal} modal={modal} />
-              </St.PostLikeBestbox>
-            ) : null}
-            <St.PostListWrap>
-              <St.PostListTitle type="submit">여행 이야기</St.PostListTitle>
-              <St.PostCardList>
-                {posts &&
-                  posts.map((item, idx) => (
-                    <St.CardWrap
-                      key={idx}
-                      search={posts}
-                      onClick={() => {
-                        goDetail(item.postId);
-                      }}
+          {modal ? (
+            <>
+              <LoginPage />
+              <St.PostPageContainer>
+                <St.TodayTitle>오늘의 여행지 검색</St.TodayTitle>
+                <St.SearchBox>
+                  <St.SearchBoxForm onSubmit={getSearch}>
+                    <St.CategorySearch
+                      onChange={getCategory}
+                      style={{ fontFamily: "Jalnan" }}
                     >
-                      <St.CardImgbox>
-                        <St.CardImg src={item.image[0].imgURL} alt="" />
-                      </St.CardImgbox>
-                      <St.CardTextbox>
-                        <St.CardTitle>{item.title}</St.CardTitle>
-                        <St.Cardbody>
-                          <St.Userinfo>
-                            <St.UserImg
-                              src={
-                                item.profileImg
-                                  ? item.profileImg
-                                  : profiledefaultImg
-                              }
-                              alt=""
-                            />
-                            <St.CardUserName>{item.author}</St.CardUserName>
-                          </St.Userinfo>
-                          <St.Likeinfo>
-                            <St.LikeCount>{item.heartNum}</St.LikeCount>
-                            <St.LikeImg src="img/board/heart.svg" alt="" />
-                          </St.Likeinfo>
-                        </St.Cardbody>
-                      </St.CardTextbox>
-                    </St.CardWrap>
-                  ))}
-              </St.PostCardList>
-            </St.PostListWrap>
-            <St.Viewbox>
-              {test ? (
-                <div ref={ref}>
-                  {isLast ? "더이상 글이없습니다" : <Loading2 />}
-                </div>
-              ) : null}
-            </St.Viewbox>
-          </St.PostPageContainer>
-        </>
-      ) : (
-        <St.PostPageContainer>
-          <St.TodayTitle>오늘의 여행지 검색</St.TodayTitle>
-          <St.SearchBox>
-            <St.SearchBoxForm onSubmit={getSearch}>
-              <St.CategorySearch
-                onChange={getCategory}
-                style={{ fontFamily: "Jalnan" }}
-              >
-                <option value="0">전체</option>
-                <option value="1">수도권</option>
-                <option value="2">강원도 + 경상도</option>
-                <option value="3">충청도 + 전라도</option>
-                <option value="4">제주도</option>
-                <option value="5">기타</option>
-              </St.CategorySearch>
-              <St.TitleSearchbox>
-                <St.TitleSearch
-                  type="text"
-                  placeholder="오늘의 핫한 여행지 검색하기"
-                  value={useInput}
-                  onChange={onChange}
-                />
-                <St.SearchIcon></St.SearchIcon>
-              </St.TitleSearchbox>
-            </St.SearchBoxForm>
-            <St.PostgoWrite onClick={goPosrWrite}>게시글 작성</St.PostgoWrite>
-          </St.SearchBox>
-          {bestview ? (
-            <St.PostLikeBestbox>
-              <PostBestfive best={best} />
-            </St.PostLikeBestbox>
-          ) : null}
-          <St.PostListWrap>
-            <St.PostListTitle type="submit">여행 이야기</St.PostListTitle>
-            <St.PostCardList>
-              {posts &&
-                posts.map((item, idx) => (
-                  <St.CardWrap
-                    key={idx}
-                    search={posts}
-                    onClick={() => {
-                      goDetail(item.postId);
-                    }}
+                      <option value="0">전체</option>
+                      <option value="1">수도권</option>
+                      <option value="2">강원도 + 경상도</option>
+                      <option value="3">충청도 + 전라도</option>
+                      <option value="4">제주도</option>
+                      <option value="5">기타</option>
+                    </St.CategorySearch>
+                    <St.TitleSearchbox>
+                      <St.TitleSearch
+                        type="text"
+                        placeholder="오늘의 핫한 여행지 검색하기"
+                        value={useInput}
+                        onChange={onChange}
+                      ></St.TitleSearch>
+                      <St.SearchIcon></St.SearchIcon>
+                    </St.TitleSearchbox>
+                  </St.SearchBoxForm>
+                  <St.PostgoWrite onClick={goPosrWrite}>
+                    게시글 작성
+                  </St.PostgoWrite>
+                </St.SearchBox>
+                {bestview ? (
+                  <St.PostLikeBestbox>
+                    <PostBestfive
+                      best={best}
+                      setModal={setModal}
+                      modal={modal}
+                    />
+                  </St.PostLikeBestbox>
+                ) : null}
+                <St.PostListWrap>
+                  <St.PostListTitle type="submit">여행 이야기</St.PostListTitle>
+                  <St.PostCardList>
+                    {posts &&
+                      posts.map((item, idx) => (
+                        <St.CardWrap
+                          key={idx}
+                          search={posts}
+                          onClick={() => {
+                            goDetail(item.postId);
+                          }}
+                        >
+                          <St.CardImgbox>
+                            {/* <Imgix
+                              src={item.image[0].imgURL}
+                              width={688}
+                              height={730}
+                            /> */}
+
+                            <St.CardImg src={item.image[0].imgURL} alt="" />
+                          </St.CardImgbox>
+                          <St.CardTextbox>
+                            <St.CardTitle>{item.title}</St.CardTitle>
+                            <St.Cardbody>
+                              <St.Userinfo>
+                                <St.UserImg
+                                  src={
+                                    item.profileImg
+                                      ? item.profileImg
+                                      : profiledefaultImg
+                                  }
+                                  alt=""
+                                />
+                                <St.CardUserName>{item.author}</St.CardUserName>
+                              </St.Userinfo>
+                              <St.Likeinfo>
+                                <St.LikeCount>{item.heartNum}</St.LikeCount>
+                                <St.LikeImg src="img/board/heart.svg" alt="" />
+                              </St.Likeinfo>
+                            </St.Cardbody>
+                          </St.CardTextbox>
+                        </St.CardWrap>
+                      ))}
+                  </St.PostCardList>
+                </St.PostListWrap>
+                <St.Viewbox>
+                  {test ? (
+                    <div ref={ref}>
+                      {isLast ? "더이상 글이없습니다" : <Loading2 />}
+                    </div>
+                  ) : null}
+                </St.Viewbox>
+              </St.PostPageContainer>
+            </>
+          ) : (
+            <St.PostPageContainer>
+              <St.TodayTitle>오늘의 여행지 검색</St.TodayTitle>
+              <St.SearchBox>
+                <St.SearchBoxForm onSubmit={getSearch}>
+                  <St.CategorySearch
+                    onChange={getCategory}
+                    style={{ fontFamily: "Jalnan" }}
                   >
-                    <St.CardImgbox>
-                      <St.CardImg src={item.image[0].imgURL} alt="" />
-                    </St.CardImgbox>
-                    <St.CardTextbox>
-                      <St.CardTitle>{item.title}</St.CardTitle>
-                      <St.Cardbody>
-                        <St.Userinfo>
-                          <St.UserImg
-                            src={
-                              item.profileImg
-                                ? item.profileImg
-                                : profiledefaultImg
-                            }
-                            alt=""
-                          />
-                          <St.CardUserName>{item.author}</St.CardUserName>
-                        </St.Userinfo>
-                        <St.Likeinfo>
-                          <St.LikeCount>{item.heartNum}</St.LikeCount>
-                          <St.LikeImg src="img/board/heart.svg" alt="" />
-                        </St.Likeinfo>
-                      </St.Cardbody>
-                    </St.CardTextbox>
-                  </St.CardWrap>
-                ))}
-            </St.PostCardList>
-          </St.PostListWrap>
-          <St.Viewbox>
-            {test ? (
-              <div ref={ref}>
-                {isLast ? "더이상 글이없습니다" : <Loading2 />}
-              </div>
-            ) : null}
-          </St.Viewbox>
-        </St.PostPageContainer>
+                    <option value="0">전체</option>
+                    <option value="1">수도권</option>
+                    <option value="2">강원도 + 경상도</option>
+                    <option value="3">충청도 + 전라도</option>
+                    <option value="4">제주도</option>
+                    <option value="5">기타</option>
+                  </St.CategorySearch>
+                  <St.TitleSearchbox>
+                    <St.TitleSearch
+                      type="text"
+                      placeholder="오늘의 핫한 여행지 검색하기"
+                      value={useInput}
+                      onChange={onChange}
+                    />
+                    <St.SearchIcon></St.SearchIcon>
+                  </St.TitleSearchbox>
+                </St.SearchBoxForm>
+                <St.PostgoWrite onClick={goPosrWrite}>
+                  게시글 작성
+                </St.PostgoWrite>
+              </St.SearchBox>
+              {bestview ? (
+                <St.PostLikeBestbox>
+                  <PostBestfive best={best} />
+                </St.PostLikeBestbox>
+              ) : null}
+              <St.PostListWrap>
+                <St.PostListTitle type="submit">여행 이야기</St.PostListTitle>
+                <St.PostCardList>
+                  {posts &&
+                    posts.map((item, idx) => (
+                      <St.CardWrap
+                        key={idx}
+                        search={posts}
+                        onClick={() => {
+                          goDetail(item.postId);
+                        }}
+                      >
+                        <St.CardImgbox>
+                          {/* <Imgix
+                            src={item.image[0].imgURL}
+                            width={688}
+                            height={730}
+                          /> */}
+                          <St.CardImg src={item.image[0].imgURL} alt="" />
+                        </St.CardImgbox>
+                        <St.CardTextbox>
+                          <St.CardTitle>{item.title}</St.CardTitle>
+                          <St.Cardbody>
+                            <St.Userinfo>
+                              <St.UserImg
+                                src={
+                                  item.profileImg
+                                    ? item.profileImg
+                                    : profiledefaultImg
+                                }
+                                alt=""
+                              />
+                              <St.CardUserName>{item.author}</St.CardUserName>
+                            </St.Userinfo>
+                            <St.Likeinfo>
+                              <St.LikeCount>{item.heartNum}</St.LikeCount>
+                              <St.LikeImg src="img/board/heart.svg" alt="" />
+                            </St.Likeinfo>
+                          </St.Cardbody>
+                        </St.CardTextbox>
+                      </St.CardWrap>
+                    ))}
+                </St.PostCardList>
+              </St.PostListWrap>
+              <St.Viewbox>
+                {test ? (
+                  <div ref={ref}>
+                    {isLast ? "더이상 글이없습니다" : <Loading2 />}
+                  </div>
+                ) : null}
+              </St.Viewbox>
+            </St.PostPageContainer>
+          )}
+        </>
       )}
     </>
   );

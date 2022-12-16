@@ -130,22 +130,6 @@ const Recomment = ({ item, cmtid }) => {
     }
   };
 
-  // const profile = () => {
-  //   setEditprofile2(!Editprofile2);
-  //   console.log(Editprofile2, "어흥");
-  //   dispatch({ type: "BTN_TOGGLE" });
-  // };
-
-  // useEffect(() => {
-  //   if (Editprofile && Editprofile2) {
-  //     setEdittest(true);
-  //     console.log("둘다참");
-  //   } else {
-  //     setEdittest(false);
-  //     console.log("둘다안참");
-  //   }
-  // }, [Editprofile2]);
-
   const profile = () => {
     setEditprofile2(!Editprofile2);
     dispatch({ type: "BTN_TOGGLE" });

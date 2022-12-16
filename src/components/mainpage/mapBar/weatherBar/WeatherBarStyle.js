@@ -100,8 +100,10 @@ export const iconBox = styled.div`
 `;
 export const weatherIcon = styled.img`
   width: 130px;
+  height: 130px;
   @media screen and (max-width: 480px) {
     width: 80px;
+    height: 80px;
   }
 `;
 export const temperatureBox = styled.div`
