@@ -54,7 +54,7 @@ Component 단위의 작성을 통해 UI를 구성하는 개별적인 view단위�
 </details>
 
 <details>
-<summary> Redux-Toolkik </summary>
+<summary> Redux-Toolkit </summary>
 <div markdown="1">	
 <br>
 </div>
@@ -162,7 +162,21 @@ lighthouse를이용해서 성능측정 결과 및접근성,권장사항 점수�
 
 </details> 
 
+</br>
+
+<h2> Tool 사용 내역 </h2>
+<details>
+<summary> Jira 및 Swagger 사용 </summary>
+<div markdown="1">	
+<br>
+</div>
+  <img src = "https://user-images.githubusercontent.com/109525872/208288431-4770f0d3-2b6e-4296-811e-5afb6b5ca0ed.png">
+</details>
+<br>
+
 -------
+
+<br>
 
   <h2> 🚌 Trip Balane 서비스 미리보기 (Mobile) </h2>
 
